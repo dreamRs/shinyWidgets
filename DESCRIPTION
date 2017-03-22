@@ -1,0 +1,34 @@
+Package: shinyWidgets
+Title: Custom inputs widgets for Shiny
+Version: 0.2.0
+Authors@R: c(
+  person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
+  person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
+  person("Silvio", "Moreto", role = c("ctb", "cph"), comment = "bootstrap-select"),
+  person("Ana", "Carolina", role = c("ctb", "cph"), comment = "bootstrap-select"),
+  person("caseyjhol", role = c("ctb", "cph"), comment = "bootstrap-select"),
+  person("Matt", "Bryson", role = c("ctb", "cph"), comment = "bootstrap-select"),
+  person("t0xicCode", role = c("ctb", "cph"), comment = "bootstrap-select"),
+  person("Mattia", "Larentis", role = c("ctb", "cph"), comment = "Bootstrap Switch"),
+  person("Emanuele", "Marchi", role = c("ctb", "cph"), comment = "Bootstrap Switch"),
+  person("Mark", "Otto", role = "ctb", comment = "Bootstrap library"),
+  person("Jacob", "Thornton", role = "ctb", comment = "Bootstrap library"),
+  person(family = "Bootstrap contributors", role = "ctb", comment = "Bootstrap library"),
+  person(family = "Twitter, Inc", role = "cph", comment = "Bootstrap library"),
+  person(family = "Flatlogic", role = "cph", comment = "Awesome Bootstrap Checkbox"),
+  person("mouse0270", role = c("ctb", "cph"), comment = "Material Design Switch"),
+  person("Tristan", "Edwards", role = c("ctb", "cph"), comment = "SweetAlert")
+  )
+Description: Custom inputs widgets to use in Shiny applications.
+Depends:
+    R (>= 3.2.0)
+Imports:
+    shiny (>= 0.13),
+    htmltools,
+    jsonlite
+License: GPL-3 | file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: shinydashboard,
+    formatR

@@ -1,0 +1,88 @@
+
+
+/* CSS icone btn */
+
+
+.btn.radiobtn .radio-btn-icon-yes {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active .radio-btn-icon-yes {
+	opacity: 1; display: inline-block;
+}
+
+.btn.radiobtn.active .radio-btn-icon-no {
+	opacity: 0; display: none;
+}
+.btn.radiobtn .radio-btn-icon-no {
+	opacity: 1; display: inline-block;
+}
+
+
+
+
+
+
+
+/* Option 1 */
+/*
+.btn.radiobtn span.glyphicon-unchecked {
+	opacity: 1; display: inline-block;
+}
+.btn.radiobtn.active span.glyphicon-unchecked {
+	opacity: 1; display: none;
+}
+
+.btn.radiobtn span.glyphicon-check {
+	opacity: 1; display: none;
+}
+.btn.radiobtn.active span.glyphicon-check {
+	opacity: 1; display: inline-block;
+}
+*/
+
+
+
+/* Option 2*/
+/*
+.btn.radiobtn span.glyphicon-remove {
+	opacity: 1; display: inline-block;
+}
+.btn.radiobtn.active span.glyphicon-remove {
+	opacity: 1; display: none;
+}
+
+.btn.radiobtn span.glyphicon-ok {
+	opacity: 1; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok {
+	opacity: 1; display: inline-block;
+}
+*/
+
+
+/* Option 3*/
+/*
+.btn.radiobtn span.glyphicon-ok.blank.hide {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok.blank.hide {
+	opacity: 0; display: inline-block;
+}
+.btn.radiobtn span.glyphicon-ok.blank {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok.blank {
+	opacity: 1; display: inline-block;
+}
+*/
+
+/* Option 4*/
+/*
+.btn.radiobtn span.glyphicon-check.blank {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-check.blank {
+	opacity: 1; display: inline-block;
+}
+*/
+

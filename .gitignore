@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+rsconnect/
+garbage/
+inst/examples/garbage
+shinyWidgets/wwww/
+vignettes/
