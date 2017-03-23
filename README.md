@@ -6,8 +6,12 @@ This package provide some custom widgets to pimp your shiny apps !
 
 Installation :
 ```r
+# From CRAN
+install.packages("shinyWidgets")
+
+From Github
 # install.packages("devtools")
-devtools::install_github("pvictor/shinyWidgets")
+devtools::install_github("dreamRs/shinyWidgets")
 ```
 
 Demo :
