@@ -9,7 +9,7 @@ Installation :
 # From CRAN
 install.packages("shinyWidgets")
 
-From Github
+# From Github
 # install.packages("devtools")
 devtools::install_github("dreamRs/shinyWidgets")
 ```

@@ -19,7 +19,7 @@ Authors@R: c(
   person("mouse0270", role = c("ctb", "cph"), comment = "Material Design Switch"),
   person("Tristan", "Edwards", role = c("ctb", "cph"), comment = "SweetAlert")
   )
-Description: Custom inputs widgets to use in Shiny applications.
+Description: Some custom inputs widgets to use in Shiny applications, like a toggle switch to replace checkboxes. And other components to pimp your apps.
 URL: https://github.com/dreamRs/shinyWidgets
 BugReports: https://github.com/dreamRs/shinyWidgets/issues
 Depends:
