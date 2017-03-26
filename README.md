@@ -21,6 +21,10 @@ shinyWidgets::shinyWidgetsGallery()
 
 Or see the live version here : https://dreamrs-vic.shinyapps.io/shinyWidgets/
 
+You can find an introduction (in french) [here](https://dreamrs.github.io/shinyWidgets/articles/intro_shinyWidgets_fr.html).
+
+And how to construct a palette color picker [here](https://dreamrs.github.io/shinyWidgets/articles/palette_picker.html).
+
 
 ## Widgets available :
 
