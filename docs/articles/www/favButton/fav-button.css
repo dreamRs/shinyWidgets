@@ -1,0 +1,143 @@
+
+/* From : http://bootsnipp.com/snippets/featured/circle-button */
+/* By http://bootsnipp.com/diglog */
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  margin: 5px;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  box-shadow: 3px 3px 1px #888888;
+}
+.btn-circle.active {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  margin: 5px;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  box-shadow: 3px 3px 1px #888888;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  /*padding: 10px 16px;*/
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  box-shadow: 3px 3px 1px #888888;
+}
+
+.btn-circle.btn-default {
+  background-color: #FFFFFF;
+}
+.btn-circle.btn-default.active {
+  background-color: #FFFFFF;
+}
+
+.btn-circle.btn-primary {
+  background-color: #337ab7;
+}
+.btn-circle.btn-primary.active {
+  background-color: #337ab7;
+}
+
+
+
+.btn-circle.btn-lg.active {
+  width: 50px;
+  height: 50px;
+  /*padding: 10px 16px;*/
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  box-shadow: 3px 3px 1px #888888 !important;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  /*padding: 10px 16px;*/
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+  box-shadow: 3px 3px 1px #888888;
+}
+
+
+ /* HEART */
+.btn-circle.active .fa-heart-o {
+  display: none;
+}
+.btn-circle .fa-heart-o {
+  display: inline-block;
+}
+
+.btn-circle.active .fa-heart {
+  display: inline-block; color: #DF0101;
+}
+.btn-circle .fa-heart {
+  display: none; color: #DF0101;
+}
+
+
+/* STAR */
+.btn-circle.active .fa-star-o {
+  display: none;
+}
+.btn-circle .fa-star-o {
+  display: inline-block;
+}
+
+.btn-circle.active .fa-star {
+  display: inline-block; color: #FFEB00;
+}
+.btn-circle .fa-star {
+  display: none; color: #FFEB00;
+}
+
+
+
+
+
+/* PRIMARY */
+
+.btn-circle.btn-primary.active .fa-heart {
+  display: inline-block; color: #FFFFFF;
+}
+.btn-circle.btn-primary .fa-heart {
+  display: none; color: #FFFFFF;
+}
+
+
+.btn-circle.btn-primary.active .fa-star {
+  display: inline-block; color: #FFFFFF;
+}
+.btn-circle.btn-primary .fa-star {
+  display: none; color: #FFFFFF;
+}
+
+
+
+/* FOCUS BUTTON */
+
+.btn-circle:active, .btn-circle:focus, .btn-circle.active {
+  background-image: none;
+  outline: 0;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-circle:focus, .btn-circle:active, .btn-circle.active, .btn-circle:focus:active {
+  background-image: none !important;
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+

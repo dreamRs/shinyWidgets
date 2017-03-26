@@ -2,7 +2,7 @@
 #' @title Launch the shinyWidget Gallery
 #'
 #' @description
-#' A gallery of widgets available in the packages
+#' A gallery of widgets available in the package
 #'
 #'
 #' @importFrom shiny runApp
