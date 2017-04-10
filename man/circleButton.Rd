@@ -4,7 +4,8 @@
 \alias{circleButton}
 \title{Circle Action button}
 \usage{
-circleButton(inputId, icon = NULL, status = "default", ...)
+circleButton(inputId, icon = NULL, status = "default", size = "default",
+  ...)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -12,6 +13,8 @@ circleButton(inputId, icon = NULL, status = "default", ...)
 \item{icon}{An icon to appear on the button.}
 
 \item{status}{Color of the button.}
+
+\item{size}{Size of the button : default, lg, sm, xs.}
 
 \item{...}{Named attributes to be applied to the button.}
 }

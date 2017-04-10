@@ -8,6 +8,7 @@
 #' @param circle Logical. Use a circle button
 #' @param icon An icon to appear on the button.
 #' @param status Color of the button.
+#' @param size Size of the button : default, lg, sm, xs.
 #' @param label Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip
 #' @param tooltip Put a tooltip on the button
 #' @param width Width of the dropdown menu
@@ -19,7 +20,7 @@
 #' @export
 
 
-dropdownButton <- function(..., circle = TRUE, status = "default", icon = NULL,
+dropdownButton <- function(..., circle = TRUE, status = "default", size = "default", icon = NULL,
                            label = NULL, tooltip = FALSE, width = NULL) {
 
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
@@ -37,18 +38,18 @@ dropdownButton <- function(..., circle = TRUE, status = "default", icon = NULL,
   # button
   if (circle) {
     html_button <- circleButton(
-      inputId = buttonID, icon = icon, status = status,
-      class = "btn-lg dropdown-toggle", `data-toggle` = "dropdown"
+      inputId = buttonID, icon = icon, status = status, size = size,
+      class = "dropdown-toggle", `data-toggle` = "dropdown"
     )
   } else {
     html_button <- list(
-      class = paste0("btn btn-", status," dropdown-toggle"),
+      class = paste0("btn btn-", status," dropdown-toggle ", ifelse(size == "default", "", paste0("btn-", size))),
       type = "button",
       id = buttonID,
       `data-toggle` = "dropdown",
       `aria-haspopup` = "true",
       `aria-expanded` = "true",
-      label,
+      list(icon, label),
       tags$span(class = "caret")
     )
     html_button <- do.call(tags$button, html_button)

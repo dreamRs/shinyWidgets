@@ -2,10 +2,10 @@
 % Please edit documentation in R/shinyWidgetsGallery.R
 \name{shinyWidgetsGallery}
 \alias{shinyWidgetsGallery}
-\title{Run the shinyWidget Gallery}
+\title{Launch the shinyWidget Gallery}
 \usage{
 shinyWidgetsGallery()
 }
 \description{
-A gallery of widgets available in the packages
+A gallery of widgets available in the package
 }
