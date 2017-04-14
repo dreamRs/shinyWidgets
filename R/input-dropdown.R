@@ -11,6 +11,7 @@
 #' @param size Size of the button : default, lg, sm, xs.
 #' @param label Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip
 #' @param tooltip Put a tooltip on the button
+#' @param right The dropdown menu starts onthe right
 #' @param width Width of the dropdown menu
 #'
 #'
@@ -18,17 +19,31 @@
 #' @importFrom htmltools validateCssUnit tagList singleton
 #'
 #' @export
+#' @examples
+#' \dontrun{
+#' ## Only run examples in interactive R sessions
+#' if (interactive()) {
+#'
+#' dropdownButton(
+#'  "Your contents goes here ! You can pass several elements",
+#'  circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
+#'  tooltip = tooltipOptions(title = "Click to see inputs !")
+#' )
+#'
+#' }
+#' }
+#'
 
 
 dropdownButton <- function(..., circle = TRUE, status = "default", size = "default", icon = NULL,
-                           label = NULL, tooltip = FALSE, width = NULL) {
+                           label = NULL, tooltip = FALSE, right = FALSE, width = NULL) {
 
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
   buttonID <- paste0("drop", sample.int(1e9, 1))
 
   # dropdown content
   html_ul <- list(
-    class = "dropdown-menu",
+    class = paste("dropdown-menu", ifelse(right, "dropdown-menu-right", "")),
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
     `aria-labelledby` = buttonID,
