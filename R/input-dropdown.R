@@ -11,7 +11,8 @@
 #' @param size Size of the button : default, lg, sm, xs.
 #' @param label Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip
 #' @param tooltip Put a tooltip on the button
-#' @param right The dropdown menu starts onthe right
+#' @param right The dropdown menu starts on the right
+#' @param up Display the dropdown menu above
 #' @param width Width of the dropdown menu
 #'
 #'
@@ -36,7 +37,7 @@
 
 
 dropdownButton <- function(..., circle = TRUE, status = "default", size = "default", icon = NULL,
-                           label = NULL, tooltip = FALSE, right = FALSE, width = NULL) {
+                           label = NULL, tooltip = FALSE, right = FALSE, up = FALSE, width = NULL) {
 
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
   buttonID <- paste0("drop", sample.int(1e9, 1))
@@ -98,7 +99,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
   }
 
   tags$div(
-    class = "dropdown",
+    class = ifelse(up, "dropup", "dropdown"),
     html_button,
     do.call(tags$ul, html_ul),
     tags$script("$('.dropdown-menu').click(function(e) {e.stopPropagation();});"),
