@@ -1,10 +1,13 @@
 # shinyWidgets
-==============
+================
 
 > Extend widgets available in shiny
 
 [![Travis-CI Build Status](https://travis-ci.org/dreamRs/shinyWidgets.svg?branch=master)](https://travis-ci.org/dreamRs/shinyWidgets)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/shinyWidgets)](http://cran.rstudio.com/web/packages/shinyWidgets/index.html)
+
+
+## Overview
 
 This package provide some custom widgets to pimp your shiny apps !
 
