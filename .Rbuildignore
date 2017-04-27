@@ -5,3 +5,4 @@
 ^docs$
 ^vignettes$
 ^_pkgdown\.yml$
+^\.travis\.yml$
