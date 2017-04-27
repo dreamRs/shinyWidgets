@@ -1,5 +1,5 @@
 # shinyWidgets
-================
+
 
 > Extend widgets available in shiny
 
