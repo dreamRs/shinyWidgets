@@ -134,14 +134,8 @@ radioGroupButtons <- function(
       )
     )
   )
-
   # Dep
-  dep <- htmltools::htmlDependency(
-    name = "radioGroupButtons", version = "0.1.0", src = c(href="shinyWidgets"),
-    script = "radioGroupButtons/radioGroupButtons-bindings.js",
-    stylesheet = "radioGroupButtons/radioGroupButtons.css"
-  )
-  htmltools::attachDependencies(radioGroupButtonsTag, dep)
+  attachShinyWidgetsDep(radioGroupButtonsTag)
 }
 
 

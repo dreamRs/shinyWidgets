@@ -19,12 +19,10 @@
 
 circleButton <- function (inputId, icon = NULL, status = "default", size = "default", ...)
 {
-  htmltools::tagList(
-    htmltools::singleton(
-      tags$head(tags$link(rel='stylesheet', type='text/css',
-                          href='shinyWidgets/circleButton/circle-button.css'))
-    ),
-    tags$button(id = inputId, type = "button",
-      class = paste0("btn btn-", status, " action-button ", ifelse(size == "default", "btn-circle", paste0("btn-circle-", size))), icon, ...)
+  attachShinyWidgetsDep(
+    tags$button(
+      id = inputId, type = "button",
+      class = paste0("btn btn-", status, " action-button ", ifelse(size == "default", "btn-circle", paste0("btn-circle-", size))), icon, ...
+    )
   )
 }

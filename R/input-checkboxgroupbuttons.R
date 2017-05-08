@@ -126,14 +126,8 @@ checkboxGroupButtons <- function(
       )
     )
   )
-
   # Dep
-  dep <- htmltools::htmlDependency(
-    "checkboxGroupButtons", "0.1.0", c(href="shinyWidgets"),
-    script = "checkboxGroupButtons/checkboxGroupButtons-bindings.js",
-    stylesheet = "checkboxGroupButtons/checkboxGroupButtons.css"
-  )
-  htmltools::attachDependencies(checkboxGroupButtonsTag, dep)
+  attachShinyWidgetsDep(checkboxGroupButtonsTag)
 }
 
 

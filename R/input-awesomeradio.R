@@ -103,19 +103,7 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
     )
   )
   # Dep
-  dep <- list(
-    htmltools::htmlDependency(
-      "awesomeRadioCheckbox", "0.1.0", c(href="shinyWidgets"),
-      script = c("awesomeRadioCheckbox/awesomeCheckbox-bindings.js",
-                 "awesomeRadioCheckbox/awesomeRadio-bindings.js"),
-      stylesheet = "awesomeRadioCheckbox/css/awesome-bootstrap-checkbox-shiny.css"
-    ),
-    htmltools::htmlDependency(
-      "font-awesome",
-      "4.6.3", c(href = "shared/font-awesome"), stylesheet = "css/font-awesome.min.css"
-    )
-  )
-  htmltools::attachDependencies(awesomeRadioTag, dep)
+  attachShinyWidgetsDep(awesomeRadioTag, "awesome")
 }
 
 

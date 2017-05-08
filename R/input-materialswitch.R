@@ -86,11 +86,8 @@ materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "defau
         inputTag,
         tags$label(`for`=inputId, class=paste0("label-", status)),
         if (!is.null(label) & right) tags$span(label, style = "padding-left: 10px;")))
-  dep <- htmltools::htmlDependency(
-    "material-switch", "0.1.0", c(href="shinyWidgets"),
-    stylesheet = "materialSwitch/material-switch.css"
-  )
-  htmltools::attachDependencies(msTag, dep)
+  # Dep
+  attachShinyWidgetsDep(msTag)
 }
 
 

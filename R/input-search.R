@@ -74,8 +74,7 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL, b
       tags$span(class="input-group-btn", btnReset, btnSearch)
     )
   )
-  dep <- htmltools::htmlDependency("searchInput", "0.1.0", c(href="shinyWidgets"),
-                                   script = "searchInput/search-bindings.js")
-  htmltools::attachDependencies(searchTag, dep)
+  # Dep
+  attachShinyWidgetsDep(searchTag)
 }
 

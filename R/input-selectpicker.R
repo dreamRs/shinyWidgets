@@ -93,17 +93,8 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
     # ,
     # receivePickerMessage(paste0("message", inputId))
   )
-
   # Dep
-  dep <- htmltools::htmlDependency(
-    "selectPicker", "0.1.0", c(href="shinyWidgets"),
-    script = c(
-      "selectPicker/js/bootstrap-select.min.js",
-      "selectPicker/picker-bindings.js"
-    ),
-    stylesheet = "selectPicker/css/bootstrap-select.min.css"
-  )
-  htmltools::attachDependencies(pickerTag, dep)
+  attachShinyWidgetsDep(pickerTag, "picker")
 }
 
 

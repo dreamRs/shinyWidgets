@@ -61,12 +61,7 @@ receiveSweetAlert <- function(messageId) {
     messageId
   )
   tagSweet <- tags$script(js)
-  dep <- htmltools::htmlDependency(
-    "sweetAlert", "0.1.0", c(href="shinyWidgets"),
-    script = "sweetAlert/js/sweetalert.min.js",
-    stylesheet = "sweetAlert/css/sweetalert.css"
-  )
-  htmltools::attachDependencies(tagSweet, dep)
+  attachShinyWidgetsDep(tagSweet, "sweetalert")
 }
 
 

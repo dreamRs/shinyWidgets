@@ -17,8 +17,7 @@
 #'
 
 
-actionGroupButtons <-
-  function(inputIds,
+actionGroupButtons <- function(inputIds,
            labels,
            status = "default",
            size = "normal",

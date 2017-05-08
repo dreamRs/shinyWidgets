@@ -68,20 +68,7 @@ awesomeCheckbox <- function (inputId, label, value = FALSE, status = "primary", 
         inputTag,
         tags$label(tags$span(label, style = "font-weight: normal; cursor: pointer;"), `for` = inputId)))
   # Dep
-  dep <- list(
-    htmltools::htmlDependency(
-      "awesomeRadioCheckbox", "0.1.0", c(href="shinyWidgets"),
-      script = c("awesomeRadioCheckbox/awesomeCheckbox-bindings.js",
-                 "awesomeRadioCheckbox/awesomeRadio-bindings.js"),
-      stylesheet = "awesomeRadioCheckbox/css/awesome-bootstrap-checkbox-shiny.css"
-    ),
-    htmltools::htmlDependency(
-      "font-awesome",
-      "4.6.3", c(href = "shared/font-awesome"), stylesheet = "css/font-awesome.min.css"
-    )
-  )
-
-  htmltools::attachDependencies(awesomeTag, dep)
+  attachShinyWidgetsDep(awesomeTag, "awesome")
 }
 
 
@@ -151,20 +138,7 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
     paste0("width: ", validateCssUnit(width), ";"), class = divClass,
     tags$label(label, `for` = inputId, style = "margin-bottom: 10px;"), options)
   # Dep
-  dep <- list(
-    htmltools::htmlDependency(
-      "awesomeRadioCheckbox", "0.1.0", c(href="shinyWidgets"),
-      script = c("awesomeRadioCheckbox/awesomeCheckbox-bindings.js",
-                 "awesomeRadioCheckbox/awesomeRadio-bindings.js"),
-      stylesheet = "awesomeRadioCheckbox/css/awesome-bootstrap-checkbox-shiny.css"
-    ),
-    htmltools::htmlDependency(
-      "font-awesome",
-      "4.6.3", c(href = "shared/font-awesome"), stylesheet = "css/font-awesome.min.css"
-    )
-  )
-
-  htmltools::attachDependencies(awesomeTag, dep)
+  attachShinyWidgetsDep(awesomeTag, "awesome")
 }
 
 
