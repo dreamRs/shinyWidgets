@@ -63,11 +63,7 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
       )
     )
   )
-  htmltools::tagList(
-    # htmltools::tags$head(htmltools::singleton(tags$script(src="shinyWidgets/progressBars/progressBars-bindings.js"))), tagPB,
-    attachShinyWidgetsDep(tagPB),
-    htmltools::tags$script(htmltools::HTML(sprintf("updtateProgress('%s-message');", id)))
-  )
+  attachShinyWidgetsDep(tagPB)
 }
 
 
@@ -87,6 +83,6 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
 #'
 
 updateProgressBar <- function(session, id, value, total = NULL, status = NULL) {
-  message <- paste(id, "message", sep = "-")
+  message <- "update-progressBar-shinyWidgets"
   session$sendCustomMessage(type = message, list(id = id, value = value, total = total, status = status))
 }
