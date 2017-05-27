@@ -45,6 +45,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
   # dropdown content
   html_ul <- list(
     class = paste("dropdown-menu", ifelse(right, "dropdown-menu-right", "")),
+    id = paste("dropdown-menu", buttonID, sep = "-"),
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
     `aria-labelledby` = buttonID,
@@ -62,7 +63,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
       class = paste0("btn btn-", status," dropdown-toggle ", ifelse(size == "default", "", paste0("btn-", size))),
       type = "button",
       id = buttonID,
-      `data-toggle` = "dropdown",
+      # `data-toggle` = "dropdown",
       `aria-haspopup` = "true",
       `aria-expanded` = "true",
       list(icon, label),
@@ -102,7 +103,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
     class = ifelse(up, "dropup", "dropdown"),
     html_button,
     do.call(tags$ul, html_ul),
-    tags$script("$('.dropdown-menu').click(function(e) {e.stopPropagation();});"),
+    tags$script(paste0("$('#", paste("dropdown-menu", buttonID, sep = "-"), "').click(function(e) {e.stopPropagation();});")),
     js_tooltip
   )
 }
