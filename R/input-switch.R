@@ -80,7 +80,7 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
     inputTag$attribs$checked <- "checked"
   switchInputTag <- tagList(
     tags$div(
-      style = "margin: 3px;",
+      style = "margin: 3px;", class=" shiny-input-container",
       inputTag,
       tags$script(paste0('$("#', inputId, '").bootstrapSwitch();'))
     )

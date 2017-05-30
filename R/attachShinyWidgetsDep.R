@@ -6,8 +6,9 @@
 #' @noRd
 #'
 attachShinyWidgetsDep <- function(tag, widget = NULL) {
+  version <- as.character(packageVersion("shinyWidgets")[[1]])
   dep <- htmltools::htmlDependency(
-    "shinyWidgets", "0.2.0", c(href = "shinyWidgets"),
+    name = "shinyWidgets", version = version, c(href = "shinyWidgets"),
     script = "shinyWidgets-bindings.min.js",
     stylesheet = "shinyWidgets.css"
   )
