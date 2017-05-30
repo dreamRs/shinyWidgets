@@ -3,6 +3,10 @@
 /* CSS icone btn */
 
 
+.btn.radiobtn:focus {
+  outline: none !important;
+}
+
 .btn.radiobtn .radio-btn-icon-yes {
 	opacity: 0; display: none;
 }

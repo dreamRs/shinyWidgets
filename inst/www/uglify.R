@@ -35,6 +35,9 @@ writeLines(text = bindings_files, con = "inst/www/shinyWidgets-bindings.min.js")
 # css
 
 css_files <- list.files(path = "inst/www/", pattern = "\\.css$", full.names = TRUE, recursive = TRUE)
+css_files <- css_files[!grepl(pattern = "shinyWidgets", x = css_files)]
+css_files <- css_files[!grepl(pattern = "bootstrap-select", x = css_files)]
+css_files <- css_files[!grepl(pattern = "bootstrap-switch", x = css_files)]
 css_files <- lapply(css_files, readLines)
 css_files <- lapply(css_files, paste, collapse = "\n")
 css_files <- paste(unlist(css_files), collapse = "\n")

@@ -3,6 +3,12 @@
 /* CSS icone btn */
 
 
+.btn.checkbtn:focus {
+  outline: none !important;
+}
+
+
+
 .btn.checkbtn .check-btn-icon-yes {
 	opacity: 0; display: none;
 }

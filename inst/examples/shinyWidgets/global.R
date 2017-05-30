@@ -10,7 +10,7 @@ if (!require("formatR")) install.packages("formatR")
 
 
 # Ids widgets
-ids <- paste0("Id", sprintf("%03d", 1:100))
+ids <- paste0("Id", sprintf("%03d", 1:72))
 idss <- ids
 
 ID <- function(ids) {

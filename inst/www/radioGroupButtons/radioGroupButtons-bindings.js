@@ -1,18 +1,20 @@
 
 // ------------------------------------------------------------------------ //
-//                                                                         
+//
 // Descriptif : Radio Group Buttons : javascript bindings
 //     Detail : http://getbootstrap.com/javascript/#buttons-checkbox-radio
 //
-//                                                                         
-// Auteur : Victor PERRIER 
-// 
+//
+// Auteur : Victor PERRIER
+//
 // Date creation : 01/07/2016
 // Date modification : 01/07/2016
-// 
+//
 // Version 1.0
-// 
+//
 // ------------------------------------------------------------------------ //
+
+
 
 
 var exports4but = window.Shiny = window.Shiny || {};

@@ -1,18 +1,29 @@
 
 // ------------------------------------------------------------------------ //
-//                                                                         
+//
 // Descriptif : Checkbox Group Buttons : javascript bindings
 //     Detail : http://getbootstrap.com/javascript/#buttons-checkbox-radio
 //
-//                                                                         
-// Auteur : Victor PERRIER 
-// 
+//
+// Auteur : Victor PERRIER
+//
 // Date creation : 01/07/2016
 // Date modification : 01/07/2016
-// 
+//
 // Version 1.0
-// 
+//
 // ------------------------------------------------------------------------ //
+
+
+
+// Prevent focus on button after click
+document.addEventListener('click', function(e) {
+
+  if(document.activeElement.toString() == '[object HTMLButtonElement]' & document.activeElement.classList.contains('checkbtn')) {
+    document.activeElement.blur();
+  }
+
+});
 
 
 var exports4but = window.Shiny = window.Shiny || {};
@@ -41,6 +52,7 @@ $.extend(checkboxGroupButtonsBinding, {
   setValue: function(el, value) {
     $('input:checkbox[name="' + $escape4but(el.id) + '"]').prop('checked', false);
     $('input:checkbox[name="' + $escape4but(el.id) + '"]').parent().removeClass('active');
+    $('input:checkbox[name="' + $escape4but(el.id) + '"]').parent().blur();
     // Accept array
       if (value instanceof Array) {
         for (var i = 0; i < value.length; i++) {
