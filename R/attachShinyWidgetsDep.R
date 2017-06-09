@@ -52,6 +52,15 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           stylesheet = "css/sweetalert.css"
         )
       )
+    } else if (widget == "multi") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          "multi", "0.2.3", c(href="shinyWidgets/multi"),
+          script = "multi.min.js",
+          stylesheet = c("multi.min.css", "multi-shiny.css")
+        )
+      )
     }
   }
   htmltools::attachDependencies(tag, dep)

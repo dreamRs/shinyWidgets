@@ -1,6 +1,6 @@
 Package: shinyWidgets
 Title: Custom Inputs Widgets for Shiny
-Version: 0.2.1.920
+Version: 0.2.1.930
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
@@ -17,7 +17,8 @@ Authors@R: c(
   person(family = "Twitter, Inc", role = "cph", comment = "Bootstrap library"),
   person(family = "Flatlogic", role = "cph", comment = "Awesome Bootstrap Checkbox"),
   person("mouse0270", role = c("ctb", "cph"), comment = "Material Design Switch"),
-  person("Tristan", "Edwards", role = c("ctb", "cph"), comment = "SweetAlert")
+  person("Tristan", "Edwards", role = c("ctb", "cph"), comment = "SweetAlert"),
+  person("Fabian", "Lindfors", role = c("ctb", "cph"), comment = "multi.js")
   )
 Description: Some custom inputs widgets to use in Shiny applications, like a toggle switch to replace checkboxes. And other components to pimp your apps.
 URL: https://github.com/dreamRs/shinyWidgets
