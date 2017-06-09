@@ -10,7 +10,7 @@ if (!require("formatR")) install.packages("formatR")
 
 
 # Ids widgets
-ids <- paste0("Id", sprintf("%03d", 1:72))
+ids <- paste0("Id", sprintf("%03d", 1:73))
 idss <- ids
 
 ID <- function(ids) {
@@ -136,6 +136,20 @@ renderCode <- function(expr, env = parent.frame(), quoted = FALSE) {
     paste(func(), collapse = "\n")
   })
 }
+
+
+
+
+# Flags for multi.js and picker ----
+
+# Countries
+countries <- list(
+  "France", "United Kingdom", "Germany", "United States of America", "Belgium", "China", "Spain", "Netherlands", "Mexico",
+  "Italy", "Canada", "Brazil", "Denmark", "Norway", "Switzerland", "Luxembourg", "Israel", "Russian Federation",
+  "Turkey", "Saudi Arabia", "United Arab Emirates"
+)
+flags <- c("fr", "gb", "de", "us", "be", "cn", "es", "nl", "mx", "it", "ca", "br", "dk", "no", "ch", "lu", "il", "ru", "tr", "sa", "ae")
+flags <- sprintf("https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/%s.svg", flags)
 
 
 

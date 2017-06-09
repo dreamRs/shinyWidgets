@@ -6,9 +6,10 @@
 #' @param label Display label for the control, or \code{NULL} for no label.
 #' @param choices List of values to select from.
 #' @param selected The initially selected value
-#' @param width The width of the input, e.g. '\code{400px}', or '\code{100%%}'
+#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}
 #' @param choiceNames List of names to display
 #' @param choiceValues List of value to retrieve in server
+#' @param options List of options passed to multi (\code{enable_search = FALSE} for disabling the serach bar for example)
 #'
 #' @return A multiselect control
 #' @importFrom jsonlite toJSON
@@ -16,6 +17,30 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' ## Only run examples in interactive R sessions
+#' if (interactive()) {
+#' library("shiny")
+#' library("shinyWidgets")
+#' ui <- fluidPage(
+#'   multiInput(
+#'     inputId = "id", label = "Fruits :",
+#'     choices = c("Banana", "Blueberry", "Cherry", "Coconut", "Grapefruit",
+#'                 "Kiwi", "Lemon", "Lime", "Mango", "Orange", "Papaya"),
+#'     selected = "Banana", width = "350px"
+#'   ),
+#'   verbatimTextOutput(outputId = "res")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'   output$res <- renderPrint({
+#'     input$id
+#'   })
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#' }
+#' }
 multiInput <- function(inputId, label, choices = NULL, selected = NULL, options = NULL, width = NULL, choiceNames = NULL, choiceValues = NULL) {
   selectTag <- tags$select(
     id = inputId, multiple = "multiple",

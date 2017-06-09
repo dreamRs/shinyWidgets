@@ -4,6 +4,7 @@
 #' @param widget NAme of a widget for particular dependancies
 #'
 #' @noRd
+#' @importFrom utils packageVersion
 #'
 attachShinyWidgetsDep <- function(tag, widget = NULL) {
   version <- as.character(packageVersion("shinyWidgets")[[1]])

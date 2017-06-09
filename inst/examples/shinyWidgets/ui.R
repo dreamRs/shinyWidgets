@@ -153,6 +153,18 @@ body <- dashboardBody(
                 width = "100%"
               )
             )
+          ),
+          box_wrapper(
+            title = "Multi.js",
+            widget_wrapper(
+              fun = multiInput,
+              args = list(
+                inputId = ID(ids),
+                label = "Countries :", choices = NULL,
+                choiceNames = lapply(seq_along(countries), function(i) tagList(tags$img(src = flags[i], width=20, height=15), countries[i])),
+                choiceValues = countries
+              )
+            )
           )
 
         )

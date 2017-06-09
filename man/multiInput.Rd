@@ -16,6 +16,10 @@ multiInput(inputId, label, choices = NULL, selected = NULL,
 
 \item{selected}{The initially selected value}
 
+\item{options}{List of options passed to multi (\code{enable_search = FALSE} for disabling the serach bar for example)}
+
+\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}}
+
 \item{choiceNames}{List of names to display}
 
 \item{choiceValues}{List of value to retrieve in server}
@@ -25,4 +29,30 @@ A multiselect control
 }
 \description{
 A user-friendly replacement for select boxes with the multiple attribute
+}
+\examples{
+\dontrun{
+## Only run examples in interactive R sessions
+if (interactive()) {
+library("shiny")
+library("shinyWidgets")
+ui <- fluidPage(
+  multiInput(
+    inputId = "id", label = "Fruits :",
+    choices = c("Banana", "Blueberry", "Cherry", "Coconut", "Grapefruit",
+                "Kiwi", "Lemon", "Lime", "Mango", "Orange", "Papaya"),
+    selected = "Banana", width = "350px"
+  ),
+  verbatimTextOutput(outputId = "res")
+)
+
+server <- function(input, output, session) {
+  output$res <- renderPrint({
+    input$id
+  })
+}
+
+shinyApp(ui = ui, server = server)
+}
+}
 }
