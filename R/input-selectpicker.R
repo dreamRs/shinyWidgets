@@ -1,22 +1,3 @@
-
-# ------------------------------------------------------------------------ #
-#
-# Descriptif : Select picker : fonctions R
-#     Detail : https://silviomoreto.github.io/bootstrap-select/examples/
-#
-#
-# Auteur : Victor PERRIER
-#
-# Date creation : 08/09/2016
-# Date modification : 08/09/2016
-#
-# Version 1.0
-#
-# ------------------------------------------------------------------------ #
-
-
-
-
 #' @title Select picker Input Control
 #'
 #' @description
@@ -90,8 +71,6 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
       selectTag,
       tags$script(paste0('$("#', inputId, '").selectpicker();'))
     )
-    # ,
-    # receivePickerMessage(paste0("message", inputId))
   )
   # Dep
   attachShinyWidgetsDep(pickerTag, "picker")
@@ -128,64 +107,7 @@ updatePickerInput <- function (session, inputId, label = NULL, selected = NULL, 
 
 
 
-# #' @title Select/Deselect value of a select picker
-# #'
-# #' @export
-#
-# updatePickerSelect <- function(session, inputId, selected = NULL) {
-#   if (is.null(selected)) {
-#     session$sendCustomMessage(
-#       type = paste0("message", inputId),
-#       message = list(inputId = inputId, deselectAll = TRUE, selectChoices = FALSE)
-#     )
-#   } else {
-#     session$sendCustomMessage(
-#       type = paste0("message", inputId),
-#       message = list(inputId = inputId, deselectAll = FALSE, selectChoices = TRUE, selected = jsonlite::toJSON(selected))
-#     )
-#   }
-# }
-#
-#
-#
-# receivePickerMessage <- function(message) {
-#   deselectAll <- "if (data.deselectAll) {$('#' + data.inputId).selectpicker('deselectAll');}"
-#   selectChoices <- "if (data.selectChoices) {$('#' + data.inputId).selectpicker('val', data.selected);}"
-#   js <- paste0("Shiny.addCustomMessageHandler('", message, "', function(data) {", deselectAll, selectChoices, "});")
-#   tags$script(js)
-# }
 
-
-
-
-# pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL)
-# {
-#   if (is.null(choicesOpt))
-#     choicesOpt <- list()
-#   html <- lapply(seq_along(choices), FUN = function(i) {
-#     label <- names(choices)[i]
-#     choice <- choices[[i]]
-#     if (is.list(choice)) {
-#       optionTag <- list(
-#         label = htmltools::htmlEscape(label, TRUE), pickerOptions(choice, selected)
-#       )
-#       optionTag <- dropNulls(optionTag)
-#       do.call(tags$optgroup, optionTag)
-#     }
-#     else {
-#       optionTag <- list(
-#         value = htmltools::htmlEscape(choice, TRUE), htmltools::htmlEscape(label),
-#         style = choicesOpt$style[i], `data-icon` = choicesOpt$icon[i],
-#         `data-subtext` = choicesOpt$subtext[i],
-#         selected = if (choice %in% selected) "selected" else NULL
-#       )
-#       # optionTag$attribs <- c(optionTag$attribs, list(if (choice %in% selected) " selected" else ""))
-#       optionTag <- dropNulls(optionTag)
-#       do.call(tags$option, optionTag)
-#     }
-#   })
-#   return(tagList(html))
-# }
 
 pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL)
 {

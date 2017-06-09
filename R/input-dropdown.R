@@ -63,7 +63,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
       class = paste0("btn btn-", status," dropdown-toggle ", ifelse(size == "default", "", paste0("btn-", size))),
       type = "button",
       id = buttonID,
-      # `data-toggle` = "dropdown",
+      `data-toggle` = "dropdown",
       `aria-haspopup` = "true",
       `aria-expanded` = "true",
       list(icon, label),
