@@ -1,4 +1,4 @@
-#' Create a multiselect input controm
+#' Create a multiselect input control
 #'
 #' @description A user-friendly replacement for select boxes with the multiple attribute
 #'
@@ -9,7 +9,7 @@
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}
 #' @param choiceNames List of names to display
 #' @param choiceValues List of value to retrieve in server
-#' @param options List of options passed to multi (\code{enable_search = FALSE} for disabling the serach bar for example)
+#' @param options List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example)
 #'
 #' @return A multiselect control
 #' @importFrom jsonlite toJSON

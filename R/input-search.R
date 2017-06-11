@@ -1,7 +1,7 @@
 #' @title Search Input
 #'
 #' @description
-#' A text input only triggered by hiting Enter or clicking search button
+#' A text input only triggered when Enter key is pressed or search button clicked
 #'
 #' @param inputId The input slot that will be used to access the value.
 #' @param label Display label for the control, or NULL for no label.
