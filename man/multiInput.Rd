@@ -2,7 +2,7 @@
 % Please edit documentation in R/input-multi.R
 \name{multiInput}
 \alias{multiInput}
-\title{Create a multiselect input controm}
+\title{Create a multiselect input control}
 \usage{
 multiInput(inputId, label, choices = NULL, selected = NULL,
   options = NULL, width = NULL, choiceNames = NULL, choiceValues = NULL)
@@ -16,7 +16,7 @@ multiInput(inputId, label, choices = NULL, selected = NULL,
 
 \item{selected}{The initially selected value}
 
-\item{options}{List of options passed to multi (\code{enable_search = FALSE} for disabling the serach bar for example)}
+\item{options}{List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example)}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}}
 

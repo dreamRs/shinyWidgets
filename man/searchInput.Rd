@@ -23,7 +23,7 @@ searchInput(inputId, label = NULL, value = "", placeholder = NULL,
 \item{width}{The width of the input, e.g. '400px', or '100\%'.}
 }
 \description{
-A text input only triggered by hiting Enter or clicking search button
+A text input only triggered when Enter key is pressed or search button clicked
 }
 \examples{
 \dontrun{
