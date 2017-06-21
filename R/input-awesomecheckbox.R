@@ -25,7 +25,7 @@
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Input label.
 #' @param value Initial value (TRUE or FALSE).
-#' @param status Color of the buttons
+#' @param status Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.
 #' @param width The width of the input
 #' @return A checkbox control that can be added to a UI definition.
 #'

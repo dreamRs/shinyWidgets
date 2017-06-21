@@ -10,5 +10,5 @@
 
 
 shinyWidgetsGallery <- function() {
-  runApp(system.file('examples/shinyWidgets', package='shinyWidgets', mustWork=TRUE))
+  shiny::runApp(system.file('examples/shinyWidgets', package='shinyWidgets', mustWork=TRUE))
 }

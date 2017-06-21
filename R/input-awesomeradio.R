@@ -66,9 +66,9 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' @param label Input label.
 #' @param choices List of values to select from (if elements of the list are named then that name rather than the value is displayed to the user)
 #' @param selected	The initially selected value
-#' @param status Color of the buttons
+#' @param status Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.
 #' @param inline If TRUE, render the choices inline (i.e. horizontally)
-#' @param checkbox Checkbox style
+#' @param checkbox Logical, render radio like checkboxes
 #' @return A set of radio buttons that can be added to a UI definition.
 #'
 #'
@@ -94,9 +94,12 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 
 awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE) {
   choices <- choicesWithNames(choices)
+  selected <- if (is.null(selected))
+    choices[[1]]
   awesomeRadioTag <- tagList(
     tags$div(
       id=inputId, class="form-group awesome-radio-class shiny-input-container",
+      class=if(inline) "shiny-input-container-inline",
       if (!is.null(label)) tags$label(class="control-label", `for`=inputId, label, style="margin-bottom: 5px; "),
       if (!is.null(label)) br(),
       generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)
