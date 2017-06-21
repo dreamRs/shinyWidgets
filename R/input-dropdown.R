@@ -45,6 +45,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
   # dropdown content
   html_ul <- list(
     class = paste("dropdown-menu", ifelse(right, "dropdown-menu-right", "")),
+    class = "dropdown-shinyWidgets",
     id = paste("dropdown-menu", buttonID, sep = "-"),
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
@@ -56,7 +57,9 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
   if (circle) {
     html_button <- circleButton(
       inputId = buttonID, icon = icon, status = status, size = size,
-      class = "dropdown-toggle", `data-toggle` = "dropdown"
+      class = "dropdown-toggle",
+      # onclick = paste0("$(this).parent().toggleClass('open');")
+      `data-toggle` = "dropdown"
     )
   } else {
     html_button <- list(
@@ -64,6 +67,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
       type = "button",
       id = buttonID,
       `data-toggle` = "dropdown",
+      # onclick = paste0("$(this).parent().toggleClass('open');"),
       `aria-haspopup` = "true",
       `aria-expanded` = "true",
       list(icon, label),
@@ -84,28 +88,24 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
         "false"
       else x
     })
-    js_tooltip <- tags$script(
-      # whisker::whisker.render(
-      #   template = "$('#{{buttonID}}').tooltip({ placement: '{{{placement}}}', title: '{{{title}}}', html: {{{html}}} });",
-      #   data = list(buttonID = buttonID, placement = tooltip$placement,
-      #               title = tooltip$title, html = tooltip$html)
-      # )
+    tooltipJs <- tags$script(
       sprintf(
         "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
         buttonID, tooltip$placement, tooltip$title, tooltip$html
       )
     )
   } else {
-    js_tooltip <- ""
+    tooltipJs <- ""
   }
 
-  tags$div(
+  dropdownTag <- tags$div(
     class = ifelse(up, "dropup", "dropdown"),
     html_button,
     do.call(tags$ul, html_ul),
-    tags$script(paste0("$('#", paste("dropdown-menu", buttonID, sep = "-"), "').click(function(e) {e.stopPropagation();});")),
-    js_tooltip
+    # tags$script(paste0("$('#", paste("dropdown-menu", buttonID, sep = "-"), "').click(function(e) {e.stopPropagation();});")),
+    tooltipJs
   )
+  attachShinyWidgetsDep(dropdownTag, "dropdown")
 }
 
 
@@ -116,7 +116,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
 #'
 #' @param placement Placement of tooltip : right, top, bottom, left.
 #' @param title Text of the tooltip
-#' @param html Logical.
+#' @param html Logical, allow HTML tags inside tooltip
 #'
 #'
 #' @export
