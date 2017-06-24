@@ -136,7 +136,7 @@ pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL)
     }
     else {
       optionTag <- list(
-        value = htmltools::htmlEscape(choice, TRUE), htmltools::htmlEscape(label),
+        value = choice, HTML(htmltools::htmlEscape(label)),
         style = choicesOpt$style[i],
         `data-icon` = choicesOpt$icon[i],
         `data-subtext` = choicesOpt$subtext[i],
