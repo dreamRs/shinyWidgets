@@ -18,9 +18,9 @@ awesomeRadio(inputId, label, choices, selected = NULL, inline = FALSE,
 
 \item{inline}{If TRUE, render the choices inline (i.e. horizontally)}
 
-\item{status}{Color of the buttons}
+\item{status}{Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.}
 
-\item{checkbox}{Checkbox style}
+\item{checkbox}{Logical, render radio like checkboxes}
 }
 \value{
 A set of radio buttons that can be added to a UI definition.

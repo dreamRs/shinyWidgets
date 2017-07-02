@@ -14,7 +14,7 @@ materialSwitch(inputId, label = NULL, value = FALSE, status = "default",
 
 \item{value}{TRUE or FALSE.}
 
-\item{status}{Color of the switch}
+\item{status}{Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.}
 
 \item{right}{Should the the label be on the right ? default to FALSE}
 

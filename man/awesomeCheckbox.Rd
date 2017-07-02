@@ -14,7 +14,7 @@ awesomeCheckbox(inputId, label, value = FALSE, status = "primary",
 
 \item{value}{Initial value (TRUE or FALSE).}
 
-\item{status}{Color of the buttons}
+\item{status}{Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.}
 
 \item{width}{The width of the input}
 }
