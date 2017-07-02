@@ -137,8 +137,8 @@ dropdown <- function(..., circle = TRUE, status = "default", size = "default", i
 #' @return a list
 #' @export
 #'
-#' @seealso \code{\link{animations
-#' }}
+#' @seealso \code{\link{animations}}
+#'
 #'
 #' @examples
 #' \dontrun{

@@ -34,6 +34,5 @@ dropdown(
 }
 }
 \seealso{
-\code{\link{animations
-}}
+\code{\link{animations}}
 }
