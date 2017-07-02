@@ -1,7 +1,7 @@
 #' Attach shinyWidgets dependancies
 #'
 #' @param tag An object which has (or should have) HTML dependencies.
-#' @param widget NAme of a widget for particular dependancies
+#' @param widget Name of a widget for particular dependancies
 #'
 #' @noRd
 #' @importFrom utils packageVersion
@@ -85,8 +85,29 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           script = "dropdown-click.js"
         )
       )
+    } else if (widget == "sw-dropdown") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          name = "sw-dropdown",
+          version = version,
+          src = c(href="shinyWidgets/sw-dropdown"),
+          script = "sw-dropdown.js",
+          stylesheet = "sw-dropdown.css"
+        )
+      )
+    } else if (widget == "animate") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          name = "animate",
+          version = version,
+          src = c(href="shinyWidgets/animate"),
+          stylesheet = "animate.min.css"
+        )
+      )
     }
   }
-  htmltools::attachDependencies(tag, dep)
+  htmltools::attachDependencies(tag, dep, append = TRUE)
 }
 

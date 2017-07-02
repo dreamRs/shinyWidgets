@@ -23,7 +23,7 @@
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Input label.
 #' @param value TRUE or FALSE.
-#' @param status Color of the switch
+#' @param status Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.
 #' @param right Should the the label be on the right ? default to FALSE
 #' @param width Width of the container
 #' @return A switch control that can be added to a UI definition.

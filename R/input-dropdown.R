@@ -1,19 +1,18 @@
-
 #' @title Dropdown Button
 #'
 #' @description
-#' Create a dropdown menu
+#' Create a dropdown menu with Bootstrap
 #'
 #' @param ... List of tag to be displayed into the dropdown menu.
 #' @param circle Logical. Use a circle button
 #' @param icon An icon to appear on the button.
-#' @param status Color of the button.
+#' @param status Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.
 #' @param size Size of the button : default, lg, sm, xs.
-#' @param label Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip
-#' @param tooltip Put a tooltip on the button
-#' @param right The dropdown menu starts on the right
-#' @param up Display the dropdown menu above
-#' @param width Width of the dropdown menu
+#' @param label Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip.
+#' @param tooltip Put a tooltip on the button, you can customize tooltip with \code{tooltipOptions}.
+#' @param right Logical. The dropdown menu starts on the right.
+#' @param up Logical. Display the dropdown menu above.
+#' @param width Width of the dropdown menu content.
 #'
 #'
 #' @import shiny
@@ -33,7 +32,7 @@
 #'
 #' }
 #' }
-#'
+
 
 
 dropdownButton <- function(..., circle = TRUE, status = "default", size = "default", icon = NULL,

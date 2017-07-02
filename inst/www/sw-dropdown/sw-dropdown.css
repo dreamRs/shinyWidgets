@@ -1,0 +1,38 @@
+
+/* sw-dropddown css */
+
+.sw-dropdown {
+    position: relative;
+    /*display: inline-block;*/
+}
+
+.sw-dropdown-content {
+    display: none;
+    position: absolute;
+    padding: 8px 10px;
+    margin: 8px 10px;
+    width: auto;
+    border-radius: 5px;
+    background: none repeat scroll 0% 0% #FFF;
+    box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.3);
+    color: #2C2C2C;
+    z-index: 1;
+}
+
+.sw-dropup-content {
+    bottom: 100%;
+}
+
+.sw-dropright-content {
+    right: 0;
+}
+
+/*
+.sw-dropdown:hover .sw-dropdown-content {
+    display: block;
+}
+*/
+
+/*.sw-show {display:block;}*/
+.sw-show > .sw-dropdown-content {display:block;}
+.sw-show  > .sw-dropdown-content > .shiny-html-output {display:block;}
