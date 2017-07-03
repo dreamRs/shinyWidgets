@@ -34,5 +34,5 @@
 */
 
 /*.sw-show {display:block;}*/
-.sw-show > .sw-dropdown-content {display:block;}
-.sw-show  > .sw-dropdown-content > .shiny-html-output {display:block;}
+.sw-show.sw-dropdown-content {display:block;}
+

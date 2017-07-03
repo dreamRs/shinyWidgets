@@ -55,6 +55,7 @@ dropdown <- function(..., circle = TRUE, status = "default", size = "default", i
     id=contentId, class="sw-dropdown-content animated",
     class=if(up) "sw-dropup-content", class=if(right) "sw-dropright-content",
     style=if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
+    # shiny::conditionalPanel(condition = paste0("input['", btnId, "'] > 0"), ...)
     ...
   )
   # Button
@@ -112,7 +113,7 @@ dropdown <- function(..., circle = TRUE, status = "default", size = "default", i
     dropdownTag <- htmltools::tagAppendChild(
       dropdownTag,tags$script(
         sprintf(
-          "swDrop('%s', '%s', '%s', '%s', '%s', '%s');",
+          "$(function() {swDrop('%s', '%s', '%s', '%s', '%s', '%s');});",
           btnId, contentId, dropId, "sw-none", "sw-none", "1"
         )
       )

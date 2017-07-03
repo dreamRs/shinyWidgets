@@ -16,7 +16,7 @@ fruits <- c("Banana", "Blueberry", "Cherry", "Coconut", "Grapefruit", "Kiwi", "L
 ui <- fluidPage(
   radioButtons(inputId = "choices", label = "For pickerInput", choices = c("countries", "fruits")),
   dropdown(
-    "Select adverts to drill down",
+    tags$p("Select adverts to drill down"),
     circle = TRUE, status = "default", icon = icon("sliders"), width = "300px",
     # animate = animateOptions(),
     uiOutput("choose_adverts")
@@ -37,7 +37,7 @@ server <- function(input, output, session) {
                 options = list(`actions-box` = TRUE, `live-search` = TRUE),
                 multiple = TRUE)
   })
-  outputOptions(output, "choose_adverts", suspendWhenHidden = FALSE)
+  # outputOptions(output, "choose_adverts", suspendWhenHidden = FALSE)
   output$res <- renderPrint({
     input$Adverts
   })
