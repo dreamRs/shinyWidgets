@@ -87,3 +87,7 @@ validateSelected <- function (selected, choices, inputId)
   if (!is.null(x)) x else y
 }
 
+escape_jquery <- function(string) {
+  gsub(x = string, pattern = "(\\W)", replacement = "\\\\\\\\\\1")
+}
+

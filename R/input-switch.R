@@ -82,7 +82,7 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
     tags$div(
       style = "margin: 3px;", class = "shiny-input-container",
       inputTag,
-      tags$script(paste0('$("#', inputId, '").bootstrapSwitch();'))
+      tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").bootstrapSwitch();')))
     )
   )
   # Dep

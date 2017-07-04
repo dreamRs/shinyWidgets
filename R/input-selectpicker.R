@@ -69,7 +69,7 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
       if (!is.null(label)) tags$label(class = labelClass, `for` = inputId, label),
       if (!is.null(label) & !inline) br(),
       selectTag,
-      tags$script(paste0('$("#', inputId, '").selectpicker();'))
+      tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").selectpicker();')))
     )
   )
   # Dep
