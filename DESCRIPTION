@@ -18,7 +18,8 @@ Authors@R: c(
   person(family = "Flatlogic", role = "cph", comment = "Awesome Bootstrap Checkbox"),
   person("mouse0270", role = c("ctb", "cph"), comment = "Material Design Switch"),
   person("Tristan", "Edwards", role = c("ctb", "cph"), comment = "SweetAlert"),
-  person("Fabian", "Lindfors", role = c("ctb", "cph"), comment = "multi.js")
+  person("Fabian", "Lindfors", role = c("ctb", "cph"), comment = "multi.js"),
+  person("Daniel", "Eden", role = c("ctb", "cph"), comment = "animate.css")
   )
 Description: Some custom inputs widgets to use in Shiny applications, like a toggle switch to replace checkboxes. And other components to pimp your apps.
 URL: https://github.com/dreamRs/shinyWidgets
