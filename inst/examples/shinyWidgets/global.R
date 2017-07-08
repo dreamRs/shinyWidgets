@@ -7,10 +7,10 @@ library("shinydashboard")
 library("shinyWidgets")
 if (!require("formatR")) install.packages("formatR")
 
-
+# data("animations", package = "shinyWidgets")
 
 # Ids widgets
-ids <- paste0("Id", sprintf("%03d", 1:73))
+ids <- paste0("Id", sprintf("%03d", 1:75))
 idss <- ids
 
 ID <- function(ids) {

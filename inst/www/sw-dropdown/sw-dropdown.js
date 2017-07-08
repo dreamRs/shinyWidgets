@@ -1,7 +1,7 @@
 
 /* sw-dropdown js */
 
-function swDrop(triggerId, swDropdownContentId, swDropdownId, animateIn, animateOut, animateDuration = 1) {
+function swDrop(triggerId, swDropdownContentId, swDropdownId, animateIn, animateOut, animateDuration) {
 
     // $('#' + swDropdownContentId).addClass('sw-dropdown-content');
     $('#' + swDropdownContentId).css({"animation-duration" : animateDuration + "s"});

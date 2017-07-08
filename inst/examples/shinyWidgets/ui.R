@@ -1193,7 +1193,7 @@ body <- dashboardBody(
             pickerInput(inputId = 'ycol2', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]], options = list(`style` = "btn-warning")),
             sliderInput(inputId = 'clusters2', label = 'Cluster count', value = 3, min = 1, max = 9),
             circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
-            animate = animateOptions(enter = animation$zooming_entrances$zoomInDown, exit = animation$zooming_exits$zoomOutUp)
+            animate = animateOptions(enter = animations$zooming_entrances$zoomInDown, exit = animations$zooming_exits$zoomOutUp)
           ),
           plotOutput(outputId = 'plot2'),
           tags$p("In this version you can add animations and pickerInput will work in it.")

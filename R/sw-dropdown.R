@@ -102,10 +102,10 @@ dropdown <- function(..., circle = TRUE, status = "default", size = "default", i
     dropdownTag <- htmltools::tagAppendChild(
       dropdownTag,tags$script(
         sprintf(
-          "swDrop('%s', '%s', '%s', '%s', '%s', '%s');",
+          "$(function() {swDrop('%s', '%s', '%s', '%s', '%s', '%s');});",
           btnId, contentId, dropId,
-          animate$enter, animate$exit, as.character(animate$duration
-        ))
+          animate$enter, animate$exit, as.character(animate$duration)
+        )
       )
     )
     dropdownTag <- attachShinyWidgetsDep(dropdownTag, "animate")
@@ -149,7 +149,7 @@ dropdown <- function(..., circle = TRUE, status = "default", size = "default", i
 #' dropdown(
 #'  "Your contents goes here ! You can pass several elements",
 #'  circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
-#'  animate = animateOptions(in = "fadeInDown", out = "fadeOutUp", duration = 3)
+#'  animate = animateOptions(enter = "fadeInDown", exit = "fadeOutUp", duration = 3)
 #' )
 #'
 #' }
