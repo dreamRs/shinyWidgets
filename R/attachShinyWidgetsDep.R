@@ -106,6 +106,16 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           stylesheet = "animate.min.css"
         )
       )
+    } else if (widget == "bttn") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          name = "bttn",
+          version = version,
+          src = c(href="shinyWidgets/bttn"),
+          stylesheet = "bttn.min.css"
+        )
+      )
     }
   }
   htmltools::attachDependencies(tag, dep, append = TRUE)
