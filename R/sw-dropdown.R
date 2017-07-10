@@ -66,7 +66,7 @@ dropdown <- function(..., style = "default", status = "default", size = "md", ic
     btn <- tags$button(
       class = paste0("btn btn-", status," ", ifelse(size == "default" | size == "md", "", paste0("btn-", size))),
       type = "button", id = btnId, list(icon, label),
-      tags$span(class = ifelse(dropup, "glyphicon glyphicon-triangle-top", "glyphicon glyphicon-triangle-bottom"))
+      tags$span(class = ifelse(up, "glyphicon glyphicon-triangle-top", "glyphicon glyphicon-triangle-bottom"))
     )
   } else {
     btn <- actionBttn(inputId = btnId, label = label, icon = icon, style = style, color = status, size = size)
