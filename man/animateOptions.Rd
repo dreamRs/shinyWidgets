@@ -27,7 +27,7 @@ if (interactive()) {
 dropdown(
  "Your contents goes here ! You can pass several elements",
  circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
- animate = animateOptions(in = "fadeInDown", out = "fadeOutUp", duration = 3)
+ animate = animateOptions(enter = "fadeInDown", exit = "fadeOutUp", duration = 3)
 )
 
 }

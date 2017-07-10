@@ -4,7 +4,8 @@
 #' Create a dropdown menu
 #'
 #' @param ... List of tag to be displayed into the dropdown menu.
-#' @param circle Logical. Use a circle button.
+#' @param style Character. if \code{default} use Bootstrap button (like an \code{actionButton}), else use an
+#' \code{actionBttn}, see argument \code{style} for possible values.
 #' @param icon An icon to appear on the button.
 #' @param status Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.
 #' @param size Size of the button : default, lg, sm, xs.
@@ -19,7 +20,8 @@
 #' This function is similar to \code{dropdownButton} but don't use Boostrap, so you can put \code{pickerInput} in it.
 #' Moreover you can add animations on the appearance / disappearance of the dropdown with animate.css.
 #'
-#' @seealso \code{\link{animateOptions}}
+#' @seealso \code{\link{animateOptions}} for animation, \code{\link{tooltipOptions}} for tooltip and
+#' \code{\link{actionBttn}} for the button.
 #'
 #' @import shiny
 #' @importFrom htmltools validateCssUnit tagList singleton
@@ -38,13 +40,10 @@
 #'
 #' }
 #' }
-dropdown <- function(..., circle = TRUE, status = "default", size = "default", icon = NULL,
+dropdown <- function(..., style = "default", status = "default", size = "md", icon = NULL,
                      label = NULL, tooltip = FALSE, right = FALSE, up = FALSE, width = NULL, animate = FALSE) {
 
-  status <- match.arg(
-    arg = status,
-    choices = c("default", "primary", "success", "info", "warning", "danger")
-  )
+
   alea <- sample.int(1e9, 1)
   btnId <- paste0("sw-btn-", alea)
   dropId <- paste0("sw-drop-", alea)
@@ -59,13 +58,18 @@ dropdown <- function(..., circle = TRUE, status = "default", size = "default", i
     ...
   )
   # Button
-  if (circle) {
-    btn <- circleButton(inputId = btnId, icon = icon %||% shiny::icon("gear"), status = status, size = size)
-  } else {
-    btn <- tags$button(
-      class = paste0("btn btn-", status," ", ifelse(size == "default", "", paste0("btn-", size))),
-      type = "button", id = btnId, list(icon, label), tags$span(class = "caret")
+  if (style == "default") {
+    status <- match.arg(
+      arg = status,
+      choices = c("default", "primary", "success", "info", "warning", "danger")
     )
+    btn <- tags$button(
+      class = paste0("btn btn-", status," ", ifelse(size == "default" | size == "md", "", paste0("btn-", size))),
+      type = "button", id = btnId, list(icon, label),
+      tags$span(class = ifelse(dropup, "glyphicon glyphicon-triangle-top", "glyphicon glyphicon-triangle-bottom"))
+    )
+  } else {
+    btn <- actionBttn(inputId = btnId, label = label, icon = icon, style = style, color = status, size = size)
   }
 
 

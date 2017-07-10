@@ -4,14 +4,15 @@
 \alias{dropdown}
 \title{Dropdown}
 \usage{
-dropdown(..., circle = TRUE, status = "default", size = "default",
+dropdown(..., style = "default", status = "default", size = "default",
   icon = NULL, label = NULL, tooltip = FALSE, right = FALSE,
   up = FALSE, width = NULL, animate = FALSE)
 }
 \arguments{
 \item{...}{List of tag to be displayed into the dropdown menu.}
 
-\item{circle}{Logical. Use a circle button.}
+\item{style}{Character. if \code{default} use Bootstrap button (like an \code{actionButton}), else use an
+\code{actionBttn}, see argument \code{style} for possible values.}
 
 \item{status}{Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.}
 
@@ -53,5 +54,6 @@ dropdown(
 }
 }
 \seealso{
-\code{\link{animateOptions}}
+\code{\link{animateOptions}} for animation, \code{\link{tooltipOptions}} for tooltip and
+\code{\link{actionBttn}} for the button.
 }
