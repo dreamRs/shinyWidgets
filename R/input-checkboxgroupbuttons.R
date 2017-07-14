@@ -144,7 +144,48 @@ checkboxGroupButtons <- function(
 #' @param selected The values selected.
 #'
 #' @export
-
+#'
+#' @examples
+#' \dontrun{
+#' if (interactive()) {
+#'
+#' library(shiny)
+#' library(shinyWidgets)
+#'
+#'
+#' ui <- fluidPage(
+#'
+#'   radioButtons(inputId = "up", label = "Update button :", choices = c("All", "None")),
+#'
+#'   checkboxGroupButtons(
+#'     inputId = "btn", label = "Power :",
+#'     choices = c("Nuclear", "Hydro", "Solar", "Wind"),
+#'     selected = "Hydro"
+#'   ),
+#'
+#'   verbatimTextOutput(outputId = "res")
+#'
+#' )
+#'
+#' server <- function(input,output, session){
+#'
+#'   observeEvent(input$up, {
+#'     if (input$up == "All"){
+#'       updateCheckboxGroupButtons(session, "btn", selected = c("Nuclear", "Hydro", "Solar", "Wind"))
+#'     } else {
+#'       updateCheckboxGroupButtons(session, "btn", selected = character(0))
+#'     }
+#'   }, ignoreInit = TRUE)
+#'
+#'   output$res <- renderPrint({
+#'     input$btn
+#'   })
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#'
+#' }
+#' }
 updateCheckboxGroupButtons <- function(session, inputId, selected = NULL) {
   message <- dropNulls(list(selected = selected))
   session$sendInputMessage(inputId, message)
