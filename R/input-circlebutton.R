@@ -22,7 +22,9 @@ circleButton <- function (inputId, icon = NULL, status = "default", size = "defa
   attachShinyWidgetsDep(
     tags$button(
       id = inputId, type = "button", style = "outline: none;",
-      class = paste0("btn btn-", status, " action-button ", ifelse(size == "default", "btn-circle", paste0("btn-circle-", size))), icon, ...
+      class = paste0("btn btn-", status, " action-button ",
+                     ifelse(size == "default", "btn-circle",
+                            paste0("btn-circle-", size))), icon, ...
     )
   )
 }
