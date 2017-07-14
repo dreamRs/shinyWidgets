@@ -131,12 +131,18 @@ colorSelectorExample <- function() {
 
 #' @title Color Selector In A Dropdown
 #'
+#' @param circle Logical, use a circle or a square button
+#' @param size Size of the button : default, lg, sm, xs.
+#'
 #' @export
 #' @describeIn colorSelectorInput Display a colorSelector in a dropdown button
-colorSelectorDrop <- function(inputId, label, choices, selected = NULL, display_label = FALSE, ncol = 10) {
+colorSelectorDrop <- function(inputId, label, choices, selected = NULL,
+                              display_label = FALSE, ncol = 10, circle = TRUE, size = "sm") {
+  size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   btnId <- paste("btn", inputId, sep = "-")
-  btn <- circleButton(
-    inputId = btnId, icon = NULL, status = "default", size = "xs",
+  funButton <- if (circle) circleButton else squareButton
+  btn <- funButton(
+    inputId = btnId, icon = NULL, status = "default", size = size,
     class = "dropdown-toggle", `data-toggle` = "dropdown"
   )
   dropTag <- tags$ul(

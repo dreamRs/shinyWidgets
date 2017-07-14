@@ -12,7 +12,7 @@ colorSelectorInput(inputId, label, choices, selected = NULL,
 colorSelectorExample()
 
 colorSelectorDrop(inputId, label, choices, selected = NULL,
-  display_label = FALSE, ncol = 10)
+  display_label = FALSE, ncol = 10, circle = TRUE, size = "sm")
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -30,6 +30,10 @@ selecting multiple values.}
 \item{display_label}{Display list's names afterpalette of color.}
 
 \item{ncol}{If choices is not a list but a vector, go to line after n elements.}
+
+\item{circle}{Logical, use a circle or a square button}
+
+\item{size}{Size of the button : default, lg, sm, xs.}
 }
 \value{
 a colorSelectorInput control

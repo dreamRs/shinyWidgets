@@ -38,7 +38,11 @@
 dropdownButton <- function(..., circle = TRUE, status = "default", size = "default", icon = NULL,
                            label = NULL, tooltip = FALSE, right = FALSE, up = FALSE, width = NULL) {
 
-  status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
+  status <- match.arg(
+    arg = status,
+    choices = c("default", "primary", "success", "info", "warning", "danger")
+  )
+  size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   buttonID <- paste0("drop", sample.int(1e9, 1))
 
   # dropdown content
@@ -62,7 +66,8 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
     )
   } else {
     html_button <- list(
-      class = paste0("btn btn-", status," dropdown-toggle ", ifelse(size == "default", "", paste0("btn-", size))),
+      class = paste0("btn btn-", status," dropdown-toggle "),
+      class = if (size == "default") paste0("btn-", size),
       type = "button",
       id = buttonID,
       `data-toggle` = "dropdown",

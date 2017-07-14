@@ -123,6 +123,46 @@
 }
 
 
+
+
+
+.btn.btn-square {
+  width: 49px;
+  height: 49px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 20px;
+  line-height: 2.00;
+}
+
+.btn.btn-square-xs {
+  width: 19px;
+  height: 19px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 13px;
+  line-height: 0.1;
+}
+
+.btn.btn-square-sm {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 2px 0;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.btn.btn-square-lg {
+  width: 79px;
+  height: 79px;
+  text-align: center;
+  padding: 13px 0;
+  font-size: 30px;
+  line-height: 2.00;
+}
+
+
 /* CSS for Color Selector */
 
 .btn.btn-color-sw.active::after {

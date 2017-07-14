@@ -19,12 +19,29 @@
 
 circleButton <- function (inputId, icon = NULL, status = "default", size = "default", ...)
 {
+  size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   attachShinyWidgetsDep(
     tags$button(
       id = inputId, type = "button", style = "outline: none;",
       class = paste0("btn btn-", status, " action-button ",
                      ifelse(size == "default", "btn-circle",
                             paste0("btn-circle-", size))), icon, ...
+    )
+  )
+}
+
+
+
+
+squareButton <- function (inputId, icon = NULL, status = "default", size = "default", ...)
+{
+  size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
+  attachShinyWidgetsDep(
+    tags$button(
+      id = inputId, type = "button", style = "outline: none;",
+      class = paste0("btn btn-", status, " action-button ",
+                     ifelse(size == "default", "btn-square",
+                            paste0("btn-square-", size))), icon, ...
     )
   )
 }
