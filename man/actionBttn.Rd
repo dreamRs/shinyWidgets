@@ -29,7 +29,7 @@ actionBttn(inputId, label = NULL, icon = NULL, style = "unite",
 keyboard/interact using mouse or touch.}
 }
 \description{
-Like actionButton bu awesome, via \url{https://bttn.surge.sh/}
+Like actionButton but awesome, via \url{https://bttn.surge.sh/}
 }
 \examples{
 \dontrun{

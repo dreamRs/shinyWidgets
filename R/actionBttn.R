@@ -1,6 +1,6 @@
 #' @title Awesome action button
 #'
-#' @description Like actionButton bu awesome, via \url{https://bttn.surge.sh/}
+#' @description Like actionButton but awesome, via \url{https://bttn.surge.sh/}
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label The contents of the button, usually a text label.

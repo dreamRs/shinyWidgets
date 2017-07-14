@@ -39,11 +39,12 @@ function(input, output, session) {
 
   # input values ----
   lapply(
-    X = idss,
+    X = seq_len(ids),
     FUN = function(i) {
-      highlightCode(session, paste0("code", i))
-      output[[paste0("res", i)]] <- renderPrint({
-        input[[i]]
+      ii <- paste0("Id", sprintf("%03d", i))
+      highlightCode(session, paste0("code", ii))
+      output[[paste0("res", ii)]] <- renderPrint({
+        input[[ii]]
       })
     }
   )
