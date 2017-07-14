@@ -125,7 +125,7 @@
 
 /* CSS for Color Selector */
 
-.btn-color-sw.active::after {
+.btn.btn-color-sw.active::after {
   content: "\e013";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
@@ -139,18 +139,23 @@
 }
 
 
-.btn-color-sw {
+.btn.btn-color-sw {
   display: block;
   width: 20px;
   height: 20px;
   margin: 0;
   padding: 0;
-  border-radius: 0;
+  /*border-radius: 0;*/
   position: relative;
   -webkit-transition: all ease 0.1s;
   -o-transition: all ease 0.1s;
   -moz-transition: all ease 0.1s;
   transition: all ease 0.1s;
+  outline: none;
+}
+
+.btn.btn-color-sw:focus {
+  outline: none !important;
 }
 
 /* From : http://bootsnipp.com/snippets/featured/material-design-switch */
@@ -228,7 +233,3 @@ a.item:focus, a.item:hover {
 .btn.radiobtn .radio-btn-icon-no {
 	opacity: 1; display: inline-block;
 }
-
-
-
-
