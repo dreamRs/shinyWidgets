@@ -2,10 +2,17 @@
 % Please edit documentation in R/input-colorselector.R
 \name{colorSelectorInput}
 \alias{colorSelectorInput}
+\alias{colorSelectorExample}
+\alias{colorSelectorDrop}
 \title{Color Selector Input}
 \usage{
 colorSelectorInput(inputId, label, choices, selected = NULL,
   mode = c("radio", "checkbox"), display_label = FALSE, ncol = 10)
+
+colorSelectorExample()
+
+colorSelectorDrop(inputId, label, choices, selected = NULL,
+  display_label = FALSE, ncol = 10)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -30,6 +37,13 @@ a colorSelectorInput control
 \description{
 Choose between a restrictive set of colour.
 }
+\section{Functions}{
+\itemize{
+\item \code{colorSelectorExample}: Examples of use for colorSelectorInput
+
+\item \code{colorSelectorDrop}: Display a colorSelector in a dropdown button
+}}
+
 \examples{
 \dontrun{
 if (interactive()) {
@@ -41,7 +55,9 @@ colorSelectorExample()
 ui <- fluidPage(
   colorSelectorInput(
     inputId = "mycolor1", label = "Pick a color :",
-    choices = c("steelblue", "cornflowerblue", "firebrick", "palegoldenrod", "forestgreen")
+    choices = c("steelblue", "cornflowerblue",
+                "firebrick", "palegoldenrod",
+                "forestgreen")
   ),
   verbatimTextOutput("result1")
 )

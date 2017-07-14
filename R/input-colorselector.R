@@ -27,7 +27,9 @@
 #' ui <- fluidPage(
 #'   colorSelectorInput(
 #'     inputId = "mycolor1", label = "Pick a color :",
-#'     choices = c("steelblue", "cornflowerblue", "firebrick", "palegoldenrod", "forestgreen")
+#'     choices = c("steelblue", "cornflowerblue",
+#'                 "firebrick", "palegoldenrod",
+#'                 "forestgreen")
 #'   ),
 #'   verbatimTextOutput("result1")
 #' )
@@ -52,10 +54,10 @@ colorSelectorInput <- function(inputId, label, choices, selected = NULL, mode = 
   if (is.null(selected) & mode == "radio")
     selected <- firstChoice(choices)
   tagCS <- tags$div(
-    class="shiny-input-container", class=paste0(mode, "GroupButtons"),
+    class="shiny-input-container-inline form-group", class=paste0(mode, "GroupButtons"),
     `data-toggle`="buttons", id = inputId,
     style="margin-top: 3px; margin-bottom: 10px; ",
-    tags$label(class="control-label", label), br(),
+    if (!is.null(label)) tagList(tags$label(class="control-label", label), br()),
     colorOptions(
       inputId = inputId, choices = choices,
       selected = selected, mode = mode,
@@ -101,10 +103,10 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
 
 
 
-#' Color Selector Example
+#' @title Color Selector Example
 #'
 #' @export
-#' @describeIn colorSelectorInput
+#' @describeIn colorSelectorInput Examples of use for colorSelectorInput
 colorSelectorExample <- function() {
 
   if (!requireNamespace(package = "RColorBrewer"))
@@ -114,6 +116,52 @@ colorSelectorExample <- function() {
   if (!requireNamespace(package = "grDevices"))
     message("Package 'grDevices' is required to run this function")
 
-  shiny::shinyAppFile(appFile = system.file("examples/colorSelector/example.R", package = "shinyWidgets"), options = list("display.mode" = "showcase"))
+  shiny::shinyAppFile(
+    appFile = system.file("examples/colorSelector/example.R", package = "shinyWidgets"),
+    options = list("display.mode" = "showcase")
+  )
 }
+
+
+
+
+
+
+
+
+#' @title Color Selector In A Dropdown
+#'
+#' @export
+#' @describeIn colorSelectorInput Display a colorSelector in a dropdown button
+colorSelectorDrop <- function(inputId, label, choices, selected = NULL, display_label = FALSE, ncol = 10) {
+  btnId <- paste("btn", inputId, sep = "-")
+  btn <- circleButton(
+    inputId = btnId, icon = NULL, status = "default", size = "xs",
+    class = "dropdown-toggle", `data-toggle` = "dropdown"
+  )
+  dropTag <- tags$ul(
+    class = "dropdown-menu",
+    colorSelectorInput(
+      inputId = inputId,
+      label = label,
+      choices = choices,
+      selected = selected,
+      mode = "radio",
+      display_label = display_label,
+      ncol = ncol
+    )
+  )
+  js <- paste0(
+    '$(document).on("change","input[name=\'', inputId, '\']",function(){
+      var v = $("input[name=\'', inputId, '\']:checked").val();
+      $("#', btnId, '").css("background-color", v);
+    });'
+  )
+  tags$div(class = "dropdown", btn, dropTag, tags$script(HTML(js)))
+}
+
+
+
+
+
 
