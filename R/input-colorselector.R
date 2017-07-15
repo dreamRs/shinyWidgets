@@ -133,11 +133,15 @@ colorSelectorExample <- function() {
 #'
 #' @param circle Logical, use a circle or a square button
 #' @param size Size of the button : default, lg, sm, xs.
+#' @param up Logical. Display the dropdown menu above.
+#' @param width Width of the dropdown menu content.
 #'
 #' @export
 #' @describeIn colorSelectorInput Display a colorSelector in a dropdown button
+#' @importFrom htmltools validateCssUnit
 colorSelectorDrop <- function(inputId, label, choices, selected = NULL,
-                              display_label = FALSE, ncol = 10, circle = TRUE, size = "sm") {
+                              display_label = FALSE, ncol = 10, circle = TRUE, size = "sm",
+                              up = FALSE, width = NULL) {
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   btnId <- paste("btn", inputId, sep = "-")
   funButton <- if (circle) circleButton else squareButton
@@ -147,6 +151,8 @@ colorSelectorDrop <- function(inputId, label, choices, selected = NULL,
   )
   dropTag <- tags$ul(
     class = "dropdown-menu",
+    style = if (!is.null(width))
+      paste0("width: ", validateCssUnit(width), ";"),
     colorSelectorInput(
       inputId = inputId,
       label = label,
@@ -163,7 +169,10 @@ colorSelectorDrop <- function(inputId, label, choices, selected = NULL,
       $("#', btnId, '").css("background-color", v);
     });'
   )
-  tags$div(class = "dropdown", btn, dropTag, tags$script(HTML(js)))
+  tags$div(
+    class = ifelse(up, "dropup", "dropdown"),
+    btn, dropTag, tags$script(HTML(js))
+  )
 }
 
 

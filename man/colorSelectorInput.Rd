@@ -12,7 +12,8 @@ colorSelectorInput(inputId, label, choices, selected = NULL,
 colorSelectorExample()
 
 colorSelectorDrop(inputId, label, choices, selected = NULL,
-  display_label = FALSE, ncol = 10, circle = TRUE, size = "sm")
+  display_label = FALSE, ncol = 10, circle = TRUE, size = "sm",
+  up = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -34,6 +35,10 @@ selecting multiple values.}
 \item{circle}{Logical, use a circle or a square button}
 
 \item{size}{Size of the button : default, lg, sm, xs.}
+
+\item{up}{Logical. Display the dropdown menu above.}
+
+\item{width}{Width of the dropdown menu content.}
 }
 \value{
 a colorSelectorInput control
