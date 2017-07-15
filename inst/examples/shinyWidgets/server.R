@@ -124,7 +124,10 @@ function(input, output, session) {
   })
 
 
-  # Update mamterialSwitch ----
+
+
+
+  # Update materialSwitch ----
   output$resupMaterial <- renderPrint({
     input$upMaterial
   })
@@ -135,7 +138,12 @@ function(input, output, session) {
     updateMaterialSwitch(session = session, inputId = "upMaterial", value = FALSE)
   })
 
-  # Update mamterialSwitch ----
+
+
+
+
+
+  # Update PickerInput ----
   output$resuppickerIcons <- renderPrint({
     input$uppickerIcons
   })
