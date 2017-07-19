@@ -22,11 +22,12 @@ If not specified then defaults to the first value for single-select lists
 
 \item{multiple}{Is selection of multiple items allowed?}
 
-\item{options}{Options to customize the select picker}
+\item{options}{Options to customize the select picker,
+see \url{https://silviomoreto.github.io/bootstrap-select/options/}.}
 
-\item{choicesOpt}{Options for choices in the dropdown menu}
+\item{choicesOpt}{Options for choices in the dropdown menu.}
 
-\item{width}{The width of the input : 'auto', 'fit', '100px', '75\%'}
+\item{width}{The width of the input : 'auto', 'fit', '100px', '75\%'.}
 
 \item{inline}{Put the label and the picker on the same line.}
 }
@@ -34,13 +35,18 @@ If not specified then defaults to the first value for single-select lists
 A select control that can be added to a UI definition.
 }
 \description{
-Create a select picker.
+Create a select picker (\url{https://silviomoreto.github.io/bootstrap-select/})
 }
 \examples{
 \dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
+# You can run the gallery to see other examples
+shinyWidgetsGallery()
+
+
+# Simple example
 ui <- fluidPage(
   pickerInput(inputId = "somevalue", label = "A label", choices = c("a", "b")),
   verbatimTextOutput("value")
@@ -49,6 +55,109 @@ server <- function(input, output) {
   output$value <- renderPrint({ input$somevalue })
 }
 shinyApp(ui, server)
+
+
+# Add actions box for selecting
+# deselecting all options
+
+library("shiny")
+library("shinyWidgets")
+
+ui <- fluidPage(
+  br(),
+  pickerInput(
+    inputId = "p1",
+    label = "Select all option",
+    choices = rownames(mtcars),
+    multiple = TRUE,
+    options = list(`actions-box` = TRUE)
+  ),
+  br(),
+  pickerInput(
+    inputId = "p2",
+    label = "Select all option / custom text",
+    choices = rownames(mtcars),
+    multiple = TRUE,
+    options = list(
+      `actions-box` = TRUE,
+      `deselect-all-text` = "None...",
+      `select-all-text` = "Yeah, all !",
+      `none-selected-text` = "zero"
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+}
+
+shinyApp(ui = ui, server = server)
+
+
+
+# Customize the values displayed in the box
+
+library("shiny")
+library("shinyWidgets")
+
+ui <- fluidPage(
+  br(),
+  pickerInput(
+    inputId = "p1",
+    label = "Default",
+    multiple = TRUE,
+    choices = rownames(mtcars),
+    selected = rownames(mtcars)
+  ),
+  br(),
+  pickerInput(
+    inputId = "p1b",
+    label = "Default with | separator",
+    multiple = TRUE,
+    choices = rownames(mtcars),
+    selected = rownames(mtcars),
+    options = list(`multiple-separator` = " | ")
+  ),
+  br(),
+  pickerInput(
+    inputId = "p2",
+    label = "Static",
+    multiple = TRUE,
+    choices = rownames(mtcars),
+    selected = rownames(mtcars),
+    options = list(`selected-text-format`= "static",
+                   title = "Won't change")
+  ),
+  br(),
+  pickerInput(
+    inputId = "p3",
+    label = "Count",
+    multiple = TRUE,
+    choices = rownames(mtcars),
+    selected = rownames(mtcars),
+    options = list(`selected-text-format`= "count")
+  ),
+  br(),
+  pickerInput(
+    inputId = "p3",
+    label = "Customize count",
+    multiple = TRUE,
+    choices = rownames(mtcars),
+    selected = rownames(mtcars),
+    options = list(
+      `selected-text-format`= "count",
+      `count-selected-text` = "{0} models choosed (on a total of {1})"
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+}
+
+shinyApp(ui = ui, server = server)
+
+
 }
 }
 
