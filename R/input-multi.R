@@ -43,7 +43,7 @@
 #' }
 multiInput <- function(inputId, label, choices = NULL, selected = NULL, options = NULL, width = NULL, choiceNames = NULL, choiceValues = NULL) {
   selectTag <- tags$select(
-    id = inputId, multiple = "multiple",
+    id = inputId, multiple = "multiple", class= "multijs",
     makeChoices(choices = choices, choiceNames = choiceNames,
                 choiceValues = choiceValues, selected = selected)
   )
@@ -94,5 +94,18 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
   }
 }
 
+
+
+updateMultiInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL) {
+  choices <- if (!is.null(choices))
+    choicesWithNames(choices)
+  if (!is.null(selected))
+    selected <- validateSelected(selected, choices, inputId)
+  options <- if (!is.null(choices))
+    paste(capture.output(makeChoices(choices, selected)), collapse = "\n")
+  message <- dropNulls(list(label = label, options = options, value = selected))
+  print(message)
+  session$sendInputMessage(inputId, message)
+}
 
 
