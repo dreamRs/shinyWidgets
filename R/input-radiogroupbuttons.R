@@ -102,7 +102,7 @@ radioGroupButtons <- function(
 
   radioGroupButtonsTag <- tagList(
     tags$div(
-      id=inputId, class="radioGroupButtons", class="shiny-input-container",
+      id=inputId, class="radioGroupButtons",
       if (!is.null(label)) tags$label(class="control-label", `for`=inputId, label),
       if (!is.null(label)) br(),
       style="margin-top: 3px; margin-bottom: 3px; ",

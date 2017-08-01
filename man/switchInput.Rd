@@ -6,7 +6,7 @@
 \usage{
 switchInput(inputId, label = NULL, value = FALSE, onLabel = "ON",
   offLabel = "OFF", onStatus = NULL, offStatus = NULL, size = "default",
-  disabled = FALSE)
+  labelWidth = "auto", handleWidth = "auto", disabled = FALSE)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -15,17 +15,21 @@ switchInput(inputId, label = NULL, value = FALSE, onLabel = "ON",
 
 \item{value}{Initial value (TRUE or FALSE).}
 
-\item{onLabel}{Text on the left side of the switch (TRUE)}
+\item{onLabel}{Text on the left side of the switch (TRUE).}
 
-\item{offLabel}{Text on the right side of the switch (FALSE)}
+\item{offLabel}{Text on the right side of the switch (FALSE).}
 
-\item{onStatus}{Color (bootstrap status) of the left side of the switch (TRUE)}
+\item{onStatus}{Color (bootstrap status) of the left side of the switch (TRUE).}
 
-\item{offStatus}{Color (bootstrap status) of the right side of the switch (FALSE)}
+\item{offStatus}{Color (bootstrap status) of the right side of the switch (FALSE).}
 
-\item{size}{Size of the buttons ('default', 'mini', 'small', 'normal', 'large')}
+\item{size}{Size of the buttons ('default', 'mini', 'small', 'normal', 'large').}
 
-\item{disabled}{Logical. Disable the switch}
+\item{labelWidth}{Width of the center handle in pixels.}
+
+\item{handleWidth}{Width of the left and right sides in pixels.}
+
+\item{disabled}{Logical. Disable the switch.}
 }
 \value{
 A switch control that can be added to a UI definition.
@@ -33,11 +37,18 @@ A switch control that can be added to a UI definition.
 \description{
 Create a toggle switch.
 }
+\note{
+All options are described here \url{http://bootstrapswitch.com/options.html}.
+}
 \examples{
 \dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
+# Examples in the gallery :
+shinyWidgets::shinyWidgetsGallery()
+
+# Basic usage :
 ui <- fluidPage(
   switchInput(inputId = "somevalue"),
   verbatimTextOutput("value")
