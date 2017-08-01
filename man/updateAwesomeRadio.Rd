@@ -27,3 +27,56 @@ updateAwesomeRadio(session, inputId, label = NULL, choices = NULL,
 \description{
 Change the value of a radio input on the client
 }
+\examples{
+\dontrun{
+
+if (interactive()) {
+
+library("shiny")
+library("shinyWidgets")
+
+
+ui <- fluidPage(
+  awesomeRadio(
+    inputId = "somevalue",
+    choices = c("A", "B", "C"),
+    label = "My label"
+  ),
+
+  verbatimTextOutput(outputId = "res"),
+
+  actionButton(inputId = "updatechoices", label = "Random choices"),
+  textInput(inputId = "updatelabel", label = "Update label")
+)
+
+server <- function(input, output, session) {
+
+  output$res <- renderPrint({
+    input$somevalue
+  })
+
+  observeEvent(input$updatechoices, {
+    updateAwesomeRadio(
+      session = session, inputId = "somevalue",
+      choices = sample(letters, sample(2:6))
+    )
+  })
+
+  observeEvent(input$updatelabel, {
+    updateAwesomeRadio(
+      session = session, inputId = "somevalue",
+      label = input$updatelabel
+    )
+  }, ignoreInit = TRUE)
+
+}
+
+shinyApp(ui = ui, server = server)
+
+}
+
+}
+}
+\seealso{
+\code{\link{awesomeRadio}}
+}

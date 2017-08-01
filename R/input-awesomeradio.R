@@ -71,6 +71,7 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' @param checkbox Logical, render radio like checkboxes
 #' @return A set of radio buttons that can be added to a UI definition.
 #'
+#' @seealso \code{\link{updateAwesomeRadio}}
 #'
 #' @examples
 #' ## Only run examples in interactive R sessions
@@ -90,8 +91,6 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' @importFrom htmltools htmlDependency attachDependencies
 #'
 #' @export
-
-
 awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE) {
   choices <- choicesWithNames(choices)
   awesomeRadioTag <- tagList(
@@ -127,7 +126,58 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
 #' @param checkbox Checkbox style
 #'
 #' @export
-
+#'
+#' @seealso \code{\link{awesomeRadio}}
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#' library("shiny")
+#' library("shinyWidgets")
+#'
+#'
+#' ui <- fluidPage(
+#'   awesomeRadio(
+#'     inputId = "somevalue",
+#'     choices = c("A", "B", "C"),
+#'     label = "My label"
+#'   ),
+#'
+#'   verbatimTextOutput(outputId = "res"),
+#'
+#'   actionButton(inputId = "updatechoices", label = "Random choices"),
+#'   textInput(inputId = "updatelabel", label = "Update label")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res <- renderPrint({
+#'     input$somevalue
+#'   })
+#'
+#'   observeEvent(input$updatechoices, {
+#'     updateAwesomeRadio(
+#'       session = session, inputId = "somevalue",
+#'       choices = sample(letters, sample(2:6))
+#'     )
+#'   })
+#'
+#'   observeEvent(input$updatelabel, {
+#'     updateAwesomeRadio(
+#'       session = session, inputId = "somevalue",
+#'       label = input$updatelabel
+#'     )
+#'   }, ignoreInit = TRUE)
+#'
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#'
+#' }
+#'
+#' }
 updateAwesomeRadio <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,
           inline = FALSE, status = "primary", checkbox = FALSE)
 {

@@ -29,6 +29,8 @@
 #' @param width The width of the input
 #' @return A checkbox control that can be added to a UI definition.
 #'
+#' @seealso \code{\link{updateAwesomeCheckbox}}
+#'
 #' @examples
 #' \dontrun{
 #' ## Only run examples in interactive R sessions
@@ -54,7 +56,6 @@
 #' @importFrom htmltools htmlDependency attachDependencies
 #'
 #' @export
-
 awesomeCheckbox <- function (inputId, label, value = FALSE, status = "primary", width = NULL)
 {
   status <- match.arg(arg = status, choices = c("primary", "success", "info", "warning", "danger"))
@@ -118,12 +119,12 @@ generateAwesomeOptions <- function (inputId, choices, selected, inline, status)
 #' @param width The width of the input
 #' @return A checkbox control that can be added to a UI definition.
 #'
+#' @seealso \code{\link{updateAwesomeCheckboxGroup}}
 #'
 #' @import shiny
 #' @importFrom htmltools htmlDependency attachDependencies
 #'
 #' @export
-
 awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inline = FALSE, status = "primary",
           width = NULL)
 {
@@ -149,10 +150,10 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
 
 
 
-#' @title Change the value of a radio input on the client
+#' @title Change the value of a AwesomeCheckboxGroup input on the client
 #'
 #' @description
-#' Change the value of a radio input on the client
+#' Change the value of a AwesomeCheckboxGroup input on the client
 #'
 #'
 #' @param session The session object passed to function given to shinyServer.
@@ -161,11 +162,61 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
 #' @param choices List of values to show checkboxes for.
 #' @param selected The values that should be initially selected, if any.
 #' @param inline If TRUE, render the choices inline (i.e. horizontally)
-#' @param status Color of the buttons
+#' @param status Color of the buttons.
+#'
+#' @seealso \code{\link{awesomeCheckboxGroup}}
 #'
 #' @export
-
-
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#' library("shiny")
+#' library("shinyWidgets")
+#'
+#'
+#' ui <- fluidPage(
+#'   awesomeCheckboxGroup(
+#'     inputId = "somevalue",
+#'     choices = c("A", "B", "C"),
+#'     label = "My label"
+#'   ),
+#'
+#'   verbatimTextOutput(outputId = "res"),
+#'
+#'   actionButton(inputId = "updatechoices", label = "Random choices"),
+#'   textInput(inputId = "updatelabel", label = "Update label")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res <- renderPrint({
+#'     input$somevalue
+#'   })
+#'
+#'   observeEvent(input$updatechoices, {
+#'     updateAwesomeCheckboxGroup(
+#'       session = session, inputId = "somevalue",
+#'       choices = sample(letters, sample(2:6))
+#'     )
+#'   })
+#'
+#'   observeEvent(input$updatelabel, {
+#'     updateAwesomeCheckboxGroup(
+#'       session = session, inputId = "somevalue",
+#'       label = input$updatelabel
+#'     )
+#'   }, ignoreInit = TRUE)
+#'
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#'
+#' }
+#'
+#' }
 updateAwesomeCheckboxGroup <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,
           inline = FALSE, status = "primary")
 {
@@ -185,6 +236,69 @@ updateAwesomeCheckboxGroup <- function (session, inputId, label = NULL, choices 
 
 
 
-updateAwesomeCheckbox <- shiny::updateCheckboxInput
+#' Change the value of an awesome checkbox input on the client
+#'
+#' @param session standard \code{shiny} session
+#' @param inputId The id of the input object.
+#' @param label The label to set for the input object.
+#' @param value The value to set for the input object.
+#'
+#' @export
+#'
+#' @seealso \code{\link{awesomeCheckbox}}
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#' library("shiny")
+#' library("shinyWidgets")
+#'
+#'
+#' ui <- fluidPage(
+#'   awesomeCheckbox(
+#'     inputId = "somevalue",
+#'     label = "My label",
+#'     value = FALSE
+#'   ),
+#'
+#'   verbatimTextOutput(outputId = "res"),
+#'
+#'   actionButton(inputId = "updatevalue", label = "Toggle value"),
+#'   textInput(inputId = "updatelabel", label = "Update label")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res <- renderPrint({
+#'     input$somevalue
+#'   })
+#'
+#'   observeEvent(input$updatevalue, {
+#'     updateAwesomeCheckbox(
+#'       session = session, inputId = "somevalue",
+#'       value = as.logical(input$updatevalue %%2)
+#'     )
+#'   })
+#'
+#'   observeEvent(input$updatelabel, {
+#'     updateAwesomeCheckbox(
+#'       session = session, inputId = "somevalue",
+#'       label = input$updatelabel
+#'     )
+#'   }, ignoreInit = TRUE)
+#'
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#'
+#' }
+#'
+#' }
+updateAwesomeCheckbox <- function (session, inputId, label = NULL, value = NULL) {
+  message <- dropNulls(list(label = label, value = value))
+  session$sendInputMessage(inputId, message)
+}
 
 

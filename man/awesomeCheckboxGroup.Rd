@@ -28,3 +28,6 @@ A checkbox control that can be added to a UI definition.
 \description{
 Create a Font Awesome Bootstrap checkbox that can be used to specify logical values.
 }
+\seealso{
+\code{\link{updateAwesomeCheckboxGroup}}
+}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/input-awesomecheckbox.R
 \name{updateAwesomeCheckboxGroup}
 \alias{updateAwesomeCheckboxGroup}
-\title{Change the value of a radio input on the client}
+\title{Change the value of a AwesomeCheckboxGroup input on the client}
 \usage{
 updateAwesomeCheckboxGroup(session, inputId, label = NULL, choices = NULL,
   selected = NULL, inline = FALSE, status = "primary")
@@ -20,8 +20,61 @@ updateAwesomeCheckboxGroup(session, inputId, label = NULL, choices = NULL,
 
 \item{inline}{If TRUE, render the choices inline (i.e. horizontally)}
 
-\item{status}{Color of the buttons}
+\item{status}{Color of the buttons.}
 }
 \description{
-Change the value of a radio input on the client
+Change the value of a AwesomeCheckboxGroup input on the client
+}
+\examples{
+\dontrun{
+
+if (interactive()) {
+
+library("shiny")
+library("shinyWidgets")
+
+
+ui <- fluidPage(
+  awesomeCheckboxGroup(
+    inputId = "somevalue",
+    choices = c("A", "B", "C"),
+    label = "My label"
+  ),
+
+  verbatimTextOutput(outputId = "res"),
+
+  actionButton(inputId = "updatechoices", label = "Random choices"),
+  textInput(inputId = "updatelabel", label = "Update label")
+)
+
+server <- function(input, output, session) {
+
+  output$res <- renderPrint({
+    input$somevalue
+  })
+
+  observeEvent(input$updatechoices, {
+    updateAwesomeCheckboxGroup(
+      session = session, inputId = "somevalue",
+      choices = sample(letters, sample(2:6))
+    )
+  })
+
+  observeEvent(input$updatelabel, {
+    updateAwesomeCheckboxGroup(
+      session = session, inputId = "somevalue",
+      label = input$updatelabel
+    )
+  }, ignoreInit = TRUE)
+
+}
+
+shinyApp(ui = ui, server = server)
+
+}
+
+}
+}
+\seealso{
+\code{\link{awesomeCheckboxGroup}}
 }
