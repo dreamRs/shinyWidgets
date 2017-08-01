@@ -4,15 +4,94 @@
 \alias{updateRadioGroupButtons}
 \title{Change the value of a radio group buttons input on the client}
 \usage{
-updateRadioGroupButtons(session, inputId, selected = NULL)
+updateRadioGroupButtons(session, inputId, label = NULL, choices = NULL,
+  selected = NULL, status = "default", size = "normal",
+  individual = FALSE, checkIcon = list())
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}
 
 \item{inputId}{The id of the input object.}
 
+\item{label}{The label to set.}
+
+\item{choices}{The new choices for the input.}
+
 \item{selected}{The value selected.}
+
+\item{status}{Status, only used if choices is not NULL.}
+
+\item{size}{Size, only used if choices is not NULL.}
+
+\item{individual}{Individual buttons, only used if choices is not NULL.}
+
+\item{checkIcon}{Icon, only used if choices is not NULL.}
 }
 \description{
 Change the value of a radio group buttons input on the client
+}
+\examples{
+\dontrun{
+
+if (interactive()) {
+
+library("shiny")
+library("shinyWidgets")
+
+ui <- fluidPage(
+  radioGroupButtons(
+    inputId = "somevalue",
+    choices = c("A", "B", "C"),
+    label = "My label"
+  ),
+
+  verbatimTextOutput(outputId = "res"),
+
+  actionButton(inputId = "updatechoices", label = "Random choices"),
+  pickerInput(
+    inputId = "updateselected", label = "Update selected:",
+    choices = c("A", "B", "C"), multiple = FALSE
+  ),
+  textInput(inputId = "updatelabel", label = "Update label")
+)
+
+server <- function(input, output, session) {
+
+  output$res <- renderPrint({
+    input$somevalue
+  })
+
+  observeEvent(input$updatechoices, {
+    newchoices <- sample(letters, sample(2:6))
+    updateRadioGroupButtons(
+      session = session, inputId = "somevalue",
+      choices = newchoices
+    )
+    updatePickerInput(
+      session = session, inputId = "updateselected",
+      choices = newchoices
+    )
+  })
+
+  observeEvent(input$updateselected, {
+    updateRadioGroupButtons(
+      session = session, inputId = "somevalue",
+      selected = input$updateselected
+    )
+  }, ignoreNULL = TRUE, ignoreInit = TRUE)
+
+  observeEvent(input$updatelabel, {
+    updateRadioGroupButtons(
+      session = session, inputId = "somevalue",
+      label = input$updatelabel
+    )
+  }, ignoreInit = TRUE)
+
+}
+
+shinyApp(ui = ui, server = server)
+
+}
+
+}
 }

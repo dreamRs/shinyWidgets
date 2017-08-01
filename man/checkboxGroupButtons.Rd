@@ -13,7 +13,8 @@ checkboxGroupButtons(inputId, label = NULL, choices, selected = NULL,
 
 \item{label}{Input label.}
 
-\item{choices}{List of values to select from (if elements of the list are named then that name rather than the value is displayed to the user)}
+\item{choices}{List of values to select from (if elements of the list are named
+then that name rather than the value is displayed to the user)}
 
 \item{selected}{The initially selected value.}
 
@@ -27,7 +28,8 @@ checkboxGroupButtons(inputId, label = NULL, choices, selected = NULL,
 
 \item{individual}{If TRUE, buttons are separated.}
 
-\item{checkIcon}{A list, if no empty must contain at least one element named 'yes' corresponding to an icon to display if the button is checked.}
+\item{checkIcon}{A list, if no empty must contain at least one element named 'yes'
+corresponding to an icon to display if the button is checked.}
 }
 \value{
 A buttons group control that can be added to a UI definition.
@@ -51,4 +53,7 @@ shinyApp(ui, server)
 }
 }
 
+}
+\seealso{
+\code{\link{updateCheckboxGroupButtons}}
 }
