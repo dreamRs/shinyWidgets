@@ -7,3 +7,4 @@
 ^_pkgdown\.yml$
 ^\.travis\.yml$
 ^data-raw$
+^revdep$

@@ -8,8 +8,11 @@
 #' @param value Initial value.
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
 #' @param btnSearch An icon for the button which validate the search.
-#' @param btnReset n icon for the button which reset the search.
+#' @param btnReset An icon for the button which reset the search.
 #' @param width The width of the input, e.g. '400px', or '100\%'.
+#'
+#' @note The two buttons ('search' and 'reset') act like \code{actionButton}, you can
+#' retrieve their value server-side with \code{input$<INPUTID>_search} and \code{input$<INPUTID>_reset}.
 #'
 #' @examples
 #' \dontrun{
@@ -43,19 +46,21 @@
 #'
 #' @export
 
-searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL, btnSearch = NULL, btnReset = NULL, width = NULL) {
+searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
+                        btnSearch = NULL, btnReset = NULL, width = NULL) {
 
   if (!is.null(btnSearch)) {
     btnSearch <- tags$button(
-      class="btn btn-default", id = paste0("search", inputId), type="button",
-      btnSearch#,
-      #style = "border-radius: 0 0.5em 0.5em 0 !important; min-width: 70px  !important; border: 0.5px solid #ddd !important; border-bottom: 0px !important;"
+      class="btn btn-default action-button",
+      id = paste0(inputId, "_search"),
+      type="button", btnSearch
     )
   }
   if (!is.null(btnReset)) {
     btnReset <- tags$button(
-      class="btn btn-default", id = paste0("reset", inputId), type="button",
-      btnReset#, style = "border: 0.5px solid #ddd !important; border-bottom: 0px !important;"
+      class="btn btn-default action-button",
+      id = paste0(inputId, "_reset"),
+      type="button", btnReset
     )
   }
 
