@@ -28,7 +28,7 @@ and none for \code{mode = 'checkbox'}}
 \item{mode}{\code{'radio'} for only one choice, \code{'checkbox'} for
 selecting multiple values.}
 
-\item{display_label}{Display list's names afterpalette of color.}
+\item{display_label}{Display list's names after palette of color.}
 
 \item{ncol}{If choices is not a list but a vector, go to line after n elements.}
 
@@ -44,7 +44,7 @@ selecting multiple values.}
 a colorSelectorInput control
 }
 \description{
-Choose between a restrictive set of colour.
+Choose between a restrictive set of colors.
 }
 \section{Functions}{
 \itemize{

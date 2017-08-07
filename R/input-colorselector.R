@@ -1,6 +1,6 @@
 #' @title Color Selector Input
 #'
-#' @description Choose between a restrictive set of colour.
+#' @description Choose between a restrictive set of colors.
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or \code{NULL} for no label.
@@ -9,7 +9,7 @@
 #' and none for \code{mode = 'checkbox'}
 #' @param mode \code{'radio'} for only one choice, \code{'checkbox'} for
 #' selecting multiple values.
-#' @param display_label Display list's names afterpalette of color.
+#' @param display_label Display list's names after palette of color.
 #' @param ncol If choices is not a list but a vector, go to line after n elements.
 #'
 #' @return a colorSelectorInput control
