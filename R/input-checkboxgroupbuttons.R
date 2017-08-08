@@ -84,7 +84,7 @@ checkboxGroupButtons <- function(
 generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, individual) {
   if (individual) {
     # div_class <- gsub(pattern = "btn-group ", replacement = "", x = div_class)
-    btn_wrapper <- tagList()
+    btn_wrapper <- tagList
   } else {
     btn_wrapper <- function(...) {
       tags$div(
