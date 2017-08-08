@@ -5,8 +5,8 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/dreamRs/shinyWidgets.svg?branch=master)](https://travis-ci.org/dreamRs/shinyWidgets)
 [![version](http://www.r-pkg.org/badges/version/shinyWidgets)](https://CRAN.R-project.org/package=shinyWidgets)
-[![cranlogs](http://cranlogs.r-pkg.org/badges/grand-total/shinyWidgets)](http://cran.rstudio.com/web/packages/shinyWidgets/index.html)
-
+[![cranlogs](http://cranlogs.r-pkg.org/badges/shinyWidgets)](http://cran.rstudio.com/web/packages/shinyWidgets/index.html)
+[![Coverage Status](https://img.shields.io/codecov/c/github/dreamRs/shinyWidgets/master.svg)](https://codecov.io/github/dreamRs/shinyWidgets?branch=master)
 
 ## Overview
 

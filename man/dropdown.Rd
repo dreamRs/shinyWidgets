@@ -45,9 +45,12 @@ Moreover you can add animations on the appearance / disappearance of the dropdow
 if (interactive()) {
 
 dropdown(
- "Your contents goes here ! You can pass several elements",
- circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
- tooltip = tooltipOptions(title = "Click to see inputs !")
+  "Content goes here",
+  style = "unite", icon = icon("gear"), status = "danger", width = "300px",
+  animate = animateOptions(
+    enter = animations$fading_entrances$fadeInLeftBig,
+    exit = animations$fading_exits$fadeOutRightBig
+  )
 )
 
 }
