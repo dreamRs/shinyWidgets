@@ -6,7 +6,7 @@
 \usage{
 updateCheckboxGroupButtons(session, inputId, label = NULL, choices = NULL,
   selected = NULL, status = "default", size = "normal",
-  individual = FALSE, checkIcon = list())
+  checkIcon = list())
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}
@@ -22,8 +22,6 @@ updateCheckboxGroupButtons(session, inputId, label = NULL, choices = NULL,
 \item{status}{Status, only used if choices is not NULL.}
 
 \item{size}{Size, only used if choices is not NULL.}
-
-\item{individual}{Individual buttons, only used if choices is not NULL.}
 
 \item{checkIcon}{Icon, only used if choices is not NULL.}
 }

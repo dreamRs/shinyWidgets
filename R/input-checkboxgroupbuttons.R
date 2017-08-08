@@ -69,7 +69,7 @@ checkboxGroupButtons <- function(
       tags$div(
         class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
         class = "btn-group-container-sw",
-        generateCBGB(inputId, choices, selected, status, size, checkIcon, individual)
+        generateCBGB(inputId, choices, selected, status, size, checkIcon)
       )
     )
   )
@@ -81,19 +81,14 @@ checkboxGroupButtons <- function(
 
 
 
-generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, individual) {
-  if (individual) {
-    # div_class <- gsub(pattern = "btn-group ", replacement = "", x = div_class)
-    btn_wrapper <- tagList
-  } else {
-    btn_wrapper <- function(...) {
-      tags$div(
-        class="btn-group",
-        class=if (size != "normal") paste0("btn-group-", size),
-        role="group",
-        ...
-      )
-    }
+generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
+  btn_wrapper <- function(...) {
+    tags$div(
+      class="btn-group",
+      class=if (size != "normal") paste0("btn-group-", size),
+      role="group",
+      ...
+    )
   }
   if (!is.null(checkIcon) && !is.null(checkIcon$yes)) {
     displayIcon <- TRUE
@@ -137,7 +132,6 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, in
 #' @param choices The new choices for the input.
 #' @param status Status, only used if choices is not NULL.
 #' @param size Size, only used if choices is not NULL.
-#' @param individual Individual buttons, only used if choices is not NULL.
 #' @param checkIcon Icon, only used if choices is not NULL.
 #'
 #' @export
@@ -247,12 +241,12 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, in
 #' }
 updateCheckboxGroupButtons <- function(session, inputId, label = NULL, choices = NULL, selected = NULL,
                                        status = "default", size = "normal",
-                                       individual = FALSE, checkIcon = list()) {
+                                       checkIcon = list()) {
   if (!is.null(choices))
     choices <- choicesWithNames(choices)
   options <- if (!is.null(choices)) {
     format(tagList(generateCBGB(inputId, choices, selected, status = status, size = size,
-                                individual = individual, checkIcon = checkIcon)))
+                                checkIcon = checkIcon)))
   }
   message <- dropNulls(list(selected = selected, options = options, label = label))
   session$sendInputMessage(inputId, message)

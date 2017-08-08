@@ -72,7 +72,7 @@ radioGroupButtons <- function(
       tags$div(
         class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
         class = "btn-group-container-sw",
-        generateRGB(inputId, choices, selected, status, size, checkIcon, individual)
+        generateRGB(inputId, choices, selected, status, size, checkIcon)
       )
     )
   )
@@ -81,20 +81,7 @@ radioGroupButtons <- function(
 }
 
 
-generateRGB <- function(inputId, choices, selected, status, size, checkIcon, individual) {
-  if (individual) {
-    # div_class <- gsub(pattern = "btn-group ", replacement = "", x = div_class)
-    btn_wrapper <- tagList
-  } else {
-    btn_wrapper <- function(...) {
-      tags$div(
-        class="btn-group",
-        class=if (size != "normal") paste0("btn-group-", size),
-        role="group",
-        ...
-      )
-    }
-  }
+generateRGB <- function(inputId, choices, selected, status, size, checkIcon) {
   if (!is.null(checkIcon) && !is.null(checkIcon$yes)) {
     displayIcon <- TRUE
   } else {
@@ -139,7 +126,6 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon, ind
 #' @param choices The new choices for the input.
 #' @param status Status, only used if choices is not NULL.
 #' @param size Size, only used if choices is not NULL.
-#' @param individual Individual buttons, only used if choices is not NULL.
 #' @param checkIcon Icon, only used if choices is not NULL.
 #'
 #' @export
@@ -210,12 +196,14 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon, ind
 #' }
 updateRadioGroupButtons <- function(session, inputId, label = NULL, choices = NULL, selected = NULL,
                                     status = "default", size = "normal",
-                                    individual = FALSE, checkIcon = list()) {
+                                    checkIcon = list()) {
+  if (is.null(selected) && !is.null(choices))
+    selected <- choices[[1]]
   if (!is.null(choices))
     choices <- choicesWithNames(choices)
   options <- if (!is.null(choices)) {
     format(tagList(generateRGB(inputId, choices, selected, status = status, size = size,
-                                individual = individual, checkIcon = checkIcon)))
+                               checkIcon = checkIcon)))
   }
   message <- dropNulls(list(selected = selected, options = options, label = label))
   session$sendInputMessage(inputId, message)
