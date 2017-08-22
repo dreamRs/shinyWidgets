@@ -50,6 +50,7 @@
 switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', offLabel = 'OFF',
                         onStatus = NULL, offStatus = NULL, size = "default", labelWidth = "auto",
                         handleWidth = "auto", disabled = FALSE) {
+  value <- shiny::restoreInput(id = inputId, default = value)
   size <- match.arg(arg = size, choices = c('default', 'mini', 'small', 'normal', 'large'))
   switchProps <- dropNulls(
     list(
