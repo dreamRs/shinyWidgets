@@ -19,10 +19,11 @@
 
 circleButton <- function (inputId, icon = NULL, status = "default", size = "default", ...)
 {
+  value <- shiny::restoreInput(id = inputId, default = NULL)
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   attachShinyWidgetsDep(
     tags$button(
-      id = inputId, type = "button", style = "outline: none;",
+      id = inputId, type = "button", style = "outline: none;", `data-val` = value,
       class = paste0("btn btn-", status, " action-button ",
                      ifelse(size == "default", "btn-circle",
                             paste0("btn-circle-", size))), icon, ...

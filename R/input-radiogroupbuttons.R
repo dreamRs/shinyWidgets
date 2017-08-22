@@ -43,6 +43,7 @@ radioGroupButtons <- function(
   direction = "horizontal", justified = FALSE, individual = FALSE, checkIcon = list()
 ) {
   choices <- choicesWithNames(choices)
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   if (!is.null(selected) && length(selected) > 1)
     stop("selected must be length 1")
   if (is.null(selected))

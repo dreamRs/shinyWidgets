@@ -93,6 +93,7 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' @export
 awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE) {
   choices <- choicesWithNames(choices)
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   awesomeRadioTag <- tagList(
     tags$div(
       id=inputId, class="form-group awesome-radio-class shiny-input-container",

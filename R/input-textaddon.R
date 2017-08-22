@@ -38,6 +38,7 @@
 
 textInputAddon <- function (inputId, label, value = "", placeholder = NULL, addon, width = NULL)
 {
+  value <- shiny::restoreInput(id = inputId, default = value)
   tagList(
     label %AND% tags$label(label, `for` = inputId),
     div(

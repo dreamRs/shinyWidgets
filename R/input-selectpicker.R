@@ -152,6 +152,7 @@
 pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multiple = FALSE,
                         options = NULL, choicesOpt = NULL, width = NULL, inline = FALSE) {
   choices <- choicesWithNames(choices)
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   if (!is.null(options))
     names(options) <- paste("data", names(options), sep = "-")
   if (!is.null(width))

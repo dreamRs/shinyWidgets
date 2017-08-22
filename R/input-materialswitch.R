@@ -1,20 +1,3 @@
-
-# ------------------------------------------------------------------------ #
-#
-# Descriptif : Material Design Switch
-#        Via : http://bootsnipp.com/snippets/featured/material-design-switch
-#
-#
-# Auteur : Victor PERRIER
-#
-# Date creation : 16/10/2016
-# Date modification : 16/10/2016
-#
-# Version 1.0
-#
-# ------------------------------------------------------------------------ #
-
-
 #' @title Material Design Switch Input Control
 #'
 #' @description
@@ -50,30 +33,8 @@
 #' @importFrom htmltools htmlDependency attachDependencies validateCssUnit
 #'
 #' @export
-
-
-# materialSwitch <- function(inputId, label, value = FALSE, status = "default", right = FALSE, width = NULL) {
-#   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
-#   inputTag <- tags$input(id = inputId, type = "checkbox")
-#   if (!is.null(value) && value)
-#     inputTag$attribs$checked <- "checked"
-#   msTag <- div(class = "form-group shiny-input-container", style = if (!is.null(width))
-#     paste0("width: ", htmltools::validateCssUnit(width), ";"),
-#     if (right) tags$span(label),
-#     div(class = "material-switch",
-#         class = if (right) "pull-right",
-#         if (!is.null(label) & !right) tags$span(label, style = "padding-right: 10px;"),
-#         inputTag,
-#         tags$label(`for`=inputId, class = if (right) "pull-right", class=paste0("label-", status))))
-#   dep <- htmltools::htmlDependency(
-#     "material-switch", "0.1.0", c(href="shinyWidgets"),
-#     stylesheet = "materialSwitch/material-switch.css"
-#   )
-#   htmltools::attachDependencies(msTag, dep)
-# }
-
-
 materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "default", right = FALSE, width = NULL) {
+  value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
   inputTag <- tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)

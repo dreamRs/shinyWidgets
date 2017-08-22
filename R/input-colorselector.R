@@ -45,6 +45,7 @@
 #' }
 #' }
 colorSelectorInput <- function(inputId, label, choices, selected = NULL, mode = c("radio", "checkbox"), display_label = FALSE, ncol = 10) {
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   mode <- match.arg(arg = mode)
   if (!is.list(choices))
     choices <- split(x = choices, f = (seq_along(choices) - 1) %/% ncol)

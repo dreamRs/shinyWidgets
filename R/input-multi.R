@@ -42,6 +42,7 @@
 #' }
 #' }
 multiInput <- function(inputId, label, choices = NULL, selected = NULL, options = NULL, width = NULL, choiceNames = NULL, choiceValues = NULL) {
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   selectTag <- tags$select(
     id = inputId, multiple = "multiple", class= "multijs",
     makeChoices(choices = choices, choiceNames = choiceNames,

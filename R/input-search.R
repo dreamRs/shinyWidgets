@@ -48,7 +48,7 @@
 
 searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
                         btnSearch = NULL, btnReset = NULL, width = NULL) {
-
+  value <- shiny::restoreInput(id = inputId, default = value)
   if (!is.null(btnSearch)) {
     btnSearch <- tags$button(
       class="btn btn-default action-button",

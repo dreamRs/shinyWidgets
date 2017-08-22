@@ -58,6 +58,7 @@
 #' @export
 awesomeCheckbox <- function (inputId, label, value = FALSE, status = "primary", width = NULL)
 {
+  value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(arg = status, choices = c("primary", "success", "info", "warning", "danger"))
   inputTag <- tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
@@ -129,6 +130,7 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
           width = NULL)
 {
   choices <- choicesWithNames(choices)
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- generateAwesomeOptions(inputId, choices, selected, inline, status = status)

@@ -61,12 +61,13 @@ actionGroupButtons <- function(inputIds,
       lapply(
         X = seq_along(labels),
         FUN = function(i) {
+          value <- shiny::restoreInput(id = inputIds[i], default = NULL)
           tags$div(
             class = "btn-group",
             role = "group",
             tags$button(
               id = inputIds[i],
-              type = "button",
+              type = "button",`data-val` = value,
               class = paste0("btn action-button btn-", status),
               labels[i]
             )

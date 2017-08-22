@@ -45,6 +45,7 @@ checkboxGroupButtons <- function(
   direction = "horizontal", justified = FALSE, individual = FALSE, checkIcon = list()
 ) {
   choices <- choicesWithNames(choices)
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   size <- match.arg(arg = size, choices = c("xs", "sm", "normal", "lg"))
   direction <- match.arg(arg = direction, choices = c("horizontal", "vertical"))
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
