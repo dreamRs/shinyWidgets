@@ -73,7 +73,7 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   switchInputTag <- htmltools::tags$div(
-    style = "margin: 3px;", class = "shiny-input-container",
+    style = "margin: 3px; width: auto; display: inline-block;", class = "form-group",
     inputTag,
     htmltools::tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").bootstrapSwitch();')))
   )

@@ -126,6 +126,46 @@ generateAwesomeOptions <- function (inputId, choices, selected, inline, status)
 #' @importFrom htmltools tags validateCssUnit
 #'
 #' @export
+#'
+#' @examples
+#'
+#' \dontrun{
+#' if (interactive()) {
+#'
+#'
+#' ui <- fluidPage(
+#'   br(),
+#'   awesomeCheckboxGroup(
+#'     inputId = "id1", label = "Make a choice:",
+#'     choices = c("graphics", "ggplot2")
+#'   ),
+#'   verbatimTextOutput(outputId = "res1"),
+#'   br(),
+#'   awesomeCheckboxGroup(
+#'     inputId = "id2", label = "Make a choice:",
+#'     choices = c("base", "dplyr", "data.table"),
+#'     inline = TRUE, status = "danger"
+#'   ),
+#'   verbatimTextOutput(outputId = "res2")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res1 <- renderPrint({
+#'     input$id1
+#'   })
+#'
+#'   output$res2 <- renderPrint({
+#'     input$id2
+#'   })
+#'
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#'
+#'
+#' }
+#' }
 awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inline = FALSE, status = "primary",
           width = NULL)
 {

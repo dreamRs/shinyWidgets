@@ -5,7 +5,8 @@
 #'
 #' @noRd
 #' @importFrom utils packageVersion
-#' @importFrom htmltools htmlDependency attachDependencies
+#' @importFrom htmltools htmlDependency attachDependencies findDependencies
+#' @importFrom shiny icon
 #'
 attachShinyWidgetsDep <- function(tag, widget = NULL) {
   version <- as.character(packageVersion("shinyWidgets")[[1]])
@@ -21,7 +22,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "selectPicker",
-          version = "1.11.0",
+          version = "1.12.4",
           src = c(href="shinyWidgets/selectPicker"),
           script = "js/bootstrap-select.min.js",
           stylesheet = "css/bootstrap-select.min.css"
@@ -36,19 +37,14 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           src = c(href = "shinyWidgets/awesomeRadioCheckbox"),
           stylesheet = "css/awesome-bootstrap-checkbox-shiny.css"
         ),
-        htmltools::htmlDependency(
-          name = "font-awesome",
-          version = "4.6.3",
-          src = c(href = "shared/font-awesome"),
-          stylesheet = "css/font-awesome.min.css"
-        )
+        htmltools::findDependencies(shiny::icon("rebel"))[[1]]
       )
     } else if (widget == "bsswitch") {
       dep <- list(
         dep,
         htmltools::htmlDependency(
           name = "bootstrap-switch",
-          version = "3.3.2",
+          version = "3.3.4",
           src = c(href="shinyWidgets/switchInput"),
           script = "js/bootstrap-switch.min.js",
           stylesheet = "css/bootstrap-switch.min.css"

@@ -29,21 +29,43 @@ A set of radio buttons that can be added to a UI definition.
 Create a set of prettier radio buttons used to select an item from a list.
 }
 \examples{
+\dontrun{
+
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
 ui <- fluidPage(
-  awesomeRadio(inputId = "somevalue",
-               label = "Make a choice:",
-               choices = c("A", "B", "C")),
-  verbatimTextOutput("value")
+  br(),
+  awesomeRadio(
+    inputId = "id1", label = "Make a choice:",
+    choices = c("graphics", "ggplot2")
+  ),
+  verbatimTextOutput(outputId = "res1"),
+  br(),
+  awesomeRadio(
+    inputId = "id2", label = "Make a choice:",
+    choices = c("base", "dplyr", "data.table"),
+    inline = TRUE, status = "danger"
+  ),
+  verbatimTextOutput(outputId = "res2")
 )
-server <- function(input, output) {
-  output$value <- renderText({ input$somevalue })
-}
-shinyApp(ui, server)
+
+server <- function(input, output, session) {
+
+  output$res1 <- renderPrint({
+    input$id1
+  })
+
+  output$res2 <- renderPrint({
+    input$id2
+  })
+
 }
 
+shinyApp(ui = ui, server = server)
+
+}
+}
 }
 \seealso{
 \code{\link{updateAwesomeRadio}}

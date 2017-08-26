@@ -227,7 +227,7 @@ body <- dashboardBody(
             title = "Label in the middle",
             widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), label = "My label")
+              args = list(inputId = ID(ids), label = "My label", labelWidth = "80px")
             )
           )
           ,

@@ -73,26 +73,49 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #'
 #' @seealso \code{\link{updateAwesomeRadio}}
 #'
-#' @examples
-#' ## Only run examples in interactive R sessions
-#' if (interactive()) {
-#'
-#' ui <- fluidPage(
-#'   awesomeRadio(inputId = "somevalue",
-#'                label = "Make a choice:",
-#'                choices = c("A", "B", "C")),
-#'   verbatimTextOutput("value")
-#' )
-#' server <- function(input, output) {
-#'   output$value <- renderText({ input$somevalue })
-#' }
-#' shinyApp(ui, server)
-#' }
-#'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' ## Only run examples in interactive R sessions
+#' if (interactive()) {
+#'
+#' ui <- fluidPage(
+#'   br(),
+#'   awesomeRadio(
+#'     inputId = "id1", label = "Make a choice:",
+#'     choices = c("graphics", "ggplot2")
+#'   ),
+#'   verbatimTextOutput(outputId = "res1"),
+#'   br(),
+#'   awesomeRadio(
+#'     inputId = "id2", label = "Make a choice:",
+#'     choices = c("base", "dplyr", "data.table"),
+#'     inline = TRUE, status = "danger"
+#'   ),
+#'   verbatimTextOutput(outputId = "res2")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res1 <- renderPrint({
+#'     input$id1
+#'   })
+#'
+#'   output$res2 <- renderPrint({
+#'     input$id2
+#'   })
+#'
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#'
+#' }
+#' }
 awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
