@@ -11,12 +11,10 @@
 #' @param fullwidth If TRUE, fill the width of the parent div
 #' @return An actions buttons group control that can be added to a UI definition.
 #'
-#' @import shiny
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags
 #'
 #' @export
-#'
-
-
 actionGroupButtons <- function(inputIds,
            labels,
            status = "default",
@@ -54,7 +52,7 @@ actionGroupButtons <- function(inputIds,
         arg = status,
         choices = c("default", "primary", "success", "info", "warning", "danger")
       )
-    tags$div(
+    htmltools::tags$div(
       class = div_class,
       role = "group",
       `aria-label` = "...",
@@ -65,7 +63,7 @@ actionGroupButtons <- function(inputIds,
           tags$div(
             class = "btn-group",
             role = "group",
-            tags$button(
+            htmltools::tags$button(
               id = inputIds[i],
               type = "button",`data-val` = value,
               class = paste0("btn action-button btn-", status),

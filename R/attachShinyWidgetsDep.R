@@ -5,6 +5,7 @@
 #'
 #' @noRd
 #' @importFrom utils packageVersion
+#' @importFrom htmltools htmlDependency attachDependencies
 #'
 attachShinyWidgetsDep <- function(tag, widget = NULL) {
   version <- as.character(packageVersion("shinyWidgets")[[1]])

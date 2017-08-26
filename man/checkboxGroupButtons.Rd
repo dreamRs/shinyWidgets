@@ -43,7 +43,9 @@ Create buttons grouped that act like checkboxes.
 if (interactive()) {
 
 ui <- fluidPage(
-  checkboxGroupButtons(inputId = "somevalue", choices = c("A", "B", "C")),
+  checkboxGroupButtons(inputId = "somevalue",
+                       label = "Make a choice: ",
+                       choices = c("A", "B", "C")),
   verbatimTextOutput("value")
 )
 server <- function(input, output) {

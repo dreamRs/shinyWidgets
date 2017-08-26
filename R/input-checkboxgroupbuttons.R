@@ -25,7 +25,9 @@
 #' if (interactive()) {
 #'
 #' ui <- fluidPage(
-#'   checkboxGroupButtons(inputId = "somevalue", choices = c("A", "B", "C")),
+#'   checkboxGroupButtons(inputId = "somevalue",
+#'                        label = "Make a choice: ",
+#'                        choices = c("A", "B", "C")),
 #'   verbatimTextOutput("value")
 #' )
 #' server <- function(input, output) {
@@ -35,8 +37,8 @@
 #' }
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags HTML
 #'
 #' @export
 
@@ -60,18 +62,16 @@ checkboxGroupButtons <- function(
   if (size != "normal") {
     divClass <- paste0(divClass, " btn-group-", size)
   }
-  checkboxGroupButtonsTag <- tagList(
-    tags$div(
-      id=inputId, class="checkboxGroupButtons",
-      if (!is.null(label)) tags$label(class="control-label", `for`=inputId, label),
-      if (!is.null(label)) br(),
-      style = "margin-top: 3px; margin-bottom: 3px;",
-      style=if (justified) "width: 100%;",
-      tags$div(
-        class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
-        class = "btn-group-container-sw",
-        generateCBGB(inputId, choices, selected, status, size, checkIcon)
-      )
+  checkboxGroupButtonsTag <- htmltools::tags$div(
+    id=inputId, class="checkboxGroupButtons",
+    if (!is.null(label)) htmltools::tags$label(class="control-label", `for`=inputId, label),
+    if (!is.null(label)) htmltools::tags$br(),
+    style = "margin-top: 3px; margin-bottom: 3px;",
+    style=if (justified) "width: 100%;",
+    htmltools::tags$div(
+      class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
+      class = "btn-group-container-sw",
+      generateCBGB(inputId, choices, selected, status, size, checkIcon)
     )
   )
   # Dep
@@ -84,7 +84,7 @@ checkboxGroupButtons <- function(
 
 generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
   btn_wrapper <- function(...) {
-    tags$div(
+    htmltools::tags$div(
       class="btn-group",
       class=if (size != "normal") paste0("btn-group-", size),
       role="group",
@@ -100,17 +100,17 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
     X = seq_along(choices),
     FUN = function(i) {
       btn_wrapper(
-        tags$button(
+        htmltools::tags$button(
           class=paste0("btn checkbtn btn-", status),
           class=if (choices[i] %in% selected) "active",
           # if (checkIcon) tags$span(class="glyphicon glyphicon-ok"),
-          if (displayIcon) tags$span(class="check-btn-icon-yes", checkIcon$yes),
-          if (displayIcon) tags$span(class="check-btn-icon-no", checkIcon$no),
-          tags$input(
+          if (displayIcon) htmltools::tags$span(class="check-btn-icon-yes", checkIcon$yes),
+          if (displayIcon) htmltools::tags$span(class="check-btn-icon-no", checkIcon$no),
+          htmltools::tags$input(
             type="checkbox", autocomplete="off",
             name=inputId, value=choices[i],
             checked=if (choices[i] %in% selected) "checked",
-            HTML(names(choices)[i])
+            htmltools::HTML(names(choices)[i])
           )
         )
       )
@@ -136,6 +136,8 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' @param checkIcon Icon, only used if choices is not NULL.
 #'
 #' @export
+#'
+#' @importFrom htmltools tagList
 #'
 #' @seealso \code{\link{checkboxGroupButtons}}
 #'
@@ -246,7 +248,7 @@ updateCheckboxGroupButtons <- function(session, inputId, label = NULL, choices =
   if (!is.null(choices))
     choices <- choicesWithNames(choices)
   options <- if (!is.null(choices)) {
-    format(tagList(generateCBGB(inputId, choices, selected, status = status, size = size,
+    format(htmltools::tagList(generateCBGB(inputId, choices, selected, status = status, size = size,
                                 checkIcon = checkIcon)))
   }
   message <- dropNulls(list(selected = selected, options = options, label = label))

@@ -41,8 +41,8 @@
 #' }
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags
 #'
 #' @export
 
@@ -69,15 +69,13 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
       "false"
     else x
   })
-  inputTag <- do.call(tags$input, switchProps)
+  inputTag <- do.call(htmltools::tags$input, switchProps)
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
-  switchInputTag <- tagList(
-    tags$div(
-      style = "margin: 3px;", class = "shiny-input-container",
-      inputTag,
-      tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").bootstrapSwitch();')))
-    )
+  switchInputTag <- htmltools::tags$div(
+    style = "margin: 3px;", class = "shiny-input-container",
+    inputTag,
+    htmltools::tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").bootstrapSwitch();')))
   )
   # Dep
   attachShinyWidgetsDep(switchInputTag, "bsswitch")

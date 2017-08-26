@@ -60,7 +60,7 @@ receiveSweetAlert <- function(messageId) {
     "Shiny.addCustomMessageHandler('%s', function(data) {swal({title: data.title, text: data.text, type: data.type, html: data.html})});",
     messageId
   )
-  tagSweet <- tags$script(js)
+  tagSweet <- htmltools::tags$script(js)
   attachShinyWidgetsDep(tagSweet, "sweetalert")
 }
 
@@ -80,6 +80,8 @@ receiveSweetAlert <- function(messageId) {
 # @seealso \code{\link{receiveSweetAlert}}
 #'
 #' @importFrom jsonlite toJSON
+#' @importFrom shiny getDefaultReactiveDomain
+#' @importFrom htmltools tags
 #'
 #' @export
 

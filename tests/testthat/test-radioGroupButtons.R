@@ -2,6 +2,8 @@
 
 context("radioGroupButtons")
 
+library("shiny")
+
 
 test_that("Default", {
 

@@ -143,12 +143,10 @@
 #' }
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies htmlEscape
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags htmlEscape
 #'
 #' @export
-
-
 pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multiple = FALSE,
                         options = NULL, choicesOpt = NULL, width = NULL, inline = FALSE) {
   choices <- choicesWithNames(choices)
@@ -165,7 +163,7 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
     else x
   })
   selectProps <- dropNulls(c(list(id = inputId, class = "selectpicker form-control"), options))
-  selectTag <- do.call(tags$select, c(selectProps, pickerOptions(choices, selected, choicesOpt)))
+  selectTag <- do.call(htmltools::tags$select, c(selectProps, pickerOptions(choices, selected, choicesOpt)))
 
   if (multiple)
     selectTag$attribs$multiple <- "multiple"
@@ -173,17 +171,15 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
   labelClass <- "control-label"
   if (inline) {
     divClass <- paste(divClass, "form-horizontal")
-    selectTag <- tags$div(class="col-sm-10", selectTag)
+    selectTag <- htmltools::tags$div(class="col-sm-10", selectTag)
     labelClass <- paste(labelClass, "col-sm-2")
   }
-  pickerTag <- tagList(
-    tags$div(
-      class = divClass,
-      if (!is.null(label)) tags$label(class = labelClass, `for` = inputId, label),
-      if (!is.null(label) & !inline) br(),
-      selectTag,
-      tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").selectpicker();')))
-    )
+  pickerTag <- htmltools::tags$div(
+    class = divClass,
+    if (!is.null(label)) htmltools::tags$label(class = labelClass, `for` = inputId, label),
+    if (!is.null(label) & !inline) htmltools::tags$br(),
+    selectTag,
+    htmltools::tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").selectpicker();')))
   )
   # Dep
   attachShinyWidgetsDep(pickerTag, "picker")
@@ -305,6 +301,8 @@ updatePickerInput <- function (session, inputId, label = NULL, selected = NULL, 
 #' @param selected selected value if any
 #' @param choicesOpt additional option ofr choices
 #'
+#' @importFrom htmltools HTML htmlEscape tagList
+#'
 #' @noRd
 pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL)
 {
@@ -329,11 +327,11 @@ pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL)
         )
       )
       optionTag <- dropNulls(optionTag)
-      do.call(tags$optgroup, optionTag)
+      do.call(htmltools::tags$optgroup, optionTag)
     }
     else {
       optionTag <- list(
-        value = choice, HTML(htmltools::htmlEscape(label)),
+        value = choice, htmltools::HTML(htmltools::htmlEscape(label)),
         style = choicesOpt$style[i],
         `data-icon` = choicesOpt$icon[i],
         `data-subtext` = choicesOpt$subtext[i],
@@ -343,9 +341,9 @@ pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL)
       )
       # optionTag$attribs <- c(optionTag$attribs, list(if (choice %in% selected) " selected" else ""))
       optionTag <- dropNulls(optionTag)
-      do.call(tags$option, optionTag)
+      do.call(htmltools::tags$option, optionTag)
     }
   })
-  return(tagList(html))
+  return(htmltools::tagList(html))
 }
 

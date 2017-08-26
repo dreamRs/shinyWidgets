@@ -52,7 +52,7 @@
 #' }
 #' }
 #'
-#' @import shiny
+#' @importFrom shiny restoreInput
 #' @importFrom htmltools htmlDependency attachDependencies
 #'
 #' @export
@@ -60,15 +60,15 @@ awesomeCheckbox <- function (inputId, label, value = FALSE, status = "primary", 
 {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(arg = status, choices = c("primary", "success", "info", "warning", "danger"))
-  inputTag <- tags$input(id = inputId, type = "checkbox")
+  inputTag <- htmltools::tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
-  awesomeTag <- div(class = "form-group shiny-input-container", style = if (!is.null(width))
-    paste0("width: ", validateCssUnit(width), ";"),
-    div(class = paste0("checkboxbs checkbox-bs checkbox-bs-", status),
+  awesomeTag <- htmltools::tags$div(class = "form-group shiny-input-container", style = if (!is.null(width))
+    paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    htmltools::tags$div(class = paste0("checkboxbs checkbox-bs checkbox-bs-", status),
         style = "margin-top: 10px; margin-bottom: 10px;",
         inputTag,
-        tags$label(tags$span(label, style = "font-weight: normal; cursor: pointer;"), `for` = inputId)))
+        htmltools::tags$label(tags$span(label, style = "font-weight: normal; cursor: pointer;"), `for` = inputId)))
   # Dep
   attachShinyWidgetsDep(awesomeTag, "awesome")
 }
@@ -83,23 +83,23 @@ generateAwesomeOptions <- function (inputId, choices, selected, inline, status)
 {
   options <- mapply(choices, names(choices), FUN = function(value,
                                                             name) {
-    inputTag <- tags$input(type = "checkbox", name = inputId, value = value, id = paste0(inputId, value))
+    inputTag <- htmltools::tags$input(type = "checkbox", name = inputId, value = value, id = paste0(inputId, value))
     if (value %in% selected)
       inputTag$attribs$checked <- "checked"
     if (inline) {
       # tags$label(class = paste0("checkbox", "-inline"), inputTag,
       #            tags$span(name))
-      tags$div(class = paste0("awesome-checkbox checkbox-bs checkbox-bs-inline checkbox-inline checkbox-bs-", status),
+      htmltools::tags$div(class = paste0("awesome-checkbox checkbox-bs checkbox-bs-inline checkbox-inline checkbox-bs-", status),
                style = "margin-top: -4px;",
                inputTag, tags$label(style = "font-weight: normal;", name, `for` = paste0(inputId, value)))
     }
     else {
-      tags$div(class = paste0("awesome-checkbox checkbox-bs checkbox-bs-", status),
+      htmltools::tags$div(class = paste0("awesome-checkbox checkbox-bs checkbox-bs-", status),
                style = "margin-top: -3px;",
                inputTag, tags$label(style = "font-weight: normal;", name, `for` = paste0(inputId, value)))
     }
   }, SIMPLIFY = FALSE, USE.NAMES = FALSE)
-  div(class = "shiny-options-group", options)
+  htmltools::tags$div(class = "shiny-options-group", options)
 }
 
 
@@ -122,8 +122,8 @@ generateAwesomeOptions <- function (inputId, choices, selected, inline, status)
 #'
 #' @seealso \code{\link{updateAwesomeCheckboxGroup}}
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags validateCssUnit
 #'
 #' @export
 awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inline = FALSE, status = "primary",
@@ -137,9 +137,9 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
   divClass <- "form-group shiny-input-checkboxgroup shiny-input-container"
   if (inline)
     divClass <- paste(divClass, "shiny-input-container-inline")
-  awesomeTag <- tags$div(id = inputId, style = if (!is.null(width))
-    paste0("width: ", validateCssUnit(width), ";"), class = divClass,
-    tags$label(label, `for` = inputId, style = "margin-bottom: 10px;"), options)
+  awesomeTag <- htmltools::tags$div(id = inputId, style = if (!is.null(width))
+    paste0("width: ", htmltools::validateCssUnit(width), ";"), class = divClass,
+    htmltools::tags$label(label, `for` = inputId, style = "margin-bottom: 10px;"), options)
   # Dep
   attachShinyWidgetsDep(awesomeTag, "awesome")
 }

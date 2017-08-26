@@ -8,7 +8,6 @@
 # #' @param status Color of the button.
 # #'
 # #'
-# #' @import shiny
 # #' @importFrom htmltools tagList singleton
 # #'
 # #' @export

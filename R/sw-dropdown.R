@@ -23,8 +23,7 @@
 #' @seealso \code{\link{animateOptions}} for animation, \code{\link{tooltipOptions}} for tooltip and
 #' \code{\link{actionBttn}} for the button.
 #'
-#' @import shiny
-#' @importFrom htmltools validateCssUnit tagList singleton
+#' @importFrom htmltools validateCssUnit tagList singleton tags tagAppendChild
 #'
 #' @export
 #' @examples
@@ -53,7 +52,7 @@ dropdown <- function(..., style = "default", status = "default", size = "md", ic
   contentId <- paste0("sw-content-", alea)
 
   # Dropdown content
-  dropcontent <- tags$div(
+  dropcontent <- htmltools::tags$div(
     id=contentId, class="sw-dropdown-content animated",
     class=if(up) "sw-dropup-content", class=if(right) "sw-dropright-content",
     style=if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
@@ -77,7 +76,7 @@ dropdown <- function(..., style = "default", status = "default", size = "md", ic
 
 
   # Final tag
-  dropdownTag <- tags$div(class = "sw-dropdown", id=dropId, btn, dropcontent)
+  dropdownTag <- htmltools::tags$div(class = "sw-dropdown", id=dropId, btn, dropcontent)
 
 
   # Tooltip
@@ -92,7 +91,7 @@ dropdown <- function(..., style = "default", status = "default", size = "md", ic
         "false"
       else x
     })
-    tooltipJs <- tags$script(
+    tooltipJs <- htmltools::tags$script(
       sprintf(
         "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
         btnId, tooltip$placement, tooltip$title, tooltip$html
@@ -107,7 +106,7 @@ dropdown <- function(..., style = "default", status = "default", size = "md", ic
 
   if (!is.null(animate) && !identical(animate, FALSE)) {
     dropdownTag <- htmltools::tagAppendChild(
-      dropdownTag,tags$script(
+      dropdownTag, htmltools::tags$script(
         sprintf(
           "$(function() {swDrop('%s', '%s', '%s', '%s', '%s', '%s');});",
           btnId, contentId, dropId,
@@ -118,7 +117,7 @@ dropdown <- function(..., style = "default", status = "default", size = "md", ic
     dropdownTag <- attachShinyWidgetsDep(dropdownTag, "animate")
   } else {
     dropdownTag <- htmltools::tagAppendChild(
-      dropdownTag,tags$script(
+      dropdownTag, htmltools::tags$script(
         sprintf(
           "$(function() {swDrop('%s', '%s', '%s', '%s', '%s', '%s');});",
           btnId, contentId, dropId, "sw-none", "sw-none", "1"

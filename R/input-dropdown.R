@@ -15,8 +15,7 @@
 #' @param width Width of the dropdown menu content.
 #'
 #'
-#' @import shiny
-#' @importFrom htmltools validateCssUnit tagList singleton
+#' @importFrom htmltools validateCssUnit tags tagList
 #'
 #' @export
 #' @examples
@@ -32,9 +31,6 @@
 #'
 #' }
 #' }
-
-
-
 dropdownButton <- function(..., circle = TRUE, status = "default", size = "default", icon = NULL,
                            label = NULL, tooltip = FALSE, right = FALSE, up = FALSE, width = NULL) {
 
@@ -51,9 +47,9 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
     class = "dropdown-shinyWidgets",
     id = paste("dropdown-menu", buttonID, sep = "-"),
     style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+      paste0("width: ", htmltools::validateCssUnit(width), ";"),
     `aria-labelledby` = buttonID,
-    lapply(X = list(...), FUN = tags$li, style = "margin-left: 10px; margin-right: 10px;")
+    lapply(X = list(...), FUN = htmltools::tags$li, style = "margin-left: 10px; margin-right: 10px;")
   )
 
   # button
@@ -77,7 +73,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
       list(icon, label),
       tags$span(class = "caret")
     )
-    html_button <- do.call(tags$button, html_button)
+    html_button <- do.call(htmltools::tags$button, html_button)
   }
 
   # tooltip
@@ -92,7 +88,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
         "false"
       else x
     })
-    tooltipJs <- tags$script(
+    tooltipJs <- htmltools::tags$script(
       sprintf(
         "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
         buttonID, tooltip$placement, tooltip$title, tooltip$html
@@ -102,10 +98,10 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
     tooltipJs <- ""
   }
 
-  dropdownTag <- tags$div(
+  dropdownTag <- htmltools::tags$div(
     class = ifelse(up, "dropup", "dropdown"),
     html_button,
-    do.call(tags$ul, html_ul),
+    do.call(htmltools::tags$ul, html_ul),
     # tags$script(paste0("$('#", paste("dropdown-menu", buttonID, sep = "-"), "').click(function(e) {e.stopPropagation();});")),
     tooltipJs
   )

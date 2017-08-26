@@ -12,6 +12,8 @@
 #' @return A UI definition.
 #' @export
 #'
+#' @importFrom htmltools tags
+#'
 #' @examples
 #' \dontrun{
 #'
@@ -58,18 +60,18 @@ panel <- function(..., heading = NULL, footer = NULL, status = "default") {
     choices = c("default", "primary", "success", "info", "warning", "danger")
   )
   if (!is.null(heading)) {
-    heading <- tags$div(
+    heading <- htmltools::tags$div(
       class="panel-heading",
       if (is.character(heading))
-        tags$h3(class="panel-title", heading)
+        htmltools::tags$h3(class="panel-title", heading)
       else
         heading
     )
   }
-  tags$div(
+  htmltools::tags$div(
     class=paste0("panel panel-", status), heading,
-    tags$div(class="panel-body", ...),
-    if (!is.null(footer)) tags$div(class="panel-footer", footer)
+    htmltools::tags$div(class="panel-body", ...),
+    if (!is.null(footer)) htmltools::tags$div(class="panel-footer", footer)
   )
 }
 

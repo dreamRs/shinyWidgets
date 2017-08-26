@@ -17,6 +17,9 @@
 #'
 #' @export
 #'
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags
+#'
 #' @examples
 #' \dontrun{
 #' if (interactive()) {
@@ -49,7 +52,7 @@ actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
   )
   size <- match.arg(arg = size, choices = c("xs", "sm", "md", "lg"))
 
-  tagBttn <- tags$button(
+  tagBttn <- htmltools::tags$button(
     id = inputId, type = "button", class = "action-button", `data-val` = value,
     class = paste0("bttn-", style), class = paste0("bttn-", size),
     class = paste0("bttn-", color), list(icon, label),

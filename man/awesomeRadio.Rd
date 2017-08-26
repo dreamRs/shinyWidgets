@@ -33,7 +33,9 @@ Create a set of prettier radio buttons used to select an item from a list.
 if (interactive()) {
 
 ui <- fluidPage(
-  awesomeRadio(inputId = "somevalue", choices = c("A", "B", "C")),
+  awesomeRadio(inputId = "somevalue",
+               label = "Make a choice:",
+               choices = c("A", "B", "C")),
   verbatimTextOutput("value")
 )
 server <- function(input, output) {

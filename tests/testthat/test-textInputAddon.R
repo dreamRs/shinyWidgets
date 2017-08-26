@@ -1,6 +1,7 @@
 
 context("textInputAddon")
 
+library("shiny")
 
 test_that("Default", {
 

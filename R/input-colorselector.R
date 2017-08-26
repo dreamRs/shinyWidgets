@@ -13,7 +13,7 @@
 #' @param ncol If choices is not a list but a vector, go to line after n elements.
 #'
 #' @return a colorSelectorInput control
-#' @importFrom htmltools tags
+#' @importFrom htmltools tags tagList
 #' @export
 #'
 #' @examples
@@ -54,11 +54,11 @@ colorSelectorInput <- function(inputId, label, choices, selected = NULL, mode = 
     stop("selected must be length 1")
   if (is.null(selected) & mode == "radio")
     selected <- firstChoice(choices)
-  tagCS <- tags$div(
+  tagCS <- htmltools::tags$div(
     class="shiny-input-container-inline form-group", class=paste0(mode, "GroupButtons"),
     `data-toggle`="buttons", id = inputId,
     style="margin-top: 3px; margin-bottom: 10px; ",
-    if (!is.null(label)) tagList(tags$label(class="control-label", label), br()),
+    if (!is.null(label)) htmltools::tagList(htmltools::tags$label(class="control-label", label), htmltools::tags$br()),
     colorOptions(
       inputId = inputId, choices = choices,
       selected = selected, mode = mode,
@@ -76,20 +76,20 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
     label <- names(choices)[i]
     choice <- choices[[i]]
     if (is.list(choice)) {
-      tagList(
-        tags$div(
+      htmltools::tagList(
+        htmltools::tags$div(
           class="btn-group",
           colorOptions(inputId, choice, selected, mode, display_label)
-        ), if (display_label) tags$em(HTML(names(choices)[i])),
-        br()
+        ), if (display_label) htmltools::tags$em(htmltools::HTML(names(choices)[i])),
+        htmltools::tags$br()
       )
     }
     else {
-      tagList(
-        tags$span(
+      htmltools::tagList(
+        htmltools::tags$span(
           class = "btn btn-color-sw", type="button",
           style = paste("background-color:", choice),
-          tags$input(
+          htmltools::tags$input(
             type=mode, name=inputId, value=choice, id=choice,
             checked = if (choice %in% selected) "checked"
           )
@@ -97,7 +97,7 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
       )
     }
   })
-  return(tagList(html))
+  return(htmltools::tagList(html))
 }
 
 
@@ -107,6 +107,8 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
 #' @title Color Selector Example
 #'
 #' @export
+#' @importFrom shiny shinyAppFile
+#'
 #' @describeIn colorSelectorInput Examples of use for colorSelectorInput
 colorSelectorExample <- function() {
 
@@ -139,7 +141,7 @@ colorSelectorExample <- function() {
 #'
 #' @export
 #' @describeIn colorSelectorInput Display a colorSelector in a dropdown button
-#' @importFrom htmltools validateCssUnit
+#' @importFrom htmltools tags validateCssUnit
 colorSelectorDrop <- function(inputId, label, choices, selected = NULL,
                               display_label = FALSE, ncol = 10, circle = TRUE, size = "sm",
                               up = FALSE, width = NULL) {
@@ -150,10 +152,10 @@ colorSelectorDrop <- function(inputId, label, choices, selected = NULL,
     inputId = btnId, icon = NULL, status = "default", size = size,
     class = "dropdown-toggle", `data-toggle` = "dropdown"
   )
-  dropTag <- tags$ul(
+  dropTag <- htmltools::tags$ul(
     class = "dropdown-menu",
     style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+      paste0("width: ", htmltools::validateCssUnit(width), ";"),
     colorSelectorInput(
       inputId = inputId,
       label = label,
@@ -170,9 +172,9 @@ colorSelectorDrop <- function(inputId, label, choices, selected = NULL,
       $("#', btnId, '").css("background-color", v);
     });'
   )
-  tags$div(
+  htmltools::tags$div(
     class = ifelse(up, "dropup", "dropdown"),
-    btn, dropTag, tags$script(HTML(js))
+    btn, dropTag, htmltools::tags$script(HTML(js))
   )
 }
 

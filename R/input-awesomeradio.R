@@ -78,7 +78,9 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' if (interactive()) {
 #'
 #' ui <- fluidPage(
-#'   awesomeRadio(inputId = "somevalue", choices = c("A", "B", "C")),
+#'   awesomeRadio(inputId = "somevalue",
+#'                label = "Make a choice:",
+#'                choices = c("A", "B", "C")),
 #'   verbatimTextOutput("value")
 #' )
 #' server <- function(input, output) {
@@ -87,21 +89,19 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' shinyApp(ui, server)
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags
 #'
 #' @export
 awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
-  awesomeRadioTag <- tagList(
-    tags$div(
-      id=inputId, class="form-group awesome-radio-class shiny-input-container",
-      class=if(inline) "shiny-input-container-inline",
-      if (!is.null(label)) tags$label(class="control-label", `for`=inputId, label, style="margin-bottom: 5px; "),
-      if (!is.null(label)) br(),
-      generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)
-    )
+  awesomeRadioTag <- htmltools::tags$div(
+    id=inputId, class="form-group awesome-radio-class shiny-input-container",
+    class=if(inline) "shiny-input-container-inline",
+    if (!is.null(label)) htmltools::tags$label(class="control-label", `for`=inputId, label, style="margin-bottom: 5px; "),
+    if (!is.null(label)) htmltools::tags$br(),
+    generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)
   )
   # Dep
   attachShinyWidgetsDep(awesomeRadioTag, "awesome")
@@ -127,6 +127,8 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
 #' @param checkbox Checkbox style
 #'
 #' @export
+#'
+#' @importFrom htmltools tagList
 #'
 #' @seealso \code{\link{awesomeRadio}}
 #'
@@ -189,7 +191,7 @@ updateAwesomeRadio <- function (session, inputId, label = NULL, choices = NULL, 
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- if (!is.null(choices)) {
-    format(tagList(generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)))
+    format(htmltools::tagList(generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)))
   }
   message <- dropNulls(list(label = label, options = options,
                             value = selected))

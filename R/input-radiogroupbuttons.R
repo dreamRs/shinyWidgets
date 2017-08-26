@@ -32,8 +32,8 @@
 #' }
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags
 #'
 #' @export
 
@@ -63,18 +63,16 @@ radioGroupButtons <- function(
     divClass <- paste0(divClass, " btn-group-", size)
   }
 
-  radioGroupButtonsTag <- tagList(
-    tags$div(
-      id=inputId, class="radioGroupButtons",
-      if (!is.null(label)) tags$label(class="control-label", `for`=inputId, label),
-      if (!is.null(label)) br(),
-      style="margin-top: 3px; margin-bottom: 3px; ",
-      style=if (justified) "width: 100%;",
-      tags$div(
-        class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
-        class = "btn-group-container-sw",
-        generateRGB(inputId, choices, selected, status, size, checkIcon)
-      )
+  radioGroupButtonsTag <- htmltools::tags$div(
+    id=inputId, class="radioGroupButtons",
+    if (!is.null(label)) htmltools::tags$label(class="control-label", `for`=inputId, label),
+    if (!is.null(label)) htmltools::tags$br(),
+    style="margin-top: 3px; margin-bottom: 3px; ",
+    style=if (justified) "width: 100%;",
+    htmltools::tags$div(
+      class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
+      class = "btn-group-container-sw",
+      generateRGB(inputId, choices, selected, status, size, checkIcon)
     )
   )
   # Dep
@@ -91,18 +89,18 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon) {
   lapply(
     X = seq_along(choices),
     FUN = function(i) {
-      tags$div(
+      htmltools::tags$div(
         class="btn-group",
         class=if (size != "normal") paste0("btn-group-", size),
         role="group",
-        tags$button(
+        htmltools::tags$button(
           class=paste0("btn radiobtn btn-", status),
           class=if (choices[i] %in% selected) "active",
           type="button",
-          if (displayIcon) tags$span(class="radio-btn-icon-yes", checkIcon$yes),
-          if (displayIcon) tags$span(class="radio-btn-icon-no", checkIcon$no),
-          tags$input(
-            type="radio", autocomplete="off", HTML(names(choices)[i]),
+          if (displayIcon) htmltools::tags$span(class="radio-btn-icon-yes", checkIcon$yes),
+          if (displayIcon) htmltools::tags$span(class="radio-btn-icon-no", checkIcon$no),
+          htmltools::tags$input(
+            type="radio", autocomplete="off", htmltools::HTML(names(choices)[i]),
             name=inputId, value=choices[i],
             checked=if (choices[i] %in% selected) "checked"
           )
@@ -130,6 +128,8 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' @param checkIcon Icon, only used if choices is not NULL.
 #'
 #' @export
+#'
+#' @importFrom htmltools tagList
 #'
 #' @examples
 #' \dontrun{
@@ -203,7 +203,7 @@ updateRadioGroupButtons <- function(session, inputId, label = NULL, choices = NU
   if (!is.null(choices))
     choices <- choicesWithNames(choices)
   options <- if (!is.null(choices)) {
-    format(tagList(generateRGB(inputId, choices, selected, status = status, size = size,
+    format(htmltools::tagList(generateRGB(inputId, choices, selected, status = status, size = size,
                                checkIcon = checkIcon)))
   }
   message <- dropNulls(list(selected = selected, options = options, label = label))

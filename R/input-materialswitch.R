@@ -29,24 +29,24 @@
 #' }
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies validateCssUnit
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags validateCssUnit
 #'
 #' @export
 materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "default", right = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
-  inputTag <- tags$input(id = inputId, type = "checkbox")
+  inputTag <- htmltools::tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
-  msTag <- div(class = "form-group shiny-input-container", style = if (!is.null(width))
+  msTag <- htmltools::tags$div(class = "form-group shiny-input-container", style = if (!is.null(width))
     paste0("width: ", htmltools::validateCssUnit(width), ";"),
     # if (right) tags$span(label),
-    div(class = "material-switch",
-        if (!is.null(label) & !right) tags$span(label, style = "padding-right: 10px;"),
+    htmltools::tags$div(class = "material-switch",
+        if (!is.null(label) & !right) htmltools::tags$span(label, style = "padding-right: 10px;"),
         inputTag,
-        tags$label(`for`=inputId, class=paste0("label-", status)),
-        if (!is.null(label) & right) tags$span(label, style = "padding-left: 10px;")))
+        htmltools::tags$label(`for`=inputId, class=paste0("label-", status)),
+        if (!is.null(label) & right) htmltools::tags$span(label, style = "padding-left: 10px;")))
   # Dep
   attachShinyWidgetsDep(msTag)
 }

@@ -29,24 +29,21 @@
 #' }
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies validateCssUnit
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags htmlDependency attachDependencies validateCssUnit
 #'
 #' @export
-
-
-
 textInputAddon <- function (inputId, label, value = "", placeholder = NULL, addon, width = NULL)
 {
   value <- shiny::restoreInput(id = inputId, default = value)
-  tagList(
-    label %AND% tags$label(label, `for` = inputId),
-    div(
+  htmltools::tags$div(
+    label %AND% htmltools::tags$label(label, `for` = inputId),
+    htmltools::tags$div(
       class = "input-group shiny-input-container", style = if (!is.null(width))
         paste0("width: ", htmltools::validateCssUnit(width), ";"),
       style = "margin-bottom: 5px;",
-      addon %AND% tags$span(class="input-group-addon", addon),
-      tags$input(
+      addon %AND% htmltools::tags$span(class="input-group-addon", addon),
+      htmltools::tags$input(
         id = inputId, type = "text", class = "form-control",
         value = value, placeholder = placeholder
       )
