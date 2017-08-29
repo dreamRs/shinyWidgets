@@ -15,8 +15,16 @@
 #' @param handleWidth Width of the left and right sides in pixels.
 #' @param disabled Logical, display the toggle switch in disabled state?.
 #' @param inline Logical, display the toggle switch inline?
+#' @param width The width of the input : 'auto', 'fit', '100px', '75\%'.
 #'
 #' @return A switch control that can be added to a UI definition.
+#'
+#'
+#'
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags validateCssUnit
+#'
+#' @export
 #'
 #'
 #' @note All options are described here \url{http://bootstrapswitch.com/options.html}.
@@ -42,14 +50,9 @@
 #' shinyApp(ui, server)
 #' }
 #' }
-#'
-#' @importFrom shiny restoreInput
-#' @importFrom htmltools tags
-#'
-#' @export
 switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', offLabel = 'OFF',
                         onStatus = NULL, offStatus = NULL, size = "default", labelWidth = "auto",
-                        handleWidth = "auto", disabled = FALSE, inline = FALSE) {
+                        handleWidth = "auto", disabled = FALSE, inline = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   size <- match.arg(arg = size, choices = c('default', 'mini', 'small', 'normal', 'large'))
   switchProps <- dropNulls(
@@ -73,8 +76,10 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   switchInputTag <- htmltools::tags$div(
-    style = "margin: 3px; width: auto;", class = "form-group",
+    style = "margin: 3px;", class = "form-group shiny-input-container",
+    class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block;",
+    style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
     inputTag,
     htmltools::tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").bootstrapSwitch();')))
   )

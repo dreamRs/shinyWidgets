@@ -155,6 +155,8 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
     names(options) <- paste("data", names(options), sep = "-")
   if (!is.null(width))
     options <- c(options, list("data-width" = width))
+  if (!is.null(width) && width %in% c("fit"))
+    width <- NULL
   options <- lapply(options, function(x) {
     if (identical(x, TRUE))
       "true"
@@ -167,7 +169,7 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
 
   if (multiple)
     selectTag$attribs$multiple <- "multiple"
-  divClass <- "form-group"
+  divClass <- "form-group shiny-input-container"
   labelClass <- "control-label"
   if (inline) {
     divClass <- paste(divClass, "form-horizontal")
@@ -176,6 +178,7 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
   }
   pickerTag <- htmltools::tags$div(
     class = divClass,
+    style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
     if (!is.null(label)) htmltools::tags$label(class = labelClass, `for` = inputId, label),
     if (!is.null(label) & !inline) htmltools::tags$br(),
     selectTag,
