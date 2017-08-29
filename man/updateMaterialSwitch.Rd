@@ -16,3 +16,6 @@ updateMaterialSwitch(session, inputId, value = NULL)
 \description{
 Change the value of a materialSwitch input on the client
 }
+\seealso{
+\code{\link{materialSwitch}}
+}

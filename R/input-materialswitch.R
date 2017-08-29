@@ -11,6 +11,7 @@
 #' @param width Width of the container
 #' @return A switch control that can be added to a UI definition.
 #'
+#' @seealso \code{\link{updateMaterialSwitch}}, \code{\link{switchInput}}
 #'
 #' @examples
 #' materialSwitch(inputId = "somevalue", label = "")
@@ -61,8 +62,9 @@ materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "defau
 #' @param inputId	The id of the input object.
 #' @param value The value to set for the input object.
 #'
+#' @seealso \code{\link{materialSwitch}}
+#'
 #' @export
-
 updateMaterialSwitch <- function (session, inputId, value = NULL) {
   message <- dropNulls(list(value = value))
   session$sendInputMessage(inputId, message)

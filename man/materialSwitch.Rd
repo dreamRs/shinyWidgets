@@ -44,3 +44,6 @@ shinyApp(ui, server)
 }
 
 }
+\seealso{
+\code{\link{updateMaterialSwitch}}, \code{\link{switchInput}}
+}

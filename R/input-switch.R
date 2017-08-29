@@ -13,13 +13,15 @@
 #' @param size Size of the buttons ('default', 'mini', 'small', 'normal', 'large').
 #' @param labelWidth Width of the center handle in pixels.
 #' @param handleWidth Width of the left and right sides in pixels.
-#' @param disabled Logical. Disable the switch.
+#' @param disabled Logical, display the toggle switch in disabled state?.
+#' @param inline Logical, display the toggle switch inline?
 #'
 #' @return A switch control that can be added to a UI definition.
 #'
 #'
 #' @note All options are described here \url{http://bootstrapswitch.com/options.html}.
 #'
+#' @seealso \code{\link{updateSwitchInput}}, \code{\link{materialSwitch}}
 #'
 #' @examples
 #' \dontrun{
@@ -45,11 +47,9 @@
 #' @importFrom htmltools tags
 #'
 #' @export
-
-
 switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', offLabel = 'OFF',
                         onStatus = NULL, offStatus = NULL, size = "default", labelWidth = "auto",
-                        handleWidth = "auto", disabled = FALSE) {
+                        handleWidth = "auto", disabled = FALSE, inline = FALSE) {
   value <- shiny::restoreInput(id = inputId, default = value)
   size <- match.arg(arg = size, choices = c('default', 'mini', 'small', 'normal', 'large'))
   switchProps <- dropNulls(
@@ -73,7 +73,8 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   switchInputTag <- htmltools::tags$div(
-    style = "margin: 3px; width: auto; display: inline-block;", class = "form-group",
+    style = "margin: 3px; width: auto;", class = "form-group",
+    style = if (inline) "display: inline-block;",
     inputTag,
     htmltools::tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").bootstrapSwitch();')))
   )
@@ -89,7 +90,7 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
 #' Change the value of a switch input on the client
 #'
 #' @param session The session object passed to function given to shinyServer.
-#' @param inputId	The id of the input object.
+#' @param inputId    The id of the input object.
 #' @param value The value to set for the input object.
 #' @param label The label to set for the input object.
 #' @param onLabel The onLabel to set for the input object.
@@ -99,6 +100,8 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
 #' @param disabled Logical, disable state.
 #'
 #' @export
+#'
+#' @seealso \code{\link{switchInput}}
 #'
 #' @examples
 #' \dontrun{
@@ -270,5 +273,3 @@ updateSwitchInput <- function(session, inputId,
   )
   session$sendInputMessage(inputId, message)
 }
-
-

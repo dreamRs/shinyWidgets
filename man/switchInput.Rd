@@ -6,7 +6,8 @@
 \usage{
 switchInput(inputId, label = NULL, value = FALSE, onLabel = "ON",
   offLabel = "OFF", onStatus = NULL, offStatus = NULL, size = "default",
-  labelWidth = "auto", handleWidth = "auto", disabled = FALSE)
+  labelWidth = "auto", handleWidth = "auto", disabled = FALSE,
+  inline = FALSE)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -29,7 +30,9 @@ switchInput(inputId, label = NULL, value = FALSE, onLabel = "ON",
 
 \item{handleWidth}{Width of the left and right sides in pixels.}
 
-\item{disabled}{Logical. Disable the switch.}
+\item{disabled}{Logical, display the toggle switch in disabled state?.}
+
+\item{inline}{Logical, display the toggle switch inline?}
 }
 \value{
 A switch control that can be added to a UI definition.
@@ -60,4 +63,7 @@ shinyApp(ui, server)
 }
 }
 
+}
+\seealso{
+\code{\link{updateSwitchInput}}, \code{\link{materialSwitch}}
 }

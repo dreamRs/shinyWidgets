@@ -188,3 +188,6 @@ shinyApp(ui = ui, server = server)
 
 }
 }
+\seealso{
+\code{\link{switchInput}}
+}
