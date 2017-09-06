@@ -6,7 +6,8 @@
 \usage{
 radioGroupButtons(inputId, label = NULL, choices, selected = NULL,
   status = "default", size = "normal", direction = "horizontal",
-  justified = FALSE, individual = FALSE, checkIcon = list())
+  justified = FALSE, individual = FALSE, checkIcon = list(),
+  width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -27,7 +28,10 @@ radioGroupButtons(inputId, label = NULL, choices, selected = NULL,
 
 \item{individual}{If TRUE, buttons are separated.}
 
-\item{checkIcon}{A list, if no empty must contain at least one element named 'yes' corresponding to an icon to display if the button is checked.}
+\item{checkIcon}{A list, if no empty must contain at least one element named 'yes'
+corresponding to an icon to display if the button is checked.}
+
+\item{width}{The width of the input, e.g. '400px', or '100\%'.}
 }
 \value{
 A buttons group control that can be added to a UI definition.

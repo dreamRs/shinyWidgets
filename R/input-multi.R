@@ -49,7 +49,7 @@ multiInput <- function(inputId, label, choices = NULL, selected = NULL, options 
                 choiceValues = choiceValues, selected = selected)
   )
   multiTag <- htmltools::tags$div(
-    class = "form-group shiny-input-containe",
+    class = "form-group shiny-input-container",
     style = if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
     htmltools::tags$label(class = "control-label", `for` = inputId, label),
     selectTag,

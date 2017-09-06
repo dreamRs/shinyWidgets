@@ -12,7 +12,11 @@
 #' @param direction Horizontal or vertical
 #' @param justified If TRUE, fill the width of the parent div
 #' @param individual If TRUE, buttons are separated.
-#' @param checkIcon A list, if no empty must contain at least one element named 'yes' corresponding to an icon to display if the button is checked.
+#' @param checkIcon A list, if no empty must contain at least one element named 'yes'
+#'  corresponding to an icon to display if the button is checked.
+#' @param width The width of the input, e.g. '400px', or '100\%'.
+#'
+#'
 #' @return A buttons group control that can be added to a UI definition.
 #'
 #'
@@ -33,14 +37,15 @@
 #' }
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools tags
+#' @importFrom htmltools tags HTML validateCssUnit
 #'
 #' @export
 
 
 radioGroupButtons <- function(
   inputId, label = NULL, choices, selected = NULL, status = "default", size = "normal",
-  direction = "horizontal", justified = FALSE, individual = FALSE, checkIcon = list()
+  direction = "horizontal", justified = FALSE, individual = FALSE, checkIcon = list(),
+  width = NULL
 ) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
@@ -64,15 +69,19 @@ radioGroupButtons <- function(
   }
 
   radioGroupButtonsTag <- htmltools::tags$div(
-    id=inputId, class="radioGroupButtons",
+    class="form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline",
+    style = if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
     if (!is.null(label)) htmltools::tags$label(class="control-label", `for`=inputId, label),
     if (!is.null(label)) htmltools::tags$br(),
-    style="margin-top: 3px; margin-bottom: 3px; ",
-    style=if (justified) "width: 100%;",
     htmltools::tags$div(
-      class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
-      class = "btn-group-container-sw",
-      generateRGB(inputId, choices, selected, status, size, checkIcon)
+      id=inputId, class="radioGroupButtons",
+      style="margin-top: 3px; margin-bottom: 3px; ",
+      style=if (justified) "width: 100%;",
+      htmltools::tags$div(
+        class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
+        class = "btn-group-container-sw",
+        generateRGB(inputId, choices, selected, status, size, checkIcon)
+      )
     )
   )
   # Dep
