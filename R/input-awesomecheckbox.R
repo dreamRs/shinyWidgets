@@ -1,22 +1,3 @@
-
-# ------------------------------------------------------------------------ #
-#
-# Descriptif : Awesome Radio
-#        via : http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/
-#
-#
-# Auteurs : Victor PERRIER
-#
-# Date creation : 23/08/2016
-# Date modification : 23/08/2016
-#
-# Version 1.0
-#
-# ------------------------------------------------------------------------ #
-
-
-
-
 #' @title Awesome Checkbox Input Control
 #'
 #' @description
@@ -37,12 +18,10 @@
 #' if (interactive()) {
 #'
 #' ui <- fluidPage(
-#'  awesomeCheckboxGroup(
-#'   inputId = "Id001",
-#'   label = "Checkboxes with status",
-#'   choices = c("A", "B", "C"),
-#'   inline = TRUE, status = "danger"
-#'  ),
+#'  awesomeCheckbox(inputId = "somevalue",
+#'                  label = "A single checkbox",
+#'                  value = TRUE,
+#'                  status = "danger"),
 #'  verbatimTextOutput("value")
 #' )
 #' server <- function(input, output) {
@@ -174,9 +153,9 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- generateAwesomeOptions(inputId, choices, selected, inline, status = status)
-  divClass <- "form-group shiny-input-checkboxgroup shiny-input-container"
+  divClass <- "form-group shiny-input-container"
   if (inline)
-    divClass <- paste(divClass, "shiny-input-container-inline")
+    divClass <- paste(divClass, "shiny-input-container-inline shiny-input-checkboxgroup")
   awesomeTag <- htmltools::tags$div(id = inputId, style = if (!is.null(width))
     paste0("width: ", htmltools::validateCssUnit(width), ";"), class = divClass,
     htmltools::tags$label(label, `for` = inputId, style = "margin-bottom: 10px;"), options)

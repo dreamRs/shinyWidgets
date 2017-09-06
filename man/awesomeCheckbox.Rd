@@ -30,12 +30,10 @@ Create a Font Awesome Bootstrap checkbox that can be used to specify logical val
 if (interactive()) {
 
 ui <- fluidPage(
- awesomeCheckboxGroup(
-  inputId = "Id001",
-  label = "Checkboxes with status",
-  choices = c("A", "B", "C"),
-  inline = TRUE, status = "danger"
- ),
+ awesomeCheckbox(inputId = "somevalue",
+                 label = "A single checkbox",
+                 value = TRUE,
+                 status = "danger"),
  verbatimTextOutput("value")
 )
 server <- function(input, output) {

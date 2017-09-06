@@ -166,3 +166,11 @@ flags <- sprintf("https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/%s
 
 
 
+# Code dropdown -----------------------------------------------------------
+
+code_dropdownButton <- readLines(con = system.file('examples/shinyWidgets/code_dropdownButton.R', package='shinyWidgets', mustWork=TRUE))
+code_dropdownButton <- paste(code_dropdownButton, collapse = "\n")
+
+code_dropdown <- readLines(con = system.file('examples/shinyWidgets/code_dropdown.R', package='shinyWidgets', mustWork=TRUE))
+code_dropdown <- paste(code_dropdown, collapse = "\n")
+

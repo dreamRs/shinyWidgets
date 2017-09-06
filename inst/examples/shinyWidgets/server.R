@@ -7,6 +7,10 @@
 
 function(input, output, session) {
 
+  highlightCode(session, "code_dropdownButton")
+
+  highlightCode(session, "code_dropdown")
+
   # navigation ----
 
   observeEvent(input$toSwictchInput, {

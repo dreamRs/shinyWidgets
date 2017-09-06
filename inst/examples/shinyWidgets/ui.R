@@ -1267,7 +1267,15 @@ body <- dashboardBody(
             tooltip = tooltipOptions(title = "Click to see inputs !")
           ),
           plotOutput(outputId = 'plot1'),
-          tags$p("if you want to hide inputs to focus on a plot..")
+          tags$p("if you want to hide inputs to focus on a plot.."),
+          tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href="#showcode_dropdownButton")),
+          tags$div(
+            class="collapse", id="showcode_dropdownButton",
+            rCodeContainer(
+              id="code_dropdownButton",
+              code_dropdownButton
+            )
+          )
         ),
 
         box(
@@ -1315,7 +1323,15 @@ body <- dashboardBody(
             animate = animateOptions(enter = animations$fading_entrances$fadeInLeftBig, exit = animations$fading_exits$fadeOutRightBig)
           ),
           plotOutput(outputId = 'plot2'),
-          tags$p("In this version you can add animations and pickerInput will work in it.")
+          tags$p("In this version you can add animations and pickerInput will work in it."),
+          tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href="#showcode_dropdown")),
+          tags$div(
+            class="collapse", id="showcode_dropdown",
+            rCodeContainer(
+              id="code_dropdown",
+              code_dropdown
+            )
+          )
         )
 
       )
