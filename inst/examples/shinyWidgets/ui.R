@@ -31,7 +31,7 @@ sidebar <- dashboardSidebar(
     menuItem(text = "pickerInput", tabName = "tabPickerInput", icon = icon("caret-down")),
     menuItem(text = "progressBar", tabName = "tabProgressBars", icon = icon("tasks")),
     menuItem(text = "bttn", tabName = "tabBttn", icon = icon("square-o")),
-    menuItem(text = "Other stuffs", tabName = "tabOtherStuff", icon = icon("plus-circle"))
+    menuItem(text = "dropdowns & sweetalert", tabName = "tabOtherStuff", icon = icon("plus-circle"))
   )
 )
 
