@@ -11,6 +11,8 @@ function(input, output, session) {
 
   highlightCode(session, "code_dropdown")
 
+  highlightCode(session, "codeSA")
+
   # navigation ----
 
   observeEvent(input$toSwictchInput, {
@@ -223,32 +225,32 @@ function(input, output, session) {
   # sweetalert ----
   observeEvent(input$success, {
     sendSweetAlert(
-      messageId = "successmessage", title = "Success !!", text = "All in order", type = "success"
+      session = session, title = "Success !!", text = "All in order", type = "success"
     )
   })
 
   observeEvent(input$error, {
     sendSweetAlert(
-      messageId = "errormessage", title = "Error...", text = "Oups !", type = "error"
+      session = session, title = "Error...", text = "Oups !", type = "error"
     )
   })
 
   observeEvent(input$info, {
     sendSweetAlert(
-      messageId = "infomessage", title = "Information", text = "Something helpful", type = "info"
+      session = session, title = "Information", text = "Something helpful", type = "info"
     )
   })
 
   observeEvent(input$tags, {
     sendSweetAlert(
-      messageId = "tagsmessage", title = "HTLM tags",
+      session = session, title = "HTLM tags",
       text = "normal <b>bold</b> <span style='color: steelblue;'>color</span> <h1>h1</h1>", html = TRUE, type = NULL
     )
   })
 
   observeEvent(input$warning, {
     sendSweetAlert(
-      messageId = "warningmessage", title = "Warning !!!",
+      session = session, title = "Warning !!!",
       text = NULL, type = "warning"
     )
   })

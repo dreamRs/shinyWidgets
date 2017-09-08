@@ -174,3 +174,5 @@ code_dropdownButton <- paste(code_dropdownButton, collapse = "\n")
 code_dropdown <- readLines(con = system.file('examples/shinyWidgets/code_dropdown.R', package='shinyWidgets', mustWork=TRUE))
 code_dropdown <- paste(code_dropdown, collapse = "\n")
 
+code_sa <- readLines(con = system.file('examples/shinyWidgets/code_sa.R', package='shinyWidgets', mustWork=TRUE))
+code_sa <- paste(code_sa, collapse = "\n")

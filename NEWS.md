@@ -1,10 +1,11 @@
-shinyWidgets 0.3.4.920
+shinyWidgets 0.3.4.930
 ==================
 
 Support for bookmarking state.
 Support for tooltip from `bsplus`.
 Upgrade `pickerInput` to bootstrap-select 1.12.4.
 Upgrade `switchInput` to bootstrap-switch 3.3.4.
+Remove `receiveSweetAlert` for simpler use with `useSweetAlert`.
 
 
 

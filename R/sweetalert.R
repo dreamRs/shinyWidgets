@@ -36,30 +36,34 @@
 #' @examples
 #' \dontrun{
 #' if (interactive()) {
-#'  shinyApp(
+#'
+#' shinyApp(
 #'   ui = fluidPage(
 #'     tags$h1("Click the button"),
 #'     actionButton(inputId = "success", label = "Launch a success sweet alert"),
-#'     receiveSweetAlert(messageId = "successSw")
+#'     actionButton(inputId = "error", label = "Launch an error sweet alert"),
+#'     useSweetAlert()
 #'   ),
-#'   server = function(input, output) {
+#'   server = function(input, output, session) {
 #'     observeEvent(input$success, {
 #'       sendSweetAlert(
-#'         messageId = "successSw", title = "Success !!", text = "All in order", type = "success"
+#'         session = session, title = "Success !!", text = "All in order", type = "success"
+#'       )
+#'     })
+#'     observeEvent(input$error, {
+#'       sendSweetAlert(
+#'         session = session, title = "Error !!", text = "It's broken...", type = "error"
 #'       )
 #'     })
 #'   }
-#'  )
+#' )
+#'
 #' }
 #' }
 #'
 #' @export
-
-receiveSweetAlert <- function(messageId) {
-  js <- sprintf(
-    "Shiny.addCustomMessageHandler('%s', function(data) {swal({title: data.title, text: data.text, type: data.type, html: data.html})});",
-    messageId
-  )
+useSweetAlert <- function() {
+  js <- "Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {swal({title: data.title, text: data.text, type: data.type, html: data.html})});"
   tagSweet <- htmltools::tags$script(js)
   attachShinyWidgetsDep(tagSweet, "sweetalert")
 }
@@ -68,10 +72,9 @@ receiveSweetAlert <- function(messageId) {
 
 
 
-#' @rdname receiveSweetAlert
+#' @rdname useSweetAlert
 #'
-# @param session The \code{session} object passed to function given to shinyServer.
-#' @param messageId The sweet alert id.
+#' @param session The \code{session} object passed to function given to shinyServer.
 #' @param title Title of the alert
 #' @param text Text of the alert
 #' @param type Type of the alert : null, info, success, warning or error
@@ -85,15 +88,14 @@ receiveSweetAlert <- function(messageId) {
 #'
 #' @export
 
-
-sendSweetAlert <- function(messageId, title = "Title", text = "Text", type = NULL, html = FALSE) {
+sendSweetAlert <- function(session, title = "Title", text = "Text", type = NULL, html = FALSE) {
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   html <- jsonlite::toJSON(html, auto_unbox = TRUE)
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
-  session <- shiny::getDefaultReactiveDomain()
+  #session <- shiny::getDefaultReactiveDomain()
   session$sendCustomMessage(
-    type = messageId,
+    type = "sweetalert-sw",
     message = list(title = title, text = text, type = type, html = html)
   )
 }
