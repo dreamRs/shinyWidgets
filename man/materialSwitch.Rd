@@ -5,7 +5,7 @@
 \title{Material Design Switch Input Control}
 \usage{
 materialSwitch(inputId, label = NULL, value = FALSE, status = "default",
-  right = FALSE, width = NULL)
+  right = FALSE, inline = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -16,15 +16,17 @@ materialSwitch(inputId, label = NULL, value = FALSE, status = "default",
 
 \item{status}{Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.}
 
-\item{right}{Should the the label be on the right ? default to FALSE}
+\item{right}{Should the the label be on the right? default to FALSE.}
 
-\item{width}{Width of the container}
+\item{inline}{Display the input inline, if you want to place buttons next to each other.}
+
+\item{width}{Width of the container : 'auto', 'fit', '100px', '75\%'.}
 }
 \value{
 A switch control that can be added to a UI definition.
 }
 \description{
-Create buttons grouped that act like radio buttons.
+A toggle switch to turn a selection on or off.
 }
 \examples{
 materialSwitch(inputId = "somevalue", label = "")

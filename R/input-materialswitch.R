@@ -1,14 +1,16 @@
 #' @title Material Design Switch Input Control
 #'
 #' @description
-#' Create buttons grouped that act like radio buttons.
+#' A toggle switch to turn a selection on or off.
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Input label.
 #' @param value TRUE or FALSE.
 #' @param status Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.
-#' @param right Should the the label be on the right ? default to FALSE
-#' @param width Width of the container
+#' @param right Should the the label be on the right? default to FALSE.
+#' @param inline Display the input inline, if you want to place buttons next to each other.
+#' @param width Width of the container : 'auto', 'fit', '100px', '75\%'.
+#'
 #' @return A switch control that can be added to a UI definition.
 #'
 #' @seealso \code{\link{updateMaterialSwitch}}, \code{\link{switchInput}}
@@ -34,20 +36,22 @@
 #' @importFrom htmltools tags validateCssUnit
 #'
 #' @export
-materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "default", right = FALSE, width = NULL) {
+materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "default", right = FALSE, inline = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
   inputTag <- htmltools::tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
-  msTag <- htmltools::tags$div(class = "form-group shiny-input-container", style = if (!is.null(width))
+  msTag <- htmltools::tags$div(class = "form-group shiny-input-container material-switch", style = if (!is.null(width))
     paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    class = if (inline) "shiny-input-container-inline",
+    style = if (inline) "display: inline-block; margin-right: 10px;",
     # if (right) tags$span(label),
-    htmltools::tags$div(class = "material-switch",
-        if (!is.null(label) & !right) htmltools::tags$span(label, style = "padding-right: 10px;"),
-        inputTag,
-        htmltools::tags$label(`for`=inputId, class=paste0("label-", status)),
-        if (!is.null(label) & right) htmltools::tags$span(label, style = "padding-left: 10px;")))
+    # class = "material-switch",
+    if (!is.null(label) & !right) htmltools::tags$span(label, style = "padding-right: 10px;"),
+    inputTag,
+    htmltools::tags$label(`for`=inputId, class=paste0("label-", status)),
+    if (!is.null(label) & right) htmltools::tags$span(label, style = "padding-left: 5px;"))
   # Dep
   attachShinyWidgetsDep(msTag)
 }
