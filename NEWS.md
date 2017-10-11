@@ -1,13 +1,19 @@
+shinyWidgets 0.3.5.900
+==================
+
+* New widget : `sliderTextInput` : a slider for character vector.
+
+
 shinyWidgets 0.3.5
 ==================
 
-Support for bookmarking state.
-Support for tooltip from `bsplus`.
-Upgrade `pickerInput` to bootstrap-select 1.12.4.
-Upgrade `switchInput` to bootstrap-switch 3.3.4.
-Remove `receiveSweetAlert` for simpler use with `useSweetAlert`.
-Add inline argument to `materialSwitch` ([#17](https://github.com/dreamRs/shinyWidgets/issues/17)).
-Display code for dropdowns in gallery.
+* Support for bookmarking state.
+* Support for tooltip from `bsplus`.
+* Upgrade `pickerInput` to bootstrap-select 1.12.4.
+* Upgrade `switchInput` to bootstrap-switch 3.3.4.
+* Remove `receiveSweetAlert` for simpler use with `useSweetAlert`.
+* Add inline argument to `materialSwitch` ([#17](https://github.com/dreamRs/shinyWidgets/issues/17)).
+* Display code for dropdowns in gallery.
 
 
 
