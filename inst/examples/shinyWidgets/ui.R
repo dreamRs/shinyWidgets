@@ -29,6 +29,7 @@ sidebar <- dashboardSidebar(
     menuItem(text = "radio Buttons", tabName = "tabradioButtons", icon = icon("circle")),
     menuItem(text = "materialSwitch", tabName = "tabMaterialSwitch", icon = icon("toggle-off")),
     menuItem(text = "pickerInput", tabName = "tabPickerInput", icon = icon("caret-down")),
+    menuItem(text = "sliderText", tabName = "tabSliderText", icon = icon("sliders")),
     menuItem(text = "progressBar", tabName = "tabProgressBars", icon = icon("tasks")),
     menuItem(text = "bttn", tabName = "tabBttn", icon = icon("square-o")),
     menuItem(text = "dropdowns & sweetalert", tabName = "tabOtherStuff", icon = icon("plus-circle"))
@@ -995,6 +996,114 @@ body <- dashboardBody(
       )
 
     ),
+
+    # tabSliderText ----
+    tabItem(
+      tabName = "tabSliderText",
+
+      tags$h1("Slider Text", style = "font-weight: bold; color: #d9534f;"),
+
+
+      fluidRow(
+
+        column(
+          width = 4,
+          box_wrapper(
+            title = "With characters:",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(ids), label = "Choose a letter:", choices = c("a", "b", "c", "d", "e"))
+            )
+          ),
+          box_wrapper(
+            title = "Range slider:",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(ids), label = "Choose a range:", choices = month.abb, selected = month.abb[c(4, 8)])
+            )
+          ),
+          box_wrapper(
+            title = "Custom range for numeric:",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(ids), label = "Choose a value:", choices = c(1, 10, 100, 500, 1000), grid = TRUE)
+            )
+          ),
+          box_wrapper(
+            title = "Decreasing order:",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(ids), label = "Choose a value:", choices = seq(from = 10, to = 1, by = -1), grid = TRUE)
+            )
+          )
+        ),
+
+        column(
+          width = 4,
+          box_wrapper(
+            title = "With month",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(ids), label = "Pick a month:", choices = month.name)
+            )
+          ),
+          box_wrapper(
+            title = "With month",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(ids), label = "Restricted choices:", choices = LETTERS,
+                          selected = "A",
+                          from_min = "E", from_max = "T")
+            )
+          ),
+          box_wrapper(
+            title = "With month",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(ids), label = "Restricted choices for range:", choices = LETTERS,
+                          selected = c("A", "T"),
+                          from_min = "A", from_max = "E",
+                          to_min = "R", to_max = "Z")
+            )
+          )
+        ),
+
+        column(
+          width = 4,
+          box_wrapper(
+            title = "Likert scale",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(ids), label = "Your choice:", grid = TRUE, force_edges = TRUE,
+                          choices = c("Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree"))
+            )
+          ),
+          box_wrapper(
+            title = "Update selected",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = "selectedSliderText", label = "Your choice:", grid = TRUE, force_edges = TRUE,
+                          choices = letters[1:5])
+            ),
+            br(),
+            radioButtons(inputId = "upSelectedSliderText", label = "Update selected:", choices = letters[1:5], inline = TRUE)
+          ),
+          box_wrapper(
+            title = "Update choices",
+            widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = "choicesSliderText", label = "Your choice:", grid = TRUE, force_edges = TRUE,
+                          choices = month.abb)
+            ),
+            br(),
+            radioButtons(inputId = "upChoicesSliderText", label = "Update selected:", choices = c("Abbreviations", "Full names"), inline = TRUE)
+          )
+        )
+
+      )
+
+    ),
+
 
 
     # tabProgressBars ----

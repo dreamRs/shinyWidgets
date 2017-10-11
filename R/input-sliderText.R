@@ -15,6 +15,7 @@
 #' @param from_max Set the maximum limit for left handle.
 #' @param to_min Set minimum limit for right handle.
 #' @param to_max Set the maximum limit for right handle.
+#' @param force_edges Slider will be always inside it's container.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #' @param pre A prefix string to put in front of the value.
 #' @param post A suffix string to put after the value.
@@ -60,7 +61,7 @@ sliderTextInput <- function (inputId, label, choices, selected = NULL,
                              hide_min_max = FALSE,
                              from_fixed = FALSE, to_fixed = FALSE,
                              from_min = NULL, from_max = NULL,
-                             to_min = NULL, to_max = NULL,
+                             to_min = NULL, to_max = NULL, force_edges = FALSE,
                              width = NULL, pre = NULL, post = NULL, dragRange = TRUE)
 {
 
@@ -101,6 +102,7 @@ sliderTextInput <- function (inputId, label, choices, selected = NULL,
     `data-from` = from,
     `data-to` = if (length(selected) > 1) to,
     `data-grid` = grid,
+    `data-force-edges` = force_edges,
     `data-hide-min-max` = hide_min_max,
     `data-prefix` = pre, `data-postfix` = post,
     `data-from-fixed` = from_fixed, `data-to-fixed` = to_fixed,

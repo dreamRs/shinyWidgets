@@ -16,7 +16,7 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
 
 
 # Ids widgets
-ids <- paste0("Id", sprintf("%03d", 1:75))
+ids <- paste0("Id", sprintf("%03d", 1:81))
 ids <- 1
 idss <- ids
 

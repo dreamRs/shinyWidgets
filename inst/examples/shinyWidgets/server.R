@@ -179,6 +179,38 @@ function(input, output, session) {
 
 
 
+  # Update sliderText ----
+
+  output$resselectedSliderText <- renderPrint({
+    input$selectedSliderText
+  })
+  observeEvent(input$upSelectedSliderText, {
+    updateSliderTextInput(
+      session = session,
+      inputId = "selectedSliderText",
+      selected = input$upSelectedSliderText
+    )
+  }, ignoreInit = TRUE)
+
+  output$reschoicesSliderText <- renderPrint({
+    input$choicesSliderText
+  })
+  observeEvent(input$upChoicesSliderText, {
+    choices <- switch(
+      input$upChoicesSliderText,
+      "Abbreviations" = month.abb,
+      "Full names" = month.name
+    )
+    updateSliderTextInput(
+      session = session,
+      inputId = "choicesSliderText",
+      choices = choices
+    )
+  }, ignoreInit = TRUE)
+
+
+
+
   # dropdown : iris clustering example ----
   selectedData <- reactive({
     iris[, c(input$xcol, input$ycol)]
