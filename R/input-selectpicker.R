@@ -89,7 +89,7 @@
 #'     label = "Default",
 #'     multiple = TRUE,
 #'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars)
+#'     selected = rownames(mtcars)[1:5]
 #'   ),
 #'   br(),
 #'   pickerInput(
@@ -97,7 +97,7 @@
 #'     label = "Default with | separator",
 #'     multiple = TRUE,
 #'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars),
+#'     selected = rownames(mtcars)[1:5],
 #'     options = list(`multiple-separator` = " | ")
 #'   ),
 #'   br(),
@@ -106,7 +106,7 @@
 #'     label = "Static",
 #'     multiple = TRUE,
 #'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars),
+#'     selected = rownames(mtcars)[1:5],
 #'     options = list(`selected-text-format`= "static",
 #'                    title = "Won't change")
 #'   ),
@@ -116,7 +116,7 @@
 #'     label = "Count",
 #'     multiple = TRUE,
 #'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars),
+#'     selected = rownames(mtcars)[1:5],
 #'     options = list(`selected-text-format`= "count")
 #'   ),
 #'   br(),
@@ -125,7 +125,7 @@
 #'     label = "Customize count",
 #'     multiple = TRUE,
 #'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars),
+#'     selected = rownames(mtcars)[1:5],
 #'     options = list(
 #'       `selected-text-format`= "count",
 #'       `count-selected-text` = "{0} models choosed (on a total of {1})"
@@ -181,8 +181,7 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
     style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
     if (!is.null(label)) htmltools::tags$label(class = labelClass, `for` = inputId, label),
     if (!is.null(label) & !inline) htmltools::tags$br(),
-    selectTag,
-    htmltools::tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").selectpicker();')))
+    selectTag
   )
   # Dep
   attachShinyWidgetsDep(pickerTag, "picker")

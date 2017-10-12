@@ -107,7 +107,7 @@ ui <- fluidPage(
     label = "Default",
     multiple = TRUE,
     choices = rownames(mtcars),
-    selected = rownames(mtcars)
+    selected = rownames(mtcars)[1:5]
   ),
   br(),
   pickerInput(
@@ -115,7 +115,7 @@ ui <- fluidPage(
     label = "Default with | separator",
     multiple = TRUE,
     choices = rownames(mtcars),
-    selected = rownames(mtcars),
+    selected = rownames(mtcars)[1:5],
     options = list(`multiple-separator` = " | ")
   ),
   br(),
@@ -124,7 +124,7 @@ ui <- fluidPage(
     label = "Static",
     multiple = TRUE,
     choices = rownames(mtcars),
-    selected = rownames(mtcars),
+    selected = rownames(mtcars)[1:5],
     options = list(`selected-text-format`= "static",
                    title = "Won't change")
   ),
@@ -134,7 +134,7 @@ ui <- fluidPage(
     label = "Count",
     multiple = TRUE,
     choices = rownames(mtcars),
-    selected = rownames(mtcars),
+    selected = rownames(mtcars)[1:5],
     options = list(`selected-text-format`= "count")
   ),
   br(),
@@ -143,7 +143,7 @@ ui <- fluidPage(
     label = "Customize count",
     multiple = TRUE,
     choices = rownames(mtcars),
-    selected = rownames(mtcars),
+    selected = rownames(mtcars)[1:5],
     options = list(
       `selected-text-format`= "count",
       `count-selected-text` = "{0} models choosed (on a total of {1})"

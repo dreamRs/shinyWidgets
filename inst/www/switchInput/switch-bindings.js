@@ -1,8 +1,16 @@
+
+// Transform each tag with class 'sw-switchInput' to bootstrap switch
+$(function() {
+  $('.sw-switchInput').each(function() {
+    $(this).bootstrapSwitch();
+  });
+});
+
 // switch input binding
 var switchInputBinding = new Shiny.InputBinding();
 $.extend(switchInputBinding, {
   find: function(scope) {
-    return $(scope).find('.switchInput');
+    return $(scope).find('.sw-switchInput');
   },
   getId: function(el) {
     return el.id;

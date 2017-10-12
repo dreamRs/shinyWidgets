@@ -1,19 +1,10 @@
 
-// ------------------------------------------------------------------------ //
-//
-// Descriptif : Select picker : javascript bindings
-//     Detail : https://silviomoreto.github.io/bootstrap-select/examples/
-//
-//
-// Auteur : Victor PERRIER
-//
-// Date creation : 08/09/2016
-// Date modification : 08/09/2016
-//
-// Version 1.0
-//
-// ------------------------------------------------------------------------ //
-
+// Transform each tag with class 'sw-switchInput' to select picker
+$(function() {
+  $('.selectpicker').each(function() {
+    $(this).selectpicker();
+  });
+});
 
 
 // picker input binding

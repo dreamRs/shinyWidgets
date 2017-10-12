@@ -57,7 +57,7 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
   size <- match.arg(arg = size, choices = c('default', 'mini', 'small', 'normal', 'large'))
   switchProps <- dropNulls(
     list(
-      id = inputId, type = "checkbox", class = "switchInput", `data-input-id` = inputId,
+      id = inputId, type = "checkbox", class = "sw-switchInput", `data-input-id` = inputId,
       `data-on-text` = onLabel, `data-off-text` = offLabel, `data-label-text` = label,
       `data-on-color` = onStatus, `data-off-color` = offStatus, #`data-state` = value,
       `data-label-width` = labelWidth, `data-handle-width` = handleWidth,
@@ -80,8 +80,7 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block;",
     style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
-    inputTag,
-    htmltools::tags$script(HTML(paste0('$("#', escape_jquery(inputId), '").bootstrapSwitch();')))
+    inputTag
   )
   # Dep
   attachShinyWidgetsDep(switchInputTag, "bsswitch")
