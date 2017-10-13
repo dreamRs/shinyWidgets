@@ -13,6 +13,10 @@
 This package provide some custom widgets to pimp your shiny apps !
 
 
+You can replace classical checkboxes with switch button, add colors to radio buttons and checkbox group, use buttons as radio or checkboxes.
+Each widget has an `update` method to change the value of an input from the server.
+
+
 Installation :
 ```r
 # From CRAN
@@ -40,7 +44,7 @@ And how to construct a palette color picker [here](https://dreamrs.github.io/shi
 ### Bootstrap switch
 
 Turn checkboxes into toggle switches : <br>
-![boostrap_switch](inst/images/boostrap_switch.png)
+![switchInput](inst/images/switchInput.png)
 
 ```r
 switchInput(inputId = "id", value = TRUE)
@@ -49,10 +53,10 @@ switchInput(inputId = "id", value = TRUE)
 ### Material switch
 
 Turn checkboxes into toggle switches (again) : <br>
-![material_switch](inst/images/material_switch.png)
+![materialSwitch](inst/images/materialSwitch.png)
 
 ```r
-materialSwitch(inputId = "id", label = "Primary switch", status = "primary", right = TRUE)
+materialSwitch(inputId = "id", label = "Primary switch", status = "danger")
 ```
 
 
@@ -77,15 +81,20 @@ sliderTextInput(
 ### Select picker
 
 Dropdown menu with a lot of options : <br>
-![picker_input](inst/images/picker_input.png)
+![pickerInput](inst/images/pickerInput.png)
 
 ```r
 pickerInput(
-  inputId = "id", 
-  label = "Select/deselect all options", 
-  choices = LETTERS, options = list(`actions-box` = TRUE), 
+  inputId = "myPicker", 
+  label = "Select/deselect all + format selected", 
+  choices = LETTERS, 
+  options = list(
+    `actions-box` = TRUE, 
+    size = 10,
+    `selected-text-format` = "count > 3"
+  ), 
   multiple = TRUE
- )
+)
 ```
 
 ### Checkbox and radio buttons
