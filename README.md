@@ -56,6 +56,23 @@ materialSwitch(inputId = "id", label = "Primary switch", status = "primary", rig
 ```
 
 
+### Slider Text
+
+Slider with strings, to pass whatever you want : <br>
+![sliderText](inst/images/sliderText.png)
+
+```r
+sliderTextInput(
+  inputId = "mySliderText", 
+  label = "Your choice:", 
+  grid = TRUE, 
+  force_edges = TRUE,
+  choices = c("Strongly disagree",
+              "Disagree", "Neither agree nor disagree", 
+              "Agree", "Strongly agree")
+)
+```
+
 
 ### Select picker
 
