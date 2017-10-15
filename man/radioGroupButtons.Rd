@@ -4,10 +4,10 @@
 \alias{radioGroupButtons}
 \title{Buttons Group Radio Input Control}
 \usage{
-radioGroupButtons(inputId, label = NULL, choices, selected = NULL,
+radioGroupButtons(inputId, label = NULL, choices = NULL, selected = NULL,
   status = "default", size = "normal", direction = "horizontal",
   justified = FALSE, individual = FALSE, checkIcon = list(),
-  width = NULL)
+  width = NULL, choiceNames = NULL, choiceValues = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -18,7 +18,8 @@ radioGroupButtons(inputId, label = NULL, choices, selected = NULL,
 
 \item{selected}{The initially selected value.}
 
-\item{status}{Color of the buttons}
+\item{status}{Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
+Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.}
 
 \item{size}{Size of the buttons ('xs', 'sm', 'normal', 'lg')}
 
@@ -32,6 +33,10 @@ radioGroupButtons(inputId, label = NULL, choices, selected = NULL,
 corresponding to an icon to display if the button is checked.}
 
 \item{width}{The width of the input, e.g. '400px', or '100\%'.}
+
+\item{choiceNames, choiceValues}{Same as in \code{\link[shiny]{radioButtons}}. List of names and values, respectively, that are displayed to
+the user in the app and correspond to the each choice (for this reason,
+\code{choiceNames} and \code{choiceValues} must have the same length).}
 }
 \value{
 A buttons group control that can be added to a UI definition.

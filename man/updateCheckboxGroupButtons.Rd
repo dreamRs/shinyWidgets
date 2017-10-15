@@ -6,7 +6,7 @@
 \usage{
 updateCheckboxGroupButtons(session, inputId, label = NULL, choices = NULL,
   selected = NULL, status = "default", size = "normal",
-  checkIcon = list())
+  checkIcon = list(), choiceNames = NULL, choiceValues = NULL)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}
@@ -24,6 +24,8 @@ updateCheckboxGroupButtons(session, inputId, label = NULL, choices = NULL,
 \item{size}{Size, only used if choices is not NULL.}
 
 \item{checkIcon}{Icon, only used if choices is not NULL.}
+
+\item{choiceNames, choiceValues}{List of names and values, an alternative to choices.}
 }
 \description{
 Change the value of a radio group buttons input on the client

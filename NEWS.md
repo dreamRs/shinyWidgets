@@ -2,6 +2,7 @@ shinyWidgets 0.3.5.900
 ==================
 
 * New widget : `sliderTextInput` : a slider for character vector.
+* New arguments `choiceNames` & `choiceValues` for `checkboxGroupButtons` & `radioGroupButtons` to easily pass HTML in the names displayed on the buttons.
 
 
 shinyWidgets 0.3.5

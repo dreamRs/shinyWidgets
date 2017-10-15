@@ -7,8 +7,9 @@
 #' @param label Input label.
 #' @param choices List of values to select from (if elements of the list are named
 #'  then that name rather than the value is displayed to the user)
-#' @param selected	The initially selected value.
-#' @param status Color of the buttons
+#' @param selected The initially selected value.
+#' @param status Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
+#'  Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.
 #' @param size Size of the buttons ('xs', 'sm', 'normal', 'lg')
 #' @param direction Horizontal or vertical.
 #' @param justified If TRUE, fill the width of the parent div.
@@ -16,6 +17,9 @@
 #' @param checkIcon A list, if no empty must contain at least one element named 'yes'
 #' corresponding to an icon to display if the button is checked.
 #' @param width The width of the input, e.g. '400px', or '100\%'.
+#' @param choiceNames,choiceValues Same as in \code{\link[shiny]{checkboxGroupInput}}. List of names and values, respectively, that are displayed to
+#'  the user in the app and correspond to the each choice (for this reason,
+#'  \code{choiceNames} and \code{choiceValues} must have the same length).
 #'
 #'
 #' @return A buttons group control that can be added to a UI definition.
@@ -46,22 +50,25 @@
 #' @export
 
 checkboxGroupButtons <- function(
-  inputId, label = NULL, choices, selected = NULL, status = "default", size = "normal",
+  inputId, label = NULL, choices = NULL, selected = NULL, status = "default", size = "normal",
   direction = "horizontal", justified = FALSE, individual = FALSE, checkIcon = list(),
-  width = NULL
+  width = NULL, choiceNames = NULL, choiceValues = NULL
 ) {
-  choices <- choicesWithNames(choices)
+  args <- normalizeChoicesArgs(choices, choiceNames, choiceValues)
   selected <- shiny::restoreInput(id = inputId, default = selected)
   size <- match.arg(arg = size, choices = c("xs", "sm", "normal", "lg"))
   direction <- match.arg(arg = direction, choices = c("horizontal", "vertical"))
-  status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
 
   divClass <- if (individual) "" else "btn-group"
   if (!individual & direction == "vertical") {
     divClass <- paste0(divClass, "-vertical")
   }
   if (justified) {
-    divClass <- paste(divClass, "btn-group-justified")
+    if (direction != "vertical") {
+      divClass <- paste(divClass, "btn-group-justified")
+    } else {
+      divClass <- paste(divClass, "btn-block")
+    }
   }
   if (size != "normal") {
     divClass <- paste0(divClass, " btn-group-", size)
@@ -78,7 +85,7 @@ checkboxGroupButtons <- function(
       htmltools::tags$div(
         class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
         class = "btn-group-container-sw",
-        generateCBGB(inputId, choices, selected, status, size, checkIcon)
+        generateCBGB(inputId, args, selected, status, size, checkIcon)
       )
     )
   )
@@ -104,25 +111,25 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
   } else {
     displayIcon <- FALSE
   }
-  lapply(
-    X = seq_along(choices),
-    FUN = function(i) {
+  mapply(
+    FUN = function(name, value) {
       btn_wrapper(
         htmltools::tags$button(
           class=paste0("btn checkbtn btn-", status),
-          class=if (choices[i] %in% selected) "active",
-          # if (checkIcon) tags$span(class="glyphicon glyphicon-ok"),
+          class=if (value %in% selected) "active",
           if (displayIcon) htmltools::tags$span(class="check-btn-icon-yes", checkIcon$yes),
           if (displayIcon) htmltools::tags$span(class="check-btn-icon-no", checkIcon$no),
           htmltools::tags$input(
             type="checkbox", autocomplete="off",
-            name=inputId, value=choices[i],
-            checked=if (choices[i] %in% selected) "checked",
-            htmltools::HTML(names(choices)[i])
+            name=inputId, value=value,
+            checked=if (value %in% selected) "checked",
+            if (is.list(name)) name else htmltools::HTML(name)
           )
         )
       )
-    }
+    },
+    name = choices$choiceNames, value = choices$choiceValues,
+    SIMPLIFY = FALSE, USE.NAMES = FALSE
   )
 }
 
@@ -142,6 +149,7 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' @param status Status, only used if choices is not NULL.
 #' @param size Size, only used if choices is not NULL.
 #' @param checkIcon Icon, only used if choices is not NULL.
+#' @param choiceNames,choiceValues List of names and values, an alternative to choices.
 #'
 #' @export
 #'
@@ -252,11 +260,10 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' }
 updateCheckboxGroupButtons <- function(session, inputId, label = NULL, choices = NULL, selected = NULL,
                                        status = "default", size = "normal",
-                                       checkIcon = list()) {
-  if (!is.null(choices))
-    choices <- choicesWithNames(choices)
-  options <- if (!is.null(choices)) {
-    format(htmltools::tagList(generateCBGB(inputId, choices, selected, status = status, size = size,
+                                       checkIcon = list(), choiceNames = NULL, choiceValues = NULL) {
+  args <- normalizeChoicesArgs(choices, choiceNames, choiceValues, mustExist = FALSE)
+  options <- if (!is.null(args$choiceNames)) {
+    format(htmltools::tagList(generateCBGB(inputId, args, selected, status = status, size = size,
                                 checkIcon = checkIcon)))
   }
   message <- dropNulls(list(selected = selected, options = options, label = label))
