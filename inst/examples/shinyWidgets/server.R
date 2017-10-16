@@ -5,13 +5,14 @@
 
 
 
+
 function(input, output, session) {
 
-  highlightCode(session, "code_dropdownButton")
+  .shinyWidgetGalleryFuns$highlightCode(session, "code_dropdownButton")
 
-  highlightCode(session, "code_dropdown")
+  .shinyWidgetGalleryFuns$highlightCode(session, "code_dropdown")
 
-  highlightCode(session, "codeSA")
+  .shinyWidgetGalleryFuns$highlightCode(session, "codeSA")
 
   # navigation ----
 
@@ -45,10 +46,10 @@ function(input, output, session) {
 
   # input values ----
   lapply(
-    X = seq_len(ids),
+    X = seq_len(.shinyWidgetGalleryId),
     FUN = function(i) {
       ii <- paste0("Id", sprintf("%03d", i))
-      highlightCode(session, paste0("code", ii))
+      .shinyWidgetGalleryFuns$highlightCode(session, paste0("code", ii))
       output[[paste0("res", ii)]] <- renderPrint({
         input[[ii]]
       })
@@ -293,7 +294,7 @@ function(input, output, session) {
   lapply(
     X = paste0("pb", 1:10),
     FUN = function(i) {
-      highlightCode(session, paste0("code", i))
+      .shinyWidgetGalleryFuns$highlightCode(session, paste0("code", i))
     }
   )
 
