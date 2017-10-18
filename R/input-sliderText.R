@@ -25,7 +25,7 @@
 #' @export
 #'
 #' @importFrom htmltools validateCssUnit tagAppendChild findDependencies tags
-#' @importFrom shiny icon sliderInput animationOptions
+#' @importFrom shiny icon sliderInput animationOptions restoreInput
 #' @importFrom jsonlite toJSON
 #'
 #' @examples
@@ -64,7 +64,7 @@ sliderTextInput <- function (inputId, label, choices, selected = NULL,
                              to_min = NULL, to_max = NULL, force_edges = FALSE,
                              width = NULL, pre = NULL, post = NULL, dragRange = TRUE)
 {
-
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   if (!is.character(choices)) {
     choices <- as.character(choices)
   }
@@ -110,7 +110,7 @@ sliderTextInput <- function (inputId, label, choices, selected = NULL,
     `data-to-min` = to_min, `data-to-max` = to_max,
     `data-from-shadow` = !is.null(from_min) | !is.null(from_max),
     `data-to-shadow` = !is.null(to_min) | !is.null(to_max),
-    `data-swvalues` = jsonlite::toJSON(x = choices),
+    `data-swvalues` = enc2native(jsonlite::toJSON(x = choices)),
     `data-keyboard` = TRUE,
     `data-drag-interval` = if (length(selected) > 1) dragRange,
     `data-data-type` = "text"

@@ -8,6 +8,13 @@
 
 function(input, output, session) {
 
+  # cleanup app
+  shiny::onStop(function() {
+    rm(.shinyWidgetGalleryFuns, .shinyWidgetGalleryId, envir = globalenv())
+    shiny::stopApp()
+  })
+
+  # highlight code dropdowns & sweetalert
   .shinyWidgetGalleryFuns$highlightCode(session, "code_dropdownButton")
 
   .shinyWidgetGalleryFuns$highlightCode(session, "code_dropdown")
