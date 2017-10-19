@@ -1,4 +1,4 @@
-shinyWidgets 0.3.5.900
+shinyWidgets 0.3.6
 ==================
 
 * New widget : `sliderTextInput` : a slider for character vector.
