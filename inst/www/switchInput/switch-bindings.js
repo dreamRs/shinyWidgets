@@ -59,7 +59,10 @@ $.extend(switchInputBinding, {
       $(el).bootstrapSwitch('disabled', data.disabled, data.disabled);
 
     $(el).trigger('change');
-   }
+   },
+    initialize: function initialize(el) {
+      $(el).bootstrapSwitch();
+    }
 });
 
 Shiny.inputBindings.register(switchInputBinding, 'shiny.switchInput');

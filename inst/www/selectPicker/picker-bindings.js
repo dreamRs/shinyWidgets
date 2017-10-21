@@ -69,6 +69,9 @@ var pickerInputBinding = new Shiny.InputBinding();
     },
     unsubscribe: function unsubscribe(el) {
       $(el).off('.pickerInputBinding');
+    },
+    initialize: function initialize(el) {
+      $(el).selectpicker();
     }
 });
 Shiny.inputBindings.register(pickerInputBinding, 'shiny.pickerInput');
