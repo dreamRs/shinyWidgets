@@ -1,3 +1,9 @@
+shinyWidgets 0.3.6.900
+======================
+
+* Bug when initializing (in modal widow) `pickerInput` and `switchInput`.
+
+
 shinyWidgets 0.3.6
 ==================
 
