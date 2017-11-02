@@ -120,8 +120,8 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           name = "bttn",
           version = version,
           src = c(href="shinyWidgets/spectrum"),
-          script = c("spectrum.js"),
-          stylesheet = c("spectrum.css", "sw-spectrum.css")
+          script = c("spectrum.min.js"),
+          stylesheet = c("spectrum.min.css", "sw-spectrum.css")
         )
       )
     }
