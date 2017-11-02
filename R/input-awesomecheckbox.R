@@ -153,9 +153,9 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- generateAwesomeOptions(inputId, choices, selected, inline, status = status)
-  divClass <- "form-group shiny-input-container"
+  divClass <- "form-group shiny-input-container shiny-input-checkboxgroup"
   if (inline)
-    divClass <- paste(divClass, "shiny-input-container-inline shiny-input-checkboxgroup")
+    divClass <- paste(divClass, "shiny-input-container-inline")
   awesomeTag <- htmltools::tags$div(id = inputId, style = if (!is.null(width))
     paste0("width: ", htmltools::validateCssUnit(width), ";"), class = divClass,
     htmltools::tags$label(label, `for` = inputId, style = "margin-bottom: 10px;"), options)
