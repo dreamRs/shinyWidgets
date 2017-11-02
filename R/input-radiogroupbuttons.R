@@ -56,7 +56,7 @@ radioGroupButtons <- function(
   if (!is.null(selected) && length(selected) > 1)
     stop("selected must be length 1")
   if (is.null(selected))
-    selected <- choices[1]
+    selected <- args$choiceValues[[1]]
   size <- match.arg(arg = size, choices = c("xs", "sm", "normal", "lg"))
   direction <- match.arg(arg = direction, choices = c("horizontal", "vertical"))
 
