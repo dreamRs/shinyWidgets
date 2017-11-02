@@ -1,7 +1,7 @@
 shinyWidgets 0.3.6.900
 ======================
 
-* Bug when initializing (in modal widow) `pickerInput` and `switchInput`.
+* Bug when initializing (in modal window or in `renderUI`) `pickerInput` and `switchInput`.
 
 
 shinyWidgets 0.3.6

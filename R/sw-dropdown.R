@@ -110,8 +110,7 @@ dropdown <- function(..., style = "default", status = "default", size = "md", ic
     id=contentId, class="sw-dropdown-content animated",
     class=if(up) "sw-dropup-content", class=if(right) "sw-dropright-content",
     style=if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
-    # shiny::conditionalPanel(condition = paste0("input['", btnId, "'] > 0"), ...)
-    ...
+    htmltools::tags$div(class="sw-dropdown-in", ...)
   )
   # Button
   if (style == "default") {

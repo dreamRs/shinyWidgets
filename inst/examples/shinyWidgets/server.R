@@ -9,8 +9,10 @@
 function(input, output, session) {
 
   # cleanup app
-  shiny::onStop(function() {
-    rm(.shinyWidgetGalleryFuns, .shinyWidgetGalleryId, envir = globalenv())
+  session$onSessionEnded(function() {
+    suppressWarnings(
+      rm(.shinyWidgetGalleryFuns, .shinyWidgetGalleryId, envir = globalenv())
+    )
     shiny::stopApp()
   })
 
