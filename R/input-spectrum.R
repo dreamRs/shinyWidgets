@@ -76,7 +76,7 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL, flat 
   spectrumProps <- dropNulls(list(
     type = "text", id = inputId, class = "form-control sw-spectrum",
     `data-flat` = flat, `data-color` = selected,
-    `data-palette` = jsonlite::toJSON(choices, auto_unbox = TRUE),
+    `data-palette` = if (!is.null(choices)) jsonlite::toJSON(choices, auto_unbox = TRUE),
     `data-toggle-palette-only` = !is.null(choices),
     `data-show-palette-only` = !is.null(choices),
     `data-show-palette` = !is.null(choices),
