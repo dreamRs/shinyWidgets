@@ -113,6 +113,17 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           stylesheet = "bttn.min.css"
         )
       )
+    } else if (widget == "spectrum") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          name = "bttn",
+          version = version,
+          src = c(href="shinyWidgets/spectrum"),
+          script = c("spectrum.js"),
+          stylesheet = c("spectrum.css", "sw-spectrum.css")
+        )
+      )
     }
   }
   htmltools::attachDependencies(tag, dep, append = TRUE)

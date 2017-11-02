@@ -1,7 +1,8 @@
-shinyWidgets 0.3.6.900
+shinyWidgets 0.3.7.900
 ======================
 
 * Bug when initializing (in modal window or in `renderUI`) `pickerInput` and `switchInput`.
+* New widget : `spectrumInput` for choosing colors in palettes or custom one.
 
 
 shinyWidgets 0.3.6

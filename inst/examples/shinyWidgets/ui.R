@@ -1079,7 +1079,7 @@ body <- dashboardBody(
             )
           ),
           .shinyWidgetGalleryFuns$box_wrapper(
-            title = "With month",
+            title = "Restricted choices",
             .shinyWidgetGalleryFuns$widget_wrapper(
               fun = sliderTextInput,
               args = list(inputId = ID(.shinyWidgetGalleryId), label = "Restricted choices:", choices = LETTERS,
@@ -1088,7 +1088,7 @@ body <- dashboardBody(
             )
           ),
           .shinyWidgetGalleryFuns$box_wrapper(
-            title = "With month",
+            title = "Restricted choices",
             .shinyWidgetGalleryFuns$widget_wrapper(
               fun = sliderTextInput,
               args = list(inputId = ID(.shinyWidgetGalleryId), label = "Restricted choices for range:", choices = LETTERS,
