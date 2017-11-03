@@ -124,6 +124,16 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           stylesheet = c("spectrum.min.css", "sw-spectrum.css")
         )
       )
+    } else if (widget == "pretty") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          name = "bttn",
+          version = version,
+          src = c(href="shinyWidgets/pretty-checkbox"),
+          stylesheet = "pretty-checkbox.min.css"
+        )
+      )
     }
   }
   htmltools::attachDependencies(tag, dep, append = TRUE)

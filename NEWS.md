@@ -3,6 +3,8 @@ shinyWidgets 0.3.7.900
 
 * Bug when initializing (in modal window or in `renderUI`) `pickerInput` and `switchInput`.
 * New widget : `spectrumInput` for choosing colors in palettes or custom one.
+* New widgets : `prettyCheckbox`, `prettySwitch`, `prettyToggle`, `prettyCheckboxGroup` and `prettyRadioButtons` for create pretty checkboxes,
+toggle switch, radio buttons with colors, icons and a lot of options.
 
 
 shinyWidgets 0.3.6

@@ -21,7 +21,8 @@ Authors@R: c(
   person("Fabian", "Lindfors", role = c("ctb", "cph"), comment = "multi.js"),
   person("Daniel", "Eden", role = c("ctb", "cph"), comment = "animate.css"),
   person("Ganapati", "V S", role = c("ctb", "cph"), comment = "bttn.css"),
-  person("Brian", "Grinstead", role = c("ctb", "cph"), comment = "Spectrum")
+  person("Brian", "Grinstead", role = c("ctb", "cph"), comment = "Spectrum"),
+  person("Lokesh", "Rajendran", role = c("ctb", "cph"), comment = "pretty-checkbox")
   )
 Description: Some custom inputs widgets to use in Shiny applications, like a toggle switch to replace checkboxes. And other components to pimp your apps.
 URL: https://github.com/dreamRs/shinyWidgets
