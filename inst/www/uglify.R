@@ -21,6 +21,7 @@ writeLines(text = js_files, con = "inst/www/shinyWidgets.min.js")
 # create one file with all bindings
 bindings_files <- list.files(path = "inst/www/", pattern = "bindings", full.names = TRUE, recursive = TRUE)
 bindings_files <- bindings_files[bindings_files != "inst/www/shinyWidgets-bindings.min.js"]
+bindings_files <- bindings_files[!grepl(pattern = "awesome", bindings_files)]
 bindings_files <- lapply(bindings_files, readLines)
 bindings_files <- lapply(bindings_files, paste, collapse = "\n")
 bindings_files <- paste(unlist(bindings_files), collapse = "\n")
