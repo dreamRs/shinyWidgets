@@ -9,6 +9,7 @@
 #' @param status Add a class to the switch, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
 #' @param slim Change the style of the switch (\code{TRUE} or \code{FALSE}), see examples.
 #' @param fill Change the style of the switch (\code{TRUE} or \code{FALSE}), see examples.
+#' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @note Appearance is better in a browser such as Chrome than in RStudio Viewer
@@ -78,7 +79,7 @@
 #'
 #' }
 prettySwitch <- function(inputId, label, value = FALSE, status = "default",
-                         slim = FALSE, fill = FALSE, width = NULL) {
+                         slim = FALSE, fill = FALSE, bigger = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
@@ -93,6 +94,7 @@ prettySwitch <- function(inputId, label, value = FALSE, status = "default",
                                          htmltools::validateCssUnit(width), ";"),
     tags$div(
       class="pretty p-default p-switch", inputTag,
+      class=if(bigger) "p-bigger",
       class=if(fill) "p-fill", class=if(slim) "p-slim",
       tags$div(
         class="state",
@@ -184,8 +186,9 @@ updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
 #' @param shape Shape of the checkbox between \code{square}, \code{curve} and \code{round}.
 #' @param outline Color also the border of the checkbox (\code{TRUE} or \code{FALSE}).
 #' @param fill Fill the checkbox with color (\code{TRUE} or \code{FALSE}).
-#' @param thick Make the content insed checkbox smaller (\code{TRUE} or \code{FALSE}).
+#' @param thick Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).
 #' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
+#' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @seealso See \code{\link{updatePrettyToggle}} to update the value server-side.
@@ -260,7 +263,7 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
                          status_off = "danger",
                          shape = c("square", "curve", "round"),
                          outline = FALSE, fill = FALSE, thick = FALSE,
-                         plain = FALSE, width = NULL) {
+                         plain = FALSE, bigger = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status_on <- match.arg(status_on, c("default", "primary", "success",
                                       "info", "danger", "warning"))
@@ -286,6 +289,7 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
       class="pretty p-toggle", inputTag,
       class=if(is.null(icon_on) & is.null(icon_off)) "p-default",
       class=if(plain) "p-plain",
+      class=if(bigger) "p-bigger",
       class=if(shape!="square") paste0("p-", shape),
       class=if(fill) "p-fill", class=if(thick) "p-thick",
       class=if(!is.null(icon_on) | !is.null(icon_off)) "p-icon",
@@ -380,18 +384,19 @@ updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
 #' @param shape Shape of the checkbox between \code{square}, \code{curve} and \code{round}.
 #' @param outline Color also the border of the checkbox (\code{TRUE} or \code{FALSE}).
 #' @param fill Fill the checkbox with color (\code{TRUE} or \code{FALSE}).
-#' @param thick Make the content insed checkbox smaller (\code{TRUE} or \code{FALSE}).
+#' @param thick Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).
 #' @param animation Add an animation when checkbox is checked, a value between
 #' \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.
 #' @param icon Optional, display an icon on the checkbox, must an icon created with \code{icon}.
 #' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
+#' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @note Due to the nature of different checkbox design, certain animations are not applicable in some arguments combinations.
 #' You can find examples on the pretty-checkbox official page : \url{https://lokesh-coder.github.io/pretty-checkbox/}.
 #'
-#' @seealso See \code{\link{updatePrettyCheckbox}} to update the value server-side. See \code{\link{updatePrettyToggle}} and
-#' \code{\link{updatePrettySwitch}} for similar widgets.
+#' @seealso See \code{\link{updatePrettyCheckbox}} to update the value server-side. See \code{\link{prettySwitch}} and
+#' \code{\link{prettyToggle}} for similar widgets.
 #'
 #' @return \code{TRUE} or \code{FALSE} server-side.
 #' @export
@@ -461,11 +466,11 @@ updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
 #' }
 #'
 #' }
-prettyCheckbox <- function(inputId, label, value = FALSE, status = "primary",
+prettyCheckbox <- function(inputId, label, value = FALSE, status = "default",
                            shape = c("square", "curve", "round"),
                            outline = FALSE, fill = FALSE, thick = FALSE,
                            animation = NULL, icon = NULL, plain = FALSE,
-                           width = NULL) {
+                           bigger = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
@@ -488,6 +493,7 @@ prettyCheckbox <- function(inputId, label, value = FALSE, status = "primary",
       class="pretty", inputTag,
       class=if(is.null(icon)) "p-default",
       class=if(plain) "p-plain",
+      class=if(bigger) "p-bigger",
       class=if(shape!="square") paste0("p-", shape),
       class=if(fill) "p-fill", class=if(thick) "p-thick",
       class=if(!is.null(animation)) paste0("p-", animation),
@@ -588,11 +594,12 @@ updatePrettyCheckbox<- function (session, inputId, label = NULL, value = NULL) {
 #' @param shape Shape of the checkbox between \code{square}, \code{curve} and \code{round}.
 #' @param outline Color also the border of the checkbox (\code{TRUE} or \code{FALSE}).
 #' @param fill Fill the checkbox with color (\code{TRUE} or \code{FALSE}).
-#' @param thick Make the content insed checkbox smaller (\code{TRUE} or \code{FALSE}).
+#' @param thick Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).
 #' @param animation Add an animation when checkbox is checked, a value between
 #' \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.
 #' @param icon Optional, display an icon on the checkbox, must an icon created with \code{icon}.
 #' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
+#' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #' @param choiceNames List of names to display to the user.
@@ -674,11 +681,11 @@ updatePrettyCheckbox<- function (session, inputId, label = NULL, value = NULL) {
 #'
 #' }
 prettyCheckboxGroup <- function(inputId, label, choices = NULL,
-                                selected = NULL, status = "primary",
+                                selected = NULL, status = "default",
                                 shape = c("square", "curve", "round"),
                                 outline = FALSE, fill = FALSE, thick = FALSE,
                                 animation = NULL, icon = NULL,
-                                plain = FALSE, inline = FALSE,
+                                plain = FALSE, bigger = FALSE, inline = FALSE,
                                 width = NULL, choiceNames = NULL,
                                 choiceValues = NULL) {
   status <- match.arg(status, c("default", "primary", "success",
@@ -696,9 +703,12 @@ prettyCheckboxGroup <- function(inputId, label, choices = NULL,
   if (!is.null(selected))
     selected <- as.character(selected)
   options <- generatePretty(
-    inputId, selected, inline, type = "checkbox",
+    inputId = inputId, selected = selected,
+    inline = inline, type = "checkbox",
     choiceNames = args$choiceNames, choiceValues = args$choiceValues,
-    status, shape, outline, fill, thick, animation, icon, plain
+    status = status, shape = shape, outline = outline, fill = fill,
+    thick = thick, animation = animation, icon = icon, plain = plain,
+    bigger = bigger
   )
   divClass <- "form-group shiny-input-checkboxgroup shiny-input-container"
   if (inline)
@@ -716,7 +726,8 @@ prettyCheckboxGroup <- function(inputId, label, choices = NULL,
 generatePretty <- function(inputId, selected, inline, type = "checkbox",
                            choiceNames, choiceValues, status = "primary",
                            shape = "square", outline = FALSE, fill = FALSE,
-                           thick = FALSE, animation = NULL, icon = NULL, plain = FALSE) {
+                           thick = FALSE, animation = NULL, icon = NULL,
+                           plain = FALSE, bigger = FALSE) {
   options <- mapply(choiceValues, choiceNames, FUN = function(value,
                                                               name) {
     inputTag <- tags$input(type = type, name = inputId, value = value)
@@ -729,6 +740,7 @@ generatePretty <- function(inputId, selected, inline, type = "checkbox",
         # class = paste0(type, "-inline"),
         class=if(is.null(icon)) "p-default",
         class=if(plain) "p-plain",
+        class=if(bigger) "p-bigger",
         class=if(shape!="square") paste0("p-", shape),
         class=if(fill) "p-fill", class=if(thick) "p-thick",
         class=if(!is.null(animation)) paste0("p-", animation),
@@ -749,6 +761,7 @@ generatePretty <- function(inputId, selected, inline, type = "checkbox",
           # style="display: block;",
           class=if(is.null(icon)) "p-default",
           class=if(plain) "p-plain",
+          class=if(bigger) "p-bigger",
           class=if(shape!="square") paste0("p-", shape),
           class=if(fill) "p-fill", class=if(thick) "p-thick",
           class=if(!is.null(animation)) paste0("p-", animation),
@@ -886,15 +899,17 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
     selected <- as.character(selected)
   options <- if (!is.null(args$choiceValues)) {
     format(tagList(
-      generatePretty(session$ns(inputId), selected, inline, type,
-                     args$choiceNames, args$choiceValues,
-                     prettyOptions$status %||% "primary",
-                     prettyOptions$shape %||% "square",
-                     prettyOptions$outline %||% FALSE,
-                     prettyOptions$fill %||% FALSE,
-                     prettyOptions$thick %||% FALSE,
-                     prettyOptions$animation,
-                     prettyOptions$icon)
+      generatePretty(inputId = session$ns(inputId), selected = selected, inline = inline, type = type,
+                     choiceNames =  args$choiceNames, choiceValues = args$choiceValues,
+                     status = prettyOptions$status %||% "primary",
+                     shape = prettyOptions$shape %||% "square",
+                     outline = prettyOptions$outline %||% FALSE,
+                     fill = prettyOptions$fill %||% FALSE,
+                     thick = prettyOptions$thick %||% FALSE,
+                     animation = prettyOptions$animation,
+                     icon = prettyOptions$icon,
+                     plain = prettyOptions$plain %||% FALSE,
+                     bigger = prettyOptions$bigger %||% FALSE)
     ))
   }
   message <- dropNulls(list(label = label, options = options,
@@ -919,23 +934,24 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control.
-#' @param choices List of values to show checkboxes for. If elements of the list
+#' @param choices List of values to show radio buttons for. If elements of the list
 #'  are named then that name rather than the value is displayed to the user. If
 #'  this argument is provided, then \code{choiceNames} and \code{choiceValues} must not be provided,
 #'  and vice-versa. The values should be strings; other types (such as logicals and
 #'  numbers) will be coerced to strings.
 #' @param selected The values that should be initially selected,
 #' (if not specified then defaults to the first value).
-#' @param status Add a class to the checkbox,
+#' @param status Add a class to the radio,
 #' you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
-#' @param shape Shape of the checkbox between \code{square}, \code{curve} and \code{round}.
-#' @param outline Color also the border of the checkbox (\code{TRUE} or \code{FALSE}).
-#' @param fill Fill the checkbox with color (\code{TRUE} or \code{FALSE}).
-#' @param thick Make the content insed checkbox smaller (\code{TRUE} or \code{FALSE}).
-#' @param animation Add an animation when checkbox is checked, a value between
+#' @param shape Shape of the radio between \code{square}, \code{curve} and \code{round}.
+#' @param outline Color also the border of the radio (\code{TRUE} or \code{FALSE}).
+#' @param fill Fill the radio with color (\code{TRUE} or \code{FALSE}).
+#' @param thick Make the content inside radio smaller (\code{TRUE} or \code{FALSE}).
+#' @param animation Add an animation when radio is checked, a value between
 #' \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.
-#' @param icon Optional, display an icon on the checkbox, must an icon created with \code{icon}.
-#' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
+#' @param icon Optional, display an icon on the radio, must an icon created with \code{icon}.
+#' @param plain Remove the border when radio is checked (\code{TRUE} or \code{FALSE}).
+#' @param bigger Scale the radio a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #' @param choiceNames List of names to display to the user.
@@ -1018,7 +1034,8 @@ prettyRadioButtons <- function(inputId, label, choices = NULL,
                                selected = NULL, status = "primary",
                                shape = c("round", "square", "curve"),
                                outline = FALSE, fill = FALSE, thick = FALSE,
-                               animation = NULL, icon = NULL, plain = FALSE, inline = FALSE,
+                               animation = NULL, icon = NULL, plain = FALSE,
+                               bigger = FALSE, inline = FALSE,
                                width = NULL, choiceNames = NULL,
                                choiceValues = NULL) {
   status <- match.arg(status, c("default", "primary", "success",
@@ -1041,9 +1058,12 @@ prettyRadioButtons <- function(inputId, label, choices = NULL,
   if (length(selected) > 1)
     stop("The 'selected' argument must be of length 1")
   options <- generatePretty(
-    inputId, selected, inline, type = "radio",
+    inputId = inputId, selected = selected,
+    inline = inline, type = "radio",
     choiceNames = args$choiceNames, choiceValues = args$choiceValues,
-    status, shape, outline, fill, thick, animation, icon, plain
+    status = status, shape = shape, outline = outline, fill = fill,
+    thick = thick, animation = animation, icon = icon, plain = plain,
+    bigger = bigger
   )
   divClass <- "form-group shiny-input-radiogroup shiny-input-container"
   if (inline)

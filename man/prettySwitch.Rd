@@ -5,7 +5,7 @@
 \title{Pretty Switch Input}
 \usage{
 prettySwitch(inputId, label, value = FALSE, status = "default",
-  slim = FALSE, fill = FALSE, width = NULL)
+  slim = FALSE, fill = FALSE, bigger = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -19,6 +19,8 @@ prettySwitch(inputId, label, value = FALSE, status = "default",
 \item{slim}{Change the style of the switch (\code{TRUE} or \code{FALSE}), see examples.}
 
 \item{fill}{Change the style of the switch (\code{TRUE} or \code{FALSE}), see examples.}
+
+\item{bigger}{Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }

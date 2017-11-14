@@ -7,15 +7,15 @@
 prettyRadioButtons(inputId, label, choices = NULL, selected = NULL,
   status = "primary", shape = c("round", "square", "curve"),
   outline = FALSE, fill = FALSE, thick = FALSE, animation = NULL,
-  icon = NULL, plain = FALSE, inline = FALSE, width = NULL,
-  choiceNames = NULL, choiceValues = NULL)
+  icon = NULL, plain = FALSE, bigger = FALSE, inline = FALSE,
+  width = NULL, choiceNames = NULL, choiceValues = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
 
 \item{label}{Display label for the control.}
 
-\item{choices}{List of values to show checkboxes for. If elements of the list
+\item{choices}{List of values to show radio buttons for. If elements of the list
 are named then that name rather than the value is displayed to the user. If
 this argument is provided, then \code{choiceNames} and \code{choiceValues} must not be provided,
 and vice-versa. The values should be strings; other types (such as logicals and
@@ -24,23 +24,25 @@ numbers) will be coerced to strings.}
 \item{selected}{The values that should be initially selected,
 (if not specified then defaults to the first value).}
 
-\item{status}{Add a class to the checkbox,
+\item{status}{Add a class to the radio,
 you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.}
 
-\item{shape}{Shape of the checkbox between \code{square}, \code{curve} and \code{round}.}
+\item{shape}{Shape of the radio between \code{square}, \code{curve} and \code{round}.}
 
-\item{outline}{Color also the border of the checkbox (\code{TRUE} or \code{FALSE}).}
+\item{outline}{Color also the border of the radio (\code{TRUE} or \code{FALSE}).}
 
-\item{fill}{Fill the checkbox with color (\code{TRUE} or \code{FALSE}).}
+\item{fill}{Fill the radio with color (\code{TRUE} or \code{FALSE}).}
 
-\item{thick}{Make the content insed checkbox smaller (\code{TRUE} or \code{FALSE}).}
+\item{thick}{Make the content inside radio smaller (\code{TRUE} or \code{FALSE}).}
 
-\item{animation}{Add an animation when checkbox is checked, a value between
+\item{animation}{Add an animation when radio is checked, a value between
 \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.}
 
-\item{icon}{Optional, display an icon on the checkbox, must an icon created with \code{icon}.}
+\item{icon}{Optional, display an icon on the radio, must an icon created with \code{icon}.}
 
-\item{plain}{Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).}
+\item{plain}{Remove the border when radio is checked (\code{TRUE} or \code{FALSE}).}
+
+\item{bigger}{Scale the radio a bit bigger (\code{TRUE} or \code{FALSE}).}
 
 \item{inline}{If \code{TRUE}, render the choices inline (i.e. horizontally).}
 

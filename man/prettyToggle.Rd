@@ -7,7 +7,7 @@
 prettyToggle(inputId, label_on, label_off, icon_on = NULL, icon_off = NULL,
   value = FALSE, status_on = "success", status_off = "danger",
   shape = c("square", "curve", "round"), outline = FALSE, fill = FALSE,
-  thick = FALSE, plain = FALSE, width = NULL)
+  thick = FALSE, plain = FALSE, bigger = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -34,9 +34,11 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 
 \item{fill}{Fill the checkbox with color (\code{TRUE} or \code{FALSE}).}
 
-\item{thick}{Make the content insed checkbox smaller (\code{TRUE} or \code{FALSE}).}
+\item{thick}{Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).}
 
 \item{plain}{Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).}
+
+\item{bigger}{Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }

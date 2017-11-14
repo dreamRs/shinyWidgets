@@ -4,10 +4,10 @@
 \alias{prettyCheckbox}
 \title{Pretty Checkbox Input}
 \usage{
-prettyCheckbox(inputId, label, value = FALSE, status = "primary",
+prettyCheckbox(inputId, label, value = FALSE, status = "default",
   shape = c("square", "curve", "round"), outline = FALSE, fill = FALSE,
   thick = FALSE, animation = NULL, icon = NULL, plain = FALSE,
-  width = NULL)
+  bigger = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -25,7 +25,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 
 \item{fill}{Fill the checkbox with color (\code{TRUE} or \code{FALSE}).}
 
-\item{thick}{Make the content insed checkbox smaller (\code{TRUE} or \code{FALSE}).}
+\item{thick}{Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).}
 
 \item{animation}{Add an animation when checkbox is checked, a value between
 \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.}
@@ -33,6 +33,8 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 \item{icon}{Optional, display an icon on the checkbox, must an icon created with \code{icon}.}
 
 \item{plain}{Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).}
+
+\item{bigger}{Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }
@@ -110,6 +112,6 @@ shinyApp(ui, server)
 }
 }
 \seealso{
-See \code{\link{updatePrettyCheckbox}} to update the value server-side. See \code{\link{updatePrettyToggle}} and
-\code{\link{updatePrettySwitch}} for similar widgets.
+See \code{\link{updatePrettyCheckbox}} to update the value server-side. See \code{\link{prettySwitch}} and
+\code{\link{prettyToggle}} for similar widgets.
 }

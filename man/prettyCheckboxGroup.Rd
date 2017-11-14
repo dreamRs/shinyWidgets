@@ -5,10 +5,10 @@
 \title{Pretty Checkbox Group Input Control}
 \usage{
 prettyCheckboxGroup(inputId, label, choices = NULL, selected = NULL,
-  status = "primary", shape = c("square", "curve", "round"),
+  status = "default", shape = c("square", "curve", "round"),
   outline = FALSE, fill = FALSE, thick = FALSE, animation = NULL,
-  icon = NULL, plain = FALSE, inline = FALSE, width = NULL,
-  choiceNames = NULL, choiceValues = NULL)
+  icon = NULL, plain = FALSE, bigger = FALSE, inline = FALSE,
+  width = NULL, choiceNames = NULL, choiceValues = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -32,7 +32,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 
 \item{fill}{Fill the checkbox with color (\code{TRUE} or \code{FALSE}).}
 
-\item{thick}{Make the content insed checkbox smaller (\code{TRUE} or \code{FALSE}).}
+\item{thick}{Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).}
 
 \item{animation}{Add an animation when checkbox is checked, a value between
 \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.}
@@ -40,6 +40,8 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 \item{icon}{Optional, display an icon on the checkbox, must an icon created with \code{icon}.}
 
 \item{plain}{Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).}
+
+\item{bigger}{Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).}
 
 \item{inline}{If \code{TRUE}, render the choices inline (i.e. horizontally).}
 
