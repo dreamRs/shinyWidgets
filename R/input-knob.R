@@ -22,6 +22,7 @@
 #' @param readOnly Disable knob (\code{TRUE} or \code{FALSE}).
 #' @param skin Change Knob skin, only one option avaible : 'tron'.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param height The height of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @return Numeric value server-side.
 #' @export
