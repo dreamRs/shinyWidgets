@@ -51,6 +51,8 @@ knobInput(inputId, label, value, min = 0, max = 100, step = 1,
 \item{skin}{Change Knob skin, only one option avaible : 'tron'.}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+
+\item{height}{The height of the input, e.g. \code{400px}, or \code{100\%}.}
 }
 \value{
 Numeric value server-side.
