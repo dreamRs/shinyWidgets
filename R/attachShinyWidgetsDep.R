@@ -62,6 +62,16 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           stylesheet = c("multi.min.css", "multi-shiny.css")
         )
       )
+    } else if (widget == "jquery-knob") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          name = "jquery-knob", version = "1.2.13",
+          src = c(href = "jquery-knob"),
+          script = c("jquery.knob.min.js",
+                     "knob-input-binding.js")
+        )
+      )
     }
   }
   htmltools::attachDependencies(tag, dep)
