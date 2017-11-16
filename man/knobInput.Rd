@@ -28,7 +28,7 @@ knobInput(inputId, label, value, min = 0, max = 100, step = 1,
 
 \item{angleArc}{Arc size in degrees, default to \code{360}.}
 
-\item{cursor}{Display mode "cursor", don't work properly if \code{width} is neot set in pixel, (\code{TRUE} or \code{FALSE}).}
+\item{cursor}{Display mode "cursor", don't work properly if \code{width} is not set in pixel, (\code{TRUE} or \code{FALSE}).}
 
 \item{thickness}{Gauge thickness, numeric value.}
 
@@ -69,21 +69,21 @@ library("shiny")
 
 ui <- fluidPage(
   knobInput(
-    inputId = "myKnob", 
-    label = "Display previous:", 
-    value = 50, 
-    min = -100, 
-    displayPrevious = TRUE, 
-    fgColor = "#428BCA", 
+    inputId = "myKnob",
+    label = "Display previous:",
+    value = 50,
+    min = -100,
+    displayPrevious = TRUE,
+    fgColor = "#428BCA",
     inputColor = "#428BCA"
   ),
   verbatimTextOutput(outputId = "res")
 )
 
 server <- function(input, output, session) {
-  
+
   output$res <- renderPrint(input$myKnob)
-  
+
 }
 
 shinyApp(ui = ui, server = server)
@@ -91,4 +91,7 @@ shinyApp(ui = ui, server = server)
 }
 
 }
+}
+\seealso{
+\code{\link{updateKnobInput}} for ganging the value server-side.
 }

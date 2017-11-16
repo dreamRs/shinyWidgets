@@ -10,7 +10,7 @@
 #' @param step Specifies the interval between each selectable value, default to \code{1}.
 #' @param angleOffset Starting angle in degrees, default to \code{0}.
 #' @param angleArc Arc size in degrees, default to \code{360}.
-#' @param cursor Display mode "cursor", don't work properly if \code{width} is neot set in pixel, (\code{TRUE} or \code{FALSE}).
+#' @param cursor Display mode "cursor", don't work properly if \code{width} is not set in pixel, (\code{TRUE} or \code{FALSE}).
 #' @param thickness Gauge thickness, numeric value.
 #' @param lineCap Gauge stroke endings, 'default' or 'round'.
 #' @param displayInput Hide input in the middle of the knob (\code{TRUE} or \code{FALSE}).
@@ -27,36 +27,41 @@
 #' @return Numeric value server-side.
 #' @export
 #'
+#' @seealso \code{\link{updateKnobInput}} for ganging the value server-side.
+#'
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags
+#'
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' if (interactive()) {
-#' 
+#'
 #' library("shiny")
-#' 
+#'
 #' ui <- fluidPage(
 #'   knobInput(
-#'     inputId = "myKnob", 
-#'     label = "Display previous:", 
-#'     value = 50, 
-#'     min = -100, 
-#'     displayPrevious = TRUE, 
-#'     fgColor = "#428BCA", 
+#'     inputId = "myKnob",
+#'     label = "Display previous:",
+#'     value = 50,
+#'     min = -100,
+#'     displayPrevious = TRUE,
+#'     fgColor = "#428BCA",
 #'     inputColor = "#428BCA"
 #'   ),
 #'   verbatimTextOutput(outputId = "res")
 #' )
-#' 
+#'
 #' server <- function(input, output, session) {
-#'   
+#'
 #'   output$res <- renderPrint(input$myKnob)
-#'   
+#'
 #' }
-#' 
+#'
 #' shinyApp(ui = ui, server = server)
-#' 
+#'
 #' }
-#' 
+#'
 #' }
 knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
                       angleOffset = 0, angleArc = 360, cursor = FALSE,
@@ -68,9 +73,9 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
   lineCap <- match.arg(lineCap)
   rotation <- match.arg(rotation)
   knobParams <- dropNulls(list(
-    id = inputId, type = "text", class = "knob-input", 
+    id = inputId, type = "text", class = "knob-input",
     value = value, `data-value` = value, `data-skin` = skin,
-    `data-min` = min, `data-max` = max, `data-step` = step, 
+    `data-min` = min, `data-max` = max, `data-step` = step,
     `data-angleoffset` = angleOffset, `data-anglearc` = angleArc,
     `data-displayprevious` = displayPrevious, `data-thickness` = thickness,
     `data-displayinput` = displayInput, `data-linecap` = lineCap,
@@ -107,31 +112,81 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
-#' @param readOnly Don't work
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' if (interactive()) {
-#' 
-#' # TODO
-#' 
+#'
+#' library("shiny")
+#' library("shinyWidgets")
+#'
+#' ui <- fluidPage(
+#'   tags$h1("knob update examples"),
+#'   br(),
+#'
+#'   fluidRow(
+#'
+#'     column(
+#'       width = 6,
+#'       knobInput(
+#'         inputId = "knob1", label = "Update value:",
+#'         value = 75, angleOffset = 90, lineCap = "round"
+#'       ),
+#'       verbatimTextOutput(outputId = "res1"),
+#'       sliderInput(
+#'         inputId = "upknob1", label = "Update knob:",
+#'         min = 0, max = 100, value = 75
+#'       )
+#'     ),
+#'
+#'     column(
+#'       width = 6,
+#'       knobInput(
+#'         inputId = "knob2", label = "Update label:",
+#'         value = 50, angleOffset = -125, angleArc = 250
+#'       ),
+#'       verbatimTextOutput(outputId = "res2"),
+#'       textInput(inputId = "upknob2", label = "Update label:")
+#'     )
+#'
+#'   )
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res1 <- renderPrint(input$knob1)
+#'
+#'   observeEvent(input$upknob1, {
+#'     updateKnobInput(
+#'       session = session,
+#'       inputId = "knob1",
+#'       value = input$upknob1
+#'     )
+#'   }, ignoreInit = TRUE)
+#'
+#'
+#'   output$res2 <- renderPrint(input$knob2)
+#'   observeEvent(input$upknob2, {
+#'     updateKnobInput(
+#'       session = session,
+#'       inputId = "knob2",
+#'       label = input$upknob2
+#'     )
+#'   }, ignoreInit = TRUE)
+#'
 #' }
-#' 
+#'
+#' shinyApp(ui = ui, server = server)
+#'
 #' }
-updateKnobInput <- function(session, inputId, label = NULL, value = NULL, readOnly = NULL) {
-  message <- dropNulls(list(label = label, value = value, readOnly = readOnly))
+#'
+#' }
+updateKnobInput <- function(session, inputId, label = NULL, value = NULL) {
+  message <- dropNulls(list(label = label, value = value))
   session$sendInputMessage(inputId, message)
 }
 
-
-
-
-
-
-dropNulls <- function(x) {
-  x[!vapply(x, is.null, FUN.VALUE = logical(1))]
-}
 
