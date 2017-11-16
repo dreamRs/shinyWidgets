@@ -46,7 +46,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 \code{TRUE} or \code{FALSE} server-side.
 }
 \description{
-A single chexkbox that changes appearance if checked or not.
+A single checkbox that changes appearance if checked or not.
 }
 \examples{
 \dontrun{

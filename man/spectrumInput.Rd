@@ -18,7 +18,7 @@ spectrumInput(inputId, label, choices = NULL, selected = NULL,
 
 \item{flat}{Display the menu inline.}
 
-\item{options}{Additionnal options to pass to spectrum, possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.}
+\item{options}{Additional options to pass to spectrum, possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }

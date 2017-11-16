@@ -7,7 +7,7 @@
 #' @param choices List of colors to display in the menu.
 #' @param selected The initially selected value.
 #' @param flat Display the menu inline.
-#' @param options Additionnal options to pass to spectrum, possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.
+#' @param options Additional options to pass to spectrum, possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #'

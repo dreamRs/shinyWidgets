@@ -20,7 +20,7 @@
 #' @param inputColor Input value (number) color.
 #' @param bgColor Background color.
 #' @param readOnly Disable knob (\code{TRUE} or \code{FALSE}).
-#' @param skin Change Knob skin, only one option avaible : 'tron'.
+#' @param skin Change Knob skin, only one option available : 'tron'.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #' @param height The height of the input, e.g. \code{400px}, or \code{100\%}.
 #'
@@ -38,6 +38,7 @@
 #' if (interactive()) {
 #'
 #' library("shiny")
+#' library("shinyWidgets")
 #'
 #' ui <- fluidPage(
 #'   knobInput(

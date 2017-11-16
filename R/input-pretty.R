@@ -171,7 +171,7 @@ updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
 
 #' @title Pretty Toggle Input
 #'
-#' @description A single chexkbox that changes appearance if checked or not.
+#' @description A single checkbox that changes appearance if checked or not.
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label_on Display label for the control when value is \code{TRUE}.
