@@ -18,12 +18,16 @@ searchInput(inputId, label = NULL, value = "", placeholder = NULL,
 
 \item{btnSearch}{An icon for the button which validate the search.}
 
-\item{btnReset}{n icon for the button which reset the search.}
+\item{btnReset}{An icon for the button which reset the search.}
 
 \item{width}{The width of the input, e.g. '400px', or '100\%'.}
 }
 \description{
 A text input only triggered when Enter key is pressed or search button clicked
+}
+\note{
+The two buttons ('search' and 'reset') act like \code{actionButton}, you can
+retrieve their value server-side with \code{input$<INPUTID>_search} and \code{input$<INPUTID>_reset}.
 }
 \examples{
 \dontrun{

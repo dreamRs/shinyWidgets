@@ -30,10 +30,10 @@ $.extend(searchInputBinding, {
   	  callback();
      }
    });
-   $('#search' + $escapeSearch(el.id)).on('click', function(event) { // on click
+   $('#' + $escapeSearch(el.id) + '_search').on('click', function(event) { // on click
       callback();
    });
-   $('#reset' + $escapeSearch(el.id)).on('click', function(event) { // on click
+   $('#' + $escapeSearch(el.id) + '_reset').on('click', function(event) { // on click
       $('#se' + $escapeSearch(el.id)).val('');
       callback();
    });

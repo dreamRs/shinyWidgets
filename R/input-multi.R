@@ -42,15 +42,21 @@
 #' }
 #' }
 multiInput <- function(inputId, label, choices = NULL, selected = NULL, options = NULL, width = NULL, choiceNames = NULL, choiceValues = NULL) {
-  selectTag <- tags$select(
-    id = inputId, multiple = "multiple",
-    makeChoices(choices = choices, choiceNames = choiceNames, choiceValues = choiceValues, selected = selected)
+  selected <- shiny::restoreInput(id = inputId, default = selected)
+  selectTag <- htmltools::tags$select(
+    id = inputId, multiple = "multiple", class= "multijs",
+    makeChoices(choices = choices, choiceNames = choiceNames,
+                choiceValues = choiceValues, selected = selected)
   )
-  multiTag <- tags$div(
-    class = "form-group shiny-input-containe",
+  multiTag <- htmltools::tags$div(
+    class = "form-group shiny-input-container",
     style = if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
-    tags$label(class = "control-label", `for` = inputId, label),
-    selectTag, tags$script(sprintf("$('#%s').multi(%s);", inputId, jsonlite::toJSON(options, auto_unbox = TRUE)))
+    htmltools::tags$label(class = "control-label", `for` = inputId, label),
+    selectTag,
+    htmltools::tags$script(
+      sprintf("$('#%s').multi(%s);",
+              escape_jquery(inputId), jsonlite::toJSON(options, auto_unbox = TRUE))
+    )
   )
   attachShinyWidgetsDep(multiTag, "multi")
 }
@@ -71,7 +77,8 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
       lapply(
         X = seq_along(choiceNames),
         FUN = function(i) {
-          tags$option(value = choiceValues[[i]], as.character(choiceNames[[i]]), selected = if(choiceValues[[i]] %in% selected) "selected")
+          htmltools::tags$option(value = choiceValues[[i]], as.character(choiceNames[[i]]),
+                      selected = if(choiceValues[[i]] %in% selected) "selected")
         }
       )
     )
@@ -80,12 +87,25 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
     tagList(
       lapply(
         X = seq_along(choices), FUN = function(i) {
-          tags$option(value = choices[[i]], names(choices)[i], selected = if(choices[[i]] %in% selected) "selected")
+          htmltools::tags$option(value = choices[[i]], names(choices)[i],
+                      selected = if(choices[[i]] %in% selected) "selected")
         }
       )
     )
   }
 }
 
+
+
+updateMultiInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL) {
+  choices <- if (!is.null(choices))
+    choicesWithNames(choices)
+  if (!is.null(selected))
+    selected <- validateSelected(selected, choices, inputId)
+  options <- if (!is.null(choices))
+    paste(capture.output(makeChoices(choices, selected)), collapse = "\n")
+  message <- dropNulls(list(label = label, options = options, value = selected))
+  session$sendInputMessage(inputId, message)
+}
 
 

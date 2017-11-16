@@ -66,41 +66,70 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' @param label Input label.
 #' @param choices List of values to select from (if elements of the list are named then that name rather than the value is displayed to the user)
 #' @param selected	The initially selected value
-#' @param status Color of the buttons
+#' @param status Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.
 #' @param inline If TRUE, render the choices inline (i.e. horizontally)
-#' @param checkbox Checkbox style
+#' @param checkbox Logical, render radio like checkboxes
 #' @return A set of radio buttons that can be added to a UI definition.
 #'
+#' @seealso \code{\link{updateAwesomeRadio}}
+#'
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags
+#'
+#' @export
 #'
 #' @examples
+#' \dontrun{
+#'
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
 #' ui <- fluidPage(
-#'   awesomeRadio(inputId = "somevalue", choices = c("A", "B", "C")),
-#'   verbatimTextOutput("value")
+#'   br(),
+#'   awesomeRadio(
+#'     inputId = "id1", label = "Make a choice:",
+#'     choices = c("graphics", "ggplot2")
+#'   ),
+#'   verbatimTextOutput(outputId = "res1"),
+#'   br(),
+#'   awesomeRadio(
+#'     inputId = "id2", label = "Make a choice:",
+#'     choices = c("base", "dplyr", "data.table"),
+#'     inline = TRUE, status = "danger"
+#'   ),
+#'   verbatimTextOutput(outputId = "res2")
 #' )
-#' server <- function(input, output) {
-#'   output$value <- renderText({ input$somevalue })
-#' }
-#' shinyApp(ui, server)
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res1 <- renderPrint({
+#'     input$id1
+#'   })
+#'
+#'   output$res2 <- renderPrint({
+#'     input$id2
+#'   })
+#'
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools htmlDependency attachDependencies
+#' shinyApp(ui = ui, server = server)
 #'
-#' @export
-
-
+#' }
+#' }
 awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE) {
   choices <- choicesWithNames(choices)
-  awesomeRadioTag <- tagList(
-    tags$div(
-      id=inputId, class="form-group awesome-radio-class shiny-input-container",
-      if (!is.null(label)) tags$label(class="control-label", `for`=inputId, label, style="margin-bottom: 5px; "),
-      if (!is.null(label)) br(),
-      generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)
-    )
+  selected <- shiny::restoreInput(id = inputId, default = selected)
+  selected <- if (is.null(selected)) {
+    choices[[1]]
+  } else {
+    as.character(selected)
+  }
+  awesomeRadioTag <- htmltools::tags$div(
+    id=inputId, class="form-group shiny-input-radiogroup awesome-radio-class shiny-input-container",
+    class=if(inline) "shiny-input-container-inline",
+    if (!is.null(label)) htmltools::tags$label(class="control-label", `for`=inputId, label, style="margin-bottom: 5px; "),
+    if (!is.null(label) & !inline) tags$div(style="height: 7px;"),
+    generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)
   )
   # Dep
   attachShinyWidgetsDep(awesomeRadioTag, "awesome")
@@ -126,7 +155,60 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
 #' @param checkbox Checkbox style
 #'
 #' @export
-
+#'
+#' @importFrom htmltools tagList
+#'
+#' @seealso \code{\link{awesomeRadio}}
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#' library("shiny")
+#' library("shinyWidgets")
+#'
+#'
+#' ui <- fluidPage(
+#'   awesomeRadio(
+#'     inputId = "somevalue",
+#'     choices = c("A", "B", "C"),
+#'     label = "My label"
+#'   ),
+#'
+#'   verbatimTextOutput(outputId = "res"),
+#'
+#'   actionButton(inputId = "updatechoices", label = "Random choices"),
+#'   textInput(inputId = "updatelabel", label = "Update label")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res <- renderPrint({
+#'     input$somevalue
+#'   })
+#'
+#'   observeEvent(input$updatechoices, {
+#'     updateAwesomeRadio(
+#'       session = session, inputId = "somevalue",
+#'       choices = sample(letters, sample(2:6))
+#'     )
+#'   })
+#'
+#'   observeEvent(input$updatelabel, {
+#'     updateAwesomeRadio(
+#'       session = session, inputId = "somevalue",
+#'       label = input$updatelabel
+#'     )
+#'   }, ignoreInit = TRUE)
+#'
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#'
+#' }
+#'
+#' }
 updateAwesomeRadio <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,
           inline = FALSE, status = "primary", checkbox = FALSE)
 {
@@ -137,7 +219,7 @@ updateAwesomeRadio <- function (session, inputId, label = NULL, choices = NULL, 
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- if (!is.null(choices)) {
-    format(tagList(generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)))
+    format(htmltools::tagList(generateAwesomeRadio(session$ns(inputId), choices, selected, inline, status, checkbox)))
   }
   message <- dropNulls(list(label = label, options = options,
                             value = selected))

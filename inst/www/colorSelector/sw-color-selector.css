@@ -1,0 +1,35 @@
+
+/* CSS for Color Selector */
+
+.btn.btn-color-sw.active::after {
+  content: "\e013";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  font-size: 11px;
+  color: #FFF;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 20px;
+}
+
+
+.btn.btn-color-sw {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  /*border-radius: 0;*/
+  position: relative;
+  -webkit-transition: all ease 0.1s;
+  -o-transition: all ease 0.1s;
+  -moz-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+  outline: none;
+}
+
+.btn.btn-color-sw:focus {
+  outline: none !important;
+}

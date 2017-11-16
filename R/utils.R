@@ -1,5 +1,9 @@
 
 
+# Unexported usefull functions from shiny
+
+
+
 # dropNulls
 dropNulls <- function (x)
 {
@@ -83,5 +87,84 @@ validateSelected <- function (selected, choices, inputId)
 }
 
 
+`%||%` <- function(x, y) {
+  if (!is.null(x)) x else y
+}
+
+escape_jquery <- function(string) {
+  gsub(x = string, pattern = "(\\W)", replacement = "\\\\\\\\\\1")
+}
+
+
+
+
+firstChoice <- function (choices)
+{
+  if (length(choices) == 0L)
+    return()
+  choice <- choices[[1]]
+  if (is.list(choice))
+    firstChoice(choice)
+  else choice
+}
+
+
+
+anyNamed <- function (x) {
+  if (length(x) == 0)
+    return(FALSE)
+  nms <- names(x)
+  if (is.null(nms))
+    return(FALSE)
+  any(nzchar(nms))
+}
+
+normalizeChoicesArgs <- function (choices, choiceNames, choiceValues, mustExist = TRUE) {
+  if (is.null(choices)) {
+    if (is.null(choiceNames) || is.null(choiceValues)) {
+      if (mustExist) {
+        stop("Please specify a non-empty vector for `choices` (or, ",
+             "alternatively, for both `choiceNames` AND `choiceValues`).")
+      }
+      else {
+        if (is.null(choiceNames) && is.null(choiceValues)) {
+          return(list(choiceNames = NULL, choiceValues = NULL))
+        }
+        else {
+          stop("One of `choiceNames` or `choiceValues` was set to ",
+               "NULL, but either both or none should be NULL.")
+        }
+      }
+    }
+    if (length(choiceNames) != length(choiceValues)) {
+      stop("`choiceNames` and `choiceValues` must have the same length.")
+    }
+    if (anyNamed(choiceNames) || anyNamed(choiceValues)) {
+      stop("`choiceNames` and `choiceValues` must not be named.")
+    }
+  }
+  else {
+    if (!is.null(choiceNames) || !is.null(choiceValues)) {
+      warning("Using `choices` argument; ignoring `choiceNames` and `choiceValues`.")
+    }
+    choices <- choicesWithNames(choices)
+    choiceNames <- names(choices)
+    choiceValues <- unname(choices)
+  }
+  return(list(choiceNames = as.list(choiceNames), choiceValues = as.list(as.character(choiceValues))))
+}
+
+validateIcon <- function (icon)
+{
+  if (is.null(icon) || identical(icon, character(0))) {
+    return(icon)
+  }
+  else if (inherits(icon, "shiny.tag") && icon$name == "i") {
+    return(icon)
+  }
+  else {
+    stop("Invalid icon. Use Shiny's 'icon()' function to generate a valid icon")
+  }
+}
 
 
