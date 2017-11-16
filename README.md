@@ -115,6 +115,25 @@ sliderTextInput(
 ```
 
 
+### Knob Input
+
+A [jQuery](https://github.com/aterrien/jQuery-Knob) based knob, similar to sliderInput or sliderTextInput: <br>
+![knobInput](inst/images/knobInput.png)
+
+```r
+knobInput(
+  inputId = "knob6", 
+  label = "Cursor mode:", 
+  value = 50, 
+  thickness = 0.3, 
+  cursor = TRUE, 
+  width = 150,
+  height = 150
+)
+
+...
+
+```
 
 ### Select picker
 

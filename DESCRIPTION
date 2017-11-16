@@ -20,7 +20,7 @@ Authors@R: c(
   person("Tristan", "Edwards", role = c("ctb", "cph"), comment = "SweetAlert"),
   person("Fabian", "Lindfors", role = c("ctb", "cph"), comment = "multi.js"),
   person("David", "Granjon", email = "david.granjon@uzh.ch", role = "ctb", comment = "jQuery Knob shiny interface"),
-  person("Anthony", "Terrien", role = c("ctb", "cph", comment = "jQuery Knob"),
+  person("Anthony", "Terrien", role = c("ctb", "cph", comment = "jQuery Knob")),
   person("Daniel", "Eden", role = c("ctb", "cph"), comment = "animate.css"),
   person("Ganapati", "V S", role = c("ctb", "cph"), comment = "bttn.css"),
   person("Brian", "Grinstead", role = c("ctb", "cph"), comment = "Spectrum"),
