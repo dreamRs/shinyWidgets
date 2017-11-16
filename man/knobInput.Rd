@@ -82,7 +82,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   
-  output$res <- renderPrint(input$res)
+  output$res <- renderPrint(input$myKnob)
   
 }
 

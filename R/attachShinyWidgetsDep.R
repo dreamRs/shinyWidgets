@@ -67,7 +67,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "jquery-knob", version = "1.2.13",
-          src = c(href = "jquery-knob"),
+          src = c(href = "shinyWidgets/jquery-knob"),
           script = c("jquery.knob.min.js",
                      "knob-input-binding.js")
         )
