@@ -1,10 +1,9 @@
 #' Adds the content of www to shinyWidgets/
 #'
-#' @import shiny
+#' @importFrom shiny addResourcePath
 #'
 #' @noRd
 #'
-
 .onLoad <- function(...) {
-  addResourcePath('shinyWidgets', system.file('www', package = 'shinyWidgets'))
+  shiny::addResourcePath('shinyWidgets', system.file('www', package = 'shinyWidgets'))
 }

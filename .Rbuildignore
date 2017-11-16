@@ -1,8 +1,13 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^inst\\images$
+^inst\\examples\\garbage$
+^inst\\examples\\bookmarking$
 ^cran-comments\.md$
 ^docs$
 ^vignettes$
 ^_pkgdown\.yml$
 ^\.travis\.yml$
+^data-raw$
+^revdep$
+^codecov\.yml$

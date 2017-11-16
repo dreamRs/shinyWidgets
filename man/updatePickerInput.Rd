@@ -14,12 +14,91 @@ updatePickerInput(session, inputId, label = NULL, selected = NULL,
 
 \item{label}{Display a text in the center of the switch.}
 
-\item{selected}{The initially selected value (or multiple values if multiple = TRUE). If not specified then defaults to the first value for single-select lists and no values for multiple select lists.}
+\item{selected}{The initially selected value (or multiple values if multiple = TRUE).
+If not specified then defaults to the first value for single-select lists
+and no values for multiple select lists.}
 
-\item{choices}{List of values to select from. If elements of the list are named then that name rather than the value is displayed to the user.}
+\item{choices}{List of values to select from. If elements of the list are named
+then that name rather than the value is displayed to the user.}
 
 \item{choicesOpt}{Options for choices in the dropdown menu}
 }
 \description{
 Change the value of a picker input on the client
+}
+\examples{
+\dontrun{
+if (interactive()) {
+
+library("shiny")
+library("shinyWidgets")
+
+ui <- fluidPage(
+  tags$h2("Update pickerInput"),
+
+  fluidRow(
+    column(
+      width = 5, offset = 1,
+      pickerInput(
+        inputId = "p1",
+        label = "classic update",
+        choices = rownames(mtcars)
+      )
+    ),
+    column(
+      width = 5,
+      pickerInput(
+        inputId = "p2",
+        label = "disabled update",
+        choices = rownames(mtcars)
+      )
+    )
+  ),
+
+  fluidRow(
+    column(
+      width = 10, offset = 1,
+      sliderInput(
+        inputId = "up",
+        label = "Select between models with mpg greater than :",
+        width = "50\%",
+        min = min(mtcars$mpg),
+        max = max(mtcars$mpg),
+        value = min(mtcars$mpg),
+        step = 0.1
+      )
+    )
+  )
+
+)
+
+server <- function(input, output, session) {
+
+  observeEvent(input$up, {
+    mtcars2 <- mtcars[mtcars$mpg >= input$up, ]
+
+    # Method 1
+    updatePickerInput(session = session, inputId = "p1",
+                      choices = rownames(mtcars2))
+
+    # Method 2
+    disabled_choices <- !rownames(mtcars) \%in\% rownames(mtcars2)
+    updatePickerInput(
+      session = session, inputId = "p2",
+      choices = rownames(mtcars),
+      choicesOpt = list(
+        disabled = disabled_choices,
+        style = ifelse(disabled_choices,
+                       yes = "color: rgba(119, 119, 119, 0.5);",
+                       no = "")
+      )
+    )
+  }, ignoreInit = TRUE)
+
+}
+
+shinyApp(ui = ui, server = server)
+
+}
+}
 }

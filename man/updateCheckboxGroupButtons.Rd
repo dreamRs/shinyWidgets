@@ -4,15 +4,134 @@
 \alias{updateCheckboxGroupButtons}
 \title{Change the value of a checkboxes group buttons input on the client}
 \usage{
-updateCheckboxGroupButtons(session, inputId, selected = NULL)
+updateCheckboxGroupButtons(session, inputId, label = NULL, choices = NULL,
+  selected = NULL, status = "default", size = "normal",
+  checkIcon = list(), choiceNames = NULL, choiceValues = NULL)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}
 
 \item{inputId}{The id of the input object.}
 
+\item{label}{The label to set.}
+
+\item{choices}{The new choices for the input.}
+
 \item{selected}{The values selected.}
+
+\item{status}{Status, only used if choices is not NULL.}
+
+\item{size}{Size, only used if choices is not NULL.}
+
+\item{checkIcon}{Icon, only used if choices is not NULL.}
+
+\item{choiceNames, choiceValues}{List of names and values, an alternative to choices.}
 }
 \description{
 Change the value of a radio group buttons input on the client
+}
+\examples{
+\dontrun{
+if (interactive()) {
+
+library(shiny)
+library(shinyWidgets)
+
+# Example 1 ----
+
+ui <- fluidPage(
+
+  radioButtons(inputId = "up", label = "Update button :", choices = c("All", "None")),
+
+  checkboxGroupButtons(
+    inputId = "btn", label = "Power :",
+    choices = c("Nuclear", "Hydro", "Solar", "Wind"),
+    selected = "Hydro"
+  ),
+
+  verbatimTextOutput(outputId = "res")
+
+)
+
+server <- function(input,output, session){
+
+  observeEvent(input$up, {
+    if (input$up == "All"){
+      updateCheckboxGroupButtons(session, "btn", selected = c("Nuclear", "Hydro", "Solar", "Wind"))
+    } else {
+      updateCheckboxGroupButtons(session, "btn", selected = character(0))
+    }
+  }, ignoreInit = TRUE)
+
+  output$res <- renderPrint({
+    input$btn
+  })
+}
+
+shinyApp(ui = ui, server = server)
+
+
+# Example 2 ----
+
+library("shiny")
+library("shinyWidgets")
+
+ui <- fluidPage(
+  checkboxGroupButtons(
+    inputId = "somevalue",
+    choices = c("A", "B", "C"),
+    label = "My label"
+  ),
+
+  verbatimTextOutput(outputId = "res"),
+
+  actionButton(inputId = "updatechoices", label = "Random choices"),
+  pickerInput(
+    inputId = "updateselected", label = "Update selected:",
+    choices = c("A", "B", "C"), multiple = TRUE
+  ),
+  textInput(inputId = "updatelabel", label = "Update label")
+)
+
+server <- function(input, output, session) {
+
+  output$res <- renderPrint({
+    input$somevalue
+  })
+
+  observeEvent(input$updatechoices, {
+    newchoices <- sample(letters, sample(2:6))
+    updateCheckboxGroupButtons(
+      session = session, inputId = "somevalue",
+      choices = newchoices
+    )
+    updatePickerInput(
+      session = session, inputId = "updateselected",
+      choices = newchoices
+    )
+  })
+
+  observeEvent(input$updateselected, {
+    updateCheckboxGroupButtons(
+      session = session, inputId = "somevalue",
+      selected = input$updateselected
+    )
+  }, ignoreNULL = TRUE, ignoreInit = TRUE)
+
+  observeEvent(input$updatelabel, {
+    updateCheckboxGroupButtons(
+      session = session, inputId = "somevalue",
+      label = input$updatelabel
+    )
+  }, ignoreInit = TRUE)
+
+}
+
+shinyApp(ui = ui, server = server)
+
+}
+}
+}
+\seealso{
+\code{\link{checkboxGroupButtons}}
 }

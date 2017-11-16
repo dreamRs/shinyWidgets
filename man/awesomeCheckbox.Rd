@@ -14,7 +14,7 @@ awesomeCheckbox(inputId, label, value = FALSE, status = "primary",
 
 \item{value}{Initial value (TRUE or FALSE).}
 
-\item{status}{Color of the buttons}
+\item{status}{Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.}
 
 \item{width}{The width of the input}
 }
@@ -30,12 +30,10 @@ Create a Font Awesome Bootstrap checkbox that can be used to specify logical val
 if (interactive()) {
 
 ui <- fluidPage(
- awesomeCheckboxGroup(
-  inputId = "Id001",
-  label = "Checkboxes with status",
-  choices = c("A", "B", "C"),
-  inline = TRUE, status = "danger"
- ),
+ awesomeCheckbox(inputId = "somevalue",
+                 label = "A single checkbox",
+                 value = TRUE,
+                 status = "danger"),
  verbatimTextOutput("value")
 )
 server <- function(input, output) {
@@ -45,4 +43,7 @@ shinyApp(ui, server)
 }
 }
 
+}
+\seealso{
+\code{\link{updateAwesomeCheckbox}}
 }

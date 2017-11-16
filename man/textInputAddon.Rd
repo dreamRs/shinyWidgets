@@ -10,13 +10,13 @@ textInputAddon(inputId, label, value = "", placeholder = NULL, addon,
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
 
-\item{label}{Input label.}
+\item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{value}{TRUE or FALSE.}
+\item{value}{Initial value..}
 
 \item{placeholder}{A character string giving the user a hint as to what can be entered into the control.}
 
-\item{addon}{An icon}
+\item{addon}{An icon tag, created by \link[shiny]{icon}.}
 
 \item{width}{The width of the input : 'auto', 'fit', '100px', '75\%'}
 }

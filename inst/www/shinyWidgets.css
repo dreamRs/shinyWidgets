@@ -1,5 +1,205 @@
 
-/* material-switch */
+
+/* CSS icone btn */
+
+
+.btn.checkbtn:focus {
+  outline: none !important;
+}
+
+
+
+.btn.checkbtn .check-btn-icon-yes {
+	opacity: 0; display: none;
+}
+.btn.checkbtn.active .check-btn-icon-yes {
+	opacity: 1; display: inline-block;
+}
+
+.btn.checkbtn.active .check-btn-icon-no {
+	opacity: 0; display: none;
+}
+.btn.checkbtn .check-btn-icon-no {
+	opacity: 1; display: inline-block;
+}
+
+
+
+
+/*
+.btn.checkbtn span.glyphicon {
+	opacity: 0; display: none;
+}
+.btn.checkbtn.active span.glyphicon {
+	opacity: 1; display: inline-block;
+}
+*/
+
+
+
+/* From : http://bootsnipp.com/snippets/featured/circle-button */
+/* By http://bootsnipp.com/diglog */
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  margin: 5px;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  box-shadow: 3px 3px 1px #888888;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  /*padding: 10px 16px;*/
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  box-shadow: 3px 3px 1px #888888;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  /*padding: 10px 16px;*/
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+  box-shadow: 3px 3px 1px #888888;
+}
+
+
+
+
+
+
+
+
+
+
+/* http://bootsnipp.com/snippets/8deZ */
+
+
+.btn.btn-circle {
+  width: 49px;
+  height: 49px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 20px;
+  line-height: 2.00;
+  border-radius: 30px;
+}
+
+.btn.btn-circle-xs {
+  width: 19px;
+  height: 19px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 13px;
+  line-height: 0.1;
+  border-radius: 30px;
+}
+
+.btn.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 2px 0;
+  font-size: 20px;
+  line-height: 1.65;
+  border-radius: 30px;
+}
+
+.btn.btn-circle-lg {
+  width: 79px;
+  height: 79px;
+  text-align: center;
+  padding: 13px 0;
+  font-size: 30px;
+  line-height: 2.00;
+  border-radius: 70px;
+}
+
+
+
+
+
+.btn.btn-square {
+  width: 49px;
+  height: 49px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 20px;
+  line-height: 2.00;
+}
+
+.btn.btn-square-xs {
+  width: 19px;
+  height: 19px;
+  text-align: center;
+  padding: 1px 0;
+  font-size: 13px;
+  line-height: 0.1;
+}
+
+.btn.btn-square-sm {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 2px 0;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.btn.btn-square-lg {
+  width: 79px;
+  height: 79px;
+  text-align: center;
+  padding: 13px 0;
+  font-size: 30px;
+  line-height: 2.00;
+}
+
+
+/* CSS for Color Selector */
+
+.btn.btn-color-sw.active::after {
+  content: "\e013";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  font-size: 11px;
+  color: #FFF;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  line-height: 20px;
+}
+
+
+.btn.btn-color-sw {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  /*border-radius: 0;*/
+  position: relative;
+  -webkit-transition: all ease 0.1s;
+  -o-transition: all ease 0.1s;
+  -moz-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+  outline: none;
+}
+
+.btn.btn-color-sw:focus {
+  outline: none !important;
+}
+
+/* From : http://bootsnipp.com/snippets/featured/material-design-switch */
+/* By mouse0270 */
 
 .material-switch > input[type="checkbox"] {
     display: none;
@@ -46,42 +246,19 @@
     left: 20px;
 }
 
+/* Additionnal CSS for multi.js */
 
-
-
-
-/* checkboxGroupButtons */
-
-.btn.checkbtn:focus {
-  outline: none !important;
+a.item:focus, a.item:hover {
+  text-decoration: none;
 }
 
 
-.btn.checkbtn .check-btn-icon-yes {
-	opacity: 0; display: none;
-}
-.btn.checkbtn.active .check-btn-icon-yes {
-	opacity: 1; display: inline-block;
-}
+/* CSS icone btn */
 
-.btn.checkbtn.active .check-btn-icon-no {
-	opacity: 0; display: none;
-}
-.btn.checkbtn .check-btn-icon-no {
-	opacity: 1; display: inline-block;
-}
-
-
-
-
-
-
- /* radio group buttons */
 
 .btn.radiobtn:focus {
   outline: none !important;
 }
-
 
 .btn.radiobtn .radio-btn-icon-yes {
 	opacity: 0; display: none;
@@ -96,57 +273,3 @@
 .btn.radiobtn .radio-btn-icon-no {
 	opacity: 1; display: inline-block;
 }
-
-
-
-
-
-
-
-/* circle button */
-
-.btn-circle {
-  width: 49px !important;
-  height: 49px !important;
-  text-align: center !important;
-  padding: 5px 0 !important;
-  font-size: 20px !important;
-  line-height: 2.00 !important;
-  border-radius: 30px !important;
-}
-
-.btn-circle-xs {
-  width: 19px !important;
-  height: 19px !important;
-  text-align: center !important;
-  padding: 1px 0 !important;
-  font-size: 13px !important;
-  line-height: 0.1 !important;
-  border-radius: 30px !important;
-}
-
-.btn-circle-sm {
-  width: 35px !important;
-  height: 35px !important;
-  text-align: center !important;
-  padding: 2px 0 !important;
-  font-size: 20px !important;
-  line-height: 1.65 !important;
-  border-radius: 30px !important;
-}
-
-.btn-circle-lg {
-  width: 79px !important;
-  height: 79px !important;
-  text-align: center !important;
-  padding: 13px 0 !important;
-  font-size: 30px !important;
-  line-height: 2.00 !important;
-  border-radius: 70px !important;
-}
-
-
-
-
-
-

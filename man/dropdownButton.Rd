@@ -13,24 +13,24 @@ dropdownButton(..., circle = TRUE, status = "default", size = "default",
 
 \item{circle}{Logical. Use a circle button}
 
-\item{status}{Color of the button.}
+\item{status}{Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.}
 
 \item{size}{Size of the button : default, lg, sm, xs.}
 
 \item{icon}{An icon to appear on the button.}
 
-\item{label}{Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip}
+\item{label}{Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip.}
 
-\item{tooltip}{Put a tooltip on the button}
+\item{tooltip}{Put a tooltip on the button, you can customize tooltip with \code{tooltipOptions}.}
 
-\item{right}{The dropdown menu starts on the right}
+\item{right}{Logical. The dropdown menu starts on the right.}
 
-\item{up}{Display the dropdown menu above}
+\item{up}{Logical. Display the dropdown menu above.}
 
-\item{width}{Width of the dropdown menu}
+\item{width}{Width of the dropdown menu content.}
 }
 \description{
-Create a dropdown menu
+Create a dropdown menu with Bootstrap
 }
 \examples{
 \dontrun{
@@ -45,5 +45,4 @@ dropdownButton(
 
 }
 }
-
 }

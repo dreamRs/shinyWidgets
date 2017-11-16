@@ -38,17 +38,32 @@
 #'  }
 #' }
 
-progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NULL, status = NULL, striped = FALSE, title = NULL) {
-  if (value > 100) {
-    stopifnot(!is.null(total))
+progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NULL,
+                        status = NULL, striped = FALSE, title = NULL) {
+  if (!is.null(total)) {
     percent <- round(value / total * 100)
   } else {
     percent <- round(value)
   }
+
+  if (!is.null(title) | !is.null(total)) {
+    title <- htmltools::tags$span(
+      class = "progress-text",
+      title, htmltools::HTML("&nbsp;")
+    )
+  }
+
+  if (!is.null(total)) {
+    total <- htmltools::tags$span(
+      class = "progress-number",
+      htmltools::tags$b(value, id = paste0(id, "-value")),
+      "/", htmltools::tags$span(id = paste0(id, "-total"), total)
+    )
+  }
+
   tagPB <- htmltools::tags$div(
     class = "progress-group",
-    if (!is.null(title) | !is.null(total)) htmltools::tags$span(class = "progress-text", title, htmltools::HTML("&nbsp;")),
-    if (!is.null(total)) htmltools::tags$span(class = "progress-number", htmltools::tags$b(value, id = paste0(id, "-value")), "/", htmltools::tags$span(id = paste0(id, "-total"), total)),
+    title, total,
     htmltools::tags$div(
       class = if (!is.null(size)) paste("progress", size) else "progress",
       htmltools::tags$div(
@@ -84,5 +99,7 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
 
 updateProgressBar <- function(session, id, value, total = NULL, status = NULL) {
   message <- "update-progressBar-shinyWidgets"
-  session$sendCustomMessage(type = message, list(id = id, value = value, total = total, status = status))
+  session$sendCustomMessage(
+    type = message, list(id = id, value = value, total = total, status = status)
+  )
 }

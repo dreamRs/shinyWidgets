@@ -1,6 +1,5 @@
 
 
-
 # shinyWidgets examples ---------------------------------------------------
 
 
@@ -8,6 +7,38 @@
 
 library("shinydashboard")
 library("shinyWidgets")
+
+
+
+
+# dropdown code ----
+code_dropdownButton <- readLines(con = system.file('examples/shinyWidgets/code_dropdownButton.R', package='shinyWidgets', mustWork=TRUE))
+code_dropdownButton <- paste(code_dropdownButton, collapse = "\n")
+code_dropdown <- readLines(con = system.file('examples/shinyWidgets/code_dropdown.R', package='shinyWidgets', mustWork=TRUE))
+code_dropdown <- paste(code_dropdown, collapse = "\n")
+code_sa <- readLines(con = system.file('examples/shinyWidgets/code_sa.R', package='shinyWidgets', mustWork=TRUE))
+code_sa <- paste(code_sa, collapse = "\n")
+
+
+# Flags ----
+countries <- list(
+  "France", "United Kingdom", "Germany", "United States of America", "Belgium", "China", "Spain", "Netherlands", "Mexico",
+  "Italy", "Canada", "Brazil", "Denmark", "Norway", "Switzerland", "Luxembourg", "Israel", "Russian Federation",
+  "Turkey", "Saudi Arabia", "United Arab Emirates"
+)
+flags <- c("fr", "gb", "de", "us", "be", "cn", "es", "nl", "mx", "it", "ca", "br", "dk", "no", "ch", "lu", "il", "ru", "tr", "sa", "ae")
+flags <- sprintf("https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/%s.svg", flags)
+
+
+# IDs
+# Ids widgets
+ID <- function(.shinyWidgetGalleryId) {
+  tmp <- paste0("Id", sprintf("%03d", .shinyWidgetGalleryId))
+  .shinyWidgetGalleryId <<- .shinyWidgetGalleryId + 1
+  return(tmp)
+}
+
+
 
 
 
@@ -24,13 +55,16 @@ sidebar <- dashboardSidebar(
     id = "tabs",
     menuItem(text = "Overview", tabName = "tabOverview", icon = icon("th")),
     menuItem(text = "switchInput", tabName = "tabswitchInput", icon = icon("toggle-on")),
-    menuItem(text = "Checkboxes and Radios", tabName = "tabAwesome", icon = icon("check-square")),
+    menuItem(text = "Pretty Checkboxes & Radios", tabName = "tabPretty", icon = icon("check-circle")),
+    menuItem(text = "Awesome Checkboxes & Radios", tabName = "tabAwesome", icon = icon("check-square")),
     menuItem(text = "checkboxGroup Buttons", tabName = "tabcheckButtons", icon = icon("square")),
     menuItem(text = "radio Buttons", tabName = "tabradioButtons", icon = icon("circle")),
     menuItem(text = "materialSwitch", tabName = "tabMaterialSwitch", icon = icon("toggle-off")),
     menuItem(text = "pickerInput", tabName = "tabPickerInput", icon = icon("caret-down")),
+    menuItem(text = "sliderText", tabName = "tabSliderText", icon = icon("sliders")),
     menuItem(text = "progressBar", tabName = "tabProgressBars", icon = icon("tasks")),
-    menuItem(text = "Other stuffs", tabName = "tabOtherStuff", icon = icon("plus-circle"))
+    menuItem(text = "bttn", tabName = "tabBttn", icon = icon("square-o")),
+    menuItem(text = "dropdowns & sweetalert", tabName = "tabOtherStuff", icon = icon("plus-circle"))
   )
 )
 
@@ -39,7 +73,7 @@ sidebar <- dashboardSidebar(
 
 body <- dashboardBody(
 
-  includeHighlightJs(),
+  .shinyWidgetGalleryFuns$includeHighlightJs(),
 
   tabItems(
 
@@ -54,67 +88,67 @@ body <- dashboardBody(
 
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Awesome checkbox Group",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeCheckboxGroup,
-              args = list(inputId = ID(ids), label = "Checkboxes with status", choices = c("A", "B", "C"), inline = TRUE, status = "danger")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Checkboxes with status", choices = c("A", "B", "C"), inline = TRUE, status = "danger")
             ),
             footer = actionLink(inputId = "toAwesome1", label = "More examples", icon = icon("plus"), style = "color: #d9534f")
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Checkbox Group Buttons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
-              args = list(inputId = ID(ids), label = "Choices", choices = c("Choice 1", "Choice 2", "Choice 3"), status = "danger")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choices", choices = c("Choice 1", "Choice 2", "Choice 3"), status = "danger")
             ),
             footer = actionLink(inputId = "tocheckButtons", label = "More examples", icon = icon("plus"), style = "color: #d9534f")
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Awesome Radio Buttons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeRadio,
-              args = list(inputId = ID(ids), label = "Radio with status", choices = c("A", "B", "C"), selected = "B", status = "warning")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Radio with status", choices = c("A", "B", "C"), selected = "B", status = "warning")
             ),
             footer = actionLink(inputId = "toAwesome2", label = "More examples", icon = icon("plus"), style = "color: #d9534f")
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Radio Group Buttons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
-              args = list(inputId = ID(ids), label = "Choices", choices = c("Choice 1", "Choice 2", "Choice 3"), status = "primary")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choices", choices = c("Choice 1", "Choice 2", "Choice 3"), status = "primary")
             )
           )
         )
         ,
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Awesome checkbox",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeCheckbox,
-              args = list(inputId = ID(ids), label = "A single checkbox", value = TRUE, status = "danger")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "A single checkbox", value = TRUE, status = "danger")
             ),
             footer = actionLink(inputId = "toAwesome3", label = "More examples", icon = icon("plus"), style = "color: #d9534f")
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Material Design Switch",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
-              args = list(inputId = ID(ids), label = "Primary switch", status = "primary", right = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Primary switch", status = "primary", right = TRUE)
             ),
             footer = actionLink(inputId = "toMaterialSwitch", label = "More examples", icon = icon("plus"), style = "color: #d9534f")
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Bootstrap Switch",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), value = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), value = TRUE)
             ),
             footer = actionLink(inputId = "toSwictchInput", label = "More examples", icon = icon("plus"), style = "color: #d9534f")
           )
@@ -123,12 +157,12 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Select Picker",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
               args = list(
-                inputId = ID(ids), label = "With plain HTML",
+                inputId = ID(.shinyWidgetGalleryId), label = "With plain HTML",
                 choices = paste("Badge", c("info", "success", "danger", "primary", "warning")),
                 multiple = TRUE, selected = "Badge danger",
                 choicesOpt = list(
@@ -141,12 +175,12 @@ body <- dashboardBody(
             ),
             footer = actionLink(inputId = "toSelectPicker", label = "More examples", icon = icon("plus"), style = "color: #d9534f")
           ),
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Search field",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = searchInput,
               args = list(
-                inputId = ID(ids), label = "Click search icon to update or hit 'Enter'",
+                inputId = ID(.shinyWidgetGalleryId), label = "Click search icon to update or hit 'Enter'",
                 placeholder = "A placeholder",
                 btnSearch = icon("search"),
                 btnReset = icon("remove"),
@@ -154,12 +188,12 @@ body <- dashboardBody(
               )
             )
           ),
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Multi.js",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = multiInput,
               args = list(
-                inputId = ID(ids),
+                inputId = ID(.shinyWidgetGalleryId),
                 label = "Countries :", choices = NULL,
                 choiceNames = lapply(seq_along(countries), function(i) tagList(tags$img(src = flags[i], width=20, height=15), countries[i])),
                 choiceValues = countries
@@ -187,79 +221,79 @@ body <- dashboardBody(
       fluidRow(
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Default",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids))
+              args = list(inputId = ID(.shinyWidgetGalleryId))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "TRUE at start",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), value = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), value = TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Change ON/OFF labels",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), onLabel = "Yes", offLabel = "No")
+              args = list(inputId = ID(.shinyWidgetGalleryId), onLabel = "Yes", offLabel = "No")
             )
           )
         )
         ,
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Change ON/OFF colors",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), onStatus = "success", offStatus = "danger")
+              args = list(inputId = ID(.shinyWidgetGalleryId), onStatus = "success", offStatus = "danger")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Label in the middle",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), label = "My label")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "My label", labelWidth = "80px")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Size : mini",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), size = "mini")
+              args = list(inputId = ID(.shinyWidgetGalleryId), size = "mini")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Size : large",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), size = "large")
+              args = list(inputId = ID(.shinyWidgetGalleryId), size = "large")
             )
           )
         )
         ,
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Icon in the middle",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
-              args = list(inputId = ID(ids), label = "<i class=\"fa fa-thumbs-up\"></i>")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "<i class=\"fa fa-thumbs-up\"></i>")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update value",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = switchInput,
               args = list(inputId = "switchUp", label = "<i class=\"fa fa-thumbs-up\"></i>")
             ),
@@ -272,11 +306,235 @@ body <- dashboardBody(
 
     ),
 
+
+    # tabPretty ----
+
+    tabItem(
+      tabName = "tabPretty",
+
+      tags$h1("Pretty Checkboxes And Radios", style = "font-weight: bold; color: #d9534f;"),
+      tags$h5(
+        "via ",
+        tags$a(href = "https://lokesh-coder.github.io/pretty-checkbox/", "pretty checkbox"),
+        style="color: #d9534f;"
+      ),
+      br(),
+
+      fluidRow(
+
+        column(
+          width = 4,
+
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Default single checkbox",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckbox,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", value = TRUE)
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "With status",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckbox,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", value = TRUE,
+                          status = "warning")
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "With curve shape",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckbox,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", value = TRUE,
+                          status = "danger", shape = "curve")
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "With outline color",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckbox,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", value = TRUE,
+                          status = "danger", shape = "curve", outline = TRUE)
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "With fill color",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckbox,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", value = TRUE,
+                          status = "success", fill = TRUE)
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "With Font Awesome icon",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckbox,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", value = TRUE,
+                          status = "info", icon = icon("thumbs-up"), plain = TRUE, outline = TRUE)
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "With animation",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckbox,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", value = TRUE,
+                          icon = icon("check"), status = "success", animation = "rotate")
+            )
+          )
+
+        ),
+
+        column(
+          width = 4,
+
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Default switch",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettySwitch,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!")
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Switch fill & status",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettySwitch,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", status = "success", fill = TRUE)
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Switch slim & status",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettySwitch,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Click me!", status = "primary", slim = TRUE)
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Default toggle",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyToggle,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label_on = "Checked!",
+                          label_off = "Unchecked...")
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Toggle with icons & status",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyToggle,
+              args = list(inputId = ID(.shinyWidgetGalleryId),
+                          label_on = "Yes!", icon_on = icon("check"),
+                          status_on = "info", status_off = "warning",
+                          label_off = "No..", icon_off = icon("remove"))
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Toggle with icons",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyToggle,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label_on = "Yes!",
+                          label_off = "No..", outline = TRUE,
+                          plain = TRUE,
+                          icon_on = icon("thumbs-up"),
+                          icon_off = icon("thumbs-down"))
+            )
+          )
+
+        ),
+
+        column(
+          width = 4,
+
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Default checkbox group",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckboxGroup,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"))
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Inline checkbox group & fill status",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckboxGroup,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"),
+                          inline = TRUE, status = "danger", fill = TRUE)
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Checkbox group with icons",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckboxGroup,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"),
+                          icon = icon("user"), animation = "tada")
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Checkbox group with icons, status & outline",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyCheckboxGroup,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"),
+                          icon = icon("check-square-o"), status = "primary", outline = TRUE, animation = "jelly")
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Default radio buttons",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyRadioButtons,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"))
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Inline radio buttons & fill status",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyRadioButtons,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"),
+                          inline = TRUE, status = "danger", fill = TRUE)
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Radio buttons with icons",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyRadioButtons,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"),
+                          icon = icon("user"), animation = "tada")
+            )
+          )
+          ,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Radio buttons with icons, status",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = prettyRadioButtons,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"),
+                          icon = icon("check"), bigger = TRUE,
+                          status = "info", animation = "jelly")
+            )
+          )
+
+        )
+
+      )
+    ),
+
+
     # tabAwesome ----
     tabItem(
       tabName = "tabAwesome",
 
-      tags$h1("Prettier Checkboxes And Radios", style = "font-weight: bold; color: #d9534f;"),
+      tags$h1("Awesome Checkboxes And Radios", style = "font-weight: bold; color: #d9534f;"),
       tags$h5(
         "via ",
         tags$a(href = "http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/", "awesome-bootstrap-checkbox"),
@@ -287,95 +545,95 @@ body <- dashboardBody(
       fluidRow(
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Shiny default",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxInput,
-              args = list(inputId = ID(ids), label = "A single checkbox", value = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "A single checkbox", value = TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Shiny default",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupInput,
-              args = list(inputId = ID(ids), label = "Checkboxes", choices = c("A", "B", "C"), selected = "A")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Checkboxes", choices = c("A", "B", "C"), selected = "A")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Shiny default",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioButtons,
-              args = list(inputId = ID(ids), label = "Radio buttons", choices = c("A", "B", "C"))
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Radio buttons", choices = c("A", "B", "C"))
             )
           )
         ),
 
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Single",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeCheckbox,
-              args = list(inputId = ID(ids), label = "A single checkbox", value = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "A single checkbox", value = TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Checkbox group",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeCheckboxGroup,
-              args = list(inputId = ID(ids), label = "Checkboxes", choices = c("A", "B", "C"), selected = "A")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Checkboxes", choices = c("A", "B", "C"), selected = "A")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Radio buttons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeRadio,
-              args = list(inputId = ID(ids), label = "Radio buttons", choices = c("A", "B", "C"), selected = "A")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Radio buttons", choices = c("A", "B", "C"), selected = "A")
             )
           )
         ),
 
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Another color",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeCheckbox,
-              args = list(inputId = ID(ids), label = "A single checkbox", value = TRUE, status = "info")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "A single checkbox", value = TRUE, status = "info")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Inline & danger",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeCheckboxGroup,
-              args = list(inputId = ID(ids), label = "Checkboxes", choices = c("A", "B", "C"), selected = "A", inline = TRUE, status = "danger")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Checkboxes", choices = c("A", "B", "C"), selected = "A", inline = TRUE, status = "danger")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Inline & success",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeRadio,
-              args = list(inputId = ID(ids), label = "Radio buttons", choices = c("A", "B", "C"), selected = "A", inline = TRUE, status = "success")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Radio buttons", choices = c("A", "B", "C"), selected = "A", inline = TRUE, status = "success")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Inline & checkbox styled",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeRadio,
-              args = list(inputId = ID(ids), label = "Radio buttons", choices = c("A", "B", "C"), selected = "A", inline = TRUE, checkbox =  TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Radio buttons", choices = c("A", "B", "C"), selected = "A", inline = TRUE, checkbox =  TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update selected",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeRadio,
               args = list(inputId = "upAwesomeRadio", label = "Radio buttons", choices = c("A", "B", "C"), selected = "A", inline = TRUE)
             ),
@@ -384,9 +642,9 @@ body <- dashboardBody(
             actionGroupButtons(inputIds = c("upAwesomeRadioA", "upAwesomeRadioB", "upAwesomeRadioC"), labels = c("A", "B", "C"))
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update choices",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = awesomeCheckboxGroup,
               args = list(inputId = "upAwesomeCheckbox", label = "Checkbox group", choices = c("A", "B", "C"), selected = "A", inline = TRUE, status = "warning")
             ),
@@ -410,68 +668,68 @@ body <- dashboardBody(
 
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Default",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C"))
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C"))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "With choices",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), selected = c("B", "D"))
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), selected = c("B", "D"))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Danger status",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), status = "danger")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), status = "danger")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Success status",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), status = "success")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), status = "success")
             )
           )
         ),
 
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Justified",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B"), justified = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B"), justified = TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Vertical",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), direction = "vertical")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), direction = "vertical")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Large",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), size = "lg")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), size = "lg")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
               args = list(inputId = "upcheckboxGroupButtons", label = "Label", choices = c("A", "B", "C", "D"),
                           checkIcon = list(yes = icon("ok", lib = "glyphicon")))
@@ -485,12 +743,12 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Large",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Choose a graph :",
+                inputId = ID(.shinyWidgetGalleryId), label = "Choose a graph :",
                 choices = c(
                   "<i class='fa fa-bar-chart'></i>" = "bar",
                   "<i class='fa fa-line-chart'></i>" = "line",
@@ -500,45 +758,45 @@ body <- dashboardBody(
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Icons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), justified = TRUE,
+                inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), justified = TRUE,
                 checkIcon = list(yes = icon("ok", lib = "glyphicon"))
               )
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "More icons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), status = "primary",
+                inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), status = "primary",
                 checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
               )
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Colored icons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Label", choices = c("Option 1", "Option 2", "Option 3", "Option 4"),
+                inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("Option 1", "Option 2", "Option 3", "Option 4"),
                 checkIcon = list(yes = tags$i(class = "fa fa-check-square", style = "color: steelblue"),
                                  no = tags$i(class = "fa fa-square-o", style = "color: steelblue")))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Separated buttons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = checkboxGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Label", choices = c("Option 1", "Option 2", "Option 3", "Option 4"), individual = TRUE,
+                inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("Option 1", "Option 2", "Option 3", "Option 4"), individual = TRUE,
                 checkIcon = list(yes = tags$i(class = "fa fa-circle", style = "color: steelblue"),
                                  no = tags$i(class = "fa fa-circle-o", style = "color: steelblue"))
               )
@@ -562,68 +820,68 @@ body <- dashboardBody(
 
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Default",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C"))
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C"))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "With choices",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), selected = "B")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), selected = "B")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Danger status",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), status = "danger")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), status = "danger")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Success status",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), status = "success")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), status = "success")
             )
           )
         ),
 
         column(
           width = 4,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Justified",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B"), justified = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B"), justified = TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Vertical",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), direction = "vertical")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), direction = "vertical")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Large",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
-              args = list(inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), size = "lg")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), size = "lg")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
               args = list(inputId = "upradioGroupButtons", label = "Label", choices = c("A", "B", "C", "D"),
                           checkIcon = list(yes = icon("ok", lib = "glyphicon")))
@@ -637,12 +895,12 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Large",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Choose a graph :",
+                inputId = ID(.shinyWidgetGalleryId), label = "Choose a graph :",
                 choices = c(
                   "<i class='fa fa-bar-chart'></i>" = "bar",
                   "<i class='fa fa-line-chart'></i>" = "line",
@@ -652,45 +910,45 @@ body <- dashboardBody(
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Icons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), justified = TRUE,
+                inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), justified = TRUE,
                 checkIcon = list(yes = icon("ok", lib = "glyphicon"))
               )
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "More icons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Label", choices = c("A", "B", "C", "D"), status = "primary",
+                inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("A", "B", "C", "D"), status = "primary",
                 checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
               )
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Colored icons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Label", choices = c("Option 1", "Option 2", "Option 3", "Option 4"),
+                inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("Option 1", "Option 2", "Option 3", "Option 4"),
                 checkIcon = list(yes = tags$i(class = "fa fa-check-square", style = "color: steelblue"),
                                  no = tags$i(class = "fa fa-square-o", style = "color: steelblue")))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Separated buttons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = radioGroupButtons,
               args = list(
-                inputId = ID(ids), label = "Label", choices = c("Option 1", "Option 2", "Option 3", "Option 4"), individual = TRUE,
+                inputId = ID(.shinyWidgetGalleryId), label = "Label", choices = c("Option 1", "Option 2", "Option 3", "Option 4"), individual = TRUE,
                 checkIcon = list(yes = tags$i(class = "fa fa-circle", style = "color: steelblue"),
                                  no = tags$i(class = "fa fa-circle-o", style = "color: steelblue"))
               )
@@ -719,27 +977,27 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Default",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
-              args = list(inputId = ID(ids))
+              args = list(inputId = ID(.shinyWidgetGalleryId))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Label on left",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
-              args = list(inputId = ID(ids), label = "A label")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "A label")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Label on right",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
-              args = list(inputId = ID(ids), label = "A label", right = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "A label", right = TRUE)
             )
           )
 
@@ -748,35 +1006,35 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status primary",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
-              args = list(inputId = ID(ids), label = "Primary", value = TRUE, status = "primary")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Primary", value = TRUE, status = "primary")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status danger",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
-              args = list(inputId = ID(ids), label = "Danger", value = TRUE, status = "danger")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Danger", value = TRUE, status = "danger")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status success",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
-              args = list(inputId = ID(ids), label = "Success", value = TRUE, status = "success")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Success", value = TRUE, status = "success")
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status warning",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
-              args = list(inputId = ID(ids), label = "Warning", value = TRUE, status = "warning")
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Warning", value = TRUE, status = "warning")
             )
           )
 
@@ -785,9 +1043,9 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = materialSwitch,
               args = list(inputId = "upMaterial", label = "Update value", value = FALSE, status = "info")
             ),
@@ -818,45 +1076,45 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Default",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Default", choices = c("a", "b", "c", "d"))
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Default", choices = c("a", "b", "c", "d"))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Options group",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Options group",
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Options group",
                           choices = list(lower = c("a", "b", "c", "d"), upper = c("A", "B", "C", "D")))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Multiple",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Multiple", choices = attr(UScitiesD, "Labels"), multiple = TRUE)
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Multiple", choices = attr(UScitiesD, "Labels"), multiple = TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Live search",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Live search", choices = attr(UScitiesD, "Labels"),
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Live search", choices = attr(UScitiesD, "Labels"),
                           options = list("live-search" = TRUE))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Menu size",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Menu size (5 items visible)", choices = LETTERS,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Menu size (5 items visible)", choices = LETTERS,
                           options = list(`size` = 5))
             )
           )
@@ -866,47 +1124,47 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Placeholder",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Placeholder", choices = c("a", "b", "c", "d"),
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Placeholder", choices = c("a", "b", "c", "d"),
                           options = list(title = "This is a placeholder"))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Selected text format",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Selected text format (select >3 items)", choices = LETTERS,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Selected text format (select >3 items)", choices = LETTERS,
                           options = list(`selected-text-format` = "count > 3"), multiple = TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Style : primary",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Style : primary", choices = c("a", "b", "c", "d"),
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Style : primary", choices = c("a", "b", "c", "d"),
                           options = list(`style` = "btn-primary"))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Style : danger",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Style : danger", choices = c("a", "b", "c", "d"),
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Style : danger", choices = c("a", "b", "c", "d"),
                           options = list(`style` = "btn-danger"))
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Style individual options",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Style individual options with HTML",
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Style individual options with HTML",
                           choices = c("steelblue 150%", "right align + red", "bold", "background color"),
                           choicesOpt = list(
                             style = c("color: steelblue; font-size: 150%;", "color: firebrick; text-align: right;",
@@ -916,11 +1174,11 @@ body <- dashboardBody(
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Style individual options (preserved)",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Style individual options with HTML",
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Style individual options with HTML",
                           choices = c("steelblue 150%", "right align + red", "bold", "background color"),
                           choicesOpt = list(
                             content = c("<div style='color: steelblue; font-size: 150%;'>steelblue 150%</div>",
@@ -936,11 +1194,11 @@ body <- dashboardBody(
         column(
           width = 4,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Icons",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Glyphicon",
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Glyphicon",
                           choices = c("glyphicon-cog", "glyphicon-play", "glyphicon-ok-sign",
                                       "glyphicon-arrow-right", "glyphicon-euro", "glyphicon-music"),
                           choicesOpt = list(
@@ -950,11 +1208,11 @@ body <- dashboardBody(
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Subtext",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Subtext",
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Subtext",
                           choices = rownames(mtcars),
                           choicesOpt = list(
                             subtext = paste("mpg", mtcars$mpg, sep =": ")
@@ -962,18 +1220,18 @@ body <- dashboardBody(
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Select/deselect all",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
-              args = list(inputId = ID(ids), label = "Select/deselect all options", choices = LETTERS,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Select/deselect all options", choices = LETTERS,
                           options = list(`actions-box` = TRUE), multiple = TRUE)
             )
           )
           ,
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update choices",
-            widget_wrapper(
+            .shinyWidgetGalleryFuns$widget_wrapper(
               fun = pickerInput,
               args = list(inputId = "uppickerIcons",
                           label = "Glyphicon <> FontAwesome",
@@ -995,6 +1253,114 @@ body <- dashboardBody(
 
     ),
 
+    # tabSliderText ----
+    tabItem(
+      tabName = "tabSliderText",
+
+      tags$h1("Slider Text", style = "font-weight: bold; color: #d9534f;"),
+
+
+      fluidRow(
+
+        column(
+          width = 4,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "With characters:",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose a letter:", choices = c("a", "b", "c", "d", "e"))
+            )
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Range slider:",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose a range:", choices = month.abb, selected = month.abb[c(4, 8)])
+            )
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Custom range for numeric:",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose a value:", choices = c(1, 10, 100, 500, 1000), grid = TRUE)
+            )
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Decreasing order:",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose a value:", choices = seq(from = 10, to = 1, by = -1), grid = TRUE)
+            )
+          )
+        ),
+
+        column(
+          width = 4,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "With month",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Pick a month:", choices = month.name)
+            )
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Restricted choices",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Restricted choices:", choices = LETTERS,
+                          selected = "A",
+                          from_min = "E", from_max = "T")
+            )
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Restricted choices",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Restricted choices for range:", choices = LETTERS,
+                          selected = c("A", "T"),
+                          from_min = "A", from_max = "E",
+                          to_min = "R", to_max = "Z")
+            )
+          )
+        ),
+
+        column(
+          width = 4,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Likert scale",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "Your choice:", grid = TRUE, force_edges = TRUE,
+                          choices = c("Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree"))
+            )
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Update selected",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = "selectedSliderText", label = "Your choice:", grid = TRUE, force_edges = TRUE,
+                          choices = letters[1:5])
+            ),
+            br(),
+            radioButtons(inputId = "upSelectedSliderText", label = "Update selected:", choices = letters[1:5], inline = TRUE)
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = "Update choices",
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = sliderTextInput,
+              args = list(inputId = "choicesSliderText", label = "Your choice:", grid = TRUE, force_edges = TRUE,
+                          choices = month.abb)
+            ),
+            br(),
+            radioButtons(inputId = "upChoicesSliderText", label = "Update selected:", choices = c("Abbreviations", "Full names"), inline = TRUE)
+          )
+        )
+
+      )
+
+    ),
+
+
 
     # tabProgressBars ----
     tabItem(
@@ -1005,33 +1371,33 @@ body <- dashboardBody(
         column(
           width = 6,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Default",
             progressBar(id = "pb1", value = 50),
             sliderInput(inputId = "uppb1", label = "Update", min = 0, max = 100, value = 50),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb1",
               'progressBar(id = "pb1", value = 50)',
               'updateProgressBar(session = session, id = "pb1", value = input$slider)'
             )
           ),
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status : info & title",
             progressBar(id = "pb2", value = 50, status = "info", title = "This is a progress bar"),
             sliderInput(inputId = "uppb2", label = "Update", min = 0, max = 100, value = 50),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb2",
               'progressBar(id = "pb2", value = 50, status = "info", title = "This is a progress bar")',
               'updateProgressBar(session = session, id = "pb2", value = input$slider)'
             )
           ),
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status : danger & striped : true",
             progressBar(id = "pb3", value = 50, status = "danger", striped = TRUE),
             sliderInput(inputId = "uppb3", label = "Update", min = 0, max = 100, value = 50),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb3",
               'progressBar(id = "pb3", value = 50, status = "danger", striped = TRUE)',
               'updateProgressBar(session = session, id = "pb3", value = input$slider)'
@@ -1042,33 +1408,33 @@ body <- dashboardBody(
         column(
           width = 6,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Display : percent",
             progressBar(id = "pb4", value = 50, display_pct = TRUE),
             sliderInput(inputId = "uppb4", label = "Update", min = 0, max = 100, value = 50, step = 5),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb4",
               'progressBar(id = "pb4", value = 50, display_pct = TRUE)',
               'updateProgressBar(session = session, id = "pb4", value = input$slider)'
             )
           ),
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status : warning & value > 100 (force value and total to appear)",
             progressBar(id = "pb5", value = 1500, total = 5000, status = "warning"),
             sliderInput(inputId = "uppb5", label = "Update", min = 0, max = 5000, value = 50),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb5",
               'progressBar(id = "pb5", value = 1500, total = 5000, status = "warning")',
               'updateProgressBar(session = session, id = "pb5", value = input$slider, total = 5000)'
             )
           ),
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status : success & size : xs",
             progressBar(id = "pb6", value = 50, status = "success", size = "xs"),
             sliderInput(inputId = "uppb6", label = "Update", min = 0, max = 100, value = 50),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb6",
               'progressBar(id = "pb6", value = 50, status = "success", size = "xs")',
               'updateProgressBar(session = session, id = "pb6", value = input$slider)'
@@ -1080,11 +1446,11 @@ body <- dashboardBody(
         column(
           width = 12,
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status update",
             progressBar(id = "pb7", value = 50, display_pct = TRUE, status = "warning"),
             sliderInput(inputId = "uppb7", label = "Update", min = 0, max = 100, value = 50, step = 5),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb7",
               'progressBar(id = "pb7", value = 50, display_pct = TRUE, status = "warning")',
               paste(
@@ -1101,22 +1467,22 @@ body <- dashboardBody(
             )
           ),
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "",
             progressBar(id = "pb8", value = 1500, total = 5000, status = "info", display_pct = TRUE, striped = TRUE, title = "All options"),
             sliderInput(inputId = "uppb8", label = "Update", min = 0, max = 5000, value = 50),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb8",
               'progressBar(id = "pb8", value = 1500, total = 5000, status = "info", display_pct = TRUE, striped = TRUE, title = "All options")',
               'updateProgressBar(session = session, id = "pb8", value = input$slider, total = 5000)'
             )
           ),
 
-          box_wrapper(
+          .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update total",
             progressBar(id = "pb9", value = 1000, total = 1000, display_pct = TRUE),
             sliderInput(inputId = "uppb9", label = "Update", min = 1000, max = 5000, value = 1000, step = 50),
-            pb_code(
+            .shinyWidgetGalleryFuns$pb_code(
               id = "pb9",
               'progressBar(id = "pb9", value = 1000, total = 1000, display_pct = TRUE)',
               'updateProgressBar(session = session, id = "pb9", value = 1000, total = input$slider)'
@@ -1128,6 +1494,124 @@ body <- dashboardBody(
 
     ),
 
+    # tabBttn ----
+    tabItem(
+      tabName = "tabBttn",
+
+      tags$h1("bttn", style = "font-weight: bold; color: #d9534f;"),
+
+      fluidRow(
+
+        column(
+          width = 4,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = NULL, style = "material-circle", color = "danger", icon = icon("bars"))
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "material-flat", style = "material-flat", color = "danger")
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "pill", style = "pill", color = "danger")
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "float", style = "float", color = "danger")
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "unite", style = "unite", color = "danger")
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "fill", style = "fill", color = "danger")
+            ),
+            footer = NULL
+          )
+        ),
+
+
+
+        column(
+          width = 4,
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = NULL, style = "simple", color = "primary", icon = icon("bars"))
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "bordered", style = "bordered", color = "success", icon = icon("sliders"))
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "minimal", style = "minimal", color = "danger")
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "stretch", style = "stretch", color = "warning")
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "jelly", style = "jelly", color = "danger")
+            ),
+            footer = NULL
+          ),
+          .shinyWidgetGalleryFuns$box_wrapper(
+            title = NULL,
+            .shinyWidgetGalleryFuns$widget_wrapper(
+              fun = actionBttn,
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "gradient", style = "gradient", color = "danger", icon = icon("thumbs-up"))
+            ),
+            footer = NULL
+          )
+        )
+
+
+      )
+
+    ),
 
     # tabOtherStuff ----
     tabItem(
@@ -1135,53 +1619,100 @@ body <- dashboardBody(
 
       tags$h1("Other stuffs", style = "font-weight: bold; color: #d9534f;"),
 
-      fluidRow(
 
-        box(
-          title = "Dropdown Button", status = "danger", width = 8,
-          dropdownButton(
-            tags$h3("List of Input"),
-            selectInput(inputId = 'xcol', label = 'X Variable', choices = names(iris)),
-            selectInput(inputId = 'ycol', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]]),
-            sliderInput(inputId = 'clusters', label = 'Cluster count', value = 3, min = 1, max = 9),
-            circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
-            tooltip = tooltipOptions(title = "Click to see inputs !")
+      fluidRow(
+        column(
+          width = 8,
+
+          box(
+            title = "Dropdown Button", status = "danger", width = 12,
+            dropdownButton(
+              tags$h3("List of Inputs"),
+              selectInput(inputId = 'xcol', label = 'X Variable', choices = names(iris)),
+              selectInput(inputId = 'ycol', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]]),
+              sliderInput(inputId = 'clusters', label = 'Cluster count', value = 3, min = 1, max = 9),
+              circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
+              tooltip = tooltipOptions(title = "Click to see inputs !")
+            ),
+            plotOutput(outputId = 'plot1'),
+            tags$p("if you want to hide inputs to focus on a plot.."),
+            tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href="#showcode_dropdownButton")),
+            tags$div(
+              class="collapse", id="showcode_dropdownButton",
+              .shinyWidgetGalleryFuns$rCodeContainer(
+                id="code_dropdownButton",
+                code_dropdownButton
+              )
+            )
           ),
-          plotOutput(outputId = 'plot1'),
-          tags$p("if you want to hide inputs to focus on a plot..")
+
+          box(
+            title = "Dropdown (bis)", status = "danger", width = 12,
+            dropdown(
+              tags$h3("List of Input"),
+              pickerInput(inputId = 'xcol2', label = 'X Variable', choices = names(iris), options = list(`style` = "btn-info")),
+              pickerInput(inputId = 'ycol2', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]], options = list(`style` = "btn-warning")),
+              sliderInput(inputId = 'clusters2', label = 'Cluster count', value = 3, min = 1, max = 9),
+              style = "unite", icon = icon("gear"), status = "danger", width = "300px",
+              animate = animateOptions(enter = animations$fading_entrances$fadeInLeftBig, exit = animations$fading_exits$fadeOutRightBig)
+            ),
+            plotOutput(outputId = 'plot2'),
+            tags$p("In this version you can add animations and pickerInput will work in it."),
+            tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href="#showcode_dropdown")),
+            tags$div(
+              class="collapse", id="showcode_dropdown",
+              .shinyWidgetGalleryFuns$rCodeContainer(
+                id="code_dropdown",
+                code_dropdown
+              )
+            )
+          )
         ),
 
-        box(
-          title = "Sweet Alert", status = "danger", width = 4,
-          tags$span(
-            "via ",
-            tags$a(href = "http://t4t5.github.io/sweetalert/", "sweetalert"),
-            style="color: #d9534f;"
-          ), br(), br(),
-          fluidRow(
-            column(
-              width = 6,
-              actionButton(inputId = "success", label = "Success !", width = "100%", class = "btn-success", style = "color: #FFF"),
-              receiveSweetAlert(messageId = "successmessage"),
-              br(), br(),
-              actionButton(inputId = "tags", label = "With HTML tags", width = "100%"),
-              receiveSweetAlert(messageId = "tagsmessage"),
-              br(), br(),
-              actionButton(inputId = "info", label = "Info", width = "100%", class = "btn-info", style = "color: #FFF"),
-              receiveSweetAlert(messageId = "infomessage")
+        column(
+          width = 4,
+          box(
+            title = "Sweet Alert", status = "danger", width = 12,
+            tags$span(
+              "via ",
+              tags$a(href = "http://t4t5.github.io/sweetalert/", "sweetalert"),
+              style="color: #d9534f;"
+            ), br(), br(),
+            useSweetAlert(),
+            fluidRow(
+              column(
+                width = 6,
+                actionButton(inputId = "success", label = "Success !", width = "100%", class = "btn-success", style = "color: #FFF"),
+                # receiveSweetAlert(messageId = "successmessage"),
+                br(), br(),
+                actionButton(inputId = "tags", label = "With HTML tags", width = "100%"),
+                # receiveSweetAlert(messageId = "tagsmessage"),
+                br(), br(),
+                actionButton(inputId = "info", label = "Info", width = "100%", class = "btn-info", style = "color: #FFF")
+                # receiveSweetAlert(messageId = "infomessage")
+              ),
+              column(
+                width = 6,
+                actionButton(inputId = "error", label = "Error", width = "100%", class = "btn-danger", style = "color: #FFF"),
+                # receiveSweetAlert(messageId = "errormessage"),
+                br(), br(),
+                actionButton(inputId = "warning", label = "Warning", width = "100%", class = "btn-warning", style = "color: #FFF")
+                # receiveSweetAlert(messageId = "warningmessage")
+              )
             ),
-            column(
-              width = 6,
-              actionButton(inputId = "error", label = "Error", width = "100%", class = "btn-danger", style = "color: #FFF"),
-              receiveSweetAlert(messageId = "errormessage"),
-              br(), br(),
-              actionButton(inputId = "warning", label = "Warning", width = "100%", class = "btn-warning", style = "color: #FFF"),
-              receiveSweetAlert(messageId = "warningmessage")
+            br(),
+            tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href="#showcodeSA")),
+            tags$div(
+              class="collapse", id="showcodeSA",
+              .shinyWidgetGalleryFuns$rCodeContainer(
+                id="codeSA",
+                code_sa
+              )
             )
           )
         )
-
       )
+
     )
 
   )

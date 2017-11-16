@@ -5,12 +5,16 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/dreamRs/shinyWidgets.svg?branch=master)](https://travis-ci.org/dreamRs/shinyWidgets)
 [![version](http://www.r-pkg.org/badges/version/shinyWidgets)](https://CRAN.R-project.org/package=shinyWidgets)
-[![cranlogs](http://cranlogs.r-pkg.org/badges/grand-total/shinyWidgets)](http://cran.rstudio.com/web/packages/shinyWidgets/index.html)
-
+[![cranlogs](http://cranlogs.r-pkg.org/badges/shinyWidgets)](http://cran.rstudio.com/web/packages/shinyWidgets/index.html)
+[![Coverage Status](https://img.shields.io/codecov/c/github/dreamRs/shinyWidgets/master.svg)](https://codecov.io/github/dreamRs/shinyWidgets?branch=master)
 
 ## Overview
 
 This package provide some custom widgets to pimp your shiny apps !
+
+
+You can replace classical checkboxes with switch button, add colors to radio buttons and checkbox group, use buttons as radio or checkboxes.
+Each widget has an `update` method to change the value of an input from the server.
 
 
 Installation :
@@ -40,19 +44,74 @@ And how to construct a palette color picker [here](https://dreamrs.github.io/shi
 ### Bootstrap switch
 
 Turn checkboxes into toggle switches : <br>
-![boostrap_switch](inst/images/boostrap_switch.png)
+![switchInput](inst/images/switchInput.png)
 
 ```r
 switchInput(inputId = "id", value = TRUE)
 ```
 
+
+
 ### Material switch
 
 Turn checkboxes into toggle switches (again) : <br>
-![material_switch](inst/images/material_switch.png)
+![materialSwitch](inst/images/materialSwitch.png)
 
 ```r
-materialSwitch(inputId = "id", label = "Primary switch", status = "primary", right = TRUE)
+materialSwitch(inputId = "id", label = "Primary switch", status = "danger")
+```
+
+
+
+### Pretty Checkbox
+
+Checkbox and radio buttons with the beautiful CSS library [pretty-checkbox](https://lokesh-coder.github.io/pretty-checkbox/) :
+![prettycheckbox](inst/images/pretty.png)
+
+
+```r
+prettyCheckbox(
+  inputId = "pretty_1", label = "Check me!", icon = icon("check")
+),
+prettyCheckbox(
+  inputId = "pretty_2", label = "Check me!", icon = icon("thumbs-up"), 
+  status = "default", shape = "curve", animation = "pulse"
+),
+prettyCheckbox(
+  inputId = "pretty_3", label = "Check me!", icon = icon("users"), 
+  animation = "pulse", plain = TRUE, outline = TRUE
+),
+prettyCheckbox(
+  inputId = "pretty_4", label = "Check me!",
+  status = "success", outline = TRUE
+),
+prettyCheckbox(
+  inputId = "pretty_5", label = "Check me!",
+  shape = "round", outline = TRUE, status = "info"
+),
+
+...
+
+```
+
+
+
+
+### Slider Text
+
+Slider with strings, to pass whatever you want : <br>
+![sliderText](inst/images/sliderText.png)
+
+```r
+sliderTextInput(
+  inputId = "mySliderText", 
+  label = "Your choice:", 
+  grid = TRUE, 
+  force_edges = TRUE,
+  choices = c("Strongly disagree",
+              "Disagree", "Neither agree nor disagree", 
+              "Agree", "Strongly agree")
+)
 ```
 
 
@@ -60,16 +119,23 @@ materialSwitch(inputId = "id", label = "Primary switch", status = "primary", rig
 ### Select picker
 
 Dropdown menu with a lot of options : <br>
-![picker_input](inst/images/picker_input.png)
+![pickerInput](inst/images/pickerInput.png)
 
 ```r
 pickerInput(
-  inputId = "id", 
-  label = "Select/deselect all options", 
-  choices = LETTERS, options = list(`actions-box` = TRUE), 
+  inputId = "myPicker", 
+  label = "Select/deselect all + format selected", 
+  choices = LETTERS, 
+  options = list(
+    `actions-box` = TRUE, 
+    size = 10,
+    `selected-text-format` = "count > 3"
+  ), 
   multiple = TRUE
- )
+)
 ```
+
+
 
 ### Checkbox and radio buttons
 
@@ -84,6 +150,7 @@ checkboxGroupButtons(
   checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
 )
 ```
+
 
 
 ### Search bar
@@ -101,6 +168,7 @@ searchInput(
   width = "100%"
 )
 ```
+
 
 
 ### Dropdown button

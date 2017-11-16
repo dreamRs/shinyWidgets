@@ -1,6 +1,6 @@
 Package: shinyWidgets
 Title: Custom Inputs Widgets for Shiny
-Version: 0.3.0
+Version: 0.3.7.940
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
@@ -19,7 +19,12 @@ Authors@R: c(
   person("mouse0270", role = c("ctb", "cph"), comment = "Material Design Switch"),
   person("Tristan", "Edwards", role = c("ctb", "cph"), comment = "SweetAlert"),
   person("Fabian", "Lindfors", role = c("ctb", "cph"), comment = "multi.js"),
-  person("David", "Granjon", email = "david.granjon@uzh.ch", role = "ctb", comment = "jQuery Knob")
+  person("David", "Granjon", email = "david.granjon@uzh.ch", role = "ctb", comment = "jQuery Knob shiny interface"),
+  person("Anthony", "Terrien", role = c("ctb", "cph", comment = "jQuery Knob"),
+  person("Daniel", "Eden", role = c("ctb", "cph"), comment = "animate.css"),
+  person("Ganapati", "V S", role = c("ctb", "cph"), comment = "bttn.css"),
+  person("Brian", "Grinstead", role = c("ctb", "cph"), comment = "Spectrum"),
+  person("Lokesh", "Rajendran", role = c("ctb", "cph"), comment = "pretty-checkbox")
   )
 Description: Some custom inputs widgets to use in Shiny applications, like a toggle switch to replace checkboxes. And other components to pimp your apps.
 URL: https://github.com/dreamRs/shinyWidgets
@@ -27,7 +32,7 @@ BugReports: https://github.com/dreamRs/shinyWidgets/issues
 Depends:
     R (>= 3.2.0)
 Imports:
-    shiny (>= 0.13),
+    shiny (>= 0.14),
     htmltools,
     jsonlite
 License: GPL-3 | file LICENSE
@@ -35,4 +40,8 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
 Suggests: shinydashboard,
-    formatR
+    formatR,
+    viridisLite,
+    RColorBrewer,
+    testthat,
+    covr

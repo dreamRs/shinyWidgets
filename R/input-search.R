@@ -8,8 +8,11 @@
 #' @param value Initial value.
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
 #' @param btnSearch An icon for the button which validate the search.
-#' @param btnReset n icon for the button which reset the search.
+#' @param btnReset An icon for the button which reset the search.
 #' @param width The width of the input, e.g. '400px', or '100\%'.
+#'
+#' @note The two buttons ('search' and 'reset') act like \code{actionButton}, you can
+#' retrieve their value server-side with \code{input$<INPUTID>_search} and \code{input$<INPUTID>_reset}.
 #'
 #' @examples
 #' \dontrun{
@@ -38,40 +41,42 @@
 #' }
 #' }
 #'
-#' @import shiny
-#' @importFrom htmltools validateCssUnit
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags validateCssUnit
 #'
 #' @export
 
-searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL, btnSearch = NULL, btnReset = NULL, width = NULL) {
-
+searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
+                        btnSearch = NULL, btnReset = NULL, width = NULL) {
+  value <- shiny::restoreInput(id = inputId, default = value)
   if (!is.null(btnSearch)) {
-    btnSearch <- tags$button(
-      class="btn btn-default", id = paste0("search", inputId), type="button",
-      btnSearch#,
-      #style = "border-radius: 0 0.5em 0.5em 0 !important; min-width: 70px  !important; border: 0.5px solid #ddd !important; border-bottom: 0px !important;"
+    btnSearch <- htmltools::tags$button(
+      class="btn btn-default action-button",
+      id = paste0(inputId, "_search"),
+      type="button", btnSearch
     )
   }
   if (!is.null(btnReset)) {
-    btnReset <- tags$button(
-      class="btn btn-default", id = paste0("reset", inputId), type="button",
-      btnReset#, style = "border: 0.5px solid #ddd !important; border-bottom: 0px !important;"
+    btnReset <- htmltools::tags$button(
+      class="btn btn-default action-button",
+      id = paste0(inputId, "_reset"),
+      type="button", btnReset
     )
   }
 
-  searchTag <- div(
+  searchTag <- htmltools::tags$div(
     class="form-group shiny-input-container",
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
-    if (!is.null(label)) tags$label(label, `for` = inputId),
-    div(
+    if (!is.null(label)) htmltools::tags$label(label, `for` = inputId),
+    htmltools::tags$div(
       id = inputId,
       class = "input-group search-text",
-      tags$input(id = paste0("se", inputId),
+      htmltools::tags$input(id = paste0("se", inputId),
                  style = "border-radius: 0.5em 0 0 0.5em !important;",
                  type = "text", class = "form-control", value = value,
                  placeholder = placeholder),
-      tags$span(class="input-group-btn", btnReset, btnSearch)
+      htmltools::tags$span(class="input-group-btn", btnReset, btnSearch)
     )
   )
   # Dep

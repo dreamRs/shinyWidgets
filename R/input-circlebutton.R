@@ -11,18 +11,38 @@
 #' @param ... Named attributes to be applied to the button.
 #'
 #'
-#' @import shiny
-#' @importFrom htmltools tagList singleton
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tagList
 #'
 #' @export
 
 
 circleButton <- function (inputId, icon = NULL, status = "default", size = "default", ...)
 {
+  value <- shiny::restoreInput(id = inputId, default = NULL)
+  size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   attachShinyWidgetsDep(
-    tags$button(
+    htmltools::tags$button(
+      id = inputId, type = "button", style = "outline: none;", `data-val` = value,
+      class = paste0("btn btn-", status, " action-button ",
+                     ifelse(size == "default", "btn-circle",
+                            paste0("btn-circle-", size))), icon, ...
+    )
+  )
+}
+
+
+
+
+squareButton <- function (inputId, icon = NULL, status = "default", size = "default", ...)
+{
+  size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
+  attachShinyWidgetsDep(
+    htmltools::tags$button(
       id = inputId, type = "button", style = "outline: none;",
-      class = paste0("btn btn-", status, " action-button ", ifelse(size == "default", "btn-circle", paste0("btn-circle-", size))), icon, ...
+      class = paste0("btn btn-", status, " action-button ",
+                     ifelse(size == "default", "btn-square",
+                            paste0("btn-square-", size))), icon, ...
     )
   )
 }

@@ -1,0 +1,28 @@
+
+.sp-preview-inner {
+  width: 100% !important;
+}
+
+.sp-thumb-inner {
+  border-radius: 15px;
+  border: none;
+}
+
+.sp-palette .sp-thumb-el {
+  border: none;
+}
+
+.sp-preview, .sp-alpha, .sp-thumb-el {
+  background-image: none;
+}
+
+.btn-spectrum {
+  width: 100%;
+}
+
+.sw-spectrum {
+  border-radius: 5px;
+  border: 1px solid #112446;
+  background-color: #FFF;
+  padding: 5px;
+}
