@@ -127,7 +127,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
       dep <- list(
         dep,
         htmltools::htmlDependency(
-          name = "bttn",
+          name = "spectrum",
           version = version,
           src = c(href="shinyWidgets/spectrum"),
           script = c("spectrum.min.js"),
@@ -138,7 +138,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
       dep <- list(
         dep,
         htmltools::htmlDependency(
-          name = "bttn",
+          name = "pretty",
           version = version,
           src = c(href="shinyWidgets/pretty-checkbox"),
           stylesheet = "pretty-checkbox.min.css"
