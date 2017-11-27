@@ -63,12 +63,13 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' Create a set of prettier radio buttons used to select an item from a list.
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
-#' @param label Input label.
+#' @param label Display label for the control, or \code{NULL} for no label.
 #' @param choices List of values to select from (if elements of the list are named then that name rather than the value is displayed to the user)
-#' @param selected	The initially selected value
+#' @param selected The initially selected value (if not specified then defaults to the first value).
 #' @param status Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.
-#' @param inline If TRUE, render the choices inline (i.e. horizontally)
-#' @param checkbox Logical, render radio like checkboxes
+#' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
+#' @param checkbox Logical, render radio like checkboxes (with a square shape).
+#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #' @return A set of radio buttons that can be added to a UI definition.
 #'
 #' @seealso \code{\link{updateAwesomeRadio}}
@@ -116,7 +117,7 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #'
 #' }
 #' }
-awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE) {
+awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE, width = NULL) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
   selected <- if (is.null(selected)) {
@@ -127,6 +128,8 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
   awesomeRadioTag <- htmltools::tags$div(
     id=inputId, class="form-group shiny-input-radiogroup awesome-radio-class shiny-input-container",
     class=if(inline) "shiny-input-container-inline",
+    style = if (!is.null(width))
+      paste0("width: ", htmltools::validateCssUnit(width), ";"),
     if (!is.null(label)) htmltools::tags$label(class="control-label", `for`=inputId, label, style="margin-bottom: 5px; "),
     if (!is.null(label) & !inline) tags$div(style="height: 7px;"),
     generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)

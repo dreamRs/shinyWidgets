@@ -5,22 +5,24 @@
 \title{Awesome Radio Buttons Input Control}
 \usage{
 awesomeRadio(inputId, label, choices, selected = NULL, inline = FALSE,
-  status = "primary", checkbox = FALSE)
+  status = "primary", checkbox = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
 
-\item{label}{Input label.}
+\item{label}{Display label for the control, or \code{NULL} for no label.}
 
 \item{choices}{List of values to select from (if elements of the list are named then that name rather than the value is displayed to the user)}
 
-\item{selected}{The initially selected value}
+\item{selected}{The initially selected value (if not specified then defaults to the first value).}
 
-\item{inline}{If TRUE, render the choices inline (i.e. horizontally)}
+\item{inline}{If \code{TRUE}, render the choices inline (i.e. horizontally).}
 
 \item{status}{Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.}
 
-\item{checkbox}{Logical, render radio like checkboxes}
+\item{checkbox}{Logical, render radio like checkboxes (with a square shape).}
+
+\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }
 \value{
 A set of radio buttons that can be added to a UI definition.
