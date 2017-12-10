@@ -21,3 +21,13 @@ $(function () {
     event.stopPropagation(); //Always stop propagation
 });
 });
+
+
+Shiny.addCustomMessageHandler('toggle-dropdown-button', function(data) {
+  var elpar = $('#' + data.id).parent();
+  //if (!elpar.is("open")) {
+    $('#' + data.id).dropdown('toggle');
+  //}
+  //$('#' + data.id).trigger('click.bs.dropdown');
+});
+

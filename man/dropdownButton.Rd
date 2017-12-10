@@ -6,7 +6,7 @@
 \usage{
 dropdownButton(..., circle = TRUE, status = "default", size = "default",
   icon = NULL, label = NULL, tooltip = FALSE, right = FALSE,
-  up = FALSE, width = NULL)
+  up = FALSE, width = NULL, inputId = NULL)
 }
 \arguments{
 \item{...}{List of tag to be displayed into the dropdown menu.}
@@ -28,6 +28,9 @@ dropdownButton(..., circle = TRUE, status = "default", size = "default",
 \item{up}{Logical. Display the dropdown menu above.}
 
 \item{width}{Width of the dropdown menu content.}
+
+\item{inputId}{Optionnal, id for the button, the button act like an \code{actionButton},
+and you can use the id to toggle the droddown menu server-side.}
 }
 \description{
 Create a dropdown menu with Bootstrap

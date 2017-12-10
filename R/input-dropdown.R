@@ -13,6 +13,8 @@
 #' @param right Logical. The dropdown menu starts on the right.
 #' @param up Logical. Display the dropdown menu above.
 #' @param width Width of the dropdown menu content.
+#' @param inputId Optionnal, id for the button, the button act like an \code{actionButton},
+#' and you can use the id to toggle the droddown menu server-side.
 #'
 #'
 #' @importFrom htmltools validateCssUnit tags tagList
@@ -31,41 +33,47 @@
 #'
 #' }
 #' }
-dropdownButton <- function(..., circle = TRUE, status = "default", size = "default", icon = NULL,
-                           label = NULL, tooltip = FALSE, right = FALSE, up = FALSE, width = NULL) {
+dropdownButton <- function(..., circle = TRUE, status = "default",
+                           size = "default", icon = NULL,
+                           label = NULL, tooltip = FALSE, right =
+                             FALSE, up = FALSE, width = NULL,
+                           inputId = NULL) {
 
   status <- match.arg(
     arg = status,
     choices = c("default", "primary", "success", "info", "warning", "danger")
   )
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
-  buttonID <- paste0("drop", sample.int(1e9, 1))
+  if (is.null(inputId)) {
+    inputId <- paste0("drop", sample.int(1e9, 1))
+  }
 
   # dropdown content
   html_ul <- list(
     class = paste("dropdown-menu", ifelse(right, "dropdown-menu-right", "")),
     class = "dropdown-shinyWidgets",
-    id = paste("dropdown-menu", buttonID, sep = "-"),
+    id = paste("dropdown-menu", inputId, sep = "-"),
     style = if (!is.null(width))
       paste0("width: ", htmltools::validateCssUnit(width), ";"),
-    `aria-labelledby` = buttonID,
-    lapply(X = list(...), FUN = htmltools::tags$li, style = "margin-left: 10px; margin-right: 10px;")
+    `aria-labelledby` = inputId,
+    lapply(X = list(...), FUN = htmltools::tags$li, style =
+             "margin-left: 10px; margin-right: 10px;")
   )
 
   # button
   if (circle) {
     html_button <- circleButton(
-      inputId = buttonID, icon = icon, status = status, size = size,
+      inputId = inputId, icon = icon, status = status, size = size,
       class = "dropdown-toggle",
       # onclick = paste0("$(this).parent().toggleClass('open');")
       `data-toggle` = "dropdown"
     )
   } else {
     html_button <- list(
-      class = paste0("btn btn-", status," dropdown-toggle "),
+      class = paste0("btn btn-", status," action-button dropdown-toggle "),
       class = if (size == "default") paste0("btn-", size),
       type = "button",
-      id = buttonID,
+      id = inputId,
       `data-toggle` = "dropdown",
       # onclick = paste0("$(this).parent().toggleClass('open');"),
       `aria-haspopup` = "true",
@@ -91,7 +99,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
     tooltipJs <- htmltools::tags$script(
       sprintf(
         "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
-        buttonID, tooltip$placement, tooltip$title, tooltip$html
+        inputId, tooltip$placement, tooltip$title, tooltip$html
       )
     )
   } else {
@@ -102,7 +110,6 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
     class = ifelse(up, "dropup", "dropdown"),
     html_button,
     do.call(htmltools::tags$ul, html_ul),
-    # tags$script(paste0("$('#", paste("dropdown-menu", buttonID, sep = "-"), "').click(function(e) {e.stopPropagation();});")),
     tooltipJs
   )
   attachShinyWidgetsDep(dropdownTag, "dropdown")
@@ -121,7 +128,26 @@ dropdownButton <- function(..., circle = TRUE, status = "default", size = "defau
 #'
 #' @export
 
-tooltipOptions <- function(placement = "right", title = "Params", html = FALSE) {
+tooltipOptions <- function(placement = "right", title = "Params", html
+                           = FALSE) {
   list(placement = placement, title = title, html = html)
 }
 
+
+
+
+#' Toggle a dropdown menu
+#'
+#' Open or close a dropdown menu server-side
+#'
+#' @param inputId Id for the dropdown to toggle
+#'
+#' @export
+#'
+# @examples
+toggleDropdownButton <- function(inputId) {
+  session <- shiny::getDefaultReactiveDomain()
+  session$sendCustomMessage(
+    type = "toggle-dropdown-button", list(id = inputId)
+  )
+}
