@@ -1678,7 +1678,7 @@ body <- dashboardBody(
               tags$a(href = "http://t4t5.github.io/sweetalert/", "sweetalert"),
               style="color: #d9534f;"
             ), br(), br(),
-            useSweetAlert(),
+            # useSweetAlert(),
             fluidRow(
               column(
                 width = 6,
@@ -1709,6 +1709,12 @@ body <- dashboardBody(
                 code_sa
               )
             )
+          ),
+          box(
+            title = "Confirmation dialog", status = "danger", width = 12,
+            actionButton(inputId = "launch_confirmation", label = "Ask for confirmation"),
+            tags$br(),
+            verbatimTextOutput(outputId = "res_confirmation")
           )
         )
       )

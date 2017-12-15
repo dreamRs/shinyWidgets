@@ -298,6 +298,14 @@ function(input, output, session) {
   })
 
 
+  observeEvent(input$launch_confirmation, {
+    confirmSweetAlert(
+      session = session, inputId = "myconfirmation", type = "warning",
+      title = "Want to confirm ?", danger_mode = TRUE
+    )
+  })
+  output$res_confirmation <- renderPrint(input$myconfirmation)
+
   # Progress Bars ----
 
   lapply(
