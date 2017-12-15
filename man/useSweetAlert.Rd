@@ -3,23 +3,34 @@
 \name{useSweetAlert}
 \alias{useSweetAlert}
 \alias{sendSweetAlert}
+\alias{confirmSweetAlert}
 \title{Display a Sweet Alert}
 \usage{
 useSweetAlert()
 
-sendSweetAlert(session, title = "Title", text = "Text", type = NULL,
-  html = FALSE)
+sendSweetAlert(session, title = "Title", text = NULL, type = NULL)
+
+confirmSweetAlert(session, title = "Are you sure ?", text = NULL,
+  type = NULL, btn_labels = c("Cancel", "Confirm"))
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}
 
-\item{title}{Title of the alert}
+\item{title}{Title of the alert.}
 
-\item{text}{Text of the alert}
+\item{text}{Text of the alert.}
 
-\item{type}{Type of the alert : null, info, success, warning or error}
+\item{type}{Type of the alert : info, success, warning or error}
 
-\item{html}{Logical. Use HTML in the text}
+\item{btn_labels}{Labels for buttons.}
+
+\item{session}{The \code{session} object passed to function given to shinyServer.}
+
+\item{title}{Title of the alert.}
+
+\item{text}{Text of the alert.}
+
+\item{type}{Type of the alert : info, success, warning or error.}
 }
 \description{
 Send a message from the server and launch a sweet alert in the UI.

@@ -63,9 +63,12 @@
 #'
 #' @export
 useSweetAlert <- function() {
-  js <- "Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {swal({title: data.title, text: data.text, type: data.type, html: data.html})});"
-  tagSweet <- htmltools::tags$script(js)
-  attachShinyWidgetsDep(tagSweet, "sweetalert")
+  # js <- "Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {swal(data)});"
+  # js <- paste(js, sep = "\n",
+  #   "Shiny.addCustomMessageHandler('sweetalert-sw-confirm', function(data) {swal(data)});"
+  # )
+  # tagSweet <- htmltools::tags$script(js)
+  attachShinyWidgetsDep(tags$span(), "sweetalert")
 }
 
 
@@ -75,27 +78,58 @@ useSweetAlert <- function() {
 #' @rdname useSweetAlert
 #'
 #' @param session The \code{session} object passed to function given to shinyServer.
-#' @param title Title of the alert
-#' @param text Text of the alert
-#' @param type Type of the alert : null, info, success, warning or error
-#' @param html Logical. Use HTML in the text
+#' @param title Title of the alert.
+#' @param text Text of the alert.
+#' @param type Type of the alert : info, success, warning or error
 #'
 # @seealso \code{\link{receiveSweetAlert}}
 #'
 #' @importFrom jsonlite toJSON
-#' @importFrom shiny getDefaultReactiveDomain
 #' @importFrom htmltools tags
 #'
 #' @export
-
-sendSweetAlert <- function(session, title = "Title", text = "Text", type = NULL, html = FALSE) {
+sendSweetAlert <- function(session, title = "Title", text = NULL, type = NULL) {
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
-  html <- jsonlite::toJSON(html, auto_unbox = TRUE)
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
   #session <- shiny::getDefaultReactiveDomain()
   session$sendCustomMessage(
     type = "sweetalert-sw",
-    message = list(title = title, text = text, type = type, html = html)
+    message = list(title = title, text = text, icon = type)
   )
 }
+
+
+
+
+#' @rdname useSweetAlert
+#'
+#' @param session The \code{session} object passed to function given to shinyServer.
+#' @param title Title of the alert.
+#' @param text Text of the alert.
+#' @param type Type of the alert : info, success, warning or error.
+#' @param btn_labels Labels for buttons.
+#'
+# @seealso \code{\link{receiveSweetAlert}}
+#'
+#' @importFrom jsonlite toJSON
+#' @importFrom htmltools tags
+#'
+#' @export
+confirmSweetAlert <- function(session, title = "Are you sure ?", text = NULL, type = NULL, btn_labels = c("Cancel", "Confirm")) {
+  id <- paste0("sac", sample.int(1e6, 1))
+  if (is.null(type))
+    type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
+  text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
+  btn_labels <- jsonlite::toJSON(btn_labels)
+  #session <- shiny::getDefaultReactiveDomain()
+  session$sendCustomMessage(
+    type = "sweetalert-sw-confirm",
+    message = list(id = id, title = title, text = text, icon = type, buttons = btn_labels)
+  )
+  while(is.null(session$input[[id]])) {
+    Sys.sleep(0.01)
+  }
+  return(session$input[[id]])
+}
+

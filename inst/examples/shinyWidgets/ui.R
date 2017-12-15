@@ -1684,8 +1684,8 @@ body <- dashboardBody(
                 width = 6,
                 actionButton(inputId = "success", label = "Success !", width = "100%", class = "btn-success", style = "color: #FFF"),
                 # receiveSweetAlert(messageId = "successmessage"),
-                br(), br(),
-                actionButton(inputId = "tags", label = "With HTML tags", width = "100%"),
+                # br(), br(),
+                # actionButton(inputId = "tags", label = "With HTML tags", width = "100%"),
                 # receiveSweetAlert(messageId = "tagsmessage"),
                 br(), br(),
                 actionButton(inputId = "info", label = "Info", width = "100%", class = "btn-info", style = "color: #FFF")
