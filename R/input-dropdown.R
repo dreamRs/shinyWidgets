@@ -71,7 +71,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
   } else {
     html_button <- list(
       class = paste0("btn btn-", status," action-button dropdown-toggle "),
-      class = if (size == "default") paste0("btn-", size),
+      class = if (size != "default") paste0("btn-", size),
       type = "button",
       id = inputId,
       `data-toggle` = "dropdown",
