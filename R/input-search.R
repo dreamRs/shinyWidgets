@@ -42,7 +42,7 @@
 #' }
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools tags validateCssUnit
+#' @importFrom htmltools tags validateCssUnit singleton
 #'
 #' @export
 
@@ -51,18 +51,24 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
   value <- shiny::restoreInput(id = inputId, default = value)
   if (!is.null(btnSearch)) {
     btnSearch <- htmltools::tags$button(
-      class="btn btn-default action-button",
+      class="btn btn-default btn-addon action-button",
       id = paste0(inputId, "_search"),
       type="button", btnSearch
     )
   }
   if (!is.null(btnReset)) {
     btnReset <- htmltools::tags$button(
-      class="btn btn-default action-button",
+      class="btn btn-default btn-addon action-button",
       id = paste0(inputId, "_reset"),
       type="button", btnReset
     )
   }
+
+  css_btn_addon <- paste0(
+    ".btn-addon{", "font-size:14.5px;",
+    "margin:0 0 0 0 !important;",
+    "display: inline-block !important;", "}"
+  )
 
   searchTag <- htmltools::tags$div(
     class="form-group shiny-input-container",
@@ -73,11 +79,12 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
       id = inputId,
       class = "input-group search-text",
       htmltools::tags$input(id = paste0("se", inputId),
-                 style = "border-radius: 0.5em 0 0 0.5em !important;",
+                 style = "border-radius: 0.25em 0 0 0.25em !important;",
                  type = "text", class = "form-control", value = value,
                  placeholder = placeholder),
-      htmltools::tags$span(class="input-group-btn", btnReset, btnSearch)
-    )
+      htmltools::tags$div(class="input-group-btn", btnReset, btnSearch)
+    ),
+    singleton(tags$head(tags$style(css_btn_addon)))
   )
   # Dep
   attachShinyWidgetsDep(searchTag)
