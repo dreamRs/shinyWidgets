@@ -6,7 +6,8 @@
 #' @param ... List of tag to be displayed into the dropdown menu.
 #' @param circle Logical. Use a circle button
 #' @param icon An icon to appear on the button.
-#' @param status Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.
+#' @param status Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
+#'  Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.
 #' @param size Size of the button : default, lg, sm, xs.
 #' @param label Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip.
 #' @param tooltip Put a tooltip on the button, you can customize tooltip with \code{tooltipOptions}.
@@ -38,11 +39,6 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
                            label = NULL, tooltip = FALSE, right =
                              FALSE, up = FALSE, width = NULL,
                            inputId = NULL) {
-
-  status <- match.arg(
-    arg = status,
-    choices = c("default", "primary", "success", "info", "warning", "danger")
-  )
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   if (is.null(inputId)) {
     inputId <- paste0("drop", sample.int(1e9, 1))

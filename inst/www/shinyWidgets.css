@@ -37,48 +37,6 @@
 
 
 
-/* From : http://bootsnipp.com/snippets/featured/circle-button */
-/* By http://bootsnipp.com/diglog */
-
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  margin: 5px;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-  box-shadow: 3px 3px 1px #888888;
-}
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  /*padding: 10px 16px;*/
-  font-size: 18px;
-  line-height: 1.33;
-  border-radius: 25px;
-  box-shadow: 3px 3px 1px #888888;
-}
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  /*padding: 10px 16px;*/
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-  box-shadow: 3px 3px 1px #888888;
-}
-
-
-
-
-
-
-
-
-
-
 /* http://bootsnipp.com/snippets/8deZ */
 
 
@@ -108,7 +66,7 @@
   text-align: center;
   padding: 2px 0;
   font-size: 20px;
-  line-height: 1.65;
+  line-height: 50%;
   border-radius: 30px;
 }
 
@@ -273,3 +231,73 @@ a.item:focus, a.item:hover {
 .btn.radiobtn .radio-btn-icon-no {
 	opacity: 1; display: inline-block;
 }
+
+
+
+
+
+
+
+/* Option 1 */
+/*
+.btn.radiobtn span.glyphicon-unchecked {
+	opacity: 1; display: inline-block;
+}
+.btn.radiobtn.active span.glyphicon-unchecked {
+	opacity: 1; display: none;
+}
+
+.btn.radiobtn span.glyphicon-check {
+	opacity: 1; display: none;
+}
+.btn.radiobtn.active span.glyphicon-check {
+	opacity: 1; display: inline-block;
+}
+*/
+
+
+
+/* Option 2*/
+/*
+.btn.radiobtn span.glyphicon-remove {
+	opacity: 1; display: inline-block;
+}
+.btn.radiobtn.active span.glyphicon-remove {
+	opacity: 1; display: none;
+}
+
+.btn.radiobtn span.glyphicon-ok {
+	opacity: 1; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok {
+	opacity: 1; display: inline-block;
+}
+*/
+
+
+/* Option 3*/
+/*
+.btn.radiobtn span.glyphicon-ok.blank.hide {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok.blank.hide {
+	opacity: 0; display: inline-block;
+}
+.btn.radiobtn span.glyphicon-ok.blank {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok.blank {
+	opacity: 1; display: inline-block;
+}
+*/
+
+/* Option 4*/
+/*
+.btn.radiobtn span.glyphicon-check.blank {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-check.blank {
+	opacity: 1; display: inline-block;
+}
+*/
+

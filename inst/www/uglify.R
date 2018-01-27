@@ -40,10 +40,10 @@ css_files <- list.files(path = "inst/www/", pattern = "\\.css$", full.names = TR
 
 # keep the ones not integrated via a widgets
 css_files <- css_files[
-  grepl(pattern = "checkboxGroupButtons", x = css_files) |
+  grepl(pattern = "checkboxGroupButtons", x = css_files, fixed = TRUE) |
     grepl(pattern = "radioGroupButtons", x = css_files) |
     grepl(pattern = "circle-button", x = css_files) |
-    grepl(pattern = "material-switch", x = css_files) |
+    grepl(pattern = "material-switch", x = css_files, fixed = TRUE) |
     grepl(pattern = "multi-shiny", x = css_files) |
     grepl(pattern = "sw-color-selector", x = css_files)
   ]

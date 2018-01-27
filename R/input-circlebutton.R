@@ -26,7 +26,7 @@ circleButton <- function (inputId, icon = NULL, status = "default", size = "defa
       id = inputId, type = "button", style = "outline: none;", `data-val` = value,
       class = paste0("btn btn-", status, " action-button ",
                      ifelse(size == "default", "btn-circle",
-                            paste0("btn-circle-", size))), icon, ...
+                            paste0("btn-circle-", size))), tags$span(icon), ...
     )
   )
 }
