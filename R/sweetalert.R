@@ -80,18 +80,30 @@ use_sweet_alert <- function() {
 #' shinyApp(
 #'   ui = fluidPage(
 #'     tags$h1("Click the button"),
-#'     actionButton(inputId = "success", label = "Launch a success sweet alert"),
-#'     actionButton(inputId = "error", label = "Launch an error sweet alert")
+#'     actionButton(
+#'       inputId = "success",
+#'       label = "Launch a success sweet alert"
+#'     ),
+#'     actionButton(
+#'       inputId = "error",
+#'       label = "Launch an error sweet alert"
+#'     )
 #'   ),
 #'   server = function(input, output, session) {
 #'     observeEvent(input$success, {
 #'       sendSweetAlert(
-#'         session = session, title = "Success !!", text = "All in order", type = "success"
+#'         session = session,
+#'         title = "Success !!",
+#'         text = "All in order",
+#'         type = "success"
 #'       )
 #'     })
 #'     observeEvent(input$error, {
 #'       sendSweetAlert(
-#'         session = session, title = "Error !!", text = "It's broken...", type = "error"
+#'         session = session,
+#'         title = "Error !!",
+#'         text = "It's broken...",
+#'         type = "error"
 #'       )
 #'     })
 #'   }
@@ -151,7 +163,10 @@ sendSweetAlert <- function(session, title = "Title", text = NULL, type
 #'
 #' ui <- fluidPage(
 #'   tags$h1("Confirm sweet alert"),
-#'   actionButton(inputId = "go", label = "Launch confirmation dialog"),
+#'   actionButton(
+#'     inputId = "go",
+#'     label = "Launch confirmation dialog"
+#'   ),
 #'   verbatimTextOutput(outputId = "res")
 #' )
 #'
@@ -294,22 +309,34 @@ inputSweetAlert <- function(session, inputId, title = NULL, text = NULL,
 #' ui <- fluidPage(
 #'   tags$h1("Progress bar in Sweet Alert"),
 #'   useSweetAlert(), # /!\ needed with 'progressSweetAlert'
-#'   actionButton(inputId = "go", label = "Launch long calculation !")
+#'   actionButton(
+#'     inputId = "go",
+#'     label = "Launch long calculation !"
+#'   )
 #' )
 #'
 #' server <- function(input, output, session) {
 #'
 #'   observeEvent(input$go, {
 #'     progressSweetAlert(
-#'       session = session, id = "myprogress", title = "Work in progress",
+#'       session = session, id = "myprogress",
+#'       title = "Work in progress",
 #'       display_pct = TRUE, value = 0
 #'     )
 #'     for (i in seq_len(50)) {
 #'       Sys.sleep(0.1)
-#'       updateProgressBar(session = session, id = "myprogress", value = i*2)
+#'       updateProgressBar(
+#'         session = session,
+#'         id = "myprogress",
+#'          value = i*2
+#'       )
 #'     }
 #'     closeSweetAlert(session = session)
-#'     sendSweetAlert(session = session, title =" Calculation completed !", type = "success")
+#'     sendSweetAlert(
+#'       session = session,
+#'       title =" Calculation completed !",
+#'       type = "success"
+#'     )
 #'   })
 #'
 #' }
@@ -335,9 +362,11 @@ progressSweetAlert <- function(session, id, value, total = NULL,
       )
     )
   )
-  shiny::insertUI(selector = "body", ui = pbui, where = "afterBegin",
-                  immediate = TRUE)
-
+  shiny::insertUI(
+    selector = "body", ui = pbui,
+    where = "afterBegin",
+    immediate = TRUE
+  )
   session$sendCustomMessage(
     type = "sweetalert-sw-progress",
     message = list(

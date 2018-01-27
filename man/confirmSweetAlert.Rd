@@ -37,7 +37,10 @@ library("shinyWidgets")
 
 ui <- fluidPage(
   tags$h1("Confirm sweet alert"),
-  actionButton(inputId = "go", label = "Launch confirmation dialog"),
+  actionButton(
+    inputId = "go",
+    label = "Launch confirmation dialog"
+  ),
   verbatimTextOutput(outputId = "res")
 )
 

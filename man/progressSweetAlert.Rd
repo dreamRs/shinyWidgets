@@ -41,22 +41,34 @@ library("shinyWidgets")
 ui <- fluidPage(
   tags$h1("Progress bar in Sweet Alert"),
   useSweetAlert(), # /!\\ needed with 'progressSweetAlert'
-  actionButton(inputId = "go", label = "Launch long calculation !")
+  actionButton(
+    inputId = "go",
+    label = "Launch long calculation !"
+  )
 )
 
 server <- function(input, output, session) {
 
   observeEvent(input$go, {
     progressSweetAlert(
-      session = session, id = "myprogress", title = "Work in progress",
+      session = session, id = "myprogress",
+      title = "Work in progress",
       display_pct = TRUE, value = 0
     )
     for (i in seq_len(50)) {
       Sys.sleep(0.1)
-      updateProgressBar(session = session, id = "myprogress", value = i*2)
+      updateProgressBar(
+        session = session,
+        id = "myprogress",
+         value = i*2
+      )
     }
     closeSweetAlert(session = session)
-    sendSweetAlert(session = session, title =" Calculation completed !", type = "success")
+    sendSweetAlert(
+      session = session,
+      title =" Calculation completed !",
+      type = "success"
+    )
   })
 
 }
