@@ -44,8 +44,8 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "bootstrap-switch",
-          version = "3.3.2",
-          src = c(href="shinyWidgets/switchInput/bootstrap-switch-3.3.2"),
+          version = "3.3.4",
+          src = c(href="shinyWidgets/switchInput/bootstrap-switch-3.3.4"),
           script = "bootstrap-switch.min.js",
           stylesheet = "bootstrap-switch.min.css"
         )
