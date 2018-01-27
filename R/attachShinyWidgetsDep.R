@@ -65,7 +65,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "multi",
-          version = "0.2.3",
+          version = "0.2.4",
           src = c(href="shinyWidgets/multi"),
           script = "multi.min.js",
           stylesheet = c("multi.min.css", "multi-shiny.css")
