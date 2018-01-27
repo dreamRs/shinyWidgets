@@ -1,3 +1,21 @@
+shinyWidgets 0.4.1
+======================
+
+* New functions with Sweet Alert : `confirmSweetAlert` (confirmation dialog box), `inputSweetAlert` (text input dialog box), `progressSweetAlert` (progress bar in popup).
+* Update Sweet Alert library to 2.O
+* `sendSweetAlert` works without using `useSweetAlert` in UI.
+* Update multi.js to 0.2.4
+* Update bootstrap switch to 3.3.4
+* Change minimal version of R to 3.3.1
+* Function to toggle dropdown server-side : `toggleDropdownButton`.
+
+Bug fixes :
+* Fix logic on when btn-size class is added to button by [@coolbutuseless](https://github.com/coolbutuseless).
+* Bug in dependencies between `pretty*` and `bttn`.
+
+
+
+
 shinyWidgets 0.4.0
 ======================
 

@@ -14,7 +14,7 @@
 #' @param right Logical. The dropdown menu starts on the right.
 #' @param up Logical. Display the dropdown menu above.
 #' @param width Width of the dropdown menu content.
-#' @param inputId Optionnal, id for the button, the button act like an \code{actionButton},
+#' @param inputId Optional, id for the button, the button act like an \code{actionButton},
 #' and you can use the id to toggle the droddown menu server-side.
 #'
 #'

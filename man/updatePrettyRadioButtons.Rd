@@ -16,7 +16,7 @@ updatePrettyRadioButtons(session, inputId, label = NULL, choices = NULL,
 \item{label}{The label to set for the input object.}
 
 \item{choices}{The choices to set for the input object, updating choices will reset
-parameters like \code{status}, \code{shape}, ... on the radion buttons, you can re-specify
+parameters like \code{status}, \code{shape}, ... on the radio buttons, you can re-specify
 (or change them) in argument \code{prettyOptions}.}
 
 \item{selected}{The value to set for the input object.}

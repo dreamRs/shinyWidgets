@@ -21,7 +21,7 @@
 
 
 
-#' @title Load Sweet Alert Dependancies
+#' @title Load Sweet Alert dependencies
 #'
 #' @description
 #' This function is useless for \code{sendSweetAlert}, \code{confirmSweetAlert},

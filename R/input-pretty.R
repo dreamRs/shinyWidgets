@@ -1086,7 +1086,7 @@ prettyRadioButtons <- function(inputId, label, choices = NULL,
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
 #' @param choices The choices to set for the input object, updating choices will reset
-#' parameters like \code{status}, \code{shape}, ... on the radion buttons, you can re-specify
+#' parameters like \code{status}, \code{shape}, ... on the radio buttons, you can re-specify
 #' (or change them) in argument \code{prettyOptions}.
 #' @param selected The value to set for the input object.
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).

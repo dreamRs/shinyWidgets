@@ -2,7 +2,7 @@
 % Please edit documentation in R/sweetalert.R
 \name{useSweetAlert}
 \alias{useSweetAlert}
-\title{Load Sweet Alert Dependancies}
+\title{Load Sweet Alert dependencies}
 \usage{
 useSweetAlert()
 }
