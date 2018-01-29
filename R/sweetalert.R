@@ -62,6 +62,7 @@ use_sweet_alert <- function() {
 #' @param type Type of the alert : info, success, warning or error.
 #' @param btn_labels Label(s) for button(s), can be of length 2,
 #' in which case the alert will have two buttons.
+#' @param html Does \code{text} contains HTML tags ?
 #' @param closeOnClickOutside Decide whether the user should be able to dismiss
 #'  the modal by clicking outside of it, or not.
 #'
@@ -79,53 +80,86 @@ use_sweet_alert <- function() {
 #' \dontrun{
 #' if (interactive()) {
 #'
-#' shinyApp(
-#'   ui = fluidPage(
-#'     tags$h1("Click the button"),
-#'     actionButton(
-#'       inputId = "success",
-#'       label = "Launch a success sweet alert"
-#'     ),
-#'     actionButton(
-#'       inputId = "error",
-#'       label = "Launch an error sweet alert"
-#'     )
+#' library(shiny)
+#' library(shinyWidgets)
+#'
+#' ui <- fluidPage(
+#'   tags$h2("Sweet Alert examples"),
+#'   actionButton(
+#'     inputId = "success",
+#'     label = "Launch a success sweet alert"
 #'   ),
-#'   server = function(input, output, session) {
-#'     observeEvent(input$success, {
-#'       sendSweetAlert(
-#'         session = session,
-#'         title = "Success !!",
-#'         text = "All in order",
-#'         type = "success"
-#'       )
-#'     })
-#'     observeEvent(input$error, {
-#'       sendSweetAlert(
-#'         session = session,
-#'         title = "Error !!",
-#'         text = "It's broken...",
-#'         type = "error"
-#'       )
-#'     })
-#'   }
+#'   actionButton(
+#'     inputId = "error",
+#'     label = "Launch an error sweet alert"
+#'   ),
+#'   actionButton(
+#'     inputId = "sw_html",
+#'     label = "Sweet alert with HTML"
+#'   )
 #' )
 #'
-#' }
+#' server <- function(input, output, session) {
+#'
+#'   observeEvent(input$success, {
+#'     sendSweetAlert(
+#'       session = session,
+#'       title = "Success !!",
+#'       text = "All in order",
+#'       type = "success"
+#'     )
+#'   })
+#'
+#'   observeEvent(input$error, {
+#'     sendSweetAlert(
+#'       session = session,
+#'       title = "Error !!",
+#'       text = "It's broken...",
+#'       type = "error"
+#'     )
+#'   })
+#'
+#'   observeEvent(input$sw_html, {
+#'     sendSweetAlert(
+#'       session = session,
+#'       title = "Success !!",
+#'       text = tags$span(
+#'         "In", tags$b("bold"), "and", tags$em("italic"),
+#'         tags$br(),
+#'         "and",
+#'         tags$br(),
+#'         "line",
+#'         tags$br(),
+#'         "breaks"
+#'       ),
+#'       html = TRUE,
+#'       type = "success"
+#'     )
+#'   })
+#'
 #' }
 #'
-sendSweetAlert <- function(session, title = "Title", text = NULL, type
-                           = NULL, btn_labels = "Ok", closeOnClickOutside = TRUE) {
+#' shinyApp(ui, server)
+#'
+#' }
+#' }
+sendSweetAlert <- function(session, title = "Title", text = NULL,
+                            type = NULL, btn_labels = "Ok", html = FALSE,
+                           closeOnClickOutside = TRUE) {
   shiny::insertUI(selector = "body", where = "afterBegin", ui =
                     use_sweet_alert(), immediate = TRUE)
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
+  if ("shiny.tag" %in% class(text))
+    html <- TRUE
+  text <- as.character(text)
+  if (length(text) < 0)
+    text <- NULL
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
-  #session <- shiny::getDefaultReactiveDomain()
   session$sendCustomMessage(
     type = "sweetalert-sw",
     message = list(title = title, text = text, icon = type,
-                   buttons = btn_labels,
+                   buttons = btn_labels, as_html = html,
                    closeOnClickOutside = closeOnClickOutside)
   )
 }

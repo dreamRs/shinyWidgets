@@ -1,7 +1,23 @@
 
 // Sweet-Alert Bindings
 
-Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {swal(data)});
+
+Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {
+  if (data.as_html) {
+    var elsw = document.createElement("span");
+    elsw.innerHTML = data.text;
+    // data.text = "elsw";
+    swal({
+      title: data.title,
+      content: elsw,
+      icon: data.icon,
+      buttons: data.buttons,
+      closeOnClickOutside: data.closeOnClickOutside
+    });
+  } else {
+    swal(data);
+  }
+});
 
 
 Shiny.addCustomMessageHandler('sweetalert-sw-confirm', function(data) {
