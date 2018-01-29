@@ -62,6 +62,8 @@ use_sweet_alert <- function() {
 #' @param type Type of the alert : info, success, warning or error.
 #' @param btn_labels Label(s) for button(s), can be of length 2,
 #' in which case the alert will have two buttons.
+#' @param closeOnClickOutside Decide whether the user should be able to dismiss
+#'  the modal by clicking outside of it, or not.
 #'
 # @seealso \code{\link{receiveSweetAlert}}
 #'
@@ -113,7 +115,7 @@ use_sweet_alert <- function() {
 #' }
 #'
 sendSweetAlert <- function(session, title = "Title", text = NULL, type
-                           = NULL, btn_labels = "Ok") {
+                           = NULL, btn_labels = "Ok", closeOnClickOutside = TRUE) {
   shiny::insertUI(selector = "body", where = "afterBegin", ui =
                     use_sweet_alert(), immediate = TRUE)
   if (is.null(type))
@@ -122,8 +124,9 @@ sendSweetAlert <- function(session, title = "Title", text = NULL, type
   #session <- shiny::getDefaultReactiveDomain()
   session$sendCustomMessage(
     type = "sweetalert-sw",
-    message = list(title = title, text = text, icon = type, buttons =
-                     btn_labels)
+    message = list(title = title, text = text, icon = type,
+                   buttons = btn_labels,
+                   closeOnClickOutside = closeOnClickOutside)
   )
 }
 

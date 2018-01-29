@@ -5,7 +5,7 @@
 \title{Display a Sweet Alert to the user}
 \usage{
 sendSweetAlert(session, title = "Title", text = NULL, type = NULL,
-  btn_labels = "Ok")
+  btn_labels = "Ok", closeOnClickOutside = TRUE)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}
@@ -18,6 +18,9 @@ sendSweetAlert(session, title = "Title", text = NULL, type = NULL,
 
 \item{btn_labels}{Label(s) for button(s), can be of length 2,
 in which case the alert will have two buttons.}
+
+\item{closeOnClickOutside}{Decide whether the user should be able to dismiss
+the modal by clicking outside of it, or not.}
 }
 \description{
 Send a message from the server and launch a sweet alert in the UI.
