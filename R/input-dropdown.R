@@ -94,7 +94,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
     })
     tooltipJs <- htmltools::tags$script(
       sprintf(
-        "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
+        "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s, trigger: 'hover' });",
         inputId, tooltip$placement, tooltip$title, tooltip$html
       )
     )
