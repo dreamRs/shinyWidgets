@@ -87,15 +87,18 @@ use_sweet_alert <- function() {
 #'   tags$h2("Sweet Alert examples"),
 #'   actionButton(
 #'     inputId = "success",
-#'     label = "Launch a success sweet alert"
+#'     label = "Launch a success sweet alert",
+#'     icon = icon("check")
 #'   ),
 #'   actionButton(
 #'     inputId = "error",
-#'     label = "Launch an error sweet alert"
+#'     label = "Launch an error sweet alert",
+#'     icon = icon("remove")
 #'   ),
 #'   actionButton(
 #'     inputId = "sw_html",
-#'     label = "Sweet alert with HTML"
+#'     label = "Sweet alert with HTML",
+#'     icon = icon("thumbs-up")
 #'   )
 #' )
 #'
@@ -122,18 +125,20 @@ use_sweet_alert <- function() {
 #'   observeEvent(input$sw_html, {
 #'     sendSweetAlert(
 #'       session = session,
-#'       title = "Success !!",
+#'       title = NULL,
 #'       text = tags$span(
+#'         tags$h3("With HTML tags", style = "color: steelblue;"),
 #'         "In", tags$b("bold"), "and", tags$em("italic"),
 #'         tags$br(),
 #'         "and",
 #'         tags$br(),
 #'         "line",
 #'         tags$br(),
-#'         "breaks"
+#'         "breaks",
+#'         tags$br(),
+#'         "and an icon", icon("thumbs-up")
 #'       ),
-#'       html = TRUE,
-#'       type = "success"
+#'       html = TRUE
 #'     )
 #'   })
 #'
