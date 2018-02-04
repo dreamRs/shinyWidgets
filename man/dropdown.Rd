@@ -6,7 +6,7 @@
 \usage{
 dropdown(..., style = "default", status = "default", size = "md",
   icon = NULL, label = NULL, tooltip = FALSE, right = FALSE,
-  up = FALSE, width = NULL, animate = FALSE)
+  up = FALSE, width = NULL, animate = FALSE, inputId = NULL)
 }
 \arguments{
 \item{...}{List of tag to be displayed into the dropdown menu.}
@@ -14,7 +14,8 @@ dropdown(..., style = "default", status = "default", size = "md",
 \item{style}{Character. if \code{default} use Bootstrap button (like an \code{actionButton}), else use an
 \code{actionBttn}, see argument \code{style} for possible values.}
 
-\item{status}{Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.}
+\item{status}{Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
+Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.}
 
 \item{size}{Size of the button : default, lg, sm, xs.}
 
@@ -31,6 +32,9 @@ dropdown(..., style = "default", status = "default", size = "md",
 \item{width}{Width of the dropdown menu content.}
 
 \item{animate}{Add animation on the dropdown, can be logical or result of \code{animateOptions}.}
+
+\item{inputId}{Optional, id for the button, the button act like an \code{actionButton},
+and you can use the id to toggle the droddown menu server-side. If set button will have id \code{'sw-btn-inputId'}.}
 }
 \description{
 Create a dropdown menu

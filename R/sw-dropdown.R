@@ -7,7 +7,8 @@
 #' @param style Character. if \code{default} use Bootstrap button (like an \code{actionButton}), else use an
 #' \code{actionBttn}, see argument \code{style} for possible values.
 #' @param icon An icon to appear on the button.
-#' @param status Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.
+#' @param status Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
+#'  Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.
 #' @param size Size of the button : default, lg, sm, xs.
 #' @param label Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip.
 #' @param tooltip Put a tooltip on the button, you can customize tooltip with \code{tooltipOptions}.
@@ -15,6 +16,8 @@
 #' @param up Logical. Display the dropdown menu above.
 #' @param width Width of the dropdown menu content.
 #' @param animate Add animation on the dropdown, can be logical or result of \code{animateOptions}.
+#' @param inputId Optional, id for the button, the button act like an \code{actionButton},
+#' and you can use the id to toggle the droddown menu server-side. If set button will have id \code{'sw-btn-inputId'}.
 #'
 #' @details
 #' This function is similar to \code{dropdownButton} but don't use Boostrap, so you can put \code{pickerInput} in it.
@@ -96,14 +99,18 @@
 #'
 #' }
 #' }
-dropdown <- function(..., style = "default", status = "default", size = "md", icon = NULL,
-                     label = NULL, tooltip = FALSE, right = FALSE, up = FALSE, width = NULL, animate = FALSE) {
+dropdown <- function(..., style = "default", status = "default",
+                     size = "md", icon = NULL, label = NULL, tooltip = FALSE,
+                     right = FALSE, up = FALSE, width = NULL, animate = FALSE,
+                     inputId = NULL) {
 
 
-  alea <- sample.int(1e9, 1)
-  btnId <- paste0("sw-btn-", alea)
-  dropId <- paste0("sw-drop-", alea)
-  contentId <- paste0("sw-content-", alea)
+  if (is.null(inputId)) {
+    inputId <- sample.int(1e9, 1)
+  }
+  btnId <- paste0("sw-btn-", inputId)
+  dropId <- paste0("sw-drop-", inputId)
+  contentId <- paste0("sw-content-", inputId)
 
   # Dropdown content
   dropcontent <- htmltools::tags$div(
@@ -114,10 +121,6 @@ dropdown <- function(..., style = "default", status = "default", size = "md", ic
   )
   # Button
   if (style == "default") {
-    status <- match.arg(
-      arg = status,
-      choices = c("default", "primary", "success", "info", "warning", "danger")
-    )
     btn <- tags$button(
       class = paste0("btn btn-", status," ",
                      ifelse(size == "default" | size == "md", "",
