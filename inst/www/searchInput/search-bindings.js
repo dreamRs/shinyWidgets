@@ -42,13 +42,23 @@ $.extend(searchInputBinding, {
   	$(el).off('.searchInputBinding');
   },
   receiveMessage: function(el, data) {
-  	if (data.hasOwnProperty('value'))
-  	this.setValue(el, data.value);
+  	if (data.hasOwnProperty('value')) this.setValue(el, data.value);
 
-  	//if (data.hasOwnProperty('label'))
-  	//$(el).parent().find('label[for=' + el.id + ']').text(data.label);
+    if (data.hasOwnProperty('label')) {
+      // console.log(el);
+      $(el).parent().find('label[for="' + data.id + '"]').text(data.label);
+    }
 
-  	$(el).trigger('change');
+    if (data.hasOwnProperty('placeholder')) {
+      // why [0] ??
+      $('#se' + data.id)[0].placeholder = data.placeholder;
+    }
+
+    if (data.trigger) {
+      $('#' + data.id + '_search').click();
+    }
+
+    $(el).trigger('change');
   },
   getState: function(el) {
   	return {

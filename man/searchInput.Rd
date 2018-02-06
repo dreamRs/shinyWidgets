@@ -57,3 +57,6 @@ if (interactive()) {
 }
 
 }
+\seealso{
+\link{updateSearchInput} to update value server-side.
+}
