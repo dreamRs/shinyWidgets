@@ -151,8 +151,10 @@ use_sweet_alert <- function() {
 sendSweetAlert <- function(session, title = "Title", text = NULL,
                             type = NULL, btn_labels = "Ok", html = FALSE,
                            closeOnClickOutside = TRUE) {
-  shiny::insertUI(selector = "body", where = "afterBegin", ui =
-                    use_sweet_alert(), immediate = TRUE)
+  shiny::insertUI(
+    selector = "body", where = "afterBegin",
+    ui = use_sweet_alert(), immediate = TRUE, session = session
+  )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   if ("shiny.tag" %in% class(text))
@@ -233,8 +235,10 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 confirmSweetAlert <- function(session, inputId, title = "Are you sure ?", text = NULL,
                               type = NULL, danger_mode = FALSE,
                               btn_labels = c("Cancel", "Confirm")) {
-  shiny::insertUI(selector = "body", where = "afterBegin", ui =
-                    use_sweet_alert(), immediate = TRUE)
+  shiny::insertUI(
+    selector = "body", where = "afterBegin",
+    ui = use_sweet_alert(), immediate = TRUE, session = session
+  )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
@@ -305,8 +309,11 @@ confirmSweetAlert <- function(session, inputId, title = "Are you sure ?", text =
 inputSweetAlert <- function(session, inputId, title = NULL, text = NULL,
                             type = NULL, btn_labels = "Ok",
                             placeholder = NULL) {
-  shiny::insertUI(selector = "body", where = "afterBegin", ui =
-                    use_sweet_alert(), immediate = TRUE)
+  shiny::insertUI(
+    selector = "body", where = "afterBegin",
+    ui = use_sweet_alert(), immediate = TRUE,
+    session = session
+  )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
@@ -407,7 +414,7 @@ progressSweetAlert <- function(session, id, value, total = NULL,
   shiny::insertUI(
     selector = "body", ui = pbui,
     where = "afterBegin",
-    immediate = TRUE
+    immediate = TRUE, session = session
   )
   session$sendCustomMessage(
     type = "sweetalert-sw-progress",

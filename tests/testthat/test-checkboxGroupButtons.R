@@ -7,124 +7,173 @@ library("shiny")
 
 test_that("Default", {
 
-  checkboxGroupButtons(inputId = "Id029",
-                       label = "Label", choices = c("A",
-                                                    "B", "C"))
+  choices <- c("A", "B", "C")
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id029",
+    label = "Label",
+    choices = choices
+  )
+  choicestag <- cbtag$children[[3]]$children[[1]]$children[[1]]
+  expect_length(choicestag, length(choices))
 
+  checked <- lapply(choicestag, function(x) grepl(pattern = "checked", x = as.character(x)))
+  checked <- unlist(checked)
+  expect_true(all(!checked))
 })
 
 
 test_that("With choices", {
 
-  checkboxGroupButtons(inputId = "Id030",
-                       label = "Label", choices = c("A",
-                                                    "B", "C", "D"), selected = c("B",
-                                                                                 "D"))
+  choices <- c("A", "B", "C", "D")
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id030",
+    label = "Label",
+    choices = choices,
+    selected = choices[2]
+  )
 
+  choicestag <- cbtag$children[[3]]$children[[1]]$children[[1]]
+  expect_length(choicestag, length(choices))
+
+  checked <- lapply(choicestag, function(x) grepl(pattern = "checked", x = as.character(x)))
+  checked <- unlist(checked)
+  expect_equal(which(checked), 2)
 })
 
 
 test_that("Danger status", {
 
-  checkboxGroupButtons(inputId = "Id031",
-                       label = "Label", choices = c("A",
-                                                    "B", "C", "D"), status = "danger")
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id031",
+    label = "Label",
+    choices = c("A", "B", "C", "D"),
+    status = "danger"
+  )
 
+  choicestag <- cbtag$children[[3]]$children[[1]]$children[[1]]
+  danger <- lapply(choicestag, function(x) grepl(pattern = "danger", x = as.character(x)))
+  danger <- unlist(danger)
+  expect_true(all(danger))
 })
 
 
 test_that("Success status", {
 
-  checkboxGroupButtons(inputId = "Id032",
-                       label = "Label", choices = c("A",
-                                                    "B", "C", "D"), status = "success")
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id031",
+    label = "Label",
+    choices = c("A", "B", "C", "D"),
+    status = "success"
+  )
+
+  choicestag <- cbtag$children[[3]]$children[[1]]$children[[1]]
+  success <- lapply(choicestag, function(x) grepl(pattern = "success", x = as.character(x)))
+  success <- unlist(success)
+  expect_true(all(success))
 })
 
 
 test_that("Justified", {
 
-  checkboxGroupButtons(inputId = "Id033",
-                       label = "Label", choices = c("A",
-                                                    "B"), justified = TRUE)
-
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id033",
+    label = "Label",
+    choices = c("A", "B"),
+    justified = TRUE
+  )
+  justified <- cbtag$children[[3]]$children[[1]]$attribs$class
+  expect_identical(justified, "btn-group btn-group-justified")
 })
 
 
 test_that("Vertical", {
 
-  checkboxGroupButtons(inputId = "Id034",
-                       label = "Label", choices = c("A",
-                                                    "B", "C", "D"), direction = "vertical")
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id034",
+    label = "Label",
+    choices = c("A", "B", "C", "D"),
+    direction = "vertical"
+  )
+  vertical <- cbtag$children[[3]]$children[[1]]$attribs$class
+  expect_identical(vertical, "btn-group-vertical")
 
 })
 
 
 test_that("Size", {
 
-  checkboxGroupButtons(inputId = "Id035",
-                       label = "Label", choices = c("A",
-                                                    "B", "C", "D"), size = "lg")
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id035",
+    label = "Label",
+    choices = c("A", "B", "C", "D"),
+    size = "lg"
+  )
+
+  lg <- cbtag$children[[3]]$children[[1]]$attribs$class
+  expect_identical(lg, "btn-group btn-group-lg")
 
 })
 
 
 test_that("Icons button", {
 
-  checkboxGroupButtons(inputId = "Id036",
-                       label = "Choose a graph :",
-                       choices = c(`<i class='fa fa-bar-chart'></i>` = "bar",
-                                   `<i class='fa fa-line-chart'></i>` = "line",
-                                   `<i class='fa fa-pie-chart'></i>` = "pie"),
-                       justified = TRUE)
-
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id036",
+    label = "Choose a graph :",
+    choiceNames = list(
+      shiny::icon("gear"),
+      shiny::icon("cogs")
+    ),
+    choiceValues = c("A", "B"),
+    justified = TRUE
+  )
+  cbtag <- as.character(cbtag)
+  expect_true(grepl(pattern = as.character(shiny::icon("gear")), x = cbtag))
+  expect_true(grepl(pattern = as.character(shiny::icon("cogs")), x = cbtag))
 })
 
 
 test_that("Icons check", {
 
-  checkboxGroupButtons(inputId = "Id037",
-                       label = "Label", choices = c("A",
-                                                    "B", "C", "D"), justified = TRUE,
-                       checkIcon = list(yes = icon("ok",
-                                                   lib = "glyphicon")))
-
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id037",
+    label = "Label",
+    choices = c("A", "B", "C", "D"),
+    justified = TRUE,
+    checkIcon = list(yes = shiny::icon("ok", lib = "glyphicon"))
+  )
+  cbtag <- as.character(cbtag)
+  expect_true(grepl(pattern = "check-btn-icon-yes", x = cbtag))
+  expect_true(grepl(pattern = "check-btn-icon-no", x = cbtag))
 })
 
 
 test_that("Icons check / uncheck", {
 
-  checkboxGroupButtons(inputId = "Id038",
-                       label = "Label", choices = c("A",
-                                                    "B", "C", "D"), status = "primary",
-                       checkIcon = list(yes = icon("ok",
-                                                   lib = "glyphicon"), no = icon("remove",
-                                                                                 lib = "glyphicon")))
-
-})
-
-
-test_that("Colored icons", {
-
-  checkboxGroupButtons(inputId = "Id039",
-                       label = "Label", choices = c("Option 1",
-                                                    "Option 2", "Option 3",
-                                                    "Option 4"), checkIcon = list(yes = tags$i(class = "fa fa-check-square",
-                                                                                               style = "color: steelblue"),
-                                                                                  no = tags$i(class = "fa fa-square-o",
-                                                                                              style = "color: steelblue")))
-
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id038",
+    label = "Label", choices = c("A", "B", "C", "D"),
+    status = "primary",
+    checkIcon = list(yes = shiny::icon("ok", lib = "glyphicon"),
+                     no = shiny::icon("remove", lib = "glyphicon"))
+  )
+  cbtag <- as.character(cbtag)
+  expect_true(grepl(pattern = "check-btn-icon-no", x = cbtag))
 })
 
 
 test_that("Separated buttons", {
 
-  checkboxGroupButtons(inputId = "Id040",
-                       label = "Label", choices = c("Option 1",
-                                                    "Option 2", "Option 3",
-                                                    "Option 4"), individual = TRUE,
-                       checkIcon = list(yes = tags$i(class = "fa fa-circle",
-                                                     style = "color: steelblue"),
-                                        no = tags$i(class = "fa fa-circle-o",
-                                                    style = "color: steelblue")))
-
+  cbtag <- checkboxGroupButtons(
+    inputId = "Id040",
+    label = "Label",
+    choices = c("Option 1",
+                "Option 2", "Option 3",
+                "Option 4"),
+    individual = TRUE
+  )
+  justified <- cbtag$children[[3]]$children[[1]]$attribs
+  nm <- names(cbtag$children[[3]]$children[[1]]$attribs)
+  justified <- justified[which(nm == "class")]
+  expect_true(any(grepl(pattern = "btn-group-container-sw", x = unlist(justified))))
 })
