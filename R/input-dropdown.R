@@ -36,9 +36,9 @@
 #' }
 dropdownButton <- function(..., circle = TRUE, status = "default",
                            size = "default", icon = NULL,
-                           label = NULL, tooltip = FALSE, right =
-                             FALSE, up = FALSE, width = NULL,
-                           inputId = NULL) {
+                           label = NULL, tooltip = FALSE,
+                           right = FALSE, up = FALSE,
+                           width = NULL, inputId = NULL) {
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   if (is.null(inputId)) {
     inputId <- paste0("drop", sample.int(1e9, 1))
@@ -61,7 +61,6 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
     html_button <- circleButton(
       inputId = inputId, icon = icon, status = status, size = size,
       class = "dropdown-toggle",
-      # onclick = paste0("$(this).parent().toggleClass('open');")
       `data-toggle` = "dropdown"
     )
   } else {
@@ -71,7 +70,6 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
       type = "button",
       id = inputId,
       `data-toggle` = "dropdown",
-      # onclick = paste0("$(this).parent().toggleClass('open');"),
       `aria-haspopup` = "true",
       `aria-expanded` = "true",
       list(icon, label),
@@ -104,9 +102,12 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
 
   dropdownTag <- htmltools::tags$div(
     class = ifelse(up, "dropup", "dropdown"),
-    html_button,
+    html_button, id = paste("dropdown", inputId, sep = "-"),
     do.call(htmltools::tags$ul, html_ul),
-    tooltipJs
+    tooltipJs,
+    tags$script(sprintf(
+      "dropBtn('#%s', %s);", paste("dropdown", inputId, sep = "-"), "true" #  tolower(easyClose)
+    ))
   )
   attachShinyWidgetsDep(dropdownTag, "dropdown")
 }
