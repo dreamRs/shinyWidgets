@@ -41,6 +41,18 @@ And how to construct a palette color picker [here](https://dreamrs.github.io/shi
 
 ## Widgets available :
 
+
+  - [Bootstrap switch](#bootstrap-switch)
+  - [Material switch](#material-switch)
+  - [Pretty Checkbox](#pretty-checkbox)
+  - [Slider Text](#slider-text)
+  - [Knob Input](#knob-input)
+  - [Select picker](#select-picker)
+  - [Checkbox and radio buttons](#checkbox-and-radio-buttons)
+  - [Search bar](#search-bar)
+  - [Dropdown button](#dropdown-button)
+
+
 ### Bootstrap switch
 
 Turn checkboxes into toggle switches : <br>
