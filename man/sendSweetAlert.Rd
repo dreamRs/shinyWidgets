@@ -78,7 +78,8 @@ server <- function(input, output, session) {
       session = session,
       title = NULL,
       text = tags$span(
-        tags$h3("With HTML tags", style = "color: steelblue;"),
+        tags$h3("With HTML tags",
+                style = "color: steelblue;"),
         "In", tags$b("bold"), "and", tags$em("italic"),
         tags$br(),
         "and",
@@ -96,6 +97,48 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
+
+
+# output in Sweet Alert #
+
+library("shiny")
+library("shinyWidgets")
+
+shinyApp(
+  ui = fluidPage(
+    tags$h1("Click the button"),
+    actionButton(
+      inputId = "sw_html",
+      label = "Sweet alert with plot"
+    ),
+    # SweetAlert width
+    tags$style(".swal-modal {width: 80\%;}")
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$sw_html, {
+      sendSweetAlert(
+        session = session,
+        title = "Yay a plot!",
+        text = tags$div(
+          plotOutput(outputId = "plot"),
+          sliderInput(
+            inputId = "clusters",
+            label = "Number of clusters",
+            min = 2, max = 6, value = 3, width = "100\%"
+          )
+        ),
+        html = TRUE
+      )
+    })
+    output$plot <- renderPlot({
+      plot(Sepal.Width ~ Sepal.Length,
+           data = iris, col = Species,
+           pch = 20, cex = 2)
+      points(kmeans(iris[, 1:2], input$clusters)$centers,
+             pch = 4, cex = 4, lwd = 4)
+    })
+  }
+)
 
 }
 }

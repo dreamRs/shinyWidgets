@@ -24,6 +24,9 @@ Shiny.addCustomMessageHandler('update-progressBar-shinyWidgets', function(data) 
     $('#' + id).removeClass();
     $('#' + id).addClass("progress-bar progress-bar-" + data.status);
   }
+  if (data.title !== null) {
+    $('#' + id + '-title').text(data.title);
+  }
 });
 
 

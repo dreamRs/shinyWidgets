@@ -127,7 +127,8 @@ use_sweet_alert <- function() {
 #'       session = session,
 #'       title = NULL,
 #'       text = tags$span(
-#'         tags$h3("With HTML tags", style = "color: steelblue;"),
+#'         tags$h3("With HTML tags",
+#'                 style = "color: steelblue;"),
 #'         "In", tags$b("bold"), "and", tags$em("italic"),
 #'         tags$br(),
 #'         "and",
@@ -146,12 +147,54 @@ use_sweet_alert <- function() {
 #'
 #' shinyApp(ui, server)
 #'
+#'
+#' # output in Sweet Alert #
+#'
+#' library("shiny")
+#' library("shinyWidgets")
+#'
+#' shinyApp(
+#'   ui = fluidPage(
+#'     tags$h1("Click the button"),
+#'     actionButton(
+#'       inputId = "sw_html",
+#'       label = "Sweet alert with plot"
+#'     ),
+#'     # SweetAlert width
+#'     tags$style(".swal-modal {width: 80%;}")
+#'   ),
+#'   server = function(input, output, session) {
+#'     observeEvent(input$sw_html, {
+#'       sendSweetAlert(
+#'         session = session,
+#'         title = "Yay a plot!",
+#'         text = tags$div(
+#'           plotOutput(outputId = "plot"),
+#'           sliderInput(
+#'             inputId = "clusters",
+#'             label = "Number of clusters",
+#'             min = 2, max = 6, value = 3, width = "100%"
+#'           )
+#'         ),
+#'         html = TRUE
+#'       )
+#'     })
+#'     output$plot <- renderPlot({
+#'       plot(Sepal.Width ~ Sepal.Length,
+#'            data = iris, col = Species,
+#'            pch = 20, cex = 2)
+#'       points(kmeans(iris[, 1:2], input$clusters)$centers,
+#'              pch = 4, cex = 4, lwd = 4)
+#'     })
+#'   }
+#' )
+#'
 #' }
 #' }
 sendSweetAlert <- function(session, title = "Title", text = NULL,
                             type = NULL, btn_labels = "Ok", html = FALSE,
                            closeOnClickOutside = TRUE) {
-  shiny::insertUI(
+  insertUI(
     selector = "body", where = "afterBegin",
     ui = use_sweet_alert(), immediate = TRUE, session = session
   )
@@ -159,16 +202,33 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   if ("shiny.tag" %in% class(text))
     html <- TRUE
-  text <- as.character(text)
-  if (length(text) < 0)
-    text <- NULL
-  text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
-  session$sendCustomMessage(
-    type = "sweetalert-sw",
-    message = list(title = title, text = text, icon = type,
-                   buttons = btn_labels, as_html = html,
-                   closeOnClickOutside = closeOnClickOutside)
-  )
+  if (!html) {
+    text <- as.character(text)
+    if (length(text) < 1)
+      text <- NULL
+    text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
+    session$sendCustomMessage(
+      type = "sweetalert-sw",
+      message = list(title = title, text = text, icon = type,
+                     buttons = btn_labels, as_html = html,
+                     closeOnClickOutside = closeOnClickOutside)
+    )
+  } else {
+    id <- paste0("placeholder-", sample.int(1e6, 1))
+    session$sendCustomMessage(
+      type = "sweetalert-sw",
+      message = list(
+        title = title, icon = type, sw_id = id,
+        text = as.character(tags$div(id = id)),
+        buttons = btn_labels, as_html = html,
+        closeOnClickOutside = closeOnClickOutside
+      )
+    )
+    insertUI(
+      session = session, selector = paste0("#", id),
+      ui = text, immediate = TRUE
+    )
+  }
 }
 
 
@@ -180,10 +240,13 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #' @param session The \code{session} object passed to function given to shinyServer.
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param title Title of the alert.
-#' @param text Text of the alert.
+#' @param text Text of the alert, can contains HTML tags.
 #' @param type Type of the alert : info, success, warning or error.
 #' @param btn_labels Labels for buttons.
 #' @param danger_mode Logical, activate danger mode (focus on cancel button).
+#' @param closeOnClickOutside Decide whether the user should be able to dismiss
+#'  the modal by clicking outside of it, or not.
+#' @param html Does \code{text} contains HTML tags ?
 #'
 # @seealso \code{\link{receiveSweetAlert}}
 #'
@@ -208,22 +271,64 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #' ui <- fluidPage(
 #'   tags$h1("Confirm sweet alert"),
 #'   actionButton(
-#'     inputId = "go",
-#'     label = "Launch confirmation dialog"
+#'     inputId = "launch1",
+#'     label = "Launch confirmation dialog (with danger mode)"
 #'   ),
-#'   verbatimTextOutput(outputId = "res")
+#'   verbatimTextOutput(outputId = "res1"),
+#'   tags$br(),
+#'   actionButton(
+#'     inputId = "launch2",
+#'     label = "Launch confirmation dialog (with normal mode)"
+#'   ),
+#'   verbatimTextOutput(outputId = "res2"),
+#'   tags$br(),
+#'   actionButton(
+#'     inputId = "launch3",
+#'     label = "Launch confirmation dialog (with HTML)"
+#'   ),
+#'   verbatimTextOutput(outputId = "res3")
 #' )
 #'
 #' server <- function(input, output, session) {
 #'
-#'  observeEvent(input$go, {
-#'    confirmSweetAlert(
-#'      session = session, inputId = "myconfirmation", type = "warning",
-#'      title = "Want to confirm ?", danger_mode = TRUE
-#'    )
-#'  })
+#'   observeEvent(input$launch1, {
+#'     confirmSweetAlert(
+#'       session = session,
+#'       inputId = "myconfirmation1",
+#'       type = "warning",
+#'       title = "Want to confirm ?",
+#'       danger_mode = TRUE
+#'     )
+#'   })
+#'   output$res1 <- renderPrint(input$myconfirmation1)
 #'
-#'   output$res <- renderPrint(input$myconfirmation)
+#'   observeEvent(input$launch2, {
+#'     confirmSweetAlert(
+#'       session = session,
+#'       inputId = "myconfirmation2",
+#'       type = "warning",
+#'       title = "Are you sure ??",
+#'       btn_labels = c("Nope", "Yep"),
+#'       danger_mode = FALSE
+#'     )
+#'   })
+#'   output$res2 <- renderPrint(input$myconfirmation2)
+#'
+#'   observeEvent(input$launch3, {
+#'     confirmSweetAlert(
+#'       session = session,
+#'       inputId = "myconfirmation3",
+#'       title = NULL,
+#'       text = tags$b(
+#'         icon("file"),
+#'         "Do you really want to delete this file ?",
+#'         style = "color: #FA5858;"
+#'       ),
+#'       btn_labels = c("Cancel", "Delete file"),
+#'       danger_mode = TRUE, html = TRUE
+#'     )
+#'   })
+#'   output$res3 <- renderPrint(input$myconfirmation3)
 #'
 #' }
 #'
@@ -232,21 +337,48 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #' }
 #'
 #' }
-confirmSweetAlert <- function(session, inputId, title = "Are you sure ?", text = NULL,
+confirmSweetAlert <- function(session, inputId, title = NULL, text = NULL,
                               type = NULL, danger_mode = FALSE,
-                              btn_labels = c("Cancel", "Confirm")) {
-  shiny::insertUI(
+                              btn_labels = c("Cancel", "Confirm"),
+                              closeOnClickOutside = FALSE, html = FALSE) {
+  insertUI(
     selector = "body", where = "afterBegin",
-    ui = use_sweet_alert(), immediate = TRUE, session = session
+    ui = use_sweet_alert(), immediate = TRUE,
+    session = session
   )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
-  text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
-  session$sendCustomMessage(
-    type = "sweetalert-sw-confirm",
-    message = list(id = inputId, title = title, text = text, icon = type,
-                   buttons = btn_labels, dangerMode = danger_mode)
-  )
+  if ("shiny.tag" %in% class(text))
+    html <- TRUE
+  if (!html) {
+    text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
+    session$sendCustomMessage(
+      type = "sweetalert-sw-confirm",
+      message = list(
+        id = inputId, title = title, text = text, icon = type,
+        buttons = btn_labels, dangerMode = danger_mode,
+        closeOnClickOutside = closeOnClickOutside
+      )
+    )
+  } else {
+    id <- paste0("placeholder-", sample.int(1e6, 1))
+    session$sendCustomMessage(
+      type = "sweetalert-sw-confirm",
+      message = list(
+        id = inputId,
+        title = title, icon = type, sw_id = id,
+        text = as.character(tags$div(id = id)),
+        buttons = btn_labels, as_html = html,
+        dangerMode = danger_mode,
+        closeOnClickOutside = closeOnClickOutside
+      )
+    )
+    insertUI(
+      session = session,
+      selector = paste0("#", id),
+      ui = text, immediate = TRUE
+    )
+  }
 }
 
 
@@ -398,31 +530,18 @@ inputSweetAlert <- function(session, inputId, title = NULL, text = NULL,
 progressSweetAlert <- function(session, id, value, total = NULL,
                                display_pct = FALSE, size = NULL,
                                status = NULL, striped = FALSE, title = NULL) {
-  pbui <- progressBar(
-    id, value, total, display_pct, size, status, striped, title
-  )
-  pbui <- htmltools::tagList(
-    # use_sweet_alert(),
-    htmltools::singleton(
-      tags$div(
-        id = paste0("sa-pb", id),
-        style = "display: none;",
-        pbui
-      )
-    )
+  sendSweetAlert(
+    session = session,
+    title = NULL, btn_labels = FALSE,
+    text = tags$div(id = "sweet-alert-progress-sw"),
+    closeOnClickOutside = FALSE
   )
   shiny::insertUI(
-    selector = "body", ui = pbui,
-    where = "afterBegin",
+    selector = "#sweet-alert-progress-sw",
+    ui = progressBar(
+      id, value, total, display_pct, size, status, striped, title
+    ),
     immediate = TRUE, session = session
-  )
-  session$sendCustomMessage(
-    type = "sweetalert-sw-progress",
-    message = list(
-      title = NULL, buttons = FALSE,
-      closeOnClickOutside = FALSE,
-      idel = paste0("sa-pb", id)
-    )
   )
 }
 

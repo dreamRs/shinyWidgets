@@ -13,29 +13,72 @@
 #'
 #' @return A progress bar that can be added to a UI definition.
 #'
+#' @name progress-bar
+#'
+#' @seealso \link{progressSweetAlert} for progress bar in a sweet alert
+#'
 #' @importFrom htmltools tags tagList singleton HTML
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' if (interactive()) {
-#'  library("shiny")
-#'  library("shinyWidgets")
 #'
-#'  ui <- fluidPage(
-#'    tags$b("Default"), br(),
-#'    progressBar(id = "pb1", value = 50),
-#'    sliderInput(inputId = "up1", label = "Update", min = 0, max = 100, value = 50)
-#'  )
+#' library("shiny")
+#' library("shinyWidgets")
 #'
-#'  server <- function(input, output, session) {
-#'    observeEvent(input$up1, {
-#'      updateProgressBar(session = session, id = "pb1", value = input$up1)
-#'    })
-#'  }
+#' ui <- fluidPage(
+#'   column(
+#'     width = 7,
+#'     tags$b("Default"), br(),
+#'     progressBar(id = "pb1", value = 50),
+#'     sliderInput(
+#'       inputId = "up1",
+#'       label = "Update",
+#'       min = 0,
+#'       max = 100,
+#'       value = 50
+#'     ),
+#'     br(),
+#'     tags$b("Other options"), br(),
+#'     progressBar(
+#'       id = "pb2",
+#'       value = 0,
+#'       total = 100,
+#'       title = "",
+#'       display_pct = TRUE
+#'     ),
+#'     actionButton(
+#'       inputId = "go",
+#'       label = "Launch calculation"
+#'     )
+#'   )
+#' )
 #'
-#'  shinyApp(ui = ui, server = server)
-#'  }
+#' server <- function(input, output, session) {
+#'   observeEvent(input$up1, {
+#'     updateProgressBar(
+#'       session = session,
+#'       id = "pb1",
+#'       value = input$up1
+#'     )
+#'   })
+#'   observeEvent(input$go, {
+#'     for (i in 1:100) {
+#'       updateProgressBar(
+#'         session = session,
+#'         id = "pb2",
+#'         value = i, total = 100,
+#'         title = paste("Process", trunc(i/10))
+#'       )
+#'       Sys.sleep(0.1)
+#'     }
+#'   })
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#'
+#' }
 #' }
 
 progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NULL,
@@ -49,6 +92,7 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
   if (!is.null(title) | !is.null(total)) {
     title <- htmltools::tags$span(
       class = "progress-text",
+      id = paste0(id, "-title"),
       title, htmltools::HTML("&nbsp;")
     )
   }
@@ -78,28 +122,25 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
       )
     )
   )
+  tagPB <- tagList(
+    singleton(
+      tags$head(tags$style(".progress-number {position: absolute; right: 20px;}"))
+    ), tagPB
+  )
   attachShinyWidgetsDep(tagPB)
 }
 
 
 
 
-#' @title Update a progress bar
-#'
-#' @description Change the value of a progress bar on the client
-#'
-#' @param session The `session` object passed to function given to shinyServer.
-#' @param id The id of the progress bar to update
-#' @param value Value of the progress bar between 0 and 100, if >100 you must provide total
-#' @param total Used to calculate percentage if value > 100
-#' @param status Color
+#' @param session The 'session' object passed to function given to shinyServer.
 #'
 #' @export
 #'
-
-updateProgressBar <- function(session, id, value, total = NULL, status = NULL) {
+#' @rdname progress-bar
+updateProgressBar <- function(session, id, value, total = NULL, title = NULL, status = NULL) {
   message <- "update-progressBar-shinyWidgets"
   session$sendCustomMessage(
-    type = message, list(id = id, value = value, total = total, status = status)
+    type = message, list(id = id, value = value, total = total, title = title, status = status)
   )
 }

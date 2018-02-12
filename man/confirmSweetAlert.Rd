@@ -4,8 +4,9 @@
 \alias{confirmSweetAlert}
 \title{Launch a confirmation dialog}
 \usage{
-confirmSweetAlert(session, inputId, title = "Are you sure ?", text = NULL,
-  type = NULL, danger_mode = FALSE, btn_labels = c("Cancel", "Confirm"))
+confirmSweetAlert(session, inputId, title = NULL, text = NULL,
+  type = NULL, danger_mode = FALSE, btn_labels = c("Cancel", "Confirm"),
+  closeOnClickOutside = FALSE, html = FALSE)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}
@@ -14,13 +15,18 @@ confirmSweetAlert(session, inputId, title = "Are you sure ?", text = NULL,
 
 \item{title}{Title of the alert.}
 
-\item{text}{Text of the alert.}
+\item{text}{Text of the alert, can contains HTML tags.}
 
 \item{type}{Type of the alert : info, success, warning or error.}
 
 \item{danger_mode}{Logical, activate danger mode (focus on cancel button).}
 
 \item{btn_labels}{Labels for buttons.}
+
+\item{closeOnClickOutside}{Decide whether the user should be able to dismiss
+the modal by clicking outside of it, or not.}
+
+\item{html}{Does \code{text} contains HTML tags ?}
 }
 \description{
 Launch a popup to ask confirmation to the user
@@ -38,22 +44,64 @@ library("shinyWidgets")
 ui <- fluidPage(
   tags$h1("Confirm sweet alert"),
   actionButton(
-    inputId = "go",
-    label = "Launch confirmation dialog"
+    inputId = "launch1",
+    label = "Launch confirmation dialog (with danger mode)"
   ),
-  verbatimTextOutput(outputId = "res")
+  verbatimTextOutput(outputId = "res1"),
+  tags$br(),
+  actionButton(
+    inputId = "launch2",
+    label = "Launch confirmation dialog (with normal mode)"
+  ),
+  verbatimTextOutput(outputId = "res2"),
+  tags$br(),
+  actionButton(
+    inputId = "launch3",
+    label = "Launch confirmation dialog (with HTML)"
+  ),
+  verbatimTextOutput(outputId = "res3")
 )
 
 server <- function(input, output, session) {
 
- observeEvent(input$go, {
-   confirmSweetAlert(
-     session = session, inputId = "myconfirmation", type = "warning",
-     title = "Want to confirm ?", danger_mode = TRUE
-   )
- })
+  observeEvent(input$launch1, {
+    confirmSweetAlert(
+      session = session,
+      inputId = "myconfirmation1",
+      type = "warning",
+      title = "Want to confirm ?",
+      danger_mode = TRUE
+    )
+  })
+  output$res1 <- renderPrint(input$myconfirmation1)
 
-  output$res <- renderPrint(input$myconfirmation)
+  observeEvent(input$launch2, {
+    confirmSweetAlert(
+      session = session,
+      inputId = "myconfirmation2",
+      type = "warning",
+      title = "Are you sure ??",
+      btn_labels = c("Nope", "Yep"),
+      danger_mode = FALSE
+    )
+  })
+  output$res2 <- renderPrint(input$myconfirmation2)
+
+  observeEvent(input$launch3, {
+    confirmSweetAlert(
+      session = session,
+      inputId = "myconfirmation3",
+      title = NULL,
+      text = tags$b(
+        icon("file"),
+        "Do you really want to delete this file ?",
+        style = "color: #FA5858;"
+      ),
+      btn_labels = c("Cancel", "Delete file"),
+      danger_mode = TRUE, html = TRUE
+    )
+  })
+  output$res3 <- renderPrint(input$myconfirmation3)
 
 }
 

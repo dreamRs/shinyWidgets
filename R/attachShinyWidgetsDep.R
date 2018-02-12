@@ -55,7 +55,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "sweetAlert",
-          version = "0.1.0",
+          version = "0.2.0",
           src = c(href="shinyWidgets/sweetAlert"),
           script = c("sweetalert.min.js", "sweetalert-bindings.js")
         )
