@@ -45,6 +45,7 @@ And how to construct a palette color picker [here](https://dreamrs.github.io/shi
   - [Bootstrap switch](#bootstrap-switch)
   - [Material switch](#material-switch)
   - [Pretty Checkbox](#pretty-checkbox)
+  - [Sweet Alert](#sweet-alert)
   - [Slider Text](#slider-text)
   - [Knob Input](#knob-input)
   - [Select picker](#select-picker)
@@ -107,6 +108,21 @@ prettyCheckbox(
 ```
 
 
+### Sweet Alert
+
+Displays a message to the user :
+
+![sendSweetAlert](inst/images/sendSweetAlert.gif)
+
+See examples in `?sendSweetAlert`.
+
+
+Request confirmation from the user :
+
+![confirmSweetAlert](inst/images/confirmSweetAlert.gif)
+
+See examples in `?confirmSweetAlert`.
+
 
 
 ### Slider Text
@@ -130,7 +146,7 @@ sliderTextInput(
 ### Knob Input
 
 A [jQuery](https://github.com/aterrien/jQuery-Knob) based knob, similar to sliderInput or sliderTextInput: <br>
-![knobInput](inst/images/knobInput.png)
+![knobInput](inst/images/knob.gif)
 
 ```r
 knobInput(
