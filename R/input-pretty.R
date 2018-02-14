@@ -9,7 +9,8 @@
 #' @param status Add a class to the switch, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
 #' @param slim Change the style of the switch (\code{TRUE} or \code{FALSE}), see examples.
 #' @param fill Change the style of the switch (\code{TRUE} or \code{FALSE}), see examples.
-#' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
+#' @param bigger Scale the switch a bit bigger (\code{TRUE} or \code{FALSE}).
+#' @param inline Display the input inline, if you want to place switch next to each other.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @note Appearance is better in a browser such as Chrome than in RStudio Viewer
@@ -79,7 +80,8 @@
 #'
 #' }
 prettySwitch <- function(inputId, label, value = FALSE, status = "default",
-                         slim = FALSE, fill = FALSE, bigger = FALSE, width = NULL) {
+                         slim = FALSE, fill = FALSE, bigger = FALSE,
+                         inline = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
@@ -92,6 +94,8 @@ prettySwitch <- function(inputId, label, value = FALSE, status = "default",
     class = "form-group shiny-input-container",
     style = if (!is.null(width))  paste0("width: ",
                                          htmltools::validateCssUnit(width), ";"),
+    class = if (inline) "shiny-input-container-inline",
+    style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
       class="pretty p-default p-switch", inputTag,
       class=if(bigger) "p-bigger",
@@ -176,8 +180,8 @@ updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label_on Display label for the control when value is \code{TRUE}.
 #' @param label_off Display label for the control when value is \code{FALSE}
-#' @param icon_on Optional, display an icon on the checkbox when value is \code{TRUE}, must an icon created with \code{icon}.
-#' @param icon_off Optional, display an icon on the checkbox when value is \code{FALSE}, must an icon created with \code{icon}.
+#' @param icon_on Optional, display an icon on the checkbox when value is \code{TRUE}, must be an icon created with \code{icon}.
+#' @param icon_off Optional, display an icon on the checkbox when value is \code{FALSE}, must be an icon created with \code{icon}.
 #' @param value Initial value (\code{TRUE} or \code{FALSE}).
 #' @param status_on Add a class to the checkbox when value is \code{TRUE},
 #' you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
@@ -189,6 +193,9 @@ updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
 #' @param thick Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).
 #' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
 #' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
+#' @param animation Add an animation when checkbox is checked, a value between
+#' \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.
+#' @param inline Display the input inline, if you want to place checkboxes next to each other.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @seealso See \code{\link{updatePrettyToggle}} to update the value server-side.
@@ -254,6 +261,66 @@ updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
 #' }
 #'
 #' shinyApp(ui, server)
+#'
+#'
+#'
+#' # Inline example ----
+#'
+#'
+#' ui <- fluidPage(
+#'   tags$h1("Pretty toggles: inline example"),
+#'   br(),
+#'
+#'   prettyToggle(inputId = "toggle1",
+#'                label_on = "Checked!",
+#'                label_off = "Unchecked...",
+#'                inline = TRUE),
+#'   prettyToggle(inputId = "toggle2",
+#'                label_on = "Yep",
+#'                status_on = "default",
+#'                icon_on = icon("ok-circle", lib = "glyphicon"),
+#'                label_off = "Nope",
+#'                status_off = "default",
+#'                icon_off = icon("remove-circle", lib = "glyphicon"),
+#'                plain = TRUE,
+#'                inline = TRUE),
+#'   prettyToggle(inputId = "toggle3",
+#'                label_on = "",
+#'                label_off = "",
+#'                icon_on = icon("volume-up", lib = "glyphicon"),
+#'                icon_off = icon("volume-off", lib = "glyphicon"),
+#'                status_on = "primary",
+#'                status_off = "default",
+#'                plain = TRUE,
+#'                outline = TRUE,
+#'                bigger = TRUE,
+#'                inline = TRUE),
+#'   prettyToggle(inputId = "toggle4",
+#'                label_on = "Yes!",
+#'                label_off = "No..",
+#'                outline = TRUE,
+#'                plain = TRUE,
+#'                icon_on = icon("thumbs-up"),
+#'                icon_off = icon("thumbs-down"),
+#'                inline = TRUE),
+#'
+#'   verbatimTextOutput(outputId = "res")
+#'
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res <- renderPrint(c(input$toggle1,
+#'                               input$toggle2,
+#'                               input$toggle3,
+#'                               input$toggle4))
+#'
+#' }
+#'
+#' shinyApp(ui, server)
+#'
+#'
+#'
 #' }
 #'
 #' }
@@ -263,7 +330,8 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
                          status_off = "danger",
                          shape = c("square", "curve", "round"),
                          outline = FALSE, fill = FALSE, thick = FALSE,
-                         plain = FALSE, bigger = FALSE, width = NULL) {
+                         plain = FALSE, bigger = FALSE, animation = NULL,
+                         inline = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status_on <- match.arg(status_on, c("default", "primary", "success",
                                       "info", "danger", "warning"))
@@ -278,6 +346,9 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
     icon_off <- validateIcon(icon_off)
     icon_off$attribs$class <- paste("icon", icon_off$attribs$class)
   }
+  if (!is.null(animation))
+    animation <- match.arg(animation, c("smooth", "jelly", "tada",
+                                        "rotate", "pulse"))
   inputTag <- tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
@@ -285,6 +356,8 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
     class = "form-group shiny-input-container",
     style = if (!is.null(width))  paste0("width: ",
                                          htmltools::validateCssUnit(width), ";"),
+    class = if (inline) "shiny-input-container-inline",
+    style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
       class="pretty p-toggle", inputTag,
       class=if(is.null(icon_on) & is.null(icon_off)) "p-default",
@@ -293,6 +366,7 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
       class=if(shape!="square") paste0("p-", shape),
       class=if(fill) "p-fill", class=if(thick) "p-thick",
       class=if(!is.null(icon_on) | !is.null(icon_off)) "p-icon",
+      class=if(!is.null(animation)) paste0("p-", animation),
       tags$div(
         class="state p-on",
         class=if(status_on != "default") paste0("p-", status_on, if(outline)"-o"),
@@ -387,9 +461,10 @@ updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
 #' @param thick Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).
 #' @param animation Add an animation when checkbox is checked, a value between
 #' \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.
-#' @param icon Optional, display an icon on the checkbox, must an icon created with \code{icon}.
+#' @param icon Optional, display an icon on the checkbox, must be an icon created with \code{icon}.
 #' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
 #' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
+#' @param inline Display the input inline, if you want to place checkboxes next to each other.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @note Due to the nature of different checkbox design, certain animations are not applicable in some arguments combinations.
@@ -463,6 +538,59 @@ updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
 #'
 #' shinyApp(ui, server)
 #'
+#'
+#'
+#' # Inline example ----
+#'
+#' ui <- fluidPage(
+#'   tags$h1("Pretty checkbox: inline example"),
+#'   br(),
+#'   prettyCheckbox(inputId = "checkbox1",
+#'                  label = "Click me!",
+#'                  status = "success",
+#'                  outline = TRUE,
+#'                  inline = TRUE),
+#'   prettyCheckbox(inputId = "checkbox2",
+#'                  label = "Click me!",
+#'                  thick = TRUE,
+#'                  shape = "curve",
+#'                  animation = "pulse",
+#'                  status = "info",
+#'                  inline = TRUE),
+#'   prettyCheckbox(inputId = "checkbox3",
+#'                  label = "Click me!",
+#'                  shape = "round",
+#'                  status = "danger",
+#'                  value = TRUE,
+#'                  inline = TRUE),
+#'   prettyCheckbox(inputId = "checkbox4",
+#'                  label = "Click me!",
+#'                  outline = TRUE,
+#'                  plain = TRUE,
+#'                  animation = "rotate",
+#'                  icon = icon("thumbs-up"),
+#'                  inline = TRUE),
+#'   prettyCheckbox(inputId = "checkbox5",
+#'                  label = "Click me!",
+#'                  icon = icon("check"),
+#'                  animation = "tada",
+#'                  status = "primary",
+#'                  inline = TRUE),
+#'   verbatimTextOutput(outputId = "res")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res <- renderPrint(c(input$checkbox1,
+#'                               input$checkbox2,
+#'                               input$checkbox3,
+#'                               input$checkbox4,
+#'                               input$checkbox5))
+#'
+#' }
+#'
+#' shinyApp(ui, server)
+#'
 #' }
 #'
 #' }
@@ -470,7 +598,7 @@ prettyCheckbox <- function(inputId, label, value = FALSE, status = "default",
                            shape = c("square", "curve", "round"),
                            outline = FALSE, fill = FALSE, thick = FALSE,
                            animation = NULL, icon = NULL, plain = FALSE,
-                           bigger = FALSE, width = NULL) {
+                           bigger = FALSE, inline = FALSE, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
@@ -489,6 +617,8 @@ prettyCheckbox <- function(inputId, label, value = FALSE, status = "default",
     class = "form-group shiny-input-container",
     style = if (!is.null(width))  paste0("width: ",
                                          htmltools::validateCssUnit(width), ";"),
+    class = if (inline) "shiny-input-container-inline",
+    style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
       class="pretty", inputTag,
       class=if(is.null(icon)) "p-default",
@@ -597,7 +727,7 @@ updatePrettyCheckbox<- function (session, inputId, label = NULL, value = NULL) {
 #' @param thick Make the content inside checkbox smaller (\code{TRUE} or \code{FALSE}).
 #' @param animation Add an animation when checkbox is checked, a value between
 #' \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.
-#' @param icon Optional, display an icon on the checkbox, must an icon created with \code{icon}.
+#' @param icon Optional, display an icon on the checkbox, must be an icon created with \code{icon}.
 #' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
 #' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
@@ -949,7 +1079,7 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
 #' @param thick Make the content inside radio smaller (\code{TRUE} or \code{FALSE}).
 #' @param animation Add an animation when radio is checked, a value between
 #' \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.
-#' @param icon Optional, display an icon on the radio, must an icon created with \code{icon}.
+#' @param icon Optional, display an icon on the radio, must be an icon created with \code{icon}.
 #' @param plain Remove the border when radio is checked (\code{TRUE} or \code{FALSE}).
 #' @param bigger Scale the radio a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).

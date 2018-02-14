@@ -37,7 +37,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 \item{animation}{Add an animation when checkbox is checked, a value between
 \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.}
 
-\item{icon}{Optional, display an icon on the checkbox, must an icon created with \code{icon}.}
+\item{icon}{Optional, display an icon on the checkbox, must be an icon created with \code{icon}.}
 
 \item{plain}{Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).}
 

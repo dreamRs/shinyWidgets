@@ -7,7 +7,8 @@
 prettyToggle(inputId, label_on, label_off, icon_on = NULL, icon_off = NULL,
   value = FALSE, status_on = "success", status_off = "danger",
   shape = c("square", "curve", "round"), outline = FALSE, fill = FALSE,
-  thick = FALSE, plain = FALSE, bigger = FALSE, width = NULL)
+  thick = FALSE, plain = FALSE, bigger = FALSE, animation = NULL,
+  inline = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -16,9 +17,9 @@ prettyToggle(inputId, label_on, label_off, icon_on = NULL, icon_off = NULL,
 
 \item{label_off}{Display label for the control when value is \code{FALSE}}
 
-\item{icon_on}{Optional, display an icon on the checkbox when value is \code{TRUE}, must an icon created with \code{icon}.}
+\item{icon_on}{Optional, display an icon on the checkbox when value is \code{TRUE}, must be an icon created with \code{icon}.}
 
-\item{icon_off}{Optional, display an icon on the checkbox when value is \code{FALSE}, must an icon created with \code{icon}.}
+\item{icon_off}{Optional, display an icon on the checkbox when value is \code{FALSE}, must be an icon created with \code{icon}.}
 
 \item{value}{Initial value (\code{TRUE} or \code{FALSE}).}
 
@@ -39,6 +40,11 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 \item{plain}{Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).}
 
 \item{bigger}{Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).}
+
+\item{animation}{Add an animation when checkbox is checked, a value between
+\code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.}
+
+\item{inline}{Display the input inline, if you want to place checkboxes next to each other.}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }
@@ -103,6 +109,66 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
+
+
+
+# Inline example ----
+
+
+ui <- fluidPage(
+  tags$h1("Pretty toggles: inline example"),
+  br(),
+
+  prettyToggle(inputId = "toggle1",
+               label_on = "Checked!",
+               label_off = "Unchecked...",
+               inline = TRUE),
+  prettyToggle(inputId = "toggle2",
+               label_on = "Yep",
+               status_on = "default",
+               icon_on = icon("ok-circle", lib = "glyphicon"),
+               label_off = "Nope",
+               status_off = "default",
+               icon_off = icon("remove-circle", lib = "glyphicon"),
+               plain = TRUE,
+               inline = TRUE),
+  prettyToggle(inputId = "toggle3",
+               label_on = "",
+               label_off = "",
+               icon_on = icon("volume-up", lib = "glyphicon"),
+               icon_off = icon("volume-off", lib = "glyphicon"),
+               status_on = "primary",
+               status_off = "default",
+               plain = TRUE,
+               outline = TRUE,
+               bigger = TRUE,
+               inline = TRUE),
+  prettyToggle(inputId = "toggle4",
+               label_on = "Yes!",
+               label_off = "No..",
+               outline = TRUE,
+               plain = TRUE,
+               icon_on = icon("thumbs-up"),
+               icon_off = icon("thumbs-down"),
+               inline = TRUE),
+
+  verbatimTextOutput(outputId = "res")
+
+)
+
+server <- function(input, output, session) {
+
+  output$res <- renderPrint(c(input$toggle1,
+                              input$toggle2,
+                              input$toggle3,
+                              input$toggle4))
+
+}
+
+shinyApp(ui, server)
+
+
+
 }
 
 }

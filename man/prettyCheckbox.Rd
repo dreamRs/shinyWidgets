@@ -7,7 +7,7 @@
 prettyCheckbox(inputId, label, value = FALSE, status = "default",
   shape = c("square", "curve", "round"), outline = FALSE, fill = FALSE,
   thick = FALSE, animation = NULL, icon = NULL, plain = FALSE,
-  bigger = FALSE, width = NULL)
+  bigger = FALSE, inline = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -30,11 +30,13 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 \item{animation}{Add an animation when checkbox is checked, a value between
 \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.}
 
-\item{icon}{Optional, display an icon on the checkbox, must an icon created with \code{icon}.}
+\item{icon}{Optional, display an icon on the checkbox, must be an icon created with \code{icon}.}
 
 \item{plain}{Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).}
 
 \item{bigger}{Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).}
+
+\item{inline}{Display the input inline, if you want to place checkboxes next to each other.}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }
@@ -102,6 +104,59 @@ server <- function(input, output, session) {
   output$res3 <- renderPrint(input$checkbox3)
   output$res4 <- renderPrint(input$checkbox4)
   output$res5 <- renderPrint(input$checkbox5)
+
+}
+
+shinyApp(ui, server)
+
+
+
+# Inline example ----
+
+ui <- fluidPage(
+  tags$h1("Pretty checkbox: inline example"),
+  br(),
+  prettyCheckbox(inputId = "checkbox1",
+                 label = "Click me!",
+                 status = "success",
+                 outline = TRUE,
+                 inline = TRUE),
+  prettyCheckbox(inputId = "checkbox2",
+                 label = "Click me!",
+                 thick = TRUE,
+                 shape = "curve",
+                 animation = "pulse",
+                 status = "info",
+                 inline = TRUE),
+  prettyCheckbox(inputId = "checkbox3",
+                 label = "Click me!",
+                 shape = "round",
+                 status = "danger",
+                 value = TRUE,
+                 inline = TRUE),
+  prettyCheckbox(inputId = "checkbox4",
+                 label = "Click me!",
+                 outline = TRUE,
+                 plain = TRUE,
+                 animation = "rotate",
+                 icon = icon("thumbs-up"),
+                 inline = TRUE),
+  prettyCheckbox(inputId = "checkbox5",
+                 label = "Click me!",
+                 icon = icon("check"),
+                 animation = "tada",
+                 status = "primary",
+                 inline = TRUE),
+  verbatimTextOutput(outputId = "res")
+)
+
+server <- function(input, output, session) {
+
+  output$res <- renderPrint(c(input$checkbox1,
+                              input$checkbox2,
+                              input$checkbox3,
+                              input$checkbox4,
+                              input$checkbox5))
 
 }
 
