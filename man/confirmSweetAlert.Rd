@@ -44,6 +44,59 @@ library("shinyWidgets")
 ui <- fluidPage(
   tags$h1("Confirm sweet alert"),
   actionButton(
+    inputId = "launch",
+    label = "Launch confirmation dialog"
+  ),
+  verbatimTextOutput(outputId = "res"),
+  uiOutput(outputId = "count")
+)
+
+server <- function(input, output, session) {
+  # Launch sweet alert confirmation
+  observeEvent(input$launch, {
+    confirmSweetAlert(
+      session = session,
+      inputId = "myconfirmation",
+      type = "warning",
+      title = "Want to confirm ?",
+      danger_mode = TRUE
+    )
+  })
+
+  # raw output
+  output$res <- renderPrint(input$myconfirmation)
+
+  # count click
+  true <- reactiveVal(0)
+  false <- reactiveVal(0)
+  observeEvent(input$myconfirmation, {
+    if (isTRUE(input$myconfirmation)) {
+      x <- true() + 1
+      true(x)
+    } else {
+      x <- false() + 1
+      false(x)
+    }
+  }, ignoreNULL = TRUE)
+  output$count <- renderUI({
+    tags$span(
+      "Confirm:", tags$b(true()),
+      tags$br(),
+      "Cancel:", tags$b(false())
+    )
+  })
+}
+
+shinyApp(ui, server)
+
+
+
+
+# other options :
+
+ui <- fluidPage(
+  tags$h1("Confirm sweet alert"),
+  actionButton(
     inputId = "launch1",
     label = "Launch confirmation dialog (with danger mode)"
   ),

@@ -30,6 +30,7 @@ Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {
 Shiny.addCustomMessageHandler('sweetalert-sw-confirm', function(data) {
   //var id = data.id;
   //data.id = null;
+  Shiny.onInputChange(data.id, null);
   if (!data.as_html) {
     swal(data).then(function(value) {
       if (value) {
