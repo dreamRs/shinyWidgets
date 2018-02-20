@@ -34,7 +34,11 @@ $.extend(searchInputBinding, {
       callback();
    });
    $('#' + $escapeSearch(el.id) + '_reset').on('click', function(event) { // on click
-      $('#se' + $escapeSearch(el.id)).val('');
+      var reset = $('#' + $escapeSearch(el.id)).data('reset');
+      if (reset == 'TRUE') {
+        var resetValue = $('#' + $escapeSearch(el.id)).data('reset-value');
+        $('#se' + $escapeSearch(el.id)).val(resetValue);
+      }
       callback();
    });
   },

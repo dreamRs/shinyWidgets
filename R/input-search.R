@@ -9,6 +9,8 @@
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
 #' @param btnSearch An icon for the button which validate the search.
 #' @param btnReset An icon for the button which reset the search.
+#' @param resetValue Value used when reset button is clicked, default to \code{""},
+#'  if \code{NULL} value is not reset.
 #' @param width The width of the input, e.g. '400px', or '100\%'.
 #'
 #' @note The two buttons ('search' and 'reset') act like \code{actionButton}, you can
@@ -49,7 +51,7 @@
 #' @export
 
 searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
-                        btnSearch = NULL, btnReset = NULL, width = NULL) {
+                        btnSearch = NULL, btnReset = NULL, resetValue = "", width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   if (!is.null(btnSearch)) {
     btnSearch <- htmltools::tags$button(
@@ -78,7 +80,8 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
       paste0("width: ", validateCssUnit(width), ";"),
     if (!is.null(label)) htmltools::tags$label(label, `for` = inputId),
     htmltools::tags$div(
-      id = inputId,
+      id = inputId, `data-reset` = !is.null(resetValue),
+      `data-reset-value` = resetValue,
       class = "input-group search-text",
       htmltools::tags$input(id = paste0("se", inputId),
                  style = "border-radius: 0.25em 0 0 0.25em !important;",

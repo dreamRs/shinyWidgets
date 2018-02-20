@@ -5,7 +5,7 @@
 \title{Search Input}
 \usage{
 searchInput(inputId, label = NULL, value = "", placeholder = NULL,
-  btnSearch = NULL, btnReset = NULL, width = NULL)
+  btnSearch = NULL, btnReset = NULL, resetValue = "", width = NULL)
 }
 \arguments{
 \item{inputId}{The input slot that will be used to access the value.}
@@ -19,6 +19,9 @@ searchInput(inputId, label = NULL, value = "", placeholder = NULL,
 \item{btnSearch}{An icon for the button which validate the search.}
 
 \item{btnReset}{An icon for the button which reset the search.}
+
+\item{resetValue}{Value used when reset button is clicked, default to \code{""},
+if \code{NULL} value is not reset.}
 
 \item{width}{The width of the input, e.g. '400px', or '100\%'.}
 }
