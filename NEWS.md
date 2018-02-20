@@ -4,6 +4,7 @@ shinyWidgets 0.4.1.960
 * New function `updateSearchInput` to update `searchInput` server-side [#52](https://github.com/dreamRs/shinyWidgets/issues/52).
 * New argument `inline` to `prettySwitch`, `prettyToggle` and `prettyCheckbox` to position checkboxes side by side.
 * New argument `html` to `confirmSweetAlert` and `sendSweetAlert` to pass HTML tags in alert window [#48](https://github.com/dreamRs/shinyWidgets/issues/48).
+* New Shiny modules to create dependent slect menu : `selectizeGroup` and `pickerGroup`.
 
 
 

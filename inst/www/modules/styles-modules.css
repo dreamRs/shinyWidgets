@@ -1,0 +1,22 @@
+
+/* Styles for pickerGroup */
+
+.picker-group .btn-default {
+ border-radius: 0 !important;
+}
+.picker-group .btn-group:first-child .form-control .btn-default {
+  border-radius: 0.85em 0 0 0.85em  !important;
+}
+.picker-group .btn-group:last-child .form-control .btn-default {
+  border-radius: 0 0.85em 0.85em 0  !important;
+}
+.picker-group .btn {
+  border-radius: 0;
+}
+
+
+/* Styles for selectizeGroup */
+.selectize-group .selectize-input {
+  height: 72px;
+  overflow-y: scroll;
+}
