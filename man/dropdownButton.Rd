@@ -36,16 +36,54 @@ and you can use the id to toggle the droddown menu server-side.}
 \description{
 Create a dropdown menu with Bootstrap
 }
+\note{
+\code{pickerInput} doesn't work inside \code{dropdownButton} because that's also a
+dropdown and you can't nest them. Instead use \code{\link{dropdown}},
+it has similar features but is built differently so it works.
+}
 \examples{
 \dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
-dropdownButton(
- "Your contents goes here ! You can pass several elements",
- circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
- tooltip = tooltipOptions(title = "Click to see inputs !")
+library(shiny)
+library(shinyWidgets)
+
+ui <- fluidPage(
+  dropdownButton(
+    label = "Controls",
+    icon = icon("sliders"),
+    status = "primary",
+    circle = FALSE,
+    sliderInput(
+      inputId = "n",
+      label = "Number of observations",
+      min = 10, max = 100, value = 30
+    ),
+    prettyToggle(
+      inputId = "na",
+      label_on = "NAs keeped",
+      label_off = "NAs removed",
+      icon_on = icon("check"),
+      icon_off = icon("remove")
+    )
+  ),
+  tags$div(style = "height: 140px;"), # spacing
+  verbatimTextOutput(outputId = "out")
 )
+
+server <- function(input, output, session) {
+
+  output$out <- renderPrint({
+    cat(
+      " # n\\n", input$n, "\\n",
+      "# na\\n", input$na
+    )
+  })
+
+}
+
+shinyApp(ui, server)
 
 }
 }
