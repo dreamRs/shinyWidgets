@@ -2,17 +2,27 @@
 #' @title Launch the shinyWidget Gallery
 #'
 #' @description
-#' A gallery of widgets available in the package
+#' A gallery of widgets available in the package.
 #'
 #'
-#' @importFrom shiny runApp
+#' @importFrom shiny shinyAppDir
 #' @export
-
-
-shinyWidgetsGallery <- function() {
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#'  shinyWidgetsGallery()
+#'
+#' }
+#'
+#' }
+shinyWidgetsGallery <- function() { # nocov start
   if (!requireNamespace(package = "shinydashboard"))
     message("Package 'shinydashboard' is required to run this function")
   if (!requireNamespace(package = "formatR"))
     message("Package 'formatR' is required to run this function")
   shiny::shinyAppDir(system.file('examples/shinyWidgets', package='shinyWidgets', mustWork=TRUE))
 }
+# nocov end

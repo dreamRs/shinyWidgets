@@ -7,5 +7,16 @@
 shinyWidgetsGallery()
 }
 \description{
-A gallery of widgets available in the package
+A gallery of widgets available in the package.
+}
+\examples{
+\dontrun{
+
+if (interactive()) {
+
+ shinyWidgetsGallery()
+
+}
+
+}
 }

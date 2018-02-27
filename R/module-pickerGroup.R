@@ -139,7 +139,7 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
 #' @rdname pickerGroup-module
 #' @importFrom shiny observeEvent reactiveValues reactive observe reactiveValuesToList
 #' @importFrom stats aggregate as.formula
-pickerGroupServer <- function(input, output, session, data, vars) {
+pickerGroupServer <- function(input, output, session, data, vars) { # nocov start
 
   data <- as.data.frame(data)
 
@@ -223,7 +223,7 @@ pickerGroupServer <- function(input, output, session, data, vars) {
     indicator <- lapply(
       X = vars,
       FUN = function(x) {
-        data[[x]] %inT% inputs[[x]]
+        data[[x]] %inT% input[[x]]
       }
     )
     indicator <- Reduce(f = `&`, x = indicator)
@@ -231,6 +231,6 @@ pickerGroupServer <- function(input, output, session, data, vars) {
     return(data)
   }))
 }
-
+# nocov end
 
 
