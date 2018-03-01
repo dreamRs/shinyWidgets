@@ -143,6 +143,17 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           stylesheet = "pretty-checkbox.min.css"
         )
       )
+    } else if (widget == "nouislider") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          name = "nouislider",
+          version = "11.0.3",
+          src = c(href="shinyWidgets/nouislider"),
+          script = c("nouislider.min.js", "wNumb.js"),
+          stylesheet = "nouislider.min.css"
+        )
+      )
     }
   }
   htmltools::attachDependencies(tag, dep, append = TRUE)
