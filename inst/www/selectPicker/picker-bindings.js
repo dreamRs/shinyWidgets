@@ -22,7 +22,7 @@ var pickerInputBinding = new Shiny.InputBinding();
       return el.id;
     },
     getValue: function getValue(el) {
-      return $(el).val() || false;
+      return $(el).val() || [""];
     },
     setValue: function setValue(el, value) {
       $(el).val(value);
