@@ -1,4 +1,4 @@
-shinyWidgets 0.4.1.980
+shinyWidgets 0.4.2
 ======================
 
 * New function `updateSearchInput` to update `searchInput` server-side [#52](https://github.com/dreamRs/shinyWidgets/issues/52).

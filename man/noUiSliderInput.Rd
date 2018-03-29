@@ -35,7 +35,7 @@ the step option.}
 \item{margin}{numeric, when using two handles, the minimum distance between
 the handles can be set using the margin option.}
 
-\item{limit}{numeric, the limit option is the oposite of the \code{margin} option,
+\item{limit}{numeric, the limit option is the opposite of the \code{margin} option,
 limiting the maximum distance between two handles.}
 
 \item{orientation}{The orientation setting can be used to set the

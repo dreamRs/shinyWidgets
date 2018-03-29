@@ -16,7 +16,7 @@
 #' @param padding numeric, padding limits how close to the slider edges handles can be.
 #' @param margin numeric, when using two handles, the minimum distance between
 #'  the handles can be set using the margin option.
-#' @param limit numeric, the limit option is the oposite of the \code{margin} option,
+#' @param limit numeric, the limit option is the opposite of the \code{margin} option,
 #'  limiting the maximum distance between two handles.
 #' @param orientation The orientation setting can be used to set the
 #'  slider to \code{"vertical"} or \code{"horizontal"}.

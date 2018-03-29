@@ -5,6 +5,7 @@ ui <- fluidPage(
   fluidRow(
     column(
       width = 10, offset = 1,
+      tags$h2("Pretty checkboxes demo"),
       splitLayout(
         prettyCheckbox(
           inputId = "pretty_1", label = "Check me!", icon = icon("check")
@@ -35,7 +36,7 @@ ui <- fluidPage(
         ),
         prettyCheckbox(
           inputId = "pretty_7", label = "Check me!",
-          shape = "round", thick = TRUE, outline = TRUE
+          icon = icon("check"), status = "primary", plain = TRUE
         ),
         prettyCheckbox(
           inputId = "pretty_8", label = "Check me!",
