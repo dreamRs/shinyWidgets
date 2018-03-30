@@ -27,7 +27,8 @@
 #' @export
 #'
 #'
-#' @note All options are described here \url{http://bootstrapswitch.com/options.html}.
+#' @note For more information, see the project on Github
+#'  \url{https://github.com/Bttstrp/bootstrap-switch}.
 #'
 #' @seealso \code{\link{updateSwitchInput}}, \code{\link{materialSwitch}}
 #'
