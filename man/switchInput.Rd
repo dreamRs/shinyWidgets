@@ -43,7 +43,8 @@ A switch control that can be added to a UI definition.
 Create a toggle switch.
 }
 \note{
-All options are described here \url{http://bootstrapswitch.com/options.html}.
+For more information, see the project on Github
+ \url{https://github.com/Bttstrp/bootstrap-switch}.
 }
 \examples{
 \dontrun{
