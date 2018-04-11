@@ -55,9 +55,6 @@
 #'
 #'
 #' }
-
-
-
 setSliderColor <- function(color, sliderId) {
 
   # some tests to control inputs

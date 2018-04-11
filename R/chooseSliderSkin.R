@@ -10,6 +10,8 @@
 #'
 #' @export
 #'
+#' @importFrom htmltools attachDependencies tagList
+#'
 #'
 #' @examples
 #' \dontrun{
@@ -48,9 +50,6 @@
 #'
 #'
 #' }
-
-
-
 chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",
                                       "Simple", "HTML5", "Round", "Square")) {
   skin <- match.arg(arg = skin)
@@ -69,6 +68,7 @@ chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",
 # dependencies of shiny's sliderInput
 # and replace them by the skin
 # provided by the user.
+#' @importFrom htmltools findDependencies
 sliderInputDep <- function(skin) {
   # recovers the dependencies
   # of a normal sliderInput

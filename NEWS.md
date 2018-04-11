@@ -1,3 +1,9 @@
+shinyWidgets 0.4.2.900
+======================
+
+* New functions to customize `sliderInput` : `chooseSliderSkin` and `setSliderColor` by [@DivadNojnarg](https://github.com/DivadNojnarg)
+
+
 shinyWidgets 0.4.2
 ======================
 
