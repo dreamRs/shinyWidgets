@@ -32,7 +32,7 @@ Demo :
 shinyWidgets::shinyWidgetsGallery()
 ```
 
-Or see the live version here : https://dreamrs-vic.shinyapps.io/shinyWidgets/
+Or see the live version here (when available) : https://dreamrs-vic.shinyapps.io/shinyWidgets/
 
 You can find an introduction (in french) [here](https://dreamrs.github.io/shinyWidgets/articles/intro_shinyWidgets_fr.html).
 
