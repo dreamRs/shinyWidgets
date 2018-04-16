@@ -5,10 +5,15 @@
 \title{Theme selector for sliderInput}
 \usage{
 chooseSliderSkin(skin = c("Shiny", "Flat", "Modern", "Nice", "Simple",
-  "HTML5", "Round", "Square"))
+  "HTML5", "Round", "Square"), color = NULL)
 }
 \arguments{
-\item{skin}{The \code{skin} to apply. Choose among 5 different flavors, namely 'Shiny', 'Flat', 'Modern', 'Nice', 'Simple", 'HTML5', 'Round' and 'Square'.}
+\item{skin}{The \code{skin} to apply. Choose among 5 different flavors,
+namely 'Shiny', 'Flat', 'Modern', 'Nice', 'Simple', 'HTML5', 'Round' and 'Square'.}
+
+\item{color}{A color to apply to all sliders. Works with following skins:
+'Shiny', 'Flat', 'Modern', 'HTML5'. For 'Flat' a CSS filter is applied,
+desired color maybe a little offset.}
 }
 \description{
 Customize the appearance of the original shiny's sliderInputs
@@ -24,17 +29,42 @@ if (interactive()) {
 library(shiny)
 library(shinyWidgets)
 
-ui <- fluidPage(
+# With Modern design
 
-  # use the Modern design
+ui <- fluidPage(
   chooseSliderSkin("Modern"),
-  sliderInput("obs", "Customized slider1:",
+  sliderInput("obs", "Customized single slider:",
               min = 0, max = 100, value = 50
   ),
-  sliderInput("obs2", "Customized slider1:",
+  sliderInput("obs2", "Customized range slider:",
+              min = 0, max = 100, value = c(40, 80)
+  ),
+  plotOutput("distPlot")
+)
+
+server <- function(input, output) {
+
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
+
+}
+
+shinyApp(ui, server)
+
+
+
+# Use Flat design & a custom color
+
+ui <- fluidPage(
+  chooseSliderSkin("Flat", color = "#112446"),
+  sliderInput("obs", "Customized single slider:",
               min = 0, max = 100, value = 50
   ),
-  sliderInput("obs3", "Customized slider1:",
+  sliderInput("obs2", "Customized range slider:",
+              min = 0, max = 100, value = c(40, 80)
+  ),
+  sliderInput("obs3", "An other slider:",
               min = 0, max = 100, value = 50
   ),
   plotOutput("distPlot")

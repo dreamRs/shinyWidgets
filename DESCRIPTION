@@ -1,6 +1,6 @@
 Package: shinyWidgets
 Title: Custom Inputs Widgets for Shiny
-Version: 0.4.2.900
+Version: 0.4.2.910
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
@@ -36,7 +36,8 @@ Depends:
 Imports:
     shiny (>= 0.14),
     htmltools,
-    jsonlite
+    jsonlite,
+    grDevices
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
