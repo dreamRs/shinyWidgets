@@ -150,17 +150,15 @@ A [jQuery](https://github.com/aterrien/jQuery-Knob) based knob, similar to slide
 
 ```r
 knobInput(
-  inputId = "knob6", 
-  label = "Cursor mode:", 
-  value = 50, 
-  thickness = 0.3, 
-  cursor = TRUE, 
-  width = 150,
-  height = 150
+  inputId = "myKnob",
+  label = "jQuery knob example:",
+  value = 0,
+  min = -100,
+  displayPrevious = TRUE, 
+  lineCap = "round",
+  fgColor = "#428BCA",
+  inputColor = "#428BCA"
 )
-
-...
-
 ```
 
 ### Select picker
