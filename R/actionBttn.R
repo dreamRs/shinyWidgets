@@ -17,6 +17,8 @@
 #'
 #' @export
 #'
+#' @seealso \link{downloadBttn}
+#'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags
 #'
@@ -84,4 +86,83 @@ actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
     class = if (no_outline) "bttn-no-outline"
   )
   attachShinyWidgetsDep(tagBttn, "bttn")
+}
+
+
+
+#' Create a download bttn
+#'
+#' Create a download button with \link{actionBttn}.
+#'
+#' @param outputId The name of the output slot that the \code{downloadHandler} is assigned to.
+#' @param label The label that should appear on the button.
+#' @param style Style of the button, to choose between \code{simple}, \code{bordered},
+#' \code{minimal}, \code{stretch}, \code{jelly}, \code{gradient}, \code{fill},
+#' \code{material-circle}, \code{material-flat}, \code{pill}, \code{float}, \code{unite}.
+#' @param color Color of the button : \code{default}, \code{primary}, \code{warning},
+#'  \code{danger}, \code{success}, \code{royal}.
+#' @param size Size of the button : \code{xs},\code{sm}, \code{md}, \code{lg}.
+#' @param block Logical, full width button.
+#' @param no_outline Logical, don't show outline when navigating with
+#'  keyboard/interact using mouse or touch.
+#'
+#' @export
+#'
+#' @importFrom htmltools tags
+#' @importFrom shiny icon
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#' library(shiny)
+#' library(shinyWidgets)
+#'
+#' ui <- fluidPage(
+#'   tags$h2("Download bttn"),
+#'   downloadBttn(
+#'     outputId = "downloadData",
+#'     style = "bordered",
+#'     color = "primary"
+#'   )
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$downloadData <- downloadHandler(
+#'     filename = function() {
+#'       paste('data-', Sys.Date(), '.csv', sep='')
+#'     },
+#'     content = function(con) {
+#'       write.csv(mtcars, con)
+#'     }
+#'   )
+#'
+#' }
+#'
+#' shinyApp(ui, server)
+#'
+#' }
+#'
+#' }
+downloadBttn <- function (outputId, label = "Download", style = "unite",
+                          color = "default", size = "md", block = FALSE,
+                          no_outline = TRUE) {
+  bttn <- actionBttn(
+    inputId = paste0(outputId, "_bttn"),
+    label = tags$a(
+      id = outputId,
+      class = "shiny-download-link",
+      href = "",
+      target = "_blank",
+      download = NA,
+      label
+    ),
+    color = color, style = style,
+    size = size, block = block,
+    no_outline = no_outline,
+    icon = icon("download")
+  )
+  bttn
 }

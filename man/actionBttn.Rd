@@ -72,3 +72,6 @@ shinyApp(ui = ui, server = server)
 }
 }
 }
+\seealso{
+\link{downloadBttn}
+}
