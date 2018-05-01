@@ -281,5 +281,3 @@ updateNoUiSliderInput <- function(session, inputId, value = NULL, range = NULL, 
 
 
 
-
-

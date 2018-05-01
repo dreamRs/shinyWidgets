@@ -3,6 +3,7 @@ shinyWidgets 0.4.2.900
 
 * New functions to customize `sliderInput` : `chooseSliderSkin` and `setSliderColor` by [@DivadNojnarg](https://github.com/DivadNojnarg)
 * New function `downloadBttn`, a `downloadButton` with custom appearance.
+* New widget `airDatepickerInput`, to select single, multiple and range of dates. You can also select time. And two shortcuts to select months or years.
 
 
 shinyWidgets 0.4.2
