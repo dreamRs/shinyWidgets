@@ -2,6 +2,7 @@ shinyWidgets 0.4.2.900
 ======================
 
 * New functions to customize `sliderInput` : `chooseSliderSkin` and `setSliderColor` by [@DivadNojnarg](https://github.com/DivadNojnarg)
+* New function `downloadBttn`, a `downloadButton` with custom appearance.
 
 
 shinyWidgets 0.4.2
