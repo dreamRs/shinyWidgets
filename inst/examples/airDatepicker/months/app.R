@@ -37,7 +37,16 @@ ui <- fluidPage(
         label = "Select range of months:",
         range = TRUE, value = c(Sys.Date()-60, Sys.Date())
       ),
-      verbatimTextOutput(outputId = "res_range")
+      verbatimTextOutput(outputId = "res_range"),
+
+      airMonthpickerInput(
+        inputId = "french",
+        label = "In french:",
+        language = "fr",
+        dateFormat = "M yy",
+        addon = "left"
+      ),
+      verbatimTextOutput(outputId = "res_french")
 
     ),
 
@@ -80,7 +89,7 @@ server <- function(input, output, session) {
   output$res_range <- renderPrint( str(input$range) )
   output$res_minmax <- renderPrint({ str(input$minmax) })
   output$res_inline <- renderPrint({ str(input$inline) })
-
+  output$res_french <- renderPrint({ str(input$french) })
 }
 
 # app ----

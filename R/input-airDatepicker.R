@@ -223,6 +223,11 @@ timepickerOptions <- function(dateTimeSeparator = NULL, timeFormat = NULL,
 #' @export
 #' @importFrom utils modifyList
 airMonthpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
+  if (!is.null(value)) {
+    if (inherits(value, "Date")) {
+      value <- format(value, format = "%Y-%m-01")
+    }
+  }
   args <- list(...)
   args <- modifyList(
     val = args,
@@ -244,6 +249,11 @@ airMonthpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #' @export
 #' @importFrom utils modifyList
 airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
+  if (!is.null(value)) {
+    if (inherits(value, "Date")) {
+      value <- format(value, format = "%Y-01-01")
+    }
+  }
   args <- list(...)
   args <- modifyList(
     val = args,
