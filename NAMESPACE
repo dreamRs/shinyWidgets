@@ -2,6 +2,7 @@
 
 export(actionBttn)
 export(actionGroupButtons)
+export(addSpinner)
 export(airDatepickerInput)
 export(airMonthpickerInput)
 export(airYearpickerInput)
