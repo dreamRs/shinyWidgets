@@ -5,7 +5,6 @@
 
 library("shinydashboard")
 library("shinyWidgets")
-library("formatR")
 
 if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
   warning("Some function(s) from GlobalEnv will override those from shinyWidgets")
@@ -27,18 +26,16 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
     deparse(substitute(fun)),
     gsub(
       pattern = "^list", replacement = "",
-      x = paste(deparse(substitute(args)), collapse = "")
+      x = paste(deparse(substitute(args)), collapse = "\n")
     )
   )
   raw <- gsub(pattern = "ID\\(\\.shinyWidgetGalleryId\\)", replacement = paste0("\"", args$inputId, "\""), x = raw)
 
-  formatted <- formatR::tidy_source(
-    text = raw,
-    output = FALSE,
-    width.cutoff = 30,
-    indent = 2,
-    brace.newline = FALSE
-  )$text.tidy
+  formatted <- sub(pattern = "\\(", replacement = "\\(\n   ", x = raw)
+  formatted <- gsub(pattern = "\\)$", replacement = "\n\\)", x = formatted)
+  formatted <- gsub(pattern = ",(\\s[[:graph:]]+\\s=)", replacement = ",\n  \\1", x = formatted)
+  formatted <- gsub(pattern = "list\\(", replacement = "list\\(\n      ", x = formatted)
+  formatted <- trimws(formatted)
 
   htmltools::tagList(
     do.call(fun, args), htmltools::hr(),
