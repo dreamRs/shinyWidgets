@@ -5,6 +5,7 @@ shinyWidgets 0.4.2.900
 * New function `downloadBttn`, a `downloadButton` with custom appearance.
 * New widget `airDatepickerInput`, to select single, multiple and range of dates. You can also select time. And two shortcuts to select months or years.
 * New function to add spinners when outputs are recalculating.
+* New function `useShinydashboard` to use functions from 'shinydashboard' into a classic 'shiny' app, specifically `valueBox`, `infoBox` and `box`.
 
 
 shinyWidgets 0.4.2
