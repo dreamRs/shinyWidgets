@@ -64,7 +64,7 @@
 #'     FUN = function(i) {
 #'       output[[paste0("plot", i)]] <- renderPlot({
 #'         dat()
-#'         plot(sin, -pi, 2*pi)
+#'         plot(sin, -pi, i*pi)
 #'       })
 #'     }
 #'   )
@@ -131,7 +131,7 @@ addSpinner <- function(output, spin = "double-bounce", color = "#112446") {
     tagSpin <- tags$div(
       class="loading-spinner",
       tags$div(
-        class="rotating-plane loading-spinner",
+        class="rotating-plane",
         style = sprintf("background-color: %s;", color)
       )
     )
