@@ -48,4 +48,5 @@ Suggests: shinydashboard,
     viridisLite,
     RColorBrewer,
     testthat,
-    covr
+    covr,
+    shinydashboardPlus
