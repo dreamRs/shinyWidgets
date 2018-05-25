@@ -5,7 +5,7 @@
 \title{Select picker Input Control}
 \usage{
 pickerInput(inputId, label = NULL, choices, selected = NULL,
-  multiple = FALSE, options = NULL, choicesOpt = NULL, width = NULL,
+  multiple = FALSE, options = list(), choicesOpt = NULL, width = NULL,
   inline = FALSE)
 }
 \arguments{
@@ -23,7 +23,8 @@ If not specified then defaults to the first value for single-select lists
 \item{multiple}{Is selection of multiple items allowed?}
 
 \item{options}{Options to customize the select picker,
-see \url{https://silviomoreto.github.io/bootstrap-select/options/}.}
+see \url{https://silviomoreto.github.io/bootstrap-select/options/}.
+For limit the number of selections, see example below.}
 
 \item{choicesOpt}{Options for choices in the dropdown menu.}
 
@@ -57,7 +58,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 
 
-# Add actions box for selecting
+### Add actions box for selecting
 # deselecting all options
 
 library("shiny")
@@ -95,7 +96,7 @@ shinyApp(ui = ui, server = server)
 
 
 
-# Customize the values displayed in the box
+### Customize the values displayed in the box ----
 
 library("shiny")
 library("shinyWidgets")
@@ -157,6 +158,53 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 
+
+
+### Limit the number of selections ----
+
+library(shiny)
+library(shinyWidgets)
+ui <- fluidPage(
+  pickerInput(
+    inputId = "groups",
+    label = "Select one from each group below:",
+    choices = list(
+      Group1 = c("1", "2", "3", "4"),
+      Group2 = c("A", "B", "C", "D")
+    ),
+    multiple = TRUE,
+    options =  list("max-options-group" = 1)
+  ),
+  verbatimTextOutput(outputId = "res_grp"),
+  pickerInput(
+    inputId = "groups_2",
+    label = "Select two from each group below:",
+    choices = list(
+      Group1 = c("1", "2", "3", "4"),
+      Group2 = c("A", "B", "C", "D")
+    ),
+    multiple = TRUE,
+    options =  list("max-options-group" = 2)
+  ),
+  verbatimTextOutput(outputId = "res_grp_2"),
+  pickerInput(
+    inputId = "classic",
+    label = "Select max two option below:",
+    choices = c("A", "B", "C", "D"),
+    multiple = TRUE,
+    options =  list(
+      "max-options" = 2,
+      "max-options-text" = "No more!"
+    )
+  ),
+  verbatimTextOutput(outputId = "res_classic")
+)
+server <- function(input, output) {
+  output$res_grp <- renderPrint(input$groups)
+  output$res_grp_2 <- renderPrint(input$groups_2)
+  output$res_classic <- renderPrint(input$classic)
+}
+shinyApp(ui, server)
 
 }
 }

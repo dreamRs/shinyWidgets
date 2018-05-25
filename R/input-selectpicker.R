@@ -13,6 +13,7 @@
 #' @param multiple Is selection of multiple items allowed?
 #' @param options Options to customize the select picker,
 #' see \url{https://silviomoreto.github.io/bootstrap-select/options/}.
+#' For limit the number of selections, see example below.
 #' @param choicesOpt Options for choices in the dropdown menu.
 #' @param width The width of the input : 'auto', 'fit', '100px', '75\%'.
 #' @param inline Put the label and the picker on the same line.
@@ -39,7 +40,7 @@
 #' shinyApp(ui, server)
 #'
 #'
-#' # Add actions box for selecting
+#' ### Add actions box for selecting
 #' # deselecting all options
 #'
 #' library("shiny")
@@ -77,7 +78,7 @@
 #'
 #'
 #'
-#' # Customize the values displayed in the box
+#' ### Customize the values displayed in the box ----
 #'
 #' library("shiny")
 #' library("shinyWidgets")
@@ -140,6 +141,53 @@
 #' shinyApp(ui = ui, server = server)
 #'
 #'
+#'
+#' ### Limit the number of selections ----
+#'
+#' library(shiny)
+#' library(shinyWidgets)
+#' ui <- fluidPage(
+#'   pickerInput(
+#'     inputId = "groups",
+#'     label = "Select one from each group below:",
+#'     choices = list(
+#'       Group1 = c("1", "2", "3", "4"),
+#'       Group2 = c("A", "B", "C", "D")
+#'     ),
+#'     multiple = TRUE,
+#'     options =  list("max-options-group" = 1)
+#'   ),
+#'   verbatimTextOutput(outputId = "res_grp"),
+#'   pickerInput(
+#'     inputId = "groups_2",
+#'     label = "Select two from each group below:",
+#'     choices = list(
+#'       Group1 = c("1", "2", "3", "4"),
+#'       Group2 = c("A", "B", "C", "D")
+#'     ),
+#'     multiple = TRUE,
+#'     options =  list("max-options-group" = 2)
+#'   ),
+#'   verbatimTextOutput(outputId = "res_grp_2"),
+#'   pickerInput(
+#'     inputId = "classic",
+#'     label = "Select max two option below:",
+#'     choices = c("A", "B", "C", "D"),
+#'     multiple = TRUE,
+#'     options =  list(
+#'       "max-options" = 2,
+#'       "max-options-text" = "No more!"
+#'     )
+#'   ),
+#'   verbatimTextOutput(outputId = "res_classic")
+#' )
+#' server <- function(input, output) {
+#'   output$res_grp <- renderPrint(input$groups)
+#'   output$res_grp_2 <- renderPrint(input$groups_2)
+#'   output$res_classic <- renderPrint(input$classic)
+#' }
+#' shinyApp(ui, server)
+#'
 #' }
 #' }
 #'
@@ -148,10 +196,10 @@
 #'
 #' @export
 pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multiple = FALSE,
-                        options = NULL, choicesOpt = NULL, width = NULL, inline = FALSE) {
+                        options = list(), choicesOpt = NULL, width = NULL, inline = FALSE) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
-  if (!is.null(options))
+  if (!is.null(options) && length(options) > 0)
     names(options) <- paste("data", names(options), sep = "-")
   if (!is.null(width))
     options <- c(options, list("data-width" = width))
@@ -164,8 +212,9 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
       "false"
     else x
   })
+  maxOptGroup <- options[["data-max-options-group"]]
   selectProps <- dropNulls(c(list(id = inputId, class = "selectpicker form-control"), options))
-  selectTag <- do.call(htmltools::tags$select, c(selectProps, pickerOptions(choices, selected, choicesOpt)))
+  selectTag <- do.call(tags$select, c(selectProps, pickerOptions(choices, selected, choicesOpt, maxOptGroup)))
 
   if (multiple)
     selectTag$attribs$multiple <- "multiple"
@@ -306,11 +355,13 @@ updatePickerInput <- function (session, inputId, label = NULL, selected = NULL, 
 #' @importFrom htmltools HTML htmlEscape tagList
 #'
 #' @noRd
-pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL)
+pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL, maxOptGroup = NULL)
 {
   if (is.null(choicesOpt))
     choicesOpt <- list()
   l <- sapply(choices, length)
+  if (!is.null(maxOptGroup))
+    maxOptGroup <- rep_len(x = maxOptGroup, length.out = sum(l))
   m <- matrix(data = c(c(1, cumsum(l)[-length(l)] + 1), cumsum(l)), ncol = 2)
   html <- lapply(seq_along(choices), FUN = function(i) {
     label <- names(choices)[i]
@@ -328,10 +379,11 @@ pickerOptions <- function (choices, selected = NULL, choicesOpt = NULL)
           )
         )
       )
+      if (!is.null(maxOptGroup))
+        optionTag[["data-max-options"]] <- maxOptGroup[i]
       optionTag <- dropNulls(optionTag)
       do.call(htmltools::tags$optgroup, optionTag)
-    }
-    else {
+    } else {
       optionTag <- list(
         value = choice, htmltools::HTML(htmltools::htmlEscape(label)),
         style = choicesOpt$style[i],
