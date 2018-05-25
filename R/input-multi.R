@@ -80,7 +80,7 @@
 multiInput <- function(inputId, label, choices = NULL, selected = NULL, options = NULL, width = NULL, choiceNames = NULL, choiceValues = NULL) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   selectTag <- htmltools::tags$select(
-    id = inputId, multiple = "multiple", class= "multijs",
+    id = inputId, multiple = "multiple", class= "form-control multijs",
     makeChoices(choices = choices, choiceNames = choiceNames,
                 choiceValues = choiceValues, selected = selected)
   )
@@ -89,10 +89,14 @@ multiInput <- function(inputId, label, choices = NULL, selected = NULL, options 
     style = if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
     htmltools::tags$label(class = "control-label", `for` = inputId, label),
     selectTag,
-    htmltools::tags$script(
-      sprintf("$('#%s').multi(%s);",
-              escape_jquery(inputId), jsonlite::toJSON(options, auto_unbox = TRUE))
+    tags$script(
+      type = "application/json", `data-for` = inputId,
+      jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE)
     )
+    # htmltools::tags$script(
+    #   sprintf("$('#%s').multi(%s);",
+    #           escape_jquery(inputId), jsonlite::toJSON(options, auto_unbox = TRUE))
+    # )
   )
   attachShinyWidgetsDep(multiTag, "multi")
 }
@@ -139,7 +143,7 @@ updateMultiInput <- function (session, inputId, label = NULL, selected = NULL, c
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- if (!is.null(choices))
-    paste(capture.output(makeChoices(choices, selected)), collapse = "\n")
+    paste(capture.output(makeChoices(choices, selected = selected)), collapse = "\n")
   message <- dropNulls(list(label = label, options = options, value = selected))
   session$sendInputMessage(inputId, message)
 }

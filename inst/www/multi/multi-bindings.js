@@ -6,6 +6,12 @@ var $escapeMulti = exportsMulti.$escape = function(val) {
 
 var multiInputBinding = new Shiny.InputBinding();
   $.extend(multiInputBinding, {
+    initialize: function initialize(el) {
+      var config = $(el).parent().find('script[data-for="' + $escapeMulti(el.id) + '"]');
+      config = JSON.parse(config.html());
+      $(el).multi(config);
+      $(el).trigger('change');
+    },
     find: function(scope) {
       return $(scope).find('.multijs');
     },
@@ -16,7 +22,9 @@ var multiInputBinding = new Shiny.InputBinding();
       return $(el).val();
     },
     setValue: function setValue(el, value) {
-      $(el).val(value).change();
+      $(el).val(value);
+      $(el).multi();
+      $(el).trigger('change');
     },
     getState: function(el) {
       // Store options in an array of objects, each with with value and label
@@ -49,12 +57,12 @@ var multiInputBinding = new Shiny.InputBinding();
       if (data.hasOwnProperty('label')) $(el).parent().parent().find('label[for="' + $escapeMulti(el.id) + '"]').text(data.label);
 
       //$(el.id).trigger( 'change' );
+      $(el).multi();
       $(el).trigger('change');
+      $('.multi-wrapper').trigger('click');
     },
     subscribe: function(el, callback) {
       $(el).on('change', function (event) {
-        //$(el.id).trigger( 'change' );
-        //$(el).trigger('change');
         callback();
       });
     },

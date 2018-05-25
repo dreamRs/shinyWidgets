@@ -6,6 +6,7 @@ ui <- fluidPage(
     inputId = "id", label = "Fruits :",
     choices = c("Banana", "Blueberry", "Cherry", "Coconut", "Grapefruit",
                 "Kiwi", "Lemon", "Lime", "Mango", "Orange", "Papaya"),
+    options = list(search_placeholder = "Select your favorites:"),
     selected = "Banana", width = "350px"
   ),
   verbatimTextOutput(outputId = "res"),
@@ -20,11 +21,11 @@ server <- function(input, output, session) {
     choices <- c("Banana", "Blueberry", "Cherry", "Coconut", "Grapefruit",
                  "Kiwi", "Lemon", "Lime", "Mango", "Orange", "Papaya")
     if (input$up == "none") {
-      shinyWidgets:::updateMultiInput(session = session, inputId = "id", selected = character(0))
+      shinyWidgets:::updateMultiInput(session = session, inputId = "id", choices = choices, selected = character(0))
     } else if (input$up == "random") {
-      shinyWidgets:::updateMultiInput(session = session, inputId = "id", selected = sample(choices, sample(1:2)))
+      shinyWidgets:::updateMultiInput(session = session, inputId = "id", choices = choices, selected = sample(choices, sample(1:2)))
     } else if (input$up == "all") {
-      shinyWidgets:::updateMultiInput(session = session, inputId = "id", selected = choices)
+      shinyWidgets:::updateMultiInput(session = session, inputId = "id", choices = choices, selected = choices)
     }
   }, ignoreInit = TRUE)
 }

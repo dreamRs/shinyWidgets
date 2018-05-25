@@ -65,10 +65,10 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "multi",
-          version = "0.2.4",
+          version = "0.3.0",
           src = c(href="shinyWidgets/multi"),
           script = "multi.min.js",
-          stylesheet = c("multi.min.css", "multi-shiny.css")
+          stylesheet = c("multi.min.css")
         )
       )
     } else if (widget == "jquery-knob") {

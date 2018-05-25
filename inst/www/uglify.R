@@ -6,13 +6,13 @@
 # js ----
 
 # not used
-js_files <- list.files(path = "inst/www/", pattern = "\\.js$", full.names = TRUE, recursive = TRUE)
-js_files <- lapply(js_files, readLines)
-js_files <- lapply(js_files, paste, collapse = "\n")
-js_files <- paste(unlist(js_files), collapse = "\n")
-library("js")
-js_files <- uglify_optimize(text = js_files)
-writeLines(text = js_files, con = "inst/www/shinyWidgets.min.js")
+# js_files <- list.files(path = "inst/www/", pattern = "\\.js$", full.names = TRUE, recursive = TRUE)
+# js_files <- lapply(js_files, readLines)
+# js_files <- lapply(js_files, paste, collapse = "\n")
+# js_files <- paste(unlist(js_files), collapse = "\n")
+# library("js")
+# js_files <- uglify_optimize(text = js_files)
+# writeLines(text = js_files, con = "inst/www/shinyWidgets.min.js")
 
 
 
@@ -22,6 +22,7 @@ writeLines(text = js_files, con = "inst/www/shinyWidgets.min.js")
 bindings_files <- list.files(path = "inst/www/", pattern = "bindings", full.names = TRUE, recursive = TRUE)
 bindings_files <- bindings_files[bindings_files != "inst/www/shinyWidgets-bindings.min.js"]
 bindings_files <- bindings_files[bindings_files != "inst/www//sweetAlert/sweetalert-bindings.js"]
+bindings_files <- bindings_files[bindings_files != "inst/www//air-datepicker/datepicker-bindings.js"]
 bindings_files <- bindings_files[!grepl(pattern = "awesome", bindings_files)]
 bindings_files <- lapply(bindings_files, readLines)
 bindings_files <- lapply(bindings_files, paste, collapse = "\n")
@@ -45,7 +46,7 @@ css_files <- css_files[
     grepl(pattern = "radioGroupButtons", x = css_files) |
     grepl(pattern = "circle-button", x = css_files) |
     grepl(pattern = "material-switch", x = css_files, fixed = TRUE) |
-    grepl(pattern = "multi-shiny", x = css_files) |
+    # grepl(pattern = "multi-shiny", x = css_files) |
     grepl(pattern = "sw-color-selector", x = css_files)
   ]
 
