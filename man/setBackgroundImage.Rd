@@ -21,6 +21,7 @@ Use with moderation. The image while cover the entire screen (no repeat, cover).
 if (interactive()) {
 
 library(shiny)
+library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h2("Add a shiny app background image"),

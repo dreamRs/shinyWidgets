@@ -12,7 +12,10 @@
 #' if (interactive()) {
 #'
 #' library(shiny)
+#' library(shinydashboard)
 #' library(shinydashboardPlus)
+#' library(shinyWidgets)
+#'
 #'
 #' # example taken from ?box
 #'

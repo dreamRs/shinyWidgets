@@ -17,6 +17,7 @@ if (interactive()) {
 
 library(shiny)
 library(shinydashboard)
+library(shinyWidgets)
 
 # example taken from ?box
 

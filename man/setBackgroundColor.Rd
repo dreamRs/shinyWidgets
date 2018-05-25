@@ -4,11 +4,19 @@
 \alias{setBackgroundColor}
 \title{Custom background color for your shinyapp}
 \usage{
-setBackgroundColor(color = "ghostwhite")
+setBackgroundColor(color = "ghostwhite", gradient = c("linear", "radial"),
+  direction = c("bottom", "top", "right", "left"))
 }
 \arguments{
 \item{color}{Background color. Use either the fullname or the Hex code
-(\url{https://www.w3schools.com/colors/colors_hex.asp}).}
+(\url{https://www.w3schools.com/colors/colors_hex.asp}). If more than one color is used,
+a gradient background is set.}
+
+\item{gradient}{Type of gradient: \code{linear} or \code{radial}.}
+
+\item{direction}{Direction for gradient, by default to \code{bottom}.
+Possibles choices are \code{bottom}, \code{top}, \code{right} or
+\code{left}, two values can be used, e.g. \code{c("bottom", "right")}.}
 }
 \description{
 Allow to change the background color of your shinyapp.
@@ -18,7 +26,10 @@ Allow to change the background color of your shinyapp.
 
 if (interactive()) {
 
+### Uniform color background :
+
 library(shiny)
+library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h2("Change shiny app background"),
@@ -27,6 +38,82 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
+}
+
+shinyApp(ui, server)
+
+
+### linear gradient background :
+
+library(shiny)
+library(shinyWidgets)
+
+ui <- fluidPage(
+
+  # use a gradient in background
+  setBackgroundColor(
+    color = c("#F7FBFF", "#2171B5"),
+    gradient = "linear",
+    direction = "bottom"
+  ),
+
+  titlePanel("Hello Shiny!"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("obs",
+                  "Number of observations:",
+                  min = 0,
+                  max = 1000,
+                  value = 500)
+    ),
+    mainPanel(
+      plotOutput("distPlot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
+}
+
+shinyApp(ui, server)
+
+
+### radial gradient background :
+
+library(shiny)
+library(shinyWidgets)
+
+ui <- fluidPage(
+
+  # use a gradient in background
+  setBackgroundColor(
+    color = c("#F7FBFF", "#2171B5"),
+    gradient = "radial",
+    direction = c("top", "left")
+  ),
+
+  titlePanel("Hello Shiny!"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("obs",
+                  "Number of observations:",
+                  min = 0,
+                  max = 1000,
+                  value = 500)
+    ),
+    mainPanel(
+      plotOutput("distPlot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
 }
 
 shinyApp(ui, server)

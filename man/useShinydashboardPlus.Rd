@@ -15,7 +15,10 @@ Allow to use functions from 'shinydashboardPlus' into a classic 'shiny' app.
 if (interactive()) {
 
 library(shiny)
+library(shinydashboard)
 library(shinydashboardPlus)
+library(shinyWidgets)
+
 
 # example taken from ?box
 
