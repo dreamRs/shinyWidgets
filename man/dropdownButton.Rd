@@ -31,7 +31,7 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'm
 \item{width}{Width of the dropdown menu content.}
 
 \item{inputId}{Optional, id for the button, the button act like an \code{actionButton},
-and you can use the id to toggle the droddown menu server-side.}
+and you can use the id to toggle the dropdown menu server-side.}
 }
 \description{
 Create a dropdown menu with Bootstrap

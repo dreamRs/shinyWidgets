@@ -15,7 +15,7 @@
 #' @param up Logical. Display the dropdown menu above.
 #' @param width Width of the dropdown menu content.
 #' @param inputId Optional, id for the button, the button act like an \code{actionButton},
-#' and you can use the id to toggle the droddown menu server-side.
+#' and you can use the id to toggle the dropdown menu server-side.
 #'
 #'
 #' @note \code{pickerInput} doesn't work inside \code{dropdownButton} because that's also a

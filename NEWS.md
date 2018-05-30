@@ -1,11 +1,12 @@
 shinyWidgets 0.4.2.900
 ======================
 
-* New functions to customize `sliderInput` : `chooseSliderSkin` and `setSliderColor` by [@DivadNojnarg](https://github.com/DivadNojnarg)
+* New functions to customize `sliderInput` : `chooseSliderSkin` and `setSliderColor` by [@DivadNojnarg](https://github.com/DivadNojnarg).
 * New function `downloadBttn`, a `downloadButton` with custom appearance.
 * New widget `airDatepickerInput`, to select single, multiple and range of dates. You can also select time. And two shortcuts to select months or years.
 * New function to add spinners when outputs are recalculating.
 * New function `useShinydashboard` to use functions from 'shinydashboard' into a classic 'shiny' app, specifically `valueBox`, `infoBox` and `box`.
+* New functions `setBackgroundColor` and `setBackgroundImage` to change background color or use an image, by [@DivadNojnarg](https://github.com/DivadNojnarg).
 
 
 shinyWidgets 0.4.2

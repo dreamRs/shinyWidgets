@@ -17,7 +17,7 @@
 #' @param width Width of the dropdown menu content.
 #' @param animate Add animation on the dropdown, can be logical or result of \code{animateOptions}.
 #' @param inputId Optional, id for the button, the button act like an \code{actionButton},
-#' and you can use the id to toggle the droddown menu server-side. If set button will have id \code{'sw-btn-inputId'}.
+#' and you can use the id to toggle the dropdown menu server-side. If set button will have id \code{'sw-btn-inputId'}.
 #'
 #' @details
 #' This function is similar to \code{dropdownButton} but don't use Boostrap, so you can put \code{pickerInput} in it.

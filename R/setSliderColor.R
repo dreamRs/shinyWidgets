@@ -3,7 +3,7 @@
 #' @description Edit the color of the original shiny's sliderInputs
 #'
 #' @param color The \code{color} to apply. This can also be a vector of colors if you want to customize more than 1 slider. Either
-#' pass the name of the color such as 'Chartreuse ' and 'Chocolate 'or the HEX notation such as '#7FFF00' and '#D2691E'.
+#' pass the name of the color such as 'Chartreuse ' and 'Chocolate 'or the HEX notation such as \code{'#7FFF00'} and \code{'#D2691E'}.
 #' @param sliderId The \code{id} of the customized slider(s). This can be a vector like \code{c(1, 2)}, if you want to modify the 2 first sliders.
 #' However, if you only want to modify the second slider, just use the value 2.
 #'
