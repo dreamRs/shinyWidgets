@@ -9,7 +9,7 @@ knobInput(inputId, label, value, min = 0, max = 100, step = 1,
   lineCap = c("default", "round"), displayInput = TRUE,
   displayPrevious = FALSE, rotation = c("clockwise", "anticlockwise"),
   fgColor = NULL, inputColor = NULL, bgColor = NULL, readOnly = FALSE,
-  skin = NULL, width = NULL, height = NULL)
+  skin = NULL, width = NULL, height = NULL, immediate = TRUE)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -53,6 +53,9 @@ knobInput(inputId, label, value, min = 0, max = 100, step = 1,
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 
 \item{height}{The height of the input, e.g. \code{400px}, or \code{100\%}.}
+
+\item{immediate}{If \code{TRUE} (default), server-side value is updated each time value change,
+if \code{FALSE} value is updated when user release the widget.}
 }
 \value{
 Numeric value server-side.
@@ -94,5 +97,5 @@ shinyApp(ui = ui, server = server)
 }
 }
 \seealso{
-\code{\link{updateKnobInput}} for ganging the value server-side.
+\code{\link{updateKnobInput}} for updating the value server-side.
 }

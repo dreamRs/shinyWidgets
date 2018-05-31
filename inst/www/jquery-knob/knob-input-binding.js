@@ -75,6 +75,8 @@ $.extend(knobInputBinding, {
     // callback is a function that queues data to be sent to
     // the server.
     subscribe: function(el, callback) {
+      var immediate = $(el).data("immediate");
+      if (immediate) {
         $(el).on('keyup.knobInputBinding', function(event) {
             callback(true);
             // When called with true, it will use the rate policy,
@@ -85,16 +87,29 @@ $.extend(knobInputBinding, {
             'change': function(v) {
                 callback(false);
             },
-            'release' : function (v) { 
+            'release' : function (v) {
                 callback(false);
             }
         });
-        
+
         $(el).on('change.knobInputBinding', function(event) {
             callback(false);
             // When called with false, it will NOT use the rate policy,
             // so changes will be sent immediately
         });
+      } else {
+        $(el).on('keyup.knobInputBinding', function(event) {
+            callback(true);
+            // When called with true, it will use the rate policy,
+            // which in this case is to debounce at 500ms.
+        });
+        $(el).trigger('configure', {
+            'release' : function (v) {
+                callback(true);
+            }
+        });
+      }
+
     },
 
     // Remove the event listeners

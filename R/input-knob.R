@@ -23,11 +23,13 @@
 #' @param skin Change Knob skin, only one option available : 'tron'.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #' @param height The height of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param immediate If \code{TRUE} (default), server-side value is updated each time value change,
+#' if \code{FALSE} value is updated when user release the widget.
 #'
 #' @return Numeric value server-side.
 #' @export
 #'
-#' @seealso \code{\link{updateKnobInput}} for ganging the value server-side.
+#' @seealso \code{\link{updateKnobInput}} for updating the value server-side.
 #'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags
@@ -69,7 +71,8 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
                       thickness = NULL, lineCap = c("default", "round"), displayInput = TRUE,
                       displayPrevious = FALSE, rotation = c("clockwise", "anticlockwise"),
                       fgColor = NULL, inputColor = NULL, bgColor = NULL,
-                      readOnly = FALSE, skin = NULL, width = NULL, height = NULL) {
+                      readOnly = FALSE, skin = NULL, width = NULL, height = NULL,
+                      immediate = TRUE) {
   value <- shiny::restoreInput(id = inputId, default = value)
   lineCap <- match.arg(lineCap)
   rotation <- match.arg(rotation)
@@ -83,7 +86,8 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
     `data-fgcolor` = fgColor, `data-inputcolor` = inputColor,
     `data-bgcolor` = bgColor, `data-cursor` = cursor,
     `data-rotation` = rotation, `data-readonly` = readOnly,
-    `data-width` = width, `data-height` = height
+    `data-width` = width, `data-height` = height,
+    `data-immediate` = immediate
   ))
   knobParams <- lapply(knobParams, function(x) {
     if (identical(x, TRUE))
