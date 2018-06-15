@@ -5,6 +5,7 @@ context("updateAwesomeCheckbox")
 test_that("Send message", {
 
   session <- as.environment(list(
+    ns = identity,
     sendInputMessage = function(inputId, message) {
       session$lastInputMessage = list(id = inputId, message = message)
     }
