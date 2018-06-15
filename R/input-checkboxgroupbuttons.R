@@ -263,7 +263,7 @@ updateCheckboxGroupButtons <- function(session, inputId, label = NULL, choices =
                                        checkIcon = list(), choiceNames = NULL, choiceValues = NULL) {
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues, mustExist = FALSE)
   options <- if (!is.null(args$choiceNames)) {
-    format(htmltools::tagList(generateCBGB(inputId, args, selected, status = status, size = size,
+    format(htmltools::tagList(generateCBGB(session$ns(inputId), args, selected, status = status, size = size,
                                 checkIcon = checkIcon)))
   }
   message <- dropNulls(list(selected = selected, options = options, label = label))
