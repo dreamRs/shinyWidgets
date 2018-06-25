@@ -19,3 +19,25 @@ test_that("Send message", {
   expect_true(grepl('primary', resultRGB$message$options))
 
 })
+
+
+test_that("Works in modules", {
+  createModuleSession <- function(moduleId) {
+    session <- as.environment(list(
+      ns = shiny::NS(moduleId),
+      sendInputMessage = function(inputId, message) {
+        session$lastInputMessage = list(id = inputId, message = message)
+      }
+    ))
+    session
+  }
+
+  session <- createModuleSession("modA")
+
+  updateRadioGroupButtons(session = session, inputId = "idrgbsw", choices = c("A", "B", "C"), status = "primary")
+  resultRGB <- session$lastInputMessage
+
+  expect_equal(object = resultRGB$id, expected = "idrgbsw")
+  expect_true(grepl('"modA-idrgbsw"', resultRGB$message$options))
+})
+

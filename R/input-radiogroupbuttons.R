@@ -225,7 +225,7 @@ updateRadioGroupButtons <- function(session, inputId, label = NULL, choices = NU
   if (is.null(selected) && !is.null(args$choiceValues))
     selected <- args$choiceValues[[1]]
   options <- if (!is.null(args$choiceValues)) {
-    format(htmltools::tagList(generateRGB(inputId, args, selected, status = status, size = size,
+    format(htmltools::tagList(generateRGB(session$ns(inputId), args, selected, status = status, size = size,
                                checkIcon = checkIcon)))
   }
   message <- dropNulls(list(selected = selected, options = options, label = label))
