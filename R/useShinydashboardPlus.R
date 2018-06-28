@@ -24,18 +24,7 @@
 #'
 #'   # use this in non shinydashboardPlus app
 #'   useShinydashboardPlus(),
-#'   # -----------------
-#'
-#'   tags$head(
-#'    tags$style(
-#'     HTML(
-#'      'body {
-#'        background-color: lightgrey;
-#'       }
-#'      '
-#'     )
-#'    )
-#'   ),
+#'   setBackgroundColor(color = "ghostwhite"),
 #'
 #'   # boxPlus
 #'   fluidRow(
@@ -47,11 +36,11 @@
 #'      collapsible = TRUE,
 #'      enable_dropdown = TRUE,
 #'      dropdown_icon = "wrench",
-#'      dropdownItemList = dropdownItemList(
-#'        dropdownItem(target = "http://www.google.com", name = "Link to google"),
-#'        dropdownItem(target = "#", name = "item 2"),
+#'      dropdown_menu = dropdownItemList(
+#'        dropdownItem(url = "http://www.google.com", name = "Link to google"),
+#'        dropdownItem(url = "#", name = "item 2"),
 #'        dropdownDivider(),
-#'        dropdownItem(target = "#", name = "item 3")
+#'        dropdownItem(url = "#", name = "item 3")
 #'      ),
 #'      p("Box Content")
 #'    ),

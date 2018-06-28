@@ -23,6 +23,7 @@
 #'   tags$h2("Classic shiny"),
 #'
 #'   # use this in non shinydashboard app
+#'   setBackgroundColor(color = "ghostwhite"),
 #'   useShinydashboard(),
 #'   # -----------------
 #'
