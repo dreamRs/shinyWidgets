@@ -14,15 +14,15 @@ multiInput(inputId, label, choices = NULL, selected = NULL,
 
 \item{choices}{List of values to select from.}
 
-\item{selected}{The initially selected value}
+\item{selected}{The initially selected value.}
 
-\item{options}{List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example)}
+\item{options}{List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example).}
 
-\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}}
+\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 
-\item{choiceNames}{List of names to display}
+\item{choiceNames}{List of names to display to the user.}
 
-\item{choiceValues}{List of value to retrieve in server}
+\item{choiceValues}{List of values corresponding to \code{choiceNames}.}
 }
 \value{
 A multiselect control
