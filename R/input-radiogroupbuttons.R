@@ -222,8 +222,11 @@ updateRadioGroupButtons <- function(session, inputId, label = NULL, choices = NU
                                     status = "default", size = "normal",
                                     checkIcon = list(), choiceNames = NULL, choiceValues = NULL) {
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues, mustExist = FALSE)
-  if (is.null(selected) && !is.null(args$choiceValues))
+  if (is.null(selected) && !is.null(args$choiceValues)) {
     selected <- args$choiceValues[[1]]
+  } else {
+    selected <- as.character(selected)
+  }
   options <- if (!is.null(args$choiceValues)) {
     format(htmltools::tagList(generateRGB(session$ns(inputId), args, selected, status = status, size = size,
                                checkIcon = checkIcon)))
