@@ -53,6 +53,7 @@ function swDrop(triggerId, swDropdownContentId, swDropdownId, animateIn, animate
             && $('#' + swDropdownId).find(e.target).length === 0
             && !($(e.target).prop("tagName") === 'A' && $(e.target).attr('role') === 'option') // hack for bootstrap select
             && !($(e.target).prop("tagName") === 'SPAN' && $(e.target).attr('class') === 'text') // hack for bootstrap select
+            && !($(e.target).prop("tagName") === 'I' && $(e.target).attr('class') === 'jstree-icon jstree-ocl') // hack for shinyTree
         ) {
 
           if($('#' + swDropdownContentId).hasClass('sw-show')) {
