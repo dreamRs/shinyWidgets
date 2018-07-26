@@ -92,3 +92,6 @@ shinyApp(ui = ui, server = server)
 }
 }
 }
+\seealso{
+\link{updateMultiInput} to update value server-side.
+}

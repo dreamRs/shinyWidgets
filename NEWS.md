@@ -1,4 +1,10 @@
-shinyWidgets 0.4.2.900
+shinyWidgets 0.4.3.950
+======================
+
+* New function `updateMultiInput` for updating `multiInput`, thanks to [@ifellows](https://github.com/ifellows).
+
+
+shinyWidgets 0.4.3
 ======================
 
 * New functions to customize `sliderInput` : `chooseSliderSkin` and `setSliderColor` by [@DivadNojnarg](https://github.com/DivadNojnarg).

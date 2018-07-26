@@ -12,9 +12,13 @@
 #' @param options List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example).
 #'
 #' @return A multiselect control
+#'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools validateCssUnit tags
+#'
 #' @export
+#'
+#' @seealso \link{updateMultiInput} to update value server-side.
 #'
 #' @examples
 #' \dontrun{
@@ -137,6 +141,82 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
 
 
 
+#' @title Change the value of a multi input on the client
+#'
+#' @description Change the value of a multi input on the client
+#'
+#' @param session The session object passed to function given to shinyServer.
+#' @param inputId The id of the input object.
+#' @param label The label to set.
+#' @param selected The values selected.
+#' @param choices The new choices for the input.
+#'
+#' @seealso \code{\link{multiInput}}
+#'
+#' @note Thanks to \href{https://github.com/ifellows}{Ian Fellows} for this one !
+#'
+#' @export
+#'
+#' @importFrom utils capture.output
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#' library(shiny)
+#' library(shinyWidgets)
+#'
+#' fruits <- c("Banana", "Blueberry", "Cherry",
+#'             "Coconut", "Grapefruit", "Kiwi",
+#'             "Lemon", "Lime", "Mango", "Orange",
+#'             "Papaya")
+#'
+#' ui <- fluidPage(
+#'   tags$h2("Multi update"),
+#'   multiInput(
+#'     inputId = "my_multi",
+#'     label = "Fruits :",
+#'     choices = fruits,
+#'     selected = "Banana",
+#'     width = "350px"
+#'   ),
+#'   verbatimTextOutput(outputId = "res"),
+#'   selectInput(
+#'     inputId = "selected",
+#'     label = "Update selected:",
+#'     choices = fruits,
+#'     multiple = TRUE
+#'   ),
+#'   textInput(inputId = "label", label = "Update label:")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   output$res <- renderPrint(input$my_multi)
+#'
+#'   observeEvent(input$selected, {
+#'     updateMultiInput(
+#'       session = session,
+#'       inputId = "my_multi",
+#'       selected = input$selected
+#'     )
+#'   })
+#'
+#'   observeEvent(input$label, {
+#'     updateMultiInput(
+#'       session = session,
+#'       inputId = "my_multi",
+#'       label = input$label
+#'     )
+#'   }, ignoreInit = TRUE)
+#' }
+#'
+#' shinyApp(ui, server)
+#'
+#' }
+#'
+#' }
 updateMultiInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL) {
   choices <- if (!is.null(choices))
     choicesWithNames(choices)

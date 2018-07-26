@@ -56,10 +56,14 @@ var multiInputBinding = new Shiny.InputBinding();
 
       if (data.hasOwnProperty('label')) $(el).parent().parent().find('label[for="' + $escapeMulti(el.id) + '"]').text(data.label);
 
+      var event = new Event('change');
+
       //$(el.id).trigger( 'change' );
       $(el).multi();
-      $(el).trigger('change');
-      $('.multi-wrapper').trigger('click');
+      $el.get(0).dispatchEvent(event);
+      $el.trigger('change');
+
+      // $(el).siblings(".multi-wrapper").find(".search-input").get(0).dispatchEvent(event); //
     },
     subscribe: function(el, callback) {
       $(el).on('change', function (event) {
