@@ -210,3 +210,6 @@ shinyApp(ui, server)
 }
 
 }
+\seealso{
+\link{updatePickerInput} to update value server-side.
+}

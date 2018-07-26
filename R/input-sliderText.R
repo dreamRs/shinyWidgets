@@ -21,6 +21,8 @@
 #' @param post A suffix string to put after the value.
 #' @param dragRange See the same argument in \code{\link[shiny]{sliderInput}}.
 #'
+#' @seealso \link{updateSliderTextInput} to update value server-side.
+#'
 #' @return The value retrieved server-side is a character vector.
 #' @export
 #'

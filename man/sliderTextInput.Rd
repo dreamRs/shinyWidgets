@@ -82,3 +82,6 @@ shinyApp(ui = ui, server = server)
 
 }
 }
+\seealso{
+\link{updateSliderTextInput} to update value server-side.
+}

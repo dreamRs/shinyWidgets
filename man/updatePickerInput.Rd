@@ -102,3 +102,6 @@ shinyApp(ui = ui, server = server)
 }
 }
 }
+\seealso{
+\link{pickerInput}.
+}

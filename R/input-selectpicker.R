@@ -17,6 +17,9 @@
 #' @param choicesOpt Options for choices in the dropdown menu.
 #' @param width The width of the input : 'auto', 'fit', '100px', '75\%'.
 #' @param inline Put the label and the picker on the same line.
+#'
+#' @seealso \link{updatePickerInput} to update value server-side.
+#'
 #' @return A select control that can be added to a UI definition.
 #'
 #'
@@ -252,6 +255,8 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
 #'  If not specified then defaults to the first value for single-select lists
 #'  and no values for multiple select lists.
 #' @param choicesOpt Options for choices in the dropdown menu
+#'
+#' @seealso \link{pickerInput}.
 #'
 #' @importFrom utils capture.output
 #' @export
