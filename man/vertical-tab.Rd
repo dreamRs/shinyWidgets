@@ -6,7 +6,7 @@
 \alias{verticalTabPanel}
 \title{Vertical tab panel}
 \usage{
-verticalTabsetPanel(..., selected = NULL, color = "#112446")
+verticalTabsetPanel(..., selected = NULL, id = NULL, color = "#112446")
 
 verticalTabPanel(title, ..., value = title, icon = NULL,
   box_height = "160px")
@@ -17,6 +17,9 @@ to include, and for the later, UI elements.}
 
 \item{selected}{The \code{value} (or, if none was supplied, the \code{title})
 of the tab that should be selected by default. If \code{NULL}, the first tab will be selected.}
+
+\item{id}{If provided, you can use \code{input$id} in your server logic to determine which of
+the current tabs is active. The value will correspond to the \code{value} argument that is passed to \code{verticalTabPanel}.}
 
 \item{color}{Color for the tab panels.}
 
@@ -71,4 +74,7 @@ shinyApp(ui, server)
 }
 
 }
+}
+\seealso{
+\code{\link{updateVerticalTabsetPanel}} for updating selected tabs.
 }
