@@ -5,7 +5,7 @@
 \title{Change the value of a airDate input on the client}
 \usage{
 updateAirDateInput(session, inputId, label = NULL, value = NULL,
-  clear = FALSE)
+  clear = FALSE, options = NULL)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to \code{shinyServer}.}
@@ -17,6 +17,8 @@ updateAirDateInput(session, inputId, label = NULL, value = NULL,
 \item{value}{The value to set for the input object.}
 
 \item{clear}{Logical, clear all previous selected dates.}
+
+\item{options}{Options to update, see availables ones here: \url{http://t1m0n.name/air-datepicker/docs/}.}
 }
 \description{
 Change the value of a airDate input on the client

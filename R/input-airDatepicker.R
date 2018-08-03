@@ -282,6 +282,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
 #' @param clear Logical, clear all previous selected dates.
+#' @param options Options to update, see availables ones here: \url{http://t1m0n.name/air-datepicker/docs/}.
 #'
 #' @export
 #'
@@ -293,7 +294,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #' demoAirDatepicker("update")
 #'
 #' }
-updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, clear = FALSE) {
+updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, clear = FALSE, options = NULL) {
   stopifnot(is.logical(clear))
   formatDate <- function(x) {
     if (is.null(x))
@@ -308,7 +309,8 @@ updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, cle
     id = session$ns(inputId),
     label = label,
     value = value,
-    clear = clear
+    clear = clear,
+    options = options
   ))
   session$sendInputMessage(inputId, message)
 }
