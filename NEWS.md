@@ -2,6 +2,7 @@ shinyWidgets 0.4.3.950
 ======================
 
 * New function `updateMultiInput` for updating `multiInput`, thanks to [@ifellows](https://github.com/ifellows).
+* New function `updateVerticalTabsetPanel` for updating `verticalTabsetPanel`.
 
 
 shinyWidgets 0.4.3
