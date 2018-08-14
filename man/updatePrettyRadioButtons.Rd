@@ -4,9 +4,9 @@
 \alias{updatePrettyRadioButtons}
 \title{Change the value pretty radio buttons on the client}
 \usage{
-updatePrettyRadioButtons(session, inputId, label = NULL, choices = NULL,
-  selected = NULL, inline = FALSE, choiceNames = NULL,
-  choiceValues = NULL, prettyOptions = list())
+updatePrettyRadioButtons(session, inputId, label = NULL,
+  choices = NULL, selected = NULL, inline = FALSE,
+  choiceNames = NULL, choiceValues = NULL, prettyOptions = list())
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}

@@ -6,7 +6,8 @@
 \alias{verticalTabPanel}
 \title{Vertical tab panel}
 \usage{
-verticalTabsetPanel(..., selected = NULL, id = NULL, color = "#112446")
+verticalTabsetPanel(..., selected = NULL, id = NULL,
+  color = "#112446")
 
 verticalTabPanel(title, ..., value = title, icon = NULL,
   box_height = "160px")

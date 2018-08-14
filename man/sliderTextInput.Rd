@@ -4,11 +4,12 @@
 \alias{sliderTextInput}
 \title{Slider Text Input Widget}
 \usage{
-sliderTextInput(inputId, label, choices, selected = NULL, animate = FALSE,
-  grid = FALSE, hide_min_max = FALSE, from_fixed = FALSE,
-  to_fixed = FALSE, from_min = NULL, from_max = NULL, to_min = NULL,
-  to_max = NULL, force_edges = FALSE, width = NULL, pre = NULL,
-  post = NULL, dragRange = TRUE)
+sliderTextInput(inputId, label, choices, selected = NULL,
+  animate = FALSE, grid = FALSE, hide_min_max = FALSE,
+  from_fixed = FALSE, to_fixed = FALSE, from_min = NULL,
+  from_max = NULL, to_min = NULL, to_max = NULL,
+  force_edges = FALSE, width = NULL, pre = NULL, post = NULL,
+  dragRange = TRUE)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

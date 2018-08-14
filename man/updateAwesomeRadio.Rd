@@ -5,7 +5,8 @@
 \title{Change the value of a radio input on the client}
 \usage{
 updateAwesomeRadio(session, inputId, label = NULL, choices = NULL,
-  selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE)
+  selected = NULL, inline = FALSE, status = "primary",
+  checkbox = FALSE)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}

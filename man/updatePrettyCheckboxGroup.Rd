@@ -4,9 +4,9 @@
 \alias{updatePrettyCheckboxGroup}
 \title{Change the value of a pretty checkbox on the client}
 \usage{
-updatePrettyCheckboxGroup(session, inputId, label = NULL, choices = NULL,
-  selected = NULL, inline = FALSE, choiceNames = NULL,
-  choiceValues = NULL, prettyOptions = list())
+updatePrettyCheckboxGroup(session, inputId, label = NULL,
+  choices = NULL, selected = NULL, inline = FALSE,
+  choiceNames = NULL, choiceValues = NULL, prettyOptions = list())
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}

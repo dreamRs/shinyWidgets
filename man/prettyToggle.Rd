@@ -4,11 +4,11 @@
 \alias{prettyToggle}
 \title{Pretty Toggle Input}
 \usage{
-prettyToggle(inputId, label_on, label_off, icon_on = NULL, icon_off = NULL,
-  value = FALSE, status_on = "success", status_off = "danger",
-  shape = c("square", "curve", "round"), outline = FALSE, fill = FALSE,
-  thick = FALSE, plain = FALSE, bigger = FALSE, animation = NULL,
-  inline = FALSE, width = NULL)
+prettyToggle(inputId, label_on, label_off, icon_on = NULL,
+  icon_off = NULL, value = FALSE, status_on = "success",
+  status_off = "danger", shape = c("square", "curve", "round"),
+  outline = FALSE, fill = FALSE, thick = FALSE, plain = FALSE,
+  bigger = FALSE, animation = NULL, inline = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

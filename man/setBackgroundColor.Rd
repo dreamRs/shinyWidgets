@@ -4,8 +4,8 @@
 \alias{setBackgroundColor}
 \title{Custom background color for your shinyapp}
 \usage{
-setBackgroundColor(color = "ghostwhite", gradient = c("linear", "radial"),
-  direction = c("bottom", "top", "right", "left"))
+setBackgroundColor(color = "ghostwhite", gradient = c("linear",
+  "radial"), direction = c("bottom", "top", "right", "left"))
 }
 \arguments{
 \item{color}{Background color. Use either the fullname or the Hex code

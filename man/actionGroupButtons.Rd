@@ -4,8 +4,8 @@
 \alias{actionGroupButtons}
 \title{Actions Buttons Group Inputs}
 \usage{
-actionGroupButtons(inputIds, labels, status = "default", size = "normal",
-  direction = "horizontal", fullwidth = FALSE)
+actionGroupButtons(inputIds, labels, status = "default",
+  size = "normal", direction = "horizontal", fullwidth = FALSE)
 }
 \arguments{
 \item{inputIds}{The \code{input}s slot that will be used to access the value, one for each button.}

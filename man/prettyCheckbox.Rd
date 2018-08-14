@@ -5,9 +5,9 @@
 \title{Pretty Checkbox Input}
 \usage{
 prettyCheckbox(inputId, label, value = FALSE, status = "default",
-  shape = c("square", "curve", "round"), outline = FALSE, fill = FALSE,
-  thick = FALSE, animation = NULL, icon = NULL, plain = FALSE,
-  bigger = FALSE, inline = FALSE, width = NULL)
+  shape = c("square", "curve", "round"), outline = FALSE,
+  fill = FALSE, thick = FALSE, animation = NULL, icon = NULL,
+  plain = FALSE, bigger = FALSE, inline = FALSE, width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

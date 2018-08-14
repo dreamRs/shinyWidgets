@@ -6,8 +6,8 @@
 \alias{updateProgressBar}
 \title{Progress Bars}
 \usage{
-progressBar(id, value, total = NULL, display_pct = FALSE, size = NULL,
-  status = NULL, striped = FALSE, title = NULL)
+progressBar(id, value, total = NULL, display_pct = FALSE,
+  size = NULL, status = NULL, striped = FALSE, title = NULL)
 
 updateProgressBar(session, id, value, total = NULL, title = NULL,
   status = NULL)
