@@ -4,7 +4,8 @@
 \alias{updateKnobInput}
 \title{Change the value of a knob input on the client}
 \usage{
-updateKnobInput(session, inputId, label = NULL, value = NULL)
+updateKnobInput(session, inputId, label = NULL, value = NULL,
+  options = NULL)
 }
 \arguments{
 \item{session}{Standard shiny \code{session}.}
@@ -14,6 +15,8 @@ updateKnobInput(session, inputId, label = NULL, value = NULL)
 \item{label}{The label to set for the input object.}
 
 \item{value}{The value to set for the input object.}
+
+\item{options}{List of additional parameters to update, use \code{knobInput}'s arguments.}
 }
 \description{
 Change the value of a knob input on the client

@@ -18,7 +18,7 @@ updateAirDateInput(session, inputId, label = NULL, value = NULL,
 
 \item{clear}{Logical, clear all previous selected dates.}
 
-\item{options}{Options to update, see availables ones here: \url{http://t1m0n.name/air-datepicker/docs/}.}
+\item{options}{Options to update, see available ones here: \url{http://t1m0n.name/air-datepicker/docs/}.}
 }
 \description{
 Change the value of a airDate input on the client

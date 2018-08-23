@@ -134,6 +134,10 @@ $.extend(knobInputBinding, {
             );
         }
 
+        if (data.hasOwnProperty('options')) {
+          $(el).trigger('configure', data.options);
+        }
+
 
         if (data.hasOwnProperty('label'))
             $(el).parent().parent().find('label[for="' + $escapeKnob(el.id) + '"]').text(data.label);

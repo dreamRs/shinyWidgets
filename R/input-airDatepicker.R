@@ -282,7 +282,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
 #' @param clear Logical, clear all previous selected dates.
-#' @param options Options to update, see availables ones here: \url{http://t1m0n.name/air-datepicker/docs/}.
+#' @param options Options to update, see available ones here: \url{http://t1m0n.name/air-datepicker/docs/}.
 #'
 #' @export
 #'

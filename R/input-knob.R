@@ -117,6 +117,7 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
+#' @param options List of additional parameters to update, use \code{knobInput}'s arguments.
 #'
 #' @export
 #'
@@ -189,8 +190,8 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
 #' }
 #'
 #' }
-updateKnobInput <- function(session, inputId, label = NULL, value = NULL) {
-  message <- dropNulls(list(label = label, value = value))
+updateKnobInput <- function(session, inputId, label = NULL, value = NULL, options = NULL) {
+  message <- dropNulls(list(label = label, value = value, options = options))
   session$sendInputMessage(inputId, message)
 }
 
