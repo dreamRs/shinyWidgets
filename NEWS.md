@@ -1,8 +1,9 @@
-shinyWidgets 0.4.3.950
+shinyWidgets 0.4.3.970
 ======================
 
 * New function `updateMultiInput` for updating `multiInput`, thanks to [@ifellows](https://github.com/ifellows).
 * New function `updateVerticalTabsetPanel` for updating `verticalTabsetPanel`.
+* Update options for `knobInput` and `airDatepickerInput`.
 
 
 shinyWidgets 0.4.3
