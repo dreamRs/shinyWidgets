@@ -6,19 +6,22 @@
 \alias{selectizeGroupServer}
 \title{Selectize Group}
 \usage{
-selectizeGroupUI(id, params, label = NULL, btn_label = "Reset filters")
+selectizeGroupUI(id, params, label = NULL, btn_label = "Reset filters",
+  inline = TRUE)
 
 selectizeGroupServer(input, output, session, data, vars)
 }
 \arguments{
 \item{id}{Module's id.}
 
-\item{params}{a named list of parameters passed to each `selectizeInput`, you can use :
+\item{params}{A named list of parameters passed to each `selectizeInput`, you can use :
 `inputId` (obligatory, must be variable name), `label`, `placeholder`.}
 
-\item{label}{character, global label on top of all labels.}
+\item{label}{Character, global label on top of all labels.}
 
-\item{btn_label}{reset button label.}
+\item{btn_label}{Character, reset button label.}
+
+\item{inline}{If \code{TRUE} (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.}
 
 \item{input}{standard \code{shiny} input.}
 

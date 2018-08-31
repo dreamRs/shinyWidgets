@@ -32,7 +32,7 @@ test_that("selectizeGroup", {
   )
 
   expect_true(inherits(tag, "shiny.tag.list"))
-  expect_length(tag, 4)
-  expect_length(tag[[3]]$children[[1]], 4)
+  expect_length(tag, 2)
+  expect_length(tag[[2]][[2]]$children[[1]], 4)
 })
 

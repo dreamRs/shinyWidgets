@@ -4,10 +4,11 @@
 #' @description Group of mutually dependent `selectizeInput` for filtering data.frame's columns (like in Excel).
 #'
 #' @param id Module's id.
-#' @param params a named list of parameters passed to each `selectizeInput`, you can use :
+#' @param params A named list of parameters passed to each `selectizeInput`, you can use :
 #'  `inputId` (obligatory, must be variable name), `label`, `placeholder`.
-#' @param label character, global label on top of all labels.
-#' @param btn_label reset button label.
+#' @param label Character, global label on top of all labels.
+#' @param btn_label Character, reset button label.
+#' @param inline If \code{TRUE} (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.
 #'
 #' @return a \code{reactive} function containing data filtered.
 #' @export
@@ -63,10 +64,77 @@
 #' }
 #'
 #' }
-selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters") {
+selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters", inline = TRUE) {
 
   # Namespace
   ns <- NS(id)
+
+  if (inline) {
+    selectizeGroupTag <- tagList(
+      tags$b(label),
+      tags$div(
+        class="btn-group-justified selectize-group",
+        role="group", `data-toggle`="buttons",
+        lapply(
+          X = seq_along(params),
+          FUN = function(x) {
+            input <- params[[x]]
+            tagSelect <- tags$div(
+              class="btn-group",
+              selectizeInput(
+                inputId = ns(input$inputId),
+                label = input$title,
+                choices = input$choices,
+                selected = input$selected,
+                multiple = TRUE,
+                width = "100%",
+                options = list(
+                  placeholder = input$placeholder, plugins = list("remove_button"),
+                  onInitialize = I('function() { this.setValue(""); }')
+                )
+              )
+            )
+            return(tagSelect)
+          }
+        )
+      ),
+      actionLink(
+        inputId = ns("reset_all"),
+        label = btn_label,
+        icon = icon("remove"),
+        style = "float: right;"
+      )
+    )
+  } else {
+    selectizeGroupTag <- tagList(
+      tags$b(label),
+      lapply(
+        X = seq_along(params),
+        FUN = function(x) {
+          input <- params[[x]]
+          tagSelect <- selectizeInput(
+            inputId = ns(input$inputId),
+            label = input$title,
+            choices = input$choices,
+            selected = input$selected,
+            multiple = TRUE,
+            width = "100%",
+            options = list(
+              placeholder = input$placeholder, plugins = list("remove_button"),
+              onInitialize = I('function() { this.setValue(""); }')
+            )
+          )
+          return(tagSelect)
+        }
+      ),
+      actionLink(
+        inputId = ns("reset_all"),
+        label = btn_label,
+        icon = icon("remove"),
+        style = "float: right;"
+      )
+    )
+  }
 
   tagList(
     singleton(
@@ -78,39 +146,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
         ), toggleDisplayUi()
       )
     ),
-    tags$b(label),
-    tags$div(
-      class="btn-group-justified selectize-group",
-      role="group", `data-toggle`="buttons",
-      lapply(
-        X = seq_along(params),
-        FUN = function(x) {
-          input <- params[[x]]
-          tagSelect <- tags$div(
-            class="btn-group",
-            selectizeInput(
-              inputId = ns(input$inputId),
-              label = input$title,
-              choices = input$choices,
-              selected = input$selected,
-              multiple = TRUE,
-              width = "100%",
-              options = list(
-                placeholder = input$placeholder, plugins = list("remove_button"),
-                onInitialize = I('function() { this.setValue(""); }')
-              )
-            )
-          )
-          return(tagSelect)
-        }
-      )
-    ),
-    actionLink(
-      inputId = ns("reset_all"),
-      label = btn_label,
-      icon = icon("remove"),
-      style = "float: right;"
-    )
+    selectizeGroupTag
   )
 
 }
