@@ -122,9 +122,9 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
           htmltools::tags$input(
             type="checkbox", autocomplete="off",
             name=inputId, value=value,
-            checked=if (value %in% selected) "checked",
-            if (is.list(name)) name else htmltools::HTML(name)
-          )
+            checked=if (value %in% selected) "checked"
+          ),
+          if (is.list(name)) name else htmltools::HTML(name)
         )
       )
     },
