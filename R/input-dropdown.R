@@ -140,12 +140,13 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
 
   dropdownTag <- htmltools::tags$div(
     class = ifelse(up, "dropup", "dropdown"),
+    class = "btn-dropdown-input",
     html_button, id = paste("dropdown", inputId, sep = "-"),
     do.call(htmltools::tags$ul, html_ul),
-    tooltipJs,
-    tags$script(sprintf(
-      "dropBtn('#%s', %s);", paste("dropdown", inputId, sep = "-"), "true" #  tolower(easyClose)
-    ))
+    tooltipJs#,
+    # tags$script(sprintf(
+    #   "dropBtn('#%s', %s);", paste("dropdown", inputId, sep = "-"), "true" #  tolower(easyClose)
+    # ))
   )
   attachShinyWidgetsDep(dropdownTag, "dropdown")
 }
