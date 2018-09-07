@@ -12,6 +12,10 @@
   border: none;
 }
 
+.sp-preview {
+  border: none !important;
+}
+
 .sp-preview, .sp-alpha, .sp-thumb-el {
   background-image: none;
 }
@@ -21,8 +25,23 @@
 }
 
 .sw-spectrum {
-  border-radius: 5px;
-  border: 1px solid #112446;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   background-color: #FFF;
   padding: 5px;
+}
+
+.sp-choose {
+  color: #333 !important;
+  background-color: #fff !important;
+  border-color: #ccc !important;
+  background-image: none !important;
+}
+
+.sp-palette-toggle {
+  color: #333 !important;
+  background-color: #fff !important;
+  border-color: #ccc !important;
+  background-image: none !important;
+  margin-top: 5px !important;
 }

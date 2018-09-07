@@ -7,7 +7,10 @@
 #' @param choices List of colors to display in the menu.
 #' @param selected The initially selected value.
 #' @param flat Display the menu inline.
-#' @param options Additional options to pass to spectrum, possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.
+#' @param options Additional options to pass to spectrum,
+#'  possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.
+#' @param update_on When to update value server-side: \code{"move"} (default, each time a new color is selected),
+#'  \code{"dragstop"} (when use user stop dragging cursor), \code{"change"} (when the input is closed).
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #'
@@ -60,8 +63,12 @@
 #' }
 #'
 #' }
-spectrumInput <- function(inputId, label, choices = NULL, selected = NULL, flat = FALSE, options = list(), width = NULL) {
+spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
+                          flat = FALSE, options = list(),
+                          update_on = c("move", "dragstop", "change"),
+                          width = NULL) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
+  update_on <- match.arg(update_on)
   selected <- if (is.null(selected)) {
     unlist(choices, recursive = TRUE)[1]
   } else {
@@ -81,7 +88,8 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL, flat 
     `data-show-palette-only` = !is.null(choices),
     `data-show-palette` = !is.null(choices),
     `data-replacer-class-name` = "sw-spectrum btn-spectrum",
-    `data-container-class-name` = "sw-spectrum"
+    `data-container-class-name` = "sw-spectrum",
+    `data-update-on` = update_on
   ))
   spectrumProps <- utils::modifyList(x = spectrumProps, val = options)
   spectrumProps <- lapply(spectrumProps, function(x) {

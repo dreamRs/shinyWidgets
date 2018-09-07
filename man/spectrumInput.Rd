@@ -5,7 +5,8 @@
 \title{Palette Color Picker with Spectrum Library}
 \usage{
 spectrumInput(inputId, label, choices = NULL, selected = NULL,
-  flat = FALSE, options = list(), width = NULL)
+  flat = FALSE, options = list(), update_on = c("move", "dragstop",
+  "change"), width = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -18,7 +19,11 @@ spectrumInput(inputId, label, choices = NULL, selected = NULL,
 
 \item{flat}{Display the menu inline.}
 
-\item{options}{Additional options to pass to spectrum, possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.}
+\item{options}{Additional options to pass to spectrum,
+possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.}
+
+\item{update_on}{When to update value server-side: \code{"move"} (default, each time a new color is selected),
+\code{"dragstop"} (when use user stop dragging cursor), \code{"change"} (when the input is closed).}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }

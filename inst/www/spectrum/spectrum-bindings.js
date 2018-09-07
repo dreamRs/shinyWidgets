@@ -24,7 +24,10 @@ $.extend(spectrumInputBinding, {
   	$(el).spectrum("set", value);
   },
   subscribe: function(el, callback) {
-   $(el).on('change move.spectrum', function(event) {
+   //$(el).on('move.spectrum dragstop.spectrum', function(event) {
+   //  callback();
+   //});
+   $(el).on('change', function(event) {
      callback();
    });
   },
@@ -48,7 +51,30 @@ $.extend(spectrumInputBinding, {
   },
   initialize: function initialize(el) {
     var opts = {};
+    var update_on = $(el).attr('data-update-on');
+    $(el).removeAttr('data-update-on');
+    if (update_on == 'dragstop') {
+      $(el).on('dragstop.spectrum', function(event) {
+        $(el).trigger('change');
+      });
+    }
+    if (update_on == 'move') {
+      opts.move = function() {
+        $(el).trigger('change');
+      };
+    }
+    if (update_on == 'change') {
+      opts.change = function() {
+        $(el).trigger('change');
+      };
+    }
     $(el).spectrum(opts);
+  },
+  getRatePolicy: function getRatePolicy() {
+    return {
+      policy: 'debounce',
+      delay: 250
+    };
   }
 });
 Shiny.inputBindings.register(spectrumInputBinding, 'shiny.spectrumInput');
