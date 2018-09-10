@@ -7,10 +7,11 @@
 \title{Progress Bars}
 \usage{
 progressBar(id, value, total = NULL, display_pct = FALSE,
-  size = NULL, status = NULL, striped = FALSE, title = NULL)
+  size = NULL, status = NULL, striped = FALSE, title = NULL,
+  range_value = NULL, unit_mark = "\%")
 
 updateProgressBar(session, id, value, total = NULL, title = NULL,
-  status = NULL)
+  status = NULL, range_value = NULL, unit_mark = "\%")
 }
 \arguments{
 \item{id}{An id used to update the progress bar.}
@@ -28,6 +29,10 @@ updateProgressBar(session, id, value, total = NULL, title = NULL,
 \item{striped}{logical, add a striped effect.}
 
 \item{title}{character, optional title.}
+
+\item{range_value}{Default is to display percentage (\code{[0, 100]}), but you can specify a custom range, e.g. \code{-50, 50}.}
+
+\item{unit_mark}{Unit for value displayed on the progress bar, default to \code{"\%"}.}
 
 \item{session}{The 'session' object passed to function given to shinyServer.}
 }

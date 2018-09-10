@@ -10,6 +10,8 @@
 #' @param status Color, must be a valid Bootstrap status : primary, info, success, warning, danger.
 #' @param striped logical, add a striped effect.
 #' @param title character, optional title.
+#' @param range_value Default is to display percentage (\code{[0, 100]}), but you can specify a custom range, e.g. \code{-50, 50}.
+#' @param unit_mark Unit for value displayed on the progress bar, default to \code{"\%"}.
 #'
 #' @return A progress bar that can be added to a UI definition.
 #'
@@ -18,6 +20,7 @@
 #' @seealso \link{progressSweetAlert} for progress bar in a sweet alert
 #'
 #' @importFrom htmltools tags tagList singleton HTML
+#' @importFrom scales rescale
 #' @export
 #'
 #' @examples
@@ -82,11 +85,16 @@
 #' }
 
 progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NULL,
-                        status = NULL, striped = FALSE, title = NULL) {
+                        status = NULL, striped = FALSE, title = NULL, range_value = NULL, unit_mark = "%") {
   if (!is.null(total)) {
     percent <- round(value / total * 100)
   } else {
-    percent <- round(value)
+    value <- round(value)
+    if (!is.null(range_value)) {
+      percent <- scales::rescale(x = value, from = range_value, to = c(0, 100))
+    } else {
+      percent <- value
+    }
   }
 
   if (!is.null(title) | !is.null(total)) {
@@ -118,7 +126,7 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
         class=if(!is.null(status)) paste0("progress-bar-", status),
         class=if(striped) "progress-bar-striped",
         role="progressbar",
-        if (display_pct) paste0(percent, "%")
+        if (display_pct) paste0(value, unit_mark)
       )
     )
   )
@@ -138,9 +146,24 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
 #' @export
 #'
 #' @rdname progress-bar
-updateProgressBar <- function(session, id, value, total = NULL, title = NULL, status = NULL) {
+updateProgressBar <- function(session, id, value, total = NULL,
+                              title = NULL, status = NULL,
+                              range_value = NULL, unit_mark = "%") {
   message <- "update-progressBar-shinyWidgets"
+  if (!is.null(range_value)) {
+    percent <- scales::rescale(x = value, from = range_value, to = c(0, 100))
+  } else {
+    percent <- -1
+  }
   session$sendCustomMessage(
-    type = message, list(id = id, value = value, total = total, title = title, status = status)
+    type = message,
+    message = list(
+      id = id, value = value,
+      percent = percent,
+      total = if (is.null(total)) -1 else total,
+      title = title,
+      status = status,
+      unit_mark = unit_mark
+    )
   )
 }
