@@ -1,9 +1,13 @@
-shinyWidgets 0.4.3.970
+shinyWidgets 0.4.3.991
 ======================
 
 * New function `updateMultiInput` for updating `multiInput`, thanks to [@ifellows](https://github.com/ifellows).
 * New function `updateVerticalTabsetPanel` for updating `verticalTabsetPanel`.
 * Update options for `knobInput` and `airDatepickerInput`.
+* Custom unit & range in progress bars (arguments `unit_mark` & `range_value` in `progressBar`).
+* Argument `update_on` to choose when trigger update server-side in `spectrumInput`.
+* Vertical layout in `selectizeGroup`.
+
 
 
 shinyWidgets 0.4.3
