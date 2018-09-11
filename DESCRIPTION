@@ -1,16 +1,12 @@
 Package: shinyWidgets
 Title: Custom Inputs Widgets for Shiny
-Version: 0.4.3.991
+Version: 0.4.3.992
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
   person("David", "Granjon", email = "david.granjon@uzh.ch", role = "aut",
          comment = "jQuery Knob shiny interface & sliders appearance"),
-  person("Silvio", "Moreto", role = c("ctb", "cph"), comment = "bootstrap-select"),
-  person("Ana", "Carolina", role = c("ctb", "cph"), comment = "bootstrap-select"),
-  person("caseyjhol", role = c("ctb", "cph"), comment = "bootstrap-select"),
-  person("Matt", "Bryson", role = c("ctb", "cph"), comment = "bootstrap-select"),
-  person("t0xicCode", role = c("ctb", "cph"), comment = "bootstrap-select"),
+  person("SnapAppointments", "", role = "cph", comment = "bootstrap-select"),
   person("Mattia", "Larentis", role = c("ctb", "cph"), comment = "Bootstrap Switch"),
   person("Emanuele", "Marchi", role = c("ctb", "cph"), comment = "Bootstrap Switch"),
   person("Mark", "Otto", role = "ctb", comment = "Bootstrap library"),

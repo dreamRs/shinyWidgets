@@ -23,7 +23,7 @@ If not specified then defaults to the first value for single-select lists
 \item{multiple}{Is selection of multiple items allowed?}
 
 \item{options}{Options to customize the select picker,
-see \url{https://silviomoreto.github.io/bootstrap-select/options/}.
+see \url{https://developer.snapappointments.com/bootstrap-select/options/}.
 For limit the number of selections, see example below.}
 
 \item{choicesOpt}{Options for choices in the dropdown menu.}
@@ -36,7 +36,7 @@ For limit the number of selections, see example below.}
 A select control that can be added to a UI definition.
 }
 \description{
-Create a select picker (\url{https://silviomoreto.github.io/bootstrap-select/})
+Create a select picker (\url{https://developer.snapappointments.com/bootstrap-select/})
 }
 \examples{
 \dontrun{

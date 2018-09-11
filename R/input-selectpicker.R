@@ -1,7 +1,7 @@
 #' @title Select picker Input Control
 #'
 #' @description
-#' Create a select picker (\url{https://silviomoreto.github.io/bootstrap-select/})
+#' Create a select picker (\url{https://developer.snapappointments.com/bootstrap-select/})
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display a text in the center of the switch.
@@ -12,7 +12,7 @@
 #'  and no values for multiple select lists.
 #' @param multiple Is selection of multiple items allowed?
 #' @param options Options to customize the select picker,
-#' see \url{https://silviomoreto.github.io/bootstrap-select/options/}.
+#' see \url{https://developer.snapappointments.com/bootstrap-select/options/}.
 #' For limit the number of selections, see example below.
 #' @param choicesOpt Options for choices in the dropdown menu.
 #' @param width The width of the input : 'auto', 'fit', '100px', '75\%'.
