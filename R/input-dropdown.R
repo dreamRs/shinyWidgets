@@ -141,12 +141,9 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
   dropdownTag <- htmltools::tags$div(
     class = ifelse(up, "dropup", "dropdown"),
     class = "btn-dropdown-input",
-    html_button, id = paste("dropdown", inputId, sep = "-"),
+    html_button, id = paste0(inputId, "_state"),
     do.call(htmltools::tags$ul, html_ul),
-    tooltipJs#,
-    # tags$script(sprintf(
-    #   "dropBtn('#%s', %s);", paste("dropdown", inputId, sep = "-"), "true" #  tolower(easyClose)
-    # ))
+    tooltipJs
   )
   attachShinyWidgetsDep(dropdownTag, "dropdown")
 }
@@ -155,7 +152,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
 #' @title Tooltip options
 #'
 #' @description
-#' List of options for tooltip for a dropdown menu button
+#' List of options for tooltip for a dropdown menu button.
 #'
 #' @param placement Placement of tooltip : right, top, bottom, left.
 #' @param title Text of the tooltip
@@ -163,7 +160,6 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
 #'
 #'
 #' @export
-
 tooltipOptions <- function(placement = "right", title = "Params", html
                            = FALSE) {
   list(placement = placement, title = title, html = html)
@@ -174,9 +170,10 @@ tooltipOptions <- function(placement = "right", title = "Params", html
 
 #' Toggle a dropdown menu
 #'
-#' Open or close a dropdown menu server-side
+#' Open or close a dropdown menu server-side.
 #'
-#' @param inputId Id for the dropdown to toggle
+#' @param inputId Id for the dropdown to toggle.
+#' @param session Standard shiny \code{session}.
 #'
 #' @export
 #' @importFrom shiny getDefaultReactiveDomain
@@ -234,9 +231,6 @@ tooltipOptions <- function(placement = "right", title = "Params", html
 #'
 #'
 #' }
-toggleDropdownButton <- function(inputId) {
-  session <- shiny::getDefaultReactiveDomain()
-  session$sendCustomMessage(
-    type = "toggle-dropdown-button", list(id = inputId)
-  )
+toggleDropdownButton <- function(inputId, session = getDefaultReactiveDomain()) {
+  session$sendInputMessage(paste0(inputId, "_state"), list(id = inputId))
 }

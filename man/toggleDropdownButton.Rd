@@ -4,13 +4,15 @@
 \alias{toggleDropdownButton}
 \title{Toggle a dropdown menu}
 \usage{
-toggleDropdownButton(inputId)
+toggleDropdownButton(inputId, session = getDefaultReactiveDomain())
 }
 \arguments{
-\item{inputId}{Id for the dropdown to toggle}
+\item{inputId}{Id for the dropdown to toggle.}
+
+\item{session}{Standard shiny \code{session}.}
 }
 \description{
-Open or close a dropdown menu server-side
+Open or close a dropdown menu server-side.
 }
 \examples{
 \dontrun{

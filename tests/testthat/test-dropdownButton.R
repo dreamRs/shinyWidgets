@@ -21,6 +21,6 @@ test_that("InputId", {
     circle = FALSE, status = "danger", icon = shiny::icon("gear"), width = "300px"
   )
 
-  expect_identical(tagdropBtn$attribs$id, "dropdown-MYID")
+  expect_identical(tagdropBtn$attribs$id, "MYID_state")
   expect_identical(tagdropBtn$children[[1]]$attribs$id, "MYID")
 })

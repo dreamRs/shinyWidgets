@@ -1,13 +1,13 @@
 
 #' @title Picker Group
 #'
-#' @description Group of mutually dependent `pickerInput` for filtering data.frame's columns.
+#' @description Group of mutually dependent `pickerInput` for filtering \code{data.frame}'s columns.
 #'
 #' @param id Module's id.
-#' @param params a named list of parameters passed to each `pickerInput`, you can use :
+#' @param params A named list of parameters passed to each `pickerInput`, you can use :
 #'  `inputId` (obligatory, must be variable name), `label`, `placeholder`.
-#' @param label character, global label on top of all labels.
-#' @param btn_label reset button label.
+#' @param label Character, global label on top of all labels.
+#' @param btn_label Character, reset button label.
 #' @param options See \code{\link{pickerInput}} options argument.
 #'
 #' @return a \code{reactive} function containing data filtered.
@@ -130,7 +130,7 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
 #' @param input standard \code{shiny} input.
 #' @param output standard \code{shiny} output.
 #' @param session standard \code{shiny} session.
-#' @param data a \code{data.frame}, or an object coercible to \code{data.frame}.
+#' @param data a \code{data.frame}, or an object that can be coerced to \code{data.frame}.
 #' @param vars character, columns to use to create filters,
 #'  must correspond to variables listed in \code{params}.
 #'

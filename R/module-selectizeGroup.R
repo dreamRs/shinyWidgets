@@ -155,7 +155,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
 #' @param input standard \code{shiny} input.
 #' @param output standard \code{shiny} output.
 #' @param session standard \code{shiny} session.
-#' @param data a \code{data.frame}, or an object coercible to \code{data.frame}.
+#' @param data a \code{data.frame}, or an object that can be coerced to \code{data.frame}.
 #' @param vars character, columns to use to create filters,
 #'  must correspond to variables listed in \code{params}.
 #'

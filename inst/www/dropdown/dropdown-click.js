@@ -37,10 +37,21 @@ var dropdownInputBinding = new Shiny.InputBinding();
       return el.id;
     },
     getValue: function(el) {
-      return '';
+      return $(el).data("value");
+    },
+    receiveMessage: function(el, data) {
+      $(el).children(":first").dropdown('toggle');
     },
     subscribe: function(el, callback) {
       $(el).on('change', function (event) {
+        callback();
+      });
+      $(el).on('shown.bs.dropdown', function () {
+        $(el).data("value", true);
+        callback();
+      });
+      $(el).on('hidden.bs.dropdown', function () {
+        $(el).data("value", false);
         callback();
       });
     },
@@ -80,13 +91,4 @@ function dropBtn(id, easyClose) {
     });
   }
 }
-
-
-Shiny.addCustomMessageHandler('toggle-dropdown-button', function(data) {
-  var elpar = $('#' + data.id).parent();
-  //if (!elpar.is("open")) {
-    $('#' + data.id).dropdown('toggle');
-  //}
-  //$('#' + data.id).trigger('click.bs.dropdown');
-});
 

@@ -14,12 +14,12 @@ pickerGroupServer(input, output, session, data, vars)
 \arguments{
 \item{id}{Module's id.}
 
-\item{params}{a named list of parameters passed to each `pickerInput`, you can use :
+\item{params}{A named list of parameters passed to each `pickerInput`, you can use :
 `inputId` (obligatory, must be variable name), `label`, `placeholder`.}
 
-\item{label}{character, global label on top of all labels.}
+\item{label}{Character, global label on top of all labels.}
 
-\item{btn_label}{reset button label.}
+\item{btn_label}{Character, reset button label.}
 
 \item{options}{See \code{\link{pickerInput}} options argument.}
 
@@ -29,7 +29,7 @@ pickerGroupServer(input, output, session, data, vars)
 
 \item{session}{standard \code{shiny} session.}
 
-\item{data}{a \code{data.frame}, or an object coercible to \code{data.frame}.}
+\item{data}{a \code{data.frame}, or an object that can be coerced to \code{data.frame}.}
 
 \item{vars}{character, columns to use to create filters,
 must correspond to variables listed in \code{params}.}
@@ -38,7 +38,7 @@ must correspond to variables listed in \code{params}.}
 a \code{reactive} function containing data filtered.
 }
 \description{
-Group of mutually dependent `pickerInput` for filtering data.frame's columns.
+Group of mutually dependent `pickerInput` for filtering \code{data.frame}'s columns.
 }
 \examples{
 \dontrun{

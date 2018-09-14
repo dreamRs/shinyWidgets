@@ -29,7 +29,7 @@ selectizeGroupServer(input, output, session, data, vars)
 
 \item{session}{standard \code{shiny} session.}
 
-\item{data}{a \code{data.frame}, or an object coercible to \code{data.frame}.}
+\item{data}{a \code{data.frame}, or an object that can be coerced to \code{data.frame}.}
 
 \item{vars}{character, columns to use to create filters,
 must correspond to variables listed in \code{params}.}

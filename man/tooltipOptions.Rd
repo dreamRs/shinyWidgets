@@ -14,5 +14,5 @@ tooltipOptions(placement = "right", title = "Params", html = FALSE)
 \item{html}{Logical, allow HTML tags inside tooltip}
 }
 \description{
-List of options for tooltip for a dropdown menu button
+List of options for tooltip for a dropdown menu button.
 }
