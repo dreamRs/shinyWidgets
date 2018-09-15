@@ -31,10 +31,13 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'm
 \item{width}{Width of the dropdown menu content.}
 
 \item{inputId}{Optional, id for the button, the button act like an \code{actionButton},
-and you can use the id to toggle the dropdown menu server-side.}
+and you can use the id to toggle the dropdown menu server-side with \code{\link{toggleDropdownButton}}.}
 }
 \description{
-Create a dropdown menu with Bootstrap
+Create a dropdown menu with Bootstrap where you can put input elements.
+}
+\details{
+It is possible to know if a dropdown is open or closed server-side with \code{input$<inputId>_state}.
 }
 \note{
 \code{pickerInput} doesn't work inside \code{dropdownButton} because that's also a
@@ -51,6 +54,7 @@ library(shinyWidgets)
 
 ui <- fluidPage(
   dropdownButton(
+    inputId = "mydropdown",
     label = "Controls",
     icon = icon("sliders"),
     status = "primary",
@@ -69,7 +73,8 @@ ui <- fluidPage(
     )
   ),
   tags$div(style = "height: 140px;"), # spacing
-  verbatimTextOutput(outputId = "out")
+  verbatimTextOutput(outputId = "out"),
+  verbatimTextOutput(outputId = "state")
 )
 
 server <- function(input, output, session) {
@@ -79,6 +84,10 @@ server <- function(input, output, session) {
       " # n\\n", input$n, "\\n",
       "# na\\n", input$na
     )
+  })
+
+  output$state <- renderPrint({
+    cat("Open:", input$mydropdown_state)
   })
 
 }

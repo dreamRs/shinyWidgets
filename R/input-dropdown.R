@@ -1,7 +1,7 @@
 #' @title Dropdown Button
 #'
 #' @description
-#' Create a dropdown menu with Bootstrap
+#' Create a dropdown menu with Bootstrap where you can put input elements.
 #'
 #' @param ... List of tag to be displayed into the dropdown menu.
 #' @param circle Logical. Use a circle button
@@ -15,7 +15,10 @@
 #' @param up Logical. Display the dropdown menu above.
 #' @param width Width of the dropdown menu content.
 #' @param inputId Optional, id for the button, the button act like an \code{actionButton},
-#' and you can use the id to toggle the dropdown menu server-side.
+#' and you can use the id to toggle the dropdown menu server-side with \code{\link{toggleDropdownButton}}.
+#'
+#'
+#' @details It is possible to know if a dropdown is open or closed server-side with \code{input$<inputId>_state}.
 #'
 #'
 #' @note \code{pickerInput} doesn't work inside \code{dropdownButton} because that's also a
@@ -36,6 +39,7 @@
 #'
 #' ui <- fluidPage(
 #'   dropdownButton(
+#'     inputId = "mydropdown",
 #'     label = "Controls",
 #'     icon = icon("sliders"),
 #'     status = "primary",
@@ -54,7 +58,8 @@
 #'     )
 #'   ),
 #'   tags$div(style = "height: 140px;"), # spacing
-#'   verbatimTextOutput(outputId = "out")
+#'   verbatimTextOutput(outputId = "out"),
+#'   verbatimTextOutput(outputId = "state")
 #' )
 #'
 #' server <- function(input, output, session) {
@@ -64,6 +69,10 @@
 #'       " # n\n", input$n, "\n",
 #'       "# na\n", input$na
 #'     )
+#'   })
+#'
+#'   output$state <- renderPrint({
+#'     cat("Open:", input$mydropdown_state)
 #'   })
 #'
 #' }
