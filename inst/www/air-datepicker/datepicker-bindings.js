@@ -15,9 +15,10 @@ $.extend(AirPickerInputBinding, {
     var opdefault = {};
 		if ($(el).attr('data-start-date')) {
 		  var dateraw = JSON.parse($(el).attr('data-start-date'));
+		  //console.log(dateraw);
 		  var datedefault = [];
 		  for (var i=0; i<dateraw.length; i++) {
-		    datedefault[i] =  new Date(dateraw[i]);
+		    datedefault[i] = new Date(dateraw[i]); //new Date(dateraw[i]);
 		  }
 		  //console.log(datada);
 			opdefault.startDate = datedefault;
@@ -25,11 +26,13 @@ $.extend(AirPickerInputBinding, {
 			$(el).removeAttr('data-start-date');
 		}
 		if ($(el).attr('data-min-date')) {
-		  options.minDate = new Date($(el).attr('data-min-date'));
+		  var minDate = parseFloat($(el).attr('data-min-date'));
+		  options.minDate = new Date(minDate);
 		  $(el).removeAttr('data-min-date');
 		}
 		if ($(el).attr('data-max-date')) {
-		  options.maxDate = new Date($(el).attr('data-max-date'));
+		  var maxDate = parseFloat($(el).attr('data-max-date'));
+		  options.maxDate = new Date(maxDate);
 		  $(el).removeAttr('data-max-date');
 		}
 
@@ -39,15 +42,15 @@ $.extend(AirPickerInputBinding, {
 		  options.onRenderCell = function(d, type) {
         if (type == 'day') {
     			var disabled = false,
-          		formatted = getFormattedDate(d);
+          formatted = getFormattedDate(d);
 
-              disabled = disabledDates.filter(function(date){
-              	return date == formatted;
-              }).length;
+          disabled = disabledDates.filter(function(date){
+            return date == formatted;
+          }).length;
 
-    					return {
-              	disabled: disabled
-              };
+    			return {
+            disabled: disabled
+          };
         }
       };
 		  $(el).removeAttr('data-disabled-dates');
@@ -60,7 +63,6 @@ $.extend(AirPickerInputBinding, {
 
 		  options.onHide = function(inst, animationCompleted) {
 		    if (animationCompleted){
-		      //console.log('change');
 		      $(el).trigger('change');
 		    }
       };
@@ -80,7 +82,6 @@ $.extend(AirPickerInputBinding, {
   	return $(scope).find('.sw-air-picker');
   },
   getId: function(el) {
-  	//return InputBinding.prototype.getId.call(this, el) || el.name;
   	return $(el).attr('id');
   },
   getType: function(el) {
@@ -98,15 +99,30 @@ $.extend(AirPickerInputBinding, {
   	var timepicker = $(el).attr('data-timepicker');
   	var res;
 
+  	function padZeros(n, digits) {
+      var str = n.toString();
+      while (str.length < digits) {
+        str = "0" + str;
+      }return str;
+    }
+  	function formatDate(date) {
+      if (date instanceof Date) {
+        return date.getFullYear() + '-' + padZeros(date.getMonth() + 1, 2) + '-' + padZeros(date.getDate(), 2);
+      } else {
+        return null;
+      }
+    }
+
+
   	if (sd.length > 0) {
   	  // console.log(sd);
   	  if (timepicker === 'false') {
   	    res = sd.map(function(e) {
     	    //console.log(e);
-          return e.yyyymmdd();
+          return formatDate(e);
         });
   	  } else {
-  	    var tz = new Date().toString().match(/([-\+][0-9]+)\s/)[1];
+  	    //var tz = new Date().toString().match(/([-\+][0-9]+)\s/)[1];
   	    res = sd.map(function(e) {
     	    //console.log(e);
           return e.valueOf();//toISOString() + tz;

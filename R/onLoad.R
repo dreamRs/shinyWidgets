@@ -22,7 +22,7 @@
   }, force = TRUE)
   shiny::registerInputHandler("air.datetime", function(data, ...) {
     parse_datetime <- function(x) {
-      as.POSIXct(x = x/1000, origin = "1970-01-01", tz = "UTC")
+      as.POSIXct(x = x/1000, origin = "1970-01-01")
     }
     if (is.null(data)) {
       NULL

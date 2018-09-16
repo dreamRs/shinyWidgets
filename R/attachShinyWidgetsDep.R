@@ -154,6 +154,17 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           stylesheet = "nouislider.min.css"
         )
       )
+    } else if (widget == "airdatepicker") {
+      dep <- list(
+        dep,
+        htmltools::htmlDependency(
+          name = "air-datepicker",
+          version = "2.2.3",
+          src = c(href="shinyWidgets/air-datepicker"),
+          script = c("datepicker.min.js", "datepicker-bindings.js"),
+          stylesheet = "datepicker.min.css"
+        )
+      )
     }
   }
   htmltools::attachDependencies(tag, dep, append = TRUE)

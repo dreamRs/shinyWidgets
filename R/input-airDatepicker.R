@@ -116,6 +116,11 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
                 "pt-BR", "pt", "ro", "sk", "zh"),
     several.ok = TRUE
   )
+  to_ms <- function(x) {
+    if (is.null(x))
+      return(NULL)
+    1000 * as.numeric(as.POSIXct(x, tz = "UTC"))
+  }
   if (!is.null(disabledDates)) {
     disabledDates <- toJSON(x = disabledDates, auto_unbox = FALSE)
   }
@@ -124,10 +129,10 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
     class = "sw-air-picker",
     `data-language` = language,
     `data-timepicker` = tolower(timepicker),
-    `data-start-date` = if (!is.null(value)) toJSON(x = value, auto_unbox = FALSE),
+    `data-start-date` = if (!is.null(value)) toJSON(x = to_ms(value), auto_unbox = FALSE),
     `data-range` = tolower(range),
     `data-date-format` = dateFormat,
-    `data-min-date` = minDate, `data-max-date` = maxDate,
+    `data-min-date` = to_ms(minDate), `data-max-date` = to_ms(maxDate),
     `data-multiple-dates` = tolower(multiple),
     `data-multiple-dates-separator` = separator,
     `data-view` = match.arg(view),
@@ -159,14 +164,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
     tagAir <- do.call(tags$div, paramsAir)
   }
 
-  tagList(
-    singleton(
-      tags$head(
-        tags$link(href = "shinyWidgets/air-datepicker/datepicker.min.css", rel = "stylesheet", type = "text/css"),
-        tags$script(src = "shinyWidgets/air-datepicker/datepicker.min.js"),
-        tags$script(src = "shinyWidgets/air-datepicker/datepicker-bindings.js")
-      )
-    ),
+  tagAir <- tagList(
     singleton(
       tags$head(
         lapply(
@@ -185,6 +183,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
       tagAir
     )
   )
+  attachShinyWidgetsDep(tagAir, "airdatepicker")
 }
 
 
@@ -301,9 +300,14 @@ updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, cle
       return(NULL)
     format(as.Date(x), "%Y-%m-%d")
   }
+  to_ms <- function(x) {
+    if (is.null(x))
+      return(NULL)
+    1000 * as.numeric(as.POSIXct(x, tz = "UTC"))
+  }
   value <- formatDate(value)
   if (!is.null(value)) {
-    value <- as.character(toJSON(x = value, auto_unbox = FALSE))
+    value <- as.character(toJSON(x = to_ms(value), auto_unbox = FALSE))
   }
   message <- dropNulls(list(
     id = session$ns(inputId),
