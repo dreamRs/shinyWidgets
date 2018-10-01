@@ -17,7 +17,7 @@
 #' @param width Width of the dropdown menu content.
 #' @param animate Add animation on the dropdown, can be logical or result of \code{animateOptions}.
 #' @param inputId Optional, id for the button, the button act like an \code{actionButton},
-#' and you can use the id to toggle the dropdown menu server-side. If set button will have id \code{'sw-btn-inputId'}.
+#' and you can use the id to toggle the dropdown menu server-side.
 #'
 #' @details
 #' This function is similar to \code{dropdownButton} but don't use Boostrap, so you can put \code{pickerInput} in it.
@@ -108,7 +108,6 @@ dropdown <- function(..., style = "default", status = "default",
   if (is.null(inputId)) {
     inputId <- sample.int(1e9, 1)
   }
-  btnId <- paste0("sw-btn-", inputId)
   dropId <- paste0("sw-drop-", inputId)
   contentId <- paste0("sw-content-", inputId)
 
@@ -125,15 +124,18 @@ dropdown <- function(..., style = "default", status = "default",
       class = paste0("btn btn-", status," ",
                      ifelse(size == "default" | size == "md", "",
                             paste0("btn-", size))),
-      type = "button", id = btnId, list(icon, label),
+      class = "action-button",
+      type = "button", id = inputId, list(icon, label),
       htmltools::tags$span(class = ifelse(test = up,
                                yes = "glyphicon glyphicon-triangle-top",
                                no = "glyphicon glyphicon-triangle-bottom"))
     )
   } else {
-    btn <- actionBttn(inputId = btnId, label = label,
-                      icon = icon, style = style,
-                      color = status, size = size)
+    btn <- actionBttn(
+      inputId = inputId, label = label,
+      icon = icon, style = style,
+      color = status, size = size
+    )
   }
 
 
@@ -156,7 +158,7 @@ dropdown <- function(..., style = "default", status = "default",
     tooltipJs <- htmltools::tags$script(
       sprintf(
         "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
-        btnId, tooltip$placement, tooltip$title, tooltip$html
+        inputId, tooltip$placement, tooltip$title, tooltip$html
       )
     )
     dropdownTag <- htmltools::tagAppendChild(dropdownTag, tooltipJs)
@@ -171,7 +173,7 @@ dropdown <- function(..., style = "default", status = "default",
       dropdownTag, htmltools::tags$script(
         sprintf(
           "$(function() {swDrop('%s', '%s', '%s', '%s', '%s', '%s');});",
-          btnId, contentId, dropId,
+          inputId, contentId, dropId,
           animate$enter, animate$exit, as.character(animate$duration)
         )
       )
@@ -182,7 +184,7 @@ dropdown <- function(..., style = "default", status = "default",
       dropdownTag, htmltools::tags$script(
         sprintf(
           "$(function() {swDrop('%s', '%s', '%s', '%s', '%s', '%s');});",
-          btnId, contentId, dropId, "sw-none", "sw-none", "1"
+          inputId, contentId, dropId, "sw-none", "sw-none", "1"
         )
       )
     )

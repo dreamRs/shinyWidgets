@@ -34,7 +34,7 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'm
 \item{animate}{Add animation on the dropdown, can be logical or result of \code{animateOptions}.}
 
 \item{inputId}{Optional, id for the button, the button act like an \code{actionButton},
-and you can use the id to toggle the dropdown menu server-side. If set button will have id \code{'sw-btn-inputId'}.}
+and you can use the id to toggle the dropdown menu server-side.}
 }
 \description{
 Create a dropdown menu

@@ -33,6 +33,7 @@
 #'
 #'
 #' # Simple example
+#' library("shiny")
 #' ui <- fluidPage(
 #'   pickerInput(inputId = "somevalue", label = "A label", choices = c("a", "b")),
 #'   verbatimTextOutput("value")
