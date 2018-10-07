@@ -77,7 +77,7 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   switchInputTag <- htmltools::tags$div(
-    style = "margin: 3px;", class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container",
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block;",
     style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
