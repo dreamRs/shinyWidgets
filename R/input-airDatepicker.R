@@ -30,7 +30,8 @@
 #' @param update_on When to send selected value to server: on \code{'change'}
 #'  or when calendar is \code{'close'}d.
 #' @param addon Display a calendar icon to \code{'right'} or the \code{'left'}
-#'  of the widget, or \code{'none'}.
+#'  of the widget, or \code{'none'}. This icon act likes an \code{actionButton},
+#'  you can retrieve value server-side with \code{input$<inputId>_button}.
 #' @param language Language to use, can be one of \code{'cs'}, \code{'da'},
 #'  \code{'de'}, \code{'en'}, \code{'es'}, \code{'fi'}, \code{'fr'},
 #'  \code{'hu'}, \code{'nl'}, \code{'pl'}, \code{'pt-BR'}, \\code{'pt'},
@@ -156,9 +157,9 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
     tagAir <- do.call(tags$input, c(paramsAir, addArgs))
     tagAir <- tags$div(
       class = "input-group",
-      if (addon == "left") tags$div(class = "input-group-addon", icon("calendar")),
+      if (addon == "left") tags$div(class = "btn action-button input-group-addon", id = paste0(inputId, "_button"), icon("calendar")),
       tagAir,
-      if (addon == "right") tags$div(class = "input-group-addon", icon("calendar"))
+      if (addon == "right") tags$div(class = "btn action-button input-group-addon", id = paste0(inputId, "_button"), icon("calendar"))
     )
   } else {
     tagAir <- do.call(tags$div, paramsAir)

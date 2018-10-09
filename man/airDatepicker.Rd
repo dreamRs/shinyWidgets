@@ -75,7 +75,8 @@ use \code{'monthsShort'} for abbreviations or \code{'months'} for full names.}
 or when calendar is \code{'close'}d.}
 
 \item{addon}{Display a calendar icon to \code{'right'} or the \code{'left'}
-of the widget, or \code{'none'}.}
+of the widget, or \code{'none'}. This icon act likes an \code{actionButton},
+you can retrieve value server-side with \code{input$<inputId>_button}.}
 
 \item{language}{Language to use, can be one of \code{'cs'}, \code{'da'},
 \code{'de'}, \code{'en'}, \code{'es'}, \code{'fi'}, \code{'fr'},
