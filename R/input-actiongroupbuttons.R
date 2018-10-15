@@ -57,48 +57,43 @@ actionGroupButtons <- function(inputIds,
                                direction = "horizontal",
                                fullwidth = FALSE) {
   stopifnot(length(inputIds) == length(labels))
-  size <-
-    match.arg(arg = size,
-              choices = c("xs", "sm", "normal", "lg"))
-  direction <-
-    match.arg(arg = direction,
-              choices = c("horizontal", "vertical"))
-  if (size == "normal") {
-    if (direction == "horizontal") {
-      div_class <- "btn-group"
-      if (fullwidth) {
-        div_class <- paste(div_class, "btn-group-justified")
-      }
-    } else {
-      div_class <- "btn-group-vertical"
-    }
-  } else {
-    if (direction == "horizontal") {
-      div_class <- paste0("btn-group btn-group-", size)
-      if (fullwidth) {
-        div_class <- paste(div_class, "btn-group-justified")
-      }
-    } else {
-      div_class <- paste0("btn-group-vertical btn-group-", size)
-    }
-  }
-  htmltools::tags$div(
-    class = div_class,
+  size <- match.arg(
+    arg = size,
+    choices = c("xs", "sm", "normal", "lg")
+  )
+  direction <- match.arg(
+    arg = direction,
+    choices = c("horizontal", "vertical")
+  )
+  tags$div(
+    class = "btn-group",
+    class = if (direction == "vertical") "btn-group-vertical",
+    class = paste0("btn-group-", size),
+    class = if(fullwidth) "btn-group-justified",
     role = "group",
     lapply(
       X = seq_along(labels),
       FUN = function(i) {
         value <- shiny::restoreInput(id = inputIds[i], default = NULL)
-        tags$div(
-          class = "btn-group",
-          role = "group",
-          htmltools::tags$button(
+        if (fullwidth) {
+          tags$div(
+            class = "btn-group", role = "group",
+            class = paste0("btn-group-", size),
+            tags$button(
+              id = inputIds[i],
+              type = "button",`data-val` = value,
+              class = paste0("btn action-button btn-", status),
+              labels[i]
+            )
+          )
+        } else {
+          tags$button(
             id = inputIds[i],
             type = "button",`data-val` = value,
             class = paste0("btn action-button btn-", status),
             labels[i]
           )
-        )
+        }
       }
     )
   )

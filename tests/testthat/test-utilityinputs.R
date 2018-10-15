@@ -38,13 +38,13 @@ test_that("actionGroupButtons", {
     labels = c("A", "B", "C"),
     direction = "vertical"
   )
-  expect_identical(tagbtn3$attribs$class, "btn-group-vertical")
+  expect_true("btn-group-vertical" %in% unlist(tagbtn3$attribs, use.names = FALSE))
 
   tagbtn4 <- actionGroupButtons(
     inputIds = c("id01", "id02", "id03"),
     labels = c("A", "B", "C"),
     fullwidth = TRUE
   )
-  expect_identical(tagbtn4$attribs$class, "btn-group btn-group-justified")
+  expect_true("btn-group-justified" %in% unlist(tagbtn4$attribs, use.names = FALSE))
 
 })
