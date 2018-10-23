@@ -22,8 +22,7 @@ If not specified then defaults to the first value for single-select lists
 
 \item{multiple}{Is selection of multiple items allowed?}
 
-\item{options}{Options to customize the select picker,
-see \url{https://developer.snapappointments.com/bootstrap-select/options/}.
+\item{options}{List of options, see \link{pickerOptions} for all available options.
 For limit the number of selections, see example below.}
 
 \item{choicesOpt}{Options for choices in the dropdown menu.}
