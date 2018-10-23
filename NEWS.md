@@ -1,4 +1,4 @@
-shinyWidgets 0.4.3.991
+shinyWidgets 0.4.4
 ======================
 
 * New function `updateMultiInput` for updating `multiInput`, thanks to [@ifellows](https://github.com/ifellows).
@@ -7,6 +7,10 @@ shinyWidgets 0.4.3.991
 * Custom unit & range in progress bars (arguments `unit_mark` & `range_value` in `progressBar`).
 * Argument `update_on` to choose when trigger update server-side in `spectrumInput`.
 * Vertical layout in `selectizeGroup`.
+* New function `pickerOptions` to help using `pickerInput` options argument.
+* Bug fix with size argument in `actionGroupButtons`.
+* `dropdown` button act like an `actionButton` (same behavior as `dropdownButton`)
+* Update Bootstrap-Select JavaScript library (used in `pickerInput`).
 
 
 

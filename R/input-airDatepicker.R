@@ -7,7 +7,7 @@
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or \code{NULL} for no label.
 #' @param value Initial value(s), dates as character string are accepted in \code{yyyy-mm-dd} format,
-#' or Date/POSIXct object. Can be a single value or severals.
+#' or Date/POSIXct object. Can be a single value or several values.
 #' @param multiple Select multiple dates.
 #' @param range Select a date range.
 #' @param timepicker Add a timepicker below calendar to select time.

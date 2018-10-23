@@ -33,7 +33,7 @@ airYearpickerInput(inputId, label = NULL, value = NULL, ...)
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
 \item{value}{Initial value(s), dates as character string are accepted in \code{yyyy-mm-dd} format,
-or Date/POSIXct object. Can be a single value or severals.}
+or Date/POSIXct object. Can be a single value or several values.}
 
 \item{multiple}{Select multiple dates.}
 
