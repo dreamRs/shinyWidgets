@@ -49,12 +49,22 @@ var noUiSliderBinding = new Shiny.InputBinding();
     },
     subscribe: function subscribe(el, callback) {
       var slider = document.getElementById(el.id);
-      slider.noUiSlider.on('change', function (event) {
-        callback();
-      });
-      slider.noUiSlider.on('set', function (event) {
-        callback();
-      });
+      var update_on = $( '#' + el.id ).data( "update" );
+      if (update_on == "end") {
+        slider.noUiSlider.on('change', function (event) {
+          callback();
+        });
+        slider.noUiSlider.on('set', function (event) {
+          callback();
+        });
+      } else {
+        slider.noUiSlider.on('slide', function (event) {
+          callback();
+        });
+        slider.noUiSlider.on('set', function (event) {
+          callback();
+        });
+      }
     },
     unsubscribe: function unsubscribe(el) {
       $(el).off('.noUiSliderBinding');

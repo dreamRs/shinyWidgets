@@ -29,6 +29,7 @@
 #' @param range list, can be used to define non-linear sliders.
 #' @param pips list, used to generate points along the slider.
 #' @param format numbers format, see \code{\link{wNumbFormat}}.
+#' @param update_on When to send value to server: \code{"end"} (when slider is released) or \code{"update"} (each time value changes).
 #' @param color color in Hex format for the slider.
 #' @param inline If \code{TRUE}, it's possible to position sliders side-by-side.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
@@ -105,9 +106,11 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
                             direction = c("ltr", "rtl"),
                             behaviour = "tap", range = NULL, pips = NULL,
                             format = wNumbFormat(),
+                            update_on = c("end", "change"),
                             color = NULL, inline = FALSE,
                             width = NULL, height = NULL) {
   orientation <- match.arg(orientation)
+  update_on <- match.arg(update_on)
   behaviour <- match.arg(
     arg = behaviour,
     choices = c("drag", "tap", "fixed", "snap", "none"),
@@ -145,7 +148,7 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
       if (!is.null(color)) tags$style(sprintf("#%s .noUi-connect {background: %s;}", inputId, color)),
       tags$div(
         style = if (!is.null(height))  paste0("height: ", validateCssUnit(height), ";"),
-        id = inputId, class = "sw-no-ui-slider"
+        id = inputId, class = "sw-no-ui-slider", `data-update` = update_on
       ),
       tags$script(
         type = "application/json",

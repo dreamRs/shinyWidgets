@@ -8,8 +8,9 @@ noUiSliderInput(inputId, label = NULL, min, max, value, step = NULL,
   tooltips = TRUE, connect = TRUE, padding = 0, margin = NULL,
   limit = NULL, orientation = c("horizontal", "vertical"),
   direction = c("ltr", "rtl"), behaviour = "tap", range = NULL,
-  pips = NULL, format = wNumbFormat(), color = NULL,
-  inline = FALSE, width = NULL, height = NULL)
+  pips = NULL, format = wNumbFormat(), update_on = c("end",
+  "change"), color = NULL, inline = FALSE, width = NULL,
+  height = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -54,6 +55,8 @@ which decides where the upper side of the slider is.}
 \item{pips}{list, used to generate points along the slider.}
 
 \item{format}{numbers format, see \code{\link{wNumbFormat}}.}
+
+\item{update_on}{When to send value to server: \code{"end"} (when slider is released) or \code{"update"} (each time value changes).}
 
 \item{color}{color in Hex format for the slider.}
 
