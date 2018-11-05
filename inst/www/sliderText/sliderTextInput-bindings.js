@@ -2,7 +2,10 @@
 function forceIonSliderTextUpdate(slider) {
   if (slider.$cache && slider.$cache.input) slider.$cache.input.trigger('change');else console.log("Couldn't force ion slider to update");
 }
-
+var exportsST = window.Shiny = window.Shiny || {};
+var $escapeST = exportsST.$escape = function(val) {
+  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, '\\$1');
+};
 var sliderTextBinding = new Shiny.InputBinding();
   $.extend(sliderTextBinding, {
   find: function find(scope) {
@@ -62,11 +65,11 @@ var sliderTextBinding = new Shiny.InputBinding();
       var slider = $el.data('ionRangeSlider');
       var options = slider.options;
       var msg = {};
-      
+
       ////var values = $(el).data("values").split(",");
       //var values = $(el).data("swvalues");
       var values = options.values;
-      
+
       if (data.hasOwnProperty('choices')) {
         msg.values = data.choices;
         values = data.choices;
@@ -80,11 +83,11 @@ var sliderTextBinding = new Shiny.InputBinding();
           msg.from = values.indexOf(data.selected);
         }
       }
-      
+
       if (data.hasOwnProperty('from_fixed')) msg.from_fixed = data.from_fixed;
       if (data.hasOwnProperty('to_fixed')) msg.to_fixed = data.to_fixed;
 
-      if (data.hasOwnProperty('label')) $el.parent().find('label[for="' + $escape(el.id) + '"]').text(data.label);
+      if (data.hasOwnProperty('label')) $el.parent().find('label[for="' + $escapeST(el.id) + '"]').text(data.label);
 
       $el.data('immediate', true);
       try {
@@ -104,7 +107,7 @@ var sliderTextBinding = new Shiny.InputBinding();
     initialize: function initialize(el) {
       var opts = {};
       var $el = $(el);
-      
+
       var values = $(el).data("swvalues");
       //console.log(values);
       opts.values = values;
