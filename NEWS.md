@@ -10,7 +10,7 @@ shinyWidgets 0.4.4
 * New function `pickerOptions` to help using `pickerInput` options argument.
 * Bug fix with size argument in `actionGroupButtons`.
 * `dropdown` button act like an `actionButton` (same behavior as `dropdownButton`)
-* Update Bootstrap-Select JavaScript library (used in `pickerInput`).
+* Update Bootstrap-Select JavaScript library from 1.12.4 to 1.13.3 (used in `pickerInput`).
 
 
 

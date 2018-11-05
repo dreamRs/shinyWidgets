@@ -22,7 +22,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "selectPicker",
-          version = "1.13.2",
+          version = "1.13.3",
           src = c(href="shinyWidgets/selectPicker"),
           script = "js/bootstrap-select.min.js",
           stylesheet = "css/bootstrap-select.min.css"
@@ -138,7 +138,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "pretty",
-          version = version,
+          version = "3.0.3",
           src = c(href="shinyWidgets/pretty-checkbox"),
           stylesheet = "pretty-checkbox.min.css"
         )
