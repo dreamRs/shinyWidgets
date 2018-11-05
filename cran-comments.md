@@ -11,12 +11,14 @@
 
 ## Reverse dependencies
 
-* I have run R CMD check on the 8 reverse dependencies. 
-  1 note for one package (visNetwork), not related (installed package size).
+* I have run R CMD check on the 10 reverse dependencies : 
+  - 1 note for one package (visNetwork), not related (installed package size).
+  - 1 error (getTBinR), a test failed.
+  Complete summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
 
 -------
 
-This version includes new arguments for existing functions and fix some bugs.
+This version includes some new functions and features.
 
 Thanks!
 Victor
