@@ -51,8 +51,9 @@
 }
 .checkbox-bs input[type="checkbox"]:checked + label::after,
 .checkbox-bs input[type="radio"]:checked + label::after {
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 5 Free";
   content: "\f00c";
+  font-weight: 900;
 }
 .checkbox-bs input[type="checkbox"]:indeterminate + label::after,
 .checkbox-bs input[type="radio"]:indeterminate + label::after {
