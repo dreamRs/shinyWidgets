@@ -55,11 +55,11 @@ $.extend(searchInputBinding, {
 
     if (data.hasOwnProperty('placeholder')) {
       // why [0] ??
-      $('#se' + data.id)[0].placeholder = data.placeholder;
+      $('#se' + el.id)[0].placeholder = data.placeholder;
     }
 
     if (data.trigger) {
-      $('#' + data.id + '_search').click();
+      $('#' + el.id + '_search').click();
     }
 
     $(el).trigger('change');
