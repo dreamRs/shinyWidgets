@@ -10,7 +10,7 @@ test_that("Dependencies", {
   )
 
   air_deps <- htmltools::findDependencies(air)
-  expect_length(object = air_deps, n = 3)
+  expect_length(object = air_deps, n = 4)
   expect_true("air-datepicker" %in% unlist(lapply(air_deps, `[[`, "name")))
 
 })
@@ -23,9 +23,9 @@ test_that("Default", {
     label = "First example:"
   )
 
-  expect_identical(object = air[[2]]$attribs$class, expected = "form-group shiny-input-container")
-  expect_identical(object = air[[2]]$children[[2]]$children[[2]]$attribs$id, expected = "default")
-  expect_identical(object = air[[2]]$children[[2]]$children[[2]]$attribs$`data-view`, expected = "days")
+  expect_identical(object = air$attribs$class, expected = "form-group shiny-input-container")
+  expect_identical(object = air$children[[2]]$children[[2]]$attribs$id, expected = "default")
+  expect_identical(object = air$children[[2]]$children[[2]]$attribs$`data-view`, expected = "days")
 
 })
 
@@ -38,9 +38,9 @@ test_that("Months", {
     label = "First example:"
   )
 
-  expect_identical(object = air[[2]]$attribs$class, expected = "form-group shiny-input-container")
-  expect_identical(object = air[[2]]$children[[2]]$children[[2]]$attribs$id, expected = "default")
-  expect_identical(object = air[[2]]$children[[2]]$children[[2]]$attribs$`data-view`, expected = "months")
+  expect_identical(object = air$attribs$class, expected = "form-group shiny-input-container")
+  expect_identical(object = air$children[[2]]$children[[2]]$attribs$id, expected = "default")
+  expect_identical(object = air$children[[2]]$children[[2]]$attribs$`data-view`, expected = "months")
 
 })
 

@@ -51,7 +51,7 @@
 #'
 #' @export
 #'
-#' @importFrom htmltools tags tagList validateCssUnit
+#' @importFrom htmltools tags tagList validateCssUnit attachDependencies htmlDependency
 #' @importFrom shiny singleton
 #' @importFrom jsonlite toJSON
 #'
@@ -165,26 +165,25 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
     tagAir <- do.call(tags$div, paramsAir)
   }
 
-  tagAir <- tagList(
-    singleton(
-      tags$head(
-        lapply(
-          X = language,
-          FUN = function(x) {
-            tags$script(src = sprintf("shinyWidgets/air-datepicker/i18n/datepicker.%s.js", x))
-          }
-        )
-      )
-    ),
-    tags$div(
+  attachDependencies(
+    x = attachShinyWidgetsDep(tags$div(
       class = "form-group shiny-input-container",
       style = if (!is.null(width))
         paste0("width: ", validateCssUnit(width), ";"),
       if (!is.null(label)) tags$label(label, `for` = inputId),
       tagAir
-    )
+    ), "airdatepicker"),
+    value = htmlDependency(
+      name = "air-datepicker-i18n", version = "2.2.3",
+      src = c(href="shinyWidgets/air-datepicker"),
+      script = unlist(lapply(
+        X = language,
+        FUN = function(x) {
+          sprintf("i18n/datepicker.%s.js", x)
+        }
+      ))
+    ), append = TRUE
   )
-  attachShinyWidgetsDep(tagAir, "airdatepicker")
 }
 
 
