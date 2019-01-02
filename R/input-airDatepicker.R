@@ -35,7 +35,7 @@
 #' @param language Language to use, can be one of \code{'cs'}, \code{'da'},
 #'  \code{'de'}, \code{'en'}, \code{'es'}, \code{'fi'}, \code{'fr'},
 #'  \code{'hu'}, \code{'nl'}, \code{'pl'}, \code{'pt-BR'}, \\code{'pt'},
-#'  \code{'ro'}, \code{'sk'}, \code{'zh'}.
+#'  \code{'ro'}, \code{'ru'}, \code{'sk'}, \code{'zh'}.
 #' @param inline If \code{TRUE}, datepicker will always be visible.
 #' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
 #' @param ... Arguments passed to \code{airDatepickerInput}.
@@ -114,7 +114,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
   language <- match.arg(
     arg = language,
     choices = c("cs", "da", "de", "en", "es", "fi", "fr", "hu", "nl", "pl",
-                "pt-BR", "pt", "ro", "sk", "zh"),
+                "pt-BR", "pt", "ro", "ru", "sk", "zh"),
     several.ok = TRUE
   )
   to_ms <- function(x) {
