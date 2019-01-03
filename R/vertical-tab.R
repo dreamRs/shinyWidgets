@@ -8,6 +8,8 @@
 #' @param id If provided, you can use \code{input$id} in your server logic to determine which of
 #'  the current tabs is active. The value will correspond to the \code{value} argument that is passed to \code{verticalTabPanel}.
 #' @param color Color for the tab panels.
+#' @param contentWidth Width of the content panel (must be between 1 and 12), menu width will be \code{12 - contentWidth}.
+#' @param menuSide Side for the menu: right or left.
 #'
 #' @export
 #'
@@ -58,7 +60,10 @@
 #' }
 #'
 #' }
-verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#112446") {
+verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#112446", contentWidth = 9, menuSide = "left") {
+  stopifnot(is.numeric(contentWidth))
+  stopifnot(contentWidth >= 1, contentWidth <= 12)
+  menuSide <- match.arg(menuSide, choices = c("right", "left"))
   tabs <- list(...)
   if (is.null(selected)) {
     indice <- 1
@@ -80,21 +85,39 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
   tabs[[indice]]$tabbox$attribs$class <- paste(
     tabs[[indice]]$tabbox$attribs$class, "active"
   )
-  vtbTag <- tags$div(
-    class="col-sm-12 bhoechie-tab-container tabbable",
-    tags$div(
-      class="col-sm-3 bhoechie-tab-menu",
+  if (identical(menuSide, "left")) {
+    vtbTag <- tags$div(
+      class="col-sm-12 bhoechie-tab-container tabbable",
       tags$div(
-        class="list-group vertical-tab-panel",
-        id = id,
-        lapply(X = tabs, FUN = `[[`, "tabbox")
+        class = sprintf("col-sm-%s bhoechie-tab-menu bhoechie-tab-menu-%s", 12 - contentWidth, menuSide),
+        tags$div(
+          class="list-group vertical-tab-panel",
+          id = id,
+          lapply(X = tabs, FUN = `[[`, "tabbox")
+        )
+      ),
+      tags$div(
+        class = sprintf("col-sm-%s bhoechie-tab  tab-content", contentWidth),
+        lapply(X = tabs, FUN = `[[`, "tabcontent")
       )
-    ),
-    tags$div(
-      class="col-sm-9 bhoechie-tab  tab-content",
-      lapply(X = tabs, FUN = `[[`, "tabcontent")
     )
-  )
+  } else {
+    vtbTag <- tags$div(
+      class="col-sm-12 bhoechie-tab-container tabbable",
+      tags$div(
+        class = sprintf("col-sm-%s bhoechie-tab  tab-content", contentWidth),
+        lapply(X = tabs, FUN = `[[`, "tabcontent")
+      ),
+      tags$div(
+        class = sprintf("col-sm-%s bhoechie-tab-menu bhoechie-tab-menu-%s", 12 - contentWidth, menuSide),
+        tags$div(
+          class="list-group vertical-tab-panel",
+          id = id,
+          lapply(X = tabs, FUN = `[[`, "tabbox")
+        )
+      )
+    )
+  }
   tagList(
     singleton(
       tagList(

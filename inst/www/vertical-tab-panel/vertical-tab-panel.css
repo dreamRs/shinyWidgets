@@ -50,7 +50,7 @@ div.bhoechie-tab-menu div.list-group>a.active .fa{
   background-image: var(--vtb-color);
   color: #ffffff;
 }
-div.bhoechie-tab-menu div.list-group>a.active:after{
+div.bhoechie-tab-menu.bhoechie-tab-menu-left div.list-group>a.active:after{
   content: '';
   position: absolute;
   left: 100%;
@@ -60,6 +60,17 @@ div.bhoechie-tab-menu div.list-group>a.active:after{
   border-bottom: 13px solid transparent;
   border-top: 13px solid transparent;
   border-left: 10px solid var(--vtb-color);
+}
+div.bhoechie-tab-menu.bhoechie-tab-menu-right div.list-group>a.active:after{
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  margin-top: -13px;
+  border-right: 0;
+  border-bottom: 13px solid transparent;
+  border-top: 13px solid transparent;
+  border-right: 10px solid var(--vtb-color);
 }
 
 div.bhoechie-tab-content{

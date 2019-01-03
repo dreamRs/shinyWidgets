@@ -7,7 +7,7 @@
 \title{Vertical tab panel}
 \usage{
 verticalTabsetPanel(..., selected = NULL, id = NULL,
-  color = "#112446")
+  color = "#112446", contentWidth = 9, menuSide = "left")
 
 verticalTabPanel(title, ..., value = title, icon = NULL,
   box_height = "160px")
@@ -23,6 +23,10 @@ of the tab that should be selected by default. If \code{NULL}, the first tab wil
 the current tabs is active. The value will correspond to the \code{value} argument that is passed to \code{verticalTabPanel}.}
 
 \item{color}{Color for the tab panels.}
+
+\item{contentWidth}{Width of the content panel (must be between 1 and 12), menu width will be \code{12 - contentWidth}.}
+
+\item{menuSide}{Side for the menu: right or left.}
 
 \item{title}{Display title for tab.}
 
