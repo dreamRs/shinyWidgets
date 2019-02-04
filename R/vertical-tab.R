@@ -88,12 +88,13 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
   if (identical(menuSide, "left")) {
     vtbTag <- tags$div(
       class="col-sm-12 bhoechie-tab-container tabbable",
+      id = if(is.null(id)) id else paste0(id,"-tabbable"),
       tags$div(
         class = sprintf("col-sm-%s bhoechie-tab-menu bhoechie-tab-menu-%s", 12 - contentWidth, menuSide),
         tags$div(
           class="list-group vertical-tab-panel",
-          id = id,
-          lapply(X = tabs, FUN = `[[`, "tabbox")
+          lapply(X = tabs, FUN = `[[`, "tabbox"),
+          id=id
         )
       ),
       tags$div(
@@ -234,3 +235,60 @@ updateVerticalTabsetPanel <- function (session, inputId, selected = NULL) {
 
 
 
+#' Mutate Vertical Tabset Panel
+#' @param session The \code{session} object passed to function given to \code{shinyServer.}
+#' @param inputId The id of the \code{verticalTabsetPanel} object.
+#' @param index The index of the the tab to remove.
+#' @param tab The verticalTab to append.
+#' @examples
+#' if (interactive()) {
+#' library(shiny)
+#' library(shinyWidgets)
+#'
+#' ui <- fluidPage(
+#'
+#'   verticalTabsetPanel(
+#'     verticalTabPanel("blaa","foo"),
+#'     verticalTabPanel("yarp","bar"),
+#'     id="hippi"
+#'   )
+#' )
+#'
+#' server <- function(input, output, session) {
+#'   appendVerticalTab("hippi", verticalTabPanel("bipi","long"))
+#'   removeVerticalTab("hippi", 1)
+#'   appendVerticalTab("hippi", verticalTabPanel("howdy","fair"))
+#'   reorderVerticalTabs("hippi", c(3,2,1))
+#' }
+#'
+#' # Run the application
+#' shinyApp(ui = ui, server = server)
+#' }
+#' @export
+appendVerticalTab <- function(inputId, tab, session=shiny::getDefaultReactiveDomain()){
+  shiny::insertUI(paste0("#",inputId,"-tabbable > .tab-content"),
+           "beforeEnd",
+           tab$tabcontent,
+           immediate = TRUE)
+  shiny::insertUI(paste0("#",inputId),
+           "beforeEnd",
+           tab$tabbox,
+           immediate = TRUE)
+}
+
+#' @rdname appendVerticalTab
+#' @export
+removeVerticalTab <- function(inputId, index, session=shiny::getDefaultReactiveDomain()){
+  shiny::removeUI(paste0("#",inputId,"-tabbable > div > .bhoechie-tab-content:nth-child(",index,")"),
+           immediate = TRUE)
+  shiny::removeUI(paste0("#",inputId," > a:nth-child(",index,")"),
+           immediate = TRUE)
+  session$sendInputMessage(inputId, message = list(validate=TRUE))
+}
+
+#' @param newOrder The new index order.
+#' @rdname appendVerticalTab
+#' @export
+reorderVerticalTabs <- function(inputId, newOrder, session=shiny::getDefaultReactiveDomain()){
+  session$sendInputMessage(inputId, message = list(reorder=newOrder))
+}
