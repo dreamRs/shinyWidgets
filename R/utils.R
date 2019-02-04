@@ -167,4 +167,11 @@ validateIcon <- function (icon)
   }
 }
 
+controlLabel <- function(controlName, label) {
+  label %AND% htmltools::tags$label(class = "control-label", `for` = controlName, label)
+}
 
+formatNoSci <- function(x) {
+  if (is.null(x)) return(NULL)
+  format(x, scientific = FALSE, digits = 15)
+}

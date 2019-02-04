@@ -56,3 +56,25 @@ demoAirDatepicker <- function(example = "datepicker") {
     options = list("display.mode" = "showcase")
   )
 }
+
+#' An example showing how numericRangeInput works
+#' @export
+#'
+#' @importFrom shiny shinyAppFile
+#'
+#' @examples
+#' \dontrun{
+#'
+#' if (interactive()) {
+#'
+#' demoNumericRange()
+#'
+#' }
+#'
+#' }
+demoNumericRange <- function() {
+  shiny::shinyAppFile(
+    appFile = system.file("examples/numericRange/app.R", package = "shinyWidgets"),
+    options = list("display.mode" = "showcase")
+  )
+}
