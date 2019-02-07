@@ -46,8 +46,8 @@ numericRangeInput <- function(inputId, label, value,
     )
 
   dep <- htmltools::htmlDependency(
-    name = "numericRange", version = as.character(packageVersion("shinyRange")[[1]]),
-    src = c(href = "shinyRange/numericRange"),
+    name = "numericRange", version = as.character(packageVersion("shinyWidgets")[[1]]),
+    src = c(href = "shinyWidgets/numericRange"),
     script = "js/numericRange-bindings.js"
   )
 
