@@ -12,6 +12,8 @@
 #'
 #' @importFrom htmltools tags tagList singleton findDependencies attachDependencies
 #' @importFrom shiny validateCssUnit sliderInput restoreInput
+#' @importFrom utils packageVersion
+#' @export
 
 numericRangeInput <- function(inputId, label, value,
                               width = NULL, separator = " to ") {
@@ -23,35 +25,43 @@ numericRangeInput <- function(inputId, label, value,
   #build tag
   rangeTag <-
     htmltools::tags$div(id = inputId,
-        class = "shiny-numeric-range-input form-group shiny-input-container",
-        style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
+                        class = "shiny-numeric-range-input form-group shiny-input-container",
+                        style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
 
-        controlLabel(inputId, label),
-        # input-daterange class is needed for dropdown behavior
-        htmltools::tags$div(class = "input-numeric-range input-group",
-            htmltools::tags$input(
-              type = "number",
-              class = "form-control",
-              value = formatNoSci(min(value))
-            ),
-            htmltools::tags$span(class = "input-group-addon", separator),
-            htmltools::tags$input(
-              type = "number",
-              class = "form-control",
-              value = formatNoSci(max(value))
-            )
-        )
+                        controlLabel(inputId, label),
+                        # input-daterange class is needed for dropdown behavior
+                        htmltools::tags$div(class = "input-numeric-range input-group",
+                                            htmltools::tags$input(
+                                              type = "number",
+                                              class = "form-control",
+                                              value = formatNoSci(min(value))
+                                            ),
+                                            htmltools::tags$span(class = "input-group-addon", separator),
+                                            htmltools::tags$input(
+                                              type = "number",
+                                              class = "form-control",
+                                              value = formatNoSci(max(value))
+                                            )
+                        )
     )
 
   dep <- htmltools::htmlDependency(
-    name = "numericRange", version = as.character(packageVersion("shinyWidgets")[[1]]),
-    src = c(href = "shinyWidgets/numericRange"),
+    name = "numericRange", version = as.character(packageVersion("shinyRange")[[1]]),
+    src = c(href = "shinyRange/numericRange"),
     script = "js/numericRange-bindings.js"
   )
 
   htmltools::attachDependencies(rangeTag,dep,append = TRUE)
 }
 
+#' Change the value of a numeric range input
+#'
+#' Change the value of a numeric range input.
+#'
+#' @param session The session object passed to function given to shinyServer.
+#' @inheritParams numericRangeInput
+#' @export
+#'
 updateNumericRangeInput <- function(session, inputId, label, value) {
 
   value <- c(min(value),max(value))
