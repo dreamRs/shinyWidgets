@@ -1,5 +1,5 @@
 library(shiny)
-library(shinyRange)
+library(shinyWidgets)
 
 
 # Define the UI

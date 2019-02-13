@@ -26,3 +26,45 @@ see \code{\link{validateCssUnit}}.}
 Create an input group of numeric inputs that function as a range
 input.
 }
+\examples{
+\dontrun{
+
+if (interactive()) {
+
+### examples ----
+
+# see ?demoNumericRange
+demoNumericRange()
+
+
+###  basic usage ----
+
+library( shiny )
+library( shinyWidgets )
+
+
+ui <- fluidPage(
+
+  tags$br(),
+
+  numericRangeInput(
+    inputId = "noui1", label = "Numeric Range Input:",
+    value = c(100, 400)
+  ),
+  verbatimTextOutput(outputId = "res1")
+
+)
+
+server <- function(input, output, session) {
+
+  output$res1 <- renderPrint(input$noui1)
+
+}
+
+shinyApp(ui, server)
+
+
+}
+
+}
+}
