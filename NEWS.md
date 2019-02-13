@@ -3,6 +3,7 @@ shinyWidgets 0.4.4.900
 
 * Fix a bug with `awesome*` widgets due to FontAwesome upgrade in Shiny.
 * New methods for mutating vertical tabs (`appendVerticalTab`, `removeVerticalTab`, `reorderVerticalTabs`) by [@ifellows](https://github.com/ifellows)
+* New widget `numericRangeInput` by [@wkdavis](https://github.com/wkdavis).
 
 
 
