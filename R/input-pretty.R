@@ -1028,7 +1028,7 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
   if (!is.null(selected))
     selected <- as.character(selected)
   options <- if (!is.null(args$choiceValues)) {
-    format(tagList(
+    htmltools::doRenderTags(
       generatePretty(inputId = session$ns(inputId), selected = selected, inline = inline, type = type,
                      choiceNames =  args$choiceNames, choiceValues = args$choiceValues,
                      status = prettyOptions$status %||% "primary",
@@ -1040,7 +1040,7 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
                      icon = prettyOptions$icon,
                      plain = prettyOptions$plain %||% FALSE,
                      bigger = prettyOptions$bigger %||% FALSE)
-    ))
+    )
   }
   message <- dropNulls(list(label = label, options = options,
                                     value = selected))
