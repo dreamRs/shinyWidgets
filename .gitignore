@@ -7,3 +7,6 @@ garbage/
 inst/examples/garbage
 shinyWidgets/wwww/
 vignettes/
+revdep/checks/
+revdep/data.sqlite
+revdep/library/
