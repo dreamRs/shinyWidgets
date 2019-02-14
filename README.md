@@ -33,11 +33,8 @@ Demo :
 shinyWidgets::shinyWidgetsGallery()
 ```
 
-Or see the live version here (when available) : https://dreamrs-vic.shinyapps.io/shinyWidgets/
+A live version is available here : http://shinyapps.dreamrs.fr/shinyWidgets
 
-You can find an introduction (in french) [here](https://dreamrs.github.io/shinyWidgets/articles/intro_shinyWidgets_fr.html).
-
-And how to construct a palette color picker [here](https://dreamrs.github.io/shinyWidgets/articles/palette_picker.html).
 
 
 ## Widgets available :
@@ -58,7 +55,7 @@ And how to construct a palette color picker [here](https://dreamrs.github.io/shi
 ### Bootstrap switch
 
 Turn checkboxes into toggle switches : <br>
-![switchInput](inst/images/switchInput.png)
+![switchInput](man/figures/switchInput.png)
 
 ```r
 switchInput(inputId = "id", value = TRUE)
@@ -69,7 +66,7 @@ switchInput(inputId = "id", value = TRUE)
 ### Material switch
 
 Turn checkboxes into toggle switches (again) : <br>
-![materialSwitch](inst/images/materialSwitch.png)
+![materialSwitch](man/figures/materialSwitch.png)
 
 ```r
 materialSwitch(inputId = "id", label = "Primary switch", status = "danger")
@@ -80,7 +77,7 @@ materialSwitch(inputId = "id", label = "Primary switch", status = "danger")
 ### Pretty Checkbox
 
 Checkbox and radio buttons with the beautiful CSS library [pretty-checkbox](https://lokesh-coder.github.io/pretty-checkbox/) :
-![prettycheckbox](inst/images/pretty.png)
+![prettycheckbox](man/figures/pretty.png)
 
 
 ```r
@@ -113,14 +110,14 @@ prettyCheckbox(
 
 Displays a message to the user :
 
-![sendSweetAlert](inst/images/sendSweetAlert.gif)
+![sendSweetAlert](man/figures/sendSweetAlert.gif)
 
 See examples in `?sendSweetAlert`.
 
 
 Request confirmation from the user :
 
-![confirmSweetAlert](inst/images/confirmSweetAlert.gif)
+![confirmSweetAlert](man/figures/confirmSweetAlert.gif)
 
 See examples in `?confirmSweetAlert`.
 
@@ -129,7 +126,7 @@ See examples in `?confirmSweetAlert`.
 ### Slider Text
 
 Slider with strings, to pass whatever you want : <br>
-![sliderText](inst/images/sliderText.png)
+![sliderText](man/figures/sliderText.png)
 
 ```r
 sliderTextInput(
@@ -147,7 +144,7 @@ sliderTextInput(
 ### Knob Input
 
 A [jQuery](https://github.com/aterrien/jQuery-Knob) based knob, similar to sliderInput or sliderTextInput: <br>
-![knobInput](inst/images/knob.gif)
+![knobInput](man/figures/knob.gif)
 
 ```r
 knobInput(
@@ -165,7 +162,7 @@ knobInput(
 ### Select picker
 
 Dropdown menu with a lot of options : <br>
-![pickerInput](inst/images/pickerInput.png)
+![pickerInput](man/figures/pickerInput.png)
 
 ```r
 pickerInput(
@@ -186,7 +183,7 @@ pickerInput(
 ### Checkbox and radio buttons
 
 Turn buttons into checkbox or radio : <br>
-![checkboxGroupButtons](inst/images/checkboxGroupButtons.png)
+![checkboxGroupButtons](man/figures/checkboxGroupButtons.png)
 
 ```r
 checkboxGroupButtons(
@@ -202,7 +199,7 @@ checkboxGroupButtons(
 ### Search bar
 
 A text input only triggered by hitting 'Enter' or clicking search button : <br>
-![search_input](inst/images/search_input.png)
+![search_input](man/figures/search_input.png)
 
 ```r
 searchInput(
@@ -220,8 +217,8 @@ searchInput(
 ### Dropdown button
 
 Hide input in a button : <br>
-![dropdown_off](inst/images/dropdown_btn_off.png)
-![dropdown_on](inst/images/dropdown_btn_on.png)
+![dropdown_off](man/figures/dropdown_btn_off.png)
+![dropdown_on](man/figures/dropdown_btn_on.png)
 
 ```r
 dropdownButton(
