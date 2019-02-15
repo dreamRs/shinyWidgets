@@ -110,6 +110,6 @@ useShinydashboard <- function() {
     sidebar = shinydashboard::dashboardSidebar(),
     body = shinydashboard::dashboardBody()
   ))
-  attachDependencies(tags$div(), value = deps)
+  attachDependencies(tags$div(class = "main-sidebar"), value = deps)
 }
 
