@@ -1,56 +1,241 @@
-# Setup
+# AdhereR
 
-## Platform
+Version: 0.4.1
 
-|setting  |value                        |
-|:--------|:----------------------------|
-|version  |R version 3.5.1 (2018-07-02) |
-|system   |x86_64, mingw32              |
-|ui       |RStudio (1.1.456)            |
-|language |(EN)                         |
-|collate  |French_France.1252           |
-|tz       |Europe/Berlin                |
-|date     |2018-11-05                   |
+## In both
 
-## Packages
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
 
-|package      |*  |version |date       |source         |
-|:------------|:--|:-------|:----------|:--------------|
-|shinyWidgets |   |0.4.3   |2018-05-30 |CRAN (R 3.5.1) |
+*   checking installed package size ... NOTE
+    ```
+      installed size is  5.0Mb
+      sub-directories of 1Mb or more:
+        doc   3.2Mb
+    ```
 
-# Check results
+# BayesianNetwork
 
-1 packages with problems
+Version: 0.1.5
 
-|package  |version | errors| warnings| notes|
-|:--------|:-------|------:|--------:|-----:|
-|getTBinR |0.5.5   |      1|        0|     0|
+## In both
 
-## getTBinR (0.5.5)
-Maintainer: Sam Abbott <contact@samabbott.co.uk>  
-Bug reports: https://github.com/seabbs/getTBinR/issues
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
 
-1 error  | 0 warnings | 0 notes
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘shinytest’ ‘testthat’
+      All declared Imports should be used.
+    ```
 
-```
-checking tests ... ERROR
-  Running 'testthat.R' [34s]
-Running the tests in 'tests/testthat.R' failed.
-Last 13 lines of output:
-  > library(getTBinR)
-  > 
-  > test_check("getTBinR")
-  [31m--[39m [31m1. Failure: map_tb_burden can have a custom legend specified. (@test-map_tb_burden.R#62) [39m [31m---------------------------------------------------------------[39m
-  plot$labels$fill not equal to `test_label`.
-  1/1 mismatches
-  x[1]: "`test (test - test)`"
-  y[1]: "test (test - test)"
-  
-  == testthat results  =======================================================================================================================================
-  OK: 75 SKIPPED: 29 FAILED: 1
-  1. Failure: map_tb_burden can have a custom legend specified. (@test-map_tb_burden.R#62) 
-  
-  Error: testthat unit tests failed
-  Execution halted
-```
+# bs4Dash
+
+Version: 0.2.0
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+# dplyrAssist
+
+Version: 0.1.0
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘tidyr’ ‘tidyverse’
+      All declared Imports should be used.
+    ```
+
+# eAnalytics
+
+Version: 0.1.4
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+# esquisse
+
+Version: 0.1.7
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+# getTBinR
+
+Version: 0.5.7
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+*   checking package dependencies ... NOTE
+    ```
+    Packages suggested but not available for checking: ‘vdiffr’ ‘hexSticker’
+    ```
+
+# ggplotAssist
+
+Version: 0.1.3
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘gcookbook’ ‘ggthemes’ ‘moonBook’ ‘tidyverse’
+      All declared Imports should be used.
+    ```
+
+# gimmeTools
+
+Version: 0.1
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+# MtreeRing
+
+Version: 1.1
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+# plethem
+
+Version: 0.1.7
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespaces in Imports field not imported from:
+      ‘V8’ ‘devtools’ ‘formatR’ ‘gdata’ ‘rhandsontable’ ‘shinythemes’
+      ‘sqldf’
+      All declared Imports should be used.
+    ```
+
+# powdR
+
+Version: 0.2.0
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘shinyWidgets’
+      All declared Imports should be used.
+    ```
+
+# rpostgisLT
+
+Version: 0.6.0
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+*   checking dependencies in R code ... NOTE
+    ```
+    Namespace in Imports field not imported from: ‘htmltools’
+      All declared Imports should be used.
+    ```
+
+# shinydashboardPlus
+
+Version: 0.6.0
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+# visNetwork
+
+Version: 2.0.5
+
+## In both
+
+*   checking PDF version of manual ... WARNING
+    ```
+    LaTeX errors when creating PDF version.
+    This typically indicates Rd problems.
+    ```
+
+*   checking installed package size ... NOTE
+    ```
+      installed size is 11.1Mb
+      sub-directories of 1Mb or more:
+        doc           5.6Mb
+        htmlwidgets   4.0Mb
+    ```
 

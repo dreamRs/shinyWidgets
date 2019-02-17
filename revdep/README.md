@@ -1,125 +1,64 @@
-# Setup
+# Platform
 
-## Platform
-
-|setting  |value                        |
+|field    |value                        |
 |:--------|:----------------------------|
-|version  |R version 3.5.1 (2018-07-02) |
-|system   |x86_64, mingw32              |
-|ui       |RStudio (1.1.456)            |
-|language |(EN)                         |
-|collate  |French_France.1252           |
-|tz       |Europe/Berlin                |
-|date     |2018-11-05                   |
+|version  |R version 3.4.4 (2018-03-15) |
+|os       |Pop!_OS 18.04 LTS            |
+|system   |x86_64, linux-gnu            |
+|ui       |RStudio                      |
+|language |en_US:en                     |
+|collate  |en_US.UTF-8                  |
+|ctype    |en_US.UTF-8                  |
+|tz       |Europe/Paris                 |
+|date     |2019-02-16                   |
 
-## Packages
+# Dependencies
 
-|package      |*  |version |date       |source         |
-|:------------|:--|:-------|:----------|:--------------|
-|shinyWidgets |   |0.4.3   |2018-05-30 |CRAN (R 3.5.1) |
+|package      |old      |new       |Δ  |
+|:------------|:--------|:---------|:--|
+|shinyWidgets |0.4.4    |0.4.4.960 |*  |
+|BH           |1.69.0-1 |1.69.0-1  |   |
+|colorspace   |1.4-0    |1.4-0     |   |
+|crayon       |1.3.4    |1.3.4     |   |
+|digest       |0.6.18   |0.6.18    |   |
+|htmltools    |0.3.6    |0.3.6     |   |
+|httpuv       |1.4.5.1  |1.4.5.1   |   |
+|jsonlite     |1.6      |1.6       |   |
+|labeling     |0.3      |0.3       |   |
+|later        |0.8.0    |0.8.0     |   |
+|magrittr     |1.5      |1.5       |   |
+|mime         |0.6      |0.6       |   |
+|munsell      |0.5.0    |0.5.0     |   |
+|promises     |1.0.1    |1.0.1     |   |
+|R6           |2.4.0    |2.4.0     |   |
+|RColorBrewer |1.1-2    |1.1-2     |   |
+|Rcpp         |1.0.0    |1.0.0     |   |
+|rlang        |0.3.1    |0.3.1     |   |
+|scales       |1.0.0    |1.0.0     |   |
+|shiny        |1.2.0    |1.2.0     |   |
+|sourcetools  |0.1.7    |0.1.7     |   |
+|viridisLite  |0.3.0    |0.3.0     |   |
+|xtable       |1.8-3    |1.8-3     |   |
 
-# Check results
+# Revdeps
 
-10 packages
+## All (15)
 
-|package            |version | errors| warnings| notes|
-|:------------------|:-------|------:|--------:|-----:|
-|bs4Dash            |0.2.0   |      0|        0|     0|
-|dplyrAssist        |0.1.0   |      0|        0|     0|
-|esquisse           |0.1.6   |      0|        0|     0|
-|getTBinR           |0.5.5   |      1|        0|     0|
-|ggplotAssist       |0.1.3   |      0|        0|     0|
-|gimmeTools         |0.1     |      0|        0|     0|
-|MtreeRing          |1.1     |      0|        0|     0|
-|rpostgisLT         |0.6.0   |      0|        0|     0|
-|shinydashboardPlus |0.6.0   |      0|        0|     0|
-|visNetwork         |2.0.4   |      0|        0|     1|
-
-## bs4Dash (0.2.0)
-Maintainer: David Granjon <dgranjon@ymail.com>  
-Bug reports: https://github.com/DivadNojnarg/bs4Dash/issues
-
-0 errors | 0 warnings | 0 notes
-
-## dplyrAssist (0.1.0)
-Maintainer: Keon-Woong Moon <cardiomoon@gmail.com>  
-Bug reports: https://github.com/cardiomoon/dplyrAssist/issues
-
-0 errors | 0 warnings | 0 notes
-
-## esquisse (0.1.6)
-Maintainer: Victor Perrier <victor.perrier@dreamrs.fr>  
-Bug reports: https://github.com/dreamRs/esquisse/issues
-
-0 errors | 0 warnings | 0 notes
-
-## getTBinR (0.5.5)
-Maintainer: Sam Abbott <contact@samabbott.co.uk>  
-Bug reports: https://github.com/seabbs/getTBinR/issues
-
-1 error  | 0 warnings | 0 notes
-
-```
-checking tests ... ERROR
-  Running 'testthat.R' [34s]
-Running the tests in 'tests/testthat.R' failed.
-Last 13 lines of output:
-  > library(getTBinR)
-  > 
-  > test_check("getTBinR")
-  [31m--[39m [31m1. Failure: map_tb_burden can have a custom legend specified. (@test-map_tb_burden.R#62) [39m [31m---------------------------------------------------------------[39m
-  plot$labels$fill not equal to `test_label`.
-  1/1 mismatches
-  x[1]: "`test (test - test)`"
-  y[1]: "test (test - test)"
-  
-  == testthat results  =======================================================================================================================================
-  OK: 75 SKIPPED: 29 FAILED: 1
-  1. Failure: map_tb_burden can have a custom legend specified. (@test-map_tb_burden.R#62) 
-  
-  Error: testthat unit tests failed
-  Execution halted
-```
-
-## ggplotAssist (0.1.3)
-Maintainer: Keon-Woong Moon <cardiomoon@gmail.com>  
-Bug reports: https://github.com/cardiomoon/ggplotAssist/issues
-
-0 errors | 0 warnings | 0 notes
-
-## gimmeTools (0.1)
-Maintainer: Stephanie Lane <lane.stephanie.t@gmail.com>
-
-0 errors | 0 warnings | 0 notes
-
-## MtreeRing (1.1)
-Maintainer: Jingning Shi <snow940220@bjfu.edu.cn>
-
-0 errors | 0 warnings | 0 notes
-
-## rpostgisLT (0.6.0)
-Maintainer: Balázs Dukai <balazs.dukai@gmail.com>  
-Bug reports: https://github.com/mablab/rpostgisLT/issues
-
-0 errors | 0 warnings | 0 notes
-
-## shinydashboardPlus (0.6.0)
-Maintainer: David Granjon <dgranjon@ymail.com>  
-Bug reports: https://github.com/DivadNojnarg/shinydashboardPlus/issues
-
-0 errors | 0 warnings | 0 notes
-
-## visNetwork (2.0.4)
-Maintainer: Benoit Thieurmel <benoit.thieurmel@datastorm.fr>  
-Bug reports: https://github.com/datastorm-open/visNetwork/issues
-
-0 errors | 0 warnings | 1 note 
-
-```
-checking installed package size ... NOTE
-  installed size is 10.9Mb
-  sub-directories of 1Mb or more:
-    doc           5.6Mb
-    htmlwidgets   3.9Mb
-```
+|package                                              |version |error |warning |note |
+|:----------------------------------------------------|:-------|:-----|:-------|:----|
+|[AdhereR](problems.md#adherer)                       |0.4.1   |      |1       |1    |
+|[BayesianNetwork](problems.md#bayesiannetwork)       |0.1.5   |      |1       |1    |
+|[bs4Dash](problems.md#bs4dash)                       |0.2.0   |      |1       |     |
+|[dplyrAssist](problems.md#dplyrassist)               |0.1.0   |      |1       |1    |
+|[eAnalytics](problems.md#eanalytics)                 |0.1.4   |      |1       |     |
+|[esquisse](problems.md#esquisse)                     |0.1.7   |      |1       |     |
+|[getTBinR](problems.md#gettbinr)                     |0.5.7   |      |1       |1    |
+|[ggplotAssist](problems.md#ggplotassist)             |0.1.3   |      |1       |1    |
+|[gimmeTools](problems.md#gimmetools)                 |0.1     |      |1       |     |
+|[MtreeRing](problems.md#mtreering)                   |1.1     |      |1       |     |
+|[plethem](problems.md#plethem)                       |0.1.7   |      |1       |1    |
+|[powdR](problems.md#powdr)                           |0.2.0   |      |1       |1    |
+|[rpostgisLT](problems.md#rpostgislt)                 |0.6.0   |      |1       |1    |
+|[shinydashboardPlus](problems.md#shinydashboardplus) |0.6.0   |      |1       |     |
+|[visNetwork](problems.md#visnetwork)                 |2.0.5   |      |1       |1    |
 
