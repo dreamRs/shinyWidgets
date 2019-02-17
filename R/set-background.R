@@ -158,14 +158,15 @@ setBackgroundColor <- function(color = "ghostwhite", gradient = c("linear", "rad
 #'
 #' Allow to change the background image of your shinyapp.
 #'
-#' @param src Background url or path.
+#' @param src Url or path to the image, if using local image,
+#'  the file must be in \code{www/} directory and the path not contain \code{www/}.
 #'
-#' @note Use with moderation. The image while cover the entire screen (no repeat, cover).
 #'
 #' @export
 #'
+#' @importFrom htmltools tags
+#'
 #' @examples
-#' \dontrun{
 #'
 #' if (interactive()) {
 #'
@@ -185,11 +186,10 @@ setBackgroundColor <- function(color = "ghostwhite", gradient = c("linear", "rad
 #'
 #' }
 #'
-#' }
 setBackgroundImage <- function(src = NULL) {
-  htmltools::tags$head(
-    htmltools::tags$style(
-      htmltools::HTML(
+  tags$head(
+    tags$style(
+      HTML(
         paste0(
           "body {
            background: url(", src, ") no-repeat center center fixed;

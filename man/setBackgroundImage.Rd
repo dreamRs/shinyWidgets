@@ -7,16 +7,13 @@
 setBackgroundImage(src = NULL)
 }
 \arguments{
-\item{src}{Background url or path.}
+\item{src}{Url or path to the image, if using local image,
+the file must be in \code{www/} directory and the path not contain \code{www/}.}
 }
 \description{
 Allow to change the background image of your shinyapp.
 }
-\note{
-Use with moderation. The image while cover the entire screen (no repeat, cover).
-}
 \examples{
-\dontrun{
 
 if (interactive()) {
 
@@ -36,5 +33,4 @@ shinyApp(ui, server)
 
 }
 
-}
 }
