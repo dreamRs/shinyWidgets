@@ -12,7 +12,7 @@ dropdown(..., style = "default", status = "default", size = "md",
 \item{...}{List of tag to be displayed into the dropdown menu.}
 
 \item{style}{Character. if \code{default} use Bootstrap button (like an \code{actionButton}), else use an
-\code{actionBttn}, see argument \code{style} for possible values.}
+\code{\link{actionBttn}}, see argument \code{style} (in \code{\link{actionBttn}} documentation) for possible values.}
 
 \item{status}{Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
 Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.}

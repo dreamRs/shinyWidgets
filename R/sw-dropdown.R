@@ -5,7 +5,7 @@
 #'
 #' @param ... List of tag to be displayed into the dropdown menu.
 #' @param style Character. if \code{default} use Bootstrap button (like an \code{actionButton}), else use an
-#' \code{actionBttn}, see argument \code{style} for possible values.
+#' \code{\link{actionBttn}}, see argument \code{style} (in \code{\link{actionBttn}} documentation) for possible values.
 #' @param icon An icon to appear on the button.
 #' @param status Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
 #'  Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.
@@ -106,7 +106,7 @@ dropdown <- function(..., style = "default", status = "default",
 
 
   if (is.null(inputId)) {
-    inputId <- sample.int(1e9, 1)
+    inputId <- paste0("btn-", sample.int(1e9, 1))
   }
   dropId <- paste0("sw-drop-", inputId)
   contentId <- paste0("sw-content-", inputId)
