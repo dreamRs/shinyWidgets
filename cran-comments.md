@@ -1,7 +1,7 @@
 ## Test environments
 
-* local Windows 10 install, R 3.5.1
-* ubuntu 12.04 (on travis-ci), R 3.5.1
+* local Windows 10 install, R 3.5.2
+* ubuntu 12.04 (on travis-ci), R 3.5.2
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,14 +11,12 @@
 
 ## Reverse dependencies
 
-* I have run R CMD check on the 10 reverse dependencies : 
-  - 1 note for one package (visNetwork), not related (installed package size).
-  - 1 error (getTBinR), a test failed.
+* I have run R CMD check on the 17 reverse dependencies : 
   Complete summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
 
 -------
 
-This version includes some new functions and features.
+This version includes new features and bug fix.
 
 Thanks!
 Victor
