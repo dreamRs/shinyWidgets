@@ -6,18 +6,16 @@
 #' @param label Display label for the control, or \code{NULL} for no label.
 #' @param choices A list of colors, can be a list of named list, see example.
 #' @param selected Default selected color, if \code{NULL} the first color for \code{mode = 'radio'}
-#' and none for \code{mode = 'checkbox'}
+#'  and none for \code{mode = 'checkbox'}
 #' @param mode \code{'radio'} for only one choice, \code{'checkbox'} for
-#' selecting multiple values.
+#'  selecting multiple values.
 #' @param display_label Display list's names after palette of color.
 #' @param ncol If choices is not a list but a vector, go to line after n elements.
 #'
-#' @return a colorSelectorInput control
 #' @importFrom htmltools tags tagList
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'
 #' # Full example
@@ -42,7 +40,6 @@
 #'
 #' shinyApp(ui = ui, server = server)
 #'
-#' }
 #' }
 colorSelectorInput <- function(inputId, label, choices, selected = NULL, mode = c("radio", "checkbox"), display_label = FALSE, ncol = 10) {
   selected <- shiny::restoreInput(id = inputId, default = selected)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/actionBttn.R
 \name{downloadBttn}
 \alias{downloadBttn}
-\title{Create a download bttn}
+\title{Create a download \code{\link{actionBttn}}}
 \usage{
 downloadBttn(outputId, label = "Download", style = "unite",
   color = "default", size = "md", block = FALSE, no_outline = TRUE)

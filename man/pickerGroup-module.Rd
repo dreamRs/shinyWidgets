@@ -14,7 +14,7 @@ pickerGroupServer(input, output, session, data, vars)
 \arguments{
 \item{id}{Module's id.}
 
-\item{params}{A named list of parameters passed to each `pickerInput`, you can use :
+\item{params}{A named list of parameters passed to each \code{\link{pickerInput}}, you can use :
 `inputId` (obligatory, must be variable name), `label`, `placeholder`.}
 
 \item{label}{Character, global label on top of all labels.}
@@ -38,7 +38,7 @@ must correspond to variables listed in \code{params}.}
 a \code{reactive} function containing data filtered.
 }
 \description{
-Group of mutually dependent `pickerInput` for filtering \code{data.frame}'s columns.
+Group of mutually dependent \code{\link{pickerInput}} for filtering \code{data.frame}'s columns.
 }
 \examples{
 \dontrun{

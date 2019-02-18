@@ -1,6 +1,6 @@
-#' @title Theme selector for sliderInput
+#' @title Theme selector for \code{sliderInput}
 #'
-#' @description Customize the appearance of the original shiny's sliderInputs
+#' @description Customize the appearance of the original shiny's \code{sliderInput}
 #'
 #' @param skin The \code{skin} to apply. Choose among 5 different flavors,
 #'  namely 'Shiny', 'Flat', 'Modern', 'Nice', 'Simple', 'HTML5', 'Round' and 'Square'.

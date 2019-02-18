@@ -2,7 +2,7 @@
 % Please edit documentation in R/input-airDatepicker.R
 \name{updateAirDateInput}
 \alias{updateAirDateInput}
-\title{Change the value of a airDate input on the client}
+\title{Change the value of \code{\link{airDatepickerInput}} on the client}
 \usage{
 updateAirDateInput(session, inputId, label = NULL, value = NULL,
   clear = FALSE, options = NULL)
@@ -21,7 +21,7 @@ updateAirDateInput(session, inputId, label = NULL, value = NULL,
 \item{options}{Options to update, see available ones here: \url{http://t1m0n.name/air-datepicker/docs/}.}
 }
 \description{
-Change the value of a airDate input on the client
+Change the value of \code{\link{airDatepickerInput}} on the client
 }
 \examples{
 \dontrun{

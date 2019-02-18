@@ -40,7 +40,7 @@
 #' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
 #' @param ... Arguments passed to \code{airDatepickerInput}.
 #'
-#' @note This widget prevents `dateInput` from working, don't use both !
+#' @note This widget prevents \code{dateInput} from working, don't use both !
 #'
 #' @return a \code{Date} object or a \code{POSIXct} in UTC timezone.
 #'
@@ -274,7 +274,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 
 
 
-#' Change the value of a airDate input on the client
+#' Change the value of \code{\link{airDatepickerInput}} on the client
 #'
 #' @param session The \code{session} object passed to function given to \code{shinyServer}.
 #' @param inputId The id of the input object.

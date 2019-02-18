@@ -1,10 +1,10 @@
 
 #' @title Picker Group
 #'
-#' @description Group of mutually dependent `pickerInput` for filtering \code{data.frame}'s columns.
+#' @description Group of mutually dependent \code{\link{pickerInput}} for filtering \code{data.frame}'s columns.
 #'
 #' @param id Module's id.
-#' @param params A named list of parameters passed to each `pickerInput`, you can use :
+#' @param params A named list of parameters passed to each \code{\link{pickerInput}}, you can use :
 #'  `inputId` (obligatory, must be variable name), `label`, `placeholder`.
 #' @param label Character, global label on top of all labels.
 #' @param btn_label Character, reset button label.

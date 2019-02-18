@@ -40,9 +40,6 @@ selecting multiple values.}
 
 \item{width}{Width of the dropdown menu content.}
 }
-\value{
-a colorSelectorInput control
-}
 \description{
 Choose between a restrictive set of colors.
 }
@@ -54,7 +51,6 @@ Choose between a restrictive set of colors.
 }}
 
 \examples{
-\dontrun{
 if (interactive()) {
 
 # Full example
@@ -79,6 +75,5 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 
-}
 }
 }

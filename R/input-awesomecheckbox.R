@@ -171,10 +171,10 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
 
 
 
-#' @title Change the value of a AwesomeCheckboxGroup input on the client
+#' @title Change the value of a \code{\link{awesomeCheckboxGroup}} input on the client
 #'
 #' @description
-#' Change the value of a AwesomeCheckboxGroup input on the client
+#' Change the value of a \code{\link{awesomeCheckboxGroup}} input on the client
 #'
 #'
 #' @param session The session object passed to function given to shinyServer.

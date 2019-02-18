@@ -2,7 +2,7 @@
 % Please edit documentation in R/input-awesomecheckbox.R
 \name{updateAwesomeCheckboxGroup}
 \alias{updateAwesomeCheckboxGroup}
-\title{Change the value of a AwesomeCheckboxGroup input on the client}
+\title{Change the value of a \code{\link{awesomeCheckboxGroup}} input on the client}
 \usage{
 updateAwesomeCheckboxGroup(session, inputId, label = NULL,
   choices = NULL, selected = NULL, inline = FALSE,
@@ -24,7 +24,7 @@ updateAwesomeCheckboxGroup(session, inputId, label = NULL,
 \item{status}{Color of the buttons.}
 }
 \description{
-Change the value of a AwesomeCheckboxGroup input on the client
+Change the value of a \code{\link{awesomeCheckboxGroup}} input on the client
 }
 \examples{
 \dontrun{

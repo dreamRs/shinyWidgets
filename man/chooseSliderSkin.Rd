@@ -2,7 +2,7 @@
 % Please edit documentation in R/chooseSliderSkin.R
 \name{chooseSliderSkin}
 \alias{chooseSliderSkin}
-\title{Theme selector for sliderInput}
+\title{Theme selector for \code{sliderInput}}
 \usage{
 chooseSliderSkin(skin = c("Shiny", "Flat", "Modern", "Nice", "Simple",
   "HTML5", "Round", "Square"), color = NULL)
@@ -16,7 +16,7 @@ namely 'Shiny', 'Flat', 'Modern', 'Nice', 'Simple', 'HTML5', 'Round' and 'Square
 desired color maybe a little offset.}
 }
 \description{
-Customize the appearance of the original shiny's sliderInputs
+Customize the appearance of the original shiny's \code{sliderInput}
 }
 \note{
 It is not currently possible to apply multiple themes at the same time.
