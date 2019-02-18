@@ -64,26 +64,27 @@ numericRangeInput <- function(inputId, label, value,
   value <- c(min(value),max(value))
 
   #build tag
-  rangeTag <-
-    htmltools::tags$div(id = inputId,
-                        class = "shiny-numeric-range-input form-group shiny-input-container",
-                        style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
+  rangeTag <- htmltools::tags$div(
+      id = inputId,
+      class = "shiny-numeric-range-input form-group shiny-input-container",
+      style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
 
-                        controlLabel(inputId, label),
-                        # input-daterange class is needed for dropdown behavior
-                        htmltools::tags$div(class = "input-numeric-range input-group",
-                                            htmltools::tags$input(
-                                              type = "number",
-                                              class = "form-control",
-                                              value = formatNoSci(min(value))
-                                            ),
-                                            htmltools::tags$span(class = "input-group-addon", separator),
-                                            htmltools::tags$input(
-                                              type = "number",
-                                              class = "form-control",
-                                              value = formatNoSci(max(value))
-                                            )
-                        )
+      controlLabel(inputId, label),
+      # input-daterange class is needed for dropdown behavior
+      htmltools::tags$div(
+        class = "input-numeric-range input-group",
+        htmltools::tags$input(
+          type = "number",
+          class = "form-control",
+          value = formatNoSci(min(value))
+        ),
+        htmltools::tags$span(class = "input-group-addon", separator),
+        htmltools::tags$input(
+          type = "number",
+          class = "form-control",
+          value = formatNoSci(max(value))
+        )
+      )
     )
 
   dep <- htmltools::htmlDependency(
