@@ -10,7 +10,7 @@ test_that("Dependencies", {
 
   nr_deps <- htmltools::findDependencies(nr)
   expect_length(object = nr_deps, n = 1)
-  expect_true("numericRange" %in% unlist(lapply(nr_deps, `[[`, "name")))
+  expect_true("shinyWidgets" %in% unlist(lapply(nr_deps, `[[`, "name")))
 
 })
 

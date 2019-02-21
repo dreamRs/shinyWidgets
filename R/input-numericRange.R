@@ -87,13 +87,7 @@ numericRangeInput <- function(inputId, label, value,
       )
     )
 
-  dep <- htmltools::htmlDependency(
-    name = "numericRange", version = as.character(packageVersion("shinyWidgets")[[1]]),
-    src = c(href = "shinyWidgets/numericRange"),
-    script = "js/numericRange-bindings.js"
-  )
-
-  htmltools::attachDependencies(rangeTag,dep,append = TRUE)
+  attachShinyWidgetsDep(rangeTag)
 }
 
 #' Change the value of a numeric range input
