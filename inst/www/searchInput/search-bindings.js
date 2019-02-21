@@ -19,13 +19,13 @@ $.extend(searchInputBinding, {
   },
   getValue: function(el) {
   	//return el.value;
-  	return $('#se' + $escapeSearch(el.id)).val();
+  	return $('#' + $escapeSearch(el.id) + '_text').val();
   },
   setValue: function(el, value) {
-  	$('#se' + $escapeSearch(el.id)).val(value);
+  	$('#' + $escapeSearch(el.id) + '_text').val(value);
   },
   subscribe: function(el, callback) {
-   $('#se' + $escapeSearch(el.id)).on('keyup.searchInputBinding input.searchInputBinding', function(event) {
+   $('#' + $escapeSearch(el.id) + '_text').on('keyup.searchInputBinding input.searchInputBinding', function(event) {
      if(event.keyCode == 13) { //if enter
   	  callback();
      }
@@ -37,7 +37,7 @@ $.extend(searchInputBinding, {
       var reset = $('#' + $escapeSearch(el.id)).data('reset');
       if (reset == 'TRUE') {
         var resetValue = $('#' + $escapeSearch(el.id)).data('reset-value');
-        $('#se' + $escapeSearch(el.id)).val(resetValue);
+        $('#' + $escapeSearch(el.id) + '_text').val(resetValue);
       }
       callback();
    });
@@ -50,12 +50,11 @@ $.extend(searchInputBinding, {
 
     if (data.hasOwnProperty('label')) {
       // console.log(el);
-      $(el).parent().find('label[for="' + data.id + '"]').text(data.label);
+      $(el).parent().find('label[for="' + el.id + '"]').text(data.label);
     }
 
     if (data.hasOwnProperty('placeholder')) {
-      // why [0] ??
-      $('#se' + el.id)[0].placeholder = data.placeholder;
+      $('#' + el.id + '_text')[0].placeholder = data.placeholder;
     }
 
     if (data.trigger) {

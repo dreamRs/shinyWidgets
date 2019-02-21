@@ -1,3 +1,9 @@
+shinyWidgets 0.4.5.900
+======================
+
+* Fix updating `searchInput` label & placeholder in modules.
+
+
 shinyWidgets 0.4.5
 ======================
 
