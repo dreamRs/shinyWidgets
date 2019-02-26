@@ -1,7 +1,8 @@
-shinyWidgets 0.4.5.900
+shinyWidgets 0.4.6
 ======================
 
 * Fix updating `searchInput` label & placeholder in modules.
+* Fix issue with ghost sidebar in `useShinydashboard`.
 
 
 shinyWidgets 0.4.5
