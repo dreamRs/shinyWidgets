@@ -49,6 +49,4 @@ Suggests: shinydashboard,
     testthat,
     covr,
     shinydashboardPlus,
-    bs4Dash,
-    shinymaterial,
-    shinymaterialPlus
+    bs4Dash
