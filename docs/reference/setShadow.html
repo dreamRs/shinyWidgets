@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6</span>
       </span>
     </div>
 
@@ -113,11 +113,15 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>setShadow</span>(<span class='no'>class</span>)</pre>
+    <pre class="usage"><span class='fu'>setShadow</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>id</th>
+      <td><p>Use this argument if you want to target an individual element.</p></td>
+    </tr>
     <tr>
       <th>class</th>
       <td><p>The element to which the shadow should be applied.
@@ -127,83 +131,69 @@ For example, class is set to box.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
- <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+    <pre class="examples"><div class='input'> <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
 
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyWidgets</span>)
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinydashboard</span>)
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinydashboardPlus</span>)
 
-  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
-    <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h2</a></span>(<span class='st'>"Add shadow and hover interactions to any element"</span>),
+  <span class='no'>setShadow</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>shinyWidgets</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/shinyWidgets/topics/setShadow'>setShadow</a></span>
 
-    <span class='fu'>setShadow</span>(<span class='st'>"box"</span>),
-    <span class='fu'>setShadow</span>(<span class='st'>"info-box"</span>),
-    <span class='fu'>setShadow</span>(<span class='st'>"progress"</span>),
-    <span class='fu'><a href='setBackgroundColor.html'>setBackgroundColor</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"ghostwhite"</span>),
-    <span class='fu'><a href='useShinydashboardPlus.html'>useShinydashboardPlus</a></span>(),
-
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/boxPlus'>boxPlus</a></span>(
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Closable Box with dropdown"</span>,
-       <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
-       <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-       <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>enable_dropdown</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>dropdown_icon</span> <span class='kw'>=</span> <span class='st'>"wrench"</span>,
-       <span class='kw'>dropdown_menu</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/dropdownItemList'>dropdownItemList</a></span>(
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/dropdownItem'>dropdownItem</a></span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"http://www.google.com"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Link to google"</span>),
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/dropdownItem'>dropdownItem</a></span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"#"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"item 2"</span>),
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/dropdownDivider'>dropdownDivider</a></span>(),
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/dropdownItem'>dropdownItem</a></span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"#"</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"item 3"</span>)
-       ),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Box Content"</span>)
-     ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/boxPlus'>boxPlus</a></span>(
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Closable box, with label"</span>,
-       <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>enable_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>label_text</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-       <span class='kw'>label_status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
-       <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
-       <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-       <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Box Content"</span>)
-     )
-    ),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/infoBox'>infoBox</a></span>(
-     <span class='st'>"Orders"</span>,
-     <span class='st'>"50"</span>,
-     <span class='st'>"Subtitle"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"credit-card"</span>)
-     )
-    ),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/verticalProgress'>verticalProgress</a></span>(
-      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-      <span class='kw'>striped</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-      <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-     ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/verticalProgress'>verticalProgress</a></span>(
-       <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-       <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
-       <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"xs"</span>
-     ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/verticalProgress'>verticalProgress</a></span>(
-       <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-       <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
-       <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"sm"</span>,
-       <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"60%"</span>
-     )
-    )
+  <span class='no'>boxTag</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/boxPlus'>boxPlus</a></span>(
+   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Closable box, with label"</span>,
+   <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+   <span class='kw'>enable_label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+   <span class='kw'>label_text</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+   <span class='kw'>label_status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
+   <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
+   <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+   <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Box Content"</span>)
   )
-  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {}
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
- }
-<span class='co'># }</span></pre>
+
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/dashboardPagePlus'>dashboardPagePlus</a></span>(
+     <span class='kw'>header</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/dashboardHeaderPlus'>dashboardHeaderPlus</a></span>(
+       <span class='kw'>enable_rightsidebar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+       <span class='kw'>rightSidebarIcon</span> <span class='kw'>=</span> <span class='st'>"gears"</span>
+     ),
+     <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/dashboardSidebar'>dashboardSidebar</a></span>(),
+     <span class='kw'>body</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/dashboardBody'>dashboardBody</a></span>(
+
+      <span class='fu'>setShadow</span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"box"</span>),
+      <span class='fu'>setShadow</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-progress"</span>),
+
+      <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h2</a></span>(<span class='st'>"Add shadow to the box class"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(<span class='no'>boxTag</span>, <span class='no'>boxTag</span>),
+      <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h2</a></span>(<span class='st'>"Add shadow only to the first element using id"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagAppendAttributes</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/verticalProgress'>verticalProgress</a></span>(
+        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+        <span class='kw'>striped</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       ),
+       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-progress"</span>
+      ),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/verticalProgress'>verticalProgress</a></span>(
+        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
+        <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"xs"</span>
+      ),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/verticalProgress'>verticalProgress</a></span>(
+        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
+        <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"sm"</span>,
+        <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"60%"</span>
+      )
+     ),
+     <span class='kw'>rightsidebar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboardPlus/topics/rightSidebar'>rightSidebar</a></span>(),
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"DashboardPage"</span>
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) { }
+  )
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
