@@ -1,8 +1,8 @@
 shinyWidgets 0.4.6
 ======================
 
-* New `useTemplate` function to import any elements from shinydashboard,
-shinydashboardPlus, bs4Dash, materialize (and a lot more soon).
+* add `useArgonDash` to inport functions from argonDash.
+* add `useBs4Dash` to import functions from bs4Dash.
 * Fix updating `searchInput` label & placeholder in modules.
 * Fix issue with ghost sidebar in `useShinydashboard`.
 

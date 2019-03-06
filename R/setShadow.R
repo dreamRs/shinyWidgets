@@ -12,11 +12,9 @@
 #'  if (interactive()) {
 #'
 #'   library(shiny)
-#'   library(shinyWidgets)
 #'   library(shinydashboard)
 #'   library(shinydashboardPlus)
-#'
-#'   setShadow <- shinyWidgets::setShadow
+#'   library(shinyWidgets)
 #'
 #'   boxTag <- boxPlus(
 #'    title = "Closable box, with label",

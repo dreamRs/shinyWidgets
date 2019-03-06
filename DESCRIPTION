@@ -49,4 +49,6 @@ Suggests: shinydashboard,
     testthat,
     covr,
     shinydashboardPlus,
-    bs4Dash
+    bs4Dash,
+    argonR,
+    argonDash

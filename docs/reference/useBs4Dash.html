@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Use 'shinydashboard' in 'shiny' — useShinydashboard • shinyWidgets</title>
+<title>Use 'bs4Dash' in 'shiny' — useBs4Dash • shinyWidgets</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@
 
 
 
-<meta property="og:title" content="Use 'shinydashboard' in 'shiny' — useShinydashboard" />
+<meta property="og:title" content="Use 'bs4Dash' in 'shiny' — useBs4Dash" />
 
-<meta property="og:description" content="Allow to use functions from 'shinydashboard' into a classic 'shiny' app,
-specifically valueBox, infoBox and box." />
+<meta property="og:description" content="Allow to use functions from 'bs4Dash' into a classic 'shiny' app,
+specifically bs4ValueBox, bs4InfoBox and bs4Card." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -103,80 +103,110 @@ specifically valueBox, infoBox and box." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Use 'shinydashboard' in 'shiny'</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dreamRs/shinyWidgets/blob/master/R/useShinydashboard.R'><code>R/useShinydashboard.R</code></a></small>
-    <div class="hidden name"><code>useShinydashboard.Rd</code></div>
+    <h1>Use 'bs4Dash' in 'shiny'</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dreamRs/shinyWidgets/blob/master/R/useBs4Dash.R'><code>R/useBs4Dash.R</code></a></small>
+    <div class="hidden name"><code>useBs4Dash.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Allow to use functions from 'shinydashboard' into a classic 'shiny' app,
-specifically <code>valueBox</code>, <code>infoBox</code> and <code>box</code>.</p>
+    <p>Allow to use functions from 'bs4Dash' into a classic 'shiny' app,
+specifically <code>bs4ValueBox</code>, <code>bs4InfoBox</code> and <code>bs4Card</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>useShinydashboard</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>useBs4Dash</span>(<span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>old_school</th>
+      <td><p>FALSE by default. Experimental.</p></td>
+    </tr>
+    </table>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
 
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinydashboard</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>bs4Dash</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyWidgets</span>)
 
-<span class='co'># example taken from ?box</span>
-
 <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
-  <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h2</a></span>(<span class='st'>"Classic shiny"</span>),
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h1</a></span>(<span class='st'>"Import bs4Dash elements inside shiny!"</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"center"</span>),
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h5</a></span>(<span class='st'>"Don't need any sidebar, navbar, ..."</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"center"</span>),
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h5</a></span>(<span class='st'>"Only focus on basic elements for a pure interface"</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"center"</span>),
 
-  <span class='co'># use this in non shinydashboard app</span>
+  <span class='co'># use this in non dashboard app</span>
   <span class='fu'><a href='setBackgroundColor.html'>setBackgroundColor</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"ghostwhite"</span>),
-  <span class='fu'>useShinydashboard</span>(),
-  <span class='co'># -----------------</span>
+  <span class='fu'>useBs4Dash</span>(<span class='kw'>old_school</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
 
   <span class='co'># infoBoxes</span>
   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/infoBox'>infoBox</a></span>(
-      <span class='st'>"Orders"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/htmlOutput'>uiOutput</a></span>(<span class='st'>"orderNum2"</span>), <span class='st'>"Subtitle"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"credit-card"</span>)
-    ),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/infoBox'>infoBox</a></span>(
-      <span class='st'>"Approval Rating"</span>, <span class='st'>"60%"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"line-chart"</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
-      <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-    ),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/infoBox'>infoBox</a></span>(
-      <span class='st'>"Progress"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/htmlOutput'>uiOutput</a></span>(<span class='st'>"progress2"</span>), <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"users"</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"purple"</span>
-    )
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/bs4Dash/topics/bs4InfoBox'>bs4InfoBox</a></span>(
+      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Messages"</span>,
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>1410</span>,
+      <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"envelope"</span>
+      ),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/bs4Dash/topics/bs4InfoBox'>bs4InfoBox</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Bookmarks"</span>,
+        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"info"</span>,
+        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>240</span>,
+        <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"bookmark"</span>
+      ),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/bs4Dash/topics/bs4InfoBox'>bs4InfoBox</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Comments"</span>,
+        <span class='kw'>gradientColor</span> <span class='kw'>=</span> <span class='st'>"danger"</span>,
+        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>41410</span>,
+        <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"comments"</span>
+      )
   ),
 
   <span class='co'># valueBoxes</span>
   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/valueBox'>valueBox</a></span>(
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/htmlOutput'>uiOutput</a></span>(<span class='st'>"orderNum"</span>), <span class='st'>"New Orders"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"credit-card"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/bs4Dash/topics/bs4ValueBox'>bs4ValueBox</a></span>(
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/htmlOutput'>uiOutput</a></span>(<span class='st'>"orderNum"</span>),
+      <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"New Orders"</span>,
+      <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"credit-card"</span>,
       <span class='kw'>href</span> <span class='kw'>=</span> <span class='st'>"http://google.com"</span>
     ),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/valueBox'>valueBox</a></span>(
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(<span class='st'>"60"</span>, <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/grDevices/topics/plotmath'>sup</a></span>(<span class='kw'>style</span><span class='kw'>=</span><span class='st'>"font-size: 20px"</span>, <span class='st'>"%"</span>)),
-      <span class='st'>"Approval Rating"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"line-chart"</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/bs4Dash/topics/bs4ValueBox'>bs4ValueBox</a></span>(
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"60%"</span>,
+      <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Approval Rating"</span>,
+      <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"line-chart"</span>,
+      <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"success"</span>
     ),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/valueBox'>valueBox</a></span>(
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/htmlOutput'>htmlOutput</a></span>(<span class='st'>"progress"</span>), <span class='st'>"Progress"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"users"</span>), <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"purple"</span>
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/bs4Dash/topics/bs4ValueBox'>bs4ValueBox</a></span>(
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/htmlOutput'>htmlOutput</a></span>(<span class='st'>"progress"</span>),
+      <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Progress"</span>,
+      <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"users"</span>,
+      <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>
     )
   ),
 
   <span class='co'># Boxes</span>
   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/box'>box</a></span>(<span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>,
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"orders"</span>, <span class='st'>"Orders"</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>650</span>),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/selectInput'>selectInput</a></span>(<span class='st'>"progress"</span>, <span class='st'>"Progress"</span>,
-                    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"0%"</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='st'>"20%"</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='st'>"40%"</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='st'>"60%"</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='st'>"80%"</span> <span class='kw'>=</span> <span class='fl'>80</span>,
-                                <span class='st'>"100%"</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-        )
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/bs4Dash/topics/bs4Card'>bs4Card</a></span>(
+     <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>,
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"orders"</span>, <span class='st'>"Orders"</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>650</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/selectInput'>selectInput</a></span>(
+      <span class='st'>"progress"</span>,
+      <span class='st'>"Progress"</span>,
+       <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+         <span class='st'>"0%"</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='st'>"20%"</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='st'>"40%"</span> <span class='kw'>=</span> <span class='fl'>40</span>,
+          <span class='st'>"60%"</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='st'>"80%"</span> <span class='kw'>=</span> <span class='fl'>80</span>, <span class='st'>"100%"</span> <span class='kw'>=</span> <span class='fl'>100</span>
+       )
+      )
     ),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinydashboard/topics/box'>box</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Histogram box title"</span>,
-        <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>, <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"plot"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>250</span>)
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/bs4Dash/topics/bs4Card'>bs4Card</a></span>(
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Histogram box title"</span>,
+    <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
+    <span class='kw'>solidHeader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <span class='kw'>collapsible</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"plot"</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='fl'>250</span>)
     )
   )
 )
@@ -196,7 +226,7 @@ specifically <code>valueBox</code>, <code>infoBox</code> and <code>box</code>.</
   })
 
   <span class='no'>output</span>$<span class='no'>progress2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderUI'>renderUI</a></span>({
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>input</span>$<span class='no'>progress</span>, <span class='st'>"%"</span>)
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='no'>input</span>$<span class='no'>progress</span>)
   })
 
 
@@ -209,12 +239,12 @@ specifically <code>valueBox</code>, <code>infoBox</code> and <code>box</code>.</
 <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
 }
-
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
             
       <li><a href="#examples">Examples</a></li>
     </ul>
