@@ -4,6 +4,7 @@
 > Extend widgets available in shiny
 
 [![Travis-CI Build Status](https://travis-ci.org/dreamRs/shinyWidgets.svg?branch=master)](https://travis-ci.org/dreamRs/shinyWidgets)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/dreamRs/shinyWidgets?branch=master&svg=true)](https://ci.appveyor.com/project/dreamRs/shinyWidgets)
 [![version](http://www.r-pkg.org/badges/version/shinyWidgets)](https://CRAN.R-project.org/package=shinyWidgets)
 [![cranlogs](http://cranlogs.r-pkg.org/badges/shinyWidgets)](http://cran.rstudio.com/web/packages/shinyWidgets/index.html)
 [![cran checks](https://cranchecks.info/badges/worst/shinyWidgets)](https://cranchecks.info/pkgs/shinyWidgets)
