@@ -4,9 +4,11 @@
 \alias{setShadow}
 \title{Custom shadows}
 \usage{
-setShadow(class)
+setShadow(id = NULL, class = NULL)
 }
 \arguments{
+\item{id}{Use this argument if you want to target an individual element.}
+
 \item{class}{The element to which the shadow should be applied.
 For example, class is set to box.}
 }
@@ -14,81 +16,65 @@ For example, class is set to box.}
 Allow to apply a shadow on a given element.
 }
 \examples{
-\dontrun{
  if (interactive()) {
 
   library(shiny)
-  library(shinyWidgets)
   library(shinydashboard)
   library(shinydashboardPlus)
+  library(shinyWidgets)
 
-  ui <- fluidPage(
-    tags$h2("Add shadow and hover interactions to any element"),
-
-    setShadow("box"),
-    setShadow("info-box"),
-    setShadow("progress"),
-    setBackgroundColor(color = "ghostwhite"),
-    useShinydashboardPlus(),
-
-    fluidRow(
-     boxPlus(
-       title = "Closable Box with dropdown",
-       closable = TRUE,
-       status = "warning",
-       solidHeader = FALSE,
-       collapsible = TRUE,
-       enable_dropdown = TRUE,
-       dropdown_icon = "wrench",
-       dropdown_menu = dropdownItemList(
-         dropdownItem(url = "http://www.google.com", name = "Link to google"),
-         dropdownItem(url = "#", name = "item 2"),
-         dropdownDivider(),
-         dropdownItem(url = "#", name = "item 3")
-       ),
-       p("Box Content")
-     ),
-     boxPlus(
-       title = "Closable box, with label",
-       closable = TRUE,
-       enable_label = TRUE,
-       label_text = 1,
-       label_status = "danger",
-       status = "warning",
-       solidHeader = FALSE,
-       collapsible = TRUE,
-       p("Box Content")
-     )
-    ),
-    fluidRow(
-     infoBox(
-     "Orders",
-     "50",
-     "Subtitle", icon = icon("credit-card")
-     )
-    ),
-    fluidRow(
-     verticalProgress(
-      value = 10,
-      striped = TRUE,
-      active = TRUE
-     ),
-     verticalProgress(
-       value = 50,
-       active = TRUE,
-       status = "warning",
-       size = "xs"
-     ),
-     verticalProgress(
-       value = 20,
-       status = "danger",
-       size = "sm",
-       height = "60\%"
-     )
-    )
+  boxTag <- boxPlus(
+   title = "Closable box, with label",
+   closable = TRUE,
+   enable_label = TRUE,
+   label_text = 1,
+   label_status = "danger",
+   status = "warning",
+   solidHeader = FALSE,
+   collapsible = TRUE,
+   p("Box Content")
   )
-  server <- function(input, output, session) {}
-  shinyApp(ui, server)
- }
+
+  shinyApp(
+   ui = dashboardPagePlus(
+     header = dashboardHeaderPlus(
+       enable_rightsidebar = TRUE,
+       rightSidebarIcon = "gears"
+     ),
+     sidebar = dashboardSidebar(),
+     body = dashboardBody(
+
+      setShadow(class = "box"),
+      setShadow(id = "my-progress"),
+
+      tags$h2("Add shadow to the box class"),
+      fluidRow(boxTag, boxTag),
+      tags$h2("Add shadow only to the first element using id"),
+      tagAppendAttributes(
+       verticalProgress(
+        value = 10,
+        striped = TRUE,
+        active = TRUE
+       ),
+       id = "my-progress"
+      ),
+      verticalProgress(
+        value = 50,
+        active = TRUE,
+        status = "warning",
+        size = "xs"
+      ),
+      verticalProgress(
+        value = 20,
+        status = "danger",
+        size = "sm",
+        height = "60\%"
+      )
+     ),
+     rightsidebar = rightSidebar(),
+     title = "DashboardPage"
+   ),
+   server = function(input, output) { }
+  )
 }
 }

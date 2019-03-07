@@ -1,6 +1,8 @@
 shinyWidgets 0.4.6
 ======================
 
+* add `useArgonDash` to inport functions from argonDash.
+* add `useBs4Dash` to import functions from bs4Dash.
 * Fix updating `searchInput` label & placeholder in modules.
 * Fix issue with ghost sidebar in `useShinydashboard`.
 

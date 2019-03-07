@@ -1,4 +1,3 @@
-
 #' Use 'shinydashboard' in 'shiny'
 #'
 #' Allow to use functions from 'shinydashboard' into a classic 'shiny' app,
