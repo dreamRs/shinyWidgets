@@ -824,10 +824,6 @@ prettyCheckboxGroup <- function(inputId, label, choices = NULL,
   if (is.null(choices) && is.null(choiceNames) && is.null(choiceValues)) {
     choices <- character(0)
   }
-  if(!is.null(icon)) {
-    icon <- validateIcon(icon)
-    icon$attribs$class <- paste("icon", icon$attribs$class)
-  }
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues)
   selected <- shiny::restoreInput(id = inputId, default = selected)
   if (!is.null(selected))
@@ -858,6 +854,10 @@ generatePretty <- function(inputId, selected, inline, type = "checkbox",
                            shape = "square", outline = FALSE, fill = FALSE,
                            thick = FALSE, animation = NULL, icon = NULL,
                            plain = FALSE, bigger = FALSE) {
+  if(!is.null(icon)) {
+    icon <- validateIcon(icon)
+    icon$attribs$class <- paste("icon", icon$attribs$class)
+  }
   options <- mapply(choiceValues, choiceNames, FUN = function(value,
                                                               name) {
     inputTag <- tags$input(type = type, name = inputId, value = value)
@@ -1173,10 +1173,6 @@ prettyRadioButtons <- function(inputId, label, choices = NULL,
   shape <- match.arg(shape)
   if (is.null(choices) && is.null(choiceNames) && is.null(choiceValues)) {
     choices <- character(0)
-  }
-  if(!is.null(icon)) {
-    icon <- validateIcon(icon)
-    icon$attribs$class <- paste("icon", icon$attribs$class)
   }
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues)
   selected <- shiny::restoreInput(id = inputId, default = selected)
