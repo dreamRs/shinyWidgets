@@ -14,6 +14,7 @@
 #' @param right Logical. The dropdown menu starts on the right.
 #' @param up Logical. Display the dropdown menu above.
 #' @param width Width of the dropdown menu content.
+#' @param margin Value of the dropdown margin-right and margin-left menu content.
 #' @param inputId Optional, id for the button, the button act like an \code{actionButton},
 #' and you can use the id to toggle the dropdown menu server-side with \code{\link{toggleDropdownButton}}.
 #'
@@ -85,7 +86,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
                            size = "default", icon = NULL,
                            label = NULL, tooltip = FALSE,
                            right = FALSE, up = FALSE,
-                           width = NULL, inputId = NULL) {
+                           width = NULL, margin = "10px", inputId = NULL) {
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   if (is.null(inputId)) {
     inputId <- paste0("drop", sample.int(1e9, 1))
@@ -99,8 +100,9 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
     style = if (!is.null(width))
       paste0("width: ", htmltools::validateCssUnit(width), ";"),
     `aria-labelledby` = inputId,
-    lapply(X = list(...), FUN = htmltools::tags$li, style =
-             "margin-left: 10px; margin-right: 10px;")
+    lapply(X = list(...), FUN = htmltools::tags$li, 
+        style = paste0("margin-left: ", htmltools::validateCssUnit(margin), 
+        "; margin-right: ", htmltools::validateCssUnit(margin), ";"))
   )
 
   # button
