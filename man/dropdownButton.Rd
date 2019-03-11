@@ -6,7 +6,8 @@
 \usage{
 dropdownButton(..., circle = TRUE, status = "default",
   size = "default", icon = NULL, label = NULL, tooltip = FALSE,
-  right = FALSE, up = FALSE, width = NULL, inputId = NULL)
+  right = FALSE, up = FALSE, width = NULL, margin = "10px",
+  inputId = NULL)
 }
 \arguments{
 \item{...}{List of tag to be displayed into the dropdown menu.}
@@ -29,6 +30,8 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'm
 \item{up}{Logical. Display the dropdown menu above.}
 
 \item{width}{Width of the dropdown menu content.}
+
+\item{margin}{Value of the dropdown margin-right and margin-left menu content.}
 
 \item{inputId}{Optional, id for the button, the button act like an \code{actionButton},
 and you can use the id to toggle the dropdown menu server-side with \code{\link{toggleDropdownButton}}.}
