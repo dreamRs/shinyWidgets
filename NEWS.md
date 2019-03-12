@@ -1,10 +1,12 @@
-shinyWidgets 0.4.6
+shinyWidgets 0.4.7
 ======================
 
 * add `useArgonDash` to inport functions from argonDash.
 * add `useBs4Dash` to import functions from bs4Dash.
 * Fix updating `searchInput` label & placeholder in modules.
 * Fix issue with ghost sidebar in `useShinydashboard`.
+* Fix issue updating `prettyRadio` & `prettyCheckbox` with icons.
+
 
 
 shinyWidgets 0.4.5

@@ -16,7 +16,7 @@
 
 -------
 
-This version fix a bug introduce in last release, sorry for that.
+This version is mostly about bug fix.
 
 Thanks!
 Victor

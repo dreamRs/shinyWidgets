@@ -40,7 +40,7 @@ and you can use the id to toggle the dropdown menu server-side.}
 Create a dropdown menu
 }
 \details{
-This function is similar to \code{dropdownButton} but don't use Boostrap, so you can put \code{pickerInput} in it.
+This function is similar to \code{dropdownButton} but don't use Bootstrap, so you can put \code{pickerInput} in it.
 Moreover you can add animations on the appearance / disappearance of the dropdown with animate.css.
 }
 \examples{
