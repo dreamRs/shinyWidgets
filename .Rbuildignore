@@ -1,3 +1,4 @@
+^CRAN-RELEASE$
 ^appveyor\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
