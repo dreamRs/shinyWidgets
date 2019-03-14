@@ -26,9 +26,8 @@ The spinner don't disappear from the page, it's only masked by the plot,
  insert loaders, see package "shinycssloaders".
 }
 \examples{
-\dontrun{
 # wrap an output:
-addSpinner(plotOutput("plot"))
+addSpinner(shiny::plotOutput("plot"))
 
 # Complete demo:
 
@@ -85,5 +84,4 @@ shinyApp(ui, server)
 
 }
 
-}
 }

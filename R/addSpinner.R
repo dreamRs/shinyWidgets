@@ -16,9 +16,8 @@
 #' @importFrom htmltools tags tagList singleton
 #'
 #' @examples
-#' \dontrun{
 #' # wrap an output:
-#' addSpinner(plotOutput("plot"))
+#' addSpinner(shiny::plotOutput("plot"))
 #'
 #' # Complete demo:
 #'
@@ -75,7 +74,6 @@
 #'
 #' }
 #'
-#' }
 addSpinner <- function(output, spin = "double-bounce", color = "#112446") {
   spin <- match.arg(
     arg = spin, choices = c(
