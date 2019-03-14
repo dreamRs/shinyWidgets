@@ -211,17 +211,44 @@ addSpinner <- function(output, spin = "double-bounce", color = "#112446") {
     )
   }
 
+  style <- try(get_style(output), silent = TRUE)
+  if (inherits(style, "try-error"))
+    style <- list()
   tagList(
     singleton(tags$head(
       tags$link(href = "shinyWidgets/spinner/spin.css", rel = "stylesheet", type = "text/css"),
       tags$style(".recalculating {opacity: 0.01 !important}")
     )),
     tags$div(
-      style = "position: relative",
+      style = "position: relative;",
+      style = if(!is.null(style$width)) paste0("width:", style$width, ";"),
+      style = if(!is.null(style$height)) paste0("height:", style$height, ";"),
       tagSpin,
       output
     )
   )
 }
 
-
+#' @importFrom htmltools tagGetAttribute
+#' @importFrom stats setNames
+get_style <- function(tag) {
+  if (inherits(tag, "shiny.tag")) {
+    style <- htmltools::tagGetAttribute(tag, "style")
+    if (is.null(style))
+      return(list())
+    style <- strsplit(x = style, split = ";")[[1]]
+    style <- lapply(
+      X = style,
+      FUN = function(x) {
+        x <- strsplit(x, ":")[[1]]
+        x <-  trimws(x)
+        setNames(list(x[2]), x[1])
+      }
+    )
+    Reduce(c, style)
+  } else if (inherits(tag, "shiny.tag.list")) {
+    get_style(tag[[1]])
+  } else {
+    list()
+  }
+}
