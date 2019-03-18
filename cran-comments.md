@@ -16,7 +16,7 @@
 
 -------
 
-This version is mostly about bug fix.
+Remove a unit test that was not compatible with an upcoming version of Shiny.
 
 Thanks!
 Victor
