@@ -1,3 +1,10 @@
+shinyWidgets 0.4.8
+======================
+
+* Remove a unit test that was not compatible with an upcoming version of Shiny.
+
+
+
 shinyWidgets 0.4.7
 ======================
 
