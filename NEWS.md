@@ -1,3 +1,10 @@
+shinyWidgets 0.4.8.900
+======================
+
+* Update to SweetAlert2: more options available for \code{sendSweetAlert}, \code{confirmSweetAlert}, \code{inputSweetAlert}.
+
+
+
 shinyWidgets 0.4.8
 ======================
 

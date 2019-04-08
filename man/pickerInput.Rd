@@ -23,7 +23,7 @@ If not specified then defaults to the first value for single-select lists
 \item{multiple}{Is selection of multiple items allowed?}
 
 \item{options}{List of options, see \link{pickerOptions} for all available options.
-For limit the number of selections, see example below.}
+To limit the number of selection possible, see example below.}
 
 \item{choicesOpt}{Options for choices in the dropdown menu.}
 

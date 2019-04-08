@@ -5,8 +5,9 @@
 \title{Launch a confirmation dialog}
 \usage{
 confirmSweetAlert(session, inputId, title = NULL, text = NULL,
-  type = NULL, danger_mode = FALSE, btn_labels = c("Cancel",
-  "Confirm"), closeOnClickOutside = FALSE, html = FALSE)
+  type = "question", btn_labels = c("Cancel", "Confirm"),
+  btn_colors = NULL, closeOnClickOutside = FALSE,
+  showCloseButton = FALSE, html = FALSE, ...)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}
@@ -19,14 +20,18 @@ confirmSweetAlert(session, inputId, title = NULL, text = NULL,
 
 \item{type}{Type of the alert : info, success, warning or error.}
 
-\item{danger_mode}{Logical, activate danger mode (focus on cancel button).}
+\item{btn_labels}{Labels for buttons, cancel button (\code{FALSE}) first then confirm button (\code{TRUE}).}
 
-\item{btn_labels}{Labels for buttons.}
+\item{btn_colors}{Colors for buttons.}
 
 \item{closeOnClickOutside}{Decide whether the user should be able to dismiss
 the modal by clicking outside of it, or not.}
 
+\item{showCloseButton}{Show close button in top right corner of the modal.}
+
 \item{html}{Does \code{text} contains HTML tags ?}
+
+\item{...}{Additional arguments (not used)}
 }
 \description{
 Launch a popup to ask confirmation to the user
@@ -57,7 +62,6 @@ server <- function(input, output, session) {
     confirmSweetAlert(
       session = session,
       inputId = "myconfirmation",
-      type = "warning",
       title = "Want to confirm ?",
       danger_mode = TRUE
     )
@@ -98,7 +102,7 @@ ui <- fluidPage(
   tags$h1("Confirm sweet alert"),
   actionButton(
     inputId = "launch1",
-    label = "Launch confirmation dialog (with danger mode)"
+    label = "Launch confirmation dialog"
   ),
   verbatimTextOutput(outputId = "res1"),
   tags$br(),
@@ -122,8 +126,7 @@ server <- function(input, output, session) {
       session = session,
       inputId = "myconfirmation1",
       type = "warning",
-      title = "Want to confirm ?",
-      danger_mode = TRUE
+      title = "Want to confirm ?"
     )
   })
   output$res1 <- renderPrint(input$myconfirmation1)
@@ -135,7 +138,7 @@ server <- function(input, output, session) {
       type = "warning",
       title = "Are you sure ??",
       btn_labels = c("Nope", "Yep"),
-      danger_mode = FALSE
+      btn_colors = c("#FE642E", "#04B404")
     )
   })
   output$res2 <- renderPrint(input$myconfirmation2)
@@ -151,7 +154,8 @@ server <- function(input, output, session) {
         style = "color: #FA5858;"
       ),
       btn_labels = c("Cancel", "Delete file"),
-      danger_mode = TRUE, html = TRUE
+      btn_colors = c("#00BFFF", "#FE2E2E"),
+      html = TRUE
     )
   })
   output$res3 <- renderPrint(input$myconfirmation3)

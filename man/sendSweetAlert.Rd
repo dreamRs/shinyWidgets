@@ -5,7 +5,8 @@
 \title{Display a Sweet Alert to the user}
 \usage{
 sendSweetAlert(session, title = "Title", text = NULL, type = NULL,
-  btn_labels = "Ok", html = FALSE, closeOnClickOutside = TRUE)
+  btn_labels = "Ok", btn_colors = "#3085d6", html = FALSE,
+  closeOnClickOutside = TRUE, showCloseButton = FALSE, width = NULL)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}
@@ -17,12 +18,18 @@ sendSweetAlert(session, title = "Title", text = NULL, type = NULL,
 \item{type}{Type of the alert : info, success, warning or error.}
 
 \item{btn_labels}{Label(s) for button(s), can be of length 2,
-in which case the alert will have two buttons.}
+in which case the alert will have two buttons. Use \code{NA} for no buttons.s}
+
+\item{btn_colors}{Color(s) for the buttons.}
 
 \item{html}{Does \code{text} contains HTML tags ?}
 
 \item{closeOnClickOutside}{Decide whether the user should be able to dismiss
 the modal by clicking outside of it, or not.}
+
+\item{showCloseButton}{Show close button in top right corner of the modal.}
+
+\item{width}{Width of the modal (in pixel).}
 }
 \description{
 Send a message from the server and launch a sweet alert in the UI.

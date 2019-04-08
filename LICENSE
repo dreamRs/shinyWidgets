@@ -9,7 +9,7 @@ these components are included below):
   - Awesome Bootstrap Checkbox, https://github.com/flatlogic/awesome-bootstrap-checkbox
   - Bootstrap, https://github.com/twbs/bootstrap
   - Bootstrap Select, https://github.com/snapappointments/bootstrap-select
-  - Sweet Alert, https://github.com/t4t5/sweetalert
+  - SweetAlert2, https://github.com/sweetalert2/sweetalert2
   - multi.js, https://github.com/Fabianlindfors/multi.js
   - animate.css, https://github.com/daneden/animate.css
   - bttn.css, https://github.com/ganapativs/bttn.css
@@ -131,12 +131,12 @@ SOFTWARE.
 
 
 
-Sweet Alert License
+Sweet Alert 2 License
 ----------------------------------------------------------------------
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Tristan Edwards
+Copyright (c) 2014 Tristan Edwards & Limon Monte
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

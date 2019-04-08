@@ -57,7 +57,8 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           name = "sweetAlert",
           version = "0.2.0",
           src = c(href="shinyWidgets/sweetAlert"),
-          script = c("sweetalert.min.js", "sweetalert-bindings.js")
+          script = c("js/sweetalert2.all.min.js", "sweetalert-bindings.js")#,
+          # stylesheet = "css/sweetalert2.min.css"
         )
       )
     } else if (widget == "multi") {

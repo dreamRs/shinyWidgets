@@ -7,11 +7,8 @@
 useSweetAlert()
 }
 \description{
-This function is useless for \code{sendSweetAlert}, \code{confirmSweetAlert},
+This function is'nt necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},
  \code{inputSweetAlert}, but is still needed for \code{progressSweetAlert}.
-}
-\note{
-Use \code{receiveSweetAlert()} in the UI and \code{sendSweetAlert()} in the server.
 }
 \seealso{
 \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}}

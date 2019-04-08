@@ -5,58 +5,105 @@
 \title{Launch an input text dialog}
 \usage{
 inputSweetAlert(session, inputId, title = NULL, text = NULL,
-  type = NULL, btn_labels = "Ok", placeholder = NULL)
+  type = NULL, input = c("text", "password", "textarea", "radio",
+  "checkbox", "select"), inputOptions = NULL, inputPlaceholder = NULL,
+  btn_labels = "Ok", btn_colors = NULL, ...)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}
 
 \item{inputId}{The \code{input} slot that will be used to access the value.}
 
-\item{title}{Title of the alert.}
+\item{title}{Title of the pop-up.}
 
-\item{text}{Text of the alert.}
+\item{text}{Text of the pop-up.}
 
-\item{type}{Type of the alert : info, success, warning or error.}
+\item{type}{Type of the pop-up : \code{"info"}, \code{"success"},
+\code{"warning"}, \code{"error"} or \code{"question"}.}
 
-\item{btn_labels}{Labels for button(s).}
+\item{input}{Type of input, possible values are : \code{"text"},
+\code{"password"},\code{"textarea"}, \code{"radio"}, \code{"checkbox"} or \code{"select"}.}
 
-\item{placeholder}{A character string giving the user a hint as to
-what can be entered into the control.}
+\item{inputOptions}{Options for the input. For \code{"radio"} and \code{"select"} it will be choices.}
+
+\item{inputPlaceholder}{Placeholder for the input, use it for \code{"text"} or \code{"checkbox"}.}
+
+\item{btn_labels}{Label(s) for button(s).}
+
+\item{btn_colors}{Color(s) for button(s).}
+
+\item{...}{Additional arguments (not used)}
 }
 \description{
 Launch a popup with a text input
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
+  library("shiny")
+  library("shinyWidgets")
 
-library("shiny")
-library("shinyWidgets")
 
+  ui <- fluidPage(
+    tags$h1("Confirm sweet alert"),
+    actionButton(inputId = "text", label = "Text Input"),
+    verbatimTextOutput(outputId = "text"),
+    actionButton(inputId = "password", label = "Password Input"),
+    verbatimTextOutput(outputId = "password"),
+    actionButton(inputId = "radio", label = "Radio Input"),
+    verbatimTextOutput(outputId = "radio"),
+    actionButton(inputId = "checkbox", label = "Checkbox Input"),
+    verbatimTextOutput(outputId = "checkbox"),
+    actionButton(inputId = "select", label = "Select Input"),
+    verbatimTextOutput(outputId = "select")
+  )
+  server <- function(input, output, session) {
 
-ui <- fluidPage(
-  tags$h1("Confirm sweet alert"),
-  actionButton(inputId = "go", label = "Launch input text dialog"),
-  verbatimTextOutput(outputId = "res")
-)
-server <- function(input, output, session) {
+    observeEvent(input$text, {
+      inputSweetAlert(
+        session = session, inputId = "mytext", input = "text",
+        title = "What's your name ?"
+      )
+    })
+    output$text <- renderPrint(input$mytext)
 
-  observeEvent(input$go, {
-    inputSweetAlert(
-      session = session, inputId = "mytext",
-      title = "What's your name ?"
-    )
-  })
+    observeEvent(input$password, {
+      inputSweetAlert(
+        session = session, inputId = "mypassword", input = "password",
+        title = "What's your password ?"
+      )
+    })
+    output$password <- renderPrint(input$mypassword)
 
-  output$res <- renderPrint(input$mytext)
+    observeEvent(input$radio, {
+      inputSweetAlert(
+        session = session, inputId = "myradio", input = "radio",
+        inputOptions = c("Banana" , "Orange", "Apple"),
+        title = "What's your favorite fruit ?"
+      )
+    })
+    output$radio <- renderPrint(input$myradio)
 
-}
+    observeEvent(input$checkbox, {
+      inputSweetAlert(
+        session = session, inputId = "mycheckbox", input = "checkbox",
+        inputPlaceholder = "Yes I agree",
+        title = "Do you agree ?"
+      )
+    })
+    output$checkbox <- renderPrint(input$mycheckbox)
 
-shinyApp(ui = ui, server = server)
+    observeEvent(input$select, {
+      inputSweetAlert(
+        session = session, inputId = "myselect", input = "select",
+        inputOptions = c("Banana" , "Orange", "Apple"),
+        title = "What's your favorite fruit ?"
+      )
+    })
+    output$select <- renderPrint(input$myselect)
 
-}
+  }
 
+  shinyApp(ui = ui, server = server)
 }
 }
 \seealso{

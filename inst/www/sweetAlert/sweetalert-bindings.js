@@ -5,24 +5,18 @@ Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {
   if (data.as_html) {
     var elsw = document.createElement("span");
     elsw.innerHTML = data.text;
-    // data.text = "elsw";
-    swal({
-      title: data.title,
-      content: elsw,
-      icon: data.icon,
-      buttons: data.buttons,
-      closeOnClickOutside: data.closeOnClickOutside
-    })
-    .then(function(value){
-      var els = $("#" + data.sw_id);
-      els.each(function (i, el) {
-        window.Shiny.unbindAll(el, true);
-        $(el).remove();
-        return true;
+    data.html = elsw;
+    Swal.fire(data)
+      .then(function(value){
+        var els = $("#" + data.sw_id);
+        els.each(function (i, el) {
+          window.Shiny.unbindAll(el, true);
+          $(el).remove();
+          return true;
+        });
       });
-    });
   } else {
-    swal(data);
+    Swal.fire(data);
   }
 });
 
@@ -32,8 +26,8 @@ Shiny.addCustomMessageHandler('sweetalert-sw-confirm', function(data) {
   //data.id = null;
   Shiny.onInputChange(data.id, null);
   if (!data.as_html) {
-    swal(data).then(function(value) {
-      if (value) {
+    Swal.fire(data).then(function(result) {
+      if (result.value) {
         Shiny.onInputChange(data.id, true);
       } else {
         Shiny.onInputChange(data.id, false);
@@ -42,40 +36,29 @@ Shiny.addCustomMessageHandler('sweetalert-sw-confirm', function(data) {
   } else {
     var elsw = document.createElement("span");
     elsw.innerHTML = data.text;
-    swal({
-      title: data.title,
-      content: elsw,
-      icon: data.icon,
-      buttons: data.buttons,
-      dangerMode: data.dangerMode,
-      closeOnClickOutside: data.closeOnClickOutside
-    })
-    .then(function(value){
-      if (value) {
-        Shiny.onInputChange(data.id, true);
-      } else {
-        Shiny.onInputChange(data.id, false);
-      }
-      var els = $("#" + data.sw_id);
-      els.each(function (i, el) {
-        window.Shiny.unbindAll(el, true);
-        $(el).remove();
-        return true;
+    data.html = elsw;
+    Swal.fire(data)
+      .then(function(result) {
+        if (result.value) {
+          Shiny.onInputChange(data.id, true);
+        } else {
+          Shiny.onInputChange(data.id, false);
+        }
+        var els = $("#" + data.sw_id);
+        els.each(function (i, el) {
+          window.Shiny.unbindAll(el, true);
+          $(el).remove();
+          return true;
+        });
       });
-    });
   }
 });
 
 
 Shiny.addCustomMessageHandler('sweetalert-sw-input', function(data) {
-  //var id = data.id;
-  //data.id = null;
-  swal(data).then(function(value) {
-    if (value) {
-      Shiny.onInputChange(data.id, value);
-    } else {
-      Shiny.onInputChange(data.id, value);
-    }
+  Shiny.onInputChange(data.id, null);
+  Swal.fire(data).then(function(result) {
+    Shiny.onInputChange(data.id, result.value);
   });
 });
 
@@ -85,7 +68,7 @@ Shiny.addCustomMessageHandler('sweetalert-sw-progress', function(data) {
   itm.style.display = "block";
   data.content = itm;
   //document.getElementById(data.idel).remove();
-  swal(data);
+  Swal.fire(data);
 });
 
 
@@ -105,5 +88,5 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 
 
 Shiny.addCustomMessageHandler('sweetalert-sw-close', function(data) {
-  swal.close();
+  Swal.close();
 });

@@ -24,30 +24,25 @@
 #' @title Load Sweet Alert dependencies
 #'
 #' @description
-#' This function is useless for \code{sendSweetAlert}, \code{confirmSweetAlert},
+#' This function is'nt necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},
 #'  \code{inputSweetAlert}, but is still needed for \code{progressSweetAlert}.
 #'
-# @param messageId The sweet alert id.
-#'
-#'
-#' @note Use \code{receiveSweetAlert()} in the UI and \code{sendSweetAlert()} in the server.
 #'
 #' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}}
 #'
+#' @importFrom htmltools singleton tagList tags
 #'
 #' @export
 useSweetAlert <- function() {
-  # js <- "Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {swal(data)});"
-  # tagSweet <- htmltools::tags$script(js)
-  # message("You don't need useSweetAlert() anymore, SweetAlert function works directly from the server.")
-  attachShinyWidgetsDep(tags$span(id = "sw-sa-deps"), "sweetalert")
-}
-
-#' @importFrom htmltools singleton
-use_sweet_alert <- function() {
-  tag_sa <- htmltools::singleton(tags$span(id = "sw-sa-deps"))
+  tag_sa <- singleton(
+    tagList(
+      tags$head(tags$style(".swal2-popup {font-size: 1.6rem !important;}")),
+      tags$span(id = "sw-sa-deps")
+    )
+  )
   attachShinyWidgetsDep(tag_sa, "sweetalert")
 }
+
 
 
 
@@ -61,10 +56,13 @@ use_sweet_alert <- function() {
 #' @param text Text of the alert.
 #' @param type Type of the alert : info, success, warning or error.
 #' @param btn_labels Label(s) for button(s), can be of length 2,
-#' in which case the alert will have two buttons.
+#' in which case the alert will have two buttons. Use \code{NA} for no buttons.s
+#' @param btn_colors Color(s) for the buttons.
 #' @param html Does \code{text} contains HTML tags ?
 #' @param closeOnClickOutside Decide whether the user should be able to dismiss
 #'  the modal by clicking outside of it, or not.
+#' @param showCloseButton Show close button in top right corner of the modal.
+#' @param width Width of the modal (in pixel).
 #'
 # @seealso \code{\link{receiveSweetAlert}}
 #'
@@ -192,37 +190,55 @@ use_sweet_alert <- function() {
 #' }
 #' }
 sendSweetAlert <- function(session, title = "Title", text = NULL,
-                            type = NULL, btn_labels = "Ok", html = FALSE,
-                           closeOnClickOutside = TRUE) {
+                           type = NULL, btn_labels = "Ok", btn_colors = "#3085d6", html = FALSE,
+                           closeOnClickOutside = TRUE, showCloseButton = FALSE, width = NULL) {
   insertUI(
     selector = "body", where = "afterBegin",
-    ui = use_sweet_alert(), immediate = TRUE, session = session
+    ui = useSweetAlert(), immediate = TRUE, session = session
   )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   if ("shiny.tag" %in% class(text))
     html <- TRUE
-  if (!html) {
+  if (!isTRUE(html)) {
     text <- as.character(text)
     if (length(text) < 1)
       text <- NULL
-    text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
+    # text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
     session$sendCustomMessage(
       type = "sweetalert-sw",
-      message = list(title = title, text = text, icon = type,
-                     buttons = btn_labels, as_html = html,
-                     closeOnClickOutside = closeOnClickOutside)
+      message = dropNullsOrNA(list(
+        title = title, text = text, type = type,
+        confirmButtonText = btn_labels[1],
+        confirmButtonColor = btn_colors[1],
+        cancelButtonText = btn_labels[2],
+        cancelButtonColor = btn_colors[2],
+        showConfirmButton = !is.na(btn_labels[1]),
+        showCancelButton = !is.na(btn_labels[2]),
+        as_html = html,
+        allowOutsideClick = closeOnClickOutside,
+        showCloseButton = showCloseButton,
+        width = width
+      ))
     )
   } else {
     id <- paste0("placeholder-", sample.int(1e6, 1))
     session$sendCustomMessage(
       type = "sweetalert-sw",
-      message = list(
-        title = title, icon = type, sw_id = id,
+      message = dropNullsOrNA(list(
+        title = title, type = type, sw_id = id,
         text = as.character(tags$div(id = id)),
-        buttons = btn_labels, as_html = html,
-        closeOnClickOutside = closeOnClickOutside
-      )
+        confirmButtonText = btn_labels[1],
+        confirmButtonColor = btn_colors[1],
+        showConfirmButton = !is.na(btn_labels[1]),
+        cancelButtonText = btn_labels[2],
+        cancelButtonColor = btn_colors[2],
+        showCancelButton = !is.na(btn_labels[2]),
+        as_html = html,
+        allowOutsideClick = closeOnClickOutside,
+        showCloseButton = showCloseButton,
+        width = width
+      ))
     )
     insertUI(
       session = session, selector = paste0("#", id),
@@ -242,13 +258,14 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #' @param title Title of the alert.
 #' @param text Text of the alert, can contains HTML tags.
 #' @param type Type of the alert : info, success, warning or error.
-#' @param btn_labels Labels for buttons.
-#' @param danger_mode Logical, activate danger mode (focus on cancel button).
+#' @param btn_labels Labels for buttons, cancel button (\code{FALSE}) first then confirm button (\code{TRUE}).
+#' @param btn_colors Colors for buttons.
 #' @param closeOnClickOutside Decide whether the user should be able to dismiss
 #'  the modal by clicking outside of it, or not.
+#' @param showCloseButton Show close button in top right corner of the modal.
 #' @param html Does \code{text} contains HTML tags ?
+#' @param ... Additional arguments (not used)
 #'
-# @seealso \code{\link{receiveSweetAlert}}
 #'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags
@@ -284,7 +301,6 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #'     confirmSweetAlert(
 #'       session = session,
 #'       inputId = "myconfirmation",
-#'       type = "warning",
 #'       title = "Want to confirm ?",
 #'       danger_mode = TRUE
 #'     )
@@ -325,7 +341,7 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #'   tags$h1("Confirm sweet alert"),
 #'   actionButton(
 #'     inputId = "launch1",
-#'     label = "Launch confirmation dialog (with danger mode)"
+#'     label = "Launch confirmation dialog"
 #'   ),
 #'   verbatimTextOutput(outputId = "res1"),
 #'   tags$br(),
@@ -349,8 +365,7 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #'       session = session,
 #'       inputId = "myconfirmation1",
 #'       type = "warning",
-#'       title = "Want to confirm ?",
-#'       danger_mode = TRUE
+#'       title = "Want to confirm ?"
 #'     )
 #'   })
 #'   output$res1 <- renderPrint(input$myconfirmation1)
@@ -362,7 +377,7 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #'       type = "warning",
 #'       title = "Are you sure ??",
 #'       btn_labels = c("Nope", "Yep"),
-#'       danger_mode = FALSE
+#'       btn_colors = c("#FE642E", "#04B404")
 #'     )
 #'   })
 #'   output$res2 <- renderPrint(input$myconfirmation2)
@@ -378,7 +393,8 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #'         style = "color: #FA5858;"
 #'       ),
 #'       btn_labels = c("Cancel", "Delete file"),
-#'       danger_mode = TRUE, html = TRUE
+#'       btn_colors = c("#00BFFF", "#FE2E2E"),
+#'       html = TRUE
 #'     )
 #'   })
 #'   output$res3 <- renderPrint(input$myconfirmation3)
@@ -390,41 +406,50 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #' }
 #'
 #' }
-confirmSweetAlert <- function(session, inputId, title = NULL, text = NULL,
-                              type = NULL, danger_mode = FALSE,
+confirmSweetAlert <- function(session, inputId, title = NULL,
+                              text = NULL, type = "question",
                               btn_labels = c("Cancel", "Confirm"),
-                              closeOnClickOutside = FALSE, html = FALSE) {
+                              btn_colors = NULL,
+                              closeOnClickOutside = FALSE,
+                              showCloseButton = FALSE,
+                              html = FALSE, ...) {
+
   insertUI(
     selector = "body", where = "afterBegin",
-    ui = use_sweet_alert(), immediate = TRUE,
+    ui = useSweetAlert(), immediate = TRUE,
     session = session
   )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   if ("shiny.tag" %in% class(text))
     html <- TRUE
-  if (!html) {
-    text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
+  if (!isTRUE(html)) {
     session$sendCustomMessage(
       type = "sweetalert-sw-confirm",
-      message = list(
-        id = inputId, title = title, text = text, icon = type,
-        buttons = btn_labels, dangerMode = danger_mode,
-        closeOnClickOutside = closeOnClickOutside
-      )
+      message = dropNullsOrNA(list(
+        id = inputId, title = title, text = text, type = type,
+        confirmButtonText = btn_labels[2], cancelButtonText = btn_labels[1],
+        showConfirmButton = !is.na(btn_labels[2]), showCancelButton = !is.na(btn_labels[1]),
+        confirmButtonColor = btn_colors[2], cancelButtonColor = btn_colors[1],
+        showCloseButton = showCloseButton,
+        allowOutsideClick = closeOnClickOutside
+      ))
     )
   } else {
     id <- paste0("placeholder-", sample.int(1e6, 1))
     session$sendCustomMessage(
       type = "sweetalert-sw-confirm",
-      message = list(
+      message = dropNullsOrNA(list(
         id = inputId,
-        title = title, icon = type, sw_id = id,
+        title = title, type = type, sw_id = id,
         text = as.character(tags$div(id = id)),
-        buttons = btn_labels, as_html = html,
-        dangerMode = danger_mode,
-        closeOnClickOutside = closeOnClickOutside
-      )
+        confirmButtonText = btn_labels[2], cancelButtonText = btn_labels[1],
+        showConfirmButton = !is.na(btn_labels[2]), showCancelButton = !is.na(btn_labels[1]),
+        confirmButtonColor = btn_colors[2], cancelButtonColor = btn_colors[1],
+        as_html = html,
+        showCloseButton = showCloseButton,
+        allowOutsideClick = closeOnClickOutside
+      ))
     )
     insertUI(
       session = session,
@@ -442,14 +467,18 @@ confirmSweetAlert <- function(session, inputId, title = NULL, text = NULL,
 #'
 #' @param session The \code{session} object passed to function given to shinyServer.
 #' @param inputId The \code{input} slot that will be used to access the value.
-#' @param title Title of the alert.
-#' @param text Text of the alert.
-#' @param type Type of the alert : info, success, warning or error.
-#' @param btn_labels Labels for button(s).
-#' @param placeholder A character string giving the user a hint as to
-#' what can be entered into the control.
+#' @param title Title of the pop-up.
+#' @param text Text of the pop-up.
+#' @param type Type of the pop-up : \code{"info"}, \code{"success"},
+#'  \code{"warning"}, \code{"error"} or \code{"question"}.
+#' @param input Type of input, possible values are : \code{"text"},
+#'  \code{"password"},\code{"textarea"}, \code{"radio"}, \code{"checkbox"} or \code{"select"}.
+#' @param inputOptions Options for the input. For \code{"radio"} and \code{"select"} it will be choices.
+#' @param inputPlaceholder Placeholder for the input, use it for \code{"text"} or \code{"checkbox"}.
+#' @param btn_labels Label(s) for button(s).
+#' @param btn_colors Color(s) for button(s).
+#' @param ... Additional arguments (not used)
 #'
-# @seealso \code{\link{receiveSweetAlert}}
 #'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags
@@ -460,58 +489,103 @@ confirmSweetAlert <- function(session, inputId, title = NULL, text = NULL,
 #' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
 #'
+#'   ui <- fluidPage(
+#'     tags$h1("Confirm sweet alert"),
+#'     actionButton(inputId = "text", label = "Text Input"),
+#'     verbatimTextOutput(outputId = "text"),
+#'     actionButton(inputId = "password", label = "Password Input"),
+#'     verbatimTextOutput(outputId = "password"),
+#'     actionButton(inputId = "radio", label = "Radio Input"),
+#'     verbatimTextOutput(outputId = "radio"),
+#'     actionButton(inputId = "checkbox", label = "Checkbox Input"),
+#'     verbatimTextOutput(outputId = "checkbox"),
+#'     actionButton(inputId = "select", label = "Select Input"),
+#'     verbatimTextOutput(outputId = "select")
+#'   )
+#'   server <- function(input, output, session) {
 #'
-#' ui <- fluidPage(
-#'   tags$h1("Confirm sweet alert"),
-#'   actionButton(inputId = "go", label = "Launch input text dialog"),
-#'   verbatimTextOutput(outputId = "res")
-#' )
-#' server <- function(input, output, session) {
+#'     observeEvent(input$text, {
+#'       inputSweetAlert(
+#'         session = session, inputId = "mytext", input = "text",
+#'         title = "What's your name ?"
+#'       )
+#'     })
+#'     output$text <- renderPrint(input$mytext)
 #'
-#'   observeEvent(input$go, {
-#'     inputSweetAlert(
-#'       session = session, inputId = "mytext",
-#'       title = "What's your name ?"
-#'     )
-#'   })
+#'     observeEvent(input$password, {
+#'       inputSweetAlert(
+#'         session = session, inputId = "mypassword", input = "password",
+#'         title = "What's your password ?"
+#'       )
+#'     })
+#'     output$password <- renderPrint(input$mypassword)
 #'
-#'   output$res <- renderPrint(input$mytext)
+#'     observeEvent(input$radio, {
+#'       inputSweetAlert(
+#'         session = session, inputId = "myradio", input = "radio",
+#'         inputOptions = c("Banana" , "Orange", "Apple"),
+#'         title = "What's your favorite fruit ?"
+#'       )
+#'     })
+#'     output$radio <- renderPrint(input$myradio)
 #'
+#'     observeEvent(input$checkbox, {
+#'       inputSweetAlert(
+#'         session = session, inputId = "mycheckbox", input = "checkbox",
+#'         inputPlaceholder = "Yes I agree",
+#'         title = "Do you agree ?"
+#'       )
+#'     })
+#'     output$checkbox <- renderPrint(input$mycheckbox)
+#'
+#'     observeEvent(input$select, {
+#'       inputSweetAlert(
+#'         session = session, inputId = "myselect", input = "select",
+#'         inputOptions = c("Banana" , "Orange", "Apple"),
+#'         title = "What's your favorite fruit ?"
+#'       )
+#'     })
+#'     output$select <- renderPrint(input$myselect)
+#'
+#'   }
+#'
+#'   shinyApp(ui = ui, server = server)
 #' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#' }
-#'
-#' }
-inputSweetAlert <- function(session, inputId, title = NULL, text = NULL,
-                            type = NULL, btn_labels = "Ok",
-                            placeholder = NULL) {
+inputSweetAlert <- function(session, inputId, title = NULL,
+                            text = NULL, type = NULL,
+                            input = c("text", "password", "textarea", "radio", "checkbox", "select"),
+                            inputOptions = NULL, inputPlaceholder = NULL,
+                            btn_labels = "Ok", btn_colors = NULL,
+                            ...) {
+  input <- match.arg(input)
   shiny::insertUI(
     selector = "body", where = "afterBegin",
-    ui = use_sweet_alert(), immediate = TRUE,
+    ui = useSweetAlert(), immediate = TRUE,
     session = session
   )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
-  content <- list(element = "input")
-  if (!is.null(placeholder))
-    content$attributes$placeholder <- placeholder
+  if (!is.null(inputOptions)) {
+    inputOptions <- choicesWithNames(inputOptions)
+  }
   session$sendCustomMessage(
     type = "sweetalert-sw-input",
-    message = list(
+    message = dropNullsOrNA(list(
       id = inputId, title = title, text = text,
-      icon = type, buttons = btn_labels,
-      content = content
-    )
+      type = type, input = input, inputOptions = inputOptions,
+      inputPlaceholder = inputPlaceholder,
+      confirmButtonText = btn_labels[1],
+      confirmButtonColor = btn_colors[1],
+      cancelButtonText = btn_labels[2],
+      cancelButtonColor = btn_colors[2],
+      showCancelButton = !is.na(btn_labels[2])
+    ))
   )
 }
 
@@ -585,7 +659,7 @@ progressSweetAlert <- function(session, id, value, total = NULL,
                                status = NULL, striped = FALSE, title = NULL) {
   sendSweetAlert(
     session = session,
-    title = NULL, btn_labels = FALSE,
+    title = NULL, btn_labels = NA,
     text = tags$div(id = "sweet-alert-progress-sw"),
     closeOnClickOutside = FALSE
   )
