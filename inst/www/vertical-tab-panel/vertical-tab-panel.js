@@ -10,7 +10,7 @@ $(document).ready(function() {
         $(this).addClass("active");
         $(this).css("display", "");
         var index = $(this).index();
-        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        $(this).parents('.bhoechie-tab-container').find("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+        $(this).parents('.bhoechie-tab-container').find("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
     });
 });

@@ -16,20 +16,27 @@
 #' @seealso \code{\link{updateMaterialSwitch}}, \code{\link{switchInput}}
 #'
 #' @examples
-#' materialSwitch(inputId = "somevalue", label = "")
-#' \dontrun{
-#' ## Only run examples in interactive R sessions
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' ui <- fluidPage(
-#'   materialSwitch(inputId = "somevalue", label = ""),
-#'   verbatimTextOutput("value")
-#' )
-#' server <- function(input, output) {
-#'   output$value <- renderText({ input$somevalue })
-#' }
-#' shinyApp(ui, server)
-#' }
+#'   ui <- fluidPage(
+#'     tags$h3("Material switch examples"),
+#'
+#'     materialSwitch(inputId = "switch1", label = "Night mode"),
+#'     verbatimTextOutput("value1"),
+#'
+#'     materialSwitch(inputId = "switch2", label = "Night mode", status = "danger"),
+#'     verbatimTextOutput("value2")
+#'   )
+#'   server <- function(input, output) {
+#'
+#'     output$value1 <- renderText({ input$switch1 })
+#'
+#'     output$value2 <- renderText({ input$switch2 })
+#'
+#'   }
+#'   shinyApp(ui, server)
 #' }
 #'
 #' @importFrom shiny restoreInput
