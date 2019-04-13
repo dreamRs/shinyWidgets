@@ -62,8 +62,7 @@ server <- function(input, output, session) {
     confirmSweetAlert(
       session = session,
       inputId = "myconfirmation",
-      title = "Want to confirm ?",
-      danger_mode = TRUE
+      title = "Want to confirm ?"
     )
   })
 

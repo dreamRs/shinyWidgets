@@ -301,8 +301,7 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #'     confirmSweetAlert(
 #'       session = session,
 #'       inputId = "myconfirmation",
-#'       title = "Want to confirm ?",
-#'       danger_mode = TRUE
+#'       title = "Want to confirm ?"
 #'     )
 #'   })
 #'
