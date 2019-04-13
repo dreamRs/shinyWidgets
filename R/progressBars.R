@@ -126,7 +126,7 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
         class=if(!is.null(status)) paste0("progress-bar-", status),
         class=if(striped) "progress-bar-striped",
         role="progressbar",
-        if (display_pct) paste0(value, unit_mark)
+        if (display_pct) paste0(percent, unit_mark)
       )
     )
   )
