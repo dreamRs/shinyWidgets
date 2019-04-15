@@ -155,12 +155,14 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
       placeholder = placeholder
     ))
     tagAir <- do.call(tags$input, c(paramsAir, addArgs))
-    tagAir <- tags$div(
-      class = "input-group",
-      if (addon == "left") tags$div(class = "btn action-button input-group-addon", id = paste0(inputId, "_button"), icon("calendar")),
-      tagAir,
-      if (addon == "right") tags$div(class = "btn action-button input-group-addon", id = paste0(inputId, "_button"), icon("calendar"))
-    )
+    if (!identical(addon, "none")) {
+      tagAir <- tags$div(
+        class = "input-group",
+        if (addon == "left") tags$div(class = "btn action-button input-group-addon", id = paste0(inputId, "_button"), icon("calendar")),
+        tagAir,
+        if (addon == "right") tags$div(class = "btn action-button input-group-addon", id = paste0(inputId, "_button"), icon("calendar"))
+      )
+    }
   } else {
     tagAir <- do.call(tags$div, paramsAir)
   }
