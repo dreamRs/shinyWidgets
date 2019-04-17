@@ -148,7 +148,7 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
 #' @param session The session object passed to function given to shinyServer.
 #' @param inputId The id of the input object.
 #' @param label The label to set.
-#' @param selected The values selected.
+#' @param selected The values selected. To select none, use \code{character(0)}.
 #' @param choices The new choices for the input.
 #'
 #' @seealso \code{\link{multiInput}}

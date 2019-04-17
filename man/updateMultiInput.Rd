@@ -14,7 +14,7 @@ updateMultiInput(session, inputId, label = NULL, selected = NULL,
 
 \item{label}{The label to set.}
 
-\item{selected}{The values selected.}
+\item{selected}{The values selected. To select none, use \code{character(0)}.}
 
 \item{choices}{The new choices for the input.}
 }
