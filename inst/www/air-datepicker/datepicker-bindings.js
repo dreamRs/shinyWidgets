@@ -163,11 +163,16 @@ $.extend(AirPickerInputBinding, {
     }
 
     if (data.hasOwnProperty('options')) {
+      if (data.options.hasOwnProperty('minDate')) {
+        data.options.minDate = new Date(data.options.minDate);
+      }
+      if (data.options.hasOwnProperty('maxDate')) {
+        data.options.maxDate = new Date(data.options.maxDate);
+      }
       $(el).datepicker().data('datepicker').update(data.options);
     }
 
     if (data.hasOwnProperty('placeholder')) {
-      // why [0] ??
       $('#' + data.id)[0].placeholder = data.placeholder;
     }
 

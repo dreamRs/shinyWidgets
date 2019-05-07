@@ -311,6 +311,10 @@ updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, cle
   if (!is.null(value)) {
     value <- as.character(toJSON(x = to_ms(value), auto_unbox = FALSE))
   }
+  if (!is.null(options)) {
+    options$minDate <- to_ms(options$minDate)
+    options$maxDate <- to_ms(options$maxDate)
+  }
   message <- dropNulls(list(
     id = session$ns(inputId),
     label = label,
