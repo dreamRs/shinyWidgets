@@ -72,6 +72,11 @@ Shiny.addCustomMessageHandler('sweetalert-sw-progress', function(data) {
 });
 
 
+Shiny.addCustomMessageHandler('sweetalert-toast', function(data) {
+  Swal.fire(data);
+});
+
+
 Element.prototype.remove = function() {
     this.parentElement.removeChild(this);
 };

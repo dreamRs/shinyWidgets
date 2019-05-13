@@ -675,6 +675,39 @@ progressSweetAlert <- function(session, id, value, total = NULL,
 
 
 
+toastSweetAlert <- function(title, text, type = NULL,
+                            timer = 1500, position = "bottom-end",
+                            animation = TRUE, width = NULL,
+                            session = shiny::getDefaultReactiveDomain()) {
+  insertUI(
+    selector = "body",
+    where = "afterBegin",
+    ui = useSweetAlert(),
+    immediate = TRUE,
+    session = session
+  )
+  session$sendCustomMessage(
+    type = "sweetalert-toast",
+    message = dropNullsOrNA(list(
+      title = htmltools::doRenderTags(tags$div(
+        style = "margin: auto;",
+        title
+      )),
+      html = htmltools::doRenderTags(text),
+      position = position,
+      type = type,
+      toast = TRUE,
+      timer = timer,
+      animation = animation,
+      width = width,
+      showConfirmButton = FALSE,
+      showCloseButton = TRUE
+    ))
+  )
+}
+
+
+
 
 
 #' Close Sweet Alert
