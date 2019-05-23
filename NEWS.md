@@ -2,7 +2,7 @@ shinyWidgets 0.4.8.900
 ======================
 
 * Update to SweetAlert2: more options available for `sendSweetAlert`, `confirmSweetAlert`, `inputSweetAlert`.
-
+* add `useTablerDash` to inport functions from tablerDash.
 
 
 shinyWidgets 0.4.8

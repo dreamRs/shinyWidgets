@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8.930</span>
       </span>
     </div>
 
@@ -114,7 +114,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>sendSweetAlert</span>(<span class='no'>session</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Title"</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>btn_labels</span> <span class='kw'>=</span> <span class='st'>"Ok"</span>, <span class='kw'>html</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>closeOnClickOutside</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>btn_labels</span> <span class='kw'>=</span> <span class='st'>"Ok"</span>, <span class='kw'>btn_colors</span> <span class='kw'>=</span> <span class='st'>"#3085d6"</span>, <span class='kw'>html</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>closeOnClickOutside</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showCloseButton</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,7 +139,11 @@
     <tr>
       <th>btn_labels</th>
       <td><p>Label(s) for button(s), can be of length 2,
-in which case the alert will have two buttons.</p></td>
+in which case the alert will have two buttons. Use <code>NA</code> for no buttons.s</p></td>
+    </tr>
+    <tr>
+      <th>btn_colors</th>
+      <td><p>Color(s) for the buttons.</p></td>
     </tr>
     <tr>
       <th>html</th>
@@ -148,6 +153,14 @@ in which case the alert will have two buttons.</p></td>
       <th>closeOnClickOutside</th>
       <td><p>Decide whether the user should be able to dismiss
 the modal by clicking outside of it, or not.</p></td>
+    </tr>
+    <tr>
+      <th>showCloseButton</th>
+      <td><p>Show close button in top right corner of the modal.</p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p>Width of the modal (in pixel).</p></td>
     </tr>
     </table>
     

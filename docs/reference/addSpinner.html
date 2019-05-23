@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8.930</span>
       </span>
     </div>
 
@@ -145,10 +145,14 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># wrap an output:</span>
-<span class='fu'>addSpinner</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"plot"</span>))
-
+    <pre class="examples"><div class='input'><span class='co'># wrap an output:</span>
+<span class='fu'>addSpinner</span>(<span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"plot"</span>))</div><div class='output co'>#&gt; &lt;div style="position: relative; width:100%; height:400px;"&gt;
+#&gt;   &lt;div class="spinner loading-spinner"&gt;
+#&gt;     &lt;div class="double-bounce1" style="background-color: #112446;"&gt;&lt;/div&gt;
+#&gt;     &lt;div class="double-bounce2" style="background-color: #112446;"&gt;&lt;/div&gt;
+#&gt;   &lt;/div&gt;
+#&gt;   &lt;div id="plot" class="shiny-plot-output" style="width: 100% ; height: 400px"&gt;&lt;/div&gt;
+#&gt; &lt;/div&gt;</div><div class='input'>
 <span class='co'># Complete demo:</span>
 
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
@@ -202,9 +206,7 @@
 
 <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
-}
-
-<span class='co'># }</span></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

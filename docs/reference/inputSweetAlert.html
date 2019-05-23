@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8.930</span>
       </span>
     </div>
 
@@ -114,7 +114,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>inputSweetAlert</span>(<span class='no'>session</span>, <span class='no'>inputId</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btn_labels</span> <span class='kw'>=</span> <span class='st'>"Ok"</span>, <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"text"</span>, <span class='st'>"password"</span>, <span class='st'>"textarea"</span>, <span class='st'>"radio"</span>,
+  <span class='st'>"checkbox"</span>, <span class='st'>"select"</span>), <span class='kw'>inputOptions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inputPlaceholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>btn_labels</span> <span class='kw'>=</span> <span class='st'>"Ok"</span>, <span class='kw'>btn_colors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,24 +131,41 @@
     </tr>
     <tr>
       <th>title</th>
-      <td><p>Title of the alert.</p></td>
+      <td><p>Title of the pop-up.</p></td>
     </tr>
     <tr>
       <th>text</th>
-      <td><p>Text of the alert.</p></td>
+      <td><p>Text of the pop-up.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Type of the alert : info, success, warning or error.</p></td>
+      <td><p>Type of the pop-up : <code>"info"</code>, <code>"success"</code>,
+<code>"warning"</code>, <code>"error"</code> or <code>"question"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>input</th>
+      <td><p>Type of input, possible values are : <code>"text"</code>,
+<code>"password"</code>,<code>"textarea"</code>, <code>"radio"</code>, <code>"checkbox"</code> or <code>"select"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>inputOptions</th>
+      <td><p>Options for the input. For <code>"radio"</code> and <code>"select"</code> it will be choices.</p></td>
+    </tr>
+    <tr>
+      <th>inputPlaceholder</th>
+      <td><p>Placeholder for the input, use it for <code>"text"</code> or <code>"checkbox"</code>.</p></td>
     </tr>
     <tr>
       <th>btn_labels</th>
-      <td><p>Labels for button(s).</p></td>
+      <td><p>Label(s) for button(s).</p></td>
     </tr>
     <tr>
-      <th>placeholder</th>
-      <td><p>A character string giving the user a hint as to
-what can be entered into the control.</p></td>
+      <th>btn_colors</th>
+      <td><p>Color(s) for button(s).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments (not used)</p></td>
     </tr>
     </table>
     
@@ -156,36 +175,73 @@ what can be entered into the control.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
-
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"shiny"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"shinyWidgets"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"shiny"</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='st'>"shinyWidgets"</span>)
 
 
-<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
-  <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h1</a></span>(<span class='st'>"Confirm sweet alert"</span>),
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Launch input text dialog"</span>),
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"res"</span>)
-)
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
+    <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h1</a></span>(<span class='st'>"Confirm sweet alert"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"text"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Text Input"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"text"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"password"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Password Input"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"password"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"radio"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Radio Input"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"radio"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"checkbox"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Checkbox Input"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"checkbox"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"select"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select Input"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"select"</span>)
+  )
+  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
-    <span class='fu'>inputSweetAlert</span>(
-      <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mytext"</span>,
-      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"What's your name ?"</span>
-    )
-  })
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>text</span>, {
+      <span class='fu'>inputSweetAlert</span>(
+        <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mytext"</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='st'>"text"</span>,
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"What's your name ?"</span>
+      )
+    })
+    <span class='no'>output</span>$<span class='no'>text</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>mytext</span>)
 
-  <span class='no'>output</span>$<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>mytext</span>)
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>password</span>, {
+      <span class='fu'>inputSweetAlert</span>(
+        <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypassword"</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='st'>"password"</span>,
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"What's your password ?"</span>
+      )
+    })
+    <span class='no'>output</span>$<span class='no'>password</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>mypassword</span>)
 
-}
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>radio</span>, {
+      <span class='fu'>inputSweetAlert</span>(
+        <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myradio"</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='st'>"radio"</span>,
+        <span class='kw'>inputOptions</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Banana"</span> , <span class='st'>"Orange"</span>, <span class='st'>"Apple"</span>),
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"What's your favorite fruit ?"</span>
+      )
+    })
+    <span class='no'>output</span>$<span class='no'>radio</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>myradio</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>checkbox</span>, {
+      <span class='fu'>inputSweetAlert</span>(
+        <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mycheckbox"</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='st'>"checkbox"</span>,
+        <span class='kw'>inputPlaceholder</span> <span class='kw'>=</span> <span class='st'>"Yes I agree"</span>,
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Do you agree ?"</span>
+      )
+    })
+    <span class='no'>output</span>$<span class='no'>checkbox</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>mycheckbox</span>)
 
-}
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>select</span>, {
+      <span class='fu'>inputSweetAlert</span>(
+        <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myselect"</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='st'>"select"</span>,
+        <span class='kw'>inputOptions</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Banana"</span> , <span class='st'>"Orange"</span>, <span class='st'>"Apple"</span>),
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"What's your favorite fruit ?"</span>
+      )
+    })
+    <span class='no'>output</span>$<span class='no'>select</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>myselect</span>)
 
-<span class='co'># }</span></pre>
+  }
+
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

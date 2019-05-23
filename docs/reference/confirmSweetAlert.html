@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8.930</span>
       </span>
     </div>
 
@@ -114,8 +114,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>confirmSweetAlert</span>(<span class='no'>session</span>, <span class='no'>inputId</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>danger_mode</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>btn_labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Cancel"</span>,
-  <span class='st'>"Confirm"</span>), <span class='kw'>closeOnClickOutside</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>html</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"question"</span>, <span class='kw'>btn_labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Cancel"</span>, <span class='st'>"Confirm"</span>),
+  <span class='kw'>btn_colors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>closeOnClickOutside</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>showCloseButton</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>html</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,12 +142,12 @@
       <td><p>Type of the alert : info, success, warning or error.</p></td>
     </tr>
     <tr>
-      <th>danger_mode</th>
-      <td><p>Logical, activate danger mode (focus on cancel button).</p></td>
+      <th>btn_labels</th>
+      <td><p>Labels for buttons, cancel button (<code>FALSE</code>) first then confirm button (<code>TRUE</code>).</p></td>
     </tr>
     <tr>
-      <th>btn_labels</th>
-      <td><p>Labels for buttons.</p></td>
+      <th>btn_colors</th>
+      <td><p>Colors for buttons.</p></td>
     </tr>
     <tr>
       <th>closeOnClickOutside</th>
@@ -154,8 +155,16 @@
 the modal by clicking outside of it, or not.</p></td>
     </tr>
     <tr>
+      <th>showCloseButton</th>
+      <td><p>Show close button in top right corner of the modal.</p></td>
+    </tr>
+    <tr>
       <th>html</th>
       <td><p>Does <code>text</code> contains HTML tags ?</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments (not used)</p></td>
     </tr>
     </table>
     
@@ -189,9 +198,7 @@ the modal by clicking outside of it, or not.</p></td>
     <span class='fu'>confirmSweetAlert</span>(
       <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>,
       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myconfirmation"</span>,
-      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
-      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Want to confirm ?"</span>,
-      <span class='kw'>danger_mode</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Want to confirm ?"</span>
     )
   })
 
@@ -230,7 +237,7 @@ the modal by clicking outside of it, or not.</p></td>
   <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h1</a></span>(<span class='st'>"Confirm sweet alert"</span>),
   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(
     <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"launch1"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Launch confirmation dialog (with danger mode)"</span>
+    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Launch confirmation dialog"</span>
   ),
   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"res1"</span>),
   <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
@@ -254,8 +261,7 @@ the modal by clicking outside of it, or not.</p></td>
       <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>,
       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myconfirmation1"</span>,
       <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
-      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Want to confirm ?"</span>,
-      <span class='kw'>danger_mode</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Want to confirm ?"</span>
     )
   })
   <span class='no'>output</span>$<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>myconfirmation1</span>)
@@ -267,7 +273,7 @@ the modal by clicking outside of it, or not.</p></td>
       <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"warning"</span>,
       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Are you sure ??"</span>,
       <span class='kw'>btn_labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Nope"</span>, <span class='st'>"Yep"</span>),
-      <span class='kw'>danger_mode</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+      <span class='kw'>btn_colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#FE642E"</span>, <span class='st'>"#04B404"</span>)
     )
   })
   <span class='no'>output</span>$<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>myconfirmation2</span>)
@@ -283,7 +289,8 @@ the modal by clicking outside of it, or not.</p></td>
         <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"color: #FA5858;"</span>
       ),
       <span class='kw'>btn_labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Cancel"</span>, <span class='st'>"Delete file"</span>),
-      <span class='kw'>danger_mode</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>html</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+      <span class='kw'>btn_colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"#00BFFF"</span>, <span class='st'>"#FE2E2E"</span>),
+      <span class='kw'>html</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
     )
   })
   <span class='no'>output</span>$<span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>myconfirmation3</span>)

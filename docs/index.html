@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8.930</span>
       </span>
     </div>
 
@@ -81,19 +81,19 @@
 <p>This package provide some custom widgets to pimp your shiny apps !</p>
 <p>You can replace classical checkboxes with switch button, add colors to radio buttons and checkbox group, use buttons as radio or checkboxes. Each widget has an <code>update</code> method to change the value of an input from the server.</p>
 <p>Installation :</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># From CRAN</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"shinyWidgets"</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="co"># From Github</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-6" title="6">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"dreamRs/shinyWidgets"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># From CRAN</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"shinyWidgets"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># From Github</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"dreamRs/shinyWidgets"</span>)</a></code></pre></div>
 <p>Demo :</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">shinyWidgets<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/shinyWidgets/topics/shinyWidgetsGallery">shinyWidgetsGallery</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">shinyWidgets<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/shinyWidgets/topics/shinyWidgetsGallery">shinyWidgetsGallery</a></span>()</a></code></pre></div>
 <p>A live version is available here : <a href="http://shinyapps.dreamrs.fr/shinyWidgets" class="uri">http://shinyapps.dreamrs.fr/shinyWidgets</a></p>
 </div>
-<div id="widgets-available-" class="section level2">
+<div id="widgets-available" class="section level2">
 <h2 class="hasAnchor">
-<a href="#widgets-available-" class="anchor"></a>Widgets available :</h2>
+<a href="#widgets-available" class="anchor"></a>Widgets available :</h2>
 <ul>
 <li><a href="#bootstrap-switch">Bootstrap switch</a></li>
 <li><a href="#material-switch">Material switch</a></li>
@@ -110,39 +110,39 @@
 <h3 class="hasAnchor">
 <a href="#bootstrap-switch" class="anchor"></a>Bootstrap switch</h3>
 <p>Turn checkboxes into toggle switches : <br><img src="reference/figures/switchInput.png" alt="switchInput"></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="reference/switchInput.html">switchInput</a></span>(<span class="dt">inputId =</span> <span class="st">"id"</span>, <span class="dt">value =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/switchInput.html">switchInput</a></span>(<span class="dt">inputId =</span> <span class="st">"id"</span>, <span class="dt">value =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="material-switch" class="section level3">
 <h3 class="hasAnchor">
 <a href="#material-switch" class="anchor"></a>Material switch</h3>
 <p>Turn checkboxes into toggle switches (again) : <br><img src="reference/figures/materialSwitch.png" alt="materialSwitch"></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="reference/materialSwitch.html">materialSwitch</a></span>(<span class="dt">inputId =</span> <span class="st">"id"</span>, <span class="dt">label =</span> <span class="st">"Primary switch"</span>, <span class="dt">status =</span> <span class="st">"danger"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/materialSwitch.html">materialSwitch</a></span>(<span class="dt">inputId =</span> <span class="st">"id"</span>, <span class="dt">label =</span> <span class="st">"Primary switch"</span>, <span class="dt">status =</span> <span class="st">"danger"</span>)</a></code></pre></div>
 </div>
 <div id="pretty-checkbox" class="section level3">
 <h3 class="hasAnchor">
 <a href="#pretty-checkbox" class="anchor"></a>Pretty Checkbox</h3>
 <p>Checkbox and radio buttons with the beautiful CSS library <a href="https://lokesh-coder.github.io/pretty-checkbox/">pretty-checkbox</a> : <img src="reference/figures/pretty.png" alt="prettycheckbox"></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
-<a class="sourceLine" id="cb5-2" title="2">  <span class="dt">inputId =</span> <span class="st">"pretty_1"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"check"</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">),</a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
-<a class="sourceLine" id="cb5-5" title="5">  <span class="dt">inputId =</span> <span class="st">"pretty_2"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"thumbs-up"</span>), </a>
-<a class="sourceLine" id="cb5-6" title="6">  <span class="dt">status =</span> <span class="st">"default"</span>, <span class="dt">shape =</span> <span class="st">"curve"</span>, <span class="dt">animation =</span> <span class="st">"pulse"</span></a>
-<a class="sourceLine" id="cb5-7" title="7">),</a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
-<a class="sourceLine" id="cb5-9" title="9">  <span class="dt">inputId =</span> <span class="st">"pretty_3"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"users"</span>), </a>
-<a class="sourceLine" id="cb5-10" title="10">  <span class="dt">animation =</span> <span class="st">"pulse"</span>, <span class="dt">plain =</span> <span class="ot">TRUE</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb5-11" title="11">),</a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
-<a class="sourceLine" id="cb5-13" title="13">  <span class="dt">inputId =</span> <span class="st">"pretty_4"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>,</a>
-<a class="sourceLine" id="cb5-14" title="14">  <span class="dt">status =</span> <span class="st">"success"</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb5-15" title="15">),</a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
-<a class="sourceLine" id="cb5-17" title="17">  <span class="dt">inputId =</span> <span class="st">"pretty_5"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>,</a>
-<a class="sourceLine" id="cb5-18" title="18">  <span class="dt">shape =</span> <span class="st">"round"</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span>, <span class="dt">status =</span> <span class="st">"info"</span></a>
-<a class="sourceLine" id="cb5-19" title="19">),</a>
-<a class="sourceLine" id="cb5-20" title="20"></a>
-<a class="sourceLine" id="cb5-21" title="21">...</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">inputId =</span> <span class="st">"pretty_1"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"check"</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">),</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">inputId =</span> <span class="st">"pretty_2"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"thumbs-up"</span>), </a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">status =</span> <span class="st">"default"</span>, <span class="dt">shape =</span> <span class="st">"curve"</span>, <span class="dt">animation =</span> <span class="st">"pulse"</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">),</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">  <span class="dt">inputId =</span> <span class="st">"pretty_3"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"users"</span>), </a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">  <span class="dt">animation =</span> <span class="st">"pulse"</span>, <span class="dt">plain =</span> <span class="ot">TRUE</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">),</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">  <span class="dt">inputId =</span> <span class="st">"pretty_4"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>,</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">  <span class="dt">status =</span> <span class="st">"success"</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">),</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="kw"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span>(</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">  <span class="dt">inputId =</span> <span class="st">"pretty_5"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>,</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">  <span class="dt">shape =</span> <span class="st">"round"</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span>, <span class="dt">status =</span> <span class="st">"info"</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">),</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">...</a></code></pre></div>
 </div>
 <div id="sweet-alert" class="section level3">
 <h3 class="hasAnchor">
@@ -158,83 +158,83 @@
 <h3 class="hasAnchor">
 <a href="#slider-text" class="anchor"></a>Slider Text</h3>
 <p>Slider with strings, to pass whatever you want : <br><img src="reference/figures/sliderText.png" alt="sliderText"></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="reference/sliderTextInput.html">sliderTextInput</a></span>(</a>
-<a class="sourceLine" id="cb6-2" title="2">  <span class="dt">inputId =</span> <span class="st">"mySliderText"</span>, </a>
-<a class="sourceLine" id="cb6-3" title="3">  <span class="dt">label =</span> <span class="st">"Your choice:"</span>, </a>
-<a class="sourceLine" id="cb6-4" title="4">  <span class="dt">grid =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb6-5" title="5">  <span class="dt">force_edges =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb6-6" title="6">  <span class="dt">choices =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Strongly disagree"</span>,</a>
-<a class="sourceLine" id="cb6-7" title="7">              <span class="st">"Disagree"</span>, <span class="st">"Neither agree nor disagree"</span>, </a>
-<a class="sourceLine" id="cb6-8" title="8">              <span class="st">"Agree"</span>, <span class="st">"Strongly agree"</span>)</a>
-<a class="sourceLine" id="cb6-9" title="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="reference/sliderTextInput.html">sliderTextInput</a></span>(</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="dt">inputId =</span> <span class="st">"mySliderText"</span>, </a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="dt">label =</span> <span class="st">"Your choice:"</span>, </a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="dt">grid =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="dt">force_edges =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="dt">choices =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Strongly disagree"</span>,</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">              <span class="st">"Disagree"</span>, <span class="st">"Neither agree nor disagree"</span>, </a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">              <span class="st">"Agree"</span>, <span class="st">"Strongly agree"</span>)</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">)</a></code></pre></div>
 </div>
 <div id="knob-input" class="section level3">
 <h3 class="hasAnchor">
 <a href="#knob-input" class="anchor"></a>Knob Input</h3>
 <p>A <a href="https://github.com/aterrien/jQuery-Knob">jQuery</a> based knob, similar to sliderInput or sliderTextInput: <br><img src="reference/figures/knob.gif" alt="knobInput"></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="reference/knobInput.html">knobInput</a></span>(</a>
-<a class="sourceLine" id="cb7-2" title="2">  <span class="dt">inputId =</span> <span class="st">"myKnob"</span>,</a>
-<a class="sourceLine" id="cb7-3" title="3">  <span class="dt">label =</span> <span class="st">"jQuery knob example:"</span>,</a>
-<a class="sourceLine" id="cb7-4" title="4">  <span class="dt">value =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb7-5" title="5">  <span class="dt">min =</span> <span class="dv">-100</span>,</a>
-<a class="sourceLine" id="cb7-6" title="6">  <span class="dt">displayPrevious =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb7-7" title="7">  <span class="dt">lineCap =</span> <span class="st">"round"</span>,</a>
-<a class="sourceLine" id="cb7-8" title="8">  <span class="dt">fgColor =</span> <span class="st">"#428BCA"</span>,</a>
-<a class="sourceLine" id="cb7-9" title="9">  <span class="dt">inputColor =</span> <span class="st">"#428BCA"</span></a>
-<a class="sourceLine" id="cb7-10" title="10">)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/knobInput.html">knobInput</a></span>(</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">inputId =</span> <span class="st">"myKnob"</span>,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">label =</span> <span class="st">"jQuery knob example:"</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">value =</span> <span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="dt">min =</span> <span class="dv">-100</span>,</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">displayPrevious =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">  <span class="dt">lineCap =</span> <span class="st">"round"</span>,</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">  <span class="dt">fgColor =</span> <span class="st">"#428BCA"</span>,</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">  <span class="dt">inputColor =</span> <span class="st">"#428BCA"</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">)</a></code></pre></div>
 </div>
 <div id="select-picker" class="section level3">
 <h3 class="hasAnchor">
 <a href="#select-picker" class="anchor"></a>Select picker</h3>
 <p>Dropdown menu with a lot of options : <br><img src="reference/figures/pickerInput.png" alt="pickerInput"></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="reference/pickerInput.html">pickerInput</a></span>(</a>
-<a class="sourceLine" id="cb8-2" title="2">  <span class="dt">inputId =</span> <span class="st">"myPicker"</span>, </a>
-<a class="sourceLine" id="cb8-3" title="3">  <span class="dt">label =</span> <span class="st">"Select/deselect all + format selected"</span>, </a>
-<a class="sourceLine" id="cb8-4" title="4">  <span class="dt">choices =</span> LETTERS, </a>
-<a class="sourceLine" id="cb8-5" title="5">  <span class="dt">options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
-<a class="sourceLine" id="cb8-6" title="6">    <span class="st">`</span><span class="dt">actions-box</span><span class="st">`</span> =<span class="st"> </span><span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb8-7" title="7">    <span class="dt">size =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb8-8" title="8">    <span class="st">`</span><span class="dt">selected-text-format</span><span class="st">`</span> =<span class="st"> "count &gt; 3"</span></a>
-<a class="sourceLine" id="cb8-9" title="9">  ), </a>
-<a class="sourceLine" id="cb8-10" title="10">  <span class="dt">multiple =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb8-11" title="11">)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="reference/pickerInput.html">pickerInput</a></span>(</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="dt">inputId =</span> <span class="st">"myPicker"</span>, </a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">label =</span> <span class="st">"Select/deselect all + format selected"</span>, </a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">choices =</span> LETTERS, </a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">options =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">    <span class="st">`</span><span class="dt">actions-box</span><span class="st">`</span> =<span class="st"> </span><span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">    <span class="dt">size =</span> <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">    <span class="st">`</span><span class="dt">selected-text-format</span><span class="st">`</span> =<span class="st"> "count &gt; 3"</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">  ), </a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">  <span class="dt">multiple =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">)</a></code></pre></div>
 </div>
 <div id="checkbox-and-radio-buttons" class="section level3">
 <h3 class="hasAnchor">
 <a href="#checkbox-and-radio-buttons" class="anchor"></a>Checkbox and radio buttons</h3>
 <p>Turn buttons into checkbox or radio : <br><img src="reference/figures/checkboxGroupButtons.png" alt="checkboxGroupButtons"></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="reference/checkboxGroupButtons.html">checkboxGroupButtons</a></span>(</a>
-<a class="sourceLine" id="cb9-2" title="2">  <span class="dt">inputId =</span> <span class="st">"somevalue"</span>, <span class="dt">label =</span> <span class="st">"Make a choice :"</span>, </a>
-<a class="sourceLine" id="cb9-3" title="3">  <span class="dt">choices =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Choice A"</span>, <span class="st">"Choice B"</span>, <span class="st">" Choice C"</span>, <span class="st">"Choice D"</span>), </a>
-<a class="sourceLine" id="cb9-4" title="4">  <span class="dt">justified =</span> <span class="ot">TRUE</span>, <span class="dt">status =</span> <span class="st">"primary"</span>,</a>
-<a class="sourceLine" id="cb9-5" title="5">  <span class="dt">checkIcon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">yes =</span> <span class="kw">icon</span>(<span class="st">"ok"</span>, <span class="dt">lib =</span> <span class="st">"glyphicon"</span>), <span class="dt">no =</span> <span class="kw">icon</span>(<span class="st">"remove"</span>, <span class="dt">lib =</span> <span class="st">"glyphicon"</span>))</a>
-<a class="sourceLine" id="cb9-6" title="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="reference/checkboxGroupButtons.html">checkboxGroupButtons</a></span>(</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="dt">inputId =</span> <span class="st">"somevalue"</span>, <span class="dt">label =</span> <span class="st">"Make a choice :"</span>, </a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">choices =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Choice A"</span>, <span class="st">"Choice B"</span>, <span class="st">" Choice C"</span>, <span class="st">"Choice D"</span>), </a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">justified =</span> <span class="ot">TRUE</span>, <span class="dt">status =</span> <span class="st">"primary"</span>,</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">  <span class="dt">checkIcon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">yes =</span> <span class="kw">icon</span>(<span class="st">"ok"</span>, <span class="dt">lib =</span> <span class="st">"glyphicon"</span>), <span class="dt">no =</span> <span class="kw">icon</span>(<span class="st">"remove"</span>, <span class="dt">lib =</span> <span class="st">"glyphicon"</span>))</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">)</a></code></pre></div>
 </div>
 <div id="search-bar" class="section level3">
 <h3 class="hasAnchor">
 <a href="#search-bar" class="anchor"></a>Search bar</h3>
 <p>A text input only triggered by hitting ‘Enter’ or clicking search button : <br><img src="reference/figures/search_input.png" alt="search_input"></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="reference/searchInput.html">searchInput</a></span>(</a>
-<a class="sourceLine" id="cb10-2" title="2">  <span class="dt">inputId =</span> <span class="st">"id"</span>, </a>
-<a class="sourceLine" id="cb10-3" title="3">  <span class="dt">label =</span> <span class="st">"Enter your search :"</span>, </a>
-<a class="sourceLine" id="cb10-4" title="4">  <span class="dt">placeholder =</span> <span class="st">"This is a placeholder"</span>, </a>
-<a class="sourceLine" id="cb10-5" title="5">  <span class="dt">btnSearch =</span> <span class="kw">icon</span>(<span class="st">"search"</span>), </a>
-<a class="sourceLine" id="cb10-6" title="6">  <span class="dt">btnReset =</span> <span class="kw">icon</span>(<span class="st">"remove"</span>), </a>
-<a class="sourceLine" id="cb10-7" title="7">  <span class="dt">width =</span> <span class="st">"100%"</span></a>
-<a class="sourceLine" id="cb10-8" title="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="reference/searchInput.html">searchInput</a></span>(</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="dt">inputId =</span> <span class="st">"id"</span>, </a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="dt">label =</span> <span class="st">"Enter your search :"</span>, </a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">placeholder =</span> <span class="st">"This is a placeholder"</span>, </a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">  <span class="dt">btnSearch =</span> <span class="kw">icon</span>(<span class="st">"search"</span>), </a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">  <span class="dt">btnReset =</span> <span class="kw">icon</span>(<span class="st">"remove"</span>), </a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">  <span class="dt">width =</span> <span class="st">"100%"</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">)</a></code></pre></div>
 </div>
 <div id="dropdown-button" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dropdown-button" class="anchor"></a>Dropdown button</h3>
 <p>Hide input in a button : <br><img src="reference/figures/dropdown_btn_off.png" alt="dropdown_off"><img src="reference/figures/dropdown_btn_on.png" alt="dropdown_on"></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="reference/dropdownButton.html">dropdownButton</a></span>(</a>
-<a class="sourceLine" id="cb11-2" title="2">  tags<span class="op">$</span><span class="kw">h3</span>(<span class="st">"List of Input"</span>),</a>
-<a class="sourceLine" id="cb11-3" title="3">  <span class="kw">selectInput</span>(<span class="dt">inputId =</span> <span class="st">'xcol'</span>, <span class="dt">label =</span> <span class="st">'X Variable'</span>, <span class="dt">choices =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(iris)),</a>
-<a class="sourceLine" id="cb11-4" title="4">  <span class="kw">selectInput</span>(<span class="dt">inputId =</span> <span class="st">'ycol'</span>, <span class="dt">label =</span> <span class="st">'Y Variable'</span>, <span class="dt">choices =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(iris), <span class="dt">selected =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(iris)[[<span class="dv">2</span>]]),</a>
-<a class="sourceLine" id="cb11-5" title="5">  <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">'clusters'</span>, <span class="dt">label =</span> <span class="st">'Cluster count'</span>, <span class="dt">value =</span> <span class="dv">3</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">9</span>),</a>
-<a class="sourceLine" id="cb11-6" title="6">  <span class="dt">circle =</span> <span class="ot">TRUE</span>, <span class="dt">status =</span> <span class="st">"danger"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"gear"</span>), <span class="dt">width =</span> <span class="st">"300px"</span>,</a>
-<a class="sourceLine" id="cb11-7" title="7">  <span class="dt">tooltip =</span> <span class="kw"><a href="reference/tooltipOptions.html">tooltipOptions</a></span>(<span class="dt">title =</span> <span class="st">"Click to see inputs !"</span>)</a>
-<a class="sourceLine" id="cb11-8" title="8">)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="reference/dropdownButton.html">dropdownButton</a></span>(</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  tags<span class="op">$</span><span class="kw">h3</span>(<span class="st">"List of Input"</span>),</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">  <span class="kw">selectInput</span>(<span class="dt">inputId =</span> <span class="st">'xcol'</span>, <span class="dt">label =</span> <span class="st">'X Variable'</span>, <span class="dt">choices =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(iris)),</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">  <span class="kw">selectInput</span>(<span class="dt">inputId =</span> <span class="st">'ycol'</span>, <span class="dt">label =</span> <span class="st">'Y Variable'</span>, <span class="dt">choices =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(iris), <span class="dt">selected =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(iris)[[<span class="dv">2</span>]]),</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">  <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">'clusters'</span>, <span class="dt">label =</span> <span class="st">'Cluster count'</span>, <span class="dt">value =</span> <span class="dv">3</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">9</span>),</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">  <span class="dt">circle =</span> <span class="ot">TRUE</span>, <span class="dt">status =</span> <span class="st">"danger"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"gear"</span>), <span class="dt">width =</span> <span class="st">"300px"</span>,</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">  <span class="dt">tooltip =</span> <span class="kw"><a href="reference/tooltipOptions.html">tooltipOptions</a></span>(<span class="dt">title =</span> <span class="st">"Click to see inputs !"</span>)</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">)</a></code></pre></div>
 <p>And others !</p>
 </div>
 </div>
