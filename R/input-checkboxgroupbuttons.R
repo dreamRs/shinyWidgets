@@ -100,7 +100,7 @@ checkboxGroupButtons <- function(
 generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
   btn_wrapper <- function(...) {
     htmltools::tags$div(
-      class="btn-group",
+      class="btn-group btn-group-toggle",
       class=if (size != "normal") paste0("btn-group-", size),
       role="group",
       ...
