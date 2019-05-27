@@ -52,4 +52,5 @@ Suggests: shinydashboard,
     shinydashboardPlus,
     bs4Dash,
     argonR,
-    argonDash
+    argonDash,
+    tablerDash

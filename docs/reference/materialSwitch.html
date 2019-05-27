@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8.930</span>
       </span>
     </div>
 
@@ -159,27 +159,28 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>materialSwitch</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"somevalue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='output co'>#&gt; &lt;div class="form-group shiny-input-container"&gt;
-#&gt;   &lt;div class="material-switch"&gt;
-#&gt;     &lt;span style="padding-right: 10px;"&gt;&lt;/span&gt;
-#&gt;     &lt;input id="somevalue" type="checkbox"/&gt;
-#&gt;     &lt;label for="somevalue" class="label-default"&gt;&lt;/label&gt;
-#&gt;   &lt;/div&gt;
-#&gt; &lt;/div&gt;</div><span class='co'># NOT RUN {</span>
-<span class='co'>## Only run examples in interactive R sessions</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyWidgets</span>)
 
-<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'>fluidPage</span>(
-  <span class='fu'>materialSwitch</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"somevalue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>""</span>),
-  <span class='fu'>verbatimTextOutput</span>(<span class='st'>"value"</span>)
-)
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-  <span class='no'>output</span>$<span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'>renderText</span>({ <span class='no'>input</span>$<span class='no'>somevalue</span> })
-}
-<span class='fu'>shinyApp</span>(<span class='no'>ui</span>, <span class='no'>server</span>)
-}
-<span class='co'># }</span><div class='input'>
-</div></pre>
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(
+    <span class='no'>tags</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h3</a></span>(<span class='st'>"Material switch examples"</span>),
+
+    <span class='fu'>materialSwitch</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"switch1"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Night mode"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"value1"</span>),
+
+    <span class='fu'>materialSwitch</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"switch2"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Night mode"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"danger"</span>),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"value2"</span>)
+  )
+  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+
+    <span class='no'>output</span>$<span class='no'>value1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderText'>renderText</a></span>({ <span class='no'>input</span>$<span class='no'>switch1</span> })
+
+    <span class='no'>output</span>$<span class='no'>value2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderText'>renderText</a></span>({ <span class='no'>input</span>$<span class='no'>switch2</span> })
+
+  }
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
