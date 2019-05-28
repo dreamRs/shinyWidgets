@@ -21,7 +21,7 @@ ui <- fluidPage(
 
       airDatepickerInput(
         inputId = "default",
-        label = "First example:"
+        label = "First example:", language = "tr"
       ),
       verbatimTextOutput(outputId = "res_default"),
 
