@@ -297,17 +297,11 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #' }
 updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, clear = FALSE, options = NULL) {
   stopifnot(is.logical(clear))
-  formatDate <- function(x) {
-    if (is.null(x))
-      return(NULL)
-    format(as.Date(x), "%Y-%m-%d")
-  }
   to_ms <- function(x) {
     if (is.null(x))
       return(NULL)
     1000 * as.numeric(as.POSIXct(x, tz = "UTC"))
   }
-  value <- formatDate(value)
   if (!is.null(value)) {
     value <- as.character(toJSON(x = to_ms(value), auto_unbox = FALSE))
   }
