@@ -155,6 +155,12 @@ updateProgressBar <- function(session, id, value, total = NULL,
   } else {
     percent <- -1
   }
+  # If we are inside a module, turn the (relative) id (e.g. 'input') into an absolute id (e.g. 'module-input')
+  if (inherits(session, "session_proxy")) {
+    # Keep old code working which externally uses session$ns() to create an absolute id.
+    if (!startsWith(id, session$ns("")))
+      id <- session$ns(id)
+  }
   session$sendCustomMessage(
     type = message,
     message = list(
