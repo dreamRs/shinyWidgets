@@ -422,6 +422,12 @@ confirmSweetAlert <- function(session, inputId, title = NULL,
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
   if ("shiny.tag" %in% class(text))
     html <- TRUE
+  # If we are inside a module, turn the (relative) inputId (e.g. 'input') into an absolute input id (e.g. 'module-input')
+  if (inherits(session, "session_proxy")) {
+    # Keep old code working which externally uses session$ns() to create an absolute input id.
+    if (!startsWith(inputId, session$ns("")))
+      inputId <- session$ns(inputId)
+  }
   if (!isTRUE(html)) {
     session$sendCustomMessage(
       type = "sweetalert-sw-confirm",
@@ -569,6 +575,12 @@ inputSweetAlert <- function(session, inputId, title = NULL,
   )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
+  # If we are inside a module, turn the (relative) inputId (e.g. 'input') into an absolute input id (e.g. 'module-input')
+  if (inherits(session, "session_proxy")) {
+    # Keep old code working which externally uses session$ns() to create an absolute input id.
+    if (!startsWith(inputId, session$ns("")))
+      inputId <- session$ns(inputId)
+  }
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
   if (!is.null(inputOptions)) {
     inputOptions <- choicesWithNames(inputOptions)
@@ -656,6 +668,12 @@ inputSweetAlert <- function(session, inputId, title = NULL,
 progressSweetAlert <- function(session, id, value, total = NULL,
                                display_pct = FALSE, size = NULL,
                                status = NULL, striped = FALSE, title = NULL) {
+  # If we are inside a module, turn the (relative) id (e.g. 'input') into an absolute id (e.g. 'module-input')
+  if (inherits(session, "session_proxy")) {
+    # Keep old code working which externally uses session$ns() to create an absolute id.
+    if (!startsWith(id, session$ns("")))
+      id <- session$ns(id)
+  }
   sendSweetAlert(
     session = session,
     title = NULL, btn_labels = NA,
