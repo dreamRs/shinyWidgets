@@ -3,6 +3,7 @@
 #' @description Create a progress bar to provide feedback on calculation.
 #'
 #' @param id An id used to update the progress bar.
+#'  If in a Shiny module, it use same logic than inputs : use namespace in UI, not in server.
 #' @param value Value of the progress bar between 0 and 100, if >100 you must provide total.
 #' @param total Used to calculate percentage if value > 100, force an indicator to appear on top right of the progress bar.
 #' @param display_pct logical, display percentage on the progress bar.

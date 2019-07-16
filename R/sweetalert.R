@@ -255,6 +255,7 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #'
 #' @param session The \code{session} object passed to function given to shinyServer.
 #' @param inputId The \code{input} slot that will be used to access the value.
+#'  If in a Shiny module, it use same logic than inputs : use namespace in UI, not in server.
 #' @param title Title of the alert.
 #' @param text Text of the alert, can contains HTML tags.
 #' @param type Type of the alert : info, success, warning or error.
@@ -472,6 +473,7 @@ confirmSweetAlert <- function(session, inputId, title = NULL,
 #'
 #' @param session The \code{session} object passed to function given to shinyServer.
 #' @param inputId The \code{input} slot that will be used to access the value.
+#'  If in a Shiny module, it use same logic than inputs : use namespace in UI, not in server.
 #' @param title Title of the pop-up.
 #' @param text Text of the pop-up.
 #' @param type Type of the pop-up : \code{"info"}, \code{"success"},

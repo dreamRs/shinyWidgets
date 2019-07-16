@@ -12,7 +12,8 @@ inputSweetAlert(session, inputId, title = NULL, text = NULL,
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}
 
-\item{inputId}{The \code{input} slot that will be used to access the value.}
+\item{inputId}{The \code{input} slot that will be used to access the value.
+If in a Shiny module, it use same logic than inputs : use namespace in UI, not in server.}
 
 \item{title}{Title of the pop-up.}
 

@@ -14,7 +14,8 @@ updateProgressBar(session, id, value, total = NULL, title = NULL,
   status = NULL, range_value = NULL, unit_mark = "\%")
 }
 \arguments{
-\item{id}{An id used to update the progress bar.}
+\item{id}{An id used to update the progress bar.
+If in a Shiny module, it use same logic than inputs : use namespace in UI, not in server.}
 
 \item{value}{Value of the progress bar between 0 and 100, if >100 you must provide total.}
 
