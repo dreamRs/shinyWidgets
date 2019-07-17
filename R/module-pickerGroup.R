@@ -9,6 +9,7 @@
 #' @param label Character, global label on top of all labels.
 #' @param btn_label Character, reset button label.
 #' @param options See \code{\link{pickerInput}} options argument.
+#' @param inline If \code{TRUE} (the default), \code{pickerInput}s are horizontally positioned, otherwise vertically.
 #'
 #' @return a \code{reactive} function containing data filtered.
 #' @export
@@ -40,10 +41,10 @@
 #'         pickerGroupUI(
 #'           id = "my-filters",
 #'           params = list(
-#'             manufacturer = list(inputId = "manufacturer", title = "Manufacturer:"),
-#'             model = list(inputId = "model", title = "Model:"),
-#'             trans = list(inputId = "trans", title = "Trans:"),
-#'             class = list(inputId = "class", title = "Class:")
+#'             manufacturer = list(inputId = "manufacturer", label = "Manufacturer:"),
+#'             model = list(inputId = "model", label = "Model:"),
+#'             trans = list(inputId = "trans", label = "Trans:"),
+#'             class = list(inputId = "class", label = "Class:")
 #'           )
 #'         ), status = "primary"
 #'       ),
@@ -66,28 +67,63 @@
 #'
 #' }
 #'
+#'
+#' ### Not inline example
+#'
+#' if (interactive()) {
+#'
+#'   library(shiny)
+#'   library(shinyWidgets)
+#'
+#'
+#'   data("mpg", package = "ggplot2")
+#'
+#'
+#'   ui <- fluidPage(
+#'     fluidRow(
+#'       column(
+#'         width = 4,
+#'         tags$h3("Filter data with picker group"),
+#'         pickerGroupUI(
+#'           id = "my-filters",
+#'           inline = FALSE,
+#'           params = list(
+#'             manufacturer = list(inputId = "manufacturer", label = "Manufacturer:"),
+#'             model = list(inputId = "model", label = "Model:"),
+#'             trans = list(inputId = "trans", label = "Trans:"),
+#'             class = list(inputId = "class", label = "Class:")
+#'           )
+#'         )
+#'       ),
+#'       column(
+#'         width = 8,
+#'         dataTableOutput(outputId = "table")
+#'       )
+#'     )
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     res_mod <- callModule(
+#'       module = pickerGroupServer,
+#'       id = "my-filters",
+#'       data = mpg,
+#'       vars = c("manufacturer", "model", "trans", "class")
+#'     )
+#'     output$table <- renderDataTable(res_mod())
+#'   }
+#'
+#'   shinyApp(ui, server)
+#'
 #' }
-pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters", options = list()) {
+#'
+#' }
+pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters", options = list(), inline = TRUE) {
 
   # Namespace
   ns <- NS(id)
 
-  # # ids
-  # ids <- unlist(lapply(params, `[[`, "inputId"), use.names = FALSE)
-  # cond <- paste0(paste0("[", paste(paste0("input['", ns(ids), "']"), collapse = ", "), "]"), ".length > 0")
-
-  tagList(
-    singleton(
-      tagList(
-        tags$link(
-          rel="stylesheet",
-          type="text/css",
-          href="shinyWidgets/modules/styles-modules.css"
-        ), toggleDisplayUi()
-      )
-    ),
-    tags$b(label),
-    tags$div(
+  if (isTRUE(inline)) {
+    tagPicker <- tags$div(
       class="btn-group-justified picker-group",
       role="group", `data-toggle`="buttons",
       lapply(
@@ -116,7 +152,43 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
           return(tagSelect)
         }
       )
+    )
+  } else {
+    tagPicker <- lapply(
+      X = params,
+      FUN = function(x) {
+        pickerInput(
+          inputId = ns(x$inputId),
+          label = x$label,
+          selected = x$selected,
+          choices = x$choices,
+          multiple = TRUE,
+          width = "100%",
+          options = modifyList(
+            x = options,
+            val = list(
+              `actions-box` = FALSE,
+              `selected-text-format`= "count > 5",
+              `count-selected-text` = "{0} choices (on a total of {1})"
+            )
+          )
+        )
+      }
+    )
+  }
+
+  tagList(
+    singleton(
+      tagList(
+        tags$link(
+          rel="stylesheet",
+          type="text/css",
+          href="shinyWidgets/modules/styles-modules.css"
+        ), toggleDisplayUi()
+      )
     ),
+    tags$label(label),
+    tagPicker,
     actionLink(
       inputId = ns("reset_all"),
       label = btn_label,

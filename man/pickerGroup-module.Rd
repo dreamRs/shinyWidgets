@@ -7,7 +7,7 @@
 \title{Picker Group}
 \usage{
 pickerGroupUI(id, params, label = NULL, btn_label = "Reset filters",
-  options = list())
+  options = list(), inline = TRUE)
 
 pickerGroupServer(input, output, session, data, vars)
 }
@@ -22,6 +22,8 @@ pickerGroupServer(input, output, session, data, vars)
 \item{btn_label}{Character, reset button label.}
 
 \item{options}{See \code{\link{pickerInput}} options argument.}
+
+\item{inline}{If \code{TRUE} (the default), \code{pickerInput}s are horizontally positioned, otherwise vertically.}
 
 \item{input}{standard \code{shiny} input.}
 
@@ -61,10 +63,10 @@ ui <- fluidPage(
         pickerGroupUI(
           id = "my-filters",
           params = list(
-            manufacturer = list(inputId = "manufacturer", title = "Manufacturer:"),
-            model = list(inputId = "model", title = "Model:"),
-            trans = list(inputId = "trans", title = "Trans:"),
-            class = list(inputId = "class", title = "Class:")
+            manufacturer = list(inputId = "manufacturer", label = "Manufacturer:"),
+            model = list(inputId = "model", label = "Model:"),
+            trans = list(inputId = "trans", label = "Trans:"),
+            class = list(inputId = "class", label = "Class:")
           )
         ), status = "primary"
       ),
@@ -84,6 +86,55 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
+
+}
+
+
+### Not inline example
+
+if (interactive()) {
+
+  library(shiny)
+  library(shinyWidgets)
+
+
+  data("mpg", package = "ggplot2")
+
+
+  ui <- fluidPage(
+    fluidRow(
+      column(
+        width = 4,
+        tags$h3("Filter data with picker group"),
+        pickerGroupUI(
+          id = "my-filters",
+          inline = FALSE,
+          params = list(
+            manufacturer = list(inputId = "manufacturer", label = "Manufacturer:"),
+            model = list(inputId = "model", label = "Model:"),
+            trans = list(inputId = "trans", label = "Trans:"),
+            class = list(inputId = "class", label = "Class:")
+          )
+        )
+      ),
+      column(
+        width = 8,
+        dataTableOutput(outputId = "table")
+      )
+    )
+  )
+
+  server <- function(input, output, session) {
+    res_mod <- callModule(
+      module = pickerGroupServer,
+      id = "my-filters",
+      data = mpg,
+      vars = c("manufacturer", "model", "trans", "class")
+    )
+    output$table <- renderDataTable(res_mod())
+  }
+
+  shinyApp(ui, server)
 
 }
 

@@ -1,11 +1,10 @@
 Package: shinyWidgets
 Title: Custom Inputs Widgets for Shiny
-Version: 0.4.8.940
+Version: 0.4.8.950
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
-  person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
-  person("David", "Granjon", email = "david.granjon@uzh.ch", role = "aut",
-         comment = "jQuery Knob shiny interface & sliders appearance"),
+  person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = "aut"),
+  person("David", "Granjon", email = "david.granjon@uzh.ch", role = "aut"),
   person("Ian", "Fellows", role = "ctb", comment = "Methods for mutating vertical tabs & updateMultiInput"),
   person("Wil", "Davis", role = "ctb", comment = "numericRangeInput function"),
   person("SnapAppointments", "", role = "cph", comment = "bootstrap-select"),
