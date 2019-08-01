@@ -40,7 +40,6 @@ the current tabs is active. The value will correspond to the \code{value} argume
 Vertical tab panel
 }
 \examples{
-\dontrun{
 
 if (interactive()) {
 
@@ -75,8 +74,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

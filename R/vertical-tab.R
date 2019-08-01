@@ -21,7 +21,6 @@
 #' @seealso \code{\link{updateVerticalTabsetPanel}} for updating selected tabs.
 #'
 #' @examples
-#' \dontrun{
 #'
 #' if (interactive()) {
 #'
@@ -58,13 +57,14 @@
 #' shinyApp(ui, server)
 #'
 #' }
-#'
-#' }
 verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#112446", contentWidth = 9, menuSide = "left") {
   stopifnot(is.numeric(contentWidth))
   stopifnot(contentWidth >= 1, contentWidth <= 12)
   menuSide <- match.arg(menuSide, choices = c("right", "left"))
   tabs <- list(...)
+  if (is.null(id)) {
+    id <- paste(sample(c(letters, LETTERS), 24, TRUE), collapse = "")
+  }
   if (is.null(selected)) {
     indice <- 1
   } else {
@@ -86,11 +86,11 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
     tabs[[indice]]$tabbox$attribs$class, "active"
   )
   if (identical(menuSide, "left")) {
-    vtbTag <- tags$div(
-      class="col-sm-12 bhoechie-tab-container tabbable",
+    vtabTag <- tags$div(
+      class="col-sm-12 vrtc-tab-panel-container tabbable",
       id = if(is.null(id)) id else paste0(id,"-tabbable"),
       tags$div(
-        class = sprintf("col-sm-%s bhoechie-tab-menu bhoechie-tab-menu-%s", 12 - contentWidth, menuSide),
+        class = sprintf("col-sm-%s vrtc-tab-panel-menu vrtc-tab-panel-menu-%s", 12 - contentWidth, menuSide),
         tags$div(
           class="list-group vertical-tab-panel",
           lapply(X = tabs, FUN = `[[`, "tabbox"),
@@ -98,19 +98,20 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
         )
       ),
       tags$div(
-        class = sprintf("col-sm-%s bhoechie-tab  tab-content", contentWidth),
+        class = sprintf("col-sm-%s vrtc-tab-panel  tab-content", contentWidth),
         lapply(X = tabs, FUN = `[[`, "tabcontent")
       )
     )
   } else {
-    vtbTag <- tags$div(
-      class="col-sm-12 bhoechie-tab-container tabbable",
+    vtabTag <- tags$div(
+      class="col-sm-12 vrtc-tab-panel-container tabbable",
+      id = if(is.null(id)) id else paste0(id,"-tabbable"),
       tags$div(
-        class = sprintf("col-sm-%s bhoechie-tab  tab-content", contentWidth),
+        class = sprintf("col-sm-%s vrtc-tab-panel  tab-content", contentWidth),
         lapply(X = tabs, FUN = `[[`, "tabcontent")
       ),
       tags$div(
-        class = sprintf("col-sm-%s bhoechie-tab-menu bhoechie-tab-menu-%s", 12 - contentWidth, menuSide),
+        class = sprintf("col-sm-%s vrtc-tab-panel-menu vrtc-tab-panel-menu-%s", 12 - contentWidth, menuSide),
         tags$div(
           class="list-group vertical-tab-panel",
           id = id,
@@ -119,20 +120,53 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
       )
     )
   }
+
+  vtabStyle <- tags$style(
+    HTML(sprintf(
+      "#%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a.active .fa{background-color: %s;background-image: %s !important;}",
+      id, color, color
+    )),
+    HTML(sprintf(
+      "#%s-tabbable > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-left div.list-group>a.active:after{border-left: 10px solid %s !important;}",
+      id, color
+    )),
+    HTML(sprintf(
+      "#%s-tabbable > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-right div.list-group>a.active:after{border-right: 10px solid %s !important;}",
+      id, color
+    )),
+    HTML(sprintf(
+      "#%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a .glyphicon,
+      #%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a .fa {color: %s !important;}",
+      id, id, color
+    )),
+    HTML(sprintf(
+      "#%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a.active,
+      #%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a.active .glyphicon,
+      #%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a.active .fa{
+       background-color: %s !important; background-image: %s !important; color: #ffffff !important;
+      }",
+      id, id, id, color, color
+    )),
+    HTML(sprintf(
+      "#%s-tabbable > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-left div.list-group>a.active:after{border-left: 10px solid %s !important;}",
+      id, color
+    )),
+    HTML(sprintf(
+      "#%s-tabbable > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-right div.list-group>a.active:after{border-right: 10px solid %s !important;}",
+      id, color
+    ))
+  )
+
   tagList(
-    singleton(
-      tagList(
-        tags$link(href="shinyWidgets/vertical-tab-panel/vertical-tab-panel.css", rel="stylesheet"),
-        tags$style(sprintf(":root {--vtb-color: %s;}", color))
-      )
+    htmltools::htmlDependency(
+      name = "vertical-tab",
+      version = "0.1.0",
+      src = c(href="shinyWidgets/vertical-tab-panel"),
+      script = c("vertical-tab-panel.js", "vertical-tab-panel-bindings.js"),
+      stylesheet = "vertical-tab-panel.css"
     ),
-    vtbTag,
-    singleton(
-      tagList(
-        tags$script(src="shinyWidgets/vertical-tab-panel/vertical-tab-panel.js"),
-        tags$script(src = "shinyWidgets/vertical-tab-panel/vertical-tab-panel-bindings.js")
-      )
-    )
+    vtabStyle,
+    vtabTag
   )
 }
 
@@ -155,7 +189,7 @@ verticalTabPanel <- function(title, ..., value = title, icon = NULL, box_height 
     tags$h4(title)
   )
   tabcontent <- tags$div(
-    class="bhoechie-tab-content", `data-value` = value,
+    class="vrtc-tab-panel-content", `data-value` = value,
     ...
   )
   list(tabbox = tabbox, tabcontent = tabcontent)
@@ -175,7 +209,6 @@ verticalTabPanel <- function(title, ..., value = title, icon = NULL, box_height 
 #' @seealso \code{\link{verticalTabsetPanel}}
 #'
 #' @examples
-#' \dontrun{
 #'
 #' if (interactive()) {
 #'
@@ -227,7 +260,6 @@ verticalTabPanel <- function(title, ..., value = title, icon = NULL, box_height 
 #'
 #' }
 #'
-#' }
 updateVerticalTabsetPanel <- function (session, inputId, selected = NULL) {
   message <- dropNulls(list(value = selected))
   session$sendInputMessage(inputId, message)
@@ -236,12 +268,15 @@ updateVerticalTabsetPanel <- function (session, inputId, selected = NULL) {
 
 
 #' Mutate Vertical Tabset Panel
+#'
 #' @param session The \code{session} object passed to function given to \code{shinyServer.}
 #' @param inputId The id of the \code{verticalTabsetPanel} object.
 #' @param index The index of the the tab to remove.
 #' @param tab The verticalTab to append.
 #' @examples
+#'
 #' if (interactive()) {
+#'
 #' library(shiny)
 #' library(shinyWidgets)
 #'
@@ -263,6 +298,7 @@ updateVerticalTabsetPanel <- function (session, inputId, selected = NULL) {
 #'
 #' # Run the application
 #' shinyApp(ui = ui, server = server)
+#'
 #' }
 #' @export
 appendVerticalTab <- function(inputId, tab, session=shiny::getDefaultReactiveDomain()){
@@ -279,7 +315,7 @@ appendVerticalTab <- function(inputId, tab, session=shiny::getDefaultReactiveDom
 #' @rdname appendVerticalTab
 #' @export
 removeVerticalTab <- function(inputId, index, session=shiny::getDefaultReactiveDomain()){
-  shiny::removeUI(paste0("#",inputId,"-tabbable > div > .bhoechie-tab-content:nth-child(",index,")"),
+  shiny::removeUI(paste0("#",inputId,"-tabbable > div > .vrtc-tab-panel-content:nth-child(",index,")"),
            immediate = TRUE)
   shiny::removeUI(paste0("#",inputId," > a:nth-child(",index,")"),
            immediate = TRUE)

@@ -17,7 +17,6 @@ updateVerticalTabsetPanel(session, inputId, selected = NULL)
 Update selected vertical tab
 }
 \examples{
-\dontrun{
 
 if (interactive()) {
 
@@ -69,7 +68,6 @@ shinyApp(ui, server)
 
 }
 
-}
 }
 \seealso{
 \code{\link{verticalTabsetPanel}}

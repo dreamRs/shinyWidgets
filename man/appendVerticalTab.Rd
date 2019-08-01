@@ -30,7 +30,9 @@ reorderVerticalTabs(inputId, newOrder,
 Mutate Vertical Tabset Panel
 }
 \examples{
+
 if (interactive()) {
+
 library(shiny)
 library(shinyWidgets)
 
@@ -52,5 +54,6 @@ server <- function(input, output, session) {
 
 # Run the application
 shinyApp(ui = ui, server = server)
+
 }
 }
