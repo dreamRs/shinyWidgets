@@ -7,7 +7,7 @@
 dropdownButton(..., circle = TRUE, status = "default",
   size = "default", icon = NULL, label = NULL, tooltip = FALSE,
   right = FALSE, up = FALSE, width = NULL, margin = "10px",
-  inputId = NULL)
+  inline = FALSE, inputId = NULL)
 }
 \arguments{
 \item{...}{List of tag to be displayed into the dropdown menu.}
@@ -32,6 +32,8 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'm
 \item{width}{Width of the dropdown menu content.}
 
 \item{margin}{Value of the dropdown margin-right and margin-left menu content.}
+
+\item{inline}{use an inline (\code{span()}) or block container (\code{div()}) for the output.}
 
 \item{inputId}{Optional, id for the button, the button act like an \code{actionButton},
 and you can use the id to toggle the dropdown menu server-side with \code{\link{toggleDropdownButton}}.}

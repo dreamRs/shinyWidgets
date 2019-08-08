@@ -15,6 +15,7 @@
 #' @param up Logical. Display the dropdown menu above.
 #' @param width Width of the dropdown menu content.
 #' @param margin Value of the dropdown margin-right and margin-left menu content.
+#' @param inline use an inline (\code{span()}) or block container (\code{div()}) for the output.
 #' @param inputId Optional, id for the button, the button act like an \code{actionButton},
 #' and you can use the id to toggle the dropdown menu server-side with \code{\link{toggleDropdownButton}}.
 #'
@@ -86,7 +87,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
                            size = "default", icon = NULL,
                            label = NULL, tooltip = FALSE,
                            right = FALSE, up = FALSE,
-                           width = NULL, margin = "10px", inputId = NULL) {
+                           width = NULL, margin = "10px", inline = FALSE, inputId = NULL) {
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   if (is.null(inputId)) {
     inputId <- paste0("drop", sample.int(1e9, 1))
@@ -100,8 +101,8 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
     style = if (!is.null(width))
       paste0("width: ", htmltools::validateCssUnit(width), ";"),
     `aria-labelledby` = inputId,
-    lapply(X = list(...), FUN = htmltools::tags$li, 
-        style = paste0("margin-left: ", htmltools::validateCssUnit(margin), 
+    lapply(X = list(...), FUN = htmltools::tags$li,
+        style = paste0("margin-left: ", htmltools::validateCssUnit(margin),
         "; margin-right: ", htmltools::validateCssUnit(margin), ";"))
   )
 
@@ -149,7 +150,9 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
     tooltipJs <- ""
   }
 
-  dropdownTag <- htmltools::tags$div(
+  if( inline ) container <- htmltools::tags$span
+  else container <- htmltools::tags$div
+  dropdownTag <- container(
     class = ifelse(up, "dropup", "dropdown"),
     class = "btn-dropdown-input",
     html_button, id = paste0(inputId, "_state"),
