@@ -4,17 +4,18 @@
 \alias{setBackgroundImage}
 \title{Custom background image for your shinyapp}
 \usage{
-setBackgroundImage(src = NULL)
+setBackgroundImage(src = NULL, shinydashboard = FALSE)
 }
 \arguments{
 \item{src}{Url or path to the image, if using local image,
 the file must be in \code{www/} directory and the path not contain \code{www/}.}
+
+\item{shinydashboard}{Set to \code{TRUE} if in a {shinydasboard} application.}
 }
 \description{
 Allow to change the background image of your shinyapp.
 }
 \examples{
-
 if (interactive()) {
 
 library(shiny)
@@ -22,7 +23,9 @@ library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h2("Add a shiny app background image"),
-  setBackgroundImage(src = "http://wallpics4k.com/wp-content/uploads/2014/07/470318.jpg")
+  setBackgroundImage(
+    src = "https://www.fillmurray.com/1920/1080"
+  )
 )
 
 server <- function(input, output, session) {

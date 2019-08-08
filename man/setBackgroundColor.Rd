@@ -5,7 +5,8 @@
 \title{Custom background color for your shinyapp}
 \usage{
 setBackgroundColor(color = "ghostwhite", gradient = c("linear",
-  "radial"), direction = c("bottom", "top", "right", "left"))
+  "radial"), direction = c("bottom", "top", "right", "left"),
+  shinydashboard = FALSE)
 }
 \arguments{
 \item{color}{Background color. Use either the fullname or the Hex code
@@ -17,13 +18,13 @@ a gradient background is set.}
 \item{direction}{Direction for gradient, by default to \code{bottom}.
 Possibles choices are \code{bottom}, \code{top}, \code{right} or
 \code{left}, two values can be used, e.g. \code{c("bottom", "right")}.}
+
+\item{shinydashboard}{Set to \code{TRUE} if in a {shinydasboard} application.}
 }
 \description{
-Allow to change the background color of your shinyapp.
+Allow to change the background color of your shiny application.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 ### Uniform color background :
@@ -120,5 +121,4 @@ shinyApp(ui, server)
 
 }
 
-}
 }

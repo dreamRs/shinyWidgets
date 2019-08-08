@@ -1,22 +1,21 @@
-#' Custom background color for your shinyapp
+
+#' @title Custom background color for your shinyapp
 #'
-#' Allow to change the background color of your shinyapp.
+#' @description Allow to change the background color of your shiny application.
 #'
 #' @param color Background color. Use either the fullname or the Hex code
-#' (\url{https://www.w3schools.com/colors/colors_hex.asp}). If more than one color is used,
-#' a gradient background is set.
+#'  (\url{https://www.w3schools.com/colors/colors_hex.asp}). If more than one color is used,
+#'  a gradient background is set.
 #' @param gradient Type of gradient: \code{linear} or \code{radial}.
 #' @param direction Direction for gradient, by default to \code{bottom}.
-#' Possibles choices are \code{bottom}, \code{top}, \code{right} or
-#' \code{left}, two values can be used, e.g. \code{c("bottom", "right")}.
-#'
+#'  Possibles choices are \code{bottom}, \code{top}, \code{right} or
+#'  \code{left}, two values can be used, e.g. \code{c("bottom", "right")}.
+#' @param shinydashboard Set to \code{TRUE} if in a {shinydasboard} application.
 #'
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' ### Uniform color background :
@@ -113,14 +112,14 @@
 #'
 #' }
 #'
-#' }
-setBackgroundColor <- function(color = "ghostwhite", gradient = c("linear", "radial"),
-                               direction = c("bottom", "top", "right", "left")) {
+setBackgroundColor <- function(color = "ghostwhite",
+                               gradient = c("linear", "radial"),
+                               direction = c("bottom", "top", "right", "left"),
+                               shinydashboard = FALSE) {
   gradient <- match.arg(gradient)
   direction <- match.arg(direction, several.ok = TRUE)
   if (length(color) == 1) {
     css <- sprintf("background-color: %s;", color)
-    css <- paste0("body {", css, "}")
   } else {
     if (length(direction) > 2) {
       direction <- direction[1]
@@ -138,14 +137,21 @@ setBackgroundColor <- function(color = "ghostwhite", gradient = c("linear", "rad
       paste(color, collapse = ", ")
     )
     css <- paste(css, collapse = "")
+    if (!isTRUE(shinydashboard)) {
+      css <- paste("position: absolute;", css)
+    }
     css <- paste(
-      "min-height: 100%; width:100%; position: absolute;
+      "min-height: 100%; width:100%;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;",
       css
     )
+  }
+  if (isTRUE(shinydashboard)) {
+    css <- paste0(".content-wrapper {", css, "}")
+  } else {
     css <- paste0("body {", css, "}")
   }
   htmltools::tags$head(
@@ -154,12 +160,13 @@ setBackgroundColor <- function(color = "ghostwhite", gradient = c("linear", "rad
 }
 
 
-#' Custom background image for your shinyapp
+#' @title Custom background image for your shinyapp
 #'
-#' Allow to change the background image of your shinyapp.
+#' @description Allow to change the background image of your shinyapp.
 #'
 #' @param src Url or path to the image, if using local image,
 #'  the file must be in \code{www/} directory and the path not contain \code{www/}.
+#' @param shinydashboard Set to \code{TRUE} if in a {shinydasboard} application.
 #'
 #'
 #' @export
@@ -167,7 +174,6 @@ setBackgroundColor <- function(color = "ghostwhite", gradient = c("linear", "rad
 #' @importFrom htmltools tags
 #'
 #' @examples
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -175,7 +181,9 @@ setBackgroundColor <- function(color = "ghostwhite", gradient = c("linear", "rad
 #'
 #' ui <- fluidPage(
 #'   tags$h2("Add a shiny app background image"),
-#'   setBackgroundImage(src = "http://wallpics4k.com/wp-content/uploads/2014/07/470318.jpg")
+#'   setBackgroundImage(
+#'     src = "https://www.fillmurray.com/1920/1080"
+#'   )
 #' )
 #'
 #' server <- function(input, output, session) {
@@ -186,20 +194,18 @@ setBackgroundColor <- function(color = "ghostwhite", gradient = c("linear", "rad
 #'
 #' }
 #'
-setBackgroundImage <- function(src = NULL) {
-  tags$head(
-    tags$style(
-      HTML(
-        paste0(
-          "body {
-           background: url(", src, ") no-repeat center center fixed;
+setBackgroundImage <- function(src = NULL, shinydashboard = FALSE) {
+  if (isTRUE(shinydashboard)) {
+    el <- ".content-wrapper"
+  } else {
+    el <- "body"
+  }
+  css <- paste0(
+    el, " {background: url(", src, ") no-repeat center center fixed;
            -webkit-background-size: cover;
            -moz-background-size: cover;
            -o-background-size: cover;
-           background-size: cover;
-          }"
-        )
-      )
-    )
+           background-size: cover;}"
   )
+  tags$head(tags$style(HTML(css)))
 }
