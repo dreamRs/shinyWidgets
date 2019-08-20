@@ -54,6 +54,8 @@ function swDrop(triggerId, swDropdownContentId, swDropdownId, animateIn, animate
             && !($(e.target).prop("tagName") === 'A' && $(e.target).attr('role') === 'option') // hack for bootstrap select
             && !($(e.target).prop("tagName") === 'SPAN' && $(e.target).attr('class') === 'text') // hack for bootstrap select
             && !($(e.target).prop("tagName") === 'I' && $(e.target).attr('class') === 'jstree-icon jstree-ocl') // hack for shinyTree
+            && !($(e.target).prop("tagName") === 'A' && RegExp('paginate_button').test($(e.target).attr('class')) === true) // hack for DT
+            && !($(e.target).prop("tagName") === 'DIV' && RegExp('datepicker--cell').test($(e.target).attr('class')) === true) // hack for airDatePicker
         ) {
 
           if($('#' + swDropdownContentId).hasClass('sw-show')) {

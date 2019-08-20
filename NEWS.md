@@ -4,7 +4,9 @@ shinyWidgets 0.4.8.900
 * Update to SweetAlert2: more options available for `sendSweetAlert`, `confirmSweetAlert`, `inputSweetAlert`.
 * add `useTablerDash` to inport functions from tablerDash.
 * `updateProgressBar`, `confirmSweetAlert`, `inputSweetAlert` are now module friendly, thanks to [@AshesITR](https://github.com/AshesITR).
-* add `inline` argument to dropdownButton: return either a span or a div element
+* add `inline` argument to dropdownButton: return either a span or a div element.
+* You can now use a `DT::datatable()` with pagination inside a `dropdown`.
+
 
 
 shinyWidgets 0.4.8
