@@ -11,12 +11,12 @@ pickerInput(inputId, label = NULL, choices, selected = NULL,
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
 
-\item{label}{Display a text in the center of the switch.}
+\item{label}{Display label for the control, or \code{NULL} for no label.}
 
 \item{choices}{List of values to select from. If elements of the
 list are named then that name rather than the value is displayed to the user.}
 
-\item{selected}{The initially selected value (or multiple values if multiple = TRUE).
+\item{selected}{The initially selected value (or multiple values if \code{multiple = TRUE}).
 If not specified then defaults to the first value for single-select lists
  and no values for multiple select lists.}
 

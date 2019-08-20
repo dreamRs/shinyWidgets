@@ -4,10 +4,10 @@
 #' Create a select picker (\url{https://developer.snapappointments.com/bootstrap-select/})
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
-#' @param label Display a text in the center of the switch.
+#' @param label Display label for the control, or \code{NULL} for no label.
 #' @param choices List of values to select from. If elements of the
 #'  list are named then that name rather than the value is displayed to the user.
-#' @param selected The initially selected value (or multiple values if multiple = TRUE).
+#' @param selected The initially selected value (or multiple values if \code{multiple = TRUE}).
 #' If not specified then defaults to the first value for single-select lists
 #'  and no values for multiple select lists.
 #' @param multiple Is selection of multiple items allowed?
