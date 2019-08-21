@@ -48,14 +48,45 @@ function swDrop(triggerId, swDropdownContentId, swDropdownId, animateIn, animate
     // Close on click outside dropdown
     $('html').on('click', function (e) {
       //console.log( $(e.target) );
-        if (!$('#' + swDropdownId).is(e.target)
-            && $('#' + swDropdownId).has(e.target).length === 0
-            && $('#' + swDropdownId).find(e.target).length === 0
-            && !($(e.target).prop("tagName") === 'A' && $(e.target).attr('role') === 'option') // hack for bootstrap select
-            && !($(e.target).prop("tagName") === 'SPAN' && $(e.target).attr('class') === 'text') // hack for bootstrap select
-            && !($(e.target).prop("tagName") === 'I' && $(e.target).attr('class') === 'jstree-icon jstree-ocl') // hack for shinyTree
-            && !($(e.target).prop("tagName") === 'A' && RegExp('paginate_button').test($(e.target).attr('class')) === true) // hack for DT
-            && !($(e.target).prop("tagName") === 'DIV' && RegExp('datepicker--cell').test($(e.target).attr('class')) === true) // hack for airDatePicker
+        if (
+          !$("#" + swDropdownId).is(e.target) &&
+          $("#" + swDropdownId).has(e.target).length === 0 &&
+          $("#" + swDropdownId).find(e.target).length === 0 &&
+          !(
+            $(e.target).prop("tagName") === "A" && $(e.target).attr("role") === "option"
+          ) && // hack for bootstrap select
+          !(
+            $(e.target).prop("tagName") === "SPAN" &&
+            $(e.target).attr("class") === "text"
+          ) && // hack for bootstrap select
+          !(
+            $(e.target).prop("tagName") === "I" &&
+            $(e.target).attr("class") === "jstree-icon jstree-ocl"
+          ) && // hack for shinyTree
+          !(
+            $(e.target).prop("tagName") === "A" &&
+            RegExp("paginate_button").test($(e.target).attr("class")) === true
+          ) && // hack for DT
+          !(
+            $(e.target).prop("tagName") === "DIV" &&
+            RegExp("datepicker--cell").test($(e.target).attr("class")) === true
+          ) && // hack for airDatePicker
+          !(
+            $(e.target)
+              .parent()
+              .prop("tagName") === "DIV" &&
+            $(e.target)
+              .parent()
+              .attr("class") === "selectize-dropdown-content"
+          ) && // hack for selectize
+          !(
+            $(e.target).prop("tagName") === "DIV" &&
+            $(e.target).attr("class") === "selectize-dropdown-content"
+          ) &&
+          !(
+            $(e.target).prop("tagName") === "DIV" &&
+            RegExp("option").test($(e.target).attr("class")) === true
+          )
         ) {
 
           if($('#' + swDropdownContentId).hasClass('sw-show')) {
