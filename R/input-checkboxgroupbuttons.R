@@ -80,7 +80,6 @@ checkboxGroupButtons <- function(
     if (!is.null(label)) htmltools::tags$br(),
     htmltools::tags$div(
       id=inputId, class="checkboxGroupButtons",
-      style = "margin-top: 3px; margin-bottom: 3px;",
       style=if (justified) "width: 100%;",
       htmltools::tags$div(
         class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
