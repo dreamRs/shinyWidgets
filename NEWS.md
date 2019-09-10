@@ -1,4 +1,4 @@
-shinyWidgets 0.4.8.900
+shinyWidgets 0.4.9
 ======================
 
 * Update to SweetAlert2: more options available for `sendSweetAlert()`, `confirmSweetAlert()`, `inputSweetAlert()`.
