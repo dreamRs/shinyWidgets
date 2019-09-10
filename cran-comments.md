@@ -1,7 +1,7 @@
 ## Test environments
 
-* local Windows 10 install, R 3.5.2
-* ubuntu 12.04 (on travis-ci), R 3.5.2
+* local Windows 10 install, R 3.6.1
+* ubuntu 12.04 (on travis-ci), R 3.6.1
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,12 +11,13 @@
 
 ## Reverse dependencies
 
-* I have run R CMD check on the 17 reverse dependencies : 
-  Complete summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
+* I unfortunately couldn't test all the dependencies due to an error with one of them (rpostgisLT).
+  Those tested not reported problems (one with error, viromeBrowser, installation issue)
+  Summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
 
 -------
 
-Remove a unit test that was not compatible with an upcoming version of Shiny.
+
 
 Thanks!
 Victor
