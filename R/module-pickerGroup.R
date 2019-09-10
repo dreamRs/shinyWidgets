@@ -218,8 +218,6 @@ pickerGroupServer <- function(input, output, session, data, vars) { # nocov star
   # Namespace
   ns <- session$ns
 
-  # toggleDisplayServer(session = session, id = ns("reset_all"), display = "none")
-
   lapply(
     X = vars,
     FUN = function(x) {
@@ -266,7 +264,6 @@ pickerGroupServer <- function(input, output, session, data, vars) { # nocov star
     lapply(
       X = vars,
       FUN = function(x) {
-        # tmp <- unique(data[, c(x, "indicator")])
         tmp <- aggregate(
           formula = as.formula(paste("indicator", x, sep = "~")),
           data = data,

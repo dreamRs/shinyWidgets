@@ -1,11 +1,13 @@
 shinyWidgets 0.4.8.900
 ======================
 
-* Update to SweetAlert2: more options available for `sendSweetAlert`, `confirmSweetAlert`, `inputSweetAlert`.
-* add `useTablerDash` to inport functions from tablerDash.
-* `updateProgressBar`, `confirmSweetAlert`, `inputSweetAlert` are now module friendly, thanks to [@AshesITR](https://github.com/AshesITR).
-* add `inline` argument to dropdownButton: return either a span or a div element.
-* You can now use a `DT::datatable()` with pagination inside a `dropdown`.
+* Update to SweetAlert2: more options available for `sendSweetAlert()`, `confirmSweetAlert()`, `inputSweetAlert()`.
+* add `useTablerDash()` to inport functions from tablerDash.
+* `updateProgressBar()`, `confirmSweetAlert()`, `inputSweetAlert()` are now module friendly, thanks to [@AshesITR](https://github.com/AshesITR).
+* add `inline = TRUE/FALSE` argument to `dropdownButton()`: return either a span or a div element.
+* You can now use a `DT::datatable()` with pagination inside a `dropdown()`.
+* Removed extra margins (top and bottom, 3px each) in `radioGroupButtons()` and `checkboxGroupButtons()`.
+* add `inline = TRUE/FALSE` argument to `pickerGroupUI()`: put pickers side-by-side (default) or one of top of each other.
 
 
 

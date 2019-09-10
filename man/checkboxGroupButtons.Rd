@@ -47,23 +47,47 @@ A buttons group control that can be added to a UI definition.
 Create buttons grouped that act like checkboxes.
 }
 \examples{
-\dontrun{
-## Only run examples in interactive R sessions
 if (interactive()) {
 
-ui <- fluidPage(
-  checkboxGroupButtons(inputId = "somevalue",
-                       label = "Make a choice: ",
-                       choices = c("A", "B", "C")),
-  verbatimTextOutput("value")
-)
-server <- function(input, output) {
-  output$value <- renderText({ input$somevalue })
-}
-shinyApp(ui, server)
-}
-}
+  ui <- fluidPage(
+    tags$h1("checkboxGroupButtons examples"),
 
+    checkboxGroupButtons(
+      inputId = "somevalue1",
+      label = "Make a choice: ",
+      choices = c("A", "B", "C")
+    ),
+    verbatimTextOutput("value1"),
+
+    checkboxGroupButtons(
+      inputId = "somevalue2",
+      label = "With custom status:",
+      choices = names(iris),
+      status = "primary"
+    ),
+    verbatimTextOutput("value2"),
+
+    checkboxGroupButtons(
+      inputId = "somevalue3",
+      label = "With icons:",
+      choices = names(mtcars),
+      checkIcon = list(
+        yes = icon("check-square"),
+        no = icon("square-o")
+      )
+    ),
+    verbatimTextOutput("value3")
+  )
+  server <- function(input, output) {
+
+    output$value1 <- renderPrint({ input$somevalue1 })
+    output$value2 <- renderPrint({ input$somevalue2 })
+    output$value3 <- renderPrint({ input$somevalue3 })
+
+  }
+  shinyApp(ui, server)
+
+}
 }
 \seealso{
 \code{\link{updateCheckboxGroupButtons}}
