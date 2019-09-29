@@ -44,7 +44,6 @@ A progress bar that can be added to a UI definition.
 Create a progress bar to provide feedback on calculation.
 }
 \examples{
-\dontrun{
 if (interactive()) {
 
 library("shiny")
@@ -101,7 +100,6 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 
-}
 }
 }
 \seealso{

@@ -25,7 +25,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -83,8 +82,6 @@
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-#' }
-
 progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NULL,
                         status = NULL, striped = FALSE, title = NULL, range_value = NULL, unit_mark = "%") {
   if (!is.null(total)) {

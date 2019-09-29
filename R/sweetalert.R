@@ -27,20 +27,28 @@
 #' This function isn't necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},
 #'  \code{inputSweetAlert}, but is still needed for \code{progressSweetAlert}.
 #'
+#' @param theme Theme to modify alerts appearance.
 #'
 #' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}}.
 #'
-#' @importFrom htmltools singleton tagList tags
+#' @importFrom htmltools attachDependencies htmlDependency singleton tagList tags
 #'
 #' @export
-useSweetAlert <- function() {
+useSweetAlert <- function(theme = c("sweetalert2", "minimal", "dark", "bootstrap-4", "borderless")) {
+  theme <- match.arg(theme)
   tag_sa <- singleton(
     tagList(
       tags$head(tags$style(".swal2-popup {font-size: 1.6rem !important;}")),
       tags$span(id = "sw-sa-deps")
     )
   )
-  attachShinyWidgetsDep(tag_sa, "sweetalert")
+  attachDependencies(tag_sa, htmlDependency(
+    name = "sweetalert2",
+    version = "8.17.6",
+    src = c(href="shinyWidgets/sweetalert2"),
+    script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
+    stylesheet = sprintf("css/%s.min.css", theme)
+  ))
 }
 
 
@@ -187,8 +195,10 @@ useSweetAlert <- function() {
 #'
 #' }
 sendSweetAlert <- function(session, title = "Title", text = NULL,
-                           type = NULL, btn_labels = "Ok", btn_colors = "#3085d6", html = FALSE,
-                           closeOnClickOutside = TRUE, showCloseButton = FALSE, width = NULL) {
+                           type = NULL, btn_labels = "Ok",
+                           btn_colors = "#3085d6", html = FALSE,
+                           closeOnClickOutside = TRUE,
+                           showCloseButton = FALSE, width = NULL) {
   insertUI(
     selector = "body", where = "afterBegin",
     ui = useSweetAlert(), immediate = TRUE, session = session

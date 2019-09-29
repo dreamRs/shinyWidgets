@@ -19,7 +19,6 @@
 #' @seealso \link{updateSearchInput} to update value server-side.
 #'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'   ui <- fluidPage(
 #'     tags$h1("Search Input"),
@@ -42,7 +41,6 @@
 #'   }
 #'
 #'   shinyApp(ui = ui, server = server)
-#' }
 #' }
 #'
 #' @importFrom shiny restoreInput
@@ -111,8 +109,6 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -158,8 +154,6 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 updateSearchInput <- function (session, inputId, label = NULL, value = NULL, placeholder = NULL, trigger = FALSE) {

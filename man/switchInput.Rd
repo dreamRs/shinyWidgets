@@ -47,7 +47,6 @@ For more information, see the project on Github
  \url{https://github.com/Bttstrp/bootstrap-switch}.
 }
 \examples{
-\dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
@@ -63,7 +62,6 @@ server <- function(input, output) {
   output$value <- renderPrint({ input$somevalue })
 }
 shinyApp(ui, server)
-}
 }
 }
 \seealso{

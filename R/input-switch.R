@@ -20,7 +20,6 @@
 #' @return A switch control that can be added to a UI definition.
 #'
 #'
-#'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags validateCssUnit
 #'
@@ -33,7 +32,6 @@
 #' @seealso \code{\link{updateSwitchInput}}, \code{\link{materialSwitch}}
 #'
 #' @examples
-#' \dontrun{
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -49,7 +47,6 @@
 #'   output$value <- renderPrint({ input$somevalue })
 #' }
 #' shinyApp(ui, server)
-#' }
 #' }
 switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', offLabel = 'OFF',
                         onStatus = NULL, offStatus = NULL, size = "default", labelWidth = "auto",
@@ -109,8 +106,6 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
 #' @seealso \code{\link{switchInput}}
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'   library("shiny")
 #'   library("shinyWidgets")
@@ -306,8 +301,6 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
 #'   }
 #'
 #'   shinyApp(ui = ui, server = server)
-#'
-#' }
 #'
 #' }
 updateSwitchInput <- function(session, inputId,

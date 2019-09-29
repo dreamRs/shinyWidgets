@@ -27,8 +27,6 @@ Change the value of a search input on the client
 By default, only UI value is updated, use \code{trigger = TRUE} to update both UI and Server value.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -74,8 +72,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

@@ -4,7 +4,11 @@
 \alias{useSweetAlert}
 \title{Load Sweet Alert dependencies}
 \usage{
-useSweetAlert()
+useSweetAlert(theme = c("sweetalert2", "minimal", "dark", "bootstrap-4",
+  "borderless"))
+}
+\arguments{
+\item{theme}{Theme to modify alerts appearance.}
 }
 \description{
 This function isn't necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},

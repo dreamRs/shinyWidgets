@@ -33,7 +33,6 @@ The two buttons ('search' and 'reset') act like \code{actionButton}, you can
 retrieve their value server-side with \code{input$<INPUTID>_search} and \code{input$<INPUTID>_reset}.
 }
 \examples{
-\dontrun{
 if (interactive()) {
   ui <- fluidPage(
     tags$h1("Search Input"),
@@ -56,7 +55,6 @@ if (interactive()) {
   }
 
   shinyApp(ui = ui, server = server)
-}
 }
 
 }

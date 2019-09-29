@@ -31,8 +31,6 @@ updateSwitchInput(session, inputId, value = NULL, label = NULL,
 Change the value of a switch input on the client
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
   library("shiny")
   library("shinyWidgets")
@@ -228,8 +226,6 @@ if (interactive()) {
   }
 
   shinyApp(ui = ui, server = server)
-
-}
 
 }
 }

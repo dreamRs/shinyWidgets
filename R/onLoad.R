@@ -5,7 +5,7 @@
 #' @noRd
 #'
 .onLoad <- function(...) {
-  shiny::addResourcePath('shinyWidgets', system.file('www', package = 'shinyWidgets'))
+  shiny::addResourcePath('shinyWidgets', system.file("assets", package = "shinyWidgets"))
   shiny::registerInputHandler("air.date", function(data, ...) {
     if (is.null(data)) {
       NULL
