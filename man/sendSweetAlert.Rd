@@ -35,7 +35,6 @@ the modal by clicking outside of it, or not.}
 Send a message from the server and launch a sweet alert in the UI.
 }
 \examples{
-\dontrun{
 if (interactive()) {
 
 library(shiny)
@@ -147,7 +146,6 @@ shinyApp(
   }
 )
 
-}
 }
 }
 \seealso{

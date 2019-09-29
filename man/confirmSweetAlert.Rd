@@ -38,9 +38,6 @@ the modal by clicking outside of it, or not.}
 Launch a popup to ask confirmation to the user
 }
 \examples{
-
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
@@ -163,8 +160,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-
-}
 
 }
 }

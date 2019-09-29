@@ -7,7 +7,7 @@
 inputSweetAlert(session, inputId, title = NULL, text = NULL,
   type = NULL, input = c("text", "password", "textarea", "radio",
   "checkbox", "select"), inputOptions = NULL, inputPlaceholder = NULL,
-  btn_labels = "Ok", btn_colors = NULL, ...)
+  btn_labels = "Ok", btn_colors = NULL, reset_input = TRUE, ...)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}
@@ -33,7 +33,9 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 
 \item{btn_colors}{Color(s) for button(s).}
 
-\item{...}{Additional arguments (not used)}
+\item{reset_input}{Set the input value to \code{NULL} when alert is displayed.}
+
+\item{...}{Additional arguments (not used).}
 }
 \description{
 Launch a popup with a text input

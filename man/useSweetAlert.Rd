@@ -7,9 +7,9 @@
 useSweetAlert()
 }
 \description{
-This function is'nt necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},
+This function isn't necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},
  \code{inputSweetAlert}, but is still needed for \code{progressSweetAlert}.
 }
 \seealso{
-\code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}}
+\code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}}.
 }

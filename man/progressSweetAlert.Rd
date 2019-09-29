@@ -31,8 +31,6 @@ progressSweetAlert(session, id, value, total = NULL,
 Progress bar in a sweet alert
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
@@ -75,8 +73,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-
-}
 
 }
 }
