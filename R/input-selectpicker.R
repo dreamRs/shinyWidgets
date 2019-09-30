@@ -355,7 +355,7 @@ updatePickerInput <- function (session, inputId, label = NULL, selected = NULL, 
 #'
 #' @param choices a named list
 #' @param selected selected value if any
-#' @param choicesOpt additional option ofr choices
+#' @param choicesOpt additional option for choices
 #'
 #' @importFrom htmltools HTML htmlEscape tagList
 #'
