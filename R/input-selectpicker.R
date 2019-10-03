@@ -374,12 +374,14 @@ pickerSelectOptions <- function(choices, selected = NULL, choicesOpt = NULL, max
   }
   if (is.null(choicesOpt))
     choicesOpt <- list()
-  l <- sapply(choices, length)
+  l <- lengths(choices)
   if (!is.null(maxOptGroup))
     maxOptGroup <- rep_len(x = maxOptGroup, length.out = sum(l))
-  m <- matrix(data = c(c(1, cumsum(l)[-length(l)] + 1), cumsum(l)), ncol = 2)
-  html <- lapply(seq_along(choices), FUN = function(i) {
-    label <- names(choices)[i]
+  cusum <- cumsum(l)
+  m <- matrix(data = c(1, cusum[-length(l)] + 1, cusum), ncol = 2)
+  namesch <- names(choices)
+  html <- lapply(seq_len(length(choices)), FUN = function(i) {
+    label <- namesch[i]
     choice <- choices[[i]]
     if (is.list(choice)) {
       tags$optgroup(
