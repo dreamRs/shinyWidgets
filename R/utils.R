@@ -5,8 +5,11 @@
 
 
 # dropNulls
+# dropNulls <- function(x) {
+#   x[!vapply(x, is.null, FUN.VALUE = logical(1))]
+# }
 dropNulls <- function(x) {
-  x[!vapply(x, is.null, FUN.VALUE = logical(1))]
+  x[lengths(x) != 0]
 }
 
 dropNullsOrNA <- function(x) {
