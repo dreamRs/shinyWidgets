@@ -31,8 +31,6 @@ A set of radio buttons that can be added to a UI definition.
 Create a set of prettier radio buttons used to select an item from a list.
 }
 \examples{
-\dontrun{
-
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
@@ -66,7 +64,6 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 
-}
 }
 }
 \seealso{

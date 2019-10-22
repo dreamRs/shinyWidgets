@@ -32,7 +32,6 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -81,7 +80,6 @@
 #'
 #' shinyApp(ui, server)
 #'
-#' }
 #' }
 dropdownButton <- function(..., circle = TRUE, status = "default",
                            size = "default", icon = NULL,
@@ -193,8 +191,6 @@ tooltipOptions <- function(placement = "right", title = "Params", html
 #' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -240,9 +236,6 @@ tooltipOptions <- function(placement = "right", title = "Params", html
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#'
-#' }
-#'
 #'
 #' }
 toggleDropdownButton <- function(inputId, session = getDefaultReactiveDomain()) {

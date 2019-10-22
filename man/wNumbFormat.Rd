@@ -34,8 +34,6 @@ Format numbers in noUiSliderInput
 Performed via wNumb JavaScript library : \url{https://refreshless.com/wnumb/}.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library( shiny )
@@ -79,8 +77,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

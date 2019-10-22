@@ -33,8 +33,6 @@ parameters like \code{status}, \code{shape}, ... on the checkboxes, you can re-s
 Change the value of a pretty checkbox on the client
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -97,9 +95,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
-
 
 }
 }

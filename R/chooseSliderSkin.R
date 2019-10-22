@@ -19,8 +19,6 @@
 #'
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -75,9 +73,6 @@
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
-#'
 #'
 #' }
 chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",

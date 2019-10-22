@@ -9,13 +9,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #'  shinyWidgetsGallery()
-#'
-#' }
 #'
 #' }
 shinyWidgetsGallery <- function() { # nocov start

@@ -47,7 +47,6 @@
 #' @importFrom htmltools tags validateCssUnit singleton
 #'
 #' @export
-
 searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
                         btnSearch = NULL, btnReset = NULL, resetValue = "", width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)

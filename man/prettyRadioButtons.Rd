@@ -59,8 +59,6 @@ A character vector or \code{NULL} server-side.
 Create a set of radio buttons used to select an item from a list.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -121,8 +119,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

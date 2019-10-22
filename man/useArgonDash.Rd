@@ -11,7 +11,6 @@ Allow to use functions from 'argonDash' into a classic 'shiny' app,
 specifically \code{argonCard}, \code{argonTabSet} and \code{argonInfoCard}.
 }
 \examples{
-\dontrun{
 if (interactive()) {
 
 library(shiny)
@@ -158,6 +157,5 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 
-}
 }
 }

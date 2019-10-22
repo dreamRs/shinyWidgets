@@ -14,8 +14,6 @@
 #' @importFrom shiny sliderInput restoreInput
 #' @importFrom utils packageVersion
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' ### examples ----
@@ -50,8 +48,6 @@
 #'
 #' shinyApp(ui, server)
 #'
-#'
-#' }
 #'
 #' }
 #' @export
@@ -91,8 +87,6 @@ numericRangeInput <- function(inputId, label, value,
 }
 
 #' Change the value of a numeric range input
-#'
-#' Change the value of a numeric range input.
 #'
 #' @param session The session object passed to function given to shinyServer.
 #' @inheritParams numericRangeInput

@@ -41,8 +41,6 @@ a \code{reactive} function containing data filtered.
 Group of mutually dependent `selectizeInput` for filtering data.frame's columns (like in Excel).
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -66,7 +64,7 @@ ui <- fluidPage(
           )
         ), status = "primary"
       ),
-      dataTableOutput(outputId = "table")
+      DT::dataTableOutput(outputId = "table")
     )
   )
 )
@@ -78,12 +76,10 @@ server <- function(input, output, session) {
     data = mpg,
     vars = c("manufacturer", "model", "trans", "class")
   )
-  output$table <- renderDataTable(res_mod())
+  output$table <- DT::renderDataTable(res_mod())
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

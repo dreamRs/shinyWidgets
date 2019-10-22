@@ -23,7 +23,6 @@
 #'
 #'
 #' @examples
-#' \dontrun{
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -192,7 +191,6 @@
 #' shinyApp(ui, server)
 #'
 #' }
-#' }
 #'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags htmlEscape validateCssUnit
@@ -270,7 +268,6 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -342,7 +339,6 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
 #'
 #' shinyApp(ui = ui, server = server)
 #'
-#' }
 #' }
 updatePickerInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL, choicesOpt = NULL) {
   choices <- if (!is.null(choices))

@@ -15,8 +15,6 @@
 #'
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -50,9 +48,6 @@
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
-#'
 #'
 #' }
 setSliderColor <- function(color, sliderId) {

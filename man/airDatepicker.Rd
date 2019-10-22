@@ -118,8 +118,6 @@ An alternative to \code{dateInput} to select single, multiple or date range.
 This widget prevents \code{dateInput} from working, don't use both !
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 # examples of different options to select dates:
@@ -155,9 +153,6 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 
 }
-
-}
-
 }
 \seealso{
 See \code{\link{updateAirDateInput}} for updating slider value server-side.

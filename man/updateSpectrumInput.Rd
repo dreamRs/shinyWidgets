@@ -17,8 +17,6 @@ updateSpectrumInput(session, inputId, selected)
 Change the value of a spectrum input on the client
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
@@ -58,8 +56,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

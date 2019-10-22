@@ -109,10 +109,6 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
 #' @describeIn colorSelectorInput Examples of use for colorSelectorInput
 colorSelectorExample <- function() {
 
-  if (!requireNamespace(package = "RColorBrewer"))
-    message("Package 'RColorBrewer' is required to run this function")
-  if (!requireNamespace(package = "viridisLite"))
-    message("Package 'viridisLite' is required to run this function")
   if (!requireNamespace(package = "grDevices"))
     message("Package 'grDevices' is required to run this function")
 

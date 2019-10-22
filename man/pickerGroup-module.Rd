@@ -43,8 +43,6 @@ a \code{reactive} function containing data filtered.
 Group of mutually dependent \code{\link{pickerInput}} for filtering \code{data.frame}'s columns.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -70,7 +68,7 @@ ui <- fluidPage(
           )
         ), status = "primary"
       ),
-      dataTableOutput(outputId = "table")
+      DT::dataTableOutput(outputId = "table")
     )
   )
 )
@@ -82,7 +80,7 @@ server <- function(input, output, session) {
     data = mpg,
     vars = c("manufacturer", "model", "trans", "class")
   )
-  output$table <- renderDataTable(res_mod())
+  output$table <- DT::renderDataTable(res_mod())
 }
 
 shinyApp(ui, server)
@@ -119,7 +117,7 @@ if (interactive()) {
       ),
       column(
         width = 8,
-        dataTableOutput(outputId = "table")
+        DT::dataTableOutput(outputId = "table")
       )
     )
   )
@@ -131,12 +129,10 @@ if (interactive()) {
       data = mpg,
       vars = c("manufacturer", "model", "trans", "class")
     )
-    output$table <- renderDataTable(res_mod())
+    output$table <- DT::renderDataTable(res_mod())
   }
 
   shinyApp(ui, server)
-
-}
 
 }
 }

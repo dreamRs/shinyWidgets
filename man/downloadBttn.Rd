@@ -30,8 +30,6 @@ keyboard/interact using mouse or touch.}
 Create a download button with \link{actionBttn}.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -60,8 +58,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

@@ -15,13 +15,9 @@ demoNoUiSlider(example = "color")
 Some examples on how to use noUiSliderInput
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
-demoNoUiSlider("color")
-
-}
+  demoNoUiSlider("color")
 
 }
 }

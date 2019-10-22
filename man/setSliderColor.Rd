@@ -20,8 +20,6 @@ Edit the color of the original shiny's sliderInputs
 See also \url{https://www.w3schools.com/colors/colors_names.asp} to have an overview of all colors.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -55,9 +53,6 @@ server <- function(input, output) {
 }
 
 shinyApp(ui, server)
-
-}
-
 
 }
 }

@@ -19,5 +19,5 @@ maximum of the range; a numeric vector of two or more will have its minimum
 and maximum set the minimum and maximum of the range.}
 }
 \description{
-Change the value of a numeric range input.
+Change the value of a numeric range input
 }

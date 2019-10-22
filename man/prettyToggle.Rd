@@ -55,8 +55,6 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 A single checkbox that changes appearance if checked or not.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 library(shiny)
 library(shinyWidgets)
@@ -166,10 +164,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-
-
-}
 
 }
 }

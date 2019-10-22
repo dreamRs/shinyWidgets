@@ -61,8 +61,6 @@ server will receive the input as a character vector
 of the selected values.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -123,8 +121,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

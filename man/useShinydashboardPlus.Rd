@@ -10,8 +10,6 @@ useShinydashboardPlus()
 Allow to use functions from 'shinydashboardPlus' into a classic 'shiny' app.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -191,8 +189,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

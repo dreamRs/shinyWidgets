@@ -14,7 +14,6 @@ Allow to use functions from 'bs4Dash' into a classic 'shiny' app,
 specifically \code{bs4ValueBox}, \code{bs4InfoBox} and \code{bs4Card}.
 }
 \examples{
-\dontrun{
 if (interactive()) {
 
 library(shiny)
@@ -124,6 +123,5 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 
-}
 }
 }

@@ -15,13 +15,9 @@ demoAirDatepicker(example = "datepicker")
 Some examples on how to use airDatepickerInput
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
-demoAirDatepicker("datepicker")
-
-}
+  demoAirDatepicker("datepicker")
 
 }
 }

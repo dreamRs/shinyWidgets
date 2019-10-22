@@ -15,10 +15,38 @@
 #' @importFrom htmltools tagList
 #'
 #' @export
-
-
-circleButton <- function (inputId, icon = NULL, status = "default", size = "default", ...)
-{
+#'
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
+#'
+#'   ui <- fluidPage(
+#'     tags$h3("Rounded actionBution"),
+#'     circleButton(inputId = "btn1", icon = icon("gear")),
+#'     circleButton(
+#'       inputId = "btn2",
+#'       icon = icon("sliders"),
+#'       status = "primary"
+#'     ),
+#'     verbatimTextOutput("res1"),
+#'     verbatimTextOutput("res2")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'
+#'     output$res1 <- renderPrint({
+#'       paste("value button 1:", input$btn1)
+#'     })
+#'     output$res2 <- renderPrint({
+#'       paste("value button 2:", input$btn2)
+#'     })
+#'
+#'   }
+#'
+#'   shinyApp(ui, server)
+#' }
+circleButton <- function (inputId, icon = NULL, status = "default", size = "default", ...) {
   value <- shiny::restoreInput(id = inputId, default = NULL)
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   attachShinyWidgetsDep(

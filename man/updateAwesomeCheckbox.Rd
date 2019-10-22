@@ -19,8 +19,6 @@ updateAwesomeCheckbox(session, inputId, label = NULL, value = NULL)
 Change the value of an awesome checkbox input on the client
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
@@ -63,8 +61,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-
-}
 
 }
 }

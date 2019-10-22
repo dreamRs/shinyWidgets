@@ -32,7 +32,6 @@ keyboard/interact using mouse or touch.}
 Like \code{actionButton} but awesome, via \url{https://bttn.surge.sh/}
 }
 \examples{
-\dontrun{
 if (interactive()) {
 
 library(shiny)
@@ -69,7 +68,6 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 
-}
 }
 }
 \seealso{

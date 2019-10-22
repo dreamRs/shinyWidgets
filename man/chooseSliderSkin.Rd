@@ -22,8 +22,6 @@ Customize the appearance of the original shiny's \code{sliderInput}
 It is not currently possible to apply multiple themes at the same time.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -78,9 +76,6 @@ server <- function(input, output) {
 }
 
 shinyApp(ui, server)
-
-}
-
 
 }
 }

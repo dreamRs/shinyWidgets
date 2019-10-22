@@ -10,13 +10,9 @@ demoNumericRange()
 An example showing how numericRangeInput works
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
-demoNumericRange()
-
-}
+  demoNumericRange()
 
 }
 }

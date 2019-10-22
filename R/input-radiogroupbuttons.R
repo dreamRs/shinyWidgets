@@ -180,8 +180,6 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' @importFrom htmltools tagList
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -239,8 +237,6 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#'
-#' }
 #'
 #' }
 updateRadioGroupButtons <- function(session, inputId, label = NULL, choices = NULL, selected = NULL,

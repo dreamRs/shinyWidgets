@@ -35,8 +35,6 @@
 #' @importFrom htmltools tags
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -62,8 +60,6 @@
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#'
-#' }
 #'
 #' }
 knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
@@ -122,8 +118,6 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -186,8 +180,6 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#'
-#' }
 #'
 #' }
 updateKnobInput <- function(session, inputId, label = NULL, value = NULL, options = NULL) {

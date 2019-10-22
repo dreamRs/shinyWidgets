@@ -37,8 +37,6 @@ A toggle switch to replace checkbox
 Appearance is better in a browser such as Chrome than in RStudio Viewer
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -87,9 +85,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
-
 
 }
 }

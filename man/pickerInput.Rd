@@ -38,7 +38,6 @@ A select control that can be added to a UI definition.
 Create a select picker (\url{https://developer.snapappointments.com/bootstrap-select/})
 }
 \examples{
-\dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
@@ -206,7 +205,6 @@ server <- function(input, output) {
 }
 shinyApp(ui, server)
 
-}
 }
 
 }

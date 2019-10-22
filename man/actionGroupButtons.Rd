@@ -28,8 +28,6 @@ An actions buttons group control that can be added to a UI definition.
 Create a group of actions buttons.
 }
 \examples{
-
-\dontrun{
 if (interactive()) {
   library("shiny")
   library("shinyWidgets")
@@ -58,6 +56,4 @@ if (interactive()) {
 
   shinyApp(ui = ui, server = server)
 }
-}
-
 }

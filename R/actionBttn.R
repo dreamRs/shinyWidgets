@@ -23,7 +23,6 @@
 #' @importFrom htmltools tags
 #'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -60,7 +59,6 @@
 #'
 #' shinyApp(ui = ui, server = server)
 #'
-#' }
 #' }
 actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
                        color = "default", size = "md", block = FALSE,
@@ -112,8 +110,6 @@ actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
 #' @importFrom shiny icon
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -142,8 +138,6 @@ actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 downloadBttn <- function (outputId, label = "Download", style = "unite",

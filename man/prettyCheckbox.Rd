@@ -51,8 +51,6 @@ Due to the nature of different checkbox design, certain animations are not appli
 You can find examples on the pretty-checkbox official page : \url{https://lokesh-coder.github.io/pretty-checkbox/}.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -161,8 +159,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

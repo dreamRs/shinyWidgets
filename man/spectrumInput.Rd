@@ -34,13 +34,11 @@ The selected color in Hex format server-side
 A widget to select a color within palettes, and with more options if needed.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
 library("shinyWidgets")
-library("RColorBrewer")
+library("scales")
 
 ui <- fluidPage(
   tags$h1("Spectrum color picker"),
@@ -52,10 +50,10 @@ ui <- fluidPage(
     label = "Pick a color:",
     choices = list(
       list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
-      as.list(brewer.pal(n = 9, name = "Blues")),
-      as.list(brewer.pal(n = 9, name = "Greens")),
-      as.list(brewer.pal(n = 11, name = "Spectral")),
-      as.list(brewer.pal(n = 8, name = "Dark2"))
+      as.list(brewer_pal(palette = "Blues")(9)),
+      as.list(brewer_pal(palette = "Greens")(9)),
+      as.list(brewer_pal(palette = "Spectral")(11)),
+      as.list(brewer_pal(palette = "Dark2")(8))
     ),
     options = list(`toggle-palette-more-text` = "Show more")
   ),
@@ -70,8 +68,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

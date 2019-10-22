@@ -27,8 +27,6 @@ updateAwesomeCheckboxGroup(session, inputId, label = NULL,
 Change the value of a \code{\link{awesomeCheckboxGroup}} input on the client
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
@@ -71,8 +69,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-
-}
 
 }
 }

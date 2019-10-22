@@ -33,8 +33,6 @@ parameters like \code{status}, \code{shape}, ... on the radio buttons, you can r
 Change the value pretty radio buttons on the client
 }
 \examples{
-\dontrun{
-
  if (interactive()) {
 
 library(shiny)
@@ -101,6 +99,4 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 
  }
-
-}
 }

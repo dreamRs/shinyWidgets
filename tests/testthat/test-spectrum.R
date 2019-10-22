@@ -8,10 +8,10 @@ test_that("example", {
     label = "Pick a color:",
     choices = list(
       list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
-      as.list(RColorBrewer::brewer.pal(n = 9, name = "Blues")),
-      as.list(RColorBrewer::brewer.pal(n = 9, name = "Greens")),
-      as.list(RColorBrewer::brewer.pal(n = 11, name = "Spectral")),
-      as.list(RColorBrewer::brewer.pal(n = 8, name = "Dark2"))
+      as.list(scales::brewer_pal(palette = "Blues")(9)),
+      as.list(scales::brewer_pal(palette = "Greens")(9)),
+      as.list(scales::brewer_pal(palette = "Spectral")(11)),
+      as.list(scales::brewer_pal(palette = "Dark2")(8))
     ),
     options = list(`toggle-palette-more-text` = "Show more")
   )

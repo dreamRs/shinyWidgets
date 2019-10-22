@@ -50,7 +50,6 @@ dropdown and you can't nest them. Instead use \code{\link{dropdown}},
 it has similar features but is built differently so it works.
 }
 \examples{
-\dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
@@ -99,6 +98,5 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 
-}
 }
 }

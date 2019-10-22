@@ -24,8 +24,6 @@
 #' @importFrom shiny restoreInput
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -76,9 +74,6 @@
 #' shinyApp(ui, server)
 #'
 #' }
-#'
-#'
-#' }
 prettySwitch <- function(inputId, label, value = FALSE, status = "default",
                          slim = FALSE, fill = FALSE, bigger = FALSE,
                          inline = FALSE, width = NULL) {
@@ -121,8 +116,6 @@ prettySwitch <- function(inputId, label, value = FALSE, status = "default",
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -153,8 +146,6 @@ prettySwitch <- function(inputId, label, value = FALSE, status = "default",
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
@@ -207,8 +198,6 @@ updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
 #' @importFrom shiny restoreInput
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #' library(shiny)
 #' library(shinyWidgets)
@@ -319,10 +308,6 @@ updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
 #'
 #' shinyApp(ui, server)
 #'
-#'
-#'
-#' }
-#'
 #' }
 prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
                          icon_off = NULL,
@@ -395,8 +380,6 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -430,8 +413,6 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
@@ -480,8 +461,6 @@ updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
 #' @importFrom shiny restoreInput
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -592,8 +571,6 @@ updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
 #' shinyApp(ui, server)
 #'
 #' }
-#'
-#' }
 prettyCheckbox <- function(inputId, label, value = FALSE, status = "default",
                            shape = c("square", "curve", "round"),
                            outline = FALSE, fill = FALSE, thick = FALSE,
@@ -650,8 +627,6 @@ prettyCheckbox <- function(inputId, label, value = FALSE, status = "default",
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -685,8 +660,6 @@ prettyCheckbox <- function(inputId, label, value = FALSE, status = "default",
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 updatePrettyCheckbox<- function (session, inputId, label = NULL, value = NULL) {
@@ -744,8 +717,6 @@ updatePrettyCheckbox<- function (session, inputId, label = NULL, value = NULL) {
 #' @importFrom shiny restoreInput
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -806,8 +777,6 @@ updatePrettyCheckbox<- function (session, inputId, label = NULL, value = NULL) {
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 prettyCheckboxGroup <- function(inputId, label, choices = NULL,
@@ -936,8 +905,6 @@ generatePretty <- function(inputId, selected, inline, type = "checkbox",
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -1000,9 +967,6 @@ generatePretty <- function(inputId, selected, inline, type = "checkbox",
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
-#'
 #'
 #' }
 updatePrettyCheckboxGroup <- function (session, inputId, label = NULL,
@@ -1094,8 +1058,6 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
 #' @importFrom shiny restoreInput
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -1156,8 +1118,6 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 prettyRadioButtons <- function(inputId, label, choices = NULL,
@@ -1223,8 +1183,6 @@ prettyRadioButtons <- function(inputId, label, choices = NULL,
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #'  if (interactive()) {
 #'
 #' library(shiny)
@@ -1291,8 +1249,6 @@ prettyRadioButtons <- function(inputId, label, choices = NULL,
 #' shinyApp(ui, server)
 #'
 #'  }
-#'
-#' }
 updatePrettyRadioButtons <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,
           inline = FALSE, choiceNames = NULL, choiceValues = NULL, prettyOptions = list()) {
   if (is.null(selected)) {

@@ -32,7 +32,6 @@ A multiselect control
 A user-friendly replacement for select boxes with the multiple attribute
 }
 \examples{
-\dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
@@ -90,7 +89,6 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 
-}
 }
 }
 \seealso{

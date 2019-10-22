@@ -15,8 +15,6 @@ toggleDropdownButton(inputId, session = getDefaultReactiveDomain())
 Open or close a dropdown menu server-side.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
@@ -62,9 +60,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-
-}
-
 
 }
 }

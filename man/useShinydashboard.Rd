@@ -11,8 +11,6 @@ Allow to use functions from 'shinydashboard' into a classic 'shiny' app,
 specifically \code{valueBox}, \code{infoBox} and \code{box}.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -100,8 +98,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

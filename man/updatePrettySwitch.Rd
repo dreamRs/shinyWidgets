@@ -19,8 +19,6 @@ updatePrettySwitch(session, inputId, label = NULL, value = NULL)
 Change the value of a pretty switch on the client
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library(shiny)
@@ -51,8 +49,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-}
 
 }
 }

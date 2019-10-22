@@ -65,8 +65,6 @@ Numeric value server-side.
 Knob Input
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
@@ -92,8 +90,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-
-}
 
 }
 }

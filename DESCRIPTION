@@ -44,12 +44,12 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Suggests: shinydashboard,
-    viridisLite,
-    RColorBrewer,
     testthat,
     covr,
     shinydashboardPlus,
     bs4Dash,
     argonR,
     argonDash,
-    tablerDash
+    tablerDash,
+    ggplot2,
+    DT

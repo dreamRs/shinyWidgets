@@ -13,7 +13,6 @@
 #' @seealso \code{\link{updateAwesomeCheckbox}}
 #'
 #' @examples
-#' \dontrun{
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -28,7 +27,6 @@
 #'   output$value <- renderText({ input$somevalue })
 #' }
 #' shinyApp(ui, server)
-#' }
 #' }
 #'
 #' @importFrom shiny restoreInput
@@ -107,8 +105,6 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status)
 #' @export
 #'
 #' @examples
-#'
-#' \dontrun{
 #' if (interactive()) {
 #'
 #'
@@ -144,10 +140,8 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status)
 #'
 #'
 #' }
-#' }
 awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inline = FALSE, status = "primary",
-          width = NULL)
-{
+          width = NULL) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
   if (!is.null(selected))
@@ -190,8 +184,6 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -236,8 +228,6 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-#'
-#' }
 updateAwesomeCheckboxGroup <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,
           inline = FALSE, status = "primary") {
   if (!is.null(choices))
@@ -266,8 +256,6 @@ updateAwesomeCheckboxGroup <- function (session, inputId, label = NULL, choices 
 #' @seealso \code{\link{awesomeCheckbox}}
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -310,8 +298,6 @@ updateAwesomeCheckboxGroup <- function (session, inputId, label = NULL, choices 
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#'
-#' }
 #'
 #' }
 updateAwesomeCheckbox <- function (session, inputId, label = NULL, value = NULL) {

@@ -31,8 +31,6 @@
 #' @importFrom jsonlite toJSON
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -54,8 +52,6 @@
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#'
-#' }
 #'
 #' }
 sliderTextInput <- function (inputId, label, choices, selected = NULL,
@@ -178,8 +174,6 @@ sliderTextInput <- function (inputId, label, choices, selected = NULL,
 #' @seealso \code{\link{sliderTextInput}}
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #' library("shiny")
 #' library("shinyWidgets")
@@ -218,8 +212,6 @@ sliderTextInput <- function (inputId, label, choices, selected = NULL,
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#' }
-#'
 #' }
 updateSliderTextInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL, from_fixed = NULL, to_fixed = NULL) {
   message <- dropNulls(list(

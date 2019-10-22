@@ -21,8 +21,6 @@
 #' @importFrom utils modifyList
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -48,7 +46,7 @@
 #'           )
 #'         ), status = "primary"
 #'       ),
-#'       dataTableOutput(outputId = "table")
+#'       DT::dataTableOutput(outputId = "table")
 #'     )
 #'   )
 #' )
@@ -60,7 +58,7 @@
 #'     data = mpg,
 #'     vars = c("manufacturer", "model", "trans", "class")
 #'   )
-#'   output$table <- renderDataTable(res_mod())
+#'   output$table <- DT::renderDataTable(res_mod())
 #' }
 #'
 #' shinyApp(ui, server)
@@ -97,7 +95,7 @@
 #'       ),
 #'       column(
 #'         width = 8,
-#'         dataTableOutput(outputId = "table")
+#'         DT::dataTableOutput(outputId = "table")
 #'       )
 #'     )
 #'   )
@@ -109,12 +107,10 @@
 #'       data = mpg,
 #'       vars = c("manufacturer", "model", "trans", "class")
 #'     )
-#'     output$table <- renderDataTable(res_mod())
+#'     output$table <- DT::renderDataTable(res_mod())
 #'   }
 #'
 #'   shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters", options = list(), inline = TRUE) {

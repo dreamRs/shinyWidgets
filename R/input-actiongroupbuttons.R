@@ -18,8 +18,6 @@
 #' @export
 #'
 #' @examples
-#'
-#' \dontrun{
 #' if (interactive()) {
 #'   library("shiny")
 #'   library("shinyWidgets")
@@ -48,8 +46,6 @@
 #'
 #'   shinyApp(ui = ui, server = server)
 #' }
-#' }
-#'
 actionGroupButtons <- function(inputIds,
                                labels,
                                status = "default",

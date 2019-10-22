@@ -45,8 +45,6 @@
 #' @importFrom jsonlite toJSON
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' ### examples ----
@@ -93,9 +91,6 @@
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#'
-#' }
 #'
 #' }
 noUiSliderInput <- function(inputId, label = NULL, min, max, value,
@@ -180,8 +175,6 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library( shiny )
@@ -227,8 +220,6 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
 #' shinyApp(ui, server)
 #'
 #' }
-#'
-#' }
 wNumbFormat <- function(decimals = NULL, mark = NULL,
                        thousand = NULL, prefix = NULL,
                        suffix = NULL, negative = NULL) {
@@ -260,13 +251,9 @@ wNumbFormat <- function(decimals = NULL, mark = NULL,
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #'  demoNoUiSlider("update")
-#'
-#' }
 #'
 #' }
 updateNoUiSliderInput <- function(session, inputId, value = NULL, range = NULL, disable = FALSE) {

@@ -5,21 +5,21 @@
 
 library("shiny")
 library("shinyWidgets")
-library("RColorBrewer")
-library("viridisLite")
+library("scales")
+
 
 
 # ColorBrewer palette
 choices_brewer <- list(
-  "Blues" = brewer.pal(n = 9, name = "Blues"),
-  "Greens" = brewer.pal(n = 9, name = "Greens"),
-  "Reds" = brewer.pal(n = 9, name = "Reds"),
-  "Oranges" = brewer.pal(n = 9, name = "Oranges"),
-  "Purples" = brewer.pal(n = 9, name = "Purples"),
-  "Greys" = brewer.pal(n = 9, name = "Greys"),
-  "Dark2" = brewer.pal(n = 8, name = "Dark2"),
-  "Set1" = brewer.pal(n = 8, name = "Set1"),
-  "Paired" = brewer.pal(n = 10, name = "Paired")
+  "Blues" = brewer_pal(palette = "Blues")(9),
+  "Greens" = brewer_pal(palette = "Greens")(9),
+  "Reds" = brewer_pal(palette = "Reds")(9),
+  "Oranges" = brewer_pal(palette = "Oranges")(9),
+  "Purples" = brewer_pal(palette = "Purples")(9),
+  "Greys" = brewer_pal(palette = "Greys")(9),
+  "Dark2" = brewer_pal(palette = "Dark2")(8),
+  "Set1" = brewer_pal(palette = "Set1")(8),
+  "Paired" = brewer_pal(palette = "Paired")(10)
 )
 
 
@@ -30,9 +30,11 @@ col2Hex <- function(col) {
 }
 
 choices_viridis <- list(
-  " " = col2Hex(viridis(10)),
-  " " = col2Hex(magma(10)),
-  " " = col2Hex(inferno(10))
+  "viridis" = col2Hex(viridis_pal(option = "viridis")(10)),
+  "magma" = col2Hex(viridis_pal(option = "magma")(10)),
+  "inferno" = col2Hex(viridis_pal(option = "inferno")(10)),
+  "plasma" = col2Hex(viridis_pal(option = "plasma")(10)),
+  "cividis" = col2Hex(viridis_pal(option = "cividis")(10))
 )
 
 

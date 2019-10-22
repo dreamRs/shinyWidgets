@@ -24,9 +24,9 @@ updateAirDateInput(session, inputId, label = NULL, value = NULL,
 Change the value of \code{\link{airDatepickerInput}} on the client
 }
 \examples{
-\dontrun{
+if (interactive()) {
 
-demoAirDatepicker("update")
+  demoAirDatepicker("update")
 
 }
 }

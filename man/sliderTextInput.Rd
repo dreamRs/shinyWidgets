@@ -55,8 +55,6 @@ The value retrieved server-side is a character vector.
 Constructs a slider widget with characters instead of numeric values.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 library("shiny")
@@ -78,8 +76,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-
-}
 
 }
 }

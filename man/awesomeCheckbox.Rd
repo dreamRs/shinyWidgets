@@ -25,7 +25,6 @@ A checkbox control that can be added to a UI definition.
 Create a Font Awesome Bootstrap checkbox that can be used to specify logical values.
 }
 \examples{
-\dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
@@ -40,7 +39,6 @@ server <- function(input, output) {
   output$value <- renderText({ input$somevalue })
 }
 shinyApp(ui, server)
-}
 }
 
 }

@@ -7,7 +7,6 @@
 #' @importFrom htmltools findDependencies attachDependencies
 #'
 #' @examples
-#' \dontrun{
 #'  if (interactive()) {
 #'   library(shiny)
 #'   library(tablerDash)
@@ -184,7 +183,6 @@
 #'     }
 #'   )
 #'  }
-#' }
 useTablerDash <- function() {
   deps <- findDependencies(
     tablerDash::tablerDashPage(

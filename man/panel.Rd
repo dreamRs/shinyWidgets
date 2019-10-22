@@ -24,8 +24,6 @@ you can use Bootstrap status to style the panel,
 see \url{http://getbootstrap.com/components/#panels}.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 library("shiny")
 library("shinyWidgets")
@@ -60,7 +58,5 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-}
-
 }
 }

@@ -56,8 +56,6 @@
 #' @importFrom jsonlite toJSON
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' # examples of different options to select dates:
@@ -93,9 +91,6 @@
 #' shinyApp(ui, server)
 #'
 #' }
-#'
-#' }
-#'
 airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = FALSE,
                                range = FALSE, timepicker = FALSE,
                                separator = " - ", placeholder = NULL,
@@ -286,9 +281,9 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #' @importFrom jsonlite toJSON
 #'
 #' @examples
-#' \dontrun{
+#' if (interactive()) {
 #'
-#' demoAirDatepicker("update")
+#'   demoAirDatepicker("update")
 #'
 #' }
 updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, clear = FALSE, options = NULL) {

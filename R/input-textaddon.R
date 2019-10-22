@@ -12,7 +12,6 @@
 #' @return A switch control that can be added to a UI definition.
 #'
 #' @examples
-#' \dontrun{
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #' shinyApp(
@@ -26,7 +25,6 @@
 #'     })
 #'   }
 #' )
-#' }
 #' }
 #'
 #' @importFrom shiny restoreInput

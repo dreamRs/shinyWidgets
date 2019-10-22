@@ -10,7 +10,6 @@ useTablerDash()
 Allow to use functions from 'tablerDash' into a classic 'shiny' app.
 }
 \examples{
-\dontrun{
  if (interactive()) {
   library(shiny)
   library(tablerDash)
@@ -187,5 +186,4 @@ Allow to use functions from 'tablerDash' into a classic 'shiny' app.
     }
   )
  }
-}
 }

@@ -7,8 +7,6 @@
 #' @importFrom htmltools findDependencies attachDependencies
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -188,8 +186,6 @@
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 useShinydashboardPlus <- function() {

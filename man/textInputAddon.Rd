@@ -27,7 +27,6 @@ A switch control that can be added to a UI definition.
 Create text field with add-on.
 }
 \examples{
-\dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 shinyApp(
@@ -41,7 +40,6 @@ shinyApp(
     })
   }
 )
-}
 }
 
 }

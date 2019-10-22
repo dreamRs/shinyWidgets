@@ -21,7 +21,6 @@ a list
 Animate options
 }
 \examples{
-\dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
@@ -31,7 +30,6 @@ dropdown(
  animate = animateOptions(enter = "fadeInDown", exit = "fadeOutUp", duration = 3)
 )
 
-}
 }
 }
 \seealso{

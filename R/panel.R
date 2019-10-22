@@ -15,8 +15,6 @@
 #' @importFrom htmltools tags
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #' library("shiny")
 #' library("shinyWidgets")
@@ -51,8 +49,6 @@
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#' }
-#'
 #' }
 panel <- function(..., heading = NULL, footer = NULL, status = "default") {
   status <- match.arg(

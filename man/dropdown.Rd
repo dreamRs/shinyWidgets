@@ -44,7 +44,6 @@ This function is similar to \code{dropdownButton} but don't use Bootstrap, so yo
 Moreover you can add animations on the appearance / disappearance of the dropdown with animate.css.
 }
 \examples{
-\dontrun{
 ## Only run examples in interactive R sessions
 if (interactive()) {
 
@@ -111,7 +110,6 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 
-}
 }
 }
 \seealso{

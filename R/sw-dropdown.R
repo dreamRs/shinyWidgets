@@ -30,7 +30,6 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -97,7 +96,6 @@
 #'
 #' shinyApp(ui = ui, server = server)
 #'
-#' }
 #' }
 dropdown <- function(..., style = "default", status = "default",
                      size = "md", icon = NULL, label = NULL, tooltip = FALSE,
@@ -212,7 +210,6 @@ dropdown <- function(..., style = "default", status = "default",
 #'
 #'
 #' @examples
-#' \dontrun{
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -222,7 +219,6 @@ dropdown <- function(..., style = "default", status = "default",
 #'  animate = animateOptions(enter = "fadeInDown", exit = "fadeOutUp", duration = 3)
 #' )
 #'
-#' }
 #' }
 animateOptions <- function(enter = "fadeInDown", exit = "fadeOutUp", duration = 1) {
   list(enter = enter, exit = exit, duration = duration)

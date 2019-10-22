@@ -27,7 +27,6 @@ then that name rather than the value is displayed to the user.}
 Change the value of a picker input on the client
 }
 \examples{
-\dontrun{
 if (interactive()) {
 
 library("shiny")
@@ -99,7 +98,6 @@ server <- function(input, output, session) {
 
 shinyApp(ui = ui, server = server)
 
-}
 }
 }
 \seealso{

@@ -10,13 +10,9 @@ shinyWidgetsGallery()
 A gallery of widgets available in the package.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
  shinyWidgetsGallery()
-
-}
 
 }
 }

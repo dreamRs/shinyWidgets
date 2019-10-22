@@ -77,8 +77,6 @@ See \code{\link{updateNoUiSliderInput}} for updating slider value server-side.
  And \code{\link{demoNoUiSlider}} for examples.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 ### examples ----
@@ -125,9 +123,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
-
-
-}
 
 }
 }

@@ -180,7 +180,6 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' @seealso \code{\link{checkboxGroupButtons}}
 #'
 #' @examples
-#' \dontrun{
 #' if (interactive()) {
 #'
 #' library(shiny)
@@ -278,7 +277,6 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #'
 #' shinyApp(ui = ui, server = server)
 #'
-#' }
 #' }
 updateCheckboxGroupButtons <- function(session, inputId, label = NULL, choices = NULL, selected = NULL,
                                        status = "default", size = "normal",

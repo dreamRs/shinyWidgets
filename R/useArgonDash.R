@@ -8,8 +8,7 @@
 #' @importFrom htmltools findDependencies attachDependencies
 #'
 #' @examples
-#' \dontrun{
-#'if (interactive()) {
+#' if (interactive()) {
 #'
 #' library(shiny)
 #' library(argonR)
@@ -155,7 +154,6 @@
 #'
 #' shinyApp(ui, server)
 #'
-#' }
 #' }
 useArgonDash <- function() {
   if (!requireNamespace(package = "argonDash") & !requireNamespace(package = "argonR"))

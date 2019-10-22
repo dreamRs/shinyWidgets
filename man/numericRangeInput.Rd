@@ -18,7 +18,7 @@ maximum of the range; a numeric vector of two or more will have its minimum
 and maximum set the minimum and maximum of the range.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link{validateCssUnit}}.}
+see \code{\link[=validateCssUnit]{validateCssUnit()}}.}
 
 \item{separator}{String to display between the start and end input boxes.}
 }
@@ -27,8 +27,6 @@ Create an input group of numeric inputs that function as a range
 input.
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
 ### examples ----
@@ -63,8 +61,6 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 
-
-}
 
 }
 }

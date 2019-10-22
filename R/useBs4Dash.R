@@ -10,8 +10,7 @@
 #' @importFrom htmltools findDependencies attachDependencies
 #'
 #' @examples
-#' \dontrun{
-#'if (interactive()) {
+#' if (interactive()) {
 #'
 #' library(shiny)
 #' library(bs4Dash)
@@ -120,7 +119,6 @@
 #'
 #' shinyApp(ui, server)
 #'
-#' }
 #' }
 useBs4Dash <- function(old_school = FALSE) {
   if (!requireNamespace(package = "bs4Dash"))

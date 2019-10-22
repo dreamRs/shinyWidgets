@@ -26,8 +26,6 @@ updateSliderTextInput(session, inputId, label = NULL, selected = NULL,
 Change the value of a slider text input on the client
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 library("shiny")
 library("shinyWidgets")
@@ -66,8 +64,6 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui = ui, server = server)
-}
-
 }
 }
 \seealso{

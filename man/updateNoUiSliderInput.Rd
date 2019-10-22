@@ -23,13 +23,9 @@ if disabled the user can no longer modify the slider value}
 Change the value of a no ui slider input on the client
 }
 \examples{
-\dontrun{
-
 if (interactive()) {
 
  demoNoUiSlider("update")
-
-}
 
 }
 }

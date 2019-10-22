@@ -80,8 +80,6 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -115,7 +113,6 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #'
 #' shinyApp(ui = ui, server = server)
 #'
-#' }
 #' }
 awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE, width = NULL) {
   choices <- choicesWithNames(choices)
@@ -164,8 +161,6 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
 #' @seealso \code{\link{awesomeRadio}}
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -208,8 +203,6 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#'
-#' }
 #'
 #' }
 updateAwesomeRadio <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,

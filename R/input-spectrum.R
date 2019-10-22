@@ -23,13 +23,11 @@
 #' @importFrom utils modifyList
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
 #' library("shinyWidgets")
-#' library("RColorBrewer")
+#' library("scales")
 #'
 #' ui <- fluidPage(
 #'   tags$h1("Spectrum color picker"),
@@ -41,10 +39,10 @@
 #'     label = "Pick a color:",
 #'     choices = list(
 #'       list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
-#'       as.list(brewer.pal(n = 9, name = "Blues")),
-#'       as.list(brewer.pal(n = 9, name = "Greens")),
-#'       as.list(brewer.pal(n = 11, name = "Spectral")),
-#'       as.list(brewer.pal(n = 8, name = "Dark2"))
+#'       as.list(brewer_pal(palette = "Blues")(9)),
+#'       as.list(brewer_pal(palette = "Greens")(9)),
+#'       as.list(brewer_pal(palette = "Spectral")(11)),
+#'       as.list(brewer_pal(palette = "Dark2")(8))
 #'     ),
 #'     options = list(`toggle-palette-more-text` = "Show more")
 #'   ),
@@ -59,8 +57,6 @@
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
@@ -122,8 +118,6 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
 #' library("shiny")
@@ -163,8 +157,6 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
 #' }
 #'
 #' shinyApp(ui, server)
-#'
-#' }
 #'
 #' }
 updateSpectrumInput <- function(session, inputId, selected) {

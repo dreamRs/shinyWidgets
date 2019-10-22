@@ -10,13 +10,9 @@
 #' @importFrom shiny shinyAppFile
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
-#' demoNoUiSlider("color")
-#'
-#' }
+#'   demoNoUiSlider("color")
 #'
 #' }
 demoNoUiSlider <- function(example = "color") {
@@ -40,13 +36,9 @@ demoNoUiSlider <- function(example = "color") {
 #' @importFrom shiny shinyAppFile
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
-#' demoAirDatepicker("datepicker")
-#'
-#' }
+#'   demoAirDatepicker("datepicker")
 #'
 #' }
 demoAirDatepicker <- function(example = "datepicker") {
@@ -63,13 +55,9 @@ demoAirDatepicker <- function(example = "datepicker") {
 #' @importFrom shiny shinyAppFile
 #'
 #' @examples
-#' \dontrun{
-#'
 #' if (interactive()) {
 #'
-#' demoNumericRange()
-#'
-#' }
+#'   demoNumericRange()
 #'
 #' }
 demoNumericRange <- function() {
