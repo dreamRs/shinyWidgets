@@ -2,12 +2,6 @@
 // airDatepicker bindings //
 // by Vic //
 
-
-var exportsAirPicker = window.Shiny = window.Shiny || {};
-var $escapeAirPicker = exportsAirPicker.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, '\\$1');
-};
-
 var AirPickerInputBinding = new Shiny.InputBinding();
 $.extend(AirPickerInputBinding, {
   initialize: function initialize(el) {
@@ -181,9 +175,11 @@ $.extend(AirPickerInputBinding, {
 });
 Shiny.inputBindings.register(AirPickerInputBinding, 'shiny.AirPickerInput');
 
+/*
 function parse_date(date) {
   return date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + date.getUTCDate();
 }
+*/
 
 Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based

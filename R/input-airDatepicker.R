@@ -115,7 +115,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
     arg = language,
     choices = c("cs", "da", "de", "en", "es", "fi", "fr", "hu", "nl", "pl",
                 "pt-BR", "pt", "ro", "ru", "sk", "tr", "zh"),
-    several.ok = TRUE
+    several.ok = FALSE
   )
   to_ms <- function(x) {
     if (is.null(x))
@@ -176,14 +176,10 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
       tagAir
     ), "airdatepicker"),
     value = htmlDependency(
-      name = "air-datepicker-i18n", version = "2.2.3",
-      src = c(href="shinyWidgets/air-datepicker"),
-      script = unlist(lapply(
-        X = language,
-        FUN = function(x) {
-          sprintf("i18n/datepicker.%s.js", x)
-        }
-      ))
+      name = paste0("air-datepicker-i18n-", language),
+      version = "2.2.3",
+      src = c(href = "shinyWidgets/air-datepicker"),
+      script = sprintf("i18n/datepicker.%s.js", language)
     ), append = TRUE
   )
 }

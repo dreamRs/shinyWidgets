@@ -67,8 +67,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         htmltools::htmlDependency(
           name = "jquery-knob", version = "1.2.13",
           src = c(href = "shinyWidgets/jquery-knob"),
-          script = c("jquery.knob.min.js",
-                     "knob-input-binding.js")
+          script = c("jquery.knob.min.js")
         )
       )
     } else if (widget == "dropdown") {
@@ -151,7 +150,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
           name = "air-datepicker",
           version = "2.2.3",
           src = c(href="shinyWidgets/air-datepicker"),
-          script = c("datepicker.min.js", "datepicker-bindings.js"),
+          script = "datepicker.min.js",
           stylesheet = "datepicker.min.css"
         )
       )

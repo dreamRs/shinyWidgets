@@ -19,10 +19,10 @@
 # bindings ----
 
 # create one file with all bindings
-bindings_files <- list.files(path = "inst/www/", pattern = "bindings", full.names = TRUE, recursive = TRUE)
-bindings_files <- bindings_files[bindings_files != "inst/www/shinyWidgets-bindings.min.js"]
-bindings_files <- bindings_files[bindings_files != "inst/www//sweetAlert/sweetalert-bindings.js"]
-bindings_files <- bindings_files[bindings_files != "inst/www//air-datepicker/datepicker-bindings.js"]
+bindings_files <- list.files(path = "inst/assets/", pattern = "bindings", full.names = TRUE, recursive = TRUE)
+bindings_files <- bindings_files[bindings_files != "inst/assets/shinyWidgets-bindings.min.js"]
+bindings_files <- bindings_files[bindings_files != "inst/assets/sweetAlert/sweetalert-bindings.js"]
+bindings_files <- bindings_files[bindings_files != "inst/assets/air-datepicker/datepicker-bindings.js"]
 bindings_files <- bindings_files[!grepl(pattern = "awesome", bindings_files)]
 bindings_files <- lapply(bindings_files, readLines)
 bindings_files <- lapply(bindings_files, paste, collapse = "\n")

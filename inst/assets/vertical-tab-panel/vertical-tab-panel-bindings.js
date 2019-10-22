@@ -1,8 +1,5 @@
-// multi input binding
-var exportsVerticalTab = window.Shiny = window.Shiny || {};
-var $escapeVerticalTab = exportsVerticalTab.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, '\\$1');
-};
+// Vertical Tab Input binding
+
 
 var VerticalTabInputBinding = new Shiny.InputBinding();
   $.extend(VerticalTabInputBinding, {
@@ -23,14 +20,14 @@ var VerticalTabInputBinding = new Shiny.InputBinding();
 
       if (data.hasOwnProperty('value')) {
         $el.find("[data-value='" + data.value + "']").click();
-      }else if(data.hasOwnProperty('validate')){
-        if($el.children(".active").length === 0 && $el.children().length > 0){
+      } else if (data.hasOwnProperty('validate')) {
+        if($el.children(".active").length === 0 && $el.children().length > 0) {
           $el.children().last().click();
         }
-      }else if(data.hasOwnProperty('reorder')){
-        items = $el.children();
+      } else if (data.hasOwnProperty('reorder')) {
+        var items = $el.children();
         items.detach();
-        $el.append( $.map(data.reorder, function(v){ return items[v - 1] }) );
+        $el.append( $.map(data.reorder, function(v) { return items[v - 1]; }) );
       }
 
     },

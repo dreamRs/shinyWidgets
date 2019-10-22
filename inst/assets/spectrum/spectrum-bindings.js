@@ -3,10 +3,6 @@
 // by VP 4 dreamRs //
 
 
-var exportsSpectrum = window.Shiny = window.Shiny || {};
-var $escapeSearch = exportsSpectrum.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, '\\$1');
-};
 
 var spectrumInputBinding = new Shiny.InputBinding();
 $.extend(spectrumInputBinding, {

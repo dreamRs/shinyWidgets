@@ -10,10 +10,9 @@ function tron_skin() {
     // "tron" case
     if (this.$.data('skin') == 'tron') {
         this.cursorExt = 0.3;
-        var a = this.arc(this.cv) // Arc
-            ,
-            pa // Previous arc
-            , r = 1;
+        var a = this.arc(this.cv), // Arc
+            pa, // Previous arc
+            r = 1;
         this.g.lineWidth = this.lineWidth;
         if (this.o.displayPrevious) {
             pa = this.arc(this.v);

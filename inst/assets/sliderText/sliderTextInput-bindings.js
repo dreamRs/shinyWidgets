@@ -19,7 +19,6 @@ var sliderTextBinding = new Shiny.InputBinding();
       if (dataType === 'date') return 'shiny.date';else if (dataType === 'datetime') return 'shiny.datetime';else return false;
     },
     getValue: function getValue(el) {
-      var $el = $(el);
       var slider = $(el).data('ionRangeSlider');
       var result = slider.result;
       var options = slider.options;
@@ -27,7 +26,6 @@ var sliderTextBinding = new Shiny.InputBinding();
       ////var values = $(el).data("values").split(",");
       //var values = $(el).data("swvalues");
       var values = options.values;
-      //console.log(slider);
 
       if (this._numValues(el) === 2) {
         return [values[result.from], values[result.to]];

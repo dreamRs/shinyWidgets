@@ -4,7 +4,6 @@ $.extend(numericRangeInputBinding, {
     return $(scope).find('.shiny-numeric-range-input');
   },
   getValue: function(el) {
-    console.log("getValue");
 
     var $inputs = $(el).find('input');
     var start = $inputs[0].value;
@@ -25,7 +24,7 @@ $.extend(numericRangeInputBinding, {
     else
       end = end;
 
-    return [start, end]
+    return [start, end];
   },
   setValue: function(el, value) {
     el.find('input')[0].value = value[0];
@@ -33,7 +32,6 @@ $.extend(numericRangeInputBinding, {
   },
   subscribe: function(el, callback) {
     $(el).on("change.numericRangeInputBinding", function(e) {
-      console.log("callback");
       callback();
     });
   },
