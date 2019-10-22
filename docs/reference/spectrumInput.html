@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
       </span>
     </div>
 
@@ -165,13 +165,11 @@ possible values are described here : <a href='https://bgrins.github.io/spectrum/
     <p>The selected color in Hex format server-side</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
 
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shiny"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shinyWidgets"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"RColorBrewer"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"scales"</span>)
 
 <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
   <span class='no'>tags</span>$<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>"Spectrum color picker"</span>),
@@ -183,10 +181,10 @@ possible values are described here : <a href='https://bgrins.github.io/spectrum/
     <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Pick a color:"</span>,
     <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>'black'</span>, <span class='st'>'white'</span>, <span class='st'>'blanchedalmond'</span>, <span class='st'>'steelblue'</span>, <span class='st'>'forestgreen'</span>),
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html'>brewer.pal</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Blues"</span>)),
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html'>brewer.pal</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Greens"</span>)),
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html'>brewer.pal</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Spectral"</span>)),
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html'>brewer.pal</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>))
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/scales/man/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Blues"</span>)(<span class='fl'>9</span>)),
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/scales/man/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Greens"</span>)(<span class='fl'>9</span>)),
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/scales/man/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Spectral"</span>)(<span class='fl'>11</span>)),
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/scales/man/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>)(<span class='fl'>8</span>))
     ),
     <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`toggle-palette-more-text`</span> <span class='kw'>=</span> <span class='st'>"Show more"</span>)
   ),
@@ -201,8 +199,6 @@ possible values are described here : <a href='https://bgrins.github.io/spectrum/
 }
 
 <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
-
-}
 
 }</div></pre>
   </div>
@@ -224,7 +220,7 @@ possible values are described here : <a href='https://bgrins.github.io/spectrum/
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
