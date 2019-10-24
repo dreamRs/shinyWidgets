@@ -18,48 +18,9 @@
 #' @importFrom htmltools tagList tags
 #' @importFrom shiny NS selectizeInput actionLink icon singleton
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' data("mpg", package = "ggplot2")
-#'
-#' ui <- fluidPage(
-#'   fluidRow(
-#'     column(
-#'       width = 10, offset = 1,
-#'       tags$h3("Filter data with selectize group"),
-#'       panel(
-#'         selectizeGroupUI(
-#'           id = "my-filters",
-#'           params = list(
-#'             manufacturer = list(inputId = "manufacturer", title = "Manufacturer:"),
-#'             model = list(inputId = "model", title = "Model:"),
-#'             trans = list(inputId = "trans", title = "Trans:"),
-#'             class = list(inputId = "class", title = "Class:")
-#'           )
-#'         ), status = "primary"
-#'       ),
-#'       DT::dataTableOutput(outputId = "table")
-#'     )
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'   res_mod <- callModule(
-#'     module = selectizeGroupServer,
-#'     id = "my-filters",
-#'     data = mpg,
-#'     vars = c("manufacturer", "model", "trans", "class")
-#'   )
-#'   output$table <- DT::renderDataTable(res_mod())
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
+#' @example examples/selectizeGroup-default.R
+#' @example examples/selectizeGroup-vars.R
+#' @example examples/selectizeGroup-subset.R
 selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters", inline = TRUE) {
 
   # Namespace
@@ -76,7 +37,8 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
           FUN = function(x) {
             input <- params[[x]]
             tagSelect <- tags$div(
-              class="btn-group",
+              class = "btn-group",
+              id = ns(paste0("container-", input$inputId)),
               selectizeInput(
                 inputId = ns(input$inputId),
                 label = input$title,
@@ -148,44 +110,72 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
 }
 
 
-#' @param input standard \code{shiny} input.
-#' @param output standard \code{shiny} output.
-#' @param session standard \code{shiny} session.
-#' @param data a \code{data.frame}, or an object that can be coerced to \code{data.frame}.
+#' @param input,output,session standards \code{shiny} server arguments.
+#' @param data Either a \code{data.frame} or a \code{reactive}
+#'  function returning a \code{data.frame} (do not use parentheses).
 #' @param vars character, columns to use to create filters,
-#'  must correspond to variables listed in \code{params}.
+#'  must correspond to variables listed in \code{params}. Can be a
+#'  \code{reactive} function, but values must be included in the initial ones (in \code{params}).
 #'
 #' @export
 #'
 #' @rdname selectizeGroup-module
-#' @importFrom shiny updateSelectizeInput observeEvent reactiveValues reactive
+#' @importFrom shiny updateSelectizeInput observeEvent reactiveValues reactive is.reactive
 selectizeGroupServer <- function(input, output, session, data, vars) { # nocov start
-
-  data <- as.data.frame(data)
 
   # Namespace
   ns <- session$ns
-
-  toggleDisplayServer(session = session, id = ns("reset_all"), display = "none")
-
-  lapply(
-    X = vars,
-    FUN = function(x) {
-      vals <- sort(unique(data[[x]]))
-      updateSelectizeInput(
-        session = session,
-        inputId = x,
-        choices = vals,
-        server = TRUE
-      )
-    }
+  toggleDisplayServer(
+    session = session, id = ns("reset_all"), display = "none"
   )
+
+
+  # data <- as.data.frame(data)
+  rv <- reactiveValues(data = NULL, vars = NULL)
+  observe({
+    if (is.reactive(data)) {
+      rv$data <- data()
+    } else {
+      rv$data <- as.data.frame(data)
+    }
+    if (is.reactive(vars)) {
+      rv$vars <- vars()
+    } else {
+      rv$vars <- vars
+    }
+    for (var in names(rv$data)) {
+      if (var %in% rv$vars) {
+        toggleDisplayServer(
+          session = session, id = ns(paste0("container-", var)), display = "table-cell"
+        )
+      } else {
+        toggleDisplayServer(
+          session = session, id = ns(paste0("container-", var)), display = "none"
+        )
+      }
+    }
+  })
+
+  observe({
+    lapply(
+      X = rv$vars,
+      FUN = function(x) {
+        vals <- sort(unique(rv$data[[x]]))
+        updateSelectizeInput(
+          session = session,
+          inputId = x,
+          choices = vals,
+          server = TRUE
+        )
+      }
+    )
+  })
 
   observeEvent(input$reset_all, {
     lapply(
-      X = vars,
+      X = rv$vars,
       FUN = function(x) {
-        vals <- sort(unique(data[[x]]))
+        vals <- sort(unique(rv$data[[x]]))
         updateSelectizeInput(
           session = session,
           inputId = x,
@@ -197,55 +187,62 @@ selectizeGroupServer <- function(input, output, session, data, vars) { # nocov s
   })
 
 
-  lapply(
-    X = vars,
-    FUN = function(x) {
+  observe({
+    vars <- rv$vars
+    lapply(
+      X = vars,
+      FUN = function(x) {
 
-      ovars <- vars[vars != x]
+        ovars <- vars[vars != x]
 
-      observeEvent(input[[x]], {
+        observeEvent(input[[x]], {
 
-        indicator <- lapply(
-          X = vars,
-          FUN = function(x) {
-            data[[x]] %inT% input[[x]]
+          data <- rv$data
+
+          indicator <- lapply(
+            X = vars,
+            FUN = function(x) {
+              data[[x]] %inT% input[[x]]
+            }
+          )
+          indicator <- Reduce(f = `&`, x = indicator)
+          data <- data[indicator, ]
+
+          if (all(indicator)) {
+            toggleDisplayServer(session = session, id = ns("reset_all"), display = "none")
+          } else {
+            toggleDisplayServer(session = session, id = ns("reset_all"), display = "block")
           }
-        )
-        indicator <- Reduce(f = `&`, x = indicator)
-        data <- data[indicator, ]
 
-        if (all(indicator)) {
-          toggleDisplayServer(session = session, id = ns("reset_all"), display = "none")
-        } else {
-          toggleDisplayServer(session = session, id = ns("reset_all"), display = "block")
-        }
+          for (i in ovars) {
+            if (is.null(input[[i]])) {
+              updateSelectizeInput(
+                session = session,
+                inputId = i,
+                choices = sort(unique(data[[i]])),
+                server = TRUE
+              )
+            }
+          }
 
-        for (i in ovars) {
-          if (is.null(input[[i]])) {
+          if (is.null(input[[x]])) {
             updateSelectizeInput(
               session = session,
-              inputId = i,
-              choices = sort(unique(data[[i]])),
+              inputId = x,
+              choices = sort(unique(data[[x]])),
               server = TRUE
             )
           }
-        }
 
-        if (is.null(input[[x]])) {
-          updateSelectizeInput(
-            session = session,
-            inputId = x,
-            choices = sort(unique(data[[x]])),
-            server = TRUE
-          )
-        }
+        }, ignoreNULL = FALSE, ignoreInit = TRUE)
 
-      }, ignoreNULL = FALSE, ignoreInit = TRUE)
-
-    }
-  )
+      }
+    )
+  })
 
   return(reactive({
+    data <- rv$data
+    vars <- rv$vars
     indicator <- lapply(
       X = vars,
       FUN = function(x) {

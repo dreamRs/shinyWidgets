@@ -13,3 +13,4 @@
 ^data-raw$
 ^revdep$
 ^codecov\.yml$
+^examples$

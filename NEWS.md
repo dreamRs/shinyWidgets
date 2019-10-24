@@ -1,3 +1,10 @@
+shinyWidgets 0.5.0
+======================
+
+* `selectizeGroupServer() `(module `selectizeGroup`) now accept `reactive` data and `reactive` vars arguments, see examples for details `?selectizeGroupServer`.
+
+
+
 shinyWidgets 0.4.9
 ======================
 

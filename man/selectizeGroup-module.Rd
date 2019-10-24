@@ -23,16 +23,14 @@ selectizeGroupServer(input, output, session, data, vars)
 
 \item{inline}{If \code{TRUE} (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.}
 
-\item{input}{standard \code{shiny} input.}
+\item{input, output, session}{standards \code{shiny} server arguments.}
 
-\item{output}{standard \code{shiny} output.}
-
-\item{session}{standard \code{shiny} session.}
-
-\item{data}{a \code{data.frame}, or an object that can be coerced to \code{data.frame}.}
+\item{data}{Either a \code{data.frame} or a \code{reactive}
+function returning a \code{data.frame} (do not use parentheses).}
 
 \item{vars}{character, columns to use to create filters,
-must correspond to variables listed in \code{params}.}
+must correspond to variables listed in \code{params}. Can be a
+\code{reactive} function, but values must be included in the initial ones (in \code{params}).}
 }
 \value{
 a \code{reactive} function containing data filtered.
@@ -41,45 +39,168 @@ a \code{reactive} function containing data filtered.
 Group of mutually dependent `selectizeInput` for filtering data.frame's columns (like in Excel).
 }
 \examples{
+# Default -----------------------------------------------------------------
+
 if (interactive()) {
 
-library(shiny)
-library(shinyWidgets)
+  library(shiny)
+  library(shinyWidgets)
 
-data("mpg", package = "ggplot2")
+  data("mpg", package = "ggplot2")
 
-ui <- fluidPage(
-  fluidRow(
-    column(
-      width = 10, offset = 1,
-      tags$h3("Filter data with selectize group"),
-      panel(
-        selectizeGroupUI(
-          id = "my-filters",
-          params = list(
-            manufacturer = list(inputId = "manufacturer", title = "Manufacturer:"),
-            model = list(inputId = "model", title = "Model:"),
-            trans = list(inputId = "trans", title = "Trans:"),
-            class = list(inputId = "class", title = "Class:")
-          )
-        ), status = "primary"
-      ),
-      DT::dataTableOutput(outputId = "table")
+  ui <- fluidPage(
+    fluidRow(
+      column(
+        width = 10, offset = 1,
+        tags$h3("Filter data with selectize group"),
+        panel(
+          selectizeGroupUI(
+            id = "my-filters",
+            params = list(
+              manufacturer = list(inputId = "manufacturer", title = "Manufacturer:"),
+              model = list(inputId = "model", title = "Model:"),
+              trans = list(inputId = "trans", title = "Trans:"),
+              class = list(inputId = "class", title = "Class:")
+            )
+          ), status = "primary"
+        ),
+        DT::dataTableOutput(outputId = "table")
+      )
     )
   )
-)
 
-server <- function(input, output, session) {
-  res_mod <- callModule(
-    module = selectizeGroupServer,
-    id = "my-filters",
-    data = mpg,
-    vars = c("manufacturer", "model", "trans", "class")
-  )
-  output$table <- DT::renderDataTable(res_mod())
+  server <- function(input, output, session) {
+    res_mod <- callModule(
+      module = selectizeGroupServer,
+      id = "my-filters",
+      data = mpg,
+      vars = c("manufacturer", "model", "trans", "class")
+    )
+    output$table <- DT::renderDataTable(res_mod())
+  }
+
+  shinyApp(ui, server)
+
 }
 
-shinyApp(ui, server)
+# Select variables --------------------------------------------------------
 
+if (interactive()) {
+
+  library(shiny)
+  library(shinyWidgets)
+
+  data("mpg", package = "ggplot2")
+
+  ui <- fluidPage(
+    fluidRow(
+      column(
+        width = 10, offset = 1,
+        tags$h3("Filter data with selectize group"),
+        panel(
+          checkboxGroupInput(
+            inputId = "vars",
+            label = "Variables to use:",
+            choices = c("manufacturer", "model", "trans", "class"),
+            selected = c("manufacturer", "model", "trans", "class"),
+            inline = TRUE
+          ),
+          selectizeGroupUI(
+            id = "my-filters",
+            params = list(
+              manufacturer = list(inputId = "manufacturer", title = "Manufacturer:"),
+              model = list(inputId = "model", title = "Model:"),
+              trans = list(inputId = "trans", title = "Trans:"),
+              class = list(inputId = "class", title = "Class:")
+            )
+          ),
+          status = "primary"
+        ),
+        DT::dataTableOutput(outputId = "table")
+      )
+    )
+  )
+
+  server <- function(input, output, session) {
+
+    vars_r <- reactive({
+      input$vars
+    })
+
+    res_mod <- callModule(
+      module = selectizeGroupServer,
+      id = "my-filters",
+      data = mpg,
+      vars = vars_r
+    )
+
+    output$table <- DT::renderDataTable({
+      req(res_mod())
+      res_mod()
+    })
+  }
+
+  shinyApp(ui, server)
+}
+
+# Subset data -------------------------------------------------------------
+
+if (interactive()) {
+
+  library(shiny)
+  library(shinyWidgets)
+
+  data("mpg", package = "ggplot2")
+
+  ui <- fluidPage(
+    fluidRow(
+      column(
+        width = 10, offset = 1,
+        tags$h3("Filter data with selectize group"),
+        panel(
+          pickerInput(
+            inputId = "car_select",
+            choices = unique(mpg$manufacturer),
+            options = list(
+              `live-search` = TRUE,
+              title = "None selected"
+            )
+          ),
+          selectizeGroupUI(
+            id = "my-filters",
+            params = list(
+              manufacturer = list(inputId = "manufacturer", title = "Manufacturer:"),
+              model = list(inputId = "model", title = "Model:"),
+              trans = list(inputId = "trans", title = "Trans:"),
+              class = list(inputId = "class", title = "Class:")
+            )
+          ),
+          status = "primary"
+        ),
+        DT::dataTableOutput(outputId = "table")
+      )
+    )
+  )
+
+  server <- function(input, output, session) {
+
+    mpg_filter <- reactive({
+      subset(mpg, manufacturer \%in\% input$car_select)
+    })
+
+    res_mod <- callModule(
+      module = selectizeGroupServer,
+      id = "my-filters",
+      data = mpg_filter,
+      vars = c("manufacturer", "model", "trans", "class")
+    )
+
+    output$table <- DT::renderDataTable({
+      req(res_mod())
+      res_mod()
+    })
+  }
+
+  shinyApp(ui, server)
 }
 }

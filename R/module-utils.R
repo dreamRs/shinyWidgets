@@ -45,7 +45,7 @@ toggleDisplayUi <- function() {
 #' @param display character, 'none' to hide, 'block' or 'inline-block' to show
 #'
 #' @noRd
-toggleDisplayServer <- function(session, id, display = c("none", "block", "inline-block")) {
+toggleDisplayServer <- function(session, id, display = c("none", "block", "inline-block", "table-cell")) {
   display <- match.arg(display)
   session$sendCustomMessage(
     type = 'toggleDisplay',
