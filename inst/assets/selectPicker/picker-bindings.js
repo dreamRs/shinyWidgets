@@ -1,12 +1,4 @@
 
-// Transform each tag with class 'sw-switchInput' to select picker
-$(function() {
-  $('.selectpicker').each(function() {
-    $(this).selectpicker();
-  });
-});
-
-
 // picker input binding
 var exportsPicker = window.Shiny = window.Shiny || {};
 var $escapePicker = exportsPicker.$escape = function(val) {
@@ -45,11 +37,17 @@ var pickerInputBinding = new Shiny.InputBinding();
     receiveMessage: function receiveMessage(el, data) {
       var $el = $(el);
 
-      // This will replace all the options
       if (data.hasOwnProperty('options')) {
-        // Clear existing options and add each new one
-        $el.empty().append(data.options);
-        $(el.id).selectpicker('refresh');
+        //this.picker.selectpicker('destroy');
+        $(el).attr(data.options);
+        this.picker.selectpicker('render');
+      }
+
+      // This will replace all the choices
+      if (data.hasOwnProperty('choices')) {
+        // Clear existing choices and add each new one
+        $el.empty().append(data.choices);
+        $(el).selectpicker('refresh');
       }
 
       if (data.hasOwnProperty('value')) {
@@ -58,7 +56,7 @@ var pickerInputBinding = new Shiny.InputBinding();
 
       if (data.hasOwnProperty('label')) $(el).parent().parent().find('label[for="' + $escapePicker(el.id) + '"]').text(data.label);
 
-      $(el.id).selectpicker('refresh');
+      //$(el).selectpicker('refresh');
       $(el).trigger('change');
     },
     subscribe: function subscribe(el, callback) {
@@ -71,7 +69,7 @@ var pickerInputBinding = new Shiny.InputBinding();
       $(el).off('.pickerInputBinding');
     },
     initialize: function initialize(el) {
-      $(el).selectpicker();
+      this.picker = $(el).selectpicker();
     }
 });
 Shiny.inputBindings.register(pickerInputBinding, 'shiny.pickerInput');

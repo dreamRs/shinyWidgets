@@ -340,14 +340,19 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updatePickerInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL, choicesOpt = NULL) {
+updatePickerInput <- function (session, inputId, label = NULL,
+                               selected = NULL, choices = NULL,
+                               choicesOpt = NULL) {
   choices <- if (!is.null(choices))
     choicesWithNames(choices)
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
-  options <- if (!is.null(choices))
+  choices <- if (!is.null(choices))
     paste(capture.output(pickerSelectOptions(choices, selected, choicesOpt)), collapse = "\n")
-  message <- dropNulls(list(label = label, options = options, value = selected))
+  options = NULL
+  if (!is.null(options))
+    names(options) <- paste0("data-", names(options))
+  message <- dropNulls(list(label = label, choices = choices, value = selected, options = options))
   session$sendInputMessage(inputId, message)
 }
 

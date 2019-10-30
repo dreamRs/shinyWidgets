@@ -22,7 +22,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "selectPicker",
-          version = "1.13.10",
+          version = "1.13.12",
           src = c(href="shinyWidgets/selectPicker"),
           script = "js/bootstrap-select.min.js",
           stylesheet = "css/bootstrap-select.min.css"
