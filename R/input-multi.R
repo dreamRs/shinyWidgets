@@ -213,7 +213,7 @@ updateMultiInput <- function (session, inputId, label = NULL, selected = NULL, c
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- if (!is.null(choices))
-    paste(capture.output(makeChoices(choices, selected = selected)), collapse = "\n")
+    as.character(makeChoices(choices, selected = selected))
   message <- dropNulls(list(label = label, options = options, value = selected))
   session$sendInputMessage(inputId, message)
 }
