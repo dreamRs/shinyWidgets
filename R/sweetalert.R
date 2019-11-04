@@ -428,7 +428,7 @@ confirmSweetAlert <- function(session, inputId, title = NULL,
   # If we are inside a module, turn the (relative) inputId (e.g. 'input') into an absolute input id (e.g. 'module-input')
   if (inherits(session, "session_proxy")) {
     # Keep old code working which externally uses session$ns() to create an absolute input id.
-    if (!startsWith(inputId, session$ns("")))
+    if (!starts_with(inputId, session$ns("")))
       inputId <- session$ns(inputId)
   }
   if (!isTRUE(html)) {
@@ -597,7 +597,7 @@ inputSweetAlert <- function(session, inputId, title = NULL,
   # If we are inside a module, turn the (relative) inputId (e.g. 'input') into an absolute input id (e.g. 'module-input')
   if (inherits(session, "session_proxy")) {
     # Keep old code working which externally uses session$ns() to create an absolute input id.
-    if (!startsWith(inputId, session$ns("")))
+    if (!starts_with(inputId, session$ns("")))
       inputId <- session$ns(inputId)
   }
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
@@ -690,7 +690,7 @@ progressSweetAlert <- function(session, id, value, total = NULL,
   # If we are inside a module, turn the (relative) id (e.g. 'input') into an absolute id (e.g. 'module-input')
   if (inherits(session, "session_proxy")) {
     # Keep old code working which externally uses session$ns() to create an absolute id.
-    if (!startsWith(id, session$ns("")))
+    if (!starts_with(id, session$ns("")))
       id <- session$ns(id)
   }
   sendSweetAlert(

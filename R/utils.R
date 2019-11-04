@@ -1,8 +1,11 @@
 
+starts_with <- function(x, prefix) {
+  # grepl(pattern = sprintf("^%s", prefix), x = x, fixed = TRUE)
+  substring(x, 1, nchar(prefix)) == prefix
+}
+
 
 # Unexported usefull functions from shiny
-
-
 
 # dropNulls
 dropNulls <- function(x) {
@@ -52,14 +55,12 @@ choicesWithNames <- function(choices) {
 
 
 # needOptgroup
-needOptgroup <- function (choices)
-{
+needOptgroup <- function(choices) {
   any(vapply(choices, is.list, logical(1)))
 }
 
 # validateSelected
-validateSelected <- function (selected, choices, inputId)
-{
+validateSelected <- function (selected, choices, inputId) {
   selected <- unname(selected)
   if (needOptgroup(choices))
     return(selected)
@@ -82,7 +83,7 @@ validateSelected <- function (selected, choices, inputId)
 }
 
 
-`%AND%` <- function (x, y) {
+`%AND%` <- function(x, y) {
   if (!is.null(x) && !anyNA(x))
     if (!is.null(y) && !anyNA(y))
       return(y)
@@ -101,7 +102,7 @@ escape_jquery <- function(string) {
 
 
 
-firstChoice <- function (choices)
+firstChoice <- function(choices)
 {
   if (length(choices) == 0L)
     return()
@@ -113,7 +114,7 @@ firstChoice <- function (choices)
 
 
 
-anyNamed <- function (x) {
+anyNamed <- function(x) {
   if (length(x) == 0)
     return(FALSE)
   nms <- names(x)
@@ -122,7 +123,7 @@ anyNamed <- function (x) {
   any(nzchar(nms))
 }
 
-normalizeChoicesArgs <- function (choices, choiceNames, choiceValues, mustExist = TRUE) {
+normalizeChoicesArgs <- function(choices, choiceNames, choiceValues, mustExist = TRUE) {
   if (is.null(choices)) {
     if (is.null(choiceNames) || is.null(choiceValues)) {
       if (mustExist) {
@@ -157,8 +158,7 @@ normalizeChoicesArgs <- function (choices, choiceNames, choiceValues, mustExist 
   return(list(choiceNames = as.list(choiceNames), choiceValues = as.list(as.character(choiceValues))))
 }
 
-validateIcon <- function (icon)
-{
+validateIcon <- function(icon) {
   if (is.null(icon) || identical(icon, character(0))) {
     return(icon)
   }
