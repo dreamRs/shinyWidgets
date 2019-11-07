@@ -182,7 +182,8 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
 #' @rdname vertical-tab
 verticalTabPanel <- function(title, ..., value = title, icon = NULL, box_height = "160px") {
   tabbox <- tags$a(
-    href="#", class="list-group-item text-center",
+    class="list-group-item text-center",
+    style = "cursor: pointer;",
     style = if (!is.null(box_height)) paste("height:", box_height),
     `data-value` = value, `data-toggle` = "tab",
     if (!is.null(icon)) tags$h4(icon),
