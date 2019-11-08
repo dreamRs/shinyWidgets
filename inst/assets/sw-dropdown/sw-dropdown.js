@@ -64,9 +64,17 @@ function swDrop(
 
   // Close on click outside dropdown
   $("html").on("click", function(e) {
-    //console.log($(e.target).is("html"));
+    //console.log($(e.target).parents().end().attr('class').indexOf("datepicker"));
     //console.log( $(e.target) );
+    var parentClass = $(e.target).parents().end().attr('class');
+    if (typeof parentClass == "undefined") {
+      parentClass = $(e.target).parents().attr('class');
+    }
+    if (typeof parentClass == "undefined") {
+      parentClass = "";
+    }
     if (
+      //$(e.target).is("html") |
       !$("#" + swDropdownId).is(e.target) &&
       $("#" + swDropdownId).has(e.target).length === 0 &&
       $("#" + swDropdownId).find(e.target).length === 0 &&
@@ -86,7 +94,10 @@ function swDrop(
         $(e.target).prop("tagName") === "A" &&
         RegExp("paginate_button").test($(e.target).attr("class")) === true
       ) && // hack for DT
-      $(e.target).is("html") | ($(e.target, ".datepicker").length !== 1) &&
+      //$(e.target).parents(".datepicker").length === 0 &&
+      (
+        parentClass.indexOf("datepicker") < 0
+      ) &&
       !(
         $(e.target)
           .parent()
