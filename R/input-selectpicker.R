@@ -30,167 +30,30 @@
 #' shinyWidgetsGallery()
 #'
 #'
-#' # Simple example
+#' # Basic usage
 #' library("shiny")
+#' library(shinyWidgets)
+#'
 #' ui <- fluidPage(
-#'   pickerInput(inputId = "somevalue", label = "A label", choices = c("a", "b")),
+#'   pickerInput(
+#'     inputId = "somevalue",
+#'     label = "A label",
+#'     choices = c("a", "b")
+#'   ),
 #'   verbatimTextOutput("value")
 #' )
+#'
 #' server <- function(input, output) {
-#'   output$value <- renderPrint({ input$somevalue })
-#' }
-#' shinyApp(ui, server)
-#'
-#'
-#' ### Add actions box for selecting
-#' # deselecting all options
-#'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#' ui <- fluidPage(
-#'   br(),
-#'   pickerInput(
-#'     inputId = "p1",
-#'     label = "Select all option",
-#'     choices = rownames(mtcars),
-#'     multiple = TRUE,
-#'     options = list(`actions-box` = TRUE)
-#'   ),
-#'   br(),
-#'   pickerInput(
-#'     inputId = "p2",
-#'     label = "Select all option / custom text",
-#'     choices = rownames(mtcars),
-#'     multiple = TRUE,
-#'     options = list(
-#'       `actions-box` = TRUE,
-#'       `deselect-all-text` = "None...",
-#'       `select-all-text` = "Yeah, all !",
-#'       `none-selected-text` = "zero"
-#'     )
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
+#'   output$value <- renderPrint(input$somevalue)
 #' }
 #'
-#' shinyApp(ui = ui, server = server)
-#'
-#'
-#'
-#' ### Customize the values displayed in the box ----
-#'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#' ui <- fluidPage(
-#'   br(),
-#'   pickerInput(
-#'     inputId = "p1",
-#'     label = "Default",
-#'     multiple = TRUE,
-#'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars)[1:5]
-#'   ),
-#'   br(),
-#'   pickerInput(
-#'     inputId = "p1b",
-#'     label = "Default with | separator",
-#'     multiple = TRUE,
-#'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars)[1:5],
-#'     options = list(`multiple-separator` = " | ")
-#'   ),
-#'   br(),
-#'   pickerInput(
-#'     inputId = "p2",
-#'     label = "Static",
-#'     multiple = TRUE,
-#'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars)[1:5],
-#'     options = list(`selected-text-format`= "static",
-#'                    title = "Won't change")
-#'   ),
-#'   br(),
-#'   pickerInput(
-#'     inputId = "p3",
-#'     label = "Count",
-#'     multiple = TRUE,
-#'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars)[1:5],
-#'     options = list(`selected-text-format`= "count")
-#'   ),
-#'   br(),
-#'   pickerInput(
-#'     inputId = "p3",
-#'     label = "Customize count",
-#'     multiple = TRUE,
-#'     choices = rownames(mtcars),
-#'     selected = rownames(mtcars)[1:5],
-#'     options = list(
-#'       `selected-text-format`= "count",
-#'       `count-selected-text` = "{0} models choosed (on a total of {1})"
-#'     )
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#'
-#'
-#' ### Limit the number of selections ----
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#' ui <- fluidPage(
-#'   pickerInput(
-#'     inputId = "groups",
-#'     label = "Select one from each group below:",
-#'     choices = list(
-#'       Group1 = c("1", "2", "3", "4"),
-#'       Group2 = c("A", "B", "C", "D")
-#'     ),
-#'     multiple = TRUE,
-#'     options =  list("max-options-group" = 1)
-#'   ),
-#'   verbatimTextOutput(outputId = "res_grp"),
-#'   pickerInput(
-#'     inputId = "groups_2",
-#'     label = "Select two from each group below:",
-#'     choices = list(
-#'       Group1 = c("1", "2", "3", "4"),
-#'       Group2 = c("A", "B", "C", "D")
-#'     ),
-#'     multiple = TRUE,
-#'     options =  list("max-options-group" = 2)
-#'   ),
-#'   verbatimTextOutput(outputId = "res_grp_2"),
-#'   pickerInput(
-#'     inputId = "classic",
-#'     label = "Select max two option below:",
-#'     choices = c("A", "B", "C", "D"),
-#'     multiple = TRUE,
-#'     options =  list(
-#'       "max-options" = 2,
-#'       "max-options-text" = "No more!"
-#'     )
-#'   ),
-#'   verbatimTextOutput(outputId = "res_classic")
-#' )
-#' server <- function(input, output) {
-#'   output$res_grp <- renderPrint(input$groups)
-#'   output$res_grp_2 <- renderPrint(input$groups_2)
-#'   output$res_classic <- renderPrint(input$classic)
-#' }
 #' shinyApp(ui, server)
 #'
 #' }
+#'
+#' @example examples/picker-select-all.R
+#' @example examples/picker-value-display.R
+#' @example examples/picker-limits.R
 #'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags htmlEscape validateCssUnit
