@@ -7,7 +7,7 @@ shinyWidgets 0.5.0
 * `pickerUpdate()` : updated dependencies & bindings, now live-search & multiple selection works fine together [#142](https://github.com/dreamRs/shinyWidgets/issues/142).
 * `useSweetAlert()` now accept a `theme` argument to customize Sweet Alerts appearance (e.g. with `sendSweetAlert` for example).
 * `updateMulti()` preserve character encoding [#232](https://github.com/dreamRs/shinyWidgets/issues/232).
-* Fixed a bug in `verticalTabPanel()` preventing outputs to de displayed [#237](https://github.com/dreamRs/shinyWidgets/issues/237).
+* Fixed a bug in `verticalTabPanel()` preventing outputs to be displayed [#237](https://github.com/dreamRs/shinyWidgets/issues/237).
 
 
 
@@ -15,7 +15,7 @@ shinyWidgets 0.4.9
 ======================
 
 * Update to SweetAlert2: more options available for `sendSweetAlert()`, `confirmSweetAlert()`, `inputSweetAlert()`.
-* add `useTablerDash()` to inport functions from tablerDash.
+* add `useTablerDash()` to import functions from [tablerDash](https://github.com/RinteRface/tablerDash).
 * `updateProgressBar()`, `confirmSweetAlert()`, `inputSweetAlert()` are now module friendly, thanks to [@AshesITR](https://github.com/AshesITR).
 * add `inline = TRUE/FALSE` argument to `dropdownButton()`: return either a span or a div element.
 * You can now use a `DT::datatable()` with pagination inside a `dropdown()`.
@@ -34,7 +34,7 @@ shinyWidgets 0.4.8
 shinyWidgets 0.4.7
 ======================
 
-* add `useArgonDash` to inport functions from argonDash.
+* add `useArgonDash` to import functions from argonDash.
 * add `useBs4Dash` to import functions from bs4Dash.
 * Fix updating `searchInput` label & placeholder in modules.
 * Fix issue with ghost sidebar in `useShinydashboard`.
