@@ -4,8 +4,13 @@
 \alias{updateNoUiSliderInput}
 \title{Change the value of a no ui slider input on the client}
 \usage{
-updateNoUiSliderInput(session, inputId, value = NULL, range = NULL,
-  disable = FALSE)
+updateNoUiSliderInput(
+  session,
+  inputId,
+  value = NULL,
+  range = NULL,
+  disable = FALSE
+)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to \code{shinyServer}.}

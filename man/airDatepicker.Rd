@@ -8,20 +8,44 @@
 \alias{airYearpickerInput}
 \title{Air Date Picker Input}
 \usage{
-airDatepickerInput(inputId, label = NULL, value = NULL,
-  multiple = FALSE, range = FALSE, timepicker = FALSE,
-  separator = " - ", placeholder = NULL, dateFormat = "yyyy-mm-dd",
-  minDate = NULL, maxDate = NULL, disabledDates = NULL,
-  view = c("days", "months", "years"), minView = c("days", "months",
-  "years"), monthsField = c("monthsShort", "months"),
-  clearButton = FALSE, todayButton = FALSE, autoClose = FALSE,
-  timepickerOpts = timepickerOptions(), position = NULL,
-  update_on = c("change", "close"), addon = c("right", "left", "none"),
-  language = "en", inline = FALSE, width = NULL)
+airDatepickerInput(
+  inputId,
+  label = NULL,
+  value = NULL,
+  multiple = FALSE,
+  range = FALSE,
+  timepicker = FALSE,
+  separator = " - ",
+  placeholder = NULL,
+  dateFormat = "yyyy-mm-dd",
+  minDate = NULL,
+  maxDate = NULL,
+  disabledDates = NULL,
+  view = c("days", "months", "years"),
+  minView = c("days", "months", "years"),
+  monthsField = c("monthsShort", "months"),
+  clearButton = FALSE,
+  todayButton = FALSE,
+  autoClose = FALSE,
+  timepickerOpts = timepickerOptions(),
+  position = NULL,
+  update_on = c("change", "close"),
+  addon = c("right", "left", "none"),
+  language = "en",
+  inline = FALSE,
+  width = NULL
+)
 
-timepickerOptions(dateTimeSeparator = NULL, timeFormat = NULL,
-  minHours = NULL, maxHours = NULL, minMinutes = NULL,
-  maxMinutes = NULL, hoursStep = NULL, minutesStep = NULL)
+timepickerOptions(
+  dateTimeSeparator = NULL,
+  timeFormat = NULL,
+  minHours = NULL,
+  maxHours = NULL,
+  minMinutes = NULL,
+  maxMinutes = NULL,
+  hoursStep = NULL,
+  minutesStep = NULL
+)
 
 airMonthpickerInput(inputId, label = NULL, value = NULL, ...)
 

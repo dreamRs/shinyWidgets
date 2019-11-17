@@ -4,8 +4,7 @@
 \alias{numericRangeInput}
 \title{Numeric Range Input}
 \usage{
-numericRangeInput(inputId, label, value, width = NULL,
-  separator = " to ")
+numericRangeInput(inputId, label, value, width = NULL, separator = " to ")
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

@@ -4,8 +4,14 @@
 \alias{updateAirDateInput}
 \title{Change the value of \code{\link{airDatepickerInput}} on the client}
 \usage{
-updateAirDateInput(session, inputId, label = NULL, value = NULL,
-  clear = FALSE, options = NULL)
+updateAirDateInput(
+  session,
+  inputId,
+  label = NULL,
+  value = NULL,
+  clear = FALSE,
+  options = NULL
+)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to \code{shinyServer}.}

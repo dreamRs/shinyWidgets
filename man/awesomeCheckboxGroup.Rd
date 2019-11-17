@@ -4,8 +4,15 @@
 \alias{awesomeCheckboxGroup}
 \title{Awesome Checkbox Group Input Control}
 \usage{
-awesomeCheckboxGroup(inputId, label, choices, selected = NULL,
-  inline = FALSE, status = "primary", width = NULL)
+awesomeCheckboxGroup(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  inline = FALSE,
+  status = "primary",
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

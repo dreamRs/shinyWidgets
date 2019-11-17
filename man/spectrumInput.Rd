@@ -4,9 +4,16 @@
 \alias{spectrumInput}
 \title{Palette Color Picker with Spectrum Library}
 \usage{
-spectrumInput(inputId, label, choices = NULL, selected = NULL,
-  flat = FALSE, options = list(), update_on = c("move", "dragstop",
-  "change"), width = NULL)
+spectrumInput(
+  inputId,
+  label,
+  choices = NULL,
+  selected = NULL,
+  flat = FALSE,
+  options = list(),
+  update_on = c("move", "dragstop", "change"),
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

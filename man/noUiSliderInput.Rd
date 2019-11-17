@@ -4,13 +4,30 @@
 \alias{noUiSliderInput}
 \title{Numeric range slider}
 \usage{
-noUiSliderInput(inputId, label = NULL, min, max, value, step = NULL,
-  tooltips = TRUE, connect = TRUE, padding = 0, margin = NULL,
-  limit = NULL, orientation = c("horizontal", "vertical"),
-  direction = c("ltr", "rtl"), behaviour = "tap", range = NULL,
-  pips = NULL, format = wNumbFormat(), update_on = c("end",
-  "change"), color = NULL, inline = FALSE, width = NULL,
-  height = NULL)
+noUiSliderInput(
+  inputId,
+  label = NULL,
+  min,
+  max,
+  value,
+  step = NULL,
+  tooltips = TRUE,
+  connect = TRUE,
+  padding = 0,
+  margin = NULL,
+  limit = NULL,
+  orientation = c("horizontal", "vertical"),
+  direction = c("ltr", "rtl"),
+  behaviour = "tap",
+  range = NULL,
+  pips = NULL,
+  format = wNumbFormat(),
+  update_on = c("end", "change"),
+  color = NULL,
+  inline = FALSE,
+  width = NULL,
+  height = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

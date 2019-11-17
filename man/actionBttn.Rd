@@ -4,8 +4,16 @@
 \alias{actionBttn}
 \title{Awesome action button}
 \usage{
-actionBttn(inputId, label = NULL, icon = NULL, style = "unite",
-  color = "default", size = "md", block = FALSE, no_outline = TRUE)
+actionBttn(
+  inputId,
+  label = NULL,
+  icon = NULL,
+  style = "unite",
+  color = "default",
+  size = "md",
+  block = FALSE,
+  no_outline = TRUE
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

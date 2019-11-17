@@ -6,11 +6,16 @@
 \alias{verticalTabPanel}
 \title{Vertical tab panel}
 \usage{
-verticalTabsetPanel(..., selected = NULL, id = NULL,
-  color = "#112446", contentWidth = 9, menuSide = "left")
+verticalTabsetPanel(
+  ...,
+  selected = NULL,
+  id = NULL,
+  color = "#112446",
+  contentWidth = 9,
+  menuSide = "left"
+)
 
-verticalTabPanel(title, ..., value = title, icon = NULL,
-  box_height = "160px")
+verticalTabPanel(title, ..., value = title, icon = NULL, box_height = "160px")
 }
 \arguments{
 \item{...}{For \code{verticalTabsetPanel}, \code{verticalTabPanel}

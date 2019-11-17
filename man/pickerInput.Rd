@@ -4,9 +4,17 @@
 \alias{pickerInput}
 \title{Select picker Input Control}
 \usage{
-pickerInput(inputId, label = NULL, choices, selected = NULL,
-  multiple = FALSE, options = list(), choicesOpt = NULL,
-  width = NULL, inline = FALSE)
+pickerInput(
+  inputId,
+  label = NULL,
+  choices,
+  selected = NULL,
+  multiple = FALSE,
+  options = list(),
+  choicesOpt = NULL,
+  width = NULL,
+  inline = FALSE
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

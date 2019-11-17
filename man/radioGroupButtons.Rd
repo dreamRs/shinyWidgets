@@ -4,11 +4,21 @@
 \alias{radioGroupButtons}
 \title{Buttons Group Radio Input Control}
 \usage{
-radioGroupButtons(inputId, label = NULL, choices = NULL,
-  selected = NULL, status = "default", size = "normal",
-  direction = "horizontal", justified = FALSE, individual = FALSE,
-  checkIcon = list(), width = NULL, choiceNames = NULL,
-  choiceValues = NULL)
+radioGroupButtons(
+  inputId,
+  label = NULL,
+  choices = NULL,
+  selected = NULL,
+  status = "default",
+  size = "normal",
+  direction = "horizontal",
+  justified = FALSE,
+  individual = FALSE,
+  checkIcon = list(),
+  width = NULL,
+  choiceNames = NULL,
+  choiceValues = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

@@ -4,18 +4,41 @@
 \alias{pickerOptions}
 \title{Options for `pickerInput`}
 \usage{
-pickerOptions(actionsBox = NULL, container = NULL,
-  countSelectedText = NULL, deselectAllText = NULL,
-  dropdownAlignRight = NULL, dropupAuto = NULL, header = NULL,
-  hideDisabled = NULL, iconBase = NULL, liveSearch = NULL,
-  liveSearchNormalize = NULL, liveSearchPlaceholder = NULL,
-  liveSearchStyle = NULL, maxOptions = NULL, maxOptionsText = NULL,
-  mobile = NULL, multipleSeparator = NULL, noneSelectedText = NULL,
-  noneResultsText = NULL, selectAllText = NULL,
-  selectedTextFormat = NULL, selectOnTab = NULL, showContent = NULL,
-  showIcon = NULL, showSubtext = NULL, showTick = NULL,
-  size = NULL, style = NULL, tickIcon = NULL, title = NULL,
-  virtualScroll = NULL, width = NULL, windowPadding = NULL)
+pickerOptions(
+  actionsBox = NULL,
+  container = NULL,
+  countSelectedText = NULL,
+  deselectAllText = NULL,
+  dropdownAlignRight = NULL,
+  dropupAuto = NULL,
+  header = NULL,
+  hideDisabled = NULL,
+  iconBase = NULL,
+  liveSearch = NULL,
+  liveSearchNormalize = NULL,
+  liveSearchPlaceholder = NULL,
+  liveSearchStyle = NULL,
+  maxOptions = NULL,
+  maxOptionsText = NULL,
+  mobile = NULL,
+  multipleSeparator = NULL,
+  noneSelectedText = NULL,
+  noneResultsText = NULL,
+  selectAllText = NULL,
+  selectedTextFormat = NULL,
+  selectOnTab = NULL,
+  showContent = NULL,
+  showIcon = NULL,
+  showSubtext = NULL,
+  showTick = NULL,
+  size = NULL,
+  style = NULL,
+  tickIcon = NULL,
+  title = NULL,
+  virtualScroll = NULL,
+  width = NULL,
+  windowPadding = NULL
+)
 }
 \arguments{
 \item{actionsBox}{When set to true, adds two buttons to the top of the dropdown menu (Select All & Deselect All). Type: boolean; Default: false.}

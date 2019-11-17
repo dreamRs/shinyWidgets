@@ -4,9 +4,18 @@
 \alias{updateRadioGroupButtons}
 \title{Change the value of a radio group buttons input on the client}
 \usage{
-updateRadioGroupButtons(session, inputId, label = NULL, choices = NULL,
-  selected = NULL, status = "default", size = "normal",
-  checkIcon = list(), choiceNames = NULL, choiceValues = NULL)
+updateRadioGroupButtons(
+  session,
+  inputId,
+  label = NULL,
+  choices = NULL,
+  selected = NULL,
+  status = "default",
+  size = "normal",
+  checkIcon = list(),
+  choiceNames = NULL,
+  choiceValues = NULL
+)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}

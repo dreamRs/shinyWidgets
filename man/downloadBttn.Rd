@@ -4,8 +4,15 @@
 \alias{downloadBttn}
 \title{Create a download \code{\link{actionBttn}}}
 \usage{
-downloadBttn(outputId, label = "Download", style = "unite",
-  color = "default", size = "md", block = FALSE, no_outline = TRUE)
+downloadBttn(
+  outputId,
+  label = "Download",
+  style = "unite",
+  color = "default",
+  size = "md",
+  block = FALSE,
+  no_outline = TRUE
+)
 }
 \arguments{
 \item{outputId}{The name of the output slot that the \code{downloadHandler} is assigned to.}

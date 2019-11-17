@@ -6,8 +6,13 @@
 \alias{selectizeGroupServer}
 \title{Selectize Group}
 \usage{
-selectizeGroupUI(id, params, label = NULL, btn_label = "Reset filters",
-  inline = TRUE)
+selectizeGroupUI(
+  id,
+  params,
+  label = NULL,
+  btn_label = "Reset filters",
+  inline = TRUE
+)
 
 selectizeGroupServer(input, output, session, data, vars)
 }

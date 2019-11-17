@@ -2,6 +2,12 @@ shinyWidgets 0.5.0
 ======================
 
 * `selectizeGroupServer() `(module `selectizeGroup`) now accept `reactive` data and `reactive` vars arguments, see examples for details `?selectizeGroupServer`.
+* Internal optimization of `pickerInput` for large list of choices.
+* `pickerInput()`'s `choicesOpt` argument now accept an element `tokens` that can be use to declare keywords for live-search.
+* `pickerUpdate()` : updated dependencies & bindings, now live-search & multiple selection works fine together [#142](https://github.com/dreamRs/shinyWidgets/issues/142).
+* `useSweetAlert()` now accept a `theme` argument to customize Sweet Alerts appearance (e.g. with `sendSweetAlert` for example).
+* `updateMulti()` preserve character encoding [#232](https://github.com/dreamRs/shinyWidgets/issues/232).
+* Fixed a bug in `verticalTabPanel()` preventing outputs to de displayed [#237](https://github.com/dreamRs/shinyWidgets/issues/237).
 
 
 

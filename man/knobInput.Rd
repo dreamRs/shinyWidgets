@@ -4,13 +4,30 @@
 \alias{knobInput}
 \title{Knob Input}
 \usage{
-knobInput(inputId, label, value, min = 0, max = 100, step = 1,
-  angleOffset = 0, angleArc = 360, cursor = FALSE,
-  thickness = NULL, lineCap = c("default", "round"),
-  displayInput = TRUE, displayPrevious = FALSE,
-  rotation = c("clockwise", "anticlockwise"), fgColor = NULL,
-  inputColor = NULL, bgColor = NULL, readOnly = FALSE, skin = NULL,
-  width = NULL, height = NULL, immediate = TRUE)
+knobInput(
+  inputId,
+  label,
+  value,
+  min = 0,
+  max = 100,
+  step = 1,
+  angleOffset = 0,
+  angleArc = 360,
+  cursor = FALSE,
+  thickness = NULL,
+  lineCap = c("default", "round"),
+  displayInput = TRUE,
+  displayPrevious = FALSE,
+  rotation = c("clockwise", "anticlockwise"),
+  fgColor = NULL,
+  inputColor = NULL,
+  bgColor = NULL,
+  readOnly = FALSE,
+  skin = NULL,
+  width = NULL,
+  height = NULL,
+  immediate = TRUE
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

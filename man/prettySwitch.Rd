@@ -4,9 +4,17 @@
 \alias{prettySwitch}
 \title{Pretty Switch Input}
 \usage{
-prettySwitch(inputId, label, value = FALSE, status = "default",
-  slim = FALSE, fill = FALSE, bigger = FALSE, inline = FALSE,
-  width = NULL)
+prettySwitch(
+  inputId,
+  label,
+  value = FALSE,
+  status = "default",
+  slim = FALSE,
+  fill = FALSE,
+  bigger = FALSE,
+  inline = FALSE,
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

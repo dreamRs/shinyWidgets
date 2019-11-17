@@ -4,8 +4,7 @@
 \alias{animateOptions}
 \title{Animate options}
 \usage{
-animateOptions(enter = "fadeInDown", exit = "fadeOutUp",
-  duration = 1)
+animateOptions(enter = "fadeInDown", exit = "fadeOutUp", duration = 1)
 }
 \arguments{
 \item{enter}{Animation name on appearance}

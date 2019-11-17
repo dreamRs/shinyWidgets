@@ -4,8 +4,16 @@
 \alias{searchInput}
 \title{Search Input}
 \usage{
-searchInput(inputId, label = NULL, value = "", placeholder = NULL,
-  btnSearch = NULL, btnReset = NULL, resetValue = "", width = NULL)
+searchInput(
+  inputId,
+  label = NULL,
+  value = "",
+  placeholder = NULL,
+  btnSearch = NULL,
+  btnReset = NULL,
+  resetValue = "",
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The input slot that will be used to access the value.}

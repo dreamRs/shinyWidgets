@@ -4,8 +4,14 @@
 \alias{updateSearchInput}
 \title{Change the value of a search input on the client}
 \usage{
-updateSearchInput(session, inputId, label = NULL, value = NULL,
-  placeholder = NULL, trigger = FALSE)
+updateSearchInput(
+  session,
+  inputId,
+  label = NULL,
+  value = NULL,
+  placeholder = NULL,
+  trigger = FALSE
+)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to \code{shinyServer}.}

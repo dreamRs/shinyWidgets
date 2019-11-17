@@ -3,7 +3,6 @@
 \docType{package}
 \name{shinyWidgets}
 \alias{shinyWidgets}
-\alias{shinyWidgets-package}
 \title{shinyWidgets: Custom inputs widgets for Shiny.}
 \description{
 The shinyWidgets package provides several custom widgets to extend those available in package shiny

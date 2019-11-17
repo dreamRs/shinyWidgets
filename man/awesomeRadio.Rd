@@ -4,8 +4,16 @@
 \alias{awesomeRadio}
 \title{Awesome Radio Buttons Input Control}
 \usage{
-awesomeRadio(inputId, label, choices, selected = NULL, inline = FALSE,
-  status = "primary", checkbox = FALSE, width = NULL)
+awesomeRadio(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  inline = FALSE,
+  status = "primary",
+  checkbox = FALSE,
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

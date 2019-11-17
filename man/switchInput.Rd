@@ -4,10 +4,21 @@
 \alias{switchInput}
 \title{Bootstrap Switch Input Control}
 \usage{
-switchInput(inputId, label = NULL, value = FALSE, onLabel = "ON",
-  offLabel = "OFF", onStatus = NULL, offStatus = NULL,
-  size = "default", labelWidth = "auto", handleWidth = "auto",
-  disabled = FALSE, inline = FALSE, width = NULL)
+switchInput(
+  inputId,
+  label = NULL,
+  value = FALSE,
+  onLabel = "ON",
+  offLabel = "OFF",
+  onStatus = NULL,
+  offStatus = NULL,
+  size = "default",
+  labelWidth = "auto",
+  handleWidth = "auto",
+  disabled = FALSE,
+  inline = FALSE,
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

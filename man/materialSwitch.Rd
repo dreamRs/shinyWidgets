@@ -4,8 +4,15 @@
 \alias{materialSwitch}
 \title{Material Design Switch Input Control}
 \usage{
-materialSwitch(inputId, label = NULL, value = FALSE,
-  status = "default", right = FALSE, inline = FALSE, width = NULL)
+materialSwitch(
+  inputId,
+  label = NULL,
+  value = FALSE,
+  status = "default",
+  right = FALSE,
+  inline = FALSE,
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

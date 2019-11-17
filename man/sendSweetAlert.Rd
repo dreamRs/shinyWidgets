@@ -4,9 +4,18 @@
 \alias{sendSweetAlert}
 \title{Display a Sweet Alert to the user}
 \usage{
-sendSweetAlert(session, title = "Title", text = NULL, type = NULL,
-  btn_labels = "Ok", btn_colors = "#3085d6", html = FALSE,
-  closeOnClickOutside = TRUE, showCloseButton = FALSE, width = NULL)
+sendSweetAlert(
+  session,
+  title = "Title",
+  text = NULL,
+  type = NULL,
+  btn_labels = "Ok",
+  btn_colors = "#3085d6",
+  html = FALSE,
+  closeOnClickOutside = TRUE,
+  showCloseButton = FALSE,
+  width = NULL
+)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}

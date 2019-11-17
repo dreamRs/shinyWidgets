@@ -4,10 +4,21 @@
 \alias{dropdownButton}
 \title{Dropdown Button}
 \usage{
-dropdownButton(..., circle = TRUE, status = "default",
-  size = "default", icon = NULL, label = NULL, tooltip = FALSE,
-  right = FALSE, up = FALSE, width = NULL, margin = "10px",
-  inline = FALSE, inputId = NULL)
+dropdownButton(
+  ...,
+  circle = TRUE,
+  status = "default",
+  size = "default",
+  icon = NULL,
+  label = NULL,
+  tooltip = FALSE,
+  right = FALSE,
+  up = FALSE,
+  width = NULL,
+  margin = "10px",
+  inline = FALSE,
+  inputId = NULL
+)
 }
 \arguments{
 \item{...}{List of tag to be displayed into the dropdown menu.}

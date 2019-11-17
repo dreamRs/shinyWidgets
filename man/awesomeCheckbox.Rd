@@ -4,8 +4,13 @@
 \alias{awesomeCheckbox}
 \title{Awesome Checkbox Input Control}
 \usage{
-awesomeCheckbox(inputId, label, value = FALSE, status = "primary",
-  width = NULL)
+awesomeCheckbox(
+  inputId,
+  label,
+  value = FALSE,
+  status = "primary",
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}

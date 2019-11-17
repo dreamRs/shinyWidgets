@@ -4,10 +4,20 @@
 \alias{inputSweetAlert}
 \title{Launch an input text dialog}
 \usage{
-inputSweetAlert(session, inputId, title = NULL, text = NULL,
-  type = NULL, input = c("text", "password", "textarea", "radio",
-  "checkbox", "select"), inputOptions = NULL, inputPlaceholder = NULL,
-  btn_labels = "Ok", btn_colors = NULL, reset_input = TRUE, ...)
+inputSweetAlert(
+  session,
+  inputId,
+  title = NULL,
+  text = NULL,
+  type = NULL,
+  input = c("text", "password", "textarea", "radio", "checkbox", "select"),
+  inputOptions = NULL,
+  inputPlaceholder = NULL,
+  btn_labels = "Ok",
+  btn_colors = NULL,
+  reset_input = TRUE,
+  ...
+)
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to shinyServer.}

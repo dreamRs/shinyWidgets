@@ -6,14 +6,30 @@
 \alias{colorSelectorDrop}
 \title{Color Selector Input}
 \usage{
-colorSelectorInput(inputId, label, choices, selected = NULL,
-  mode = c("radio", "checkbox"), display_label = FALSE, ncol = 10)
+colorSelectorInput(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  mode = c("radio", "checkbox"),
+  display_label = FALSE,
+  ncol = 10
+)
 
 colorSelectorExample()
 
-colorSelectorDrop(inputId, label, choices, selected = NULL,
-  display_label = FALSE, ncol = 10, circle = TRUE, size = "sm",
-  up = FALSE, width = NULL)
+colorSelectorDrop(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  display_label = FALSE,
+  ncol = 10,
+  circle = TRUE,
+  size = "sm",
+  up = FALSE,
+  width = NULL
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
