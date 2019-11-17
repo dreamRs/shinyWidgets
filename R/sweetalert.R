@@ -25,7 +25,8 @@
 #'
 #' @description
 #' This function isn't necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},
-#'  \code{inputSweetAlert}, but is still needed for \code{progressSweetAlert}.
+#'  \code{inputSweetAlert} (except if you want to use a theme other than the default one),
+#'  but is still needed for \code{progressSweetAlert}.
 #'
 #' @param theme Theme to modify alerts appearance.
 #'
@@ -34,7 +35,11 @@
 #' @importFrom htmltools attachDependencies htmlDependency singleton tagList tags
 #'
 #' @export
-useSweetAlert <- function(theme = c("sweetalert2", "minimal", "dark", "bootstrap-4", "borderless")) {
+#'
+#' @example examples/useSweetAlert.R
+useSweetAlert <- function(theme = c("sweetalert2", "minimal",
+                                    "dark", "bootstrap-4",
+                                    "borderless")) {
   theme <- match.arg(theme)
   tag_sa <- singleton(
     tagList(
