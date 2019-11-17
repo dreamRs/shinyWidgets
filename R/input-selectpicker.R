@@ -267,6 +267,7 @@ pickerSelectOptions <- function(choices, selected = NULL, choicesOpt = NULL, max
         `data-icon` = choicesOpt$icon[i],
         `data-subtext` = choicesOpt$subtext[i],
         `data-content` = choicesOpt$content[i],
+        `data-tokens` = choicesOpt$tokens[i],
         disabled = if (!is.null(choicesOpt$disabled[i]) && choicesOpt$disabled[i]) "disabled",
         selected = if (choice %in% selected) "selected" else NULL
       )
