@@ -10,13 +10,13 @@
 |collate  |French_France.1252           |
 |ctype    |French_France.1252           |
 |tz       |Europe/Berlin                |
-|date     |2019-09-10                   |
+|date     |2019-11-18                   |
 
 # Dependencies
 
-|package      |old   |new       |<U+0394>  |
-|:------------|:-----|:---------|:--|
-|shinyWidgets |0.4.8 |0.4.8.980 |*  |
+|package      |old   |new   |<U+0394>  |
+|:------------|:-----|:-----|:--|
+|shinyWidgets |0.4.9 |0.5.0 |*  |
 
 # Revdeps
 

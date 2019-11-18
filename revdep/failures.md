@@ -5,7 +5,7 @@
 * Version: 1.0.0
 * Source code: https://github.com/cran/viromeBrowser
 * Date/Publication: 2019-08-21 08:10:02 UTC
-* Number of recursive dependencies: 98
+* Number of recursive dependencies: 99
 
 Run `revdep_details(,"viromeBrowser")` for more info
 

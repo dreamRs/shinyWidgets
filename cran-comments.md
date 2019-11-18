@@ -11,12 +11,12 @@
 
 ## Reverse dependencies
 
-* I unfortunately couldn't test all the dependencies due to an error with one of them (rpostgisLT).
-  Those tested not reported problems (one with error, viromeBrowser, installation issue)
+* All reverse dependencies tested, except : `pkgsearch`, `rpostgisLT`
+  I unfortunately couldn't test all the dependencies due to an error with one of them (rpostgisLT).
+  No problems for those tested (one with error, viromeBrowser, installation issue)
   Summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
 
 -------
-
 
 
 Thanks!
