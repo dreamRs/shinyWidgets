@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,18 +117,41 @@
     <p>Wrapper of options available here: <a href='https://developer.snapappointments.com/bootstrap-select/options/'>https://developer.snapappointments.com/bootstrap-select/options/</a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>pickerOptions</span>(<span class='kw'>actionsBox</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>container</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>countSelectedText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>deselectAllText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dropdownAlignRight</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dropupAuto</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>header</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>hideDisabled</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>iconBase</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>liveSearch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>liveSearchNormalize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>liveSearchPlaceholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>liveSearchStyle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxOptions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxOptionsText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>mobile</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>multipleSeparator</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>noneSelectedText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>noneResultsText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selectAllText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>selectedTextFormat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selectOnTab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>showContent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>showIcon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>showSubtext</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>showTick</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tickIcon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>virtualScroll</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>windowPadding</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>pickerOptions</span>(
+  <span class='kw'>actionsBox</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>container</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>countSelectedText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>deselectAllText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dropdownAlignRight</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dropupAuto</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>header</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>hideDisabled</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>iconBase</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>liveSearch</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>liveSearchNormalize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>liveSearchPlaceholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>liveSearchStyle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>maxOptions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>maxOptionsText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>mobile</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>multipleSeparator</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>noneSelectedText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>noneResultsText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>selectAllText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>selectedTextFormat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>selectOnTab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>showContent</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>showIcon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>showSubtext</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>showTick</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>style</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>tickIcon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>virtualScroll</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>windowPadding</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

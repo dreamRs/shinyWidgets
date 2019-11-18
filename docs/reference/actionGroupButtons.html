@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,8 +117,14 @@
     <p>Create a group of actions buttons.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>actionGroupButtons</span>(<span class='no'>inputIds</span>, <span class='no'>labels</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"normal"</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"horizontal"</span>, <span class='kw'>fullwidth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>actionGroupButtons</span>(
+  <span class='no'>inputIds</span>,
+  <span class='no'>labels</span>,
+  <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
+  <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"normal"</span>,
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"horizontal"</span>,
+  <span class='kw'>fullwidth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,9 +161,7 @@ Or use an arbitrary strings to add a custom class, e.g. : with <code>status = 'm
     <p>An actions buttons group control that can be added to a UI definition.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
   <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shiny"</span>)
   <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shinyWidgets"</span>)
 
@@ -184,7 +188,6 @@ Or use an arbitrary strings to add a custom class, e.g. : with <code>status = 'm
   }
 
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
-}
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

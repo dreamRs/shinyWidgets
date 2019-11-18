@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,9 +117,16 @@
     <p>A widget to select a color within palettes, and with more options if needed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>spectrumInput</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='kw'>choices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>update_on</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"move"</span>, <span class='st'>"dragstop"</span>,
-  <span class='st'>"change"</span>), <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>spectrumInput</span>(
+  <span class='no'>inputId</span>,
+  <span class='no'>label</span>,
+  <span class='kw'>choices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>flat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>update_on</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"move"</span>, <span class='st'>"dragstop"</span>, <span class='st'>"change"</span>),
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,10 +188,10 @@ possible values are described here : <a href='https://bgrins.github.io/spectrum/
     <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Pick a color:"</span>,
     <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>'black'</span>, <span class='st'>'white'</span>, <span class='st'>'blanchedalmond'</span>, <span class='st'>'steelblue'</span>, <span class='st'>'forestgreen'</span>),
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/scales/man/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Blues"</span>)(<span class='fl'>9</span>)),
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/scales/man/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Greens"</span>)(<span class='fl'>9</span>)),
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/scales/man/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Spectral"</span>)(<span class='fl'>11</span>)),
-      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://rdrr.io/pkg/scales/man/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>)(<span class='fl'>8</span>))
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://scales.r-lib.org//reference/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Blues"</span>)(<span class='fl'>9</span>)),
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://scales.r-lib.org//reference/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Greens"</span>)(<span class='fl'>9</span>)),
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://scales.r-lib.org//reference/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Spectral"</span>)(<span class='fl'>11</span>)),
+      <span class='fu'><a href='https://rdrr.io/r/base/list.html'>as.list</a></span>(<span class='fu'><a href='https://scales.r-lib.org//reference/brewer_pal.html'>brewer_pal</a></span>(<span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>)(<span class='fl'>8</span>))
     ),
     <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`toggle-palette-more-text`</span> <span class='kw'>=</span> <span class='st'>"Show more"</span>)
   ),

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,13 +117,30 @@
     <p>Knob Input</p>
     </div>
 
-    <pre class="usage"><span class='fu'>knobInput</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='no'>value</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>angleOffset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>angleArc</span> <span class='kw'>=</span> <span class='fl'>360</span>, <span class='kw'>cursor</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>thickness</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lineCap</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"round"</span>),
-  <span class='kw'>displayInput</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>displayPrevious</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>rotation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"clockwise"</span>, <span class='st'>"anticlockwise"</span>), <span class='kw'>fgColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inputColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bgColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>readOnly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>skin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>immediate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>knobInput</span>(
+  <span class='no'>inputId</span>,
+  <span class='no'>label</span>,
+  <span class='no'>value</span>,
+  <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>angleOffset</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>angleArc</span> <span class='kw'>=</span> <span class='fl'>360</span>,
+  <span class='kw'>cursor</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>thickness</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>lineCap</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"round"</span>),
+  <span class='kw'>displayInput</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>displayPrevious</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>rotation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"clockwise"</span>, <span class='st'>"anticlockwise"</span>),
+  <span class='kw'>fgColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inputColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bgColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>readOnly</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>skin</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>immediate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -205,12 +222,10 @@
       <td><p>Change Knob skin, only one option available : 'tron'.</p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p>The width of the input, e.g. <code>400px</code>, or <code>100%</code>.</p></td>
-    </tr>
-    <tr>
-      <th>height</th>
-      <td><p>The height of the input, e.g. <code>400px</code>, or <code>100%</code>.</p></td>
+      <th>width, height</th>
+      <td><p>The width and height of the input, e.g. <code>400px</code>, or <code>100%</code>.
+A value a pixel is recommended, otherwise the knob won't be able to initialize itself in some case
+(if hidden at start for example).</p></td>
     </tr>
     <tr>
       <th>immediate</th>

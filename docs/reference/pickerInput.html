@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,9 +117,17 @@
     <p>Create a select picker (<a href='https://developer.snapappointments.com/bootstrap-select/'>https://developer.snapappointments.com/bootstrap-select/</a>)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pickerInput</span>(<span class='no'>inputId</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>choices</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>choicesOpt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>pickerInput</span>(
+  <span class='no'>inputId</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>choices</span>,
+  <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>choicesOpt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,165 +189,190 @@ To limit the number of selection possible, see example below.</p></td>
 <span class='fu'><a href='shinyWidgetsGallery.html'>shinyWidgetsGallery</a></span>()
 
 
-<span class='co'># Simple example</span>
+<span class='co'># Basic usage</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shiny"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
+
 <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
-  <span class='fu'>pickerInput</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"somevalue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"A label"</span>, <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>)),
+  <span class='fu'>pickerInput</span>(
+    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"somevalue"</span>,
+    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"A label"</span>,
+    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>)
+  ),
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"value"</span>)
 )
+
 <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-  <span class='no'>output</span>$<span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>({ <span class='no'>input</span>$<span class='no'>somevalue</span> })
+  <span class='no'>output</span>$<span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>somevalue</span>)
 }
+
 <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
-
-<span class='co'>### Add actions box for selecting</span>
-<span class='co'># deselecting all options</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shiny"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shinyWidgets"</span>)
-
-<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p1"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select all option"</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`actions-box`</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-  ),
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p2"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select all option / custom text"</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='kw'>`actions-box`</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-      <span class='kw'>`deselect-all-text`</span> <span class='kw'>=</span> <span class='st'>"None..."</span>,
-      <span class='kw'>`select-all-text`</span> <span class='kw'>=</span> <span class='st'>"Yeah, all !"</span>,
-      <span class='kw'>`none-selected-text`</span> <span class='kw'>=</span> <span class='st'>"zero"</span>
-    )
-  )
-)
-
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-
 }
 
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
+<span class='co'>### Add actions box for selecting ----</span>
+<span class='co'>### deselecting all options</span>
 
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
 
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
+
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+    <span class='no'>tags</span>$<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h2</a></span>(<span class='st'>"Select / Deselect all"</span>),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p1"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select all option"</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`actions-box`</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    ),
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"r1"</span>),
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p2"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select all option / custom text"</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+        <span class='kw'>`actions-box`</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='kw'>`deselect-all-text`</span> <span class='kw'>=</span> <span class='st'>"None..."</span>,
+        <span class='kw'>`select-all-text`</span> <span class='kw'>=</span> <span class='st'>"Yeah, all !"</span>,
+        <span class='kw'>`none-selected-text`</span> <span class='kw'>=</span> <span class='st'>"zero"</span>
+      )
+    ),
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"r2"</span>)
+  )
+
+  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+    <span class='no'>output</span>$<span class='no'>r1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>p1</span>)
+    <span class='no'>output</span>$<span class='no'>r2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>p2</span>)
+
+  }
+
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
+
+}
 
 <span class='co'>### Customize the values displayed in the box ----</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shiny"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"shinyWidgets"</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
 
-<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p1"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Default"</span>,
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
-    <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>]
-  ),
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p1b"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Default with | separator"</span>,
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
-    <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>],
-    <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`multiple-separator`</span> <span class='kw'>=</span> <span class='st'>" | "</span>)
-  ),
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p2"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Static"</span>,
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
-    <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>],
-    <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`selected-text-format`</span><span class='kw'>=</span> <span class='st'>"static"</span>,
-                   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Won't change"</span>)
-  ),
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p3"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Count"</span>,
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
-    <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>],
-    <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`selected-text-format`</span><span class='kw'>=</span> <span class='st'>"count"</span>)
-  ),
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p3"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Customize count"</span>,
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
-    <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>],
-    <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='kw'>`selected-text-format`</span><span class='kw'>=</span> <span class='st'>"count"</span>,
-      <span class='kw'>`count-selected-text`</span> <span class='kw'>=</span> <span class='st'>"{0} models choosed (on a total of {1})"</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
+
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p1"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Default"</span>,
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
+      <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>]
+    ),
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p1b"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Default with | separator"</span>,
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
+      <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>],
+      <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`multiple-separator`</span> <span class='kw'>=</span> <span class='st'>" | "</span>)
+    ),
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p2"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Static"</span>,
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
+      <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>],
+      <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`selected-text-format`</span><span class='kw'>=</span> <span class='st'>"static"</span>,
+                     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Won't change"</span>)
+    ),
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p3"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Count"</span>,
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
+      <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>],
+      <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>`selected-text-format`</span><span class='kw'>=</span> <span class='st'>"count"</span>)
+    ),
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"p3"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Customize count"</span>,
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>),
+      <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>)[<span class='fl'>1</span>:<span class='fl'>5</span>],
+      <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+        <span class='kw'>`selected-text-format`</span><span class='kw'>=</span> <span class='st'>"count"</span>,
+        <span class='kw'>`count-selected-text`</span> <span class='kw'>=</span> <span class='st'>"{0} models choosed (on a total of {1})"</span>
+      )
     )
   )
-)
 
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+  }
+
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
 
 }
-
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
-
-
 
 <span class='co'>### Limit the number of selections ----</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
-<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"groups"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select one from each group below:"</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='kw'>Group1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>),
-      <span class='kw'>Group2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
+
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"groups"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select one from each group below:"</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+        <span class='kw'>Group1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>),
+        <span class='kw'>Group2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>)
+      ),
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>options</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"max-options-group"</span> <span class='kw'>=</span> <span class='fl'>1</span>)
     ),
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>options</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"max-options-group"</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-  ),
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"res_grp"</span>),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"groups_2"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select two from each group below:"</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='kw'>Group1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>),
-      <span class='kw'>Group2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>)
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"res_grp"</span>),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"groups_2"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select two from each group below:"</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+        <span class='kw'>Group1</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>),
+        <span class='kw'>Group2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>)
+      ),
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>options</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"max-options-group"</span> <span class='kw'>=</span> <span class='fl'>2</span>)
     ),
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>options</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"max-options-group"</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-  ),
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"res_grp_2"</span>),
-  <span class='fu'>pickerInput</span>(
-    <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"classic"</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select max two option below:"</span>,
-    <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>),
-    <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>options</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='st'>"max-options"</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-      <span class='st'>"max-options-text"</span> <span class='kw'>=</span> <span class='st'>"No more!"</span>
-    )
-  ),
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"res_classic"</span>)
-)
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-  <span class='no'>output</span>$<span class='no'>res_grp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>groups</span>)
-  <span class='no'>output</span>$<span class='no'>res_grp_2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>groups_2</span>)
-  <span class='no'>output</span>$<span class='no'>res_classic</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>classic</span>)
-}
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"res_grp_2"</span>),
+    <span class='fu'>pickerInput</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"classic"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Select max two option below:"</span>,
+      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='st'>"D"</span>),
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>options</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+        <span class='st'>"max-options"</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+        <span class='st'>"max-options-text"</span> <span class='kw'>=</span> <span class='st'>"No more!"</span>
+      )
+    ),
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"res_classic"</span>)
+  )
+
+  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+
+    <span class='no'>output</span>$<span class='no'>res_grp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>groups</span>)
+    <span class='no'>output</span>$<span class='no'>res_grp_2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>groups_2</span>)
+    <span class='no'>output</span>$<span class='no'>res_classic</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>classic</span>)
+
+  }
+
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
 }</div></pre>
   </div>

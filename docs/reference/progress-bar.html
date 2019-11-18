@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,12 +117,29 @@
     <p>Create a progress bar to provide feedback on calculation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>progressBar</span>(<span class='no'>id</span>, <span class='no'>value</span>, <span class='kw'>total</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>display_pct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>striped</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>range_value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>unit_mark</span> <span class='kw'>=</span> <span class='st'>"%"</span>)
+    <pre class="usage"><span class='fu'>progressBar</span>(
+  <span class='no'>id</span>,
+  <span class='no'>value</span>,
+  <span class='kw'>total</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>display_pct</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>striped</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>range_value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>unit_mark</span> <span class='kw'>=</span> <span class='st'>"%"</span>
+)
 
-<span class='fu'>updateProgressBar</span>(<span class='no'>session</span>, <span class='no'>id</span>, <span class='no'>value</span>, <span class='kw'>total</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>range_value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>unit_mark</span> <span class='kw'>=</span> <span class='st'>"%"</span>)</pre>
+<span class='fu'>updateProgressBar</span>(
+  <span class='no'>session</span>,
+  <span class='no'>id</span>,
+  <span class='no'>value</span>,
+  <span class='kw'>total</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>range_value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>unit_mark</span> <span class='kw'>=</span> <span class='st'>"%"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

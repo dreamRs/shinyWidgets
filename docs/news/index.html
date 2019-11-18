@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -110,13 +110,32 @@
       <small>Source: <a href='https://github.com/dreamRs/shinyWidgets/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="shinywidgets-050" class="section level1">
+<h1 class="page-header">
+<a href="#shinywidgets-050" class="anchor"></a>shinyWidgets 0.5.0<small> 2019-11-18 </small>
+</h1>
+<ul>
+<li>
+<code><a href="../reference/selectizeGroup-module.html">selectizeGroupServer()</a></code>(module <code>selectizeGroup</code>) now accept <code>reactive</code> data and <code>reactive</code> vars arguments, see examples for details <code><a href="../reference/selectizeGroup-module.html">?selectizeGroupServer</a></code>.</li>
+<li>Internal optimization of <code>pickerInput</code> for large list of choices.</li>
+<li>
+<code><a href="../reference/pickerInput.html">pickerInput()</a></code>’s <code>choicesOpt</code> argument now accept an element <code>tokens</code> that can be use to declare keywords for live-search.</li>
+<li>
+<code>pickerUpdate()</code> : updated dependencies &amp; bindings, now live-search &amp; multiple selection works fine together <a href="https://github.com/dreamRs/shinyWidgets/issues/142"><a href='https://github.com/dreamRs/shinyWidgets/issues/142'>#142</a></a>.</li>
+<li>
+<code><a href="../reference/useSweetAlert.html">useSweetAlert()</a></code> now accept a <code>theme</code> argument to customize Sweet Alerts appearance (e.g. with <code>sendSweetAlert</code> for example).</li>
+<li>
+<code>updateMulti()</code> preserve character encoding <a href="https://github.com/dreamRs/shinyWidgets/issues/232"><a href='https://github.com/dreamRs/shinyWidgets/issues/232'>#232</a></a>.</li>
+<li>Fixed a bug in <code><a href="../reference/vertical-tab.html">verticalTabPanel()</a></code> preventing outputs to be displayed <a href="https://github.com/dreamRs/shinyWidgets/issues/237"><a href='https://github.com/dreamRs/shinyWidgets/issues/237'>#237</a></a>.</li>
+</ul>
+</div>
     <div id="shinywidgets-049" class="section level1">
 <h1 class="page-header">
 <a href="#shinywidgets-049" class="anchor"></a>shinyWidgets 0.4.9<small> 2019-09-10 </small>
 </h1>
 <ul>
 <li>Update to SweetAlert2: more options available for <code><a href="../reference/sendSweetAlert.html">sendSweetAlert()</a></code>, <code><a href="../reference/confirmSweetAlert.html">confirmSweetAlert()</a></code>, <code><a href="../reference/inputSweetAlert.html">inputSweetAlert()</a></code>.</li>
-<li>add <code><a href="../reference/useTablerDash.html">useTablerDash()</a></code> to inport functions from tablerDash.</li>
+<li>add <code><a href="../reference/useTablerDash.html">useTablerDash()</a></code> to import functions from <a href="https://github.com/RinteRface/tablerDash">tablerDash</a>.</li>
 <li>
 <code><a href="../reference/progress-bar.html">updateProgressBar()</a></code>, <code><a href="../reference/confirmSweetAlert.html">confirmSweetAlert()</a></code>, <code><a href="../reference/inputSweetAlert.html">inputSweetAlert()</a></code> are now module friendly, thanks to <a href="https://github.com/AshesITR">@AshesITR</a>.</li>
 <li>add <code>inline = TRUE/FALSE</code> argument to <code><a href="../reference/dropdownButton.html">dropdownButton()</a></code>: return either a span or a div element.</li>
@@ -138,7 +157,7 @@
 <a href="#shinywidgets-047" class="anchor"></a>shinyWidgets 0.4.7<small> 2019-03-12 </small>
 </h1>
 <ul>
-<li>add <code>useArgonDash</code> to inport functions from argonDash.</li>
+<li>add <code>useArgonDash</code> to import functions from argonDash.</li>
 <li>add <code>useBs4Dash</code> to import functions from bs4Dash.</li>
 <li>Fix updating <code>searchInput</code> label &amp; placeholder in modules.</li>
 <li>Fix issue with ghost sidebar in <code>useShinydashboard</code>.</li>
@@ -308,6 +327,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#shinywidgets-050">0.5.0</a></li>
         <li><a href="#shinywidgets-049">0.4.9</a></li>
         <li><a href="#shinywidgets-048">0.4.8</a></li>
         <li><a href="#shinywidgets-047">0.4.7</a></li>

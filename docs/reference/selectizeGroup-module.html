@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,8 +117,13 @@
     <p>Group of mutually dependent `selectizeInput` for filtering data.frame's columns (like in Excel).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>selectizeGroupUI</span>(<span class='no'>id</span>, <span class='no'>params</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btn_label</span> <span class='kw'>=</span> <span class='st'>"Reset filters"</span>,
-  <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>selectizeGroupUI</span>(
+  <span class='no'>id</span>,
+  <span class='no'>params</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>btn_label</span> <span class='kw'>=</span> <span class='st'>"Reset filters"</span>,
+  <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
 
 <span class='fu'>selectizeGroupServer</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='no'>data</span>, <span class='no'>vars</span>)</pre>
 
@@ -147,25 +152,19 @@
       <td><p>If <code>TRUE</code> (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.</p></td>
     </tr>
     <tr>
-      <th>input</th>
-      <td><p>standard <code>shiny</code> input.</p></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td><p>standard <code>shiny</code> output.</p></td>
-    </tr>
-    <tr>
-      <th>session</th>
-      <td><p>standard <code>shiny</code> session.</p></td>
+      <th>input, output, session</th>
+      <td><p>standards <code>shiny</code> server arguments.</p></td>
     </tr>
     <tr>
       <th>data</th>
-      <td><p>a <code>data.frame</code>, or an object that can be coerced to <code>data.frame</code>.</p></td>
+      <td><p>Either a <code>data.frame</code> or a <code>reactive</code>
+function returning a <code>data.frame</code> (do not use parentheses).</p></td>
     </tr>
     <tr>
       <th>vars</th>
       <td><p>character, columns to use to create filters,
-must correspond to variables listed in <code>params</code>.</p></td>
+must correspond to variables listed in <code>params</code>. Can be a
+<code>reactive</code> function, but values must be included in the initial ones (in <code>params</code>).</p></td>
     </tr>
     </table>
 
@@ -174,46 +173,169 @@ must correspond to variables listed in <code>params</code>.</p></td>
     <p>a <code>reactive</code> function containing data filtered.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+    <pre class="examples"><div class='input'><span class='co'># Default -----------------------------------------------------------------</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"mpg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
 
-<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(
-      <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-      <span class='no'>tags</span>$<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h3</a></span>(<span class='st'>"Filter data with selectize group"</span>),
-      <span class='fu'><a href='panel.html'>panel</a></span>(
-        <span class='fu'>selectizeGroupUI</span>(
-          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-filters"</span>,
-          <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-            <span class='kw'>manufacturer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"manufacturer"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Manufacturer:"</span>),
-            <span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"model"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Model:"</span>),
-            <span class='kw'>trans</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"trans"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Trans:"</span>),
-            <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"class"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Class:"</span>)
-          )
-        ), <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>
-      ),
-      <span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>dataTableOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"table"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"mpg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)
+
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(
+        <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+        <span class='no'>tags</span>$<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h3</a></span>(<span class='st'>"Filter data with selectize group"</span>),
+        <span class='fu'><a href='panel.html'>panel</a></span>(
+          <span class='fu'>selectizeGroupUI</span>(
+            <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-filters"</span>,
+            <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+              <span class='kw'>manufacturer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"manufacturer"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Manufacturer:"</span>),
+              <span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"model"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Model:"</span>),
+              <span class='kw'>trans</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"trans"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Trans:"</span>),
+              <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"class"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Class:"</span>)
+            )
+          ), <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>
+        ),
+        <span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>dataTableOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"table"</span>)
+      )
     )
   )
-)
 
-<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-  <span class='no'>res_mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
-    <span class='kw'>module</span> <span class='kw'>=</span> <span class='no'>selectizeGroupServer</span>,
-    <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-filters"</span>,
-    <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
-    <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"manufacturer"</span>, <span class='st'>"model"</span>, <span class='st'>"trans"</span>, <span class='st'>"class"</span>)
-  )
-  <span class='no'>output</span>$<span class='no'>table</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>renderDataTable</a></span>(<span class='fu'>res_mod</span>())
+  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+    <span class='no'>res_mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+      <span class='kw'>module</span> <span class='kw'>=</span> <span class='no'>selectizeGroupServer</span>,
+      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-filters"</span>,
+      <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
+      <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"manufacturer"</span>, <span class='st'>"model"</span>, <span class='st'>"trans"</span>, <span class='st'>"class"</span>)
+    )
+    <span class='no'>output</span>$<span class='no'>table</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>renderDataTable</a></span>(<span class='fu'>res_mod</span>())
+  }
+
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+
 }
 
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+<span class='co'># Select variables --------------------------------------------------------</span>
 
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
+
+  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"mpg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)
+
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(
+        <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+        <span class='no'>tags</span>$<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h3</a></span>(<span class='st'>"Filter data with selectize group"</span>),
+        <span class='fu'><a href='panel.html'>panel</a></span>(
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html'>checkboxGroupInput</a></span>(
+            <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"vars"</span>,
+            <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Variables to use:"</span>,
+            <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"manufacturer"</span>, <span class='st'>"model"</span>, <span class='st'>"trans"</span>, <span class='st'>"class"</span>),
+            <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"manufacturer"</span>, <span class='st'>"model"</span>, <span class='st'>"trans"</span>, <span class='st'>"class"</span>),
+            <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+          ),
+          <span class='fu'>selectizeGroupUI</span>(
+            <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-filters"</span>,
+            <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+              <span class='kw'>manufacturer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"manufacturer"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Manufacturer:"</span>),
+              <span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"model"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Model:"</span>),
+              <span class='kw'>trans</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"trans"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Trans:"</span>),
+              <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"class"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Class:"</span>)
+            )
+          ),
+          <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>
+        ),
+        <span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>dataTableOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"table"</span>)
+      )
+    )
+  )
+
+  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+    <span class='no'>vars_r</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
+      <span class='no'>input</span>$<span class='no'>vars</span>
+    })
+
+    <span class='no'>res_mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+      <span class='kw'>module</span> <span class='kw'>=</span> <span class='no'>selectizeGroupServer</span>,
+      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-filters"</span>,
+      <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mpg</span>,
+      <span class='kw'>vars</span> <span class='kw'>=</span> <span class='no'>vars_r</span>
+    )
+
+    <span class='no'>output</span>$<span class='no'>table</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>renderDataTable</a></span>({
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='fu'>res_mod</span>())
+      <span class='fu'>res_mod</span>()
+    })
+  }
+
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+}
+
+<span class='co'># Subset data -------------------------------------------------------------</span>
+
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
+
+  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"mpg"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)
+
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span>(
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span>(
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span>(
+        <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+        <span class='no'>tags</span>$<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h3</a></span>(<span class='st'>"Filter data with selectize group"</span>),
+        <span class='fu'><a href='panel.html'>panel</a></span>(
+          <span class='fu'><a href='pickerInput.html'>pickerInput</a></span>(
+            <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"car_select"</span>,
+            <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>mpg</span>$<span class='no'>manufacturer</span>),
+            <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+              <span class='kw'>`live-search`</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+              <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"None selected"</span>
+            )
+          ),
+          <span class='fu'>selectizeGroupUI</span>(
+            <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-filters"</span>,
+            <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+              <span class='kw'>manufacturer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"manufacturer"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Manufacturer:"</span>),
+              <span class='kw'>model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"model"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Model:"</span>),
+              <span class='kw'>trans</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"trans"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Trans:"</span>),
+              <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"class"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Class:"</span>)
+            )
+          ),
+          <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"primary"</span>
+        ),
+        <span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>dataTableOutput</a></span>(<span class='kw'>outputId</span> <span class='kw'>=</span> <span class='st'>"table"</span>)
+      )
+    )
+  )
+
+  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+    <span class='no'>mpg_filter</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
+      <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span>(<span class='no'>mpg</span>, <span class='no'>manufacturer</span> <span class='kw'>%in%</span> <span class='no'>input</span>$<span class='no'>car_select</span>)
+    })
+
+    <span class='no'>res_mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+      <span class='kw'>module</span> <span class='kw'>=</span> <span class='no'>selectizeGroupServer</span>,
+      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-filters"</span>,
+      <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mpg_filter</span>,
+      <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"manufacturer"</span>, <span class='st'>"model"</span>, <span class='st'>"trans"</span>, <span class='st'>"class"</span>)
+    )
+
+    <span class='no'>output</span>$<span class='no'>table</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>DT</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>renderDataTable</a></span>({
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='fu'>res_mod</span>())
+      <span class='fu'>res_mod</span>()
+    })
+  }
+
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

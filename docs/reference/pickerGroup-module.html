@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -117,8 +117,14 @@
     <p>Group of mutually dependent <code><a href='pickerInput.html'>pickerInput</a></code> for filtering <code>data.frame</code>'s columns.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pickerGroupUI</span>(<span class='no'>id</span>, <span class='no'>params</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btn_label</span> <span class='kw'>=</span> <span class='st'>"Reset filters"</span>,
-  <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>pickerGroupUI</span>(
+  <span class='no'>id</span>,
+  <span class='no'>params</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>btn_label</span> <span class='kw'>=</span> <span class='st'>"Reset filters"</span>,
+  <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
 
 <span class='fu'>pickerGroupServer</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='no'>data</span>, <span class='no'>vars</span>)</pre>
 

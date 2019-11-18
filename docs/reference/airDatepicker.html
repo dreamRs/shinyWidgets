@@ -70,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -119,20 +119,44 @@
  And two alias to select months or years.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>airDatepickerInput</span>(<span class='no'>inputId</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>range</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>timepicker</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>separator</span> <span class='kw'>=</span> <span class='st'>" - "</span>, <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dateFormat</span> <span class='kw'>=</span> <span class='st'>"yyyy-mm-dd"</span>,
-  <span class='kw'>minDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>disabledDates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>view</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"days"</span>, <span class='st'>"months"</span>, <span class='st'>"years"</span>), <span class='kw'>minView</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"days"</span>, <span class='st'>"months"</span>,
-  <span class='st'>"years"</span>), <span class='kw'>monthsField</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"monthsShort"</span>, <span class='st'>"months"</span>),
-  <span class='kw'>clearButton</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>todayButton</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>autoClose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>timepickerOpts</span> <span class='kw'>=</span> <span class='fu'>timepickerOptions</span>(), <span class='kw'>position</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>update_on</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"change"</span>, <span class='st'>"close"</span>), <span class='kw'>addon</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"right"</span>, <span class='st'>"left"</span>, <span class='st'>"none"</span>),
-  <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>, <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>airDatepickerInput</span>(
+  <span class='no'>inputId</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>range</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>timepicker</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>separator</span> <span class='kw'>=</span> <span class='st'>" - "</span>,
+  <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dateFormat</span> <span class='kw'>=</span> <span class='st'>"yyyy-mm-dd"</span>,
+  <span class='kw'>minDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>maxDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>disabledDates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>view</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"days"</span>, <span class='st'>"months"</span>, <span class='st'>"years"</span>),
+  <span class='kw'>minView</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"days"</span>, <span class='st'>"months"</span>, <span class='st'>"years"</span>),
+  <span class='kw'>monthsField</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"monthsShort"</span>, <span class='st'>"months"</span>),
+  <span class='kw'>clearButton</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>todayButton</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>autoClose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>timepickerOpts</span> <span class='kw'>=</span> <span class='fu'>timepickerOptions</span>(),
+  <span class='kw'>position</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>update_on</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"change"</span>, <span class='st'>"close"</span>),
+  <span class='kw'>addon</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"right"</span>, <span class='st'>"left"</span>, <span class='st'>"none"</span>),
+  <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>,
+  <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)
 
-<span class='fu'>timepickerOptions</span>(<span class='kw'>dateTimeSeparator</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>timeFormat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>minHours</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxHours</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>minMinutes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>maxMinutes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>hoursStep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>minutesStep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>timepickerOptions</span>(
+  <span class='kw'>dateTimeSeparator</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>timeFormat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>minHours</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>maxHours</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>minMinutes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>maxMinutes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>hoursStep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>minutesStep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)
 
 <span class='fu'>airMonthpickerInput</span>(<span class='no'>inputId</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
