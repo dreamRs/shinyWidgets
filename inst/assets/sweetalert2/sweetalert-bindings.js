@@ -4,9 +4,9 @@
 Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {
   if (data.as_html) {
     var elsw = document.createElement("span");
-    elsw.innerHTML = data.text;
-    data.html = elsw;
-    Swal.fire(data)
+    elsw.innerHTML = data.config.text;
+    data.config.html = elsw;
+    Swal.fire(data.config)
       .then(function(value){
         var els = $("#" + data.sw_id);
         els.each(function (i, el) {
@@ -16,7 +16,7 @@ Shiny.addCustomMessageHandler('sweetalert-sw', function(data) {
         });
       });
   } else {
-    Swal.fire(data);
+    Swal.fire(data.config);
   }
 });
 
@@ -67,7 +67,6 @@ Shiny.addCustomMessageHandler('sweetalert-sw-progress', function(data) {
   var itm = document.getElementById(data.idel);
   itm.style.display = "block";
   data.content = itm;
-  //document.getElementById(data.idel).remove();
   Swal.fire(data);
 });
 
@@ -77,19 +76,25 @@ Shiny.addCustomMessageHandler('sweetalert-toast', function(data) {
 });
 
 
-Element.prototype.remove = function() {
-    this.parentElement.removeChild(this);
-};
-NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
-    for(var i = this.length - 1; i >= 0; i--) {
-        if(this[i] && this[i].parentElement) {
-            this[i].parentElement.removeChild(this[i]);
-        }
+// https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove
+(function (arr) {
+  arr.forEach(function (item) {
+    if (item.hasOwnProperty('remove')) {
+      return;
     }
-};
-
-
-
+    Object.defineProperty(item, 'remove', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function remove() {
+        if (this.parentNode === null) {
+          return;
+        }
+        this.parentNode.removeChild(this);
+      }
+    });
+  });
+})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
 
 
 Shiny.addCustomMessageHandler('sweetalert-sw-close', function(data) {

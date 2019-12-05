@@ -96,8 +96,8 @@ server <- function(input, output, session) {
 
   output$out <- renderPrint({
     cat(
-      " # n\\n", input$n, "\\n",
-      "# na\\n", input$na
+      " # n\n", input$n, "\n",
+      "# na\n", input$na
     )
   })
 

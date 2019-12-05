@@ -219,38 +219,43 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
     # text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
     session$sendCustomMessage(
       type = "sweetalert-sw",
-      message = dropNullsOrNA(list(
-        title = title, text = text, type = type,
-        confirmButtonText = btn_labels[1],
-        confirmButtonColor = btn_colors[1],
-        cancelButtonText = btn_labels[2],
-        cancelButtonColor = btn_colors[2],
-        showConfirmButton = !is.na(btn_labels[1]),
-        showCancelButton = !is.na(btn_labels[2]),
+      message = list(
         as_html = html,
-        allowOutsideClick = closeOnClickOutside,
-        showCloseButton = showCloseButton,
-        width = width
-      ))
+        config = dropNullsOrNA(list(
+          title = title, text = text, type = type,
+          confirmButtonText = btn_labels[1],
+          confirmButtonColor = btn_colors[1],
+          cancelButtonText = btn_labels[2],
+          cancelButtonColor = btn_colors[2],
+          showConfirmButton = !is.na(btn_labels[1]),
+          showCancelButton = !is.na(btn_labels[2]),
+          allowOutsideClick = closeOnClickOutside,
+          showCloseButton = showCloseButton,
+          width = width
+        ))
+      )
     )
   } else {
     id <- paste0("placeholder-", sample.int(1e6, 1))
     session$sendCustomMessage(
       type = "sweetalert-sw",
-      message = dropNullsOrNA(list(
-        title = title, type = type, sw_id = id,
-        text = as.character(tags$div(id = id)),
-        confirmButtonText = btn_labels[1],
-        confirmButtonColor = btn_colors[1],
-        showConfirmButton = !is.na(btn_labels[1]),
-        cancelButtonText = btn_labels[2],
-        cancelButtonColor = btn_colors[2],
-        showCancelButton = !is.na(btn_labels[2]),
+      message = list(
+        sw_id = id,
         as_html = html,
-        allowOutsideClick = closeOnClickOutside,
-        showCloseButton = showCloseButton,
-        width = width
-      ))
+        config = dropNullsOrNA(list(
+          title = title, type = type,
+          text = as.character(tags$div(id = id)),
+          confirmButtonText = btn_labels[1],
+          confirmButtonColor = btn_colors[1],
+          showConfirmButton = !is.na(btn_labels[1]),
+          cancelButtonText = btn_labels[2],
+          cancelButtonColor = btn_colors[2],
+          showCancelButton = !is.na(btn_labels[2]),
+          allowOutsideClick = closeOnClickOutside,
+          showCloseButton = showCloseButton,
+          width = width
+        ))
+      )
     )
     insertUI(
       session = session, selector = paste0("#", id),

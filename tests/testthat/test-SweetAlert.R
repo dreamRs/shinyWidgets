@@ -56,12 +56,12 @@ test_that("sendSweetAlert", {
 
   sendSA_msg <- session$lastCustomMessage$message
 
-  expect_length(sendSA_msg, 10)
-  expect_identical(sendSA_msg$title, "TITLE")
-  expect_is(sendSA_msg$text, "character")
-  expect_identical(sendSA_msg$type, "success")
+  expect_length(sendSA_msg, 2)
+  expect_identical(sendSA_msg$config$title, "TITLE")
+  expect_is(sendSA_msg$config$text, "character")
+  expect_identical(sendSA_msg$config$type, "success")
   expect_false(sendSA_msg$as_html)
-  expect_true(sendSA_msg$allowOutsideClick)
+  expect_true(sendSA_msg$config$allowOutsideClick)
 })
 
 
@@ -164,7 +164,7 @@ test_that("progressSweetAlert", {
 
   sendPA_msg <- session$lastCustomMessage$message
 
-  expect_length(sendPA_msg, 9)
-  expect_null(sendPA_msg$title)
-  expect_false(sendPA_msg$allowOutsideClick)
+  expect_length(sendPA_msg, 3)
+  expect_null(sendPA_msg$config$title)
+  expect_false(sendPA_msg$config$allowOutsideClick)
 })

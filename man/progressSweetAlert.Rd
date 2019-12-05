@@ -47,7 +47,7 @@ library("shinyWidgets")
 
 ui <- fluidPage(
   tags$h1("Progress bar in Sweet Alert"),
-  useSweetAlert(), # /!\\ needed with 'progressSweetAlert'
+  useSweetAlert(), # /!\ needed with 'progressSweetAlert'
   actionButton(
     inputId = "go",
     label = "Launch long calculation !"

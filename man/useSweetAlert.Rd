@@ -26,7 +26,7 @@ if (interactive()) {
 
     useSweetAlert("borderless"),
 
-    tags$h2("Sweet Alert examples"),
+    tags$h2("Sweet Alert examples (with custom theme)"),
     actionButton(
       inputId = "success",
       label = "Launch a success sweet alert",

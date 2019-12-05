@@ -25,6 +25,7 @@ bindings <- list.files(
   recursive = TRUE,
   full.names = TRUE
 )
+bindings <- setdiff(bindings, grep("sweetalert-bindings.js", bindings, value = TRUE))
 jshint_file(input = bindings, options = jshint_options(jquery = TRUE, globals = list("Shiny")))
 
 
