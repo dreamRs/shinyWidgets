@@ -161,7 +161,11 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
     htmltools::htmlDependency(
       name = "vertical-tab",
       version = "0.1.0",
-      src = c(href="shinyWidgets/vertical-tab-panel"),
+      src = c(
+        href = "shinyWidgets/vertical-tab-panel",
+        file = "assets/vertical-tab-panel"
+      ),
+      package = "shinyWidgets",
       script = c("vertical-tab-panel.js", "vertical-tab-panel-bindings.js"),
       stylesheet = "vertical-tab-panel.css"
     ),
