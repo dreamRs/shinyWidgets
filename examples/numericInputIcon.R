@@ -3,38 +3,44 @@ if (interactive()) {
   library(shinyWidgets)
 
   ui <- fluidPage(
-    tags$h2("textInputIcon examples"),
+    tags$h2("numericInputIcon examples"),
     fluidRow(
       column(
         width = 6,
-        textInputIcon(
+        numericInputIcon(
           inputId = "ex1",
           label = "With an icon",
-          icon = icon("user-circle-o")
+          value = 10,
+          icon = icon("percent")
         ),
         verbatimTextOutput("res1"),
-        textInputIcon(
+        numericInputIcon(
           inputId = "ex2",
           label = "With an icon (right)",
-          icon = list(NULL, icon("user-circle-o"))
+          value = 90,
+          step = 10,
+          icon = list(NULL, icon("percent"))
         ),
         verbatimTextOutput("res2"),
-        textInputIcon(
+        numericInputIcon(
           inputId = "ex3",
           label = "With text",
-          icon = list("https://")
+          value = 50,
+          icon = list("km/h")
         ),
         verbatimTextOutput("res3"),
-        textInputIcon(
+        numericInputIcon(
           inputId = "ex4",
           label = "Both side",
-          icon = list(icon("envelope"), "@mail.com")
+          value = 10000,
+          icon = list(icon("dollar"), ".00")
         ),
         verbatimTextOutput("res4"),
-        textInputIcon(
+        numericInputIcon(
           inputId = "ex5",
           label = "Sizing",
-          icon = list(icon("envelope"), "@mail.com"),
+          value = 10000,
+          icon = list(icon("dollar"), ".00"),
           size = "lg"
         ),
         verbatimTextOutput("res5")

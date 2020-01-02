@@ -17,7 +17,8 @@
 #' @importFrom htmltools tags validateCssUnit
 #'
 #' @example examples/textInputIcon.R
-textInputIcon <- function(inputId, label, value = "", placeholder = NULL, icon = NULL, size = NULL, width = NULL) {
+textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
+                          icon = NULL, size = NULL, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   addons <- validate_addon(icon)
   tags$div(
@@ -30,10 +31,59 @@ textInputIcon <- function(inputId, label, value = "", placeholder = NULL, icon =
       class = "input-group",
       class = validate_size(size),
       addons$left, tags$input(
-        id = inputId, type = "text",
+        id = inputId,
+        type = "text",
         class = "form-control",
         value = value,
         placeholder = placeholder
+      ), addons$right
+    )
+  )
+}
+
+
+
+
+#' @title Create a numeric input control with icon(s)
+#'
+#' @description Extend form controls by adding text or icons before,
+#'  after, or on both sides of a classic \code{numericInput}.
+#'
+#' @inheritParams shiny::numericInput
+#' @param icon An \code{icon} or a \code{list}, containing \code{icon}s
+#'  or text, to be displayed on the right or left of the numeric input.
+#' @param size Size of the input, default to \code{NULL}, can
+#'  be \code{"sm"} (small) or \code{"lg"} (large).
+#'
+#' @return A numeric input control that can be added to a UI definition.
+#' @export
+#'
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags validateCssUnit
+#'
+#' @example examples/numericInputIcon.R
+numericInputIcon <- function(inputId, label, value,
+                             min = NULL, max = NULL, step = NULL,
+                             icon = NULL, size = NULL, width = NULL) {
+  value <- shiny::restoreInput(id = inputId, default = value)
+  addons <- validate_addon(icon)
+  tags$div(
+    class = "form-group shiny-input-container",
+    if (!is.null(label)) {
+      tags$label(label, `for` = inputId)
+    },
+    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    tags$div(
+      class = "input-group",
+      class = validate_size(size),
+      addons$left, tags$input(
+        id = inputId,
+        type = "number",
+        class = "form-control",
+        value = value,
+        min = min,
+        max = max,
+        step = step
       ), addons$right
     )
   )
