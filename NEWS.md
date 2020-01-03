@@ -1,3 +1,10 @@
+shinyWidgets 0.5.1
+======================
+
+* Added two new functions : `textInputIcon()` (as a replacement of `textInputAddon()`) and `numericInputIcon()` to display icon(s) along to text and numeric inputs.
+
+
+
 shinyWidgets 0.5.0
 ======================
 
