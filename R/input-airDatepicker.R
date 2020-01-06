@@ -8,7 +8,8 @@
 #' @param label Display label for the control, or \code{NULL} for no label.
 #' @param value Initial value(s), dates as character string are accepted in \code{yyyy-mm-dd} format,
 #' or Date/POSIXct object. Can be a single value or several values.
-#' @param multiple Select multiple dates.
+#' @param multiple Select multiple dates. If \code{TRUE}, then one can select unlimited dates.
+#'  If \code{numeric} is passed, then amount of selected dates will be limited by it.
 #' @param range Select a date range.
 #' @param timepicker Add a timepicker below calendar to select time.
 #' @param separator Separator between dates when several are selected, default to \code{" - "}.
@@ -18,11 +19,13 @@
 #' @param maxDate The maximum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.
 #' @param disabledDates A vector of dates to disable, e.g. won't be able to select one of dates passed.
 #' @param view Starting view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.
+#' @param startView Date shown in calendar when date picker is openned.
 #' @param minView Minimal view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.
 #' @param monthsField Names for the months when view is 'months',
 #'  use \code{'monthsShort'} for abbreviations or \code{'months'} for full names.
 #' @param clearButton If \code{TRUE}, then button "Clear" will be visible.
-#' @param todayButton If \code{TRUE}, then button "Today" will be visible.
+#' @param todayButton If \code{TRUE}, then button "Today" will be visible to set view to current date,
+#'  if a \code{Date} is used, it will set view to the given date and select it..
 #' @param autoClose If \code{TRUE}, then after date selection, datepicker will be closed.
 #' @param timepickerOpts Options for timepicker, see \link{timepickerOptions}.
 #' @param position Where calendar should appear, a two word string like
@@ -98,6 +101,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
                                minDate = NULL, maxDate = NULL,
                                disabledDates = NULL,
                                view = c("days", "months", "years"),
+                               startView = NULL,
                                minView = c("days", "months", "years"),
                                monthsField = c("monthsShort", "months"),
                                clearButton = FALSE, todayButton = FALSE, autoClose = FALSE,
@@ -112,64 +116,100 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
                 "pt-BR", "pt", "ro", "ru", "sk", "tr", "zh"),
     several.ok = FALSE
   )
-  to_ms <- function(x) {
-    if (is.null(x))
-      return(NULL)
-    1000 * as.numeric(as.POSIXct(x, tz = "UTC"))
-  }
-  if (!is.null(disabledDates)) {
-    disabledDates <- toJSON(x = disabledDates, auto_unbox = FALSE)
-  }
-  paramsAir <- dropNulls(list(
-    id = inputId,
-    class = "sw-air-picker",
-    `data-language` = language,
-    `data-timepicker` = tolower(timepicker),
-    `data-start-date` = if (!is.null(value)) toJSON(x = to_ms(value), auto_unbox = FALSE),
-    `data-range` = tolower(range),
-    `data-date-format` = dateFormat,
-    `data-min-date` = to_ms(minDate), `data-max-date` = to_ms(maxDate),
-    `data-multiple-dates` = tolower(multiple),
-    `data-multiple-dates-separator` = separator,
-    `data-view` = match.arg(view),
-    `data-min-view` = match.arg(minView),
-    `data-clear-button` = tolower(clearButton),
-    `data-auto-close` = tolower(autoClose),
-    `data-today-button` = tolower(todayButton),
-    `data-months-field` = match.arg(monthsField),
-    `data-update-on` = match.arg(update_on),
-    `data-position` = position,
-    `data-disabled-dates` = disabledDates
-  ))
-  paramsAir <- c(paramsAir, timepickerOpts)
 
-  if (!inline) {
-    addArgs <- dropNulls(list(
+  list1 <- function(x) {
+    if (is.null(x))
+      return(x)
+    if (length(x) == 1 & !is.list(x)) {
+      list(x)
+    } else {
+      x
+    }
+  }
+
+  airParams <- dropNulls(list(
+    autoClose = isTRUE(autoClose),
+    updateOn = match.arg(update_on),
+    disabledDates = list1(disabledDates),
+    startView = startView,
+    value = list1(value),
+    todayButtonAsDate = inherits(todayButton, c("Date", "POSIXt")),
+    options = c(dropNulls(list(
+      language = language,
+      timepicker = isTRUE(timepicker),
+      # startDate = startDate,
+      range = isTRUE(range),
+      dateFormat = dateFormat,
+      minDate = minDate,
+      maxDate = maxDate,
+      multipleDates = multiple,
+      multipleDatesSeparator = separator,
+      view = match.arg(view),
+      minView = match.arg(minView),
+      clearButton = isTRUE(clearButton),
+      todayButton = todayButton,
+      monthsField = match.arg(monthsField),
+      position = position
+    )), timepickerOpts)
+  ))
+
+  if (!isTRUE(inline)) {
+    tagAir <- tags$input(
+      id = inputId,
+      class = "sw-air-picker",
       type = "text",
       class = " form-control",
-      placeholder = placeholder
-    ))
-    tagAir <- do.call(tags$input, c(paramsAir, addArgs))
+      placeholder = placeholder,
+      `data-timepicker` = tolower(timepicker)
+    )
     if (!identical(addon, "none")) {
       tagAir <- tags$div(
         class = "input-group",
-        if (addon == "left") tags$div(class = "btn action-button input-group-addon", id = paste0(inputId, "_button"), icon("calendar")),
+        if (identical(addon, "left")) {
+          tags$div(
+            class = "btn action-button input-group-addon",
+            id = paste0(inputId, "_button"),
+            icon("calendar")
+          )
+        },
         tagAir,
-        if (addon == "right") tags$div(class = "btn action-button input-group-addon", id = paste0(inputId, "_button"), icon("calendar"))
+        if (identical(addon, "right")) {
+          tags$div(
+            class = "btn action-button input-group-addon",
+            id = paste0(inputId, "_button"),
+            icon("calendar")
+          )
+        }
       )
     }
   } else {
-    tagAir <- do.call(tags$div, paramsAir)
+    tagAir <- tags$div(
+      id = inputId,
+      class = "sw-air-picker",
+      `data-timepicker` = tolower(timepicker)
+    )
   }
 
+  tagAir <- tags$div(
+    class = "form-group shiny-input-container",
+    style = if (!is.null(width))
+      paste0("width: ", validateCssUnit(width), ";"),
+    if (!is.null(label)) tags$label(label, `for` = inputId),
+    tagAir,
+    tags$script(
+      type = "application/json",
+      `data-for` = inputId,
+      jsonlite::toJSON(
+        x = airParams,
+        auto_unbox = TRUE,
+        json_verbatim = TRUE,
+        POSIXt = "epoch"
+      )
+    )
+  )
+
   attachDependencies(
-    x = attachShinyWidgetsDep(tags$div(
-      class = "form-group shiny-input-container",
-      style = if (!is.null(width))
-        paste0("width: ", validateCssUnit(width), ";"),
-      if (!is.null(label)) tags$label(label, `for` = inputId),
-      tagAir
-    ), "airdatepicker"),
+    x = attachShinyWidgetsDep(tagAir, "airdatepicker"),
     value = htmlDependency(
       name = paste0("air-datepicker-i18n-", language),
       version = "2.2.3",
@@ -199,14 +239,14 @@ timepickerOptions <- function(dateTimeSeparator = NULL, timeFormat = NULL,
                               minMinutes = NULL, maxMinutes = NULL,
                               hoursStep = NULL, minutesStep = NULL) {
   dropNulls(list(
-    `data-date-time-separator` = dateTimeSeparator,
-    `data-time-format` = timeFormat,
-    `data-min-hours` = minHours,
-    `data-max-hours` = maxHours,
-    `data-min-minutes` = minMinutes,
-    `data-max-minutes` = maxMinutes,
-    `data-hours-step` = hoursStep,
-    `data-minutes-step` = minutesStep
+    dateTimeSeparator = dateTimeSeparator,
+    timeFormat = timeFormat,
+    minHours = minHours,
+    maxHours = maxHours,
+    minMinutes = minMinutes,
+    maxMinutes = maxMinutes,
+    hoursStep = hoursStep,
+    minutesStep = minutesStep
   ))
 }
 

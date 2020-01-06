@@ -1,179 +1,199 @@
-
 // airDatepicker bindings //
 // by Vic //
 
 var AirPickerInputBinding = new Shiny.InputBinding();
 $.extend(AirPickerInputBinding, {
   initialize: function initialize(el) {
-    var options = {};
-    var opdefault = {};
-		if ($(el).attr('data-start-date')) {
-		  var dateraw = JSON.parse($(el).attr('data-start-date'));
-		  //console.log(dateraw);
-		  var datedefault = [];
-		  for (var i=0; i<dateraw.length; i++) {
-		    datedefault[i] = new Date(dateraw[i]); //new Date(dateraw[i]);
-		  }
-		  //console.log(datada);
-			opdefault.startDate = datedefault;
-			//console.log(options.startDate);
-			$(el).removeAttr('data-start-date');
-		}
-		if ($(el).attr('data-min-date')) {
-		  var minDate = parseFloat($(el).attr('data-min-date'));
-		  options.minDate = new Date(minDate);
-		  $(el).removeAttr('data-min-date');
-		}
-		if ($(el).attr('data-max-date')) {
-		  var maxDate = parseFloat($(el).attr('data-max-date'));
-		  options.maxDate = new Date(maxDate);
-		  $(el).removeAttr('data-max-date');
-		}
+    var config = $(el)
+      .parent()
+      .parent()
+      .find('script[data-for="' + el.id + '"]');
 
-		// disable dates
-		if ($(el).attr('data-disabled-dates')) {
-		  var disabledDates = JSON.parse($(el).attr('data-disabled-dates'));
-		  options.onRenderCell = function(d, type) {
-        if (type == 'day') {
-    			var disabled = false,
-          formatted = getFormattedDate(d);
+    config = JSON.parse(config.html());
+    var options = config.options;
 
-          disabled = disabledDates.filter(function(date){
+    if (config.hasOwnProperty("value")) {
+      var dateraw = config.value;
+      var datedefault = [];
+      for (var i = 0; i < dateraw.length; i++) {
+        datedefault[i] = new Date(dateraw[i]);
+      }
+      config.value = datedefault;
+    }
+
+    if (options.hasOwnProperty("minDate")) {
+      options.minDate = new Date(options.minDate);
+    }
+    if (options.hasOwnProperty("maxDate")) {
+      options.maxDate = new Date(options.maxDate);
+    }
+    if (options.hasOwnProperty("startDate")) {
+      options.startDate = new Date(options.startDate);
+    }
+    if (config.todayButtonAsDate) {
+      options.todayButton = new Date(options.todayButton);
+    }
+
+    // disable dates
+    if (config.hasOwnProperty("disabledDates")) {
+      var disabledDates = config.disabledDates;
+      options.onRenderCell = function(d, type) {
+        if (type == "day") {
+          var disabled = false,
+            formatted = getFormattedDate(d);
+
+          disabled = disabledDates.filter(function(date) {
             return date == formatted;
           }).length;
 
-    			return {
+          return {
             disabled: disabled
           };
         }
       };
-		  $(el).removeAttr('data-disabled-dates');
-		}
+    }
 
-		// initialiaze
-		var dp;
-
-		if ($(el).attr('data-update-on') === 'close') {
-
-		  options.onHide = function(inst, animationCompleted) {
-		    if (animationCompleted){
-		      $(el).trigger('change');
-		    }
+    if (config.updateOn == "close") {
+      options.onHide = function(inst, animationCompleted) {
+        if (animationCompleted) {
+          $(el).trigger("change");
+        }
       };
-      dp = $(el).datepicker(options).data('datepicker');
-		} else {
-		  //console.log(options);
-		  options.onSelect = function(formattedDate, date, inst) {
-        $(el).trigger('change');
+    } else {
+      options.onSelect = function(formattedDate, date, inst) {
+        $(el).trigger("change");
       };
-      dp = $(el).datepicker(options).data('datepicker');
-		}
-		$(el).removeAttr('data-update-on');
+    }
 
-    dp.selectDate(opdefault.startDate);
+    var dp = $(el)
+          .datepicker(options)
+          .data("datepicker");
+    dp.selectDate(config.value);
+    if (config.hasOwnProperty("startView")) {
+      dp.date = new Date(config.startView);
+    }
   },
   find: function(scope) {
-  	return $(scope).find('.sw-air-picker');
+    return $(scope).find(".sw-air-picker");
   },
   getId: function(el) {
-  	return $(el).attr('id');
+    return $(el).attr("id");
   },
   getType: function(el) {
     // console.log($(el).attr('data-timepicker') === 'false');
-    if ($(el).attr('data-timepicker') !== 'false') {
-      return 'air.datetime';
+    if ($(el).attr("data-timepicker") !== "false") {
+      return "air.datetime";
     } else {
-      return 'air.date';
+      return "air.date";
     }
   },
   getValue: function(el) {
-  	//return el.value;
+    //return el.value;
 
-  	var sd = $(el).datepicker().data('datepicker').selectedDates;
-  	var timepicker = $(el).attr('data-timepicker');
-  	var res;
+    var sd = $(el)
+      .datepicker()
+      .data("datepicker").selectedDates;
+    var timepicker = $(el).attr("data-timepicker");
+    var res;
 
-  	function padZeros(n, digits) {
+    function padZeros(n, digits) {
       var str = n.toString();
       while (str.length < digits) {
         str = "0" + str;
-      }return str;
+      }
+      return str;
     }
-  	function formatDate(date) {
+    function formatDate(date) {
       if (date instanceof Date) {
-        return date.getFullYear() + '-' + padZeros(date.getMonth() + 1, 2) + '-' + padZeros(date.getDate(), 2);
+        return (
+          date.getFullYear() +
+          "-" +
+          padZeros(date.getMonth() + 1, 2) +
+          "-" +
+          padZeros(date.getDate(), 2)
+        );
       } else {
         return null;
       }
     }
 
-
-  	if (sd.length > 0) {
-  	  // console.log(sd);
-  	  if (timepicker === 'false') {
-  	    res = sd.map(function(e) {
-    	    //console.log(e);
+    if (sd.length > 0) {
+      if (timepicker === "false") {
+        res = sd.map(function(e) {
+          //console.log(e);
           return formatDate(e);
         });
-  	  } else {
-  	    //var tz = new Date().toString().match(/([-\+][0-9]+)\s/)[1];
-  	    res = sd.map(function(e) {
-    	    //console.log(e);
-          return e.valueOf();//toISOString() + tz;
+      } else {
+        //var tz = new Date().toString().match(/([-\+][0-9]+)\s/)[1];
+        res = sd.map(function(e) {
+          return e.valueOf(); //toISOString() + tz;
         });
-  	    //res = sd ;
-  	  }
-  	  return res;
-  	} else {
-  	  return null;
-  	}
+        //res = sd ;
+      }
+      return res;
+    } else {
+      return null;
+    }
   },
   setValue: function(el, value) {
     value = JSON.parse(value);
     var newdate = [];
-		for (var i=0; i<value.length; i++) {
-		  newdate[i] =  new Date(value[i]);
-		}
-
-  	$(el).datepicker().data('datepicker').selectDate(newdate);
+    for (var i = 0; i < value.length; i++) {
+      newdate[i] = new Date(value[i]);
+    }
+    var datepicker = $(el)
+      .datepicker()
+      .data("datepicker");
+    datepicker.selectDate(newdate);
+    //datepicker.date = newdate[0];
   },
   subscribe: function(el, callback) {
-   $(el).on('change', function(event) {
-     callback();
-   });
+    $(el).on("change", function(event) {
+      callback();
+    });
   },
   unsubscribe: function(el) {
-  	$(el).off('.AirPickerInputBinding');
+    $(el).off(".AirPickerInputBinding");
   },
   receiveMessage: function(el, data) {
     if (data.clear) {
-      $(el).datepicker().data('datepicker').clear();
+      $(el)
+        .datepicker()
+        .data("datepicker")
+        .clear();
     }
-  	if (data.hasOwnProperty('value')) this.setValue(el, data.value);
+    if (data.hasOwnProperty("value")) this.setValue(el, data.value);
 
-    if (data.hasOwnProperty('label')) {
+    if (data.hasOwnProperty("label")) {
       // console.log(el);
-      $(el).parent().parent().find('label[for="' + data.id + '"]').text(data.label);
+      $(el)
+        .parent()
+        .parent()
+        .find('label[for="' + data.id + '"]')
+        .text(data.label);
     }
 
-    if (data.hasOwnProperty('options')) {
-      if (data.options.hasOwnProperty('minDate')) {
+    if (data.hasOwnProperty("options")) {
+      if (data.options.hasOwnProperty("minDate")) {
         data.options.minDate = new Date(data.options.minDate);
       }
-      if (data.options.hasOwnProperty('maxDate')) {
+      if (data.options.hasOwnProperty("maxDate")) {
         data.options.maxDate = new Date(data.options.maxDate);
       }
-      $(el).datepicker().data('datepicker').update(data.options);
+      $(el)
+        .datepicker()
+        .data("datepicker")
+        .update(data.options);
     }
 
-    if (data.hasOwnProperty('placeholder')) {
-      $('#' + data.id)[0].placeholder = data.placeholder;
+    if (data.hasOwnProperty("placeholder")) {
+      $("#" + data.id)[0].placeholder = data.placeholder;
     }
 
-    $(el).trigger('change');
+    $(el).trigger("change");
   }
 });
-Shiny.inputBindings.register(AirPickerInputBinding, 'shiny.AirPickerInput');
+Shiny.inputBindings.register(AirPickerInputBinding, "shiny.AirPickerInput");
 
 /*
 function parse_date(date) {
@@ -185,10 +205,11 @@ Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
   var dd = this.getDate();
 
-  return [this.getFullYear(),
-          (mm>9 ? '' : '0') + mm,
-          (dd>9 ? '' : '0') + dd
-         ].join('-');
+  return [
+    this.getFullYear(),
+    (mm > 9 ? "" : "0") + mm,
+    (dd > 9 ? "" : "0") + dd
+  ].join("-");
 };
 
 function getFormattedDate(date) {
@@ -196,18 +217,18 @@ function getFormattedDate(date) {
     month = date.getMonth() + 1,
     day = date.getDate();
 
-    if (month > 9) {
-      if (day > 9) {
-        return year + '-' + month + '-' + day;
-      } else {
-        return year + '-' + month + '-0' + day;
-      }
+  if (month > 9) {
+    if (day > 9) {
+      return year + "-" + month + "-" + day;
     } else {
-      if (day > 9) {
-        return year + '-0' + month + '-' + day;
-      } else {
-        return year + '-0' + month + '-0' + day;
-      }
+      return year + "-" + month + "-0" + day;
     }
+  } else {
+    if (day > 9) {
+      return year + "-0" + month + "-" + day;
+    } else {
+      return year + "-0" + month + "-0" + day;
+    }
+  }
 }
 
