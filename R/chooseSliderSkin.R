@@ -151,27 +151,6 @@ chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",
   )
 }
 
-# from https://stackoverflow.com/questions/28562288/how-to-use-the-hsl-hue-saturation-lightness-cylindric-color-model
-rgb_to_hsl <- function(r, g, b) {
-  val_max <- max(c(r, g, b))
-  val_min <- min(c(r, g, b))
-  h <- s <- l <- (val_max + val_min) / 2
-  if (num_equal(val_max, val_min)){
-    h <- s <- 0
-  } else {
-    d <- val_max - val_min
-    s <- ifelse(l > 0.5, d / (2 - val_max - val_min), d / (val_max + val_min))
-    if (num_equal(val_max, r)) { h <- (g - b) / d + (ifelse(g < b, 6, 0)) }
-    # if (val_max == g) { h <- (b - r) / d/ + 2 }
-    if (num_equal(val_max, g)) { h <- (b - r) / d + 2 }
-    if (num_equal(val_max, b)) { h <- (r - g) / d + 4 }
-    h <- (h / 6) * 360
-  }
-  return(c(h=h, s=s, l=l))
-}
-num_equal <- function(x, y, tol = sqrt(.Machine$double.eps)) {
-  abs(x - y) < tol
-}
 
 # https://stackoverflow.com/questions/29037023/how-to-calculate-required-hue-rotate-to-generate-specific-colour
 #' @importFrom grDevices col2rgb rgb2hsv
