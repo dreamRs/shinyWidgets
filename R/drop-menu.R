@@ -56,6 +56,9 @@ dropMenu <- function(tag, ...,
   if (!inherits(tag, c("shiny.tag"))) {
     stop("dropMenu: 'tag' must be a 'shiny.tag' object.")
   }
+  if (is.null(tag$attribs$id)) {
+    stop("dropMenu: 'tag' must have an Id.")
+  }
 
   content <- htmltools::doRenderTags(tags$div(
     id = paste0(tag$attribs$id, "_content"),

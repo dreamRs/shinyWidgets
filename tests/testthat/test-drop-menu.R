@@ -18,6 +18,31 @@ test_that("dropMenu works", {
 })
 
 
+test_that("dropMenu errors", {
+
+  expect_error(
+    dropMenu(
+      shiny::textInput("ID", "Text:"),
+      "Content",
+      theme = "light-border",
+      placement = "right",
+      arrow = FALSE
+    )
+  )
+
+  expect_error(
+    dropMenu(
+      "Btn",
+      "Content",
+      theme = "light-border",
+      placement = "right",
+      arrow = FALSE
+    )
+  )
+
+})
+
+
 test_that("dropMenuOptions works", {
 
   opts <- dropMenuOptions(duration = 500, custom = TRUE)
