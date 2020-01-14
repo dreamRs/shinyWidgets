@@ -38,7 +38,7 @@ outside of it (i.e. clicking on the reference element or the body of the page).}
 
 \item{maxWidth}{Determines the maximum width of the menu.}
 
-\item{options}{Additional options.}
+\item{options}{Additional options, see \code{\link{dropMenuOptions}}.}
 }
 \value{
 A UI definition.

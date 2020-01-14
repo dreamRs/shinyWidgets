@@ -13,7 +13,7 @@
 #' @param hideOnClick Determines if the menu should hide if a mousedown event was fired
 #'  outside of it (i.e. clicking on the reference element or the body of the page).
 #' @param maxWidth Determines the maximum width of the menu.
-#' @param options Additional options.
+#' @param options Additional options, see \code{\link{dropMenuOptions}}.
 #'
 #' @return A UI definition.
 #' @export
@@ -114,6 +114,21 @@ dropMenu <- function(tag, ...,
 
 
 
+#' @title Drop menu options
+#'
+#' @description Those options will passed to the underlying JavaScript
+#'  library powering \code{dropMenu} : tippy.js. See all available options
+#'  here \url{https://atomiks.github.io/tippyjs/all-props/}.
+#'
+#' @param duration Duration of the CSS transition animation in ms.
+#' @param animation The type of transition animation.
+#' @param flip Determines if the tippy flips so that it is placed within
+#'  the viewport as best it can be if there is not enough space.
+#' @param ... Additional arguements.
+#'
+#' @return a \code{list} of options to be used in \code{\link{dropMenu}}.
+#' @export
+#'
 dropMenuOptions <- function(duration = c(275, 250), animation = "fade", flip = FALSE, ...) {
   list(
     duration = duration,
