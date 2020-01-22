@@ -4,6 +4,7 @@ shinyWidgets 0.5.1
 * Added two new functions : `textInputIcon()` (as a replacement of `textInputAddon()`) and `numericInputIcon()` to display icon(s) along to text and numeric inputs.
 * Internal rewrite of `airDatepickerInput`, no breaking change intended, if encounter some troubles please open an issue.
 * `airDatepickerInput()` has a new argument `startView` to set the view displayed when date picker is openned.
+* New function `dropMenu`, a more robust and customizable replacement for `dropdown()` or `dropdownMenu()`.
 
 
 
