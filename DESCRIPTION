@@ -43,7 +43,8 @@ License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
-Suggests: shinydashboard,
+Suggests: 
+    shinydashboard,
     testthat,
     covr,
     shinydashboardPlus,
@@ -52,4 +53,7 @@ Suggests: shinydashboard,
     argonDash,
     tablerDash,
     ggplot2,
-    DT
+    DT,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
