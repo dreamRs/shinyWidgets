@@ -211,7 +211,7 @@ updatePickerInput <- function (session, inputId, label = NULL,
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   choices <- if (!is.null(choices))
-    paste(capture.output(pickerSelectOptions(choices, selected, choicesOpt)), collapse = "\n")
+    as.character(pickerSelectOptions(choices, selected, choicesOpt))
   options = NULL
   if (!is.null(options))
     names(options) <- paste0("data-", names(options))
