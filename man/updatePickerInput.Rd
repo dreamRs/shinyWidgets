@@ -20,9 +20,8 @@ updatePickerInput(
 
 \item{label}{Display a text in the center of the switch.}
 
-\item{selected}{The initially selected value (or multiple values if multiple = TRUE).
-If not specified then defaults to the first value for single-select lists
-and no values for multiple select lists.}
+\item{selected}{The new selected value (or multiple values if \code{multiple = TRUE}).
+To reset selected value, in case of multiple picker, use \code{character(0)}.}
 
 \item{choices}{List of values to select from. If elements of the list are named
 then that name rather than the value is displayed to the user.}
