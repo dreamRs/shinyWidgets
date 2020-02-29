@@ -126,7 +126,6 @@ pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multipl
 #'
 #' @seealso \link{pickerInput}.
 #'
-#' @importFrom utils capture.output
 #' @export
 #'
 #' @examples

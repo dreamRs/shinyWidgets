@@ -151,8 +151,6 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
 #'
 #' @export
 #'
-#' @importFrom utils capture.output
-#'
 #' @examples
 #' if (interactive()) {
 #'
