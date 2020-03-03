@@ -1,7 +1,7 @@
 ## Test environments
 
-* local Windows 10 install, R 3.6.1
-* ubuntu 12.04 (on travis-ci), R 3.6.1
+* local Windows 10 install, R 3.6.3
+* ubuntu 12.04 (on travis-ci), R 3.6.3
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,9 +11,8 @@
 
 ## Reverse dependencies
 
-* All reverse dependencies tested, except : `pkgsearch`, `rpostgisLT`
-  I unfortunately couldn't test all the dependencies due to an error with one of them (rpostgisLT).
-  No problems for those tested (one with error, viromeBrowser, installation issue)
+* All reverse dependencies tested, except : `NACHO`, `pkgsearch`, `rpostgisLT`
+  No apparent problems for those tested.
   Summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
 
 -------

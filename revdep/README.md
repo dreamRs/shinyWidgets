@@ -2,7 +2,7 @@
 
 |field    |value                        |
 |:--------|:----------------------------|
-|version  |R version 3.6.1 (2019-07-05) |
+|version  |R version 3.6.3 (2020-02-29) |
 |os       |Windows 10 x64               |
 |system   |x86_64, mingw32              |
 |ui       |RStudio                      |
@@ -10,19 +10,13 @@
 |collate  |French_France.1252           |
 |ctype    |French_France.1252           |
 |tz       |Europe/Berlin                |
-|date     |2019-11-18                   |
+|date     |2020-03-03                   |
 
 # Dependencies
 
 |package      |old   |new   |<U+0394>  |
 |:------------|:-----|:-----|:--|
-|shinyWidgets |0.4.9 |0.5.0 |*  |
+|shinyWidgets |0.5.0 |0.5.1 |*  |
 
 # Revdeps
-
-## Failed to check (1)
-
-|package       |version |error |warning |note |
-|:-------------|:-------|:-----|:-------|:----|
-|viromeBrowser |1.0.0   |1     |        |     |
 
