@@ -92,7 +92,7 @@ numericRangeInput <- function(inputId, label, value,
 #' @inheritParams numericRangeInput
 #' @export
 #'
-updateNumericRangeInput <- function(session, inputId, label, value) {
+updateNumericRangeInput <- function(session, inputId, label = NULL, value = NULL) {
 
   value <- c(min(value),max(value))
 
