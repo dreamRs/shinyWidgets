@@ -4,7 +4,7 @@
 \alias{updateNumericRangeInput}
 \title{Change the value of a numeric range input}
 \usage{
-updateNumericRangeInput(session, inputId, label, value)
+updateNumericRangeInput(session, inputId, label = NULL, value = NULL)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}

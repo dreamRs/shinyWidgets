@@ -23,7 +23,15 @@ ui <- fluidPage(
         label = "Pick date and time:",
         timepicker = TRUE
       ),
-      verbatimTextOutput(outputId = "res_datetime")
+      verbatimTextOutput(outputId = "res_datetime"),
+
+      airDatepickerInput(
+        inputId = "time",
+        label = "Pick time:",
+        timepicker = TRUE,
+        onlyTimepicker = TRUE
+      ),
+      verbatimTextOutput(outputId = "res_time")
 
     ),
 
@@ -68,6 +76,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
 
   output$res_datetime <- renderPrint( input$datetime )
+  output$res_time <- renderPrint( input$time )
   output$res_options <- renderPrint( input$options )
   output$res_french <- renderPrint( input$french )
 

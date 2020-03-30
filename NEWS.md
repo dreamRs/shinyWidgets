@@ -1,3 +1,10 @@
+shinyWidgets 0.5.2
+======================
+
+* `airDatepickerInput()` has a new argument `onlyTimepicker` to only display the time picker part of the widget.
+
+
+
 shinyWidgets 0.5.1
 ======================
 

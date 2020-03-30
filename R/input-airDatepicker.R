@@ -40,6 +40,7 @@
 #'  \code{'hu'}, \code{'nl'}, \code{'pl'}, \code{'pt-BR'}, \\code{'pt'},
 #'  \code{'ro'}, \code{'ru'}, \code{'sk'}, \code{'zh'}.
 #' @param inline If \code{TRUE}, datepicker will always be visible.
+#' @param onlyTimepicker Display only the time picker.
 #' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
 #' @param ... Arguments passed to \code{airDatepickerInput}.
 #'
@@ -55,7 +56,7 @@
 #' @export
 #'
 #' @importFrom htmltools tags tagList validateCssUnit attachDependencies htmlDependency
-#' @importFrom shiny singleton
+#' @importFrom shiny restoreInput
 #' @importFrom jsonlite toJSON
 #'
 #' @examples
@@ -108,7 +109,9 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
                                timepickerOpts = timepickerOptions(),
                                position = NULL, update_on = c("change", "close"),
                                addon = c("right", "left", "none"),
-                               language = "en", inline = FALSE, width = NULL) {
+                               language = "en", inline = FALSE,
+                               onlyTimepicker = FALSE, width = NULL) {
+  value <- shiny::restoreInput(inputId, value)
   addon <- match.arg(addon)
   language <- match.arg(
     arg = language,
@@ -149,7 +152,8 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
       clearButton = isTRUE(clearButton),
       todayButton = todayButton,
       monthsField = match.arg(monthsField),
-      position = position
+      position = position,
+      onlyTimepicker = isTRUE(onlyTimepicker)
     )), timepickerOpts)
   ))
 

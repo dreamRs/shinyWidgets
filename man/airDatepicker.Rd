@@ -34,6 +34,7 @@ airDatepickerInput(
   addon = c("right", "left", "none"),
   language = "en",
   inline = FALSE,
+  onlyTimepicker = FALSE,
   width = NULL
 )
 
@@ -113,6 +114,8 @@ you can retrieve value server-side with \code{input$<inputId>_button}.}
 \code{'ro'}, \code{'ru'}, \code{'sk'}, \code{'zh'}.}
 
 \item{inline}{If \code{TRUE}, datepicker will always be visible.}
+
+\item{onlyTimepicker}{Display only the time picker.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.}
 
