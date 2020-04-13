@@ -1,6 +1,7 @@
 shinyWidgets 0.5.2
 ======================
 
+* New function `execute_safely()` to display a message in case of error and don't stop application.
 * `airDatepickerInput()` has a new argument `onlyTimepicker` to only display the time picker part of the widget.
 
 
