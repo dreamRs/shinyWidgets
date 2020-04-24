@@ -18,6 +18,7 @@ airDatepickerInput(
   separator = " - ",
   placeholder = NULL,
   dateFormat = "yyyy-mm-dd",
+  firstDay = NULL,
   minDate = NULL,
   maxDate = NULL,
   disabledDates = NULL,
@@ -72,7 +73,11 @@ If \code{numeric} is passed, then amount of selected dates will be limited by it
 
 \item{placeholder}{A character string giving the user a hint as to what can be entered into the control.}
 
-\item{dateFormat}{Format to use to display date(s), default to \code{"yyyy-mm-dd"}}
+\item{dateFormat}{Format to use to display date(s), default to \code{"yyyy-mm-dd"}.}
+
+\item{firstDay}{Day index from which week will be started. Possible values are from 0 to 6, where
+0 - Sunday and 6 - Saturday. By default value is taken from current localization,
+but if it passed here then it will have higher priority.}
 
 \item{minDate}{The minimum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.}
 

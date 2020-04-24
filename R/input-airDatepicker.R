@@ -14,7 +14,10 @@
 #' @param timepicker Add a timepicker below calendar to select time.
 #' @param separator Separator between dates when several are selected, default to \code{" - "}.
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
-#' @param dateFormat Format to use to display date(s), default to \code{"yyyy-mm-dd"}
+#' @param dateFormat Format to use to display date(s), default to \code{"yyyy-mm-dd"}.
+#' @param firstDay Day index from which week will be started. Possible values are from 0 to 6, where
+#'  0 - Sunday and 6 - Saturday. By default value is taken from current localization,
+#'  but if it passed here then it will have higher priority.
 #' @param minDate The minimum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.
 #' @param maxDate The maximum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.
 #' @param disabledDates A vector of dates to disable, e.g. won't be able to select one of dates passed.
@@ -98,7 +101,7 @@
 airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = FALSE,
                                range = FALSE, timepicker = FALSE,
                                separator = " - ", placeholder = NULL,
-                               dateFormat = "yyyy-mm-dd",
+                               dateFormat = "yyyy-mm-dd", firstDay = NULL,
                                minDate = NULL, maxDate = NULL,
                                disabledDates = NULL,
                                view = c("days", "months", "years"),
@@ -143,6 +146,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
       # startDate = startDate,
       range = isTRUE(range),
       dateFormat = dateFormat,
+      firstDay = firstDay,
       minDate = minDate,
       maxDate = maxDate,
       multipleDates = multiple,
