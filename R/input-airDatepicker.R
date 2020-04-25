@@ -221,7 +221,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
     value = htmlDependency(
       name = paste0("air-datepicker-i18n-", language),
       version = "2.2.3",
-      src = c(href = "shinyWidgets/air-datepicker"),
+      src = c(href = "shinyWidgets/air-datepicker2"),
       script = sprintf("i18n/datepicker.%s.js", language)
     ), append = TRUE
   )

@@ -149,7 +149,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         htmltools::htmlDependency(
           name = "air-datepicker",
           version = "2.2.3",
-          src = c(href="shinyWidgets/air-datepicker"),
+          src = c(href="shinyWidgets/air-datepicker2"),
           script = "datepicker.min.js",
           stylesheet = "datepicker.min.css"
         )
