@@ -199,7 +199,7 @@ $.extend(AirPickerInputBinding, {
     $(el).trigger("change");
   }
 });
-Shiny.inputBindings.register(AirPickerInputBinding, "shiny.AirPickerInput");
+Shiny.inputBindings.register(AirPickerInputBinding, "shinyWidgets.AirPickerInput");
 
 /*
 function parse_date(date) {

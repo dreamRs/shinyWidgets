@@ -26,7 +26,7 @@ bindings <- list.files(
   full.names = TRUE
 )
 bindings <- setdiff(bindings, grep("sweetalert-bindings.js", bindings, value = TRUE))
-bindings <- setdiff(bindings, "inst/assets//air-datepicker/datepicker-bindings.js")
+bindings <- setdiff(bindings, "inst/assets/air-datepicker/datepicker-bindings.js")
 jshint_file(input = bindings, options = jshint_options(jquery = TRUE, globals = list("Shiny")))
 
 
