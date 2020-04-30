@@ -15,6 +15,9 @@
 #' @param maxWidth Determines the maximum width of the menu.
 #' @param options Additional options, see \code{\link{dropMenuOptions}}.
 #'
+#' @seealso \link[=drop-menu-interaction]{dropMenu interaction} for functions
+#'  and exemples to interact with \code{dropMenu} from server.
+#'
 #' @return A UI definition.
 #' @export
 #'
@@ -60,16 +63,8 @@ dropMenu <- function(tag, ...,
     stop("dropMenu: 'tag' must have an Id.")
   }
 
-  content <- htmltools::doRenderTags(tags$div(
-    id = paste0(tag$attribs$id, "_content"),
-    style = sprintf("padding: %s;", validateCssUnit(padding)),
-    ...
-  ))
-  content <- gsub(pattern = ">[[:space:]]*<", replacement = "><", x = content)
-
   config <- list(
     options = list(
-      content = content,
       arrow = arrow,
       theme = theme,
       trigger = trigger,
@@ -92,11 +87,12 @@ dropMenu <- function(tag, ...,
     id = paste0(tag$attribs$id, "_dropmenu"),
     `data-target` = tag$attribs$id,
     `data-content` = paste0(tag$attribs$id, "_content"),
-    `data-remove` = paste0(tag$attribs$id, "_remove"),
+    `data-template` = paste0(tag$attribs$id, "-template"),
     tag,
     tags$div(
       style = "display: none;",
-      id = paste0(tag$attribs$id, "_remove"),
+      style = sprintf("padding: %s;", validateCssUnit(padding)),
+      id = paste0(tag$attribs$id, "-template"),
       ...
     ),
     tags$script(
@@ -106,11 +102,12 @@ dropMenu <- function(tag, ...,
     )
   )
   htmltools::attachDependencies(
-    x = dropTag,
+    x = attachShinyWidgetsDep(dropTag),
     value = list(
       html_dependencies_popper(),
       html_dependencies_tippy()
-    )
+    ),
+    append = TRUE
   )
 }
 
@@ -230,8 +227,7 @@ html_dependencies_tippy <- function() {
     src = list(href = "shinyWidgets/tippy", file = "assets/tippy"),
     package = "shinyWidgets",
     script = c(
-      "dist/tippy-bundle.iife.min.js",
-      "drop-menu-bindings.js"
+      "dist/tippy-bundle.iife.min.js"
     ),
     stylesheet = c(
       "dist/themes.min.css",

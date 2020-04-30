@@ -1,10 +1,10 @@
 var dropMenuInputBinding = new Shiny.InputBinding();
 $.extend(dropMenuInputBinding, {
   find: function(scope) {
-    return $(scope).find(".drop-menu-input");
+    return scope.querySelectorAll(".drop-menu-input");
   },
   getId: function(el) {
-    return $(el).attr("id");
+    return el.id;
   },
   getValue: function(el) {
     return this["instance" + el.id].state.isShown;
@@ -41,25 +41,30 @@ $.extend(dropMenuInputBinding, {
   },
   getState: function(el) {},
   initialize: function initialize(el) {
+
     var menu = document.getElementById(el.id);
 
-    var config = $(el).find('script[data-for="' + el.id + '"]');
-    config = JSON.parse(config.html());
+    var config = menu.querySelector('script[data-for="' + el.id + '"]');
+    config = JSON.parse(config.innerHTML);
     var target = document.getElementById(menu.dataset.target);
-    //var content = document.getElementById(menu.dataset.content);
-    var remove = document.getElementById(menu.dataset.remove);
 
     config.options.interactive = true;
-    config.options.onMount = function(instance) {
-      Shiny.unbindAll(remove, true);
-      remove.innerHTML = "";
-      var content = document.getElementById(menu.dataset.content);
-      Shiny.initializeInputs(content);
-      Shiny.bindAll(content, true);
+
+    // On Show we move the template
+    config.options.onShow = function(instance) {
+      var template = document.getElementById(menu.dataset.template);
+      template.style.display = "block";
+      Shiny.bindAll(template, true);
+      instance.setContent(template);
     };
-
+    // On Hide we put back the template
+    config.options.onHide = function(instance) {
+      var cntnt = instance.props.content;
+      cntnt.style.display = "none";
+      menu.appendChild(cntnt);
+      instance.setContent("");
+    };
     this["instance" + el.id] = tippy(target, config.options);
-
   }
 });
 Shiny.inputBindings.register(dropMenuInputBinding, "shiny.dropMenuInput");
