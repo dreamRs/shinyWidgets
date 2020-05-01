@@ -11,11 +11,13 @@ $.extend(dropMenuInputBinding, {
   },
   setValue: function(el, value) {},
   subscribe: function(el, callback) {
+    var onHidden = this["onHidden" + el.id];
     this["instance" + el.id].setProps({
       onShown: function(instance) {
         callback();
       },
       onHidden: function(instance) {
+        onHidden(instance);
         callback();
       }
     });
@@ -40,7 +42,7 @@ $.extend(dropMenuInputBinding, {
     }
   },
   getState: function(el) {},
-  initialize: function initialize(el) {
+  initialize: function(el) {
 
     var menu = document.getElementById(el.id);
 
@@ -58,7 +60,7 @@ $.extend(dropMenuInputBinding, {
       instance.setContent(template);
     };
     // On Hide we put back the template
-    config.options.onHide = function(instance) {
+    this["onHidden" + el.id] = function(instance) {
       var cntnt = instance.props.content;
       cntnt.style.display = "none";
       menu.appendChild(cntnt);
