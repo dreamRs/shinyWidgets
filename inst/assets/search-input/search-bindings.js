@@ -79,5 +79,5 @@ $.extend(searchInputBinding, {
     };
   }
 });
-Shiny.inputBindings.register(searchInputBinding, "shiny.searchInput");
+Shiny.inputBindings.register(searchInputBinding, "shinyWidgets.searchInput");
 

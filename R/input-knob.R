@@ -19,6 +19,8 @@
 #' @param fgColor Foreground color.
 #' @param inputColor Input value (number) color.
 #' @param bgColor Background color.
+#' @param pre A prefix string to put in front of the value.
+#' @param post A suffix string to put after the value.
 #' @param readOnly Disable knob (\code{TRUE} or \code{FALSE}).
 #' @param skin Change Knob skin, only one option available : 'tron'.
 #' @param width,height The width and height of the input, e.g. \code{400px}, or \code{100\%}.
@@ -33,7 +35,7 @@
 #' @seealso \code{\link{updateKnobInput}} for updating the value server-side.
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools tags
+#' @importFrom htmltools tags validateCssUnit
 #'
 #' @examples
 #' if (interactive()) {
@@ -63,19 +65,32 @@
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
-                      angleOffset = 0, angleArc = 360, cursor = FALSE,
-                      thickness = NULL, lineCap = c("default", "round"), displayInput = TRUE,
-                      displayPrevious = FALSE, rotation = c("clockwise", "anticlockwise"),
-                      fgColor = NULL, inputColor = NULL, bgColor = NULL,
-                      readOnly = FALSE, skin = NULL, width = NULL, height = NULL,
+knobInput <- function(inputId, label, value,
+                      min = 0, max = 100, step = 1,
+                      angleOffset = 0, angleArc = 360,
+                      cursor = FALSE,
+                      thickness = NULL,
+                      lineCap = c("default", "round"),
+                      displayInput = TRUE,
+                      displayPrevious = FALSE,
+                      rotation = c("clockwise", "anticlockwise"),
+                      fgColor = NULL,
+                      inputColor = NULL,
+                      bgColor = NULL,
+                      pre = NULL, post = NULL,
+                      readOnly = FALSE,
+                      skin = NULL,
+                      width = NULL,
+                      height = NULL,
                       immediate = TRUE) {
   value <- shiny::restoreInput(id = inputId, default = value)
   lineCap <- match.arg(lineCap)
   rotation <- match.arg(rotation)
+  # if (!is.null(skin))
+  #   warning("Argument skin is deprecated")
   knobParams <- dropNulls(list(
     id = inputId, type = "text", class = "knob-input",
-    value = value, `data-value` = value, `data-skin` = skin,
+    `data-value` = value, `data-skin` = skin,
     `data-min` = min, `data-max` = max, `data-step` = step,
     `data-angleoffset` = angleOffset, `data-anglearc` = angleArc,
     `data-displayprevious` = displayPrevious, `data-thickness` = thickness,
@@ -83,6 +98,7 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
     `data-fgcolor` = fgColor, `data-inputcolor` = inputColor,
     `data-bgcolor` = bgColor, `data-cursor` = cursor,
     `data-rotation` = rotation, `data-readonly` = readOnly,
+    `data-pre` = pre, `data-post` = post,
     `data-width` = width, `data-height` = height,
     `data-immediate` = immediate
   ))
@@ -93,12 +109,12 @@ knobInput <- function(inputId, label, value, min = 0, max = 100, step = 1,
       "false"
     else x
   })
-  inputTag <- do.call(htmltools::tags$input, knobParams)
-  knobInputTag <- htmltools::tags$div(
+  inputTag <- do.call(tags$input, knobParams)
+  knobInputTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
-    if (!is.null(label)) htmltools::tags$label(`for` = inputId, label),
-    if (!is.null(label)) htmltools::tags$br(),
+    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    if (!is.null(label)) tags$label(`for` = inputId, label),
+    if (!is.null(label)) tags$br(),
     inputTag
   )
   attachShinyWidgetsDep(knobInputTag, "jquery-knob")

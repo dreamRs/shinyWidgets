@@ -69,5 +69,5 @@ $.extend(dropMenuInputBinding, {
     this["instance" + el.id] = tippy(target, config.options);
   }
 });
-Shiny.inputBindings.register(dropMenuInputBinding, "shiny.dropMenuInput");
+Shiny.inputBindings.register(dropMenuInputBinding, "shinyWidgets.dropMenuInput");
 
