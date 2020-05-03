@@ -21,6 +21,7 @@
 #' @param bgColor Background color.
 #' @param pre A prefix string to put in front of the value.
 #' @param post A suffix string to put after the value.
+#' @param fontSize Font size, must be a valid CSS unit.
 #' @param readOnly Disable knob (\code{TRUE} or \code{FALSE}).
 #' @param skin Change Knob skin, only one option available : 'tron'.
 #' @param width,height The width and height of the input, e.g. \code{400px}, or \code{100\%}.
@@ -78,6 +79,7 @@ knobInput <- function(inputId, label, value,
                       inputColor = NULL,
                       bgColor = NULL,
                       pre = NULL, post = NULL,
+                      fontSize = NULL,
                       readOnly = FALSE,
                       skin = NULL,
                       width = NULL,
@@ -113,6 +115,12 @@ knobInput <- function(inputId, label, value,
   knobInputTag <- tags$div(
     class = "form-group shiny-input-container",
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    if (!is.null(fontSize)) {
+      tags$style(sprintf(
+        "#%s {font-size: %s !important;}",
+        inputId, validateCssUnit(fontSize)
+      ))
+    },
     if (!is.null(label)) tags$label(`for` = inputId, label),
     if (!is.null(label)) tags$br(),
     inputTag

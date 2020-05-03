@@ -93,7 +93,18 @@ $.extend(knobInputBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return parseFloat(el.value.replace(/\D/g, ""));
+    var value = el.value;
+    var pre = $(el).data("pre");
+    if (typeof pre !== "undefined") {
+      var regexPre = new RegExp("^" + pre);
+      value = value.replace(regexPre, "");
+    }
+    var post = $(el).data("post");
+    if (typeof post !== "undefined") {
+      var regexPost = new RegExp(post + "$");
+      value = value.replace(regexPost, "");
+    }
+    return parseFloat(value);
   },
 
   // Set up the event listeners so that interactions with the
