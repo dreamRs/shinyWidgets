@@ -44,7 +44,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
                 label = input$title,
                 choices = input$choices,
                 selected = input$selected,
-                multiple = TRUE,
+                multiple = ifelse(is.null(input$multiple), TRUE, input$multiple),
                 width = "100%",
                 options = list(
                   placeholder = input$placeholder, plugins = list("remove_button"),
@@ -75,7 +75,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
             label = input$title,
             choices = input$choices,
             selected = input$selected,
-            multiple = TRUE,
+            multiple = ifelse(is.null(input$multiple), TRUE, input$multiple),
             width = "100%",
             options = list(
               placeholder = input$placeholder, plugins = list("remove_button"),
