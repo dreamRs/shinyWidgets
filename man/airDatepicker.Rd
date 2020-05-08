@@ -152,7 +152,7 @@ An alternative to \code{dateInput} to select single, multiple or date range.
  And two alias to select months or years.
 }
 \note{
-This widget prevents \code{dateInput} from working, don't use both !
+Since shinyWidgets 0.5.2 there's no more conflicts with \code{dateInput}.
 }
 \examples{
 if (interactive()) {

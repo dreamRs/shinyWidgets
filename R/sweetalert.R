@@ -723,7 +723,7 @@ progressSweetAlert <- function(session, id, value, total = NULL,
 
 
 toastSweetAlert <- function(title, text, type = NULL,
-                            timer = 1500, position = "bottom-end",
+                            timer = 2000, position = "bottom-end",
                             animation = TRUE, width = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
   insertUI(

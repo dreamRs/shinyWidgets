@@ -47,7 +47,7 @@
 #' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
 #' @param ... Arguments passed to \code{airDatepickerInput}.
 #'
-#' @note This widget prevents \code{dateInput} from working, don't use both !
+#' @note Since shinyWidgets 0.5.2 there's no more conflicts with \code{dateInput}.
 #'
 #' @return a \code{Date} object or a \code{POSIXct} in UTC timezone.
 #'

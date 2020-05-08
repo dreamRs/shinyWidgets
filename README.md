@@ -10,6 +10,7 @@
 [![cranlogs](http://cranlogs.r-pkg.org/badges/shinyWidgets)](https://CRAN.R-project.org/package=shinyWidgets)
 [![cran checks](https://cranchecks.info/badges/worst/shinyWidgets)](https://cranchecks.info/pkgs/shinyWidgets)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dreamRs/shinyWidgets/master.svg)](https://codecov.io/github/dreamRs/shinyWidgets?branch=master)
+[![R build status](https://github.com/dreamRs/shinyWidgets/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/shinyWidgets/actions)
 <!-- badges: end -->
 
 

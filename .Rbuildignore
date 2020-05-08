@@ -14,3 +14,4 @@
 ^revdep$
 ^codecov\.yml$
 ^examples$
+^\.github$
