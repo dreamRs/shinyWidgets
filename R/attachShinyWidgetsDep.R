@@ -33,9 +33,10 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "awesome-bootstrap",
-          version = "0.2.0",
-          src = c(href = "shinyWidgets/awesomeRadioCheckbox"),
-          stylesheet = "css/awesome-bootstrap-checkbox-shiny.css"
+          version = "0.3.7",
+          src = c(href = "shinyWidgets/awesome-bootstrap-checkbox"),
+          stylesheet = "awesome-bootstrap-checkbox.min.css",
+          all_files = FALSE
         ),
         htmltools::findDependencies(shiny::icon("rebel"))[[1]]
       )
