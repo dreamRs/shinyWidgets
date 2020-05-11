@@ -1,4 +1,3 @@
-
 // ------------------------------------------------------------------------ //
 //
 // Descriptif : Checkbox Group Buttons : javascript bindings
@@ -14,35 +13,30 @@
 //
 // ------------------------------------------------------------------------ //
 
-
-
 // Prevent focus on button after click
-document.addEventListener('click', function(e) {
-
-  if(document.activeElement.toString() == '[object HTMLButtonElement]' & document.activeElement.classList.contains('checkbtn')) {
+document.addEventListener("click", function(e) {
+  if (
+    (document.activeElement.toString() == "[object HTMLButtonElement]") &
+    document.activeElement.classList.contains("checkbtn")
+  ) {
     document.activeElement.blur();
   }
-
 });
-
-
-var exports4but = window.Shiny = window.Shiny || {};
-var $escape4but = exports4but.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, '\\$1');
-};
 
 // checkboxGroupButtons input binding
 var checkboxGroupButtonsBinding = new Shiny.InputBinding();
 $.extend(checkboxGroupButtonsBinding, {
   find: function(scope) {
-    return $(scope).find('.checkboxGroupButtons');
+    return $(scope).find(".checkboxGroupButtons");
   },
   getId: function(el) {
     return el.id;
   },
   getValue: function(el) {
     // Select the checkbox objects that have name equal to the grouping div's id
-    var $objs = $('input:checkbox[name="' + $escape4but(el.id) + '"]:checked');
+    var $objs = $(
+      'input:checkbox[name="' + Shiny.$escape(el.id) + '"]:checked'
+    );
     var values = new Array($objs.length);
     for (var i = 0; i < $objs.length; i++) {
       values[i] = $objs[i].value;
@@ -50,58 +44,95 @@ $.extend(checkboxGroupButtonsBinding, {
     return values;
   },
   setValue: function(el, value) {
-    $('input:checkbox[name="' + $escape4but(el.id) + '"]').prop('checked', false);
-    $('input:checkbox[name="' + $escape4but(el.id) + '"]').parent().removeClass('active');
-    $('input:checkbox[name="' + $escape4but(el.id) + '"]').parent().blur();
+    $('input:checkbox[name="' + Shiny.$escape(el.id) + '"]').prop(
+      "checked",
+      false
+    );
+    $('input:checkbox[name="' + Shiny.$escape(el.id) + '"]')
+      .parent()
+      .removeClass("active");
+    $('input:checkbox[name="' + Shiny.$escape(el.id) + '"]')
+      .parent()
+      .blur();
     // Accept array
-      if (value instanceof Array) {
-        for (var i = 0; i < value.length; i++) {
-          $('input:checkbox[name="' + $escape4but(el.id) + '"][value="' + $escape4but(value[i]) + '"]').parent().addClass('active');
-          $('input:checkbox[name="' + $escape4but(el.id) + '"][value="' + $escape4but(value[i]) + '"]').prop('checked', true);
-        }
-        // Else assume it's a single value
-      } else {
-          $('input:checkbox[name="' + $escape4but(el.id) + '"][value="' + $escape4but(value) + '"]').parent().addClass('active');
-          $('input:checkbox[name="' + $escape4but(el.id) + '"][value="' + $escape4but(value) + '"]').prop('checked', true);
+    if (value instanceof Array) {
+      for (var i = 0; i < value.length; i++) {
+        $(
+          'input:checkbox[name="' +
+            Shiny.$escape(el.id) +
+            '"][value="' +
+            Shiny.$escape(value[i]) +
+            '"]'
+        )
+          .parent()
+          .addClass("active");
+        $(
+          'input:checkbox[name="' +
+            Shiny.$escape(el.id) +
+            '"][value="' +
+            Shiny.$escape(value[i]) +
+            '"]'
+        ).prop("checked", true);
+      }
+      // Else assume it's a single value
+    } else {
+      $(
+        'input:checkbox[name="' +
+          Shiny.$escape(el.id) +
+          '"][value="' +
+          Shiny.$escape(value) +
+          '"]'
+      )
+        .parent()
+        .addClass("active");
+      $(
+        'input:checkbox[name="' +
+          Shiny.$escape(el.id) +
+          '"][value="' +
+          Shiny.$escape(value) +
+          '"]'
+      ).prop("checked", true);
     }
   },
   subscribe: function(el, callback) {
-    $(el).on('change.checkboxGroupButtonsBinding', function (event) {
-        callback();
+    $(el).on("change.checkboxGroupButtonsBinding", function(event) {
+      callback();
     });
   },
   unsubscribe: function(el) {
-    $(el).off('.checkboxGroupButtonsBinding');
+    $(el).off(".checkboxGroupButtonsBinding");
   },
   getState: function getState(el) {
-      var $objs = $('input:checkbox[name="' + $escape4but(el.id) + '"]');
+    var $objs = $('input:checkbox[name="' + Shiny.$escape(el.id) + '"]');
 
-      // Store options in an array of objects, each with with value and label
-      var options = new Array($objs.length);
-      for (var i = 0; i < options.length; i++) {
-        options[i] = { value: $objs[i].value };
-      }
+    // Store options in an array of objects, each with with value and label
+    var options = new Array($objs.length);
+    for (var i = 0; i < options.length; i++) {
+      options[i] = { value: $objs[i].value };
+    }
 
-      return { value: this.getValue(el), options: options };
+    return { value: this.getValue(el), options: options };
   },
   receiveMessage: function receiveMessage(el, data) {
-      var $el = $(el);
+    var $el = $(el);
 
-      // This will replace all the options
-      if (data.hasOwnProperty('options')) {
-        $el.find('div.btn-group-container-sw').empty();
-        $el.find('div.btn-group-container-sw').append(data.options);
-      }
+    // This will replace all the options
+    if (data.hasOwnProperty("options")) {
+      $el.find("div.btn-group-container-sw").empty();
+      $el.find("div.btn-group-container-sw").append(data.options);
+    }
 
-      if (data.hasOwnProperty('selected'))
-        this.setValue(el, data.selected);
+    if (data.hasOwnProperty("selected")) this.setValue(el, data.selected);
 
-      if (data.hasOwnProperty('label'))
-        $el.find('label[for="' + $escape4but(el.id) + '"]').text(data.label);
+    if (data.hasOwnProperty("label"))
+      $el.find('label[for="' + Shiny.$escape(el.id) + '"]').text(data.label);
 
-      $(el).trigger('change');
+    $(el).trigger("change");
   }
 });
 
-Shiny.inputBindings.register(checkboxGroupButtonsBinding, 'shiny.checkboxGroupButtonsInput');
+Shiny.inputBindings.register(
+  checkboxGroupButtonsBinding,
+  "shiny.checkboxGroupButtonsInput"
+);
 

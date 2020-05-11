@@ -1,8 +1,4 @@
 // picker input binding
-var exportsPicker = (window.Shiny = window.Shiny || {});
-var $escapePicker = (exportsPicker.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, "\\$1");
-});
 
 var pickerInputBinding = new Shiny.InputBinding();
 $.extend(pickerInputBinding, {
@@ -29,7 +25,7 @@ $.extend(pickerInputBinding, {
     return {
       label: $(el)
         .parent()
-        .find('label[for="' + $escapePicker(el.id) + '"]')
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(),
       value: this.getValue(el),
       options: options
@@ -59,7 +55,7 @@ $.extend(pickerInputBinding, {
       $(el)
         .parent()
         .parent()
-        .find('label[for="' + $escapePicker(el.id) + '"]')
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(data.label);
 
     //$(el).selectpicker('refresh');

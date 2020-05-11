@@ -5,11 +5,6 @@
  *
  */
 
-var exportsKnob = (window.Shiny = window.Shiny || {});
-var $escapeKnob = (exportsKnob.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, "\\$1");
-});
-
 function tron_skin() {
   // "tron" case
   if (this.$.data("skin") == "tron") {
@@ -176,7 +171,7 @@ $.extend(knobInputBinding, {
       $(el)
         .parent()
         .parent()
-        .find('label[for="' + $escapeKnob(el.id) + '"]')
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(data.label);
 
     $(el).trigger("change");
@@ -190,7 +185,7 @@ $.extend(knobInputBinding, {
       label: $(el)
         .parent()
         .parent()
-        .find('label[for="' + $escapeKnob(el.id) + '"]')
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(),
       value: el.value
     };

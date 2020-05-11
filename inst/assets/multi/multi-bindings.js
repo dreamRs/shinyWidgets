@@ -1,15 +1,11 @@
 // multi input binding
-var exportsMulti = (window.Shiny = window.Shiny || {});
-var $escapeMulti = (exportsMulti.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, "\\$1");
-});
 
 var multiInputBinding = new Shiny.InputBinding();
 $.extend(multiInputBinding, {
   initialize: function initialize(el) {
     var config = $(el)
       .parent()
-      .find('script[data-for="' + $escapeMulti(el.id) + '"]');
+      .find('script[data-for="' + Shiny.$escape(el.id) + '"]');
     config = JSON.parse(config.html());
     $(el).multi(config);
     $(el).trigger("change");
@@ -38,7 +34,7 @@ $.extend(multiInputBinding, {
     return {
       label: $(el)
         .parent()
-        .find('label[for="' + $escapeMulti(el.id) + '"]')
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(),
       value: this.getValue(el),
       options: options
@@ -62,7 +58,7 @@ $.extend(multiInputBinding, {
       $(el)
         .parent()
         .parent()
-        .find('label[for="' + $escapeMulti(el.id) + '"]')
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(data.label);
 
     var event = new Event("change");

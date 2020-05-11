@@ -13,12 +13,6 @@
 //
 // ------------------------------------------------------------------------ //
 
-var exportsAw = (window.Shiny = window.Shiny || {});
-var $escapeAw = (exportsAw.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, "\\$1");
-});
-
-// radioBs input binding
 var awesomeRadioBinding = new Shiny.InputBinding();
 $.extend(awesomeRadioBinding, {
   find: function(scope) {
@@ -29,14 +23,14 @@ $.extend(awesomeRadioBinding, {
   },
   getValue: function(el) {
     // Select the radio objects that have name equal to the grouping div's id
-    return $('input:radio[name="' + $escapeAw(el.id) + '"]:checked').val();
+    return $('input:radio[name="' + Shiny.$escape(el.id) + '"]:checked').val();
   },
   setValue: function(el, value) {
     $(
       'input:radio[name="' +
-        $escapeAw(el.id) +
+        Shiny.$escape(el.id) +
         '"][value="' +
-        $escapeAw(value) +
+        Shiny.$escape(value) +
         '"]'
     ).prop("checked", true);
   },
@@ -49,7 +43,7 @@ $.extend(awesomeRadioBinding, {
     $(el).off(".awesomeRadioBinding");
   },
   getState: function(el) {
-    var $objs = $('input:radio[name="' + $escapeAw(el.id) + '"]');
+    var $objs = $('input:radio[name="' + Shiny.$escape(el.id) + '"]');
 
     // Store options in an array of objects, each with with value and label
     var options = new Array($objs.length);
@@ -60,7 +54,7 @@ $.extend(awesomeRadioBinding, {
     return {
       label: $(el)
         .parent()
-        .find('label[for="' + $escapeAw(el.id) + '"]')
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(),
       value: this.getValue(el),
       options: options
@@ -83,7 +77,7 @@ $.extend(awesomeRadioBinding, {
     if (data.hasOwnProperty("label"))
       $(el)
         .parent()
-        .find('label[for="' + $escapeAw(el.id) + '"]')
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(data.label);
 
     $(el).trigger("change");

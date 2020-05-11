@@ -6,6 +6,9 @@ shinyWidgets 0.5.2
   + `onlyTimepicker`: to only display the time picker part of the widget.
   + `firstDay`: day index from which week will be started
 * `knobInput()` has two new arguments : `pre` and `post` to add prefix/suffix to the value displayed.
+* Updated `awesome*()` dependencies.
+
+
 
 ### Bug fixes
 

@@ -1,11 +1,6 @@
 // searchInput bindings //
 // by VP 4 dreamRs //
 
-var exportsSearch = (window.Shiny = window.Shiny || {});
-var $escapeSearch = (exportsSearch.$escape = function(val) {
-  return val.replace(/([!"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~])/g, "\\$1");
-});
-
 var searchInputBinding = new Shiny.InputBinding();
 $.extend(searchInputBinding, {
   find: function(scope) {
@@ -15,13 +10,13 @@ $.extend(searchInputBinding, {
     return $(el).attr("id");
   },
   getValue: function(el) {
-    return $("#" + $escapeSearch(el.id) + "_text").val();
+    return $("#" + Shiny.$escape(el.id) + "_text").val();
   },
   setValue: function(el, value) {
-    $("#" + $escapeSearch(el.id) + "_text").val(value);
+    $("#" + Shiny.$escape(el.id) + "_text").val(value);
   },
   subscribe: function(el, callback) {
-    $("#" + $escapeSearch(el.id) + "_text").on(
+    $("#" + Shiny.$escape(el.id) + "_text").on(
       "keyup.searchInputBinding input.searchInputBinding",
       function(event) {
         if (event.keyCode == 13) {
@@ -30,16 +25,16 @@ $.extend(searchInputBinding, {
         }
       }
     );
-    $("#" + $escapeSearch(el.id) + "_search").on("click", function(event) {
+    $("#" + Shiny.$escape(el.id) + "_search").on("click", function(event) {
       // on click
       callback();
     });
-    $("#" + $escapeSearch(el.id) + "_reset").on("click", function(event) {
+    $("#" + Shiny.$escape(el.id) + "_reset").on("click", function(event) {
       // on click
-      var reset = $("#" + $escapeSearch(el.id)).data("reset");
+      var reset = $("#" + Shiny.$escape(el.id)).data("reset");
       if (reset == "TRUE") {
-        var resetValue = $("#" + $escapeSearch(el.id)).data("reset-value");
-        $("#" + $escapeSearch(el.id) + "_text").val(resetValue);
+        var resetValue = $("#" + Shiny.$escape(el.id)).data("reset-value");
+        $("#" + Shiny.$escape(el.id) + "_text").val(resetValue);
       }
       callback();
     });
