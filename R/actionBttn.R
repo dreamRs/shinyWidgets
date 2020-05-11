@@ -106,7 +106,7 @@ actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
 #'
 #' @export
 #'
-#' @importFrom htmltools tags
+#' @importFrom htmltools tags tagAppendAttributes
 #' @importFrom shiny icon
 #'
 #' @examples
@@ -140,9 +140,13 @@ actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
 #' shinyApp(ui, server)
 #'
 #' }
-downloadBttn <- function (outputId, label = "Download", style = "unite",
-                          color = "default", size = "md", block = FALSE,
-                          no_outline = TRUE) {
+downloadBttn <- function(outputId,
+                         label = "Download",
+                         style = "unite",
+                          color = "default",
+                         size = "md",
+                         block = FALSE,
+                         no_outline = TRUE) {
   bttn <- actionBttn(
     inputId = paste0(outputId, "_bttn"),
     label = tags$a(
@@ -158,5 +162,8 @@ downloadBttn <- function (outputId, label = "Download", style = "unite",
     no_outline = no_outline,
     icon = icon("download")
   )
-  bttn
+  htmltools::tagAppendAttributes(
+    bttn,
+    onclick = sprintf("getElementById('%s').click()", outputId)
+  )
 }

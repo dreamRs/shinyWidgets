@@ -9,10 +9,10 @@ shinyWidgets 0.5.2
 * Updated `awesome*()` dependencies.
 
 
-
 ### Bug fixes
 
 * Changes in `dropMenu()` bindings to work with inputs updates.
+* `downloadBttn()` worked only when clicking the label, now you can click the full button [#271](https://github.com/dreamRs/shinyWidgets/issues/271).
 
 
 
