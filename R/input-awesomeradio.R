@@ -1,34 +1,27 @@
 
-# ------------------------------------------------------------------------ #
-#
-# Descriptif : Awesome Radio
-#        via : http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/
-#
-#
-# Auteurs : Victor PERRIER
-#
-# Date creation : 23/08/2016
-# Date modification : 23/08/2016
-#
-# Version 1.0
-#
-# ------------------------------------------------------------------------ #
-
-
-
 # Generate one radio
-radioAlone <- function(id, name, label, value, selected = FALSE, status = "primary", inline = FALSE, checkbox = FALSE) {
-  status <- match.arg(arg = status, choices = c("primary", "success", "info", "warning", "danger"))
+radioAlone <- function(id,
+                       name,
+                       label,
+                       value,
+                       selected = FALSE,
+                       status = "primary",
+                       inline = FALSE,
+                       checkbox = FALSE) {
+  status <- match.arg(
+    arg = status,
+    choices = c("primary", "success", "info", "warning", "danger")
+  )
   if (!checkbox) {
-    divClass <- paste0("radiobs radio-bs radio-bs-", status)
+    divClass <- paste0("awesome-radio radio-", status)
   } else {
-    divClass <- paste0("checkboxbs checkbox-bs checkbox-bs-circle checkbox-bs-", status)
+    divClass <- paste0("awesome-checkbox checkbox-circle checkbox-", status)
   }
   if (inline)
     # if (!checkbox)
-      divClass <- paste(divClass, "radio-inline radio-bs-inline")
+      divClass <- paste(divClass, "radio-inline radio-inline")
     # else
-    #   divClass <- paste(divClass, "checkbox-inline checkbox-bs-inline")
+    #   divClass <- paste(divClass, "checkbox-inline checkbox-inline")
   inputTag <- tags$input(name=name, id=id, value=value, type="radio")
   if (selected)
     inputTag$attribs$checked <- "checked"
@@ -37,16 +30,27 @@ radioAlone <- function(id, name, label, value, selected = FALSE, status = "prima
 
 
 # Generate several radios
-generateAwesomeRadio <- function(inputId, choices, selected, inline, status, checkbox) {
+generateAwesomeRadio <- function(inputId,
+                                 choices,
+                                 selected,
+                                 inline,
+                                 status,
+                                 checkbox) {
   tags$div(
-    class="shiny-options-group", #style = "margin-top: -10px;",
+    class = "shiny-options-group",
     lapply(
       X = seq_along(choices),
       FUN = function(x) {
         selec <- choices[x] %in% selected[[1]]
         radioAlone(
-          id = paste0(inputId, x), name = inputId, inline = inline,
-          label = names(choices)[x], value = choices[x], selected = selec, status = status, checkbox = checkbox
+          id = paste0(inputId, x),
+          name = inputId,
+          inline = inline,
+          label = names(choices)[x],
+          value = choices[x],
+          selected = selec,
+          status = status,
+          checkbox = checkbox
         )
       }
     )
@@ -75,7 +79,7 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' @seealso \code{\link{updateAwesomeRadio}}
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools tags
+#' @importFrom htmltools tags validateCssUnit
 #'
 #' @export
 #'
@@ -114,7 +118,14 @@ generateAwesomeRadio <- function(inputId, choices, selected, inline, status, che
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALSE, status = "primary", checkbox = FALSE, width = NULL) {
+awesomeRadio <- function(inputId,
+                         label,
+                         choices,
+                         selected = NULL,
+                         inline = FALSE,
+                         status = "primary",
+                         checkbox = FALSE,
+                         width = NULL) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
   selected <- if (is.null(selected)) {
@@ -122,13 +133,19 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
   } else {
     as.character(selected)
   }
-  awesomeRadioTag <- htmltools::tags$div(
-    id=inputId, class="form-group shiny-input-radiogroup awesome-radio-class shiny-input-container",
-    class=if(inline) "shiny-input-container-inline",
+  tagLabel <- tags$label(
+    class = "control-label",
+    `for` = inputId,
+    label, style = "margin-bottom: 5px;"
+  )
+  awesomeRadioTag <- tags$div(
+    id = inputId,
+    class = "form-group shiny-input-radiogroup awesome-bootstrap-radio shiny-input-container",
+    class = if(inline) "shiny-input-container-inline",
     style = if (!is.null(width))
-      paste0("width: ", htmltools::validateCssUnit(width), ";"),
-    if (!is.null(label)) htmltools::tags$label(class="control-label", `for`=inputId, label, style="margin-bottom: 5px; "),
-    if (!is.null(label) & !inline) tags$div(style="height: 7px;"),
+      paste0("width: ", validateCssUnit(width), ";"),
+    if (!is.null(label)) tagLabel,
+    if (!is.null(label) & !inline) tags$div(style = "height: 7px;"),
     generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)
   )
   # Dep
@@ -205,9 +222,14 @@ awesomeRadio <- function(inputId, label, choices, selected = NULL, inline = FALS
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updateAwesomeRadio <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,
-          inline = FALSE, status = "primary", checkbox = FALSE)
-{
+updateAwesomeRadio <- function(session,
+                               inputId,
+                               label = NULL,
+                               choices = NULL,
+                               selected = NULL,
+                               inline = FALSE,
+                               status = "primary",
+                               checkbox = FALSE) {
   if (is.null(selected) && !is.null(choices))
     selected <- as.character(choices[[1]])
   if (!is.null(choices))
@@ -215,10 +237,12 @@ updateAwesomeRadio <- function (session, inputId, label = NULL, choices = NULL, 
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- if (!is.null(choices)) {
-    format(htmltools::tagList(generateAwesomeRadio(session$ns(inputId), choices, selected, inline, status, checkbox)))
+    as.character(generateAwesomeRadio(session$ns(inputId), choices, selected, inline, status, checkbox))
   }
-  message <- dropNulls(list(label = label, options = options,
-                            value = selected))
+  message <- dropNulls(list(
+    label = label, options = options,
+    value = selected
+  ))
   session$sendInputMessage(inputId, message)
 }
 

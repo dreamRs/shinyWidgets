@@ -30,22 +30,32 @@
 #' }
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools htmlDependency attachDependencies
+#' @importFrom htmltools tags validateCssUnit
 #'
 #' @export
-awesomeCheckbox <- function (inputId, label, value = FALSE, status = "primary", width = NULL)
-{
+awesomeCheckbox <- function(inputId,
+                            label,
+                            value = FALSE,
+                            status = "primary",
+                            width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-  status <- match.arg(arg = status, choices = c("primary", "success", "info", "warning", "danger"))
-  inputTag <- htmltools::tags$input(id = inputId, type = "checkbox")
+  status <- match.arg(
+    arg = status,
+    choices = c("primary", "success", "info", "warning", "danger")
+  )
+  inputTag <- tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
-  awesomeTag <- htmltools::tags$div(class = "form-group shiny-input-container", style = if (!is.null(width))
-    paste0("width: ", htmltools::validateCssUnit(width), ";"),
-    htmltools::tags$div(class = paste0("checkboxbs checkbox-bs checkbox-bs-", status),
-        style = "margin-top: 10px; margin-bottom: 10px;",
-        inputTag,
-        htmltools::tags$label(tags$span(label, style = "font-weight: normal; cursor: pointer;"), `for` = inputId)))
+  awesomeTag <- tags$div(
+    class = "form-group shiny-input-container",
+    style = if (!is.null(width))
+      paste0("width: ", validateCssUnit(width), ";"),
+    tags$div(
+      class = paste0("awesome-checkbox checkbox-", status),
+      inputTag,
+      tags$label(label, style = "cursor: pointer;", `for` = inputId)
+    )
+  )
   # Dep
   attachShinyWidgetsDep(awesomeTag, "awesome")
 }
@@ -55,28 +65,36 @@ awesomeCheckbox <- function (inputId, label, value = FALSE, status = "primary", 
 
 
 # Generate several checkbox
-
-generateAwesomeOptions <- function(inputId, choices, selected, inline, status)
-{
-  options <- mapply(choices, names(choices), FUN = function(value,
-                                                            name) {
-    inputTag <- htmltools::tags$input(type = "checkbox", name = inputId, value = value, id = paste0(inputId, value))
-    if (value %in% selected)
-      inputTag$attribs$checked <- "checked"
-    if (inline) {
-      # tags$label(class = paste0("checkbox", "-inline"), inputTag,
-      #            tags$span(name))
-      htmltools::tags$div(class = paste0("awesome-checkbox checkbox-bs checkbox-bs-inline checkbox-inline checkbox-bs-", status),
-               style = "margin-top: -4px;",
-               inputTag, tags$label(style = "font-weight: normal;", name, `for` = paste0(inputId, value)))
-    }
-    else {
-      htmltools::tags$div(class = paste0("awesome-checkbox checkbox-bs checkbox-bs-", status),
-               style = "margin-top: -3px;",
-               inputTag, tags$label(style = "font-weight: normal;", name, `for` = paste0(inputId, value)))
-    }
-  }, SIMPLIFY = FALSE, USE.NAMES = FALSE)
-  htmltools::tags$div(class = "shiny-options-group", options)
+#' @importFrom htmltools tags
+generateAwesomeOptions <- function(inputId, choices, selected, inline, status) {
+  options <- mapply(
+    choices, names(choices),
+    FUN = function(value, name) {
+      inputTag <- tags$input(
+        type = "checkbox",
+        name = inputId,
+        value = value,
+        id = paste0(inputId, value)
+      )
+      if (value %in% selected)
+        inputTag$attribs$checked <- "checked"
+      if (inline) {
+        tags$div(
+          class = paste0("awesome-checkbox checkbox-inline checkbox-", status),
+          inputTag,
+          tags$label(name, `for` = paste0(inputId, value))
+        )
+      }
+      else {
+        tags$div(
+          class = paste0("awesome-checkbox checkbox-", status),
+          inputTag,
+          tags$label(name, `for` = paste0(inputId, value))
+        )
+      }
+    }, SIMPLIFY = FALSE, USE.NAMES = FALSE
+  )
+  tags$div(class = "shiny-options-group", options)
 }
 
 
@@ -140,19 +158,29 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status)
 #'
 #'
 #' }
-awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inline = FALSE, status = "primary",
-          width = NULL) {
+awesomeCheckboxGroup <- function(inputId,
+                                 label,
+                                 choices,
+                                 selected = NULL,
+                                 inline = FALSE,
+                                 status = "primary",
+                                 width = NULL) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- generateAwesomeOptions(inputId, choices, selected, inline, status = status)
-  divClass <- "form-group shiny-input-container shiny-input-checkboxgroup"
+  divClass <- "form-group shiny-input-container shiny-input-checkboxgroup awesome-bootstrap-checkbox"
   if (inline)
     divClass <- paste(divClass, "shiny-input-container-inline")
-  awesomeTag <- htmltools::tags$div(id = inputId, style = if (!is.null(width))
-    paste0("width: ", htmltools::validateCssUnit(width), ";"), class = divClass,
-    htmltools::tags$label(label, `for` = inputId, style = "margin-bottom: 10px;"), options)
+  awesomeTag <- tags$div(
+    id = inputId,
+    style = if (!is.null(width))
+      paste0("width: ", validateCssUnit(width), ";"),
+    class = divClass,
+    tags$label(label, `for` = inputId, style = "margin-bottom: 10px;"),
+    options
+  )
   # Dep
   attachShinyWidgetsDep(awesomeTag, "awesome")
 }
@@ -228,17 +256,24 @@ awesomeCheckboxGroup <- function (inputId, label, choices, selected = NULL, inli
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updateAwesomeCheckboxGroup <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,
-          inline = FALSE, status = "primary") {
+updateAwesomeCheckboxGroup <- function(session,
+                                       inputId,
+                                       label = NULL,
+                                       choices = NULL,
+                                       selected = NULL,
+                                       inline = FALSE,
+                                       status = "primary") {
   if (!is.null(choices))
     choices <- choicesWithNames(choices)
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- if (!is.null(choices)) {
-    format(tagList(generateAwesomeOptions(session$ns(inputId), choices, selected, inline, status)))
+    as.character(generateAwesomeOptions(session$ns(inputId), choices, selected, inline, status))
   }
-  message <- dropNulls(list(label = label, options = options,
-                            value = selected))
+  message <- dropNulls(list(
+    label = label, options = options,
+    value = selected
+  ))
   session$sendInputMessage(inputId, message)
 }
 
