@@ -21,8 +21,8 @@ test_that("With header and footer", {
     heading = "My title",
     footer = "Something"
   )
-  expect_identical(tagp$children[[1]]$attribs$class, "panel-heading")
-  expect_identical(tagp$children[[3]]$attribs$class, "panel-footer")
+  expect_true(grepl(pattern = "panel-heading", x = as.character(tagp)))
+  expect_true(grepl(pattern = "panel-footer", x = as.character(tagp)))
 })
 
 
@@ -34,6 +34,5 @@ test_that("With status", {
     heading = "My title",
     status = "primary"
   )
-  expect_identical(tagp$attribs$class, "panel panel-primary")
-
+  expect_true(grepl(pattern = "panel panel-primary", x = as.character(tagp)))
 })
