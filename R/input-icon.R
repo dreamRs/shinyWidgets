@@ -41,6 +41,45 @@ textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
   )
 }
 
+#' @title Change the value of a text input icon on the client
+#'
+#' @inheritParams shiny::updateTextInput
+#'
+#' @return No value.
+#' @export
+#'
+#' @importFrom shiny updateTextInput
+#'
+#' @examples
+#' library(shiny)
+#' library(shinyWidgets)
+#'
+#' ui <- fluidPage(
+#'   textInputIcon(
+#'     inputId = "ex1",
+#'     label = "With an icon",
+#'     icon = icon("user-circle-o")
+#'   ),
+#'   actionButton("update", "Random value")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   observeEvent(input$update, {
+#'     updateTextInputIcon(
+#'       session = session,
+#'       inputId = "ex1",
+#'       value = paste(sample(letters, 8), collapse = "")
+#'     )
+#'   })
+#'
+#' }
+#'
+#' if (interactive())
+#'   shinyApp(ui, server)
+updateTextInputIcon <- shiny::updateTextInput
+
+
 
 
 
@@ -88,6 +127,49 @@ numericInputIcon <- function(inputId, label, value,
     )
   )
 }
+
+
+#' @title Change the value of a numeric input icon on the client
+#'
+#' @inheritParams shiny::updateNumericInput
+#'
+#' @return No value.
+#' @export
+#'
+#' @importFrom shiny updateNumericInput
+#'
+#' @examples
+#' library(shiny)
+#' library(shinyWidgets)
+#'
+#' ui <- fluidPage(
+#'   numericInputIcon(
+#'     inputId = "ex1",
+#'     label = "With an icon",
+#'     value = 10,
+#'     icon = icon("percent")
+#'   ),
+#'   actionButton("update", "Random value")
+#' )
+#'
+#' server <- function(input, output, session) {
+#'
+#'   observeEvent(input$update, {
+#'     updateNumericInputIcon(
+#'       session = session,
+#'       inputId = "ex1",
+#'       value = sample.int(100, 1)
+#'     )
+#'   })
+#'
+#' }
+#'
+#' if (interactive())
+#'   shinyApp(ui, server)
+updateNumericInputIcon <- shiny::updateNumericInput
+
+
+
 
 validate_size <- function(size) {
   if (is.null(size) || !nchar(size)) {
