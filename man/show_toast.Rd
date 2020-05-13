@@ -6,7 +6,7 @@
 \usage{
 show_toast(
   title,
-  text,
+  text = NULL,
   type = c("default", "success", "error", "info", "warning", "question"),
   timer = 3000,
   position = c("bottom-end", "top", "top-start", "top-end", "center", "center-start",
@@ -121,4 +121,8 @@ server <- function(input, output, session) {
 
 if (interactive())
   shinyApp(ui, server)
+}
+\seealso{
+\code{\link{show_alert}}, \code{\link{ask_confirmation}},
+ \code{\link{closeSweetAlert}}.
 }

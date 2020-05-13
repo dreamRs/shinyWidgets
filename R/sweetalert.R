@@ -1,25 +1,3 @@
-#
-# #' @title Load sweetAlert libs in a shiny apps
-# #'
-# #' @description
-# #' Load sweetAlert libs in a shiny apps.
-# #'
-# #' @importFrom htmltools htmlDependency attachDependencies
-# #'
-# #' @export
-#
-# useSweetAlert <- function() {
-#   tagSweet <- tags$div()
-#   dep <- htmltools::htmlDependency(
-#     "sweetAlert", "0.1.0", c(href="shinyWidgets"),
-#     script = "sweetAlert/js/sweetalert.min.js",
-#     stylesheet = "sweetAlert/css/sweetalert.css"
-#   )
-#   htmltools::attachDependencies(tagSweet, dep)
-# }
-
-
-
 
 #' @title Load Sweet Alert dependencies
 #'
@@ -30,7 +8,8 @@
 #'
 #' @param theme Theme to modify alerts appearance.
 #'
-#' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}}.
+#' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
+#'  \code{\link{inputSweetAlert}}, \code{\link{closeSweetAlert}}.
 #'
 #' @importFrom htmltools attachDependencies htmlDependency singleton tagList tags
 #'
@@ -41,6 +20,8 @@ useSweetAlert <- function(theme = c("sweetalert2", "minimal",
                                     "dark", "bootstrap-4",
                                     "borderless")) {
   theme <- match.arg(theme)
+  if (identical(theme, "sweetalert2"))
+    theme <- "default"
   tag_sa <- singleton(
     tagList(
       tags$head(tags$style(".swal2-popup {font-size: 1.6rem !important;}")),
@@ -49,7 +30,7 @@ useSweetAlert <- function(theme = c("sweetalert2", "minimal",
   )
   attachDependencies(tag_sa, htmlDependency(
     name = "sweetalert2",
-    version = "8.17.6",
+    version = "9.10.13",
     src = c(href="shinyWidgets/sweetalert2"),
     script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
     stylesheet = sprintf("css/%s.min.css", theme)
@@ -61,8 +42,7 @@ useSweetAlert <- function(theme = c("sweetalert2", "minimal",
 
 #' @title Display a Sweet Alert to the user
 #'
-#' @description
-#' Send a message from the server and launch a sweet alert in the UI.
+#' @description Show an alert message to the user to provide some feedback.
 #'
 #' @param session The \code{session} object passed to function given to shinyServer.
 #' @param title Title of the alert.
@@ -83,127 +63,23 @@ useSweetAlert <- function(theme = c("sweetalert2", "minimal",
 #' @importFrom shiny insertUI
 #'
 #' @export
+#' @name sweetalert
 #'
-#' @seealso \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}}
+#' @seealso \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}},
+#'  \code{\link{closeSweetAlert}}.
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h2("Sweet Alert examples"),
-#'   actionButton(
-#'     inputId = "success",
-#'     label = "Launch a success sweet alert",
-#'     icon = icon("check")
-#'   ),
-#'   actionButton(
-#'     inputId = "error",
-#'     label = "Launch an error sweet alert",
-#'     icon = icon("remove")
-#'   ),
-#'   actionButton(
-#'     inputId = "sw_html",
-#'     label = "Sweet alert with HTML",
-#'     icon = icon("thumbs-up")
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   observeEvent(input$success, {
-#'     sendSweetAlert(
-#'       session = session,
-#'       title = "Success !!",
-#'       text = "All in order",
-#'       type = "success"
-#'     )
-#'   })
-#'
-#'   observeEvent(input$error, {
-#'     sendSweetAlert(
-#'       session = session,
-#'       title = "Error !!",
-#'       text = "It's broken...",
-#'       type = "error"
-#'     )
-#'   })
-#'
-#'   observeEvent(input$sw_html, {
-#'     sendSweetAlert(
-#'       session = session,
-#'       title = NULL,
-#'       text = tags$span(
-#'         tags$h3("With HTML tags",
-#'                 style = "color: steelblue;"),
-#'         "In", tags$b("bold"), "and", tags$em("italic"),
-#'         tags$br(),
-#'         "and",
-#'         tags$br(),
-#'         "line",
-#'         tags$br(),
-#'         "breaks",
-#'         tags$br(),
-#'         "and an icon", icon("thumbs-up")
-#'       ),
-#'       html = TRUE
-#'     )
-#'   })
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#'
-#' # output in Sweet Alert #
-#'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#' shinyApp(
-#'   ui = fluidPage(
-#'     tags$h1("Click the button"),
-#'     actionButton(
-#'       inputId = "sw_html",
-#'       label = "Sweet alert with plot"
-#'     ),
-#'     # SweetAlert width
-#'     tags$style(".swal-modal {width: 80%;}")
-#'   ),
-#'   server = function(input, output, session) {
-#'     observeEvent(input$sw_html, {
-#'       sendSweetAlert(
-#'         session = session,
-#'         title = "Yay a plot!",
-#'         text = tags$div(
-#'           plotOutput(outputId = "plot"),
-#'           sliderInput(
-#'             inputId = "clusters",
-#'             label = "Number of clusters",
-#'             min = 2, max = 6, value = 3, width = "100%"
-#'           )
-#'         ),
-#'         html = TRUE
-#'       )
-#'     })
-#'     output$plot <- renderPlot({
-#'       plot(Sepal.Width ~ Sepal.Length,
-#'            data = iris, col = Species,
-#'            pch = 20, cex = 2)
-#'       points(kmeans(iris[, 1:2], input$clusters)$centers,
-#'              pch = 4, cex = 4, lwd = 4)
-#'     })
-#'   }
-#' )
-#'
-#' }
-sendSweetAlert <- function(session, title = "Title", text = NULL,
-                           type = NULL, btn_labels = "Ok",
-                           btn_colors = "#3085d6", html = FALSE,
+#' @example examples/show_alert.R
+#' @example examples/show_alert-ouput.R
+sendSweetAlert <- function(session,
+                           title = "Title",
+                           text = NULL,
+                           type = NULL,
+                           btn_labels = "Ok",
+                           btn_colors = "#3085d6",
+                           html = FALSE,
                            closeOnClickOutside = TRUE,
-                           showCloseButton = FALSE, width = NULL) {
+                           showCloseButton = FALSE,
+                           width = NULL) {
   insertUI(
     selector = "body", where = "afterBegin",
     ui = useSweetAlert(), immediate = TRUE, session = session
@@ -222,7 +98,9 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
       message = list(
         as_html = html,
         config = dropNullsOrNA(list(
-          title = title, text = text, type = type,
+          title = title,
+          text = text,
+          icon = type,
           confirmButtonText = btn_labels[1],
           confirmButtonColor = btn_colors[1],
           cancelButtonText = btn_labels[2],
@@ -243,7 +121,8 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
         sw_id = id,
         as_html = html,
         config = dropNullsOrNA(list(
-          title = title, type = type,
+          title = title,
+          icon = type,
           text = as.character(tags$div(id = id)),
           confirmButtonText = btn_labels[1],
           confirmButtonColor = btn_colors[1],
@@ -264,11 +143,36 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
   }
 }
 
+#' @rdname sweetalert
+#' @export
+show_alert <- function(title = "Title",
+                       text = NULL,
+                       type = NULL,
+                       btn_labels = "Ok",
+                       btn_colors = "#3085d6",
+                       html = FALSE,
+                       closeOnClickOutside = TRUE,
+                       showCloseButton = FALSE,
+                       width = NULL,
+                       session = shiny::getDefaultReactiveDomain()) {
+  sendSweetAlert(
+    session = session,
+    title = title,
+    text = text,
+    type = type,
+    btn_labels = btn_labels,
+    btn_colors = btn_colors,
+    html = html,
+    closeOnClickOutside = closeOnClickOutside,
+    showCloseButton = showCloseButton,
+    width = width
+  )
+}
 
 
 #' @title Launch a confirmation dialog
 #'
-#' @description Launch a popup to ask confirmation to the user
+#' @description Launch a popup to ask the user for confirmation.
 #'
 #' @param session The \code{session} object passed to function given to shinyServer.
 #' @param inputId The \code{input} slot that will be used to access the value.
@@ -291,140 +195,26 @@ sendSweetAlert <- function(session, title = "Title", text = NULL,
 #'
 #' @export
 #'
-#' @seealso \code{\link{sendSweetAlert}}, \code{\link{inputSweetAlert}}
+#' @name sweetalert-confirmation
 #'
+#' @seealso \code{\link{sendSweetAlert}}, \code{\link{inputSweetAlert}},
+#'  \code{\link{closeSweetAlert}}.
+#'
+#' @example examples/ask_confirmation.R
 #' @examples
-#' if (interactive()) {
-#'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Confirm sweet alert"),
-#'   actionButton(
-#'     inputId = "launch",
-#'     label = "Launch confirmation dialog"
-#'   ),
-#'   verbatimTextOutput(outputId = "res"),
-#'   uiOutput(outputId = "count")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'   # Launch sweet alert confirmation
-#'   observeEvent(input$launch, {
-#'     confirmSweetAlert(
-#'       session = session,
-#'       inputId = "myconfirmation",
-#'       title = "Want to confirm ?"
-#'     )
-#'   })
-#'
-#'   # raw output
-#'   output$res <- renderPrint(input$myconfirmation)
-#'
-#'   # count click
-#'   true <- reactiveVal(0)
-#'   false <- reactiveVal(0)
-#'   observeEvent(input$myconfirmation, {
-#'     if (isTRUE(input$myconfirmation)) {
-#'       x <- true() + 1
-#'       true(x)
-#'     } else {
-#'       x <- false() + 1
-#'       false(x)
-#'     }
-#'   }, ignoreNULL = TRUE)
-#'   output$count <- renderUI({
-#'     tags$span(
-#'       "Confirm:", tags$b(true()),
-#'       tags$br(),
-#'       "Cancel:", tags$b(false())
-#'     )
-#'   })
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#'
-#'
-#'
-#' # other options :
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Confirm sweet alert"),
-#'   actionButton(
-#'     inputId = "launch1",
-#'     label = "Launch confirmation dialog"
-#'   ),
-#'   verbatimTextOutput(outputId = "res1"),
-#'   tags$br(),
-#'   actionButton(
-#'     inputId = "launch2",
-#'     label = "Launch confirmation dialog (with normal mode)"
-#'   ),
-#'   verbatimTextOutput(outputId = "res2"),
-#'   tags$br(),
-#'   actionButton(
-#'     inputId = "launch3",
-#'     label = "Launch confirmation dialog (with HTML)"
-#'   ),
-#'   verbatimTextOutput(outputId = "res3")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   observeEvent(input$launch1, {
-#'     confirmSweetAlert(
-#'       session = session,
-#'       inputId = "myconfirmation1",
-#'       type = "warning",
-#'       title = "Want to confirm ?"
-#'     )
-#'   })
-#'   output$res1 <- renderPrint(input$myconfirmation1)
-#'
-#'   observeEvent(input$launch2, {
-#'     confirmSweetAlert(
-#'       session = session,
-#'       inputId = "myconfirmation2",
-#'       type = "warning",
-#'       title = "Are you sure ??",
-#'       btn_labels = c("Nope", "Yep"),
-#'       btn_colors = c("#FE642E", "#04B404")
-#'     )
-#'   })
-#'   output$res2 <- renderPrint(input$myconfirmation2)
-#'
-#'   observeEvent(input$launch3, {
-#'     confirmSweetAlert(
-#'       session = session,
-#'       inputId = "myconfirmation3",
-#'       title = NULL,
-#'       text = tags$b(
-#'         icon("file"),
-#'         "Do you really want to delete this file ?",
-#'         style = "color: #FA5858;"
-#'       ),
-#'       btn_labels = c("Cancel", "Delete file"),
-#'       btn_colors = c("#00BFFF", "#FE2E2E"),
-#'       html = TRUE
-#'     )
-#'   })
-#'   output$res3 <- renderPrint(input$myconfirmation3)
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#' }
-confirmSweetAlert <- function(session, inputId, title = NULL,
-                              text = NULL, type = "question",
+#' # ------------------------------------
+#' @example examples/ask_confirmation-options.R
+confirmSweetAlert <- function(session,
+                              inputId,
+                              title = NULL,
+                              text = NULL,
+                              type = "question",
                               btn_labels = c("Cancel", "Confirm"),
                               btn_colors = NULL,
                               closeOnClickOutside = FALSE,
                               showCloseButton = FALSE,
-                              html = FALSE, ...) {
+                              html = FALSE,
+                              ...) {
 
   insertUI(
     selector = "body", where = "afterBegin",
@@ -448,7 +238,9 @@ confirmSweetAlert <- function(session, inputId, title = NULL,
         id = inputId,
         as_html = html,
         swal = dropNullsOrNA(list(
-          title = title, text = text, type = type,
+          title = title,
+          text = text,
+          icon = type,
           confirmButtonText = btn_labels[2],
           cancelButtonText = btn_labels[1],
           showConfirmButton = !is.na(btn_labels[2]),
@@ -469,7 +261,8 @@ confirmSweetAlert <- function(session, inputId, title = NULL,
         as_html = html,
         sw_id = id,
         swal = dropNullsOrNA(list(
-          title = title, type = type,
+          title = title,
+          icon = type,
           html = as.character(tags$div(id = id)),
           confirmButtonText = btn_labels[2],
           cancelButtonText = btn_labels[1],
@@ -490,6 +283,32 @@ confirmSweetAlert <- function(session, inputId, title = NULL,
   }
 }
 
+#' @rdname sweetalert-confirmation
+#' @export
+ask_confirmation <- function(inputId,
+                             title = NULL,
+                             text = NULL,
+                             type = "question",
+                             btn_labels = c("Cancel", "Confirm"),
+                             btn_colors = NULL,
+                             closeOnClickOutside = FALSE,
+                             showCloseButton = FALSE,
+                             html = FALSE,
+                             ...,
+                             session = shiny::getDefaultReactiveDomain()) {
+  confirmSweetAlert(
+    session = session,
+    inputId = inputId,
+    title = title,
+    text = text,
+    type = type,
+    btn_labels = btn_labels,
+    btn_colors = btn_colors,
+    closeOnClickOutside = closeOnClickOutside,
+    showCloseButton = showCloseButton,
+    html = html, ...
+  )
+}
 
 
 #' @title Launch an input text dialog
@@ -519,7 +338,8 @@ confirmSweetAlert <- function(session, inputId, title = NULL,
 #'
 #' @export
 #'
-#' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}
+#' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
+#'  \code{\link{closeSweetAlert}}.
 #'
 #' @examples
 #' if (interactive()) {
@@ -528,7 +348,7 @@ confirmSweetAlert <- function(session, inputId, title = NULL,
 #'
 #'
 #'   ui <- fluidPage(
-#'     tags$h1("Confirm sweet alert"),
+#'     tags$h1("Input sweet alert"),
 #'     actionButton(inputId = "text", label = "Text Input"),
 #'     verbatimTextOutput(outputId = "text"),
 #'     actionButton(inputId = "password", label = "Password Input"),
@@ -620,8 +440,11 @@ inputSweetAlert <- function(session, inputId, title = NULL,
       id = inputId,
       reset_input = reset_input,
       swal = dropNullsOrNA(list(
-        title = title, text = text,
-        type = type, input = input, inputOptions = inputOptions,
+        title = title,
+        text = text,
+        icon = type,
+        input = input,
+        inputOptions = inputOptions,
         inputPlaceholder = inputPlaceholder,
         confirmButtonText = btn_labels[1],
         confirmButtonColor = btn_colors[1],
@@ -739,8 +562,12 @@ progressSweetAlert <- function(session, id, value, total = NULL,
 #' @return No value.
 #' @export
 #'
+#' @seealso \code{\link{show_alert}}, \code{\link{ask_confirmation}},
+#'  \code{\link{closeSweetAlert}}.
+#'
 #' @example examples/show_toast.R
-show_toast <- function(title, text,
+show_toast <- function(title,
+                       text = NULL,
                        type = c("default", "success", "error",
                                 "info", "warning", "question"),
                        timer = 3000,
@@ -769,7 +596,7 @@ show_toast <- function(title, text,
       )),
       html = htmltools::doRenderTags(text),
       position = position,
-      type = type,
+      icon = type,
       toast = TRUE,
       timer = timer,
       width = width,
@@ -790,7 +617,7 @@ show_toast <- function(title, text,
 #'
 #' @export
 #'
-closeSweetAlert <- function(session) {
+closeSweetAlert <- function(session = shiny::getDefaultReactiveDomain()) {
   session$sendCustomMessage(
     type = "sweetalert-sw-close",
     message = list()

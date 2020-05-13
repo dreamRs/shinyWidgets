@@ -28,8 +28,7 @@ if (interactive()) {
   server <- function(input, output, session) {
 
     observeEvent(input$success, {
-      sendSweetAlert(
-        session = session,
+      show_alert(
         title = "Success !!",
         text = "All in order",
         type = "success"
@@ -37,8 +36,7 @@ if (interactive()) {
     })
 
     observeEvent(input$error, {
-      sendSweetAlert(
-        session = session,
+      show_alert(
         title = "Error !!",
         text = "It's broken...",
         type = "error"
@@ -46,8 +44,7 @@ if (interactive()) {
     })
 
     observeEvent(input$sw_html, {
-      sendSweetAlert(
-        session = session,
+      show_alert(
         title = NULL,
         text = tags$span(
           tags$h3("With HTML tags",

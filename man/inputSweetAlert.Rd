@@ -57,7 +57,7 @@ if (interactive()) {
 
 
   ui <- fluidPage(
-    tags$h1("Confirm sweet alert"),
+    tags$h1("Input sweet alert"),
     actionButton(inputId = "text", label = "Text Input"),
     verbatimTextOutput(outputId = "text"),
     actionButton(inputId = "password", label = "Password Input"),
@@ -120,5 +120,6 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}}
+\code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
+ \code{\link{closeSweetAlert}}.
 }

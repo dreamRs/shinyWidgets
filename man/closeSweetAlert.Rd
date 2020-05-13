@@ -4,7 +4,7 @@
 \alias{closeSweetAlert}
 \title{Close Sweet Alert}
 \usage{
-closeSweetAlert(session)
+closeSweetAlert(session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given

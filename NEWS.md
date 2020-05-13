@@ -7,6 +7,10 @@ shinyWidgets 0.5.2
   + `firstDay`: day index from which week will be started
 * `knobInput()` has two new arguments : `pre` and `post` to add prefix/suffix to the value displayed.
 * Updated `awesome*()` dependencies.
+* Sweet alert family:
+    + update dependencies to 9.10.13
+    + New function `show_toast()` to display toast notification.
+    + New functions `show_alert()` and `ask_confirmation()` aliases for `sendSweetAlert()` and `confirmSweetAlert()` with optional session arg.
 
 
 ### Bug fixes

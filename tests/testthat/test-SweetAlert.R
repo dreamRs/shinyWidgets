@@ -59,7 +59,7 @@ test_that("sendSweetAlert", {
   expect_length(sendSA_msg, 2)
   expect_identical(sendSA_msg$config$title, "TITLE")
   expect_is(sendSA_msg$config$text, "character")
-  expect_identical(sendSA_msg$config$type, "success")
+  expect_identical(sendSA_msg$config$icon, "success")
   expect_false(sendSA_msg$as_html)
   expect_true(sendSA_msg$config$allowOutsideClick)
 })
@@ -96,7 +96,7 @@ test_that("confirmSweetAlert", {
   expect_length(sendCA_msg, 3)
   expect_identical(sendCA_msg$swal$title, "TITLE")
   expect_is(sendCA_msg$swal$text, "character")
-  expect_identical(sendCA_msg$swal$type, "success")
+  expect_identical(sendCA_msg$swal$icon, "success")
 })
 
 
