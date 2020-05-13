@@ -9,6 +9,7 @@ show_toast(
   text = NULL,
   type = c("default", "success", "error", "info", "warning", "question"),
   timer = 3000,
+  timerProgressBar = TRUE,
   position = c("bottom-end", "top", "top-start", "top-end", "center", "center-start",
     "center-end", "bottom", "bottom-start"),
   width = NULL,
@@ -25,6 +26,8 @@ show_toast(
 \code{"warning"} or \code{"question"}.}
 
 \item{timer}{Auto close timer of the modal. Set in ms (milliseconds).}
+
+\item{timerProgressBar}{If set to true, the timer will have a progress bar at the bottom of a popup.}
 
 \item{position}{Modal window position, can be \code{"top"}, \code{"top-start"},
 \code{"top-end"}, \code{"center"}, \code{"center-start"}, \code{"center-end"},

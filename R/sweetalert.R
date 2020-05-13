@@ -553,6 +553,7 @@ progressSweetAlert <- function(session, id, value, total = NULL,
 #'  \code{"success"}, \code{"error"}, \code{"info"},
 #'  \code{"warning"} or \code{"question"}.
 #' @param timer Auto close timer of the modal. Set in ms (milliseconds).
+#' @param timerProgressBar If set to true, the timer will have a progress bar at the bottom of a popup.
 #' @param position Modal window position, can be \code{"top"}, \code{"top-start"},
 #'  \code{"top-end"}, \code{"center"}, \code{"center-start"}, \code{"center-end"},
 #'  \code{"bottom"}, \code{"bottom-start"}, or \code{"bottom-end"}.
@@ -571,6 +572,7 @@ show_toast <- function(title,
                        type = c("default", "success", "error",
                                 "info", "warning", "question"),
                        timer = 3000,
+                       timerProgressBar = TRUE,
                        position = c("bottom-end", "top", "top-start",
                                     "top-end", "center", "center-start",
                                     "center-end", "bottom", "bottom-start"),
@@ -599,6 +601,7 @@ show_toast <- function(title,
       icon = type,
       toast = TRUE,
       timer = timer,
+      timerProgressBar = timerProgressBar,
       width = width,
       showConfirmButton = FALSE,
       showCloseButton = TRUE
