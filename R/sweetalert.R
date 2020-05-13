@@ -722,10 +722,37 @@ progressSweetAlert <- function(session, id, value, total = NULL,
 
 
 
-toastSweetAlert <- function(title, text, type = NULL,
-                            timer = 2000, position = "bottom-end",
-                            animation = TRUE, width = NULL,
-                            session = shiny::getDefaultReactiveDomain()) {
+#' Show a toast notification
+#'
+#' @param title Title for the toast.
+#' @param text Text for the toast.
+#' @param type Type of the toast: \code{"default"},
+#'  \code{"success"}, \code{"error"}, \code{"info"},
+#'  \code{"warning"} or \code{"question"}.
+#' @param timer Auto close timer of the modal. Set in ms (milliseconds).
+#' @param position Modal window position, can be \code{"top"}, \code{"top-start"},
+#'  \code{"top-end"}, \code{"center"}, \code{"center-start"}, \code{"center-end"},
+#'  \code{"bottom"}, \code{"bottom-start"}, or \code{"bottom-end"}.
+#' @param width Modal window width, including paddings.
+#' @param session The \code{session} object passed to function given to shinyServer.
+#'
+#' @return No value.
+#' @export
+#'
+#' @example examples/show_toast.R
+show_toast <- function(title, text,
+                       type = c("default", "success", "error",
+                                "info", "warning", "question"),
+                       timer = 3000,
+                       position = c("bottom-end", "top", "top-start",
+                                    "top-end", "center", "center-start",
+                                    "center-end", "bottom", "bottom-start"),
+                       width = NULL,
+                       session = shiny::getDefaultReactiveDomain()) {
+  type <- match.arg(type)
+  if (identical(type, "default"))
+    type <- NULL
+  position <- match.arg(position)
   insertUI(
     selector = "body",
     where = "afterBegin",
@@ -745,7 +772,6 @@ toastSweetAlert <- function(title, text, type = NULL,
       type = type,
       toast = TRUE,
       timer = timer,
-      animation = animation,
       width = width,
       showConfirmButton = FALSE,
       showCloseButton = TRUE
