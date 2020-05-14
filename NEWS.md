@@ -10,7 +10,7 @@ shinyWidgets 0.5.2
 * Sweet alert family:
     + update dependencies to 9.10.13
     + New function `show_toast()` to display toast notification.
-    + New functions `show_alert()` and `ask_confirmation()` aliases for `sendSweetAlert()` and `confirmSweetAlert()` with optional session arg.
+    + New functions `show_alert()` and `ask_confirmation()` aliases for `sendSweetAlert()` and `confirmSweetAlert()` with optional session argument.
 
 
 ### Bug fixes

@@ -11,12 +11,12 @@
 
 ## Reverse dependencies
 
-* All reverse dependencies tested, except : `NACHO`, `pkgsearch`, `rpostgisLT`
+* All reverse dependencies tested, except : `NACHO`, `pkgsearch`, `rpostgisLT`, `shinyrecipes`.
   No apparent problems for those tested.
   Summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
 
 -------
 
-
+This release includes bug fixes and new features.
 Thanks!
 Victor

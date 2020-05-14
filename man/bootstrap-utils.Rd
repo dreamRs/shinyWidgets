@@ -34,7 +34,7 @@ list_group(...)
 
 \item{status}{Bootstrap status for contextual alternative.}
 
-\item{dismissible}{Add the possiblity to close the alert.}
+\item{dismissible}{Adds the possibility to close the alert.}
 }
 \value{
 A UI definition.

@@ -50,7 +50,7 @@ panel <- function(...,
 }
 
 
-#' @param dismissible Add the possiblity to close the alert.
+#' @param dismissible Adds the possibility to close the alert.
 #' @export
 #' @rdname bootstrap-utils
 #' @importFrom htmltools tags HTML

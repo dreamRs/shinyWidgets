@@ -22,7 +22,7 @@
 #' @param maxDate The maximum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.
 #' @param disabledDates A vector of dates to disable, e.g. won't be able to select one of dates passed.
 #' @param view Starting view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.
-#' @param startView Date shown in calendar when date picker is openned.
+#' @param startView Date shown in calendar when date picker is opened.
 #' @param minView Minimal view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.
 #' @param monthsField Names for the months when view is 'months',
 #'  use \code{'monthsShort'} for abbreviations or \code{'months'} for full names.

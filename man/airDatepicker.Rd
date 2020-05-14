@@ -87,7 +87,7 @@ but if it passed here then it will have higher priority.}
 
 \item{view}{Starting view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.}
 
-\item{startView}{Date shown in calendar when date picker is openned.}
+\item{startView}{Date shown in calendar when date picker is opened.}
 
 \item{minView}{Minimal view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.}
 
