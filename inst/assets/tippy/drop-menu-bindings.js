@@ -1,7 +1,7 @@
 var dropMenuInputBinding = new Shiny.InputBinding();
 $.extend(dropMenuInputBinding, {
   find: function(scope) {
-    return scope.querySelectorAll(".drop-menu-input");
+    return $(scope).find(".drop-menu-input");
   },
   getId: function(el) {
     return el.id;
