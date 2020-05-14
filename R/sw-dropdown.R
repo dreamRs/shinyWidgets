@@ -233,7 +233,7 @@ animateOptions <- function(enter = "fadeInDown", exit = "fadeOutUp", duration = 
 #' @description List of all animations by categories
 #'
 #' @format A list of lists
-#' @source \url{https://github.com/daneden/animate.css/blob/master/animate-config.json}
+#' @source \url{https://github.com/animate-css/animate.css}
 "animations"
 
 
