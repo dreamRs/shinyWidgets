@@ -15,3 +15,4 @@
 ^codecov\.yml$
 ^examples$
 ^\.github$
+^LICENSE\.md$

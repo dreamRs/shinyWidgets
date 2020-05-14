@@ -2,7 +2,7 @@ Package: shinyWidgets
 Title: Custom Inputs Widgets for Shiny
 Version: 0.5.2
 Authors@R: c(
-  person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
+  person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre", "cph")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = "aut"),
   person("David", "Granjon", email = "david.granjon@uzh.ch", role = "aut"),
   person("Ian", "Fellows", role = "ctb", comment = "Methods for mutating vertical tabs & updateMultiInput"),
@@ -32,7 +32,7 @@ Description: Collection of custom input controls and user interface components f
   Give your applications a unique and colorful style !
 URL: https://github.com/dreamRs/shinyWidgets
 BugReports: https://github.com/dreamRs/shinyWidgets/issues
-License: GPL-3 | file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
