@@ -25,7 +25,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
     } else if (widget == "awesome") {
       dep <- list(
         dep,
-        html_dependency_awsome(),
+        html_dependency_awesome(),
         htmltools::findDependencies(shiny::icon("rebel"))[[1]]
       )
     } else if (widget == "bsswitch") {
@@ -105,8 +105,29 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
 
 
 
-html_dependency_awsome <- function() {
-  htmltools::htmlDependency(
+#' @title HTML dependencies
+#'
+#' @description These functions are used internally to load dependencies for widgets.
+#'  Not all of them are exported. Below are the ones needed for package \href{https://github.com/dreamRs/fresh}{fresh}.
+#'
+#' @return an \code{\link[htmltools]{htmlDependency}}.
+#' @export
+#'
+#' @importFrom htmltools htmlDependency
+#'
+#' @name html-dependencies
+#'
+#' @examples
+#'
+#' # Use in UI or tags function
+#'
+#' library(shiny)
+#' fluidPage(
+#'   html_dependency_awesome()
+#' )
+#'
+html_dependency_awesome <- function() {
+  htmlDependency(
     name = "awesome-bootstrap",
     version = "0.3.7",
     src = c(
@@ -119,8 +140,10 @@ html_dependency_awsome <- function() {
   )
 }
 
+#' @export
+#' @rdname html-dependencies
 html_dependency_bttn <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "bttn",
     version = "0.2.4",
     src = c(href = "shinyWidgets/bttn", file = "bttn"),
@@ -129,8 +152,10 @@ html_dependency_bttn <- function() {
   )
 }
 
+#' @export
+#' @rdname html-dependencies
 html_dependency_pretty <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "pretty",
     version = "3.0.3",
     src = c(href = "shinyWidgets/pretty-checkbox", file = "pretty-checkbox"),
@@ -140,12 +165,10 @@ html_dependency_pretty <- function() {
 }
 
 
-
-# Non exported ------------------------------------------------------------
-
-
+#' @export
+#' @rdname html-dependencies
 html_dependency_bsswitch <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "bootstrap-switch",
     version = "3.3.4",
     package = "shinyWidgets",
@@ -156,8 +179,12 @@ html_dependency_bsswitch <- function() {
 }
 
 
+
+# Non exported ------------------------------------------------------------
+
+
 html_dependency_picker <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "selectPicker",
     version = "1.13.12",
     package = "shinyWidgets",
@@ -168,7 +195,7 @@ html_dependency_picker <- function() {
 }
 
 html_dependency_airdatepicker <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "air-datepicker",
     version = "2.2.3",
     package = "shinyWidgets",
@@ -179,7 +206,7 @@ html_dependency_airdatepicker <- function() {
 }
 
 html_dependency_nouislider <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "nouislider",
     version = "11.0.3",
     package = "shinyWidgets",
@@ -190,7 +217,7 @@ html_dependency_nouislider <- function() {
 }
 
 html_dependency_spectrum <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "spectrum",
     version = "1.8.0",
     package = "shinyWidgets",
@@ -201,7 +228,7 @@ html_dependency_spectrum <- function() {
 }
 
 html_dependency_animate <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "animate",
     version = "3.5.2",
     package = "shinyWidgets",
@@ -211,7 +238,7 @@ html_dependency_animate <- function() {
 }
 
 html_dependency_knob <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "jquery-knob",
     version = "1.2.13",
     package = "shinyWidgets",
@@ -221,7 +248,7 @@ html_dependency_knob <- function() {
 }
 
 html_dependency_multi <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "multi",
     version = "1.4.0",
     package = "shinyWidgets",
