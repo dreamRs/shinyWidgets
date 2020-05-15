@@ -37,6 +37,7 @@ Execute an expression without generating an error,
 }
 \examples{
 library(shiny)
+library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h2("Execute code safely in server"),

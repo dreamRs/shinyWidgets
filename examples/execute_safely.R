@@ -1,4 +1,5 @@
 library(shiny)
+library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h2("Execute code safely in server"),

@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,7 +42,6 @@
 <meta property="og:title" content="Air Date Picker Input — airDatepicker" />
 <meta property="og:description" content="An alternative to dateInput to select single, multiple or date range.
  And two alias to select months or years." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -56,7 +59,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -70,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyWidgets</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -91,7 +94,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/dreamRs/shinyWidgets">
+  <a href="https://github.com/dreamRs/shinyWidgets/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -129,10 +132,12 @@
   <span class='kw'>separator</span> <span class='kw'>=</span> <span class='st'>" - "</span>,
   <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>dateFormat</span> <span class='kw'>=</span> <span class='st'>"yyyy-mm-dd"</span>,
+  <span class='kw'>firstDay</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>minDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>maxDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>disabledDates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>view</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"days"</span>, <span class='st'>"months"</span>, <span class='st'>"years"</span>),
+  <span class='kw'>startView</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>minView</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"days"</span>, <span class='st'>"months"</span>, <span class='st'>"years"</span>),
   <span class='kw'>monthsField</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"monthsShort"</span>, <span class='st'>"months"</span>),
   <span class='kw'>clearButton</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -144,6 +149,7 @@
   <span class='kw'>addon</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"right"</span>, <span class='st'>"left"</span>, <span class='st'>"none"</span>),
   <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"en"</span>,
   <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>onlyTimepicker</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )
 
@@ -180,7 +186,8 @@ or Date/POSIXct object. Can be a single value or several values.</p></td>
     </tr>
     <tr>
       <th>multiple</th>
-      <td><p>Select multiple dates.</p></td>
+      <td><p>Select multiple dates. If <code>TRUE</code>, then one can select unlimited dates.
+If <code>numeric</code> is passed, then amount of selected dates will be limited by it.</p></td>
     </tr>
     <tr>
       <th>range</th>
@@ -200,7 +207,13 @@ or Date/POSIXct object. Can be a single value or several values.</p></td>
     </tr>
     <tr>
       <th>dateFormat</th>
-      <td><p>Format to use to display date(s), default to <code>"yyyy-mm-dd"</code></p></td>
+      <td><p>Format to use to display date(s), default to <code>"yyyy-mm-dd"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>firstDay</th>
+      <td><p>Day index from which week will be started. Possible values are from 0 to 6, where
+0 - Sunday and 6 - Saturday. By default value is taken from current localization,
+but if it passed here then it will have higher priority.</p></td>
     </tr>
     <tr>
       <th>minDate</th>
@@ -219,6 +232,10 @@ or Date/POSIXct object. Can be a single value or several values.</p></td>
       <td><p>Starting view, one of <code>'days'</code> (default), <code>'months'</code> or <code>'years'</code>.</p></td>
     </tr>
     <tr>
+      <th>startView</th>
+      <td><p>Date shown in calendar when date picker is opened.</p></td>
+    </tr>
+    <tr>
       <th>minView</th>
       <td><p>Minimal view, one of <code>'days'</code> (default), <code>'months'</code> or <code>'years'</code>.</p></td>
     </tr>
@@ -233,7 +250,8 @@ use <code>'monthsShort'</code> for abbreviations or <code>'months'</code> for fu
     </tr>
     <tr>
       <th>todayButton</th>
-      <td><p>If <code>TRUE</code>, then button "Today" will be visible.</p></td>
+      <td><p>If <code>TRUE</code>, then button "Today" will be visible to set view to current date,
+if a <code>Date</code> is used, it will set view to the given date and select it..</p></td>
     </tr>
     <tr>
       <th>autoClose</th>
@@ -269,6 +287,10 @@ you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code
     <tr>
       <th>inline</th>
       <td><p>If <code>TRUE</code>, datepicker will always be visible.</p></td>
+    </tr>
+    <tr>
+      <th>onlyTimepicker</th>
+      <td><p>Display only the time picker.</p></td>
     </tr>
     <tr>
       <th>width</th>
@@ -319,7 +341,7 @@ you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code
     <p>a <code>Date</code> object or a <code>POSIXct</code> in UTC timezone.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>This widget prevents <code>dateInput</code> from working, don't use both !</p>
+    <p>Since shinyWidgets 0.5.2 there's no more conflicts with <code>dateInput</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>See <code><a href='updateAirDateInput.html'>updateAirDateInput</a></code> for updating slider value server-side.
@@ -362,16 +384,10 @@ you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code
 
 }</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -382,7 +398,7 @@ you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
