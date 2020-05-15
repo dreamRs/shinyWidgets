@@ -11,10 +11,13 @@
 attachShinyWidgetsDep <- function(tag, widget = NULL) {
   version <- as.character(packageVersion("shinyWidgets")[[1]])
   dep <- htmltools::htmlDependency(
-    name = "shinyWidgets", version = version,
-    src = c(href = "shinyWidgets"),
+    name = "shinyWidgets",
+    version = version,
+    src = c(href = "shinyWidgets", file = "assets"),
+    package = "shinyWidgets",
     script = "shinyWidgets-bindings.min.js",
-    stylesheet = "shinyWidgets.css"
+    stylesheet = "shinyWidgets.css",
+    all_files = FALSE
   )
   if (!is.null(widget)) {
     if (widget == "picker") {
@@ -188,7 +191,7 @@ html_dependency_picker <- function() {
     name = "selectPicker",
     version = "1.13.12",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/selectPicker", file = "assets"),
+    src = c(href = "shinyWidgets/selectPicker", file = "assets/selectPicker"),
     script = "js/bootstrap-select.min.js",
     stylesheet = "css/bootstrap-select.min.css"
   )
@@ -199,7 +202,7 @@ html_dependency_airdatepicker <- function() {
     name = "air-datepicker",
     version = "2.2.3",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/air-datepicker2", file = "air-datepicker2"),
+    src = c(href = "shinyWidgets/air-datepicker2", file = "assets/air-datepicker2"),
     script = "datepicker.min.js",
     stylesheet = "datepicker.min.css"
   )
@@ -210,7 +213,7 @@ html_dependency_nouislider <- function() {
     name = "nouislider",
     version = "11.0.3",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/nouislider", file = "nouislider"),
+    src = c(href = "shinyWidgets/nouislider", file = "assets/nouislider"),
     script = c("nouislider.min.js", "wNumb.js"),
     stylesheet = "nouislider.min.css"
   )
@@ -221,7 +224,7 @@ html_dependency_spectrum <- function() {
     name = "spectrum",
     version = "1.8.0",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/spectrum", file = "spectrum"),
+    src = c(href = "shinyWidgets/spectrum", file = "assets/spectrum"),
     script = c("spectrum.min.js"),
     stylesheet = c("spectrum.min.css", "sw-spectrum.css")
   )
@@ -232,7 +235,7 @@ html_dependency_animate <- function() {
     name = "animate",
     version = "3.5.2",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/animate", file = "animate"),
+    src = c(href = "shinyWidgets/animate", file = "assets/animate"),
     stylesheet = "animate.min.css"
   )
 }
@@ -242,7 +245,7 @@ html_dependency_knob <- function() {
     name = "jquery-knob",
     version = "1.2.13",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/jquery-knob", file = "jquery-knob"),
+    src = c(href = "shinyWidgets/jquery-knob", file = "assets/jquery-knob"),
     script = c("jquery.knob.min.js")
   )
 }
@@ -252,7 +255,7 @@ html_dependency_multi <- function() {
     name = "multi",
     version = "1.4.0",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/multi", file = "multi"),
+    src = c(href = "shinyWidgets/multi", file = "assets/multi"),
     script = "multi.min.js",
     stylesheet = c("multi.min.css")
   )
