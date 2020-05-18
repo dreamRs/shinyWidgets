@@ -23,60 +23,16 @@
 #' @importFrom htmltools validateCssUnit tags
 #' @importFrom shiny restoreInput
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty switches"),
-#'   br(),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 4,
-#'       prettySwitch(inputId = "switch1", label = "Default:"),
-#'       verbatimTextOutput(outputId = "res1"),
-#'       br(),
-#'       prettySwitch(inputId = "switch4",
-#'                    label = "Fill switch with status:",
-#'                    fill = TRUE, status = "primary"),
-#'       verbatimTextOutput(outputId = "res4")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettySwitch(inputId = "switch2",
-#'                    label = "Danger status:",
-#'                    status = "danger"),
-#'       verbatimTextOutput(outputId = "res2")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettySwitch(inputId = "switch3",
-#'                    label = "Slim switch:",
-#'                    slim = TRUE),
-#'       verbatimTextOutput(outputId = "res3")
-#'     )
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$switch1)
-#'   output$res2 <- renderPrint(input$switch2)
-#'   output$res3 <- renderPrint(input$switch3)
-#'   output$res4 <- renderPrint(input$switch4)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-prettySwitch <- function(inputId, label, value = FALSE, status = "default",
-                         slim = FALSE, fill = FALSE, bigger = FALSE,
-                         inline = FALSE, width = NULL) {
+#' @example examples/prettySwitch.R
+prettySwitch <- function(inputId,
+                         label,
+                         value = FALSE,
+                         status = "default",
+                         slim = FALSE,
+                         fill = FALSE,
+                         bigger = FALSE,
+                         inline = FALSE,
+                         width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
@@ -115,50 +71,14 @@ prettySwitch <- function(inputId, label, value = FALSE, status = "default",
 #'
 #' @export
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty switch update value"),
-#'   br(),
-#'
-#'   prettySwitch(inputId = "switch1", label = "Update me !"),
-#'   verbatimTextOutput(outputId = "res1"),
-#'   radioButtons(
-#'     inputId = "update", label = "Value to set:",
-#'     choices = c("FALSE", "TRUE")
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$switch1)
-#'
-#'   observeEvent(input$update, {
-#'     updatePrettySwitch(session = session, inputId = "switch1",
-#'                        value = as.logical(input$update))
-#'   })
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
+#' @example examples/updatePrettySwitch.R
+updatePrettySwitch <- function(session,
+                               inputId,
+                               label = NULL,
+                               value = NULL) {
   message <- dropNulls(list(label = label, value = value))
   session$sendInputMessage(inputId, message)
 }
-
-
-
-
-
-
-
 
 
 
@@ -197,126 +117,24 @@ updatePrettySwitch<- function (session, inputId, label = NULL, value = NULL) {
 #' @importFrom htmltools validateCssUnit tags
 #' @importFrom shiny restoreInput
 #'
-#' @examples
-#' if (interactive()) {
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty toggles"),
-#'   br(),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 4,
-#'       prettyToggle(inputId = "toggle1",
-#'                    label_on = "Checked!",
-#'                    label_off = "Unchecked..."),
-#'       verbatimTextOutput(outputId = "res1"),
-#'       br(),
-#'       prettyToggle(inputId = "toggle4",  label_on = "Yes!",
-#'                    label_off = "No..", outline = TRUE,
-#'                    plain = TRUE,
-#'                    icon_on = icon("thumbs-up"),
-#'                    icon_off = icon("thumbs-down")),
-#'       verbatimTextOutput(outputId = "res4")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettyToggle(inputId = "toggle2",
-#'                    label_on = "Yes!", icon_on = icon("check"),
-#'                    status_on = "info", status_off = "warning",
-#'                    label_off = "No..", icon_off = icon("remove")),
-#'       verbatimTextOutput(outputId = "res2")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettyToggle(inputId = "toggle3",  label_on = "Yes!",
-#'                    label_off = "No..", shape = "round",
-#'                    fill = TRUE, value = TRUE),
-#'       verbatimTextOutput(outputId = "res3")
-#'     )
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$toggle1)
-#'   output$res2 <- renderPrint(input$toggle2)
-#'   output$res3 <- renderPrint(input$toggle3)
-#'   output$res4 <- renderPrint(input$toggle4)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#'
-#'
-#' # Inline example ----
-#'
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty toggles: inline example"),
-#'   br(),
-#'
-#'   prettyToggle(inputId = "toggle1",
-#'                label_on = "Checked!",
-#'                label_off = "Unchecked...",
-#'                inline = TRUE),
-#'   prettyToggle(inputId = "toggle2",
-#'                label_on = "Yep",
-#'                status_on = "default",
-#'                icon_on = icon("ok-circle", lib = "glyphicon"),
-#'                label_off = "Nope",
-#'                status_off = "default",
-#'                icon_off = icon("remove-circle", lib = "glyphicon"),
-#'                plain = TRUE,
-#'                inline = TRUE),
-#'   prettyToggle(inputId = "toggle3",
-#'                label_on = "",
-#'                label_off = "",
-#'                icon_on = icon("volume-up", lib = "glyphicon"),
-#'                icon_off = icon("volume-off", lib = "glyphicon"),
-#'                status_on = "primary",
-#'                status_off = "default",
-#'                plain = TRUE,
-#'                outline = TRUE,
-#'                bigger = TRUE,
-#'                inline = TRUE),
-#'   prettyToggle(inputId = "toggle4",
-#'                label_on = "Yes!",
-#'                label_off = "No..",
-#'                outline = TRUE,
-#'                plain = TRUE,
-#'                icon_on = icon("thumbs-up"),
-#'                icon_off = icon("thumbs-down"),
-#'                inline = TRUE),
-#'
-#'   verbatimTextOutput(outputId = "res")
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint(c(input$toggle1,
-#'                               input$toggle2,
-#'                               input$toggle3,
-#'                               input$toggle4))
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
+#' @example examples/prettyToggle.R
+prettyToggle <- function(inputId,
+                         label_on,
+                         label_off,
+                         icon_on = NULL,
                          icon_off = NULL,
-                         value = FALSE, status_on = "success",
+                         value = FALSE,
+                         status_on = "success",
                          status_off = "danger",
                          shape = c("square", "curve", "round"),
-                         outline = FALSE, fill = FALSE, thick = FALSE,
-                         plain = FALSE, bigger = FALSE, animation = NULL,
-                         inline = FALSE, width = NULL) {
+                         outline = FALSE,
+                         fill = FALSE,
+                         thick = FALSE,
+                         plain = FALSE,
+                         bigger = FALSE,
+                         animation = NULL,
+                         inline = FALSE,
+                         width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status_on <- match.arg(status_on, c("default", "primary", "success",
                                       "info", "danger", "warning"))
@@ -379,43 +197,11 @@ prettyToggle <- function(inputId, label_on, label_off, icon_on = NULL,
 #'
 #' @export
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty toggle update value"),
-#'   br(),
-#'
-#'   prettyToggle(inputId = "toggle1",
-#'                label_on = "Checked!",
-#'                label_off = "Unchecked..."),
-#'   verbatimTextOutput(outputId = "res1"),
-#'   radioButtons(
-#'     inputId = "update", label = "Value to set:",
-#'     choices = c("FALSE", "TRUE")
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$toggle1)
-#'
-#'   observeEvent(input$update, {
-#'     updatePrettyToggle(session = session,
-#'                        inputId = "toggle1",
-#'                        value = as.logical(input$update))
-#'   })
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
+#' @example examples/updatePrettyToggle.R
+updatePrettyToggle <- function(session,
+                               inputId,
+                               label = NULL,
+                               value = NULL) {
   message <- dropNulls(list(label = label, value = value))
   session$sendInputMessage(inputId, message)
 }
@@ -460,122 +246,21 @@ updatePrettyToggle <- function (session, inputId, label = NULL, value = NULL) {
 #' @importFrom htmltools validateCssUnit tags
 #' @importFrom shiny restoreInput
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty checkbox"),
-#'   br(),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 4,
-#'       prettyCheckbox(inputId = "checkbox1",
-#'                    label = "Click me!"),
-#'       verbatimTextOutput(outputId = "res1"),
-#'       br(),
-#'       prettyCheckbox(inputId = "checkbox4",  label = "Click me!",
-#'                      outline = TRUE,
-#'                    plain = TRUE, icon = icon("thumbs-up")),
-#'       verbatimTextOutput(outputId = "res4")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettyCheckbox(inputId = "checkbox2",
-#'                      label = "Click me!", thick = TRUE,
-#'                      animation = "pulse", status = "info"),
-#'       verbatimTextOutput(outputId = "res2"),
-#'       br(),
-#'       prettyCheckbox(inputId = "checkbox5",
-#'                      label = "Click me!", icon = icon("check"),
-#'                      animation = "tada", status = "default"),
-#'       verbatimTextOutput(outputId = "res5")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettyCheckbox(inputId = "checkbox3",  label = "Click me!",
-#'                      shape = "round", status = "danger",
-#'                    fill = TRUE, value = TRUE),
-#'       verbatimTextOutput(outputId = "res3")
-#'     )
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$checkbox1)
-#'   output$res2 <- renderPrint(input$checkbox2)
-#'   output$res3 <- renderPrint(input$checkbox3)
-#'   output$res4 <- renderPrint(input$checkbox4)
-#'   output$res5 <- renderPrint(input$checkbox5)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#'
-#'
-#' # Inline example ----
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty checkbox: inline example"),
-#'   br(),
-#'   prettyCheckbox(inputId = "checkbox1",
-#'                  label = "Click me!",
-#'                  status = "success",
-#'                  outline = TRUE,
-#'                  inline = TRUE),
-#'   prettyCheckbox(inputId = "checkbox2",
-#'                  label = "Click me!",
-#'                  thick = TRUE,
-#'                  shape = "curve",
-#'                  animation = "pulse",
-#'                  status = "info",
-#'                  inline = TRUE),
-#'   prettyCheckbox(inputId = "checkbox3",
-#'                  label = "Click me!",
-#'                  shape = "round",
-#'                  status = "danger",
-#'                  value = TRUE,
-#'                  inline = TRUE),
-#'   prettyCheckbox(inputId = "checkbox4",
-#'                  label = "Click me!",
-#'                  outline = TRUE,
-#'                  plain = TRUE,
-#'                  animation = "rotate",
-#'                  icon = icon("thumbs-up"),
-#'                  inline = TRUE),
-#'   prettyCheckbox(inputId = "checkbox5",
-#'                  label = "Click me!",
-#'                  icon = icon("check"),
-#'                  animation = "tada",
-#'                  status = "primary",
-#'                  inline = TRUE),
-#'   verbatimTextOutput(outputId = "res")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint(c(input$checkbox1,
-#'                               input$checkbox2,
-#'                               input$checkbox3,
-#'                               input$checkbox4,
-#'                               input$checkbox5))
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-prettyCheckbox <- function(inputId, label, value = FALSE, status = "default",
+#' @example examples/prettyCheckbox.R
+prettyCheckbox <- function(inputId,
+                           label,
+                           value = FALSE,
+                           status = "default",
                            shape = c("square", "curve", "round"),
-                           outline = FALSE, fill = FALSE, thick = FALSE,
-                           animation = NULL, icon = NULL, plain = FALSE,
-                           bigger = FALSE, inline = FALSE, width = NULL) {
+                           outline = FALSE,
+                           fill = FALSE,
+                           thick = FALSE,
+                           animation = NULL,
+                           icon = NULL,
+                           plain = FALSE,
+                           bigger = FALSE,
+                           inline = FALSE,
+                           width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
@@ -626,50 +311,14 @@ prettyCheckbox <- function(inputId, label, value = FALSE, status = "default",
 #'
 #' @export
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty checkbox update value"),
-#'   br(),
-#'
-#'   prettyCheckbox(inputId = "checkbox1",
-#'                label = "Update me!",
-#'                shape = "curve", thick = TRUE, outline = TRUE),
-#'   verbatimTextOutput(outputId = "res1"),
-#'   radioButtons(
-#'     inputId = "update", label = "Value to set:",
-#'     choices = c("FALSE", "TRUE")
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$checkbox1)
-#'
-#'   observeEvent(input$update, {
-#'     updatePrettyToggle(session = session,
-#'                        inputId = "checkbox1",
-#'                        value = as.logical(input$update))
-#'   })
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-updatePrettyCheckbox<- function (session, inputId, label = NULL, value = NULL) {
+#' @example examples/updatePrettyCheckbox.R
+updatePrettyCheckbox <- function(session,
+                                 inputId,
+                                 label = NULL,
+                                 value = NULL) {
   message <- dropNulls(list(label = label, value = value))
   session$sendInputMessage(inputId, message)
 }
-
-
-
-
 
 
 
@@ -716,76 +365,23 @@ updatePrettyCheckbox<- function (session, inputId, label = NULL, value = NULL) {
 #' @importFrom htmltools validateCssUnit tags tagList
 #' @importFrom shiny restoreInput
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty checkbox group"),
-#'   br(),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 4,
-#'       prettyCheckboxGroup(inputId = "checkgroup1",
-#'                           label = "Click me!",
-#'                           choices = c("Click me !", "Me !", "Or me !")),
-#'       verbatimTextOutput(outputId = "res1"),
-#'       br(),
-#'       prettyCheckboxGroup(inputId = "checkgroup4",  label = "Click me!",
-#'                           choices = c("Click me !", "Me !", "Or me !"),
-#'                           outline = TRUE,
-#'                           plain = TRUE, icon = icon("thumbs-up")),
-#'       verbatimTextOutput(outputId = "res4")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettyCheckboxGroup(inputId = "checkgroup2",
-#'                           label = "Click me!", thick = TRUE,
-#'                           choices = c("Click me !", "Me !", "Or me !"),
-#'                           animation = "pulse", status = "info"),
-#'       verbatimTextOutput(outputId = "res2"),
-#'       br(),
-#'       prettyCheckboxGroup(inputId = "checkgroup5",
-#'                           label = "Click me!", icon = icon("check"),
-#'                           choices = c("Click me !", "Me !", "Or me !"),
-#'                           animation = "tada", status = "default"),
-#'       verbatimTextOutput(outputId = "res5")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettyCheckboxGroup(inputId = "checkgroup3",  label = "Click me!",
-#'                           choices = c("Click me !", "Me !", "Or me !"),
-#'                           shape = "round", status = "danger",
-#'                           fill = TRUE, inline = TRUE),
-#'       verbatimTextOutput(outputId = "res3")
-#'     )
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$checkgroup1)
-#'   output$res2 <- renderPrint(input$checkgroup2)
-#'   output$res3 <- renderPrint(input$checkgroup3)
-#'   output$res4 <- renderPrint(input$checkgroup4)
-#'   output$res5 <- renderPrint(input$checkgroup5)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-prettyCheckboxGroup <- function(inputId, label, choices = NULL,
-                                selected = NULL, status = "default",
+#' @example examples/prettyCheckboxGroup.R
+prettyCheckboxGroup <- function(inputId,
+                                label,
+                                choices = NULL,
+                                selected = NULL,
+                                status = "default",
                                 shape = c("square", "curve", "round"),
-                                outline = FALSE, fill = FALSE, thick = FALSE,
-                                animation = NULL, icon = NULL,
-                                plain = FALSE, bigger = FALSE, inline = FALSE,
-                                width = NULL, choiceNames = NULL,
+                                outline = FALSE,
+                                fill = FALSE,
+                                thick = FALSE,
+                                animation = NULL,
+                                icon = NULL,
+                                plain = FALSE,
+                                bigger = FALSE,
+                                inline = FALSE,
+                                width = NULL,
+                                choiceNames = NULL,
                                 choiceValues = NULL) {
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
@@ -900,79 +496,21 @@ generatePretty <- function(inputId, selected, inline, type = "checkbox",
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
 #' @param choiceNames The choices names to set for the input object.
 #' @param choiceValues The choices values to set for the input object.
-#' @param prettyOptions Arguments passed to \code{\link{prettyCheckboxGroup}} for styling checkboxes.
+#' @param prettyOptions Arguments passed to \code{\link{prettyCheckboxGroup}}
+#'  for styling checkboxes. This can be needed if you update choices.
 #'
 #' @export
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Update pretty checkbox group"),
-#'   br(),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 6,
-#'       prettyCheckboxGroup(inputId = "checkgroup1",
-#'                           label = "Update my value!",
-#'                           choices = month.name[1:4],
-#'                           status = "danger",
-#'                           icon = icon("remove")),
-#'       verbatimTextOutput(outputId = "res1"),
-#'       br(),
-#'       checkboxGroupInput(
-#'         inputId = "update1", label = "Update value :",
-#'         choices = month.name[1:4], inline = TRUE
-#'       )
-#'     ),
-#'     column(
-#'       width = 6,
-#'       prettyCheckboxGroup(inputId = "checkgroup2",
-#'                           label = "Update my choices!", thick = TRUE,
-#'                           choices = month.name[1:4],
-#'                           animation = "pulse", status = "info"),
-#'       verbatimTextOutput(outputId = "res2"),
-#'       br(),
-#'       actionButton(inputId = "update2", label = "Update choices !")
-#'     )
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$checkgroup1)
-#'
-#'   observeEvent(input$update1, {
-#'     if (is.null(input$update1)) {
-#'       selected_ <- character(0) # no choice selected
-#'     } else {
-#'       selected_ <- input$update1
-#'     }
-#'     updatePrettyCheckboxGroup(session = session, inputId = "checkgroup1", selected = selected_)
-#'   }, ignoreNULL = FALSE)
-#'
-#'   output$res2 <- renderPrint(input$checkgroup2)
-#'   observeEvent(input$update2, {
-#'     updatePrettyCheckboxGroup(
-#'       session = session, inputId = "checkgroup2",
-#'       choices = sample(month.name, 4), prettyOptions = list(animation = "pulse", status = "info")
-#'     )
-#'   }, ignoreInit = TRUE)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-updatePrettyCheckboxGroup <- function (session, inputId, label = NULL,
-                                       choices = NULL, selected = NULL,
-                                       inline = FALSE, choiceNames = NULL, choiceValues = NULL,
-                                       prettyOptions = list()) {
+#' @example examples/updatePrettyCheckboxGroup.R
+updatePrettyCheckboxGroup <- function(session,
+                                      inputId,
+                                      label = NULL,
+                                      choices = NULL,
+                                      selected = NULL,
+                                      inline = FALSE,
+                                      choiceNames = NULL,
+                                      choiceValues = NULL,
+                                      prettyOptions = list()) {
   updatePrettyOptions(
     session, inputId, label, choices, selected,
     inline, "checkbox", choiceNames, choiceValues, prettyOptions
@@ -981,10 +519,16 @@ updatePrettyCheckboxGroup <- function (session, inputId, label = NULL,
 
 
 
-updatePrettyOptions <- function (session, inputId, label = NULL,
-                                 choices = NULL, selected = NULL,
-                                 inline = FALSE, type = NULL, choiceNames = NULL,
-                                 choiceValues = NULL, prettyOptions = list()) {
+updatePrettyOptions <- function(session,
+                                inputId,
+                                label = NULL,
+                                choices = NULL,
+                                selected = NULL,
+                                inline = FALSE,
+                                type = NULL,
+                                choiceNames = NULL,
+                                choiceValues = NULL,
+                                prettyOptions = list()) {
   if (is.null(type))
     stop("Please specify the type ('checkbox' or 'radio')")
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues,
@@ -993,30 +537,29 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
     selected <- as.character(selected)
   options <- if (!is.null(args$choiceValues)) {
     htmltools::doRenderTags(
-      generatePretty(inputId = session$ns(inputId), selected = selected, inline = inline, type = type,
-                     choiceNames =  args$choiceNames, choiceValues = args$choiceValues,
-                     status = prettyOptions$status %||% "primary",
-                     shape = prettyOptions$shape %||% "square",
-                     outline = prettyOptions$outline %||% FALSE,
-                     fill = prettyOptions$fill %||% FALSE,
-                     thick = prettyOptions$thick %||% FALSE,
-                     animation = prettyOptions$animation,
-                     icon = prettyOptions$icon,
-                     plain = prettyOptions$plain %||% FALSE,
-                     bigger = prettyOptions$bigger %||% FALSE)
+      generatePretty(
+        inputId = session$ns(inputId),
+        selected = selected,
+        inline = inline,
+        type = type,
+        choiceNames =  args$choiceNames,
+        choiceValues = args$choiceValues,
+        status = prettyOptions$status %||% "default",
+        shape = prettyOptions$shape %||% "square",
+        outline = prettyOptions$outline %||% FALSE,
+        fill = prettyOptions$fill %||% FALSE,
+        thick = prettyOptions$thick %||% FALSE,
+        animation = prettyOptions$animation,
+        icon = prettyOptions$icon,
+        plain = prettyOptions$plain %||% FALSE,
+        bigger = prettyOptions$bigger %||% FALSE
+      )
     )
   }
   message <- dropNulls(list(label = label, options = options,
                                     value = selected))
   session$sendInputMessage(inputId, message)
 }
-
-
-
-
-
-
-
 
 
 
@@ -1057,76 +600,23 @@ updatePrettyOptions <- function (session, inputId, label = NULL,
 #' @importFrom htmltools validateCssUnit tags tagList
 #' @importFrom shiny restoreInput
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Pretty radio buttons"),
-#'   br(),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 4,
-#'       prettyRadioButtons(inputId = "radio1",
-#'                           label = "Click me!",
-#'                           choices = c("Click me !", "Me !", "Or me !")),
-#'       verbatimTextOutput(outputId = "res1"),
-#'       br(),
-#'       prettyRadioButtons(inputId = "radio4",  label = "Click me!",
-#'                           choices = c("Click me !", "Me !", "Or me !"),
-#'                           outline = TRUE,
-#'                           plain = TRUE, icon = icon("thumbs-up")),
-#'       verbatimTextOutput(outputId = "res4")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettyRadioButtons(inputId = "radio2",
-#'                           label = "Click me!", thick = TRUE,
-#'                           choices = c("Click me !", "Me !", "Or me !"),
-#'                           animation = "pulse", status = "info"),
-#'       verbatimTextOutput(outputId = "res2"),
-#'       br(),
-#'       prettyRadioButtons(inputId = "radio5",
-#'                           label = "Click me!", icon = icon("check"),
-#'                           choices = c("Click me !", "Me !", "Or me !"),
-#'                           animation = "tada", status = "default"),
-#'       verbatimTextOutput(outputId = "res5")
-#'     ),
-#'     column(
-#'       width = 4,
-#'       prettyRadioButtons(inputId = "radio3",  label = "Click me!",
-#'                           choices = c("Click me !", "Me !", "Or me !"),
-#'                           shape = "round", status = "danger",
-#'                           fill = TRUE, inline = TRUE),
-#'       verbatimTextOutput(outputId = "res3")
-#'     )
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$radio1)
-#'   output$res2 <- renderPrint(input$radio2)
-#'   output$res3 <- renderPrint(input$radio3)
-#'   output$res4 <- renderPrint(input$radio4)
-#'   output$res5 <- renderPrint(input$radio5)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-prettyRadioButtons <- function(inputId, label, choices = NULL,
-                               selected = NULL, status = "primary",
+#' @example examples/prettyRadioButtons.R
+prettyRadioButtons <- function(inputId,
+                               label,
+                               choices = NULL,
+                               selected = NULL,
+                               status = "primary",
                                shape = c("round", "square", "curve"),
-                               outline = FALSE, fill = FALSE, thick = FALSE,
-                               animation = NULL, icon = NULL, plain = FALSE,
-                               bigger = FALSE, inline = FALSE,
-                               width = NULL, choiceNames = NULL,
+                               outline = FALSE,
+                               fill = FALSE,
+                               thick = FALSE,
+                               animation = NULL,
+                               icon = NULL,
+                               plain = FALSE,
+                               bigger = FALSE,
+                               inline = FALSE,
+                               width = NULL,
+                               choiceNames = NULL,
                                choiceValues = NULL) {
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
@@ -1178,85 +668,31 @@ prettyRadioButtons <- function(inputId, label, choices = NULL,
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
 #' @param choiceNames The choices names to set for the input object.
 #' @param choiceValues The choices values to set for the input object.
-#' @param prettyOptions Arguments passed to \code{\link{prettyRadioButtons}} for styling radio buttons
+#' @param prettyOptions Arguments passed to \code{\link{prettyRadioButtons}}
+#'  for styling radio buttons. This can be needed if you update choices.
 #'
 #' @export
 #'
-#' @examples
-#'  if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Update pretty radio buttons"),
-#'   br(),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 6,
-#'       prettyRadioButtons(inputId = "radio1",
-#'                           label = "Update my value!",
-#'                           choices = month.name[1:4],
-#'                           status = "danger",
-#'                           icon = icon("remove")),
-#'       verbatimTextOutput(outputId = "res1"),
-#'       br(),
-#'       radioButtons(
-#'         inputId = "update1", label = "Update value :",
-#'         choices = month.name[1:4], inline = TRUE
-#'       )
-#'     ),
-#'     column(
-#'       width = 6,
-#'       prettyRadioButtons(inputId = "radio2",
-#'                           label = "Update my choices!", thick = TRUE,
-#'                           choices = month.name[1:4],
-#'                           animation = "pulse", status = "info"),
-#'       verbatimTextOutput(outputId = "res2"),
-#'       br(),
-#'       actionButton(inputId = "update2", label = "Update choices !")
-#'     )
-#'   )
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$radio1)
-#'
-#'   observeEvent(input$update1, {
-#'     updatePrettyRadioButtons(
-#'       session = session,
-#'       inputId = "radio1",
-#'       selected = input$update1
-#'     )
-#'   }, ignoreNULL = FALSE)
-#'
-#'   output$res2 <- renderPrint(input$radio2)
-#'   observeEvent(input$update2, {
-#'     updatePrettyRadioButtons(
-#'       session = session, inputId = "radio2",
-#'       choices = sample(month.name, 4),
-#'       prettyOptions = list(animation = "pulse",
-#'                            status = "info",
-#'                            shape = "round")
-#'     )
-#'   }, ignoreInit = TRUE)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#'  }
-updatePrettyRadioButtons <- function (session, inputId, label = NULL, choices = NULL, selected = NULL,
-          inline = FALSE, choiceNames = NULL, choiceValues = NULL, prettyOptions = list()) {
+#' @example examples/updatePrettyRadioButtons.R
+updatePrettyRadioButtons <- function(session,
+                                     inputId,
+                                     label = NULL,
+                                     choices = NULL,
+                                     selected = NULL,
+                                     inline = FALSE,
+                                     choiceNames = NULL,
+                                     choiceValues = NULL,
+                                     prettyOptions = list()) {
   if (is.null(selected)) {
     if (!is.null(choices))
       selected <- choices[[1]]
     else if (!is.null(choiceValues))
       selected <- choiceValues[[1]]
   }
+  if (is.list(prettyOptions) && is.null(prettyOptions$shape))
+    prettyOptions$shape <- "round"
+  if (is.list(prettyOptions) && is.null(prettyOptions$status))
+    prettyOptions$status <- "primary"
   updatePrettyOptions(
     session, inputId, label, choices, selected,
     inline, "radio", choiceNames, choiceValues, prettyOptions

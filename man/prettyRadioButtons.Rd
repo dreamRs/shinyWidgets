@@ -73,8 +73,6 @@ A character vector or \code{NULL} server-side.
 Create a set of radio buttons used to select an item from a list.
 }
 \examples{
-if (interactive()) {
-
 library(shiny)
 library(shinyWidgets)
 
@@ -85,37 +83,56 @@ ui <- fluidPage(
   fluidRow(
     column(
       width = 4,
-      prettyRadioButtons(inputId = "radio1",
-                          label = "Click me!",
-                          choices = c("Click me !", "Me !", "Or me !")),
+      prettyRadioButtons(
+        inputId = "radio1",
+        label = "Click me!",
+        choices = c("Click me !", "Me !", "Or me !")
+      ),
       verbatimTextOutput(outputId = "res1"),
       br(),
-      prettyRadioButtons(inputId = "radio4",  label = "Click me!",
-                          choices = c("Click me !", "Me !", "Or me !"),
-                          outline = TRUE,
-                          plain = TRUE, icon = icon("thumbs-up")),
+      prettyRadioButtons(
+        inputId = "radio4",
+        label = "Click me!",
+        choices = c("Click me !", "Me !", "Or me !"),
+        outline = TRUE,
+        plain = TRUE,
+        icon = icon("thumbs-up")
+      ),
       verbatimTextOutput(outputId = "res4")
     ),
     column(
       width = 4,
-      prettyRadioButtons(inputId = "radio2",
-                          label = "Click me!", thick = TRUE,
-                          choices = c("Click me !", "Me !", "Or me !"),
-                          animation = "pulse", status = "info"),
+      prettyRadioButtons(
+        inputId = "radio2",
+        label = "Click me!",
+        thick = TRUE,
+        choices = c("Click me !", "Me !", "Or me !"),
+        animation = "pulse",
+        status = "info"
+      ),
       verbatimTextOutput(outputId = "res2"),
       br(),
-      prettyRadioButtons(inputId = "radio5",
-                          label = "Click me!", icon = icon("check"),
-                          choices = c("Click me !", "Me !", "Or me !"),
-                          animation = "tada", status = "default"),
+      prettyRadioButtons(
+        inputId = "radio5",
+        label = "Click me!",
+        icon = icon("check"),
+        choices = c("Click me !", "Me !", "Or me !"),
+        animation = "tada",
+        status = "default"
+      ),
       verbatimTextOutput(outputId = "res5")
     ),
     column(
       width = 4,
-      prettyRadioButtons(inputId = "radio3",  label = "Click me!",
-                          choices = c("Click me !", "Me !", "Or me !"),
-                          shape = "round", status = "danger",
-                          fill = TRUE, inline = TRUE),
+      prettyRadioButtons(
+        inputId = "radio3",
+        label = "Click me!",
+        choices = c("Click me !", "Me !", "Or me !"),
+        shape = "round",
+        status = "danger",
+        fill = TRUE,
+        inline = TRUE
+      ),
       verbatimTextOutput(outputId = "res3")
     )
   )
@@ -132,7 +149,6 @@ server <- function(input, output, session) {
 
 }
 
-shinyApp(ui, server)
-
-}
+if (interactive())
+  shinyApp(ui, server)
 }

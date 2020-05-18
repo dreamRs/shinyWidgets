@@ -45,8 +45,6 @@ A toggle switch to replace checkbox
 Appearance is better in a browser such as Chrome than in RStudio Viewer
 }
 \examples{
-if (interactive()) {
-
 library(shiny)
 library(shinyWidgets)
 
@@ -60,23 +58,29 @@ ui <- fluidPage(
       prettySwitch(inputId = "switch1", label = "Default:"),
       verbatimTextOutput(outputId = "res1"),
       br(),
-      prettySwitch(inputId = "switch4",
-                   label = "Fill switch with status:",
-                   fill = TRUE, status = "primary"),
+      prettySwitch(
+        inputId = "switch4",
+        label = "Fill switch with status:",
+        fill = TRUE, status = "primary"
+      ),
       verbatimTextOutput(outputId = "res4")
     ),
     column(
       width = 4,
-      prettySwitch(inputId = "switch2",
-                   label = "Danger status:",
-                   status = "danger"),
+      prettySwitch(
+        inputId = "switch2",
+        label = "Danger status:",
+        status = "danger"
+      ),
       verbatimTextOutput(outputId = "res2")
     ),
     column(
       width = 4,
-      prettySwitch(inputId = "switch3",
-                   label = "Slim switch:",
-                   slim = TRUE),
+      prettySwitch(
+        inputId = "switch3",
+        label = "Slim switch:",
+        slim = TRUE
+      ),
       verbatimTextOutput(outputId = "res3")
     )
   )
@@ -92,9 +96,8 @@ server <- function(input, output, session) {
 
 }
 
-shinyApp(ui, server)
-
-}
+if (interactive())
+  shinyApp(ui, server)
 }
 \seealso{
 See \code{\link{updatePrettySwitch}} to update the value server-side.
