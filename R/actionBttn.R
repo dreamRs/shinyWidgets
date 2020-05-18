@@ -149,12 +149,14 @@ downloadBttn <- function(outputId,
                          no_outline = TRUE) {
   bttn <- actionBttn(
     inputId = paste0(outputId, "_bttn"),
-    label = tags$a(
-      id = outputId,
-      class = "shiny-download-link",
-      href = "",
-      target = "_blank",
-      download = NA,
+    label = tagList(
+      tags$a(
+        id = outputId,
+        class = "shiny-download-link",
+        href = "",
+        target = "_blank",
+        download = NA
+      ),
       label
     ),
     color = color, style = style,
