@@ -127,6 +127,12 @@ $.extend(checkboxGroupButtonsBinding, {
     if (data.hasOwnProperty("label"))
       $el.find('label[for="' + Shiny.$escape(el.id) + '"]').text(data.label);
 
+    if (data.disabled) {
+      $el.find("button").attr("disabled", "disabled");
+    } else {
+      $el.find("button").removeAttr("disabled");
+    }
+
     $(el).trigger("change");
   }
 });

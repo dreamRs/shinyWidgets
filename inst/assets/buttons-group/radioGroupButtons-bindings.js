@@ -23,15 +23,19 @@ $.extend(radioGroupButtonsBinding, {
     return el.id;
   },
   getValue: function(el) {
-    var value = $('input:radio[name="' + Shiny.$escape(el.id) + '"]:checked').val();
+    var value = $(
+      'input:radio[name="' + Shiny.$escape(el.id) + '"]:checked'
+    ).val();
     return typeof value == "undefined" ? null : value;
   },
   setValue: function(el, value) {
     $('input:radio[name="' + Shiny.$escape(el.id) + '"]')
       .parent()
       .removeClass("active");
-    $('input:radio[name="' + Shiny.$escape(el.id) + '"]')
-      .prop("checked", false);
+    $('input:radio[name="' + Shiny.$escape(el.id) + '"]').prop(
+      "checked",
+      false
+    );
     if (value.length > 0) {
       $(
         'input:radio[name="' +
@@ -86,13 +90,21 @@ $.extend(radioGroupButtonsBinding, {
       $el.find("div.btn-group-container-sw").append(data.options);
     }
 
-    if (data.hasOwnProperty("selected")) this.setValue(el, data.selected);
+    if (data.hasOwnProperty("selected")) {
+      this.setValue(el, data.selected);
+    }
 
     if (data.hasOwnProperty("label"))
       $(el)
         .parent()
         .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(data.label);
+
+    if (data.disabled) {
+      $el.find("button").attr("disabled", "disabled");
+    } else {
+      $el.find("button").removeAttr("disabled");
+    }
 
     $(el).trigger("change");
   }

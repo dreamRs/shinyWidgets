@@ -174,6 +174,8 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' @param size Size, only used if choices is not NULL.
 #' @param checkIcon Icon, only used if choices is not NULL.
 #' @param choiceNames,choiceValues List of names and values, an alternative to choices.
+#' @param disabled Logical, disable or enable buttons,
+#'  if \code{TRUE} users won't be able to select a value.
 #'
 #' @export
 #'
@@ -239,20 +241,38 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updateRadioGroupButtons <- function(session, inputId, label = NULL, choices = NULL, selected = NULL,
-                                    status = "default", size = "normal",
-                                    checkIcon = list(), choiceNames = NULL, choiceValues = NULL) {
+updateRadioGroupButtons <- function(session,
+                                    inputId,
+                                    label = NULL,
+                                    choices = NULL,
+                                    selected = NULL,
+                                    status = "default",
+                                    size = "normal",
+                                    checkIcon = list(),
+                                    choiceNames = NULL,
+                                    choiceValues = NULL,
+                                    disabled = FALSE) {
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues, mustExist = FALSE)
   if (is.null(selected) && !is.null(args$choiceValues)) {
     selected <- args$choiceValues[[1]]
-  } else {
-    selected <- as.character(selected)
   }
   options <- if (!is.null(args$choiceValues)) {
-    format(htmltools::tagList(generateRGB(session$ns(inputId), args, selected, status = status, size = size,
-                               checkIcon = checkIcon)))
+    as.character(tagList(
+      generateRGB(
+        session$ns(inputId),
+        args, as.character(selected),
+        status = status,
+        size = size,
+        checkIcon = checkIcon
+      )
+    ))
   }
-  message <- dropNulls(list(selected = selected, options = options, label = label))
+  message <- dropNulls(list(
+    selected = selected,
+    options = options,
+    label = label,
+    disabled = isTRUE(disabled)
+  ))
   session$sendInputMessage(inputId, message)
 }
 

@@ -14,7 +14,8 @@ updateCheckboxGroupButtons(
   size = "normal",
   checkIcon = list(),
   choiceNames = NULL,
-  choiceValues = NULL
+  choiceValues = NULL,
+  disabled = FALSE
 )
 }
 \arguments{
@@ -35,6 +36,9 @@ updateCheckboxGroupButtons(
 \item{checkIcon}{Icon, only used if choices is not NULL.}
 
 \item{choiceNames, choiceValues}{List of names and values, an alternative to choices.}
+
+\item{disabled}{Logical, disable or enable buttons,
+if \code{TRUE} users won't be able to select a value.}
 }
 \description{
 Change the value of a radio group buttons input on the client
