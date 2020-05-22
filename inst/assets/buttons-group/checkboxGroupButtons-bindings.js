@@ -132,6 +132,19 @@ $.extend(checkboxGroupButtonsBinding, {
     } else {
       $el.find("button").removeAttr("disabled");
     }
+    if (data.hasOwnProperty("disabledChoices")) {
+      for (var i = 0; i < data.disabledChoices.length; i++) {
+        $(
+          'input:checkbox[name="' +
+            Shiny.$escape(el.id) +
+            '"][value="' +
+            Shiny.$escape(data.disabledChoices[i]) +
+            '"]'
+        )
+          .parent()
+          .attr("disabled", "disabled");
+      }
+    }
 
     $(el).trigger("change");
   }

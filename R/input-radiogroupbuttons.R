@@ -176,6 +176,7 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon) {
 #' @param choiceNames,choiceValues List of names and values, an alternative to choices.
 #' @param disabled Logical, disable or enable buttons,
 #'  if \code{TRUE} users won't be able to select a value.
+#' @param disabledChoices Vector of specific choices to disable.
 #'
 #' @export
 #'
@@ -251,7 +252,8 @@ updateRadioGroupButtons <- function(session,
                                     checkIcon = list(),
                                     choiceNames = NULL,
                                     choiceValues = NULL,
-                                    disabled = FALSE) {
+                                    disabled = FALSE,
+                                    disabledChoices = NULL) {
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues, mustExist = FALSE)
   if (is.null(selected) && !is.null(args$choiceValues)) {
     selected <- args$choiceValues[[1]]
@@ -271,7 +273,8 @@ updateRadioGroupButtons <- function(session,
     selected = selected,
     options = options,
     label = label,
-    disabled = isTRUE(disabled)
+    disabled = isTRUE(disabled),
+    disabledChoices = list1(disabledChoices)
   ))
   session$sendInputMessage(inputId, message)
 }

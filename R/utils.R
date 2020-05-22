@@ -4,6 +4,14 @@ starts_with <- function(x, prefix) {
   substring(x, 1, nchar(prefix)) == prefix
 }
 
+list1 <- function(x) {
+  if (length(x) == 1) {
+    list(x)
+  } else {
+    x
+  }
+}
+
 
 # Unexported usefull functions from shiny
 

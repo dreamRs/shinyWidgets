@@ -1,7 +1,7 @@
 shinyWidgets 0.5.3
 ======================
 
-* Added the ability to disable `radioGroupButtons()` and `checkboxGroupButtons()` via respective update methods.
+* Added the ability to disable completely or partially `radioGroupButtons()` and `checkboxGroupButtons()` via respective update methods.
 
 
 
