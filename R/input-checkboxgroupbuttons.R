@@ -20,6 +20,7 @@
 #' @param choiceNames,choiceValues Same as in \code{\link[shiny]{checkboxGroupInput}}. List of names and values, respectively, that are displayed to
 #'  the user in the app and correspond to the each choice (for this reason,
 #'  \code{choiceNames} and \code{choiceValues} must have the same length).
+#' @param disabled Initialize buttons in a disabled state (users won't be able to select a value).
 #'
 #' @return A buttons group control that can be added to a UI definition.
 #'
@@ -72,11 +73,20 @@
 #'   shinyApp(ui, server)
 #'
 #' }
-checkboxGroupButtons <- function(
-  inputId, label = NULL, choices = NULL, selected = NULL, status = "default", size = "normal",
-  direction = "horizontal", justified = FALSE, individual = FALSE, checkIcon = list(),
-  width = NULL, choiceNames = NULL, choiceValues = NULL
-) {
+checkboxGroupButtons <- function(inputId,
+                                 label = NULL,
+                                 choices = NULL,
+                                 selected = NULL,
+                                 status = "default",
+                                 size = "normal",
+                                 direction = "horizontal",
+                                 justified = FALSE,
+                                 individual = FALSE,
+                                 checkIcon = list(),
+                                 width = NULL,
+                                 choiceNames = NULL,
+                                 choiceValues = NULL,
+                                 disabled = FALSE) {
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues)
   selected <- shiny::restoreInput(id = inputId, default = selected)
   size <- match.arg(arg = size, choices = c("xs", "sm", "normal", "lg"))
@@ -96,18 +106,22 @@ checkboxGroupButtons <- function(
   if (size != "normal") {
     divClass <- paste0(divClass, " btn-group-", size)
   }
-  checkboxGroupButtonsTag <- htmltools::tags$div(
-    class="form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline",
-    style = if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
-    if (!is.null(label)) htmltools::tags$label(class="control-label", `for`=inputId, label),
-    if (!is.null(label)) htmltools::tags$br(),
-    htmltools::tags$div(
-      id=inputId, class="checkboxGroupButtons",
-      style=if (justified) "width: 100%;",
-      htmltools::tags$div(
-        class=divClass, role="group", `aria-label`="...", `data-toggle`="buttons",
+  checkboxGroupButtonsTag <- tags$div(
+    class = "form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline",
+    style = if(!is.null(width)) paste("width:", validateCssUnit(width)),
+    if (!is.null(label)) tags$label(class="control-label", `for` = inputId, label),
+    if (!is.null(label)) tags$br(),
+    tags$div(
+      id = inputId,
+      class = "checkboxGroupButtons",
+      style = if (justified) "width: 100%;",
+      tags$div(
+        class = divClass,
+        role = "group",
+        `aria-label`="...",
+        `data-toggle` = "buttons",
         class = "btn-group-container-sw",
-        generateCBGB(inputId, args, selected, status, size, checkIcon)
+        generateCBGB(inputId, args, selected, status, size, checkIcon, disabled = disabled)
       )
     )
   )
@@ -119,12 +133,12 @@ checkboxGroupButtons <- function(
 
 
 
-generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
+generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, disabled = FALSE) {
   btn_wrapper <- function(...) {
     htmltools::tags$div(
-      class="btn-group btn-group-toggle",
-      class=if (size != "normal") paste0("btn-group-", size),
-      role="group",
+      class = "btn-group btn-group-toggle",
+      class = if (size != "normal") paste0("btn-group-", size),
+      role = "group",
       ...
     )
   }
@@ -136,22 +150,27 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon) {
   mapply(
     FUN = function(name, value) {
       btn_wrapper(
-        htmltools::tags$button(
-          class=paste0("btn checkbtn btn-", status),
-          class=if (value %in% selected) "active",
-          if (displayIcon) htmltools::tags$span(class="check-btn-icon-yes", checkIcon$yes),
-          if (displayIcon) htmltools::tags$span(class="check-btn-icon-no", checkIcon$no),
-          htmltools::tags$input(
-            type="checkbox", autocomplete="off",
-            name=inputId, value=value,
-            checked=if (value %in% selected) "checked"
+        tags$button(
+          class = paste0("btn checkbtn btn-", status),
+          class = if (value %in% selected) "active",
+          if (displayIcon) tags$span(class="check-btn-icon-yes", checkIcon$yes),
+          if (displayIcon) tags$span(class="check-btn-icon-no", checkIcon$no),
+          disabled = if (isTRUE(disabled)) "disabled",
+          tags$input(
+            type = "checkbox",
+            autocomplete = "off",
+            name = inputId,
+            value = value,
+            checked = if (value %in% selected) "checked"
           ),
-          if (is.list(name)) name else htmltools::HTML(name)
+          if (is.list(name)) name else HTML(name)
         )
       )
     },
-    name = choices$choiceNames, value = choices$choiceValues,
-    SIMPLIFY = FALSE, USE.NAMES = FALSE
+    name = choices$choiceNames,
+    value = choices$choiceValues,
+    SIMPLIFY = FALSE,
+    USE.NAMES = FALSE
   )
 }
 

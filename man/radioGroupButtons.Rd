@@ -17,7 +17,8 @@ radioGroupButtons(
   checkIcon = list(),
   width = NULL,
   choiceNames = NULL,
-  choiceValues = NULL
+  choiceValues = NULL,
+  disabled = FALSE
 )
 }
 \arguments{
@@ -48,6 +49,8 @@ corresponding to an icon to display if the button is checked.}
 \item{choiceNames, choiceValues}{Same as in \code{\link[shiny]{radioButtons}}. List of names and values, respectively, that are displayed to
 the user in the app and correspond to the each choice (for this reason,
 \code{choiceNames} and \code{choiceValues} must have the same length).}
+
+\item{disabled}{Initialize buttons in a disabled state (users won't be able to select a value).}
 }
 \value{
 A buttons group control that can be added to a UI definition.
