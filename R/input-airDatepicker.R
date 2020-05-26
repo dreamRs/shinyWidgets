@@ -168,6 +168,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
       type = "text",
       class = " form-control",
       placeholder = placeholder,
+      autocomplete = "off",
       `data-timepicker` = tolower(timepicker)
     )
     if (!identical(addon, "none")) {
@@ -194,6 +195,7 @@ airDatepickerInput <- function(inputId, label = NULL, value = NULL, multiple = F
     tagAir <- tags$div(
       id = inputId,
       class = "sw-air-picker",
+      autocomplete = "off",
       `data-timepicker` = tolower(timepicker)
     )
   }
