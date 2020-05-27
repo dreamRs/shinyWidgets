@@ -12,6 +12,11 @@ list1 <- function(x) {
   }
 }
 
+rescale <- function(x, from, to) {
+  (x - from[1])/diff(from) * diff(to) + to[1]
+}
+
+
 
 # Unexported usefull functions from shiny
 

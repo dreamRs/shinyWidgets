@@ -42,8 +42,7 @@ Imports:
     shiny (>= 0.14),
     htmltools,
     jsonlite,
-    grDevices,
-    scales
+    grDevices
 Suggests: shinydashboard,
     testthat,
     covr,
@@ -53,4 +52,5 @@ Suggests: shinydashboard,
     argonDash,
     tablerDash,
     ggplot2,
-    DT
+    DT,
+    scales

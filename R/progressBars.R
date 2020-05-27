@@ -21,7 +21,6 @@
 #' @seealso \link{progressSweetAlert} for progress bar in a sweet alert
 #'
 #' @importFrom htmltools tags tagList singleton HTML
-#' @importFrom scales rescale
 #' @export
 #'
 #' @examples
@@ -89,7 +88,7 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
   } else {
     value <- round(value)
     if (!is.null(range_value)) {
-      percent <- scales::rescale(x = value, from = range_value, to = c(0, 100))
+      percent <- rescale(x = value, from = range_value, to = c(0, 100))
     } else {
       percent <- value
     }
@@ -149,7 +148,7 @@ updateProgressBar <- function(session, id, value, total = NULL,
                               range_value = NULL, unit_mark = "%") {
   message <- "update-progressBar-shinyWidgets"
   if (!is.null(range_value)) {
-    percent <- scales::rescale(x = value, from = range_value, to = c(0, 100))
+    percent <- rescale(x = value, from = range_value, to = c(0, 100))
   } else {
     percent <- -1
   }
