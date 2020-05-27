@@ -13,6 +13,7 @@ numericInputIcon(
   step = NULL,
   icon = NULL,
   size = NULL,
+  help_text = NULL,
   width = NULL
 )
 }
@@ -34,6 +35,9 @@ or text, to be displayed on the right or left of the numeric input.}
 
 \item{size}{Size of the input, default to \code{NULL}, can
 be \code{"sm"} (small) or \code{"lg"} (large).}
+
+\item{help_text}{Help text placed below the widget and only
+displayed if value entered by user is outside of \code{min} and \code{max}.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
 see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}

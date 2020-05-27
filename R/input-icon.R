@@ -24,7 +24,7 @@ textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
   tags$div(
     class = "form-group shiny-input-container",
     if (!is.null(label)) {
-      tags$label(label, `for` = inputId)
+      tags$label(label, class = "control-label", `for` = inputId)
     },
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
     tags$div(
@@ -93,6 +93,8 @@ updateTextInputIcon <- shiny::updateTextInput
 #'  or text, to be displayed on the right or left of the numeric input.
 #' @param size Size of the input, default to \code{NULL}, can
 #'  be \code{"sm"} (small) or \code{"lg"} (large).
+#' @param help_text Help text placed below the widget and only
+#'  displayed if value entered by user is outside of \code{min} and \code{max}.
 #'
 #' @return A numeric input control that can be added to a UI definition.
 #' @export
@@ -101,15 +103,22 @@ updateTextInputIcon <- shiny::updateTextInput
 #' @importFrom htmltools tags validateCssUnit
 #'
 #' @example examples/numericInputIcon.R
-numericInputIcon <- function(inputId, label, value,
-                             min = NULL, max = NULL, step = NULL,
-                             icon = NULL, size = NULL, width = NULL) {
+numericInputIcon <- function(inputId,
+                             label,
+                             value,
+                             min = NULL,
+                             max = NULL,
+                             step = NULL,
+                             icon = NULL,
+                             size = NULL,
+                             help_text = NULL,
+                             width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   addons <- validate_addon(icon)
-  tags$div(
+  tag <- tags$div(
     class = "form-group shiny-input-container",
     if (!is.null(label)) {
-      tags$label(label, `for` = inputId)
+      tags$label(label, class = "control-label", `for` = inputId)
     },
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
     tags$div(
@@ -118,14 +127,16 @@ numericInputIcon <- function(inputId, label, value,
       addons$left, tags$input(
         id = inputId,
         type = "number",
-        class = "form-control",
+        class = "form-control shinywidgets-numeric",
         value = value,
         min = min,
         max = max,
         step = step
       ), addons$right
-    )
+    ),
+    tags$span(class = "help-block hidden", help_text)
   )
+  attachShinyWidgetsDep(tag)
 }
 
 
