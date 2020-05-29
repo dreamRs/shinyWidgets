@@ -60,8 +60,13 @@
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
-                       color = "default", size = "md", block = FALSE,
+actionBttn <- function(inputId,
+                       label = NULL,
+                       icon = NULL,
+                       style = "unite",
+                       color = "default",
+                       size = "md",
+                       block = FALSE,
                        no_outline = TRUE) {
   value <- shiny::restoreInput(id = inputId, default = NULL)
   style <- match.arg(
@@ -76,9 +81,13 @@ actionBttn <- function(inputId, label = NULL, icon = NULL, style = "unite",
   )
   size <- match.arg(arg = size, choices = c("xs", "sm", "md", "lg"))
 
-  tagBttn <- htmltools::tags$button(
-    id = inputId, type = "button", class = "action-button bttn", `data-val` = value,
-    class = paste0("bttn-", style), class = paste0("bttn-", size),
+  tagBttn <- tags$button(
+    id = inputId,
+    type = "button",
+    class = "action-button bttn",
+    `data-val` = value,
+    class = paste0("bttn-", style),
+    class = paste0("bttn-", size),
     class = paste0("bttn-", color), list(icon, label),
     class = if (block) "bttn-block",
     class = if (no_outline) "bttn-no-outline"

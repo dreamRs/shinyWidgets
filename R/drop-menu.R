@@ -86,7 +86,6 @@ dropMenu <- function(tag, ...,
     class = "drop-menu-input",
     id = paste0(tag$attribs$id, "_dropmenu"),
     `data-target` = tag$attribs$id,
-    `data-content` = paste0(tag$attribs$id, "_content"),
     `data-template` = paste0(tag$attribs$id, "-template"),
     tag,
     tags$div(
