@@ -216,8 +216,11 @@ airDatepickerInput <- function(inputId,
     class = "form-group shiny-input-container",
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
-    if (!is.null(label)) tags$label(label, `for` = inputId),
+    if (!is.null(label)) tags$label(label, class = "control-label", `for` = inputId),
     tagAir,
+    singleton(tags$head(
+      tags$style(".airdatepicker {z-index: 1100;}")
+    )),
     tags$script(
       type = "application/json",
       `data-for` = inputId,
@@ -227,10 +230,7 @@ airDatepickerInput <- function(inputId,
         json_verbatim = TRUE,
         POSIXt = "epoch"
       )
-    ),
-    singleton(tags$head(
-      tags$style(".airdatepicker {z-index: 1100;}")
-    ))
+    )
   )
 
   attachDependencies(
