@@ -1,7 +1,10 @@
 shinyWidgets 0.5.3
 ======================
 
+* Fixed `airDatepickerInput()` z-index issue (causing incorrect display in modal or sidebar).
+* Fixed a bug in `downloadBttn()` causing download to be triggered twice.
 * Added the ability to disable completely or partially `radioGroupButtons()` and `checkboxGroupButtons()` via respective update methods.
+* UI validation in `numericInputIcon()` if min and/or max are provided and value is outside range.
 
 
 
