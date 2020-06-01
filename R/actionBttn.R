@@ -152,7 +152,7 @@ actionBttn <- function(inputId,
 downloadBttn <- function(outputId,
                          label = "Download",
                          style = "unite",
-                          color = "default",
+                         color = "primary",
                          size = "md",
                          block = FALSE,
                          no_outline = TRUE) {
