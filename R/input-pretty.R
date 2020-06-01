@@ -43,8 +43,7 @@ prettySwitch <- function(inputId,
     message("slim = TRUE & fill = TRUE don't work well together.")
   switchTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))  paste0("width: ",
-                                         htmltools::validateCssUnit(width), ";"),
+    style = if (!is.null(width))  paste0("width: ", validateCssUnit(width), ";"),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
@@ -157,28 +156,27 @@ prettyToggle <- function(inputId,
     inputTag$attribs$checked <- "checked"
   toggleTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))  paste0("width: ",
-                                         htmltools::validateCssUnit(width), ";"),
+    style = if (!is.null(width))  paste0("width: ", validateCssUnit(width), ";"),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
-      class="pretty p-toggle", inputTag,
-      class=if(is.null(icon_on) & is.null(icon_off)) "p-default",
-      class=if(plain) "p-plain",
-      class=if(bigger) "p-bigger",
-      class=if(shape!="square") paste0("p-", shape),
-      class=if(fill) "p-fill", class=if(thick) "p-thick",
-      class=if(!is.null(icon_on) | !is.null(icon_off)) "p-icon",
-      class=if(!is.null(animation)) paste0("p-", animation),
+      class = "pretty p-toggle", inputTag,
+      class = if(is.null(icon_on) & is.null(icon_off)) "p-default",
+      class = if(plain) "p-plain",
+      class = if(bigger) "p-bigger",
+      class = if(shape!="square") paste0("p-", shape),
+      class = if(fill) "p-fill", class=if(thick) "p-thick",
+      class = if(!is.null(icon_on) | !is.null(icon_off)) "p-icon",
+      class = if(!is.null(animation)) paste0("p-", animation),
       tags$div(
-        class="state p-on",
-        class=if(status_on != "default") paste0("p-", status_on, if(outline)"-o"),
+        class = "state p-on",
+        class = if(status_on != "default") paste0("p-", status_on, if(outline)"-o"),
         if(!is.null(icon_on)) icon_on,
         tags$label(tags$span(label_on))
       ),
       tags$div(
-        class="state p-off",
-        class=if(status_off != "default") paste0("p-", status_off, if(outline)"-o"),
+        class = "state p-off",
+        class = if(status_off != "default") paste0("p-", status_off, if(outline)"-o"),
         if(!is.null(icon_off)) icon_off,
         tags$label(tags$span(label_off))
       )
@@ -277,22 +275,21 @@ prettyCheckbox <- function(inputId,
     inputTag$attribs$checked <- "checked"
   checkTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))  paste0("width: ",
-                                         htmltools::validateCssUnit(width), ";"),
+    style = if (!is.null(width))  paste0("width: ", validateCssUnit(width), ";"),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
-      class="pretty", inputTag,
-      class=if(is.null(icon)) "p-default",
-      class=if(plain) "p-plain",
-      class=if(bigger) "p-bigger",
-      class=if(shape!="square") paste0("p-", shape),
-      class=if(fill) "p-fill", class=if(thick) "p-thick",
-      class=if(!is.null(animation)) paste0("p-", animation),
-      class=if(!is.null(icon)) "p-icon",
+      class = "pretty", inputTag,
+      class = if(is.null(icon)) "p-default",
+      class = if(plain) "p-plain",
+      class = if(bigger) "p-bigger",
+      class = if(shape!="square") paste0("p-", shape),
+      class = if(fill) "p-fill", class=if(thick) "p-thick",
+      class = if(!is.null(animation)) paste0("p-", animation),
+      class = if(!is.null(icon)) "p-icon",
       tags$div(
-        class="state",
-        class=if(status != "default") paste0("p-", status, if(outline)"-o"),
+        class = "state",
+        class = if(status != "default") paste0("p-", status, if(outline)"-o"),
         if(!is.null(icon)) icon,
         tags$label(tags$span(label))
       )
@@ -394,31 +391,55 @@ prettyCheckboxGroup <- function(inputId,
   if (!is.null(selected))
     selected <- as.character(selected)
   options <- generatePretty(
-    inputId = inputId, selected = selected,
-    inline = inline, type = "checkbox",
-    choiceNames = args$choiceNames, choiceValues = args$choiceValues,
-    status = status, shape = shape, outline = outline, fill = fill,
-    thick = thick, animation = animation, icon = icon, plain = plain,
+    inputId = inputId,
+    selected = selected,
+    inline = inline,
+    type = "checkbox",
+    choiceNames = args$choiceNames,
+    choiceValues = args$choiceValues,
+    status = status,
+    shape = shape,
+    outline = outline,
+    fill = fill,
+    thick = thick,
+    animation = animation,
+    icon = icon,
+    plain = plain,
     bigger = bigger
   )
   divClass <- "form-group shiny-input-checkboxgroup shiny-input-container"
   if (inline)
     divClass <- paste(divClass, "shiny-input-container-inline")
-  checkgroupTag <- htmltools::tags$div(
-    id = inputId, style = if (!is.null(width))
-      paste0("width: ", htmltools::validateCssUnit(width), ";"),
+  checkgroupTag <- tags$div(
+    id = inputId,
+    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
     class = divClass,
-    tags$label(class = "control-label", `for` = inputId, label),
+    tags$label(
+      class = "control-label",
+      `for` = inputId,
+      class = if (is.null(label)) "shiny-label-null",
+      label
+    ),
     options
   )
   attachShinyWidgetsDep(checkgroupTag, "pretty")
 }
 
-generatePretty <- function(inputId, selected, inline, type = "checkbox",
-                           choiceNames, choiceValues, status = "primary",
-                           shape = "square", outline = FALSE, fill = FALSE,
-                           thick = FALSE, animation = NULL, icon = NULL,
-                           plain = FALSE, bigger = FALSE) {
+generatePretty <- function(inputId,
+                           selected,
+                           inline,
+                           type = "checkbox",
+                           choiceNames,
+                           choiceValues,
+                           status = "primary",
+                           shape = "square",
+                           outline = FALSE,
+                           fill = FALSE,
+                           thick = FALSE,
+                           animation = NULL,
+                           icon = NULL,
+                           plain = FALSE,
+                           bigger = FALSE) {
   if(!is.null(icon)) {
     icon <- validateIcon(icon)
     icon$attribs$class <- paste("icon", icon$attribs$class)
@@ -431,18 +452,18 @@ generatePretty <- function(inputId, selected, inline, type = "checkbox",
     if (inline) {
       # tags$label(class = paste0(type, "-inline"), inputTag)
       tags$div(
-        class="pretty", inputTag,
+        class = "pretty", inputTag,
         # class = paste0(type, "-inline"),
-        class=if(is.null(icon)) "p-default",
-        class=if(plain) "p-plain",
-        class=if(bigger) "p-bigger",
-        class=if(shape!="square") paste0("p-", shape),
-        class=if(fill) "p-fill", class=if(thick) "p-thick",
-        class=if(!is.null(animation)) paste0("p-", animation),
-        class=if(!is.null(icon)) "p-icon",
+        class = if(is.null(icon)) "p-default",
+        class = if(plain) "p-plain",
+        class = if(bigger) "p-bigger",
+        class = if(shape!="square") paste0("p-", shape),
+        class = if(fill) "p-fill", class=if(thick) "p-thick",
+        class = if(!is.null(animation)) paste0("p-", animation),
+        class = if(!is.null(icon)) "p-icon",
         tags$div(
-          class="state",
-          class=if(status != "default") paste0("p-", status, if(outline)"-o"),
+          class = "state",
+          class = if(status != "default") paste0("p-", status, if(outline)"-o"),
           if(!is.null(icon)) icon,
           tags$label(tags$span(name))
         )
@@ -451,29 +472,29 @@ generatePretty <- function(inputId, selected, inline, type = "checkbox",
     else {
       tagList(
         tags$div(
-          class="pretty", inputTag,
+          class ="pretty", inputTag,
           # class = paste0(type, "-inline"),
           # style="display: block;",
-          class=if(is.null(icon)) "p-default",
-          class=if(plain) "p-plain",
-          class=if(bigger) "p-bigger",
-          class=if(shape!="square") paste0("p-", shape),
-          class=if(fill) "p-fill", class=if(thick) "p-thick",
-          class=if(!is.null(animation)) paste0("p-", animation),
-          class=if(!is.null(icon)) "p-icon",
+          class = if(is.null(icon)) "p-default",
+          class = if(plain) "p-plain",
+          class = if(bigger) "p-bigger",
+          class = if(shape!="square") paste0("p-", shape),
+          class = if(fill) "p-fill", class=if(thick) "p-thick",
+          class = if(!is.null(animation)) paste0("p-", animation),
+          class = if(!is.null(icon)) "p-icon",
           tags$div(
-            class="state",
-            class=if(status != "default") paste0("p-", status, if(outline)"-o"),
+            class = "state",
+            class = if(status != "default") paste0("p-", status, if(outline)"-o"),
             if(!is.null(icon)) icon,
             tags$label(tags$span(name))
           )
         ),
-        tags$div(style="height:3px;")
+        tags$div(style = "height:3px;")
       )
     }
   }, SIMPLIFY = FALSE, USE.NAMES = FALSE)
-  htmltools::tags$div(
-    if (!inline) tags$div(style="height:7px;"),
+  tags$div(
+    if (!inline) tags$div(style = "height:7px;"),
     class = "shiny-options-group", options
   )
 }
@@ -634,21 +655,35 @@ prettyRadioButtons <- function(inputId,
   if (length(selected) > 1)
     stop("The 'selected' argument must be of length 1")
   options <- generatePretty(
-    inputId = inputId, selected = selected,
-    inline = inline, type = "radio",
-    choiceNames = args$choiceNames, choiceValues = args$choiceValues,
-    status = status, shape = shape, outline = outline, fill = fill,
-    thick = thick, animation = animation, icon = icon, plain = plain,
+    inputId = inputId,
+    selected = selected,
+    inline = inline,
+    type = "radio",
+    choiceNames = args$choiceNames,
+    choiceValues = args$choiceValues,
+    status = status,
+    shape = shape,
+    outline = outline,
+    fill = fill,
+    thick = thick,
+    animation = animation,
+    icon = icon,
+    plain = plain,
     bigger = bigger
   )
   divClass <- "form-group shiny-input-radiogroup shiny-input-container"
   if (inline)
     divClass <- paste(divClass, "shiny-input-container-inline")
   radioTag <- htmltools::tags$div(
-    id = inputId, style = if (!is.null(width))
-      paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    id = inputId,
+    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
     class = divClass,
-    tags$label(class = "control-label", `for` = inputId, label),
+    tags$label(
+      class = "control-label",
+      `for` = inputId,
+      class = if (is.null(label)) "shiny-label-null",
+      label
+    ),
     options
   )
   attachShinyWidgetsDep(radioTag, "pretty")
