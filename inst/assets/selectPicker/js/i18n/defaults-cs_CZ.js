@@ -1,7 +1,7 @@
 /*!
- * Bootstrap-select v1.13.9 (https://developer.snapappointments.com/bootstrap-select)
+ * Bootstrap-select v1.13.17 (https://developer.snapappointments.com/bootstrap-select)
  *
- * Copyright 2012-2019 SnapAppointments, LLC
+ * Copyright 2012-2020 SnapAppointments, LLC
  * Licensed under MIT (https://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
  */
 
@@ -24,13 +24,13 @@
 
 (function ($) {
   $.fn.selectpicker.defaults = {
-    noneSelectedText: 'Nic není vybráno',
-    noneResultsText: 'Žádné výsledky {0}',
-    countSelectedText: 'Označeno {0} z {1}',
+    noneSelectedText: 'Vyberte ze seznamu',
+    noneResultsText: 'Pro hledání {0} nebyly nalezeny žádné výsledky',
+    countSelectedText: 'Vybrané {0} z {1}',
     maxOptionsText: ['Limit překročen ({n} {var} max)', 'Limit skupiny překročen ({n} {var} max)', ['položek', 'položka']],
     multipleSeparator: ', ',
-    selectAllText: 'Vybrat Vše',
-    deselectAllText: 'Odznačit Vše'
+    selectAllText: 'Vybrat vše',
+    deselectAllText: 'Zrušit výběr'
   };
 })(jQuery);
 
