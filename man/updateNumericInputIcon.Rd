@@ -11,7 +11,8 @@ updateNumericInputIcon(
   value = NULL,
   min = NULL,
   max = NULL,
-  step = NULL
+  step = NULL,
+  icon = NULL
 )
 }
 \arguments{
@@ -29,6 +30,9 @@ updateNumericInputIcon(
 \item{max}{Maximum value.}
 
 \item{step}{Step size.}
+
+\item{icon}{Icon to update, note that you can update icon only
+if initialized in \code{\link{numericInputIcon}}.}
 }
 \value{
 No value.

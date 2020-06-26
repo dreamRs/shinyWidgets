@@ -45,7 +45,7 @@ function hideHelp(element) {
 }
 var numericInputIconBinding = new Shiny.InputBinding();
 $.extend(numericInputIconBinding, {
-  find: function find(scope) {
+  find: function(scope) {
     return $(scope).find(".shinywidgets-numeric");
   },
   getValue: function getValue(el) {
@@ -85,10 +85,10 @@ $.extend(numericInputIconBinding, {
     }
     return numberVal;
   },
-  setValue: function setValue(el, value) {
+  setValue: function(el, value) {
     el.value = value;
   },
-  subscribe: function subscribe(el, callback) {
+  subscribe: function(el, callback) {
     $(el).on(
       "keyup.numericInputIconBinding input.numericInputIconBinding",
       function(event) {
@@ -99,21 +99,27 @@ $.extend(numericInputIconBinding, {
       callback(false);
     });
   },
-  unsubscribe: function unsubscribe(el) {
+  unsubscribe: function(el) {
     $(el).off(".textInputBinding");
   },
-  getType: function getType(el) {
+  getType: function(el) {
     return "shiny.number";
   },
-  receiveMessage: function receiveMessage(el, data) {
+  receiveMessage: function(el, data) {
     if (data.hasOwnProperty("value")) el.value = data.value;
     if (data.hasOwnProperty("min")) el.min = data.min;
     if (data.hasOwnProperty("max")) el.max = data.max;
     if (data.hasOwnProperty("step")) el.step = data.step;
     updateLabel(data.label, this._getLabelNode(el));
+    if (data.hasOwnProperty("left")) {
+      $(el).prev(".input-group-addon").replaceWith(data.left);
+    }
+    if (data.hasOwnProperty("right")) {
+      $(el).next(".input-group-addon").replaceWith(data.right);
+    }
     $(el).trigger("change");
   },
-  getState: function getState(el) {
+  getState: function(el) {
     return {
       label: this._getLabelNode(el).text(),
       value: this.getValue(el),
@@ -122,7 +128,7 @@ $.extend(numericInputIconBinding, {
       step: Number(el.step)
     };
   },
-  _getLabelNode: function _getLabelNode(el) {
+  _getLabelNode: function(el) {
     return $(el)
       .parent()
       .find('label[for="' + Shiny.$escape(el.id) + '"]');

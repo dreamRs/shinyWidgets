@@ -143,11 +143,13 @@ numericInputIcon <- function(inputId,
 #' @title Change the value of a numeric input icon on the client
 #'
 #' @inheritParams shiny::updateNumericInput
+#' @param icon Icon to update, note that you can update icon only
+#'  if initialized in \code{\link{numericInputIcon}}.
 #'
 #' @return No value.
 #' @export
 #'
-#' @importFrom shiny updateNumericInput
+#' @importFrom htmltools doRenderTags
 #'
 #' @examples
 #' library(shiny)
@@ -177,7 +179,30 @@ numericInputIcon <- function(inputId,
 #'
 #' if (interactive())
 #'   shinyApp(ui, server)
-updateNumericInputIcon <- shiny::updateNumericInput
+updateNumericInputIcon <- function(session,
+                                   inputId,
+                                   label = NULL,
+                                   value = NULL,
+                                   min = NULL,
+                                   max = NULL,
+                                   step = NULL,
+                                   icon = NULL) {
+  addons <- validate_addon(icon)
+  if (!is.null(addons$right))
+    addons$right <- htmltools::doRenderTags(addons$right)
+  if (!is.null(addons$left))
+    addons$left <- htmltools::doRenderTags(addons$left)
+  message <- dropNulls(list(
+    label = label,
+    value = formatNoSci(value),
+    min = formatNoSci(min),
+    max = formatNoSci(max),
+    step = formatNoSci(step),
+    right = addons$right,
+    left = addons$left
+  ))
+  session$sendInputMessage(inputId, message)
+}
 
 
 
