@@ -98,8 +98,22 @@ $.extend(noUiSliderBinding, {
       .parent()
       .find('script[data-for="' + Shiny.$escape(el.id) + '"]');
     config = JSON.parse(config.html());
-    if (typeof config.format !== "undefined") {
+    if (config.hasOwnProperty("format")) {
       config.format = wNumb(config.format);
+    }
+    if (config.hasOwnProperty("pips")) {
+      if (config.pips.hasOwnProperty("format")) {
+        config.pips.format = wNumb(config.pips.format);
+      }
+      if (config.pips.hasOwnProperty("size")) {
+        config.pips.filter = function(value, type) {
+          if (type > 0) {
+            return config.pips.size;
+          } else {
+            return type;
+          }
+        };
+      }
     }
     var slider = document.getElementById(el.id);
     if (config.orientation === "vertical") {

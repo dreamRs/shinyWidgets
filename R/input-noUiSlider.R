@@ -115,12 +115,15 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
   if (is.null(range))
     range <- list(min = min, max = max)
   noUiProps <- dropNulls(list(
-    start = value, step = step,
+    start = value,
+    step = step,
     range = range,
     tooltips = tooltips,
     connect = if (length(connect) == length(value)) c(connect, FALSE) else connect,
-    padding = padding, pips = pips,
-    margin = margin, limit = limit,
+    padding = padding,
+    pips = pips,
+    margin = margin,
+    limit = limit,
     orientation = orientation,
     direction = match.arg(direction),
     behaviour = behaviour,
