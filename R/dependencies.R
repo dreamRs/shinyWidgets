@@ -97,6 +97,11 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         html_dependency_airdatepicker()
       )
+    } else if (widget == "dollarinput") {
+      dep <- list(
+        dep,
+        html_dependency_dollarinput()
+      )
     }
   }
   htmltools::attachDependencies(tag, dep, append = TRUE)
@@ -258,6 +263,16 @@ html_dependency_multi <- function() {
     src = c(href = "shinyWidgets/multi", file = "assets/multi"),
     script = "multi.min.js",
     stylesheet = c("multi.min.css")
+  )
+}
+
+html_dependency_dollarinput <- function() {
+  htmlDependency(
+    name = "dollar-input",
+    version = "1.0.0",
+    package = "shinyWidgets",
+    src = c(href = "shinyWidgets/dollar-input", file = "assets/dollar-input"),
+    script = "dollar-binding.js"
   )
 }
 
