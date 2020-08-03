@@ -276,4 +276,12 @@ html_dependency_dollarinput <- function() {
   )
 }
 
-
+html_dependency_autonumeric <- function() {
+  htmlDependency(
+    name = "autonumeric",
+    version = "4.6.0",
+    package = "shinyWidgets",
+    src = c(href = "shinyWidgets/autonumeric", file = "assets/autonumeric"),
+    script = c("autoNumeric.min.js", "autonumeric-bindings.js")
+  )
+}
