@@ -1,6 +1,6 @@
-#' Dollar Input
+#' @title Dollar Input
 #'
-#' A function that returns the HTML to build a dollarInput user interface
+#' @description A function that returns the HTML to build a dollarInput user interface
 #'
 #' Based on the shiny text input, the dollar input is
 #' useful when one needs to input large sums of money,
@@ -13,9 +13,9 @@
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or NULL for no label.
 #' @param value the initial value of the input, generally a money value, e.g. '$0'or '$10,000'
-#' @param width The width of the input, e.g. '400px', or '100%'; see validateCssUnit().
+#' @param width The width of the input, e.g. '400px', or '100\%'; see validateCssUnit().
 #'
-#' @return an HTML tag list that when rendered creates the dollarInput
+#' @return an HTML tag list that when rendered creates the dollarInput.
 #' @export
 #'
 #' @importFrom htmltools tags tagList
