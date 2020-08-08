@@ -12,17 +12,15 @@ autonumericInput(
   align = "center",
   currencySymbol = "",
   currencySymbolPlacement = "s",
-  decimalCharacter = ".",
-  digitGroupSeparator = ",",
+  decimalCharacter = ",",
+  digitGroupSeparator = ".",
   allowDecimalPadding = TRUE,
   decimalPlaces = 2,
   decimalPlacesRawValue = NULL,
   decimalPlacesShownOnBlur = NULL,
   decimalPlacesShownOnFocus = NULL,
-  defaultValueOverride = NULL,
   digitalGroupSpacing = 3,
   alwaysAllowDecimalCharacter = FALSE,
-  caretPositionOnFocus = "focus",
   createLocalList = TRUE,
   decimalCharacterAlternative = NULL,
   divisorWhenUnfocused = NULL,
@@ -32,7 +30,6 @@ autonumericInput(
   selectOnFocus = TRUE,
   eventBubbles = TRUE,
   eventIsCancelable = TRUE,
-  failOnUnknownOption = FALSE,
   formatOnPageLoad = TRUE,
   formulaMode = FALSE,
   historySize = 20,
@@ -48,9 +45,7 @@ autonumericInput(
   negativeSignCharacter = "-",
   positiveSignCharacter = "+",
   showPositiveSign = FALSE,
-  noEventListeners = FALSE,
   onInvalidPaste = "error",
-  outputFormat = "string",
   overrideMinMaxLimits = "ceiling",
   readOnly = FALSE,
   roundingMethod = "S",
@@ -62,7 +57,6 @@ autonumericInput(
   suffixText = NULL,
   symbolWhenUnfocused = "",
   unformatOnHover = TRUE,
-  unformatOnSubmit = FALSE,
   valuesToStrings = NULL,
   watchExternalChanges = FALSE
 )
@@ -78,14 +72,210 @@ autonumericInput(
 \code{"100\%"}.}
 
 \item{align}{The alignment of the text inside the input box, one of
-"center", "left", "right". Defaults to "center".}
+"center" (default), "left", "right".}
 
-\item{watchExternalChanges}{}
+\item{currencySymbol}{Defines the currency symbol string. It can be a string
+of more than one character (allowing for instance to use a space on either
+side of it, example: '$ ' or ' $'). Defaults to "".}
+
+\item{currencySymbolPlacement}{Defines where the currency symbol should be
+placed, "p" for prefix or "s" for suffix (default).}
+
+\item{decimalCharacter}{Defines what decimal separator character is used.
+Must be one of c(',', '.', '·', '٫', '⎖'). Defaults to ",".}
+
+\item{digitGroupSeparator}{Defines what decimal separator character is used.
+Must be one of c(',', '.', ' ', '', ''', '٬', '˙'). Defaults to ".".}
+
+\item{allowDecimalPadding}{Defines if decimal places should be padded with
+zeros.  Defaults to TRUE.}
+
+\item{decimalPlaces}{Defines the default number of decimal places to show
+on the formatted value, and keep for the precision. Must be 0 or a
+positive integer. Defaults to 2.}
+
+\item{decimalPlacesShownOnBlur}{Defines how many decimal places should be
+visible when the element is unfocused. If NULL (default) then
+\code{decimalPlaces} is used.}
+
+\item{decimalPlacesShownOnFocus}{Defines how many decimal places should be
+visible when the element has the focus. If NULL (default) then
+\code{decimalPlaces} is used.}
+
+\item{digitalGroupSpacing}{Defines how many numbers should be grouped
+together for the thousands separator groupings.  Must be one of
+c("2", "2s", "3", "4"). Defaults to 3.}
+
+\item{alwaysAllowDecimalCharacter}{Defines if the decimal character or
+decimal character alternative should be accepted when there is already
+a decimal character shown in the element. If set to TRUE, any decimal
+character input will be accepted and will subsequently modify the decimal
+character position, as well as the rawValue. If set to FALSE, the decimal
+character and its alternative key will be dropped. This is the default
+setting.}
+
+\item{createLocalList}{Defines if a local list of AutoNumeric objects should
+be kept when initializing this object. Defaults to TRUE.}
+
+\item{decimalCharacterAlternative}{Allow to declare an alternative decimal
+separator which is automatically replaced by \code{decimalCharacter} when
+typed. This is useful for countries that use a comma ',' as the decimal
+character and have keyboards with numeric pads providing a period '.' as
+the decimal character (in France or Spain for instance). Must be NULL
+(default), ",", or ".".}
+
+\item{divisorWhenUnfocused}{The number that divides the element value on
+blur.  On focus, the number is multiplied back in. Defaults to NULL.}
+
+\item{rawValueDivisor}{Divides the formatted value shown in the AutoNumeric
+element and store the divided result in \code{rawValue}. Defaults to NULL.}
+
+\item{emptyInputBehavior}{Defines what should be displayed in the element if
+the raw value is missing. One of c(NULL, "focus", "press", "always", "min",
+"max", "zero") or a custom value. Defaults to NULL.  See
+\href{http://autonumeric.org/guide}{AutoNumeric documentation} for full
+details.}
+
+\item{selectNumberOnly}{Determine if the select all keyboard command will
+select the complete input text, or only the input numeric value.
+Defaults to TRUE.}
+
+\item{selectOnFocus}{Defines if the element value should be selected on
+focus. Note: The selection is done using the \code{selectNumberOnly} option.
+Defaults to TRUE.}
+
+\item{eventBubbles}{Defines if the custom and native events triggered by
+AutoNumeric should bubble up or not. Defaults to TRUE.}
+
+\item{eventIsCancelable}{Defines if the custom and native events triggered
+by AutoNumeric should be cancelable. Defaults to TRUE.}
+
+\item{formatOnPageLoad}{Determine if the default value will be formatted on
+initialization. Defaults to TRUE.}
+
+\item{formulaMode}{Defines if the formula mode can be activated by the user.
+If set to true, then the user can enter the formula mode by entering the '='
+character. The user will then be allowed to enter any simple math formula
+using numeric characters as well as the following operators: +, -, *, /, (
+and ). The formula mode is exited when the user either validate their math
+expression using the Enter key, or when the element is blurred. Defaults to
+FALSE.}
+
+\item{historySize}{Set the undo/redo history table size. Defaults to 20.}
+
+\item{isCancellable}{Allow the user to cancel and undo the changes he made
+to the given autonumeric-managed element, by pressing the \code{Escape}
+key. Defaults to TRUE.}
+
+\item{leadingZero}{This options describes if entering 0 on the far left of
+the numbers is allowed, and if the superfluous zeroes should be kept when
+the input is blurred. One of c("allow", "deny", and "keep"). Defaults to
+"deny". See \href{http://autonumeric.org/guide}{AutoNumeric documentation}
+for full details.}
+
+\item{maximumValue}{Defines the maximum possible value a user can enter.}
+
+\item{minimumValue}{Defines the minimum possible value a user can enter.}
+
+\item{modifyValueOnWheel}{Allows the user to increment or decrement the
+element value with the mouse wheel. The wheel behavior can be modified
+by the \code{wheelStep} option. Defaults to TRUE.}
+
+\item{wheelOn}{Defines when the wheel event will increment or decrement
+the element value. One of c("focus", "hover"). Defaults to "focus".}
+
+\item{wheelStep}{Defines by how much the element value should be
+incremented/decremented on the wheel event. Can be a set value or the
+string "progressive" which determines the step from the size of the input.
+Defaults to "progressive".}
+
+\item{negativeBracketsTypeOnBlur}{Adds brackets-like characters on negative
+values when unfocused. Those brackets are visible only when the field does
+not have the focus. The left and right symbols should be enclosed in
+quotes and separated by a comma.  Must be one of c("(,)", "[,]", "<,>",
+"{,}", "〈,〉", "｢,｣", "⸤,⸥", "⟦,⟧', "‹,›", "«,»", NULL) Defaults to NULL.}
+
+\item{negativePositiveSignPlacement}{Placement of the negative/positive sign
+relative to the \code{currencySymbol} option. One of c("p", "s", "l",
+"r", NULL), defaults to NULL. See
+\href{http://autonumeric.org/guide}{AutoNumeric documentation} for further
+documentation.}
+
+\item{negativeSignCharacter}{Defines the negative sign symbol to use. Must
+be a single character and be non-numeric. Defaults to "-".}
+
+\item{positiveSignCharacter}{Defines the positive sign symbol to use. Must
+be a single character and be non-numeric. Defaults to "+".}
+
+\item{showPositiveSign}{Allow the positive sign symbol
+\code{positiveSignCharacter} to be displayed for positive numbers.
+Defaults to FALSE.}
+
+\item{onInvalidPaste}{Manage how autoNumeric react when the user tries to
+paste an invalid number. One of c("error", "ignore", "clamp",
+"truncate", "replace"). Defaults to "error".}
+
+\item{overrideMinMaxLimits}{Override the minimum and maximum limits. Must
+be one of c("ceiling", "floor", "ignore", NULL). Defaults to "ceiling".}
+
+\item{readOnly}{Defines if the element (<input> or another allowed html tag)
+should be set as read only on initialization. Defaults to FALSE.}
+
+\item{roundingMethod}{Defines the rounding method to use. One of c("S", "A",
+"s", "a", "B", "U", "D", "C", "F", "N05", "CHF", "U05", "D05"). Defaults
+to "S".  See \href{http://autonumeric.org/guide}{AutoNumeric documentation}
+for further documentation.}
+
+\item{saveValueToSessionStorage}{Set to TRUE to allow the
+\code{decimalPlacesShownOnFocus} value to be saved with sessionStorage.
+Defaults to FALSE.}
+
+\item{serializeSpaces}{Defines how the serialize functions should treat the
+spaces.  Either "+" (default) or "\%20" (the older behavior).}
+
+\item{showOnlyNumbersOnFocus}{Defines if the element value should be
+converted to the raw value on focus or mouseenter, (and back to the
+formatted on blur or mouseleave). Defaults to FALSE.}
+
+\item{showWarnings}{Defines if warnings should be shown in the console.
+Defaults to TRUE.}
+
+\item{styleRules}{Defines the rules that calculate the CSS class(es) to
+apply on the element, based on the raw unformatted value. Defaults to
+NULL.}
+
+\item{suffixText}{Add a text on the right hand side of the element value.
+This suffix text can have any characters in its string, except numeric
+characters and the negative or positive sign. Defaults to NULL.}
+
+\item{unformatOnHover}{Defines if the element value should be unformatted
+when the user hover his mouse over it while holding the Alt key. Defaults
+to TRUE.}
+
+\item{valuesToStrings}{Provides a way for automatically replacing the
+formatted value with a pre-defined string, when the raw value is equal
+to a specific value. Defaults to NULL.}
+
+\item{watchExternalChanges}{Defines if the AutoNumeric element should watch
+external changes made without using \code{.set()}. Defaults to FALSE.}
+
+\item{decimalPlacesRawValueDefines}{How many decimal places should be kept
+for the raw value. If set to NULL (default) then \code{decimalPlaces} is
+used.}
+
+\item{symbolWhemUnfocused}{Defines the symbol placed as a suffix when not
+in focus or hovered. Defaults to NULL.}
 }
 \value{
-
+an autonumericInput Object to be used in the UI function of a Shiny
+  App.
 }
 \description{
 An `R` wrapper over the javascript `AutoNumeric` library, for
 formatting numeric inputs in shiny applications.
+}
+\examples{
+if (interactive()) {
+
+}
 }

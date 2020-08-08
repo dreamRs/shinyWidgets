@@ -37,7 +37,29 @@ A shiny widget for as-you-type formatting of currency. For a more modifiable
 version see \code{\link{autonumericInput}}.
 }
 \details{
+In regards to \code{format}, there are currently 41 sets of predefined
+options that can be used, most of which are variations of one another.
+The most common are:
 
+\itemize{
+  \item \code{"French"}
+  \item \code{"Spanish"}
+  \item \code{"NorthAmerican"}
+  \item \code{"British"}
+  \item \code{"Swiss"}
+  \item \code{"Japanese"}
+  \item \code{"Chinese"}
+  \item \code{"Brazilian"}
+  \item \code{"Turkish"}
+  \item \code{"euro"} (same as \code{"French"})
+  \item \code{"dollar"} (same as \code{"NorthAmerican"})
+  \item \code{"percentageEU2dec"}
+  \item \code{"percentageUS2dec"}
+}
+
+To see the full list please visit
+\href{https://github.com/autoNumeric/autoNumeric/#predefined-common-options}{this section}
+of the AutoNumeric Github Page.
 }
 \examples{
 if (interactive()) {
@@ -47,10 +69,24 @@ if (interactive()) {
   ui <- fluidPage(
     tags$h2("Currency Input"),
 
-    shinyWidgets:::currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
+    currencyInput(
+      inputId = "id1",
+      label = "Euro:",
+      value = 1234,
+      format = "euro",
+      width = 200,
+      align = "right"
+    ),
     verbatimTextOutput("res1"),
 
-    shinyWidgets:::currencyInput("id2", "Dollar:", value = 1234, format = "dollar", width = 200, align = "left"),
+    currencyInput(
+      inputId = "id2",
+      label = "Dollar:",
+      value = 1234,
+      format = "dollar",
+      width = 200,
+      align = "left"
+    ),
     verbatimTextOutput("res2")
   )
 
@@ -62,6 +98,10 @@ if (interactive()) {
   shinyApp(ui, server)
 
 }
+}
+\references{
+Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
+  \url{http://autonumeric.org}
 }
 \seealso{
 \code{\link{autonumericInput}}
