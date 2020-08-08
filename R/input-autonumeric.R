@@ -139,7 +139,7 @@ currencyInput <- function(inputId, label, value, format = "euro",
 #' @param decimalPlaces Defines the default number of decimal places to show
 #'   on the formatted value, and keep for the precision. Must be 0 or a
 #'   positive integer. Defaults to 2.
-#' @param decimalPlacesRawValueDefines How many decimal places should be kept
+#' @param decimalPlacesRawValue Defines How many decimal places should be kept
 #'   for the raw value. If set to NULL (default) then \code{decimalPlaces} is
 #'   used.
 #' @param decimalPlacesShownOnBlur Defines how many decimal places should be
@@ -258,7 +258,7 @@ currencyInput <- function(inputId, label, value, format = "euro",
 #' @param suffixText Add a text on the right hand side of the element value.
 #'   This suffix text can have any characters in its string, except numeric
 #'   characters and the negative or positive sign. Defaults to NULL.
-#' @param symbolWhemUnfocused Defines the symbol placed as a suffix when not
+#' @param symbolWhenUnfocused Defines the symbol placed as a suffix when not
 #'   in focus or hovered. Defaults to NULL.
 #' @param unformatOnHover Defines if the element value should be unformatted
 #'   when the user hover his mouse over it while holding the Alt key. Defaults
