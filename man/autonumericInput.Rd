@@ -94,6 +94,10 @@ zeros.  Defaults to TRUE.}
 on the formatted value, and keep for the precision. Must be 0 or a
 positive integer. Defaults to 2.}
 
+\item{decimalPlacesRawValue}{Defines How many decimal places should be kept
+for the raw value. If set to NULL (default) then \code{decimalPlaces} is
+used.}
+
 \item{decimalPlacesShownOnBlur}{Defines how many decimal places should be
 visible when the element is unfocused. If NULL (default) then
 \code{decimalPlaces} is used.}
@@ -248,6 +252,9 @@ NULL.}
 This suffix text can have any characters in its string, except numeric
 characters and the negative or positive sign. Defaults to NULL.}
 
+\item{symbolWhenUnfocused}{Defines the symbol placed as a suffix when not
+in focus or hovered. Defaults to NULL.}
+
 \item{unformatOnHover}{Defines if the element value should be unformatted
 when the user hover his mouse over it while holding the Alt key. Defaults
 to TRUE.}
@@ -258,24 +265,51 @@ to a specific value. Defaults to NULL.}
 
 \item{watchExternalChanges}{Defines if the AutoNumeric element should watch
 external changes made without using \code{.set()}. Defaults to FALSE.}
-
-\item{decimalPlacesRawValueDefines}{How many decimal places should be kept
-for the raw value. If set to NULL (default) then \code{decimalPlaces} is
-used.}
-
-\item{symbolWhemUnfocused}{Defines the symbol placed as a suffix when not
-in focus or hovered. Defaults to NULL.}
 }
 \value{
-an autonumericInput Object to be used in the UI function of a Shiny
+An autonumericInput object to be used in the UI function of a Shiny
   App.
 }
 \description{
-An `R` wrapper over the javascript `AutoNumeric` library, for
+An \code{R} wrapper over the javascript \code{AutoNumeric} library, for
 formatting numeric inputs in shiny applications.
+}
+\details{
+This function wraps the AutoNumeric.js library.  The parameter documentation
+provided here should be sufficient for most users, but for those wishing to
+use advanced configurations it is advised to look at the documentation on
+the \href{http://autonumeric.org/guide}{AutoNumeric website}.  Alexandre
+Bonneau has done a wonderful job of documenting all parameters and full
+explanations of all parameters and their associated values can be found
+there.
 }
 \examples{
 if (interactive()) {
+  library(shiny)
+  library(shinyWidgets)
 
+  ui <- fluidPage(
+    autonumericInput(
+      inputId = "id1",
+      label = "Autonumeric Input",
+      value = 1234.56,
+      align = "right",
+      currencySymbol = "$",
+      currencySymbolPlacement = "p",
+      decimalCharacter = ".",
+      digitGroupSeparator = ","
+    ),
+    verbatimTextOutput("res1")
+  )
+
+  server <- function(input, output, session) {
+    output$res1 <- renderPrint(input$id1)
+  }
+
+  shinyApp(ui, server)
 }
+}
+\references{
+Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
+  \url{http://autonumeric.org}
 }
