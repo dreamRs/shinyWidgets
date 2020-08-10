@@ -48,7 +48,15 @@ $.extend(currencyInputBinding, {
   },
 
   getState: function(el) {
-
+    return{
+      label: $(el)
+        .parent()
+        .parent()
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
+        .text(),
+      value: this[el.id].getNumber(),
+      options: this[el.id].getSettings()
+    };
   },
 
   getRatePolicy: function() {
@@ -174,7 +182,15 @@ $.extend(autonumericInputBinding, {
   },
 
   getState: function(el) {
-
+    return{
+      label: $(el)
+        .parent()
+        .parent()
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
+        .text(),
+      value: this[el.id].getNumber(),
+      options: this[el.id].getSettings()
+    };
   },
 
   getRatePolicy: function() {
