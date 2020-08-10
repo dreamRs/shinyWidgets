@@ -29,7 +29,22 @@ $.extend(currencyInputBinding, {
   },
 
   receiveMessage: function(el, data) {
+    if (data.hasOwnProperty("value")) {
+      this[el.id].set(data.value);
+    }
 
+    if (data.hasOwnProperty("format")) {
+      this[el.id].update(data.format);
+    }
+
+    if (data.hasOwnProperty("label"))
+      $(el)
+        .parent()
+        .parent()
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
+        .text(data.label);
+
+    $(el).trigger("change");
   },
 
   getState: function(el) {
@@ -120,17 +135,42 @@ $.extend(autonumericInputBinding, {
   },
 
   subscribe: function(el, callback) {
-    $(el).on("change keyup input", function(event) {
+    var config = $(el)
+      .parent()
+      .find('script[data-for="' + el.id + '"]');
+    config = JSON.parse(config.html());
+    if (config.immediate) {
+      $(el).on("keyup.autonumericInputBinding change.autonumericInputBinding", function(event) {
       callback();
     });
+    } else {
+      $(el).on("input.autonumericInputBinding", function(event) {
+      callback();
+    });
+    }
   },
 
   unsubscribe: function(el) {
-    $(el).off(".currencyInputBinding");
+    $(el).off(".autonumericInputBinding");
   },
 
   receiveMessage: function(el, data) {
+    if (data.hasOwnProperty("value")) {
+      this[el.id].set(data.value);
+    }
 
+    if (data.hasOwnProperty("options")) {
+      this[el.id].update(data.options);
+    }
+
+    if (data.hasOwnProperty("label"))
+      $(el)
+        .parent()
+        .parent()
+        .find('label[for="' + Shiny.$escape(el.id) + '"]')
+        .text(data.label);
+
+    $(el).trigger("change");
   },
 
   getState: function(el) {

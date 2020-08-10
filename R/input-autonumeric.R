@@ -113,6 +113,62 @@ currencyInput <- function(inputId, label, value, format = "euro",
   )
 }
 
+#' Update a Currency Input Widget
+#'
+#' @param session Standard shiny \code{session}.
+#' @param inputId The id of the input object.
+#' @param label The label to set for the input object.
+#' @param value The value to set for the input object.
+#' @param format The format to change the input object to.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
+#'
+#'   ui <- fluidPage(
+#'     tags$h2("Currency Input"),
+#'
+#'     shinyWidgets:::currencyInput(
+#'       inputId = "id1",
+#'       label = "Euro:",
+#'       value = 1234,
+#'       format = "euro",
+#'       width = 200,
+#'       align = "right"
+#'     ),
+#'     verbatimTextOutput("res1"),
+#'     actionButton("bttn1", "Change Euros to Dollars")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'
+#'     output$res1 <- renderPrint(input$id1)
+#'
+#'     observeEvent(input$bttn1, {
+#'       updateCurrencyInput(
+#'         session = session,
+#'         inputId = "id1",
+#'         label = "Dollar:",
+#'         format = "dollar"
+#'       )
+#'     })
+#'
+#'
+#'   }
+#'
+#'   shinyApp(ui, server)
+#' }
+updateCurrencyInput <- function(session, inputId,
+                                label = NULL,
+                                value = NULL,
+                                format = NULL) {
+  message <- dropNulls(list(label = label, value = value, format = format))
+  session$sendInputMessage(inputId, message)
+}
+
 #' Autonumeric Input Widget
 #'
 #' An \code{R} wrapper over the javascript \code{AutoNumeric} library, for
@@ -268,6 +324,9 @@ currencyInput <- function(inputId, label, value, format = "euro",
 #'   to a specific value. Defaults to NULL.
 #' @param watchExternalChanges Defines if the AutoNumeric element should watch
 #'   external changes made without using \code{.set()}. Defaults to FALSE.
+#' @param immediate If \code{TRUE} (default), server-side value is updated each
+#'  time a number is typed, if \code{FALSE} value is updated when user
+#'  unfocuses the element
 #'
 #' @details
 #' This function wraps the AutoNumeric.js library.  The parameter documentation
@@ -302,10 +361,25 @@ currencyInput <- function(inputId, label, value, format = "euro",
 #'       digitGroupSeparator = ","
 #'     ),
 #'     verbatimTextOutput("res1")
+#'
+#'     autonumericInput(
+#'       inputId = "id2",
+#'       label = "Custom Thousands of Dollars Input",
+#'       value = 1234.56,
+#'       align = "right",
+#'       currencySymbol = "$",
+#'       currencySymbolPlacement = "p",
+#'       decimalCharacter = ".",
+#'       digitGroupSeparator = ",",
+#'       divisorWhenUnfocused = 1000,
+#'       symbolWhenUnfocused = "K"
+#'     ),
+#'     verbatimTextOutput("res2")
 #'   )
 #'
 #'   server <- function(input, output, session) {
 #'     output$res1 <- renderPrint(input$id1)
+#'     output$res2 <- renderPrint(input$id2)
 #'   }
 #'
 #'   shinyApp(ui, server)
@@ -361,7 +435,8 @@ autonumericInput <- function(inputId, label, value,
                              symbolWhenUnfocused = "",
                              unformatOnHover = TRUE,
                              valuesToStrings = NULL,
-                             watchExternalChanges = FALSE) {
+                             watchExternalChanges = FALSE,
+                             immediate = TRUE) {
   value <- shiny::restoreInput(inputId, value)
 
   # Validate arguments
@@ -418,7 +493,8 @@ autonumericInput <- function(inputId, label, value,
       symbolWhenUnfocused = symbolWhenUnfocused,
       unformatOnHover = unformatOnHover,
       valuesToStrings = valuesToStrings,
-      watchExternalChanges = watchExternalChanges
+      watchExternalChanges = watchExternalChanges,
+      immediate = immediate
     ), function(x) {
       if (identical(x, TRUE))
         "true"
@@ -449,4 +525,70 @@ autonumericInput <- function(inputId, label, value,
     ),
     html_dependency_autonumeric()
   )
+}
+
+#' Update an Autonumeric Input Object
+#'
+#' @param session Standard shiny \code{session}.
+#' @param inputId The id of the input object.
+#' @param label The label to set for the input object.
+#' @param value The value to set for the input object.
+#' @param options List of additional parameters to update, use
+#'   \code{autonumericInput}'s arguments.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyWidgets)
+#'
+#'  ui <- fluidPage(
+#'    h1("AutonumericInput Update Example"),
+#'    br(),
+#'    shinyWidgets:::autonumericInput(
+#'      inputId = "id1",
+#'      label = "Autonumeric Input",
+#'      value = 1234.56,
+#'      align = "center",
+#'      currencySymbol = "$ ",
+#'      currencySymbolPlacement = "p",
+#'      decimalCharacter = ".",
+#'      digitGroupSeparator = ",",
+#'      divisorWhenUnfocused = 1000,
+#'      symbolWhenUnfocused = "K",
+#'      decimalPlacesShownOnBlur = 1
+#'    ),
+#'    verbatimTextOutput("res1"),
+#'    actionButton("change", "Update autonumeric Input")
+#'  )
+#'
+#'  server <- function(input, output, session) {
+#'    output$res1 <- renderPrint(input$id1)
+#'
+#'    observeEvent(input$change, {
+#'      updateAutonumericInput(
+#'        session = session,
+#'        inputId = "id1",
+#'        label = "Updated Label!",
+#'        value = 6543.21,
+#'        options = list(
+#'          currencySymbol = " #",
+#'          currencySymbolPlacement = "s",
+#'          decimalPlacesShownOnBlur = 2,
+#'          symbolWhenUnfocused = NULL,
+#'          divisorWhenUnfocused = NULL
+#'        )
+#'      )
+#'    })
+#'  }
+#'
+#'  shinyApp(ui, server)
+#' }
+updateAutonumericInput <- function(session, inputId,
+                                   label = NULL,
+                                   value = NULL,
+                                   options = NULL) {
+  message <- dropNulls(list(label = label, value = value, options = options))
+  session$sendInputMessage(inputId, message)
 }

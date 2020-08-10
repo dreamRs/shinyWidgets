@@ -58,7 +58,8 @@ autonumericInput(
   symbolWhenUnfocused = "",
   unformatOnHover = TRUE,
   valuesToStrings = NULL,
-  watchExternalChanges = FALSE
+  watchExternalChanges = FALSE,
+  immediate = TRUE
 )
 }
 \arguments{
@@ -265,6 +266,10 @@ to a specific value. Defaults to NULL.}
 
 \item{watchExternalChanges}{Defines if the AutoNumeric element should watch
 external changes made without using \code{.set()}. Defaults to FALSE.}
+
+\item{immediate}{If \code{TRUE} (default), server-side value is updated each
+time a number is typed, if \code{FALSE} value is updated when user
+unfocuses the element}
 }
 \value{
 An autonumericInput object to be used in the UI function of a Shiny
@@ -300,10 +305,25 @@ if (interactive()) {
       digitGroupSeparator = ","
     ),
     verbatimTextOutput("res1")
+
+    autonumericInput(
+      inputId = "id2",
+      label = "Custom Thousands of Dollars Input",
+      value = 1234.56,
+      align = "right",
+      currencySymbol = "$",
+      currencySymbolPlacement = "p",
+      decimalCharacter = ".",
+      digitGroupSeparator = ",",
+      divisorWhenUnfocused = 1000,
+      symbolWhenUnfocused = "K"
+    ),
+    verbatimTextOutput("res2")
   )
 
   server <- function(input, output, session) {
     output$res1 <- renderPrint(input$id1)
+    output$res2 <- renderPrint(input$id2)
   }
 
   shinyApp(ui, server)
