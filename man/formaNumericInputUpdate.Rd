@@ -2,9 +2,18 @@
 % Please edit documentation in R/input-autonumeric.R
 \name{updateCurrencyInput}
 \alias{updateCurrencyInput}
-\title{Update a Currency Input Widget}
+\alias{updateFormatNumericInput}
+\title{Update a Formatted Numeric Input Widget}
 \usage{
 updateCurrencyInput(
+  session,
+  inputId,
+  label = NULL,
+  value = NULL,
+  format = NULL
+)
+
+updateFormatNumericInput(
   session,
   inputId,
   label = NULL,
@@ -24,7 +33,7 @@ updateCurrencyInput(
 \item{format}{The format to change the input object to.}
 }
 \description{
-Update a Currency Input Widget
+Update a Formatted Numeric Input Widget
 }
 \examples{
 if (interactive()) {

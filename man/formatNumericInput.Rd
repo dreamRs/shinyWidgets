@@ -2,13 +2,23 @@
 % Please edit documentation in R/input-autonumeric.R
 \name{currencyInput}
 \alias{currencyInput}
-\title{Currency Input Widget}
+\alias{formatNumericInput}
+\title{Format Numeric Inputs}
 \usage{
 currencyInput(
   inputId,
   label,
   value,
   format = "euro",
+  width = NULL,
+  align = "center"
+)
+
+formatNumericInput(
+  inputId,
+  label,
+  value,
+  format = "commaDecimalCharDotSeparator",
   width = NULL,
   align = "center"
 )
@@ -33,8 +43,10 @@ input.  See "Details" for possible values.}
 a currency input widget that can be added to the UI of a shiny app.
 }
 \description{
-A shiny widget for as-you-type formatting of currency. For a more modifiable
-version see \code{\link{autonumericInput}}.
+Shiny widgets for as-you-type formatting of currency and numeric values. For
+a more modifiable version see \code{\link{autonumericInput}}. These two
+functions do the exact same thing but are named differently for more
+intuitive use (currency for money, formatNumeric for percentage or other).
 }
 \details{
 In regards to \code{format}, there are currently 41 sets of predefined
@@ -55,6 +67,8 @@ The most common are:
   \item \code{"dollar"} (same as \code{"NorthAmerican"})
   \item \code{"percentageEU2dec"}
   \item \code{"percentageUS2dec"}
+  \item \code{"dotDecimalCharCommaSeparator"}
+  \item \code{"commaDecimalCharDotSeparator"}
 }
 
 To see the full list please visit
@@ -76,13 +90,24 @@ if (interactive()) {
     verbatimTextOutput("res2"),
 
     currencyInput("id3", "Yen:", value = 1234, format = "Japanese", width = 200, align = "right"),
-    verbatimTextOutput("res3")
+    verbatimTextOutput("res3"),
+
+    br(),
+    tags$h2("Formatted Numeric Input"),
+
+    formatNumericInput("id4", "Numeric:", value = 1234, width = 200),
+    verbatimTextOutput("res4"),
+
+    formatNumericInput("id5", "Percent:", value = 1234, width = 200, format = "percentageEU2dec"),
+    verbatimTextOutput("res5")
   )
 
   server <- function(input, output, session) {
     output$res1 <- renderPrint(input$id1)
     output$res2 <- renderPrint(input$id2)
     output$res3 <- renderPrint(input$id3)
+    output$res4 <- renderPrint(input$id4)
+    output$res5 <- renderPrint(input$id5)
   }
 
   shinyApp(ui, server)

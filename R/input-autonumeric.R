@@ -1,8 +1,12 @@
 
-#' Currency Input Widget
+#' Format Numeric Inputs
 #'
-#' A shiny widget for as-you-type formatting of currency. For a more modifiable
-#' version see \code{\link{autonumericInput}}.
+#' Shiny widgets for as-you-type formatting of currency and numeric values. For
+#' a more modifiable version see \code{\link{autonumericInput}}. These two
+#' functions do the exact same thing but are named differently for more
+#' intuitive use (currency for money, formatNumeric for percentage or other).
+#'
+#' @rdname formatNumericInput
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or NULL for no label.
@@ -33,6 +37,8 @@
 #'   \item \code{"dollar"} (same as \code{"NorthAmerican"})
 #'   \item \code{"percentageEU2dec"}
 #'   \item \code{"percentageUS2dec"}
+#'   \item \code{"dotDecimalCharCommaSeparator"}
+#'   \item \code{"commaDecimalCharDotSeparator"}
 #' }
 #'
 #' To see the full list please visit
@@ -62,13 +68,24 @@
 #'     verbatimTextOutput("res2"),
 #'
 #'     currencyInput("id3", "Yen:", value = 1234, format = "Japanese", width = 200, align = "right"),
-#'     verbatimTextOutput("res3")
+#'     verbatimTextOutput("res3"),
+#'
+#'     br(),
+#'     tags$h2("Formatted Numeric Input"),
+#'
+#'     formatNumericInput("id4", "Numeric:", value = 1234, width = 200),
+#'     verbatimTextOutput("res4"),
+#'
+#'     formatNumericInput("id5", "Percent:", value = 1234, width = 200, format = "percentageEU2dec"),
+#'     verbatimTextOutput("res5")
 #'   )
 #'
 #'   server <- function(input, output, session) {
 #'     output$res1 <- renderPrint(input$id1)
 #'     output$res2 <- renderPrint(input$id2)
 #'     output$res3 <- renderPrint(input$id3)
+#'     output$res4 <- renderPrint(input$id4)
+#'     output$res5 <- renderPrint(input$id5)
 #'   }
 #'
 #'   shinyApp(ui, server)
@@ -102,7 +119,13 @@ currencyInput <- function(inputId, label, value, format = "euro",
   )
 }
 
-#' Update a Currency Input Widget
+#' @rdname formatNumericInput
+formatNumericInput <- function(inputId, label, value, format = "commaDecimalCharDotSeparator",
+                               width = NULL, align = "center") {
+  currencyInput(inputId, label, value, format, width, align)
+}
+
+#' Update a Formatted Numeric Input Widget
 #'
 #' @param session Standard shiny \code{session}.
 #' @param inputId The id of the input object.
@@ -111,6 +134,7 @@ currencyInput <- function(inputId, label, value, format = "euro",
 #' @param format The format to change the input object to.
 #'
 #' @export
+#' @rdname formaNumericInputUpdate
 #'
 #' @family autonumeric
 #'
@@ -167,6 +191,15 @@ updateCurrencyInput <- function(session, inputId,
                                 label = NULL,
                                 value = NULL,
                                 format = NULL) {
+  message <- dropNulls(list(label = label, value = value, format = format))
+  session$sendInputMessage(inputId, message)
+}
+
+#' @rdname formaNumericInputUpdate
+updateFormatNumericInput <- function(session, inputId,
+                                     label = NULL,
+                                     value = NULL,
+                                     format = NULL) {
   message <- dropNulls(list(label = label, value = value, format = format))
   session$sendInputMessage(inputId, message)
 }
