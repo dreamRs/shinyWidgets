@@ -39,13 +39,13 @@
 #' \href{https://github.com/autoNumeric/autoNumeric/#predefined-common-options}{this section}
 #' of the AutoNumeric Github Page.
 #'
-#' @seealso \code{\link{autonumericInput}}
-#'
 #' @references Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
 #'   \url{http://autonumeric.org}
 #'
 #' @return a currency input widget that can be added to the UI of a shiny app.
 #' @export
+#'
+#' @family autonumeric
 #'
 #' @examples
 #' if (interactive()) {
@@ -55,34 +55,23 @@
 #'   ui <- fluidPage(
 #'     tags$h2("Currency Input"),
 #'
-#'     currencyInput(
-#'       inputId = "id1",
-#'       label = "Euro:",
-#'       value = 1234,
-#'       format = "euro",
-#'       width = 200,
-#'       align = "right"
-#'     ),
+#'     currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
 #'     verbatimTextOutput("res1"),
 #'
-#'     currencyInput(
-#'       inputId = "id2",
-#'       label = "Dollar:",
-#'       value = 1234,
-#'       format = "dollar",
-#'       width = 200,
-#'       align = "left"
-#'     ),
-#'     verbatimTextOutput("res2")
+#'     currencyInput("id2", "Dollar:", value = 1234, format = "dollar", width = 200, align = "right"),
+#'     verbatimTextOutput("res2"),
+#'
+#'     currencyInput("id3", "Yen:", value = 1234, format = "Japanese", width = 200, align = "right"),
+#'     verbatimTextOutput("res3")
 #'   )
 #'
 #'   server <- function(input, output, session) {
 #'     output$res1 <- renderPrint(input$id1)
 #'     output$res2 <- renderPrint(input$id2)
+#'     output$res3 <- renderPrint(input$id3)
 #'   }
 #'
 #'   shinyApp(ui, server)
-#'
 #' }
 currencyInput <- function(inputId, label, value, format = "euro",
                           width = NULL, align = "center") {
@@ -96,7 +85,7 @@ currencyInput <- function(inputId, label, value, format = "euro",
       style = paste0("text-align: ", align, "; font-size: 1.5rem;"),
       value = value,
       id = inputId,
-      class = "form-control currency-input"
+      class = "form-control autonumeric-input"
     ),
     tags$script(
       type = "application/json",
@@ -123,6 +112,8 @@ currencyInput <- function(inputId, label, value, format = "euro",
 #'
 #' @export
 #'
+#' @family autonumeric
+#'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
@@ -131,28 +122,39 @@ currencyInput <- function(inputId, label, value, format = "euro",
 #'   ui <- fluidPage(
 #'     tags$h2("Currency Input"),
 #'
-#'     shinyWidgets:::currencyInput(
-#'       inputId = "id1",
-#'       label = "Euro:",
-#'       value = 1234,
-#'       format = "euro",
-#'       width = 200,
-#'       align = "right"
-#'     ),
+#'     currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
 #'     verbatimTextOutput("res1"),
-#'     actionButton("bttn1", "Change Euros to Dollars")
+#'     actionButton("bttn0", "Change Input to Euros"),
+#'     actionButton("bttn1", "Change Input to Dollars"),
+#'     actionButton("bttn2", "Change Input to Yen")
 #'   )
 #'
 #'   server <- function(input, output, session) {
 #'
 #'     output$res1 <- renderPrint(input$id1)
 #'
+#'     observeEvent(input$bttn0, {
+#'       updateCurrencyInput(
+#'         session = session,
+#'         inputId = "id1",
+#'         label = "Euro:",
+#'         format = "euro"
+#'       )
+#'     })
 #'     observeEvent(input$bttn1, {
 #'       updateCurrencyInput(
 #'         session = session,
 #'         inputId = "id1",
 #'         label = "Dollar:",
 #'         format = "dollar"
+#'       )
+#'     })
+#'     observeEvent(input$bttn2, {
+#       updateCurrencyInput(
+#'         session = session,
+#'         inputId = "id1",
+#'         label = "Yen:",
+#'         format = "Japanese"
 #'       )
 #'     })
 #'
@@ -195,138 +197,19 @@ updateCurrencyInput <- function(session, inputId,
 #' @param decimalPlaces Defines the default number of decimal places to show
 #'   on the formatted value, and keep for the precision. Must be 0 or a
 #'   positive integer. Defaults to 2.
-#' @param decimalPlacesRawValue Defines How many decimal places should be kept
-#'   for the raw value. If set to NULL (default) then \code{decimalPlaces} is
-#'   used.
-#' @param decimalPlacesShownOnBlur Defines how many decimal places should be
-#'   visible when the element is unfocused. If NULL (default) then
-#'   \code{decimalPlaces} is used.
-#' @param decimalPlacesShownOnFocus Defines how many decimal places should be
-#'   visible when the element has the focus. If NULL (default) then
-#'   \code{decimalPlaces} is used.
-#' @param digitalGroupSpacing Defines how many numbers should be grouped
-#'   together for the thousands separator groupings.  Must be one of
-#'   c("2", "2s", "3", "4"). Defaults to 3.
-#' @param alwaysAllowDecimalCharacter Defines if the decimal character or
-#'   decimal character alternative should be accepted when there is already
-#'   a decimal character shown in the element. If set to TRUE, any decimal
-#'   character input will be accepted and will subsequently modify the decimal
-#'   character position, as well as the rawValue. If set to FALSE, the decimal
-#'   character and its alternative key will be dropped. This is the default
-#'   setting.
-#' @param createLocalList Defines if a local list of AutoNumeric objects should
-#'   be kept when initializing this object. Defaults to TRUE.
-#' @param decimalCharacterAlternative Allow to declare an alternative decimal
-#'   separator which is automatically replaced by \code{decimalCharacter} when
-#'   typed. This is useful for countries that use a comma ',' as the decimal
-#'   character and have keyboards with numeric pads providing a period '.' as
-#'   the decimal character (in France or Spain for instance). Must be NULL
-#'   (default), ",", or ".".
 #' @param divisorWhenUnfocused The number that divides the element value on
 #'   blur.  On focus, the number is multiplied back in. Defaults to NULL.
 #' @param rawValueDivisor Divides the formatted value shown in the AutoNumeric
-#'   element and store the divided result in \code{rawValue}. Defaults to NULL.
-#' @param emptyInputBehavior Defines what should be displayed in the element if
-#'   the raw value is missing. One of c(NULL, "focus", "press", "always", "min",
-#'   "max", "zero") or a custom value. Defaults to NULL.  See
-#'   \href{http://autonumeric.org/guide}{AutoNumeric documentation} for full
-#'   details.
-#' @param selectNumberOnly Determine if the select all keyboard command will
-#'   select the complete input text, or only the input numeric value.
-#'   Defaults to TRUE.
-#' @param selectOnFocus Defines if the element value should be selected on
-#' focus. Note: The selection is done using the \code{selectNumberOnly} option.
-#' Defaults to TRUE.
-#' @param eventBubbles Defines if the custom and native events triggered by
-#'   AutoNumeric should bubble up or not. Defaults to TRUE.
-#' @param eventIsCancelable Defines if the custom and native events triggered
-#'   by AutoNumeric should be cancelable. Defaults to TRUE.
+#'   element and store the divided result in \code{rawValue}. Defaults to 1.
 #' @param formatOnPageLoad Determine if the default value will be formatted on
 #'   initialization. Defaults to TRUE.
-#' @param formulaMode Defines if the formula mode can be activated by the user.
-#'   If set to true, then the user can enter the formula mode by entering the '='
-#'   character. The user will then be allowed to enter any simple math formula
-#'   using numeric characters as well as the following operators: +, -, *, /, (
-#'   and ). The formula mode is exited when the user either validate their math
-#'   expression using the Enter key, or when the element is blurred. Defaults to
-#'   FALSE.
-#' @param historySize Set the undo/redo history table size. Defaults to 20.
-#' @param isCancellable Allow the user to cancel and undo the changes he made
-#'   to the given autonumeric-managed element, by pressing the \code{Escape}
-#'   key. Defaults to TRUE.
-#' @param leadingZero This options describes if entering 0 on the far left of
-#'   the numbers is allowed, and if the superfluous zeroes should be kept when
-#'   the input is blurred. One of c("allow", "deny", and "keep"). Defaults to
-#'   "deny". See \href{http://autonumeric.org/guide}{AutoNumeric documentation}
-#'   for full details.
 #' @param maximumValue Defines the maximum possible value a user can enter.
 #' @param minimumValue Defines the minimum possible value a user can enter.
 #' @param modifyValueOnWheel Allows the user to increment or decrement the
 #'   element value with the mouse wheel. The wheel behavior can be modified
 #'   by the \code{wheelStep} option. Defaults to TRUE.
-#' @param wheelOn Defines when the wheel event will increment or decrement
-#' the element value. One of c("focus", "hover"). Defaults to "focus".
-#' @param wheelStep Defines by how much the element value should be
-#'   incremented/decremented on the wheel event. Can be a set value or the
-#'   string "progressive" which determines the step from the size of the input.
-#'   Defaults to "progressive".
-#' @param negativeBracketsTypeOnBlur Adds brackets-like characters on negative
-#'   values when unfocused. Those brackets are visible only when the field does
-#'   not have the focus. The left and right symbols should be enclosed in
-#'   quotes and separated by a comma.  Must be one of c("(,)", "[,]", "<,>",
-#'   "{,}", "〈,〉", "｢,｣", "⸤,⸥", "⟦,⟧', "‹,›", "«,»", NULL) Defaults to NULL.
-#' @param negativePositiveSignPlacement Placement of the negative/positive sign
-#'   relative to the \code{currencySymbol} option. One of c("p", "s", "l",
-#'   "r", NULL), defaults to NULL. See
-#'   \href{http://autonumeric.org/guide}{AutoNumeric documentation} for further
-#'   documentation.
-#' @param negativeSignCharacter Defines the negative sign symbol to use. Must
-#'   be a single character and be non-numeric. Defaults to "-".
-#' @param positiveSignCharacter Defines the positive sign symbol to use. Must
-#'   be a single character and be non-numeric. Defaults to "+".
-#' @param showPositiveSign Allow the positive sign symbol
-#'   \code{positiveSignCharacter} to be displayed for positive numbers.
-#'   Defaults to FALSE.
-#' @param onInvalidPaste Manage how autoNumeric react when the user tries to
-#'   paste an invalid number. One of c("error", "ignore", "clamp",
-#'   "truncate", "replace"). Defaults to "error".
-#' @param overrideMinMaxLimits Override the minimum and maximum limits. Must
-#'   be one of c("ceiling", "floor", "ignore", NULL). Defaults to "ceiling".
-#' @param readOnly Defines if the element (<input> or another allowed html tag)
-#'   should be set as read only on initialization. Defaults to FALSE.
-#' @param roundingMethod Defines the rounding method to use. One of c("S", "A",
-#'   "s", "a", "B", "U", "D", "C", "F", "N05", "CHF", "U05", "D05"). Defaults
-#'   to "S".  See \href{http://autonumeric.org/guide}{AutoNumeric documentation}
-#'   for further documentation.
-#' @param saveValueToSessionStorage Set to TRUE to allow the
-#'   \code{decimalPlacesShownOnFocus} value to be saved with sessionStorage.
-#'   Defaults to FALSE.
-#' @param serializeSpaces Defines how the serialize functions should treat the
-#'   spaces.  Either "+" (default) or "\%20" (the older behavior).
-#' @param showOnlyNumbersOnFocus Defines if the element value should be
-#'   converted to the raw value on focus or mouseenter, (and back to the
-#'   formatted on blur or mouseleave). Defaults to FALSE.
-#' @param showWarnings Defines if warnings should be shown in the console.
-#'   Defaults to TRUE.
-#' @param styleRules Defines the rules that calculate the CSS class(es) to
-#'   apply on the element, based on the raw unformatted value. Defaults to
-#'   NULL.
-#' @param suffixText Add a text on the right hand side of the element value.
-#'   This suffix text can have any characters in its string, except numeric
-#'   characters and the negative or positive sign. Defaults to NULL.
-#' @param symbolWhenUnfocused Defines the symbol placed as a suffix when not
-#'   in focus or hovered. Defaults to NULL.
-#' @param unformatOnHover Defines if the element value should be unformatted
-#'   when the user hover his mouse over it while holding the Alt key. Defaults
-#'   to TRUE.
-#' @param valuesToStrings Provides a way for automatically replacing the
-#'   formatted value with a pre-defined string, when the raw value is equal
-#'   to a specific value. Defaults to NULL.
-#' @param watchExternalChanges Defines if the AutoNumeric element should watch
-#'   external changes made without using \code{.set()}. Defaults to FALSE.
-#' @param immediate If \code{TRUE} (default), server-side value is updated each
-#'  time a number is typed, if \code{FALSE} value is updated when user
-#'  unfocuses the element
+#' @param ... Additional parameters that can be passed to AutoNumeric.  See
+#'   details for more information.
 #'
 #' @details
 #' This function wraps the AutoNumeric.js library.  The parameter documentation
@@ -337,9 +220,136 @@ updateCurrencyInput <- function(session, inputId,
 #' explanations of all parameters and their associated values can be found
 #' there.
 #'
+#' The \code{...} parameter can take any of the arguments listed on the
+#' \href{http://autonumeric.org/guide}{AutoNumeric website}. A quick reference
+#' follows:
+#'
+#' \itemize{
+#'   \item{decimalPlacesRawValue - Defines How many decimal places should be kept
+#'   for the raw value. If set to NULL (default) then \code{decimalPlaces} is
+#'   used.}
+#'   \item{decimalPlacesShownOnBlur - Defines how many decimal places should be
+#'   visible when the element is unfocused. If NULL (default) then
+#'   \code{decimalPlaces} is used.}
+#'   \item{decimalPlacesShownOnFocus - Defines how many decimal places should be
+#'   visible when the element has the focus. If NULL (default) then
+#'   \code{decimalPlaces} is used.}
+#'   \item{digitalGroupSpacing - Defines how many numbers should be grouped
+#'   together for the thousands separator groupings.  Must be one of
+#'   c("2", "2s", "3", "4"). Defaults to 3.}
+#'  \item {alwaysAllowDecimalCharacter - Defines if the decimal character or
+#'   decimal character alternative should be accepted when there is already
+#'   a decimal character shown in the element. If set to TRUE, any decimal
+#'   character input will be accepted and will subsequently modify the decimal
+#'   character position, as well as the rawValue. If set to FALSE, the decimal
+#'   character and its alternative key will be dropped. This is the default
+#'   setting.}
+#'   \item {createLocalList - Defines if a local list of AutoNumeric objects should
+#'   be kept when initializing this object. Defaults to TRUE.}
+#'   \item {decimalCharacterAlternative - Allow to declare an alternative decimal
+#'   separator which is automatically replaced by \code{decimalCharacter} when
+#'   typed. This is useful for countries that use a comma ',' as the decimal
+#'   character and have keyboards with numeric pads providing a period '.' as
+#'   the decimal character (in France or Spain for instance). Must be NULL
+#'   (default), ",", or ".".}
+#'   \item {emptyInputBehavior - Defines what should be displayed in the element if
+#'   the raw value is missing. One of c(NULL, "focus", "press", "always", "min",
+#'   "max", "zero") or a custom value. Defaults to NULL.  See
+#'   \href{http://autonumeric.org/guide}{AutoNumeric documentation} for full
+#'   details.}
+#'   \item {selectNumberOnly - Determine if the select all keyboard command will
+#'   select the complete input text, or only the input numeric value.
+#'   Defaults to TRUE.}
+#'   \item {selectOnFocus - Defines if the element value should be selected on
+#'   focus. Note: The selection is done using the \code{selectNumberOnly} option.
+#'   Defaults to TRUE.}
+#'   \item {eventBubbles - Defines if the custom and native events triggered by
+#'   AutoNumeric should bubble up or not. Defaults to TRUE.}
+#'   \item {eventIsCancelable - Defines if the custom and native events triggered
+#'   by AutoNumeric should be cancelable. Defaults to TRUE.}
+#'   \item {formulaMode - Defines if the formula mode can be activated by the user.
+#'   If set to true, then the user can enter the formula mode by entering the '='
+#'   character. The user will then be allowed to enter any simple math formula
+#'   using numeric characters as well as the following operators: +, -, *, /, (
+#'   and ). The formula mode is exited when the user either validate their math
+#'   expression using the Enter key, or when the element is blurred. Defaults to
+#'   FALSE.}
+#'   \item {historySize - Set the undo/redo history table size. Defaults to 20.}
+#'   \item {isCancellable - Allow the user to cancel and undo the changes he made
+#'   to the given autonumeric-managed element, by pressing the \code{Escape}
+#'   key. Defaults to TRUE.}
+#'   \item {leadingZero - This options describes if entering 0 on the far left of
+#'   the numbers is allowed, and if the superfluous zeroes should be kept when
+#'   the input is blurred. One of c("allow", "deny", and "keep"). Defaults to
+#'   "deny". See \href{http://autonumeric.org/guide}{AutoNumeric documentation}
+#'   for full details.}
+#'   \item {wheelOn - Defines when the wheel event will increment or decrement
+#'   the element value. One of c("focus", "hover"). Defaults to "focus".}
+#'   \item {wheelStep - Defines by how much the element value should be
+#'   incremented/decremented on the wheel event. Can be a set value or the
+#'   string "progressive" which determines the step from the size of the input.
+#'   Defaults to "progressive".}
+#'   \item {negativeBracketsTypeOnBlur - Adds brackets-like characters on negative
+#'   values when unfocused. Those brackets are visible only when the field does
+#'   not have the focus. The left and right symbols should be enclosed in
+#'   quotes and separated by a comma.  Must be one of c("(,)", "[,]", "<,>",
+#'   "{,}", "〈,〉", "｢,｣", "⸤,⸥", "⟦,⟧', "‹,›", "«,»", NULL) Defaults to NULL.}
+#'   \item {negativePositiveSignPlacement - Placement of the negative/positive sign
+#'   relative to the \code{currencySymbol} option. One of c("p", "s", "l",
+#'   "r", NULL), defaults to NULL. See
+#'   \href{http://autonumeric.org/guide}{AutoNumeric documentation} for further
+#'   documentation.}
+#'   \item {negativeSignCharacter - Defines the negative sign symbol to use. Must
+#'   be a single character and be non-numeric. Defaults to "-".}
+#'   \item {positiveSignCharacter - Defines the positive sign symbol to use. Must
+#'   be a single character and be non-numeric. Defaults to "+".}
+#'   \item {showPositiveSign - Allow the positive sign symbol}
+#'   \code{positiveSignCharacter} to be displayed for positive numbers.
+#'   Defaults to FALSE.
+#'   \item {onInvalidPaste - Manage how autoNumeric react when the user tries to
+#'   paste an invalid number. One of c("error", "ignore", "clamp",
+#'   "truncate", "replace"). Defaults to "error".}
+#'   \item {overrideMinMaxLimits - Override the minimum and maximum limits. Must
+#'   be one of c("ceiling", "floor", "ignore", NULL). Defaults to "ceiling".}
+#'   \item {readOnly - Defines if the element (<input> or another allowed html tag)
+#'   should be set as read only on initialization. Defaults to FALSE.}
+#'   \item {roundingMethod - Defines the rounding method to use. One of c("S", "A",
+#'   "s", "a", "B", "U", "D", "C", "F", "N05", "CHF", "U05", "D05"). Defaults
+#'   to "S".  See \href{http://autonumeric.org/guide}{AutoNumeric documentation}
+#'   for further documentation.}
+#'   \item {saveValueToSessionStorage - Set to TRUE to allow the
+#'   \code{decimalPlacesShownOnFocus} value to be saved with sessionStorage.
+#'   Defaults to FALSE.}
+#'   \item {serializeSpaces - Defines how the serialize functions should treat the
+#'   spaces.  Either "+" (default) or "\%20" (the older behavior).}
+#'   \item {showOnlyNumbersOnFocus - Defines if the element value should be
+#'   converted to the raw value on focus or mouseenter, (and back to the
+#'   formatted on blur or mouseleave). Defaults to FALSE.}
+#'   \item {showWarnings - Defines if warnings should be shown in the console.
+#'   Defaults to TRUE.}
+#'   \item {styleRules - Defines the rules that calculate the CSS class(es) to
+#'   apply on the element, based on the raw unformatted value. Defaults to
+#'   NULL.}
+#'   \item {suffixText - Add a text on the right hand side of the element value.
+#'   This suffix text can have any characters in its string, except numeric
+#'   characters and the negative or positive sign. Defaults to NULL.}
+#'   \item {symbolWhenUnfocused - Defines the symbol placed as a suffix when not
+#'   in focus or hovered. Defaults to NULL.}
+#'   \item {unformatOnHover - Defines if the element value should be unformatted
+#'   when the user hover his mouse over it while holding the Alt key. Defaults
+#'   to TRUE.}
+#'   \item {valuesToStrings - Provides a way for automatically replacing the
+#'   formatted value with a pre-defined string, when the raw value is equal
+#'   to a specific value. Defaults to NULL.}
+#'   \item {watchExternalChanges - Defines if the AutoNumeric element should watch
+#'   external changes made without using \code{.set()}. Defaults to FALSE.}
+#' }
+#'
 #' @return An autonumericInput object to be used in the UI function of a Shiny
 #'   App.
 #' @export
+#'
+#' @family autonumeric
 #'
 #' @references Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
 #'   \url{http://autonumeric.org}
@@ -350,17 +360,14 @@ updateCurrencyInput <- function(session, inputId,
 #'   library(shinyWidgets)
 #'
 #'   ui <- fluidPage(
+#'     h1("Autonumeric Inputs"),
+#'     br(),
 #'     autonumericInput(
 #'       inputId = "id1",
-#'       label = "Autonumeric Input",
-#'       value = 1234.56,
-#'       align = "right",
-#'       currencySymbol = "$",
-#'       currencySymbolPlacement = "p",
-#'       decimalCharacter = ".",
-#'       digitGroupSeparator = ","
+#'       label = "Default Input",
+#'       value = 1234.56
 #'     ),
-#'     verbatimTextOutput("res1")
+#'     verbatimTextOutput("res1"),
 #'
 #'     autonumericInput(
 #'       inputId = "id2",
@@ -374,12 +381,28 @@ updateCurrencyInput <- function(session, inputId,
 #'       divisorWhenUnfocused = 1000,
 #'       symbolWhenUnfocused = "K"
 #'     ),
-#'     verbatimTextOutput("res2")
+#'     verbatimTextOutput("res2"),
+#'
+#'     autonumericInput(
+#'       inputId = "id3",
+#'       label = "Custom Millions of Euros Input with Positive Sign",
+#'       value = 12345678910,
+#'       align = "right",
+#'       currencySymbol = " €",
+#'       currencySymbolPlacement = "s",
+#'       decimalCharacter = ",",
+#'       digitGroupSeparator = ".",
+#'       divisorWhenUnfocused = 1000000,
+#'       symbolWhenUnfocused = " (millions)",
+#'       showPositiveSign = TRUE
+#'     ),
+#'     verbatimTextOutput("res3")
 #'   )
 #'
 #'   server <- function(input, output, session) {
 #'     output$res1 <- renderPrint(input$id1)
 #'     output$res2 <- renderPrint(input$id2)
+#'     output$res3 <- renderPrint(input$id3)
 #'   }
 #'
 #'   shinyApp(ui, server)
@@ -387,125 +410,49 @@ updateCurrencyInput <- function(session, inputId,
 autonumericInput <- function(inputId, label, value,
                              width = NULL,
                              align = "center",
-                             currencySymbol = "",
-                             currencySymbolPlacement = "s",
-                             decimalCharacter = ",",
-                             digitGroupSeparator = ".",
-                             allowDecimalPadding = TRUE,
-                             decimalPlaces = 2,
-                             decimalPlacesRawValue = NULL,
-                             decimalPlacesShownOnBlur = NULL,
-                             decimalPlacesShownOnFocus = NULL,
-                             digitalGroupSpacing = 3,
-                             alwaysAllowDecimalCharacter = FALSE,
-                             createLocalList = TRUE,
-                             decimalCharacterAlternative = NULL,
+                             currencySymbol = NULL,
+                             currencySymbolPlacement = NULL,
+                             decimalCharacter = NULL,
+                             digitGroupSeparator = NULL,
+                             allowDecimalPadding = NULL,
+                             decimalPlaces = NULL,
                              divisorWhenUnfocused = NULL,
                              rawValueDivisor = NULL,
-                             emptyInputBehavior = "focus",
-                             selectNumberOnly = TRUE,
-                             selectOnFocus = TRUE,
-                             eventBubbles = TRUE,
-                             eventIsCancelable = TRUE,
-                             formatOnPageLoad = TRUE,
-                             formulaMode = FALSE,
-                             historySize = 20,
-                             isCancellable = TRUE,
-                             leadingZero = "deny",
-                             maximumValue = 1000000000000,
-                             minimumValue = -1000000000000,
-                             modifyValueOnWheel = TRUE,
-                             wheelOn = "focus",
-                             wheelStep = "progressive",
-                             negativeBracketsTypeOnBlur = NULL,
-                             negativePositiveSignPlacement = NULL,
-                             negativeSignCharacter = "-",
-                             positiveSignCharacter = "+",
-                             showPositiveSign = FALSE,
-                             onInvalidPaste = "error",
-                             overrideMinMaxLimits = "ceiling",
-                             readOnly = FALSE,
-                             roundingMethod = "S",
-                             saveValueToSessionStorage = FALSE,
-                             serializeSpaces = "+",
-                             showOnlyNumbersOnFocus = FALSE,
-                             showWarnings = TRUE,
-                             styleRules = NULL,
-                             suffixText = NULL,
-                             symbolWhenUnfocused = "",
-                             unformatOnHover = TRUE,
-                             valuesToStrings = NULL,
-                             watchExternalChanges = FALSE,
-                             immediate = TRUE) {
+                             formatOnPageLoad = NULL,
+                             maximumValue = NULL,
+                             minimumValue = NULL,
+                             modifyValueOnWheel = NULL,
+                             ...) {
   value <- shiny::restoreInput(inputId, value)
 
   # Validate arguments
-  if (!(currencySymbolPlacement %in% c("p", "s")))
-    warning("parameter `currencySymbolPlacement` must be one of c('p', 's')")
+  # if (!(currencySymbolPlacement %in% c("p", "s")))
+  #   warning("parameter `currencySymbolPlacement` must be one of c('p', 's')")
 
   data <- jsonlite::toJSON(
-    x = lapply(list(
-      currencySymbol = currencySymbol,
-      currencySymbolPlacement = currencySymbolPlacement,
-      decimalCharacter = decimalCharacter,
-      digitGroupSeparator = digitGroupSeparator,
-      allowDecimalPadding = allowDecimalPadding,
-      decimalPlaces = decimalPlaces,
-      decimalPlacesRawValue = decimalPlacesRawValue,
-      decimalPlacesShownOnBlur = decimalPlacesShownOnBlur,
-      decimalPlacesShownOnFocus = decimalPlacesShownOnFocus,
-      digitalGroupSpacing = digitalGroupSpacing,
-      alwaysAllowDecimalCharacter = alwaysAllowDecimalCharacter,
-      createLocalList = createLocalList,
-      decimalCharacterAlternative = decimalCharacterAlternative,
-      divisorWhenUnfocused = divisorWhenUnfocused,
-      rawValueDivisor = rawValueDivisor,
-      emptyInputBehavior = emptyInputBehavior,
-      selectNumberOnly = selectNumberOnly,
-      selectOnFocus = selectOnFocus,
-      eventBubbles = eventBubbles,
-      eventIsCancelable = eventIsCancelable,
-      formatOnPageLoad = formatOnPageLoad,
-      formulaMode = formulaMode,
-      historySize = historySize,
-      isCancellable = isCancellable,
-      leadingZero = leadingZero,
-      maximumValue = maximumValue,
-      minimumValue = minimumValue,
-      modifyValueOnWheel = modifyValueOnWheel,
-      wheelOn = wheelOn,
-      wheelStep = wheelStep,
-      negativeBracketsTypeOnBlur = negativeBracketsTypeOnBlur,
-      negativePositiveSignPlacement = negativePositiveSignPlacement,
-      negativeSignCharacter = negativeSignCharacter,
-      positiveSignCharacter = positiveSignCharacter,
-      showPositiveSign = showPositiveSign,
-      onInvalidPaste = onInvalidPaste,
-      overrideMinMaxLimits = overrideMinMaxLimits,
-      readOnly = readOnly,
-      roundingMethod = roundingMethod,
-      saveValueToSessionStorage = saveValueToSessionStorage,
-      serializeSpaces = serializeSpaces,
-      showOnlyNumbersOnFocus = showOnlyNumbersOnFocus,
-      showWarnings = showWarnings,
-      styleRules = styleRules,
-      suffixText = suffixText,
-      symbolWhenUnfocused = symbolWhenUnfocused,
-      unformatOnHover = unformatOnHover,
-      valuesToStrings = valuesToStrings,
-      watchExternalChanges = watchExternalChanges,
-      immediate = immediate
-    ), function(x) {
-      if (identical(x, TRUE))
-        "true"
-      else if (identical(x, FALSE))
-        "false"
-      else x
-    }),
+    x = list(
+      options = dropNulls(
+        append(
+          list(
+            currencySymbol = currencySymbol,
+            currencySymbolPlacement = currencySymbolPlacement,
+            decimalCharacter = decimalCharacter,
+            digitGroupSeparator = digitGroupSeparator,
+            allowDecimalPadding = allowDecimalPadding,
+            decimalPlaces = decimalPlaces,
+            divisorWhenUnfocused = divisorWhenUnfocused,
+            rawValueDivisor = rawValueDivisor,
+            formatOnPageLoad = formatOnPageLoad,
+            maximumValue = maximumValue,
+            minimumValue = minimumValue,
+            modifyValueOnWheel = modifyValueOnWheel
+          ),
+          list(...)
+        )
+      )
+    ),
     auto_unbox = TRUE,
-    json_verbatim = TRUE,
-    null = "null",
-    na = "null"
+    json_verbatim = TRUE
   )
   tags$div(
     class = "form-group shiny-input-container",
@@ -538,52 +485,78 @@ autonumericInput <- function(inputId, label, value,
 #'
 #' @export
 #'
+#' @family autonumeric
+#'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyWidgets)
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#'  ui <- fluidPage(
-#'    h1("AutonumericInput Update Example"),
-#'    br(),
-#'    shinyWidgets:::autonumericInput(
-#'      inputId = "id1",
-#'      label = "Autonumeric Input",
-#'      value = 1234.56,
-#'      align = "center",
-#'      currencySymbol = "$ ",
-#'      currencySymbolPlacement = "p",
-#'      decimalCharacter = ".",
-#'      digitGroupSeparator = ",",
-#'      divisorWhenUnfocused = 1000,
-#'      symbolWhenUnfocused = "K",
-#'      decimalPlacesShownOnBlur = 1
-#'    ),
-#'    verbatimTextOutput("res1"),
-#'    actionButton("change", "Update autonumeric Input")
-#'  )
+#'   ui <- fluidPage(
+#'     h1("AutonumericInput Update Example"),
+#'     br(),
+#'     autonumericInput(
+#'       inputId = "id1",
+#'       label = "Autonumeric Input",
+#'       value = 1234.56,
+#'       align = "center",
+#'       currencySymbol = "$ ",
+#'       currencySymbolPlacement = "p",
+#'       decimalCharacter = ".",
+#'       digitGroupSeparator = ","
+#'     ),
+#'     verbatimTextOutput("res1"),
+#'     actionButton("bttn1", "Change Input to Euros"),
+#'     actionButton("bttn2", "Change Input to Dollars"),
+#'     br(),
+#'     br(),
+#'     sliderInput("decimals", "Select Number of Decimal Places", value = 2, step = 1, min = 0, max = 6),
+#'     actionButton("bttn3", "Update Number of Decimal Places")
+#'   )
 #'
-#'  server <- function(input, output, session) {
-#'    output$res1 <- renderPrint(input$id1)
+#'   server <- function(input, output, session) {
+#'     output$res1 <- renderPrint(input$id1)
 #'
-#'    observeEvent(input$change, {
-#'      updateAutonumericInput(
-#'        session = session,
-#'        inputId = "id1",
-#'        label = "Updated Label!",
-#'        value = 6543.21,
-#'        options = list(
-#'          currencySymbol = " #",
-#'          currencySymbolPlacement = "s",
-#'          decimalPlacesShownOnBlur = 2,
-#'          symbolWhenUnfocused = NULL,
-#'          divisorWhenUnfocused = NULL
-#'        )
-#'      )
-#'    })
-#'  }
+#'     observeEvent(input$bttn1, {
+#'       updateAutonumericInput(
+#'         session = session,
+#'         inputId = "id1",
+#'         label = "Euros:",
+#'         value = 6543.21,
+#'         options = list(
+#'           currencySymbol = "€",
+#'           currencySymbolPlacement = "s",
+#'           decimalCharacter = ",",
+#'           digitGroupSeparator = "."
+#'         )
+#'       )
+#'     })
+#'     observeEvent(input$bttn2, {
+#'       updateAutonumericInput(
+#'         session = session,
+#'         inputId = "id1",
+#'         label = "Dollars:",
+#'         value = 6543.21,
+#'         options = list(
+#'           currencySymbol = "$",
+#'           currencySymbolPlacement = "p",
+#'           decimalCharacter = ".",
+#'           digitGroupSeparator = ","
+#'         )
+#'       )
+#'     })
+#'     observeEvent(input$bttn3, {
+#'       updateAutonumericInput(
+#'         session = session,
+#'         inputId = "id1",
+#'         options = list(
+#'           decimalPlaces = input$decimals
+#'         )
+#'       )
+#'     })
+#'   }
 #'
-#'  shinyApp(ui, server)
+#'   shinyApp(ui, server)
 #' }
 updateAutonumericInput <- function(session, inputId,
                                    label = NULL,

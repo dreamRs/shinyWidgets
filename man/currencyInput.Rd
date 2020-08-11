@@ -69,34 +69,23 @@ if (interactive()) {
   ui <- fluidPage(
     tags$h2("Currency Input"),
 
-    currencyInput(
-      inputId = "id1",
-      label = "Euro:",
-      value = 1234,
-      format = "euro",
-      width = 200,
-      align = "right"
-    ),
+    currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
     verbatimTextOutput("res1"),
 
-    currencyInput(
-      inputId = "id2",
-      label = "Dollar:",
-      value = 1234,
-      format = "dollar",
-      width = 200,
-      align = "left"
-    ),
-    verbatimTextOutput("res2")
+    currencyInput("id2", "Dollar:", value = 1234, format = "dollar", width = 200, align = "right"),
+    verbatimTextOutput("res2"),
+
+    currencyInput("id3", "Yen:", value = 1234, format = "Japanese", width = 200, align = "right"),
+    verbatimTextOutput("res3")
   )
 
   server <- function(input, output, session) {
     output$res1 <- renderPrint(input$id1)
     output$res2 <- renderPrint(input$id2)
+    output$res3 <- renderPrint(input$id3)
   }
 
   shinyApp(ui, server)
-
 }
 }
 \references{
@@ -104,5 +93,9 @@ Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
   \url{http://autonumeric.org}
 }
 \seealso{
-\code{\link{autonumericInput}}
+Other autonumeric: 
+\code{\link{autonumericInput}()},
+\code{\link{updateAutonumericInput}()},
+\code{\link{updateCurrencyInput}()}
 }
+\concept{autonumeric}

@@ -34,28 +34,38 @@ if (interactive()) {
   ui <- fluidPage(
     tags$h2("Currency Input"),
 
-    shinyWidgets:::currencyInput(
-      inputId = "id1",
-      label = "Euro:",
-      value = 1234,
-      format = "euro",
-      width = 200,
-      align = "right"
-    ),
+    currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
     verbatimTextOutput("res1"),
-    actionButton("bttn1", "Change Euros to Dollars")
+    actionButton("bttn0", "Change Input to Euros"),
+    actionButton("bttn1", "Change Input to Dollars"),
+    actionButton("bttn2", "Change Input to Yen")
   )
 
   server <- function(input, output, session) {
 
     output$res1 <- renderPrint(input$id1)
 
+    observeEvent(input$bttn0, {
+      updateCurrencyInput(
+        session = session,
+        inputId = "id1",
+        label = "Euro:",
+        format = "euro"
+      )
+    })
     observeEvent(input$bttn1, {
       updateCurrencyInput(
         session = session,
         inputId = "id1",
         label = "Dollar:",
         format = "dollar"
+      )
+    })
+    observeEvent(input$bttn2, {
+        session = session,
+        inputId = "id1",
+        label = "Yen:",
+        format = "Japanese"
       )
     })
 
@@ -65,3 +75,10 @@ if (interactive()) {
   shinyApp(ui, server)
 }
 }
+\seealso{
+Other autonumeric: 
+\code{\link{autonumericInput}()},
+\code{\link{currencyInput}()},
+\code{\link{updateAutonumericInput}()}
+}
+\concept{autonumeric}

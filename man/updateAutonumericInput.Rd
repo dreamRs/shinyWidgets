@@ -29,49 +29,80 @@ Update an Autonumeric Input Object
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyWidgets)
+  library(shiny)
+  library(shinyWidgets)
 
- ui <- fluidPage(
-   h1("AutonumericInput Update Example"),
-   br(),
-   shinyWidgets:::autonumericInput(
-     inputId = "id1",
-     label = "Autonumeric Input",
-     value = 1234.56,
-     align = "center",
-     currencySymbol = "$ ",
-     currencySymbolPlacement = "p",
-     decimalCharacter = ".",
-     digitGroupSeparator = ",",
-     divisorWhenUnfocused = 1000,
-     symbolWhenUnfocused = "K",
-     decimalPlacesShownOnBlur = 1
-   ),
-   verbatimTextOutput("res1"),
-   actionButton("change", "Update autonumeric Input")
- )
+  ui <- fluidPage(
+    h1("AutonumericInput Update Example"),
+    br(),
+    autonumericInput(
+      inputId = "id1",
+      label = "Autonumeric Input",
+      value = 1234.56,
+      align = "center",
+      currencySymbol = "$ ",
+      currencySymbolPlacement = "p",
+      decimalCharacter = ".",
+      digitGroupSeparator = ","
+    ),
+    verbatimTextOutput("res1"),
+    actionButton("bttn1", "Change Input to Euros"),
+    actionButton("bttn2", "Change Input to Dollars"),
+    br(),
+    br(),
+    sliderInput("decimals", "Select Number of Decimal Places", value = 2, step = 1, min = 0, max = 6),
+    actionButton("bttn3", "Update Number of Decimal Places")
+  )
 
- server <- function(input, output, session) {
-   output$res1 <- renderPrint(input$id1)
+  server <- function(input, output, session) {
+    output$res1 <- renderPrint(input$id1)
 
-   observeEvent(input$change, {
-     updateAutonumericInput(
-       session = session,
-       inputId = "id1",
-       label = "Updated Label!",
-       value = 6543.21,
-       options = list(
-         currencySymbol = " #",
-         currencySymbolPlacement = "s",
-         decimalPlacesShownOnBlur = 2,
-         symbolWhenUnfocused = NULL,
-         divisorWhenUnfocused = NULL
-       )
-     )
-   })
- }
+    observeEvent(input$bttn1, {
+      updateAutonumericInput(
+        session = session,
+        inputId = "id1",
+        label = "Euros:",
+        value = 6543.21,
+        options = list(
+          currencySymbol = "€",
+          currencySymbolPlacement = "s",
+          decimalCharacter = ",",
+          digitGroupSeparator = "."
+        )
+      )
+    })
+    observeEvent(input$bttn2, {
+      updateAutonumericInput(
+        session = session,
+        inputId = "id1",
+        label = "Dollars:",
+        value = 6543.21,
+        options = list(
+          currencySymbol = "$",
+          currencySymbolPlacement = "p",
+          decimalCharacter = ".",
+          digitGroupSeparator = ","
+        )
+      )
+    })
+    observeEvent(input$bttn3, {
+      updateAutonumericInput(
+        session = session,
+        inputId = "id1",
+        options = list(
+          decimalPlaces = input$decimals
+        )
+      )
+    })
+  }
 
- shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 }
+\seealso{
+Other autonumeric: 
+\code{\link{autonumericInput}()},
+\code{\link{currencyInput}()},
+\code{\link{updateCurrencyInput}()}
+}
+\concept{autonumeric}
