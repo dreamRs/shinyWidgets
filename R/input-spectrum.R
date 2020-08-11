@@ -77,8 +77,11 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
     names(options) <- paste0("data-", names(options))
   }
   spectrumProps <- dropNulls(list(
-    type = "text", id = inputId, class = "form-control sw-spectrum",
-    `data-flat` = flat, `data-color` = selected,
+    type = "text",
+    id = inputId,
+    class = "form-control sw-spectrum",
+    `data-flat` = flat,
+    `data-color` = selected,
     `data-palette` = if (!is.null(choices)) jsonlite::toJSON(choices, auto_unbox = TRUE),
     `data-toggle-palette-only` = !is.null(choices),
     `data-show-palette-only` = !is.null(choices),
@@ -97,11 +100,11 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
   })
   spectrumTag <- htmltools::tags$div(
     class = "form-group shiny-input-container",
-    class=if(flat) "shiny-input-container-inline",
+    class = if (flat) "shiny-input-container-inline",
     style = if (!is.null(width))
       paste0("width: ", htmltools::validateCssUnit(width), ";"),
     htmltools::tags$label(label, `for` = inputId),
-    if(flat) htmltools::tags$br(),
+    if (flat) htmltools::tags$br(),
     do.call(htmltools::tags$input, spectrumProps)
   )
   attachShinyWidgetsDep(spectrumTag, "spectrum")

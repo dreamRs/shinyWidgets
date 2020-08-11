@@ -222,7 +222,7 @@ html_dependency_nouislider <- function() {
 html_dependency_spectrum <- function() {
   htmlDependency(
     name = "spectrum",
-    version = "1.8.0",
+    version = "1.8.1",
     package = "shinyWidgets",
     src = c(href = "shinyWidgets/spectrum", file = "assets/spectrum"),
     script = c("spectrum.min.js"),

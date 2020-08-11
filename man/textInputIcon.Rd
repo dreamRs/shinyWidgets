@@ -32,7 +32,7 @@ or text, to be displayed on the right or left of the text input.}
 be \code{"sm"} (small) or \code{"lg"} (large).}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
+see \code{\link[shiny:reexports]{validateCssUnit()}}.}
 }
 \value{
 A text input control that can be added to a UI definition.
