@@ -174,7 +174,7 @@ formatNumericInput <- function(inputId, label, value, format = "commaDecimalChar
 #'       )
 #'     })
 #'     observeEvent(input$bttn2, {
-#       updateCurrencyInput(
+#'       updateCurrencyInput(
 #'         session = session,
 #'         inputId = "id1",
 #'         label = "Yen:",

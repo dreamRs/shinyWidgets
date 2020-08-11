@@ -71,6 +71,7 @@ if (interactive()) {
       )
     })
     observeEvent(input$bttn2, {
+      updateCurrencyInput(
         session = session,
         inputId = "id1",
         label = "Yen:",
