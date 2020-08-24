@@ -1,3 +1,10 @@
+shinyWidgets 0.5.4
+======================
+
+* New functions: `currencyInput()`, `formatNumericInput()` and `autonumericInput()` to enter numeric value with specified format like a currency, by [@srmatth](https://github.com/srmatth).
+
+
+
 shinyWidgets 0.5.3
 ======================
 

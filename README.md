@@ -15,8 +15,7 @@
 
 ## Overview
 
-This package provide some custom widgets to pimp your shiny apps !
-
+This package offers custom widgets and other components to enhance your shiny applications.
 
 You can replace classical checkboxes with switch button, add colors to radio buttons and checkbox group, use buttons as radio or checkboxes.
 Each widget has an `update` method to change the value of an input from the server.
@@ -51,7 +50,7 @@ A live version is available here : http://shinyapps.dreamrs.fr/shinyWidgets
   - [Slider Text](#slider-text)
   - [Knob Input](#knob-input)
   - [Select picker](#select-picker)
-  - [Checkbox and radio buttons](#checkbox-and-radio-buttons)
+  - [Checkboxes and radio buttons](#checkbox-and-radio-buttons)
   - [Search bar](#search-bar)
   - [Dropdown button](#dropdown-button)
 
