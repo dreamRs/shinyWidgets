@@ -254,7 +254,7 @@ if (interactive()) {
       label = "Custom Millions of Euros Input with Positive Sign",
       value = 12345678910,
       align = "right",
-      currencySymbol = " €",
+      currencySymbol = "\u20ac",
       currencySymbolPlacement = "s",
       decimalCharacter = ",",
       digitGroupSeparator = ".",

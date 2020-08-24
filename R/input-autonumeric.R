@@ -421,7 +421,7 @@ updateFormatNumericInput <- function(session, inputId,
 #'       label = "Custom Millions of Euros Input with Positive Sign",
 #'       value = 12345678910,
 #'       align = "right",
-#'       currencySymbol = " €",
+#'       currencySymbol = "\u20ac",
 #'       currencySymbolPlacement = "s",
 #'       decimalCharacter = ",",
 #'       digitGroupSeparator = ".",
@@ -543,7 +543,8 @@ autonumericInput <- function(inputId, label, value,
 #'     actionButton("bttn2", "Change Input to Dollars"),
 #'     br(),
 #'     br(),
-#'     sliderInput("decimals", "Select Number of Decimal Places", value = 2, step = 1, min = 0, max = 6),
+#'     sliderInput("decimals", "Select Number of Decimal Places",
+#'                 value = 2, step = 1, min = 0, max = 6),
 #'     actionButton("bttn3", "Update Number of Decimal Places")
 #'   )
 #'
@@ -557,7 +558,7 @@ autonumericInput <- function(inputId, label, value,
 #'         label = "Euros:",
 #'         value = 6543.21,
 #'         options = list(
-#'           currencySymbol = "€",
+#'           currencySymbol = "\u20ac",
 #'           currencySymbolPlacement = "s",
 #'           decimalCharacter = ",",
 #'           digitGroupSeparator = "."
