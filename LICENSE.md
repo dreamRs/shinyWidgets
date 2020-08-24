@@ -552,7 +552,7 @@ to the start of each source file to most effectively state the exclusion of warr
 and each file should have at least the “copyright” line and a pointer to
 where the full notice is found.
 
-    <one line to give the program's name and a brief idea of what it does.>
+    shinyWidgets: R package to customize Shiny applications
     Copyright (C) 2020 Victor PERRIER
 
     This program is free software: you can redistribute it and/or modify
@@ -597,26 +597,30 @@ License. But first, please read
 
 
 
-Libraries used
-==========================
 
-The shinyWidgets package includes other open source software components. The following
+Libraries used
+======================================================================
+
+The shinyWidgets R package includes other open source software components. The following
 is a list of these components (full copies of the license agreements used by
 these components are included below):
 
-  - Bootstrap Switch, https://github.com/nostalgiaz/bootstrap-switch
-  - Awesome Bootstrap Checkbox, https://github.com/flatlogic/awesome-bootstrap-checkbox
-  - Bootstrap, https://github.com/twbs/bootstrap
-  - Bootstrap Select, https://github.com/snapappointments/bootstrap-select
-  - SweetAlert2, https://github.com/sweetalert2/sweetalert2
-  - multi.js, https://github.com/Fabianlindfors/multi.js
+  - Bootstrap Switch by Mattia Larentis & Emanuele Emanuele, https://github.com/nostalgiaz/bootstrap-switch
+  - Awesome Bootstrap Checkbox by Flatlogic, https://github.com/flatlogic/awesome-bootstrap-checkbox
+  - Bootstrap by Twitter, Inc, Mark Otto, Jacob Thornton & Bootstrap contributors, https://github.com/twbs/bootstrap
+  - Bootstrap Select by SnapAppointments, https://github.com/snapappointments/bootstrap-select
+  - Material switch design by mouse0270, https://bootsnipp.com/snippets/xp0QM
+  - SweetAlert2 by Limon Monte, https://github.com/sweetalert2/sweetalert2
+  - multi.js by Fabian Lindfors, https://github.com/Fabianlindfors/multi.js
   - animate.css, https://github.com/daneden/animate.css
-  - bttn.css, https://github.com/ganapativs/bttn.css
-  - jQuery Knob, https://github.com/aterrien/jQuery-Knob
-  - Pretty Checkbox, https://github.com/lokesh-coder/pretty-checkbox
-  - Spectrum, https://github.com/bgrins/spectrum
-  - Air-datepicker, https://github.com/t1m0n/air-datepicker
-  - tippy.js, https://github.com/atomiks/tippyjs
+  - bttn.css by Ganapati V S, https://github.com/ganapativs/bttn.css
+  - jQuery Knob by Anthony Terrien, https://github.com/aterrien/jQuery-Knob
+  - Pretty Checkbox by Lokesh Rajendran, https://github.com/lokesh-coder/pretty-checkbox
+  - Spectrum by Brian Grinstead, https://github.com/bgrins/spectrum
+  - noUISlider by Leon Gersen, https://github.com/leongersen/noUiSlider
+  - Air-datepicker by Timofey Marochkin, https://github.com/t1m0n/air-datepicker
+  - tippy.js by atomiks & contributors, https://github.com/atomiks/tippyjs
+  - autoNumeric.js by Robert Knothe & contributors, https://github.com/autoNumeric/autoNumeric
 
 
 
@@ -701,8 +705,6 @@ THE SOFTWARE.
 
 
 
-
-
 Bootstrap Select License
 ----------------------------------------------------------------------
 
@@ -727,7 +729,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
 
 
 
@@ -758,8 +759,6 @@ SOFTWARE.
 
 
 
-
-
 multi.js License
 ----------------------------------------------------------------------
 
@@ -782,8 +781,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
 
 
 
@@ -813,8 +810,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-
-
 animate License
 ----------------------------------------------------------------------
 
@@ -838,8 +833,6 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
 
 
 
@@ -870,7 +863,6 @@ SOFTWARE.
 
 
 
-
 Spectrum License
 ----------------------------------------------------------------------
 
@@ -894,8 +886,6 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
 
 
 
@@ -953,6 +943,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+
 tippy.js License
 ----------------------------------------------------------------------
 
@@ -980,5 +971,30 @@ SOFTWARE.
 
 
 
+autoNumeric.js License
+----------------------------------------------------------------------
 
+Copyright 2009 Robert J. Knothe <bob@decorplanit.com> and contributors
+
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sub license, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
 
