@@ -46,7 +46,7 @@ function hideHelp(element) {
 var numericInputIconBinding = new Shiny.InputBinding();
 $.extend(numericInputIconBinding, {
   find: function(scope) {
-    return $(scope).find(".shinywidgets-numeric");
+    return $(scope).find(".numeric-input-icon");
   },
   getValue: function getValue(el) {
     var numberVal = $(el).val();
@@ -100,7 +100,7 @@ $.extend(numericInputIconBinding, {
     });
   },
   unsubscribe: function(el) {
-    $(el).off(".textInputBinding");
+    $(el).off(".numericInputIconBinding");
   },
   getType: function(el) {
     return "shiny.number";

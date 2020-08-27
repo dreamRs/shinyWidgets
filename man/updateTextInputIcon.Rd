@@ -9,7 +9,8 @@ updateTextInputIcon(
   inputId,
   label = NULL,
   value = NULL,
-  placeholder = NULL
+  placeholder = NULL,
+  icon = NULL
 )
 }
 \arguments{
@@ -23,6 +24,9 @@ updateTextInputIcon(
 \item{value}{The value to set for the input object.}
 
 \item{placeholder}{The placeholder to set for the input object.}
+
+\item{icon}{Icon to update, note that you can update icon only
+if initialized in \code{\link{textInputIcon}}.}
 }
 \value{
 No value.
@@ -36,20 +40,33 @@ library(shinyWidgets)
 
 ui <- fluidPage(
   textInputIcon(
-    inputId = "ex1",
+    inputId = "id",
     label = "With an icon",
     icon = icon("user-circle-o")
   ),
-  actionButton("update", "Random value")
+  actionButton("updateValue", "Update value"),
+  actionButton("updateIcon", "Update icon"),
+  verbatimTextOutput("value")
 )
 
 server <- function(input, output, session) {
 
-  observeEvent(input$update, {
+  output$value <- renderPrint(input$id)
+
+  observeEvent(input$updateValue, {
     updateTextInputIcon(
       session = session,
-      inputId = "ex1",
+      inputId = "id",
       value = paste(sample(letters, 8), collapse = "")
+    )
+  })
+
+  observeEvent(input$updateIcon, {
+    i <- sample(c("home", "gears", "dollar", "globe", "sliders"), 1)
+    updateTextInputIcon(
+      session = session,
+      inputId = "id",
+      icon = icon(i)
     )
   })
 

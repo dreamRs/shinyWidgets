@@ -46,21 +46,34 @@ library(shinyWidgets)
 
 ui <- fluidPage(
   numericInputIcon(
-    inputId = "ex1",
+    inputId = "id",
     label = "With an icon",
     value = 10,
     icon = icon("percent")
   ),
-  actionButton("update", "Random value")
+  actionButton("updateValue", "Update value"),
+  actionButton("updateIcon", "Update icon"),
+  verbatimTextOutput("value")
 )
 
 server <- function(input, output, session) {
 
-  observeEvent(input$update, {
+  output$value <- renderPrint(input$id)
+
+  observeEvent(input$updateValue, {
     updateNumericInputIcon(
       session = session,
-      inputId = "ex1",
+      inputId = "id",
       value = sample.int(100, 1)
+    )
+  })
+
+  observeEvent(input$updateIcon, {
+    i <- sample(c("home", "gears", "dollar", "globe", "sliders"), 1)
+    updateNumericInputIcon(
+      session = session,
+      inputId = "id",
+      icon = icon(i)
     )
   })
 

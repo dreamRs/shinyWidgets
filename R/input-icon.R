@@ -21,7 +21,7 @@ textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
                           icon = NULL, size = NULL, width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   addons <- validate_addon(icon)
-  tags$div(
+  tag <- tags$div(
     class = "form-group shiny-input-container",
     if (!is.null(label)) {
       tags$label(label, class = "control-label", `for` = inputId)
@@ -33,22 +33,25 @@ textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
       addons$left, tags$input(
         id = inputId,
         type = "text",
-        class = "form-control",
+        class = "form-control text-input-icon",
         value = value,
         placeholder = placeholder
       ), addons$right
     )
   )
+  attachShinyWidgetsDep(tag)
 }
 
 #' @title Change the value of a text input icon on the client
 #'
 #' @inheritParams shiny::updateTextInput
+#' @param icon Icon to update, note that you can update icon only
+#'  if initialized in \code{\link{textInputIcon}}.
 #'
 #' @return No value.
 #' @export
 #'
-#' @importFrom shiny updateTextInput
+#' @importFrom htmltools doRenderTags
 #'
 #' @examples
 #' library(shiny)
@@ -56,20 +59,33 @@ textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
 #'
 #' ui <- fluidPage(
 #'   textInputIcon(
-#'     inputId = "ex1",
+#'     inputId = "id",
 #'     label = "With an icon",
 #'     icon = icon("user-circle-o")
 #'   ),
-#'   actionButton("update", "Random value")
+#'   actionButton("updateValue", "Update value"),
+#'   actionButton("updateIcon", "Update icon"),
+#'   verbatimTextOutput("value")
 #' )
 #'
 #' server <- function(input, output, session) {
 #'
-#'   observeEvent(input$update, {
+#'   output$value <- renderPrint(input$id)
+#'
+#'   observeEvent(input$updateValue, {
 #'     updateTextInputIcon(
 #'       session = session,
-#'       inputId = "ex1",
+#'       inputId = "id",
 #'       value = paste(sample(letters, 8), collapse = "")
+#'     )
+#'   })
+#'
+#'   observeEvent(input$updateIcon, {
+#'     i <- sample(c("home", "gears", "dollar", "globe", "sliders"), 1)
+#'     updateTextInputIcon(
+#'       session = session,
+#'       inputId = "id",
+#'       icon = icon(i)
 #'     )
 #'   })
 #'
@@ -77,7 +93,27 @@ textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
 #'
 #' if (interactive())
 #'   shinyApp(ui, server)
-updateTextInputIcon <- shiny::updateTextInput
+updateTextInputIcon <- function(session,
+                                inputId,
+                                label = NULL,
+                                value = NULL,
+                                placeholder = NULL,
+                                icon = NULL) {
+  addons <- validate_addon(icon)
+  if (!is.null(addons$right))
+    addons$right <- htmltools::doRenderTags(addons$right)
+  if (!is.null(addons$left))
+    addons$left <- htmltools::doRenderTags(addons$left)
+  message <- dropNulls(list(
+    label = label,
+    value = value,
+    placeholder = placeholder,
+    right = addons$right,
+    left = addons$left
+  ))
+  session$sendInputMessage(inputId, message)
+}
+
 
 
 
@@ -127,7 +163,7 @@ numericInputIcon <- function(inputId,
       addons$left, tags$input(
         id = inputId,
         type = "number",
-        class = "form-control shinywidgets-numeric",
+        class = "form-control numeric-input-icon",
         value = value,
         min = min,
         max = max,
@@ -157,21 +193,34 @@ numericInputIcon <- function(inputId,
 #'
 #' ui <- fluidPage(
 #'   numericInputIcon(
-#'     inputId = "ex1",
+#'     inputId = "id",
 #'     label = "With an icon",
 #'     value = 10,
 #'     icon = icon("percent")
 #'   ),
-#'   actionButton("update", "Random value")
+#'   actionButton("updateValue", "Update value"),
+#'   actionButton("updateIcon", "Update icon"),
+#'   verbatimTextOutput("value")
 #' )
 #'
 #' server <- function(input, output, session) {
 #'
-#'   observeEvent(input$update, {
+#'   output$value <- renderPrint(input$id)
+#'
+#'   observeEvent(input$updateValue, {
 #'     updateNumericInputIcon(
 #'       session = session,
-#'       inputId = "ex1",
+#'       inputId = "id",
 #'       value = sample.int(100, 1)
+#'     )
+#'   })
+#'
+#'   observeEvent(input$updateIcon, {
+#'     i <- sample(c("home", "gears", "dollar", "globe", "sliders"), 1)
+#'     updateNumericInputIcon(
+#'       session = session,
+#'       inputId = "id",
+#'       icon = icon(i)
 #'     )
 #'   })
 #'
