@@ -1,6 +1,6 @@
 
 
-/* CSS icone btn */
+/* CSS checkbox buttons for icons */
 
 
 .btn.checkbtn:focus {
@@ -22,6 +22,15 @@
 .btn.checkbtn .check-btn-icon-no {
 	opacity: 1; display: inline-block;
 }
+
+
+.btn.checkbtn.disabled > .check-btn-icon-yes {
+	pointer-events: none;
+}
+.btn.checkbtn.disabled > .check-btn-icon-no {
+	pointer-events: none;
+}
+
 
 
 

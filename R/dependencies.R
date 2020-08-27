@@ -16,7 +16,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
     src = c(href = "shinyWidgets", file = "assets"),
     package = "shinyWidgets",
     script = "shinyWidgets-bindings.min.js",
-    stylesheet = "shinyWidgets.css",
+    stylesheet = "shinyWidgets.min.css",
     all_files = FALSE
   )
   if (!is.null(widget)) {

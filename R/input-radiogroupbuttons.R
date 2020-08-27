@@ -158,6 +158,7 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon, dis
           if (displayIcon) tags$span(class="radio-btn-icon-yes", checkIcon$yes),
           if (displayIcon) tags$span(class="radio-btn-icon-no", checkIcon$no),
           disabled = if (isTRUE(disabled)) "disabled",
+          class = if (isTRUE(disabled)) "disabled",
           tags$input(
             type = "radio",
             autocomplete = "off",

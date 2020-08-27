@@ -102,8 +102,10 @@ $.extend(radioGroupButtonsBinding, {
 
     if (data.disabled) {
       $el.find("button").attr("disabled", "disabled");
+      $el.find("button").addClass("disabled");
     } else {
       $el.find("button").removeAttr("disabled");
+      $el.find("button").removeClass("disabled");
     }
     if (data.hasOwnProperty("disabledChoices")) {
       for (var i = 0; i < data.disabledChoices.length; i++) {
@@ -115,7 +117,8 @@ $.extend(radioGroupButtonsBinding, {
             '"]'
         )
           .parent()
-          .attr("disabled", "disabled");
+          .attr("disabled", "disabled")
+          .addClass("disabled");
       }
     }
 

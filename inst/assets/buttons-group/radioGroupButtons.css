@@ -1,6 +1,6 @@
 
 
-/* CSS icone btn */
+/* CSS radio buttons for icons */
 
 
 .btn.radiobtn:focus {
@@ -8,21 +8,29 @@
 }
 
 .btn.radiobtn .radio-btn-icon-yes {
-	opacity: 0; display: none;
+	opacity: 0;
+	display: none;
 }
 .btn.radiobtn.active .radio-btn-icon-yes {
-	opacity: 1; display: inline-block;
+	opacity: 1;
+	display: inline-block;
 }
 
 .btn.radiobtn.active .radio-btn-icon-no {
-	opacity: 0; display: none;
+	opacity: 0;
+	display: none;
 }
 .btn.radiobtn .radio-btn-icon-no {
-	opacity: 1; display: inline-block;
+	opacity: 1;
+	display: inline-block;
 }
 
-
-
+.btn.radiobtn.disabled > .radio-btn-icon-yes {
+	pointer-events: none;
+}
+.btn.radiobtn.disabled > .radio-btn-icon-no {
+	pointer-events: none;
+}
 
 
 

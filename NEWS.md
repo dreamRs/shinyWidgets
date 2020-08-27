@@ -4,6 +4,10 @@ shinyWidgets 0.5.4
 * New functions: `currencyInput()`, `formatNumericInput()` and `autonumericInput()` to enter numeric value with specified format like a currency, by [@srmatth](https://github.com/srmatth).
 
 
+### Bug fixes
+
+* Disable `radioGroupButtons()` and `checkboxGroupButtons()` with checkIcon not working properly ([#311](https://github.com/dreamRs/shinyWidgets/issues/311))
+
 
 shinyWidgets 0.5.3
 ======================

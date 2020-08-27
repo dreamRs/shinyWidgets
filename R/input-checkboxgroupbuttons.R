@@ -156,6 +156,7 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, di
           if (displayIcon) tags$span(class="check-btn-icon-yes", checkIcon$yes),
           if (displayIcon) tags$span(class="check-btn-icon-no", checkIcon$no),
           disabled = if (isTRUE(disabled)) "disabled",
+          class = if (isTRUE(disabled)) "disabled",
           tags$input(
             type = "checkbox",
             autocomplete = "off",
