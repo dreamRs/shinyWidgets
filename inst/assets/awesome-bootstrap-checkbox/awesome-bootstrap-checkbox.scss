@@ -53,6 +53,8 @@ $abc-border-width: 1px !default;
     vertical-align: middle;
     position: relative;
     padding-left: 5px;
+    font-weight: 400;
+    cursor: pointer;
 
     &::before{
       content: "";
@@ -96,6 +98,7 @@ $abc-border-width: 1px !default;
 
     &:checked + label::after{
       font-family: $font-family-icon;
+      font-weight: 900;
       content: $check-icon;
     }
 
@@ -177,6 +180,8 @@ $abc-border-width: 1px !default;
     vertical-align: middle;
     position: relative;
     padding-left: 5px;
+    font-weight: 400;
+    cursor: pointer;
 
     &::before{
       content: "";
@@ -254,6 +259,7 @@ input[type="radio"] {
   &.styled:checked + label:after {
     font-family: $font-family-icon;
     content: $check-icon;
+    font-weight: 900;
   }
   .styled:checked + label {
     &::before {

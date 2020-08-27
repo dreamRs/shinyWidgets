@@ -28,12 +28,12 @@ sass(
   input = list(
 
     sass_file(input = system.file(
-      "assets/bootstrap3/default/stylesheets/bootstrap/_variables.scss",
+      "assets/bootstrap-3.4.1/default/stylesheets/bootstrap/_variables.scss",
       package = "fresh"
     )),
 
     sass_file(input = system.file(
-      "assets/bootstrap3/default/stylesheets/bootstrap/_mixins.scss",
+      "assets/bootstrap-3.4.1/default/stylesheets/bootstrap/_mixins.scss",
       package = "fresh"
     )),
 
@@ -44,7 +44,7 @@ sass(
   output = "inst/assets/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.min.css"
 )
 
-# after check icon content, there's a bug with unicode character
+# after check icon content, there's a bug with unicode character (replace with \f00c)
 
 
 
