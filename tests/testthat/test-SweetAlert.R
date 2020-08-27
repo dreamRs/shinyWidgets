@@ -24,7 +24,6 @@ test_that("insertUI Sweet Alert", {
   tag_sw <- as.character(session$lastInsertUI$content$html)
   dep_sw <- session$lastInsertUI$content$deps
 
-  expect_true(grepl(pattern = "sw-sa-deps", x = tag_sw))
   expect_length(dep_sw, 1)
 })
 

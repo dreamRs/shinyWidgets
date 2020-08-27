@@ -6,6 +6,7 @@
 \alias{html_dependency_bttn}
 \alias{html_dependency_pretty}
 \alias{html_dependency_bsswitch}
+\alias{html_dependency_sweetalert2}
 \title{HTML dependencies}
 \usage{
 html_dependency_awesome()
@@ -15,6 +16,14 @@ html_dependency_bttn()
 html_dependency_pretty()
 
 html_dependency_bsswitch()
+
+html_dependency_sweetalert2(
+  theme = c("sweetalert2", "minimal", "dark", "bootstrap-4", "material-ui", "bulma",
+    "borderless")
+)
+}
+\arguments{
+\item{theme}{SweetAlert theme to use.}
 }
 \value{
 an \code{\link[htmltools]{htmlDependency}}.

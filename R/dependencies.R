@@ -182,6 +182,29 @@ html_dependency_bsswitch <- function() {
 }
 
 
+#' @param theme SweetAlert theme to use.
+#' @export
+#' @rdname html-dependencies
+html_dependency_sweetalert2 <- function(theme = c("sweetalert2",
+                                                  "minimal",
+                                                  "dark",
+                                                  "bootstrap-4",
+                                                  "material-ui",
+                                                  "bulma",
+                                                  "borderless")) {
+  theme <- match.arg(theme)
+  if (identical(theme, "sweetalert2"))
+    theme <- "default"
+  htmlDependency(
+    name = "sweetalert2",
+    version = "9.17.1",
+    src = c(href="shinyWidgets/sweetalert2", file = "sweetalert2"),
+    script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
+    stylesheet = sprintf("css/%s.min.css", theme)
+  )
+}
+
+
 
 # Non exported ------------------------------------------------------------
 
@@ -268,5 +291,14 @@ html_dependency_autonumeric <- function() {
     package = "shinyWidgets",
     src = c(href = "shinyWidgets/autonumeric", file = "assets/autonumeric"),
     script = c("autoNumeric.min.js", "autonumeric-bindings.js")
+  )
+}
+
+html_dependency_polyfill_promise <- function() {
+  htmlDependency(
+    name = "promise-polyfill",
+    version = "7.1.0",
+    src = c(href="shinyWidgets/sweetalert2", file = "sweetalert2"),
+    script = "js/promise.min.js"
   )
 }

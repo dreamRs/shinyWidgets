@@ -5,11 +5,15 @@
 \title{Load Sweet Alert dependencies}
 \usage{
 useSweetAlert(
-  theme = c("sweetalert2", "minimal", "dark", "bootstrap-4", "borderless")
+  theme = c("sweetalert2", "minimal", "dark", "bootstrap-4", "material-ui", "bulma",
+    "borderless"),
+  ie = FALSE
 )
 }
 \arguments{
 \item{theme}{Theme to modify alerts appearance.}
+
+\item{ie}{Add a polyfill to work in Internet Explorer.}
 }
 \description{
 This function isn't necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},
@@ -24,7 +28,7 @@ if (interactive()) {
 
   ui <- fluidPage(
 
-    useSweetAlert("borderless"),
+    useSweetAlert("borderless", ie = TRUE),
 
     tags$h2("Sweet Alert examples (with custom theme)"),
     actionButton(

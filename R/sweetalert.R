@@ -7,34 +7,38 @@
 #'  but is still needed for \code{progressSweetAlert}.
 #'
 #' @param theme Theme to modify alerts appearance.
+#' @param ie Add a polyfill to work in Internet Explorer.
 #'
 #' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
 #'  \code{\link{inputSweetAlert}}, \code{\link{closeSweetAlert}}.
 #'
-#' @importFrom htmltools attachDependencies htmlDependency singleton tagList tags
+#' @importFrom htmltools attachDependencies singleton tagList tags
 #'
 #' @export
 #'
 #' @example examples/useSweetAlert.R
-useSweetAlert <- function(theme = c("sweetalert2", "minimal",
-                                    "dark", "bootstrap-4",
-                                    "borderless")) {
-  theme <- match.arg(theme)
-  if (identical(theme, "sweetalert2"))
-    theme <- "default"
-  tag_sa <- singleton(
-    tagList(
-      tags$head(tags$style(".swal2-popup {font-size: 1.6rem !important;}")),
-      tags$span(id = "sw-sa-deps")
+useSweetAlert <- function(theme = c("sweetalert2",
+                                    "minimal",
+                                    "dark",
+                                    "bootstrap-4",
+                                    "material-ui",
+                                    "bulma",
+                                    "borderless"),
+                          ie = FALSE) {
+  tag <- tagList(
+    singleton(
+      tags$head(tags$style(".swal2-popup {font-size: 1.6rem !important;}"))
     )
   )
-  attachDependencies(tag_sa, htmlDependency(
-    name = "sweetalert2",
-    version = "9.10.13",
-    src = c(href="shinyWidgets/sweetalert2"),
-    script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
-    stylesheet = sprintf("css/%s.min.css", theme)
-  ))
+  deps <- list(
+    html_dependency_sweetalert2(theme)
+  )
+  if (isTRUE(ie)) {
+    deps <- append(
+      deps, list(html_dependency_polyfill_promise()), 0
+    )
+  }
+  attachDependencies(tag, deps)
 }
 
 
@@ -81,8 +85,11 @@ sendSweetAlert <- function(session,
                            showCloseButton = FALSE,
                            width = NULL) {
   insertUI(
-    selector = "body", where = "afterBegin",
-    ui = useSweetAlert(), immediate = TRUE, session = session
+    selector = "body",
+    where = "afterBegin",
+    ui = useSweetAlert(),
+    immediate = TRUE,
+    session = session
   )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
@@ -217,8 +224,10 @@ confirmSweetAlert <- function(session,
                               ...) {
 
   insertUI(
-    selector = "body", where = "afterBegin",
-    ui = useSweetAlert(), immediate = TRUE,
+    selector = "body",
+    where = "afterBegin",
+    ui = useSweetAlert(),
+    immediate = TRUE,
     session = session
   )
   if (is.null(type))
@@ -418,8 +427,10 @@ inputSweetAlert <- function(session, inputId, title = NULL,
                             ...) {
   input <- match.arg(input)
   shiny::insertUI(
-    selector = "body", where = "afterBegin",
-    ui = useSweetAlert(), immediate = TRUE,
+    selector = "body",
+    where = "afterBegin",
+    ui = useSweetAlert(),
+    immediate = TRUE,
     session = session
   )
   if (is.null(type))
@@ -528,7 +539,8 @@ progressSweetAlert <- function(session, id, value, total = NULL,
   }
   sendSweetAlert(
     session = session,
-    title = NULL, btn_labels = NA,
+    title = NULL,
+    btn_labels = NA,
     text = tags$div(id = "sweet-alert-progress-sw"),
     closeOnClickOutside = FALSE
   )

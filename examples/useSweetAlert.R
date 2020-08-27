@@ -5,7 +5,7 @@ if (interactive()) {
 
   ui <- fluidPage(
 
-    useSweetAlert("borderless"),
+    useSweetAlert("borderless", ie = TRUE),
 
     tags$h2("Sweet Alert examples (with custom theme)"),
     actionButton(
