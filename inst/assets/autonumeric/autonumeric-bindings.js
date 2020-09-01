@@ -1,3 +1,8 @@
+/*jshint
+  jquery:true
+*/
+/*global AutoNumeric, Shiny */
+
 // Autonumeric Input Binding
 var autonumericInputBinding = new Shiny.InputBinding();
 $.extend(autonumericInputBinding, {

@@ -1,3 +1,9 @@
+/*jshint
+  jquery:true,
+  browser:true,
+  devel: true
+*/
+
 function forceIonSliderTextUpdate(slider) {
   if (slider.$cache && slider.$cache.input)
     slider.$cache.input.trigger("change");

@@ -19,14 +19,18 @@ library(jstools)
 
 # Validate ----------------------------------------------------------------
 
+# search all bindings files
 bindings <- list.files(
   path = "inst/assets/",
   pattern = "bindings\\.js$",
   recursive = TRUE,
   full.names = TRUE
 )
-bindings <- setdiff(bindings, grep("sweetalert-bindings.js", bindings, value = TRUE))
-bindings <- setdiff(bindings, "inst/assets/air-datepicker/datepicker-bindings.js")
+
+# remove air-datepicker that is not used
+bindings <- setdiff(bindings, "inst/assets//air-datepicker/datepicker-bindings.js")
+
+# check for errors
 jshint_file(input = bindings, options = jshint_options(jquery = TRUE, globals = list("Shiny")))
 
 
@@ -34,6 +38,10 @@ jshint_file(input = bindings, options = jshint_options(jquery = TRUE, globals = 
 
 # Compress ----------------------------------------------------------------
 
+# remove sweet alert
+bindings <- setdiff(bindings, grep("sweetalert-bindings.js", bindings, value = TRUE))
+
+# bundle all scripts
 terser_file(input = bindings, output = "inst/assets/shinyWidgets-bindings.min.js")
 
 

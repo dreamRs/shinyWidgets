@@ -90,5 +90,5 @@ $.extend(awesomeCheckboxBinding, {
   }
 });
 
-Shiny.inputBindings.register(awesomeCheckboxBinding, "shiny.awesomeCheckbox");
+Shiny.inputBindings.register(awesomeCheckboxBinding, "shinyWidgets.awesomeCheckbox");
 

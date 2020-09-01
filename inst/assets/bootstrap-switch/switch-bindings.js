@@ -1,7 +1,6 @@
-
 // Transform each tag with class 'sw-switchInput' to bootstrap switch
 $(function() {
-  $('.sw-switchInput').each(function() {
+  $(".sw-switchInput").each(function() {
     $(this).bootstrapSwitch();
   });
 });
@@ -10,7 +9,7 @@ $(function() {
 var switchInputBinding = new Shiny.InputBinding();
 $.extend(switchInputBinding, {
   find: function(scope) {
-    return $(scope).find('.sw-switchInput');
+    return $(scope).find(".sw-switchInput");
   },
   getId: function(el) {
     return el.id;
@@ -22,12 +21,12 @@ $.extend(switchInputBinding, {
     el.checked = value;
   },
   subscribe: function(el, callback) {
-    $(el).on('switchChange.bootstrapSwitch', function(event) {
+    $(el).on("switchChange.bootstrapSwitch", function(event) {
       callback(false);
     });
   },
   unsubscribe: function(el) {
-    $(el).off('.switchInputBinding');
+    $(el).off(".switchInputBinding");
   },
   getState: function(el) {
     return {
@@ -36,34 +35,32 @@ $.extend(switchInputBinding, {
     };
   },
   receiveMessage: function(el, data) {
+    if (data.hasOwnProperty("value")) el.checked = data.value;
 
-    if (data.hasOwnProperty('value'))
-      el.checked = data.value;
+    if (data.hasOwnProperty("label"))
+      $(el).bootstrapSwitch("labelText", data.label);
 
-    if (data.hasOwnProperty('label'))
-      $(el).bootstrapSwitch('labelText', data.label);
+    if (data.hasOwnProperty("offLabel"))
+      $(el).bootstrapSwitch("offText", data.offLabel);
 
-    if (data.hasOwnProperty('offLabel'))
-      $(el).bootstrapSwitch('offText', data.offLabel);
+    if (data.hasOwnProperty("onLabel"))
+      $(el).bootstrapSwitch("onText", data.onLabel);
 
-    if (data.hasOwnProperty('onLabel'))
-      $(el).bootstrapSwitch('onText', data.onLabel);
+    if (data.hasOwnProperty("onStatus"))
+      $(el).bootstrapSwitch("onColor", data.onStatus);
 
-    if (data.hasOwnProperty('onStatus'))
-      $(el).bootstrapSwitch('onColor', data.onStatus);
+    if (data.hasOwnProperty("offStatus"))
+      $(el).bootstrapSwitch("offColor", data.offStatus);
 
-    if (data.hasOwnProperty('offStatus'))
-      $(el).bootstrapSwitch('offColor', data.offStatus);
+    if (data.hasOwnProperty("disabled"))
+      $(el).bootstrapSwitch("disabled", data.disabled, data.disabled);
 
-    if (data.hasOwnProperty('disabled'))
-      $(el).bootstrapSwitch('disabled', data.disabled, data.disabled);
-
-    $(el).trigger('change');
-   },
-    initialize: function initialize(el) {
-      $(el).bootstrapSwitch();
-    }
+    $(el).trigger("change");
+  },
+  initialize: function initialize(el) {
+    $(el).bootstrapSwitch();
+  }
 });
 
-Shiny.inputBindings.register(switchInputBinding, 'shiny.switchInput');
+Shiny.inputBindings.register(switchInputBinding, "shinyWidgets.switchInput");
 

@@ -1,3 +1,8 @@
+/*jshint
+  jquery:true
+*/
+/*global Swal, CharacterData, DocumentType, Shiny */
+
 // Sweet-Alert Bindings
 
 Shiny.addCustomMessageHandler("sweetalert-sw", function(data) {

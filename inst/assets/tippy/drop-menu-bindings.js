@@ -1,3 +1,8 @@
+/*jshint
+  jquery:true
+*/
+/*global tippy, Shiny */
+
 var dropMenuInputBinding = new Shiny.InputBinding();
 $.extend(dropMenuInputBinding, {
   find: function(scope) {

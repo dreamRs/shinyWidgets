@@ -1,3 +1,8 @@
+/*jshint
+  jquery:true
+*/
+/*global noUiSlider, wNumb, Shiny */
+
 // noUiSlider bindings by VP //
 
 var noUiSliderBinding = new Shiny.InputBinding();
@@ -25,7 +30,7 @@ $.extend(noUiSliderBinding, {
       .find('script[data-for="' + Shiny.$escape(el.id) + '"]');
     config = JSON.parse(config.html());
     if (typeof config.format !== "undefined") {
-      numformat = wNumb(config.format);
+      var numformat = wNumb(config.format);
       if (Array.isArray(values)) {
         result = values.map(numformat.from);
       } else {
@@ -123,5 +128,5 @@ $.extend(noUiSliderBinding, {
   }
 });
 
-Shiny.inputBindings.register(noUiSliderBinding, "shiny.noUiSlider");
+Shiny.inputBindings.register(noUiSliderBinding, "shinyWidgets.noUiSlider");
 

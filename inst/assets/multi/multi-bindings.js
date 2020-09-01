@@ -79,5 +79,5 @@ $.extend(multiInputBinding, {
     $(el).off(".multiInputBinding");
   }
 });
-Shiny.inputBindings.register(multiInputBinding, "shiny.multiInput");
+Shiny.inputBindings.register(multiInputBinding, "shinyWidgets.multiInput");
 
