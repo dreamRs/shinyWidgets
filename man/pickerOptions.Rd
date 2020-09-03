@@ -37,7 +37,8 @@ pickerOptions(
   title = NULL,
   virtualScroll = NULL,
   width = NULL,
-  windowPadding = NULL
+  windowPadding = NULL,
+  ...
 )
 }
 \arguments{
@@ -106,12 +107,14 @@ pickerOptions(
 \item{width}{When set to auto, the width of the selectpicker is automatically adjusted to accommodate the widest option. When set to a css-width, the width of the selectpicker is forced inline to the given value. When set to false, all width information is removed. Type: 'auto' | 'fit' | css-width | false (where css-width is a CSS width with units, e.g. 100px); Default: false.}
 
 \item{windowPadding}{This is useful in cases where the window has areas that the dropdown menu should not cover - for instance a fixed header. When set to an integer, the same padding will be added to all sides. Alternatively, an array of integers can be used in the format [top, right, bottom, left]. Type: integer | array; Default: 0.}
+
+\item{...}{Other options not listed here.}
 }
 \description{
 Wrapper of options available here: \url{https://developer.snapappointments.com/bootstrap-select/options/}
 }
 \note{
-Documentation is from Bootstrap-select page.
+Documentation is from Bootstrap-select page (\url{https://developer.snapappointments.com/bootstrap-select/options/}).
 }
 \examples{
 

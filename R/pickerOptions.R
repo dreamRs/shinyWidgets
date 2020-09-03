@@ -36,8 +36,9 @@
 #' @param virtualScroll If enabled, the items in the dropdown will be rendered using virtualization (i.e. only the items that are within the viewport will be rendered). This drastically improves performance for selects with a large number of options. Set to an integer to only use virtualization if the select has at least that number of options. Type: boolean | integer; Default: 600.
 #' @param width When set to auto, the width of the selectpicker is automatically adjusted to accommodate the widest option. When set to a css-width, the width of the selectpicker is forced inline to the given value. When set to false, all width information is removed. Type: 'auto' | 'fit' | css-width | false (where css-width is a CSS width with units, e.g. 100px); Default: false.
 #' @param windowPadding This is useful in cases where the window has areas that the dropdown menu should not cover - for instance a fixed header. When set to an integer, the same padding will be added to all sides. Alternatively, an array of integers can be used in the format [top, right, bottom, left]. Type: integer | array; Default: 0.
+#' @param ... Other options not listed here.
 #'
-#' @note Documentation is from Bootstrap-select page.
+#' @note Documentation is from Bootstrap-select page (\url{https://developer.snapappointments.com/bootstrap-select/options/}).
 #'
 #' @export
 #'
@@ -100,8 +101,9 @@ pickerOptions <- function(actionsBox = NULL,
                           title = NULL,
                           virtualScroll = NULL,
                           width = NULL,
-                          windowPadding = NULL) {
-  params <- as.list(environment())
+                          windowPadding = NULL,
+                          ...) {
+  params <- c(as.list(environment()), list(...))
   params <- dropNulls(params)
   names(params) <- convert_names(names(params))
   return(params)

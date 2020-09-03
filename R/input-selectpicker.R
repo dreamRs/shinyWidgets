@@ -1,7 +1,6 @@
-#' @title Select picker Input Control
+#' @title Select Picker Input Control
 #'
-#' @description
-#' Create a select picker (\url{https://developer.snapappointments.com/bootstrap-select/})
+#' @description An alternative to \code{selectInput} with plenty of options to customize it.
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or \code{NULL} for no label.
@@ -21,6 +20,10 @@
 #'
 #' @return A select control that can be added to a UI definition.
 #'
+#' @references SnapAppointments and contributors. "The jQuery plugin that brings
+#'  select elements into the 21st century with intuitive multiselection,
+#'  searching, and much more. Now with Bootstrap 4 support".
+#'  \url{https://github.com/snapappointments/bootstrap-select/}
 #'
 #' @examples
 #' ## Only run examples in interactive R sessions
@@ -60,8 +63,15 @@
 #'  tagAppendAttributes tagAppendChildren tag
 #'
 #' @export
-pickerInput <- function(inputId, label = NULL, choices, selected = NULL, multiple = FALSE,
-                        options = list(), choicesOpt = NULL, width = NULL, inline = FALSE) {
+pickerInput <- function(inputId,
+                        label = NULL,
+                        choices,
+                        selected = NULL,
+                        multiple = FALSE,
+                        options = list(),
+                        choicesOpt = NULL,
+                        width = NULL,
+                        inline = FALSE) {
   choices <- choicesWithNames(choices)
   selected <- restoreInput(id = inputId, default = selected)
   if (!is.null(options) && length(options) > 0)

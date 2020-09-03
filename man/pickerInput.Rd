@@ -2,7 +2,7 @@
 % Please edit documentation in R/input-selectpicker.R
 \name{pickerInput}
 \alias{pickerInput}
-\title{Select picker Input Control}
+\title{Select Picker Input Control}
 \usage{
 pickerInput(
   inputId,
@@ -43,7 +43,7 @@ To limit the number of selection possible, see example below.}
 A select control that can be added to a UI definition.
 }
 \description{
-Create a select picker (\url{https://developer.snapappointments.com/bootstrap-select/})
+An alternative to \code{selectInput} with plenty of options to customize it.
 }
 \examples{
 ## Only run examples in interactive R sessions
@@ -239,6 +239,12 @@ if (interactive()) {
   shinyApp(ui, server)
 
 }
+}
+\references{
+SnapAppointments and contributors. "The jQuery plugin that brings
+ select elements into the 21st century with intuitive multiselection,
+ searching, and much more. Now with Bootstrap 4 support".
+ \url{https://github.com/snapappointments/bootstrap-select/}
 }
 \seealso{
 \link{updatePickerInput} to update value server-side.

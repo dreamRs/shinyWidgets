@@ -212,9 +212,9 @@ html_dependency_sweetalert2 <- function(theme = c("sweetalert2",
 html_dependency_picker <- function() {
   htmlDependency(
     name = "bootstrap-select",
-    version = "1.13.17",
+    version = "1.13.18",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/selectPicker", file = "assets/selectPicker"),
+    src = c(href = "shinyWidgets/bootstrap-select", file = "assets/bootstrap-select"),
     script = "js/bootstrap-select.min.js",
     stylesheet = "css/bootstrap-select.min.css"
   )
