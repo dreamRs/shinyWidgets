@@ -9,16 +9,7 @@
 #' @importFrom shiny icon
 #'
 attachShinyWidgetsDep <- function(tag, widget = NULL) {
-  version <- as.character(packageVersion("shinyWidgets")[[1]])
-  dep <- htmltools::htmlDependency(
-    name = "shinyWidgets",
-    version = version,
-    src = c(href = "shinyWidgets", file = "assets"),
-    package = "shinyWidgets",
-    script = "shinyWidgets-bindings.min.js",
-    stylesheet = "shinyWidgets.min.css",
-    all_files = FALSE
-  )
+  dep <- html_dependency_shinyWidgets()
   if (!is.null(widget)) {
     if (widget == "picker") {
       dep <- list(
@@ -51,7 +42,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "dropdown-patch",
-          version = version,
+          version = packageVersion("shinyWidgets"),
           src = c(href="shinyWidgets/dropdown"),
           script = "dropdown-click.js"
         )
@@ -61,7 +52,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         dep,
         htmltools::htmlDependency(
           name = "sw-dropdown",
-          version = version,
+          version = packageVersion("shinyWidgets"),
           src = c(href="shinyWidgets/sw-dropdown"),
           script = "sw-dropdown.js",
           stylesheet = "sw-dropdown.css"
@@ -102,6 +93,18 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
   htmltools::attachDependencies(tag, dep, append = TRUE)
 }
 
+
+html_dependency_shinyWidgets <- function() {
+  htmltools::htmlDependency(
+    name = "shinyWidgets",
+    version = packageVersion("shinyWidgets"),
+    src = c(href = "shinyWidgets", file = "assets"),
+    package = "shinyWidgets",
+    script = "shinyWidgets-bindings.min.js",
+    stylesheet = "shinyWidgets.min.css",
+    all_files = FALSE
+  )
+}
 
 
 # Exported ----------------------------------------------------------------
@@ -290,7 +293,7 @@ html_dependency_autonumeric <- function() {
     version = "4.6.0",
     package = "shinyWidgets",
     src = c(href = "shinyWidgets/autonumeric", file = "assets/autonumeric"),
-    script = c("autoNumeric.min.js", "autonumeric-bindings.js")
+    script = "autoNumeric.min.js"
   )
 }
 

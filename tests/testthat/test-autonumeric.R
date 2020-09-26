@@ -20,11 +20,11 @@ test_that("default", {
   )
 
   expect_is(tagauto, "shiny.tag")
-  expect_length(htmltools::findDependencies(tagauto), 1)
-  expect_identical(htmltools::findDependencies(tagauto)[[1]]$script, c("autoNumeric.min.js", "autonumeric-bindings.js"))
+  expect_length(htmltools::findDependencies(tagauto), 2)
+  expect_identical(htmltools::findDependencies(tagauto)[[2]]$script, "autoNumeric.min.js")
   expect_true(htmltools::tagHasAttribute(tagauto$children[[2]], "id"))
   expect_identical(htmltools::tagGetAttribute(tagauto$children[[2]], "id"), "id1")
-  expect_identical(tagauto$children[[4]]$name, "autonumeric")
+  expect_identical(tagauto$children[[5]]$name, "autonumeric")
 })
 
 
@@ -75,11 +75,11 @@ test_that("default", {
   )
 
   expect_is(tagauto, "shiny.tag")
-  expect_length(htmltools::findDependencies(tagauto), 1)
-  expect_identical(htmltools::findDependencies(tagauto)[[1]]$script, c("autoNumeric.min.js", "autonumeric-bindings.js"))
+  expect_length(htmltools::findDependencies(tagauto), 2)
+  expect_identical(htmltools::findDependencies(tagauto)[[2]]$script, "autoNumeric.min.js")
   expect_true(htmltools::tagHasAttribute(tagauto$children[[2]], "id"))
   expect_identical(htmltools::tagGetAttribute(tagauto$children[[2]], "id"), "id1")
-  expect_identical(tagauto$children[[4]]$name, "autonumeric")
+  expect_identical(tagauto$children[[5]]$name, "autonumeric")
 })
 
 
