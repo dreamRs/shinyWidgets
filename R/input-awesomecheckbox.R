@@ -41,7 +41,7 @@ awesomeCheckbox <- function(inputId,
   value <- shiny::restoreInput(id = inputId, default = value)
   status <- match.arg(
     arg = status,
-    choices = c("primary", "success", "info", "warning", "danger")
+    choices = c("default", "primary", "success", "info", "warning", "danger")
   )
   inputTag <- tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)

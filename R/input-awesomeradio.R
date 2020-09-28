@@ -10,7 +10,7 @@ radioAlone <- function(id,
                        checkbox = FALSE) {
   status <- match.arg(
     arg = status,
-    choices = c("primary", "success", "info", "warning", "danger")
+    choices = c("default", "primary", "success", "info", "warning", "danger")
   )
   if (!checkbox) {
     divClass <- paste0("awesome-radio radio-", status)
