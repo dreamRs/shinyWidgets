@@ -356,7 +356,7 @@ updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, cle
   to_ms <- function(x) {
     if (is.null(x))
       return(NULL)
-    1000 * as.numeric(as.POSIXct(x, tz = "UTC"))
+    1000 * as.numeric(as.POSIXct(as.character(x), tz = Sys.timezone()))
   }
   if (!is.null(value)) {
     value <- as.character(toJSON(x = to_ms(value), auto_unbox = FALSE))
