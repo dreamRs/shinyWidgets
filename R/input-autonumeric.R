@@ -121,8 +121,13 @@ currencyInput <- function(inputId, label, value, format = "euro",
 }
 
 #' @rdname formatNumericInput
-formatNumericInput <- function(inputId, label, value, format = "commaDecimalCharDotSeparator",
-                               width = NULL, align = "center") {
+#' @export
+formatNumericInput <- function(inputId,
+                               label,
+                               value,
+                               format = "commaDecimalCharDotSeparator",
+                               width = NULL,
+                               align = "center") {
   currencyInput(inputId, label, value, format, width, align)
 }
 
