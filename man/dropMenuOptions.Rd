@@ -14,7 +14,7 @@ dropMenuOptions(duration = c(275, 250), animation = "fade", flip = FALSE, ...)
 \item{flip}{Determines if the tippy flips so that it is placed within
 the viewport as best it can be if there is not enough space.}
 
-\item{...}{Additional arguements.}
+\item{...}{Additional arguments.}
 }
 \value{
 a \code{list} of options to be used in \code{\link{dropMenu}}.

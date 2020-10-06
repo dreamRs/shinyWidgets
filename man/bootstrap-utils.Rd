@@ -42,7 +42,7 @@ A UI definition.
 \description{
 Create a panel (box) with basic border and padding,
 you can use Bootstrap status to style the panel,
-see \url{http://getbootstrap.com/components/#panels}.
+see \url{https://getbootstrap.com/docs/3.4/components/#panels}.
 }
 \examples{
 

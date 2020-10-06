@@ -121,5 +121,5 @@ if (interactive()) {
 }
 \seealso{
 \link[=drop-menu-interaction]{dropMenu interaction} for functions
- and exemples to interact with \code{dropMenu} from server.
+ and examples to interact with \code{dropMenu} from server.
 }

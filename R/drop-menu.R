@@ -16,7 +16,7 @@
 #' @param options Additional options, see \code{\link{dropMenuOptions}}.
 #'
 #' @seealso \link[=drop-menu-interaction]{dropMenu interaction} for functions
-#'  and exemples to interact with \code{dropMenu} from server.
+#'  and examples to interact with \code{dropMenu} from server.
 #'
 #' @return A UI definition.
 #' @export
@@ -123,7 +123,7 @@ dropMenu <- function(tag, ...,
 #' @param animation The type of transition animation.
 #' @param flip Determines if the tippy flips so that it is placed within
 #'  the viewport as best it can be if there is not enough space.
-#' @param ... Additional arguements.
+#' @param ... Additional arguments.
 #'
 #' @return a \code{list} of options to be used in \code{\link{dropMenu}}.
 #' @export
