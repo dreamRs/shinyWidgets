@@ -1,7 +1,7 @@
 ## Test environments
 
 * local Windows 10 install, R 3.6.3
-* ubuntu 12.04 (on travis-ci), R 3.6.3
+* ubuntu 16.04, Windows 10, macOS (on GitHub Actions), R 4.0.2
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,7 +11,7 @@
 
 ## Reverse dependencies
 
-* All reverse dependencies tested, except : `NACHO`, `pkgsearch`, `rpostgisLT`, `shinyrecipes`.
+* All reverse dependencies tested, except : `pkgsearch`, `Prostar`.
   No apparent problems for those tested.
   Summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
 
