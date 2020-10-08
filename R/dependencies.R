@@ -178,7 +178,7 @@ html_dependency_bsswitch <- function() {
     name = "bootstrap-switch",
     version = "3.3.4",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/bootstrap-switch/", file = "bootstrap-switch"),
+    src = c(href = "shinyWidgets/bootstrap-switch", file = "bootstrap-switch"),
     script = "bootstrap-switch-3.3.4/bootstrap-switch.min.js",
     stylesheet = "bootstrap-switch-3.3.4/bootstrap-switch.min.css"
   )
