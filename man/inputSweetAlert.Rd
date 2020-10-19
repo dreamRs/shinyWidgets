@@ -45,10 +45,13 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 
 \item{reset_input}{Set the input value to \code{NULL} when alert is displayed.}
 
-\item{...}{Additional arguments (not used).}
+\item{...}{Other arguments passed to JavaScript method.}
 }
 \description{
 Launch a popup with a text input
+}
+\note{
+This function use the JavaScript sweetalert2 library, see the official documentation for more \url{https://sweetalert2.github.io/}.
 }
 \examples{
 if (interactive()) {

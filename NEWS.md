@@ -1,3 +1,10 @@
+shinyWidgets 0.5.5
+======================
+
+* `show_alert()`, `sendSweetAlert()` and `inputSweetAlert()` now accept parameters directly passed to JavaScript method.
+
+
+
 shinyWidgets 0.5.4
 ======================
 

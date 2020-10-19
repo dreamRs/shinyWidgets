@@ -60,7 +60,9 @@ useSweetAlert <- function(theme = c("sweetalert2",
 #'  the modal by clicking outside of it, or not.
 #' @param showCloseButton Show close button in top right corner of the modal.
 #' @param width Width of the modal (in pixel).
+#' @param ... Other arguments passed to JavaScript method.
 #'
+#' @note This function use the JavaScript sweetalert2 library, see the official documentation for more \url{https://sweetalert2.github.io/}.
 #'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags
@@ -83,7 +85,8 @@ sendSweetAlert <- function(session,
                            html = FALSE,
                            closeOnClickOutside = TRUE,
                            showCloseButton = FALSE,
-                           width = NULL) {
+                           width = NULL,
+                           ...) {
   insertUI(
     selector = "body",
     where = "afterBegin",
@@ -116,7 +119,8 @@ sendSweetAlert <- function(session,
           showCancelButton = !is.na(btn_labels[2]),
           allowOutsideClick = closeOnClickOutside,
           showCloseButton = showCloseButton,
-          width = width
+          width = width,
+          ...
         ))
       )
     )
@@ -161,6 +165,7 @@ show_alert <- function(title = "Title",
                        closeOnClickOutside = TRUE,
                        showCloseButton = FALSE,
                        width = NULL,
+                       ...,
                        session = shiny::getDefaultReactiveDomain()) {
   sendSweetAlert(
     session = session,
@@ -172,7 +177,8 @@ show_alert <- function(title = "Title",
     html = html,
     closeOnClickOutside = closeOnClickOutside,
     showCloseButton = showCloseButton,
-    width = width
+    width = width,
+    ...
   )
 }
 
@@ -338,8 +344,9 @@ ask_confirmation <- function(inputId,
 #' @param btn_labels Label(s) for button(s).
 #' @param btn_colors Color(s) for button(s).
 #' @param reset_input Set the input value to \code{NULL} when alert is displayed.
-#' @param ... Additional arguments (not used).
+#' @param ... Other arguments passed to JavaScript method.
 #'
+#' @note This function use the JavaScript sweetalert2 library, see the official documentation for more \url{https://sweetalert2.github.io/}.
 #'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags
@@ -418,11 +425,16 @@ ask_confirmation <- function(inputId,
 #'
 #'   shinyApp(ui = ui, server = server)
 #' }
-inputSweetAlert <- function(session, inputId, title = NULL,
-                            text = NULL, type = NULL,
+inputSweetAlert <- function(session,
+                            inputId,
+                            title = NULL,
+                            text = NULL,
+                            type = NULL,
                             input = c("text", "password", "textarea", "radio", "checkbox", "select"),
-                            inputOptions = NULL, inputPlaceholder = NULL,
-                            btn_labels = "Ok", btn_colors = NULL,
+                            inputOptions = NULL,
+                            inputPlaceholder = NULL,
+                            btn_labels = "Ok",
+                            btn_colors = NULL,
                             reset_input = TRUE,
                             ...) {
   input <- match.arg(input)
@@ -461,7 +473,8 @@ inputSweetAlert <- function(session, inputId, title = NULL,
         confirmButtonColor = btn_colors[1],
         cancelButtonText = btn_labels[2],
         cancelButtonColor = btn_colors[2],
-        showCancelButton = !is.na(btn_labels[2])
+        showCancelButton = !is.na(btn_labels[2]),
+        ...
       ))
     )
   )

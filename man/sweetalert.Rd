@@ -16,7 +16,8 @@ sendSweetAlert(
   html = FALSE,
   closeOnClickOutside = TRUE,
   showCloseButton = FALSE,
-  width = NULL
+  width = NULL,
+  ...
 )
 
 show_alert(
@@ -29,6 +30,7 @@ show_alert(
   closeOnClickOutside = TRUE,
   showCloseButton = FALSE,
   width = NULL,
+  ...,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -54,9 +56,14 @@ the modal by clicking outside of it, or not.}
 \item{showCloseButton}{Show close button in top right corner of the modal.}
 
 \item{width}{Width of the modal (in pixel).}
+
+\item{...}{Other arguments passed to JavaScript method.}
 }
 \description{
 Show an alert message to the user to provide some feedback.
+}
+\note{
+This function use the JavaScript sweetalert2 library, see the official documentation for more \url{https://sweetalert2.github.io/}.
 }
 \examples{
 library(shiny)
@@ -123,8 +130,11 @@ server <- function(input, output, session) {
 
 if (interactive())
   shinyApp(ui, server)
-library("shiny")
-library("shinyWidgets")
+
+# Ouptut in alert ----
+
+library(shiny)
+library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h1("Click the button to open the alert"),

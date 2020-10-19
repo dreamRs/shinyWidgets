@@ -1,5 +1,8 @@
-library("shiny")
-library("shinyWidgets")
+
+# Ouptut in alert ----
+
+library(shiny)
+library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h1("Click the button to open the alert"),
