@@ -266,6 +266,8 @@ updateAwesomeCheckboxGroup <- function(session,
   if (!is.null(choices))
     choices <- choicesWithNames(choices)
   if (!is.null(selected))
+    selected <- as.character(selected)
+  if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- if (!is.null(choices)) {
     as.character(generateAwesomeOptions(session$ns(inputId), choices, selected, inline, status))

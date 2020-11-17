@@ -230,6 +230,8 @@ updateAwesomeRadio <- function(session,
                                inline = FALSE,
                                status = "primary",
                                checkbox = FALSE) {
+  if (!is.null(selected))
+    selected <- as.character(selected)
   if (is.null(selected) && !is.null(choices))
     selected <- as.character(choices[[1]])
   if (!is.null(choices))
