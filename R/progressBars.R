@@ -81,8 +81,16 @@
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NULL,
-                        status = NULL, striped = FALSE, title = NULL, range_value = NULL, unit_mark = "%") {
+progressBar <- function(id,
+                        value,
+                        total = NULL,
+                        display_pct = FALSE,
+                        size = NULL,
+                        status = NULL,
+                        striped = FALSE,
+                        title = NULL,
+                        range_value = NULL,
+                        unit_mark = "%") {
   if (!is.null(total)) {
     percent <- round(value / total * 100)
   } else {
@@ -95,34 +103,37 @@ progressBar <- function(id, value, total = NULL, display_pct = FALSE, size = NUL
   }
 
   if (!is.null(title) | !is.null(total)) {
-    title <- htmltools::tags$span(
+    title <- tags$span(
       class = "progress-text",
       id = paste0(id, "-title"),
-      title, htmltools::HTML("&nbsp;")
+      title, HTML("&nbsp;")
     )
   }
 
   if (!is.null(total)) {
-    total <- htmltools::tags$span(
+    total <- tags$span(
       class = "progress-number",
-      htmltools::tags$b(value, id = paste0(id, "-value")),
-      "/", htmltools::tags$span(id = paste0(id, "-total"), total)
+      tags$b(value, id = paste0(id, "-value")),
+      "/",
+      tags$span(id = paste0(id, "-total"), total)
     )
   }
 
-  tagPB <- htmltools::tags$div(
+  tagPB <- tags$div(
     class = "progress-group",
     title, total,
-    htmltools::tags$div(
-      class = if (!is.null(size)) paste("progress", size) else "progress",
-      htmltools::tags$div(
+    tags$div(
+      class = "progress",
+      class = if (!is.null(size)) paste0("progress-", size),
+      tags$div(
         id = id,
-        style=if(percent>0) paste0("width:", percent, "%;"),
-        style=if(display_pct) "min-width: 2em;",
-        class="progress-bar",
-        class=if(!is.null(status)) paste0("progress-bar-", status),
-        class=if(striped) "progress-bar-striped",
-        role="progressbar",
+        style = if (percent > 0) paste0("width:", percent, "%;"),
+        style = if (display_pct) "min-width: 2em;",
+        class = "progress-bar",
+        class = if (!is.null(status)) paste0("progress-bar-", status),
+        class = if (!is.null(status)) paste0("bg-", status),
+        class = if (striped) "progress-bar-striped",
+        role = "progressbar",
         if (display_pct) paste0(percent, unit_mark)
       )
     )
