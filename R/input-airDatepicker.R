@@ -45,6 +45,7 @@
 #' @param inline If \code{TRUE}, datepicker will always be visible.
 #' @param onlyTimepicker Display only the time picker.
 #' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
+#' @param toggleSelected When \code{TRUE}, in range mode, it's not possible to select the same date as start and end.
 #' @param ... Arguments passed to \code{airDatepickerInput}.
 #'
 #' @note Since shinyWidgets 0.5.2 there's no more conflicts with \code{dateInput}.
@@ -125,7 +126,8 @@ airDatepickerInput <- function(inputId,
                                language = "en",
                                inline = FALSE,
                                onlyTimepicker = FALSE,
-                               width = NULL) {
+                               width = NULL,
+                               toggleSelected = TRUE) {
   value <- shiny::restoreInput(inputId, value)
   addon <- match.arg(addon)
   language <- match.arg(
@@ -169,7 +171,8 @@ airDatepickerInput <- function(inputId,
       todayButton = todayButton,
       monthsField = match.arg(monthsField),
       position = position,
-      onlyTimepicker = isTRUE(onlyTimepicker)
+      onlyTimepicker = isTRUE(onlyTimepicker),
+      toggleSelected = isTRUE(toggleSelected)
     )), timepickerOpts)
   ))
 
