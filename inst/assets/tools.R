@@ -21,7 +21,7 @@ library(jstools)
 
 # search all bindings files
 bindings <- list.files(
-  path = "inst/assets/",
+  path = "inst/assets",
   pattern = "bindings\\.js$",
   recursive = TRUE,
   full.names = TRUE
