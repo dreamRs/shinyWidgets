@@ -97,7 +97,7 @@ sliderTextInput <- function (inputId, label, choices, selected = NULL,
   sliderProps <- dropNulls(list(
     class = "js-range-slider", class = "sw-slider-text",
     id = inputId, `data-type` = if (length(selected) > 1) "double",
-    `data-from` = from,
+    `data-from` = from, `data-skin` = "shiny",
     `data-to` = if (length(selected) > 1) to,
     `data-grid` = grid, `data-prettify-enabled` = FALSE,
     `data-force-edges` = force_edges,
