@@ -1,0 +1,68 @@
+/******************************
+
+Stati - minimal statistical cards
+Source: https://codepen.io/ArielDavid/pen/BaBjVEr
+
+*******************************/
+
+.stati {
+  background: #fff;
+  height: 7em;
+  padding: 1em;
+  margin: 1em 0;
+  -webkit-transition: margin 0.5s ease, box-shadow 0.5s ease; /* Safari */
+  transition: margin 0.5s ease, box-shadow 0.5s ease;
+  -moz-box-shadow: 0px 0.2em 0.4em rgb(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 0.2em 0.4em rgb(0, 0, 0, 0.8);
+  box-shadow: 0px 0.2em 0.4em rgb(0, 0, 0, 0.8);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+.stati:hover {
+  /*margin-top: 0.5em;*/
+  /*margin-bottom: 1.5em;*/
+  -moz-box-shadow: 0px 0.4em 0.5em rgb(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 0.4em 0.5em rgb(0, 0, 0, 0.8);
+  box-shadow: 0px 0.4em 0.5em rgb(0, 0, 0, 0.8);
+}
+.stati i {
+  font-size: 4em;
+  grid-area: 1 / 1 / 2 / 2;
+}
+.stati .stati-content {
+  /*width: calc(100% - 3.5em);*/
+  display: block;
+  grid-area: 1 / 2 / 2 / 6;
+  text-align: right;
+}
+.stati .stati-content .stati-value {
+  font-size: 2.5em;
+  width: 100%;
+  padding-top: 0px;
+  margin-top: -0.2em;
+  margin-bottom: -0.1em;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stati .stati-content .stati-subtitle {
+  font-size: 1em;
+  /*width: 100%;*/
+  /*color: rgb(0, 0, 0,0.8); !important;*/
+  color: inherit;
+  display: block;
+}
+
+.stati.left .stati-content {
+  grid-area: 1 / 1 / 2 / 5;
+  text-align: left;
+}
+.stati.left i {
+  grid-area: 1 / 5 / 2 / 6;
+  text-align: right;
+}
+

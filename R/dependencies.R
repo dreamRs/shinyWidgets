@@ -305,3 +305,24 @@ html_dependency_polyfill_promise <- function() {
     script = "js/promise.min.js"
   )
 }
+
+html_dependency_bounty <- function() {
+  htmlDependency(
+    name = "bounty",
+    version = "1.3.0",
+    package = "shinyWidgets",
+    src = c(href = "shinyWidgets/bounty", file = "assets/bounty"),
+    script = c("bounty.js", "bounty-wrapper.js")
+  )
+}
+
+
+html_dependency_stati <- function() {
+  htmlDependency(
+    name = "stati",
+    version = packageVersion("shinyWidgets"),
+    package = "shinyWidgets",
+    src = c(href = "shinyWidgets/stati", file = "assets/stati"),
+    stylesheet = "stati.css"
+  )
+}
