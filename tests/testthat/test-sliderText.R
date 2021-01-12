@@ -11,7 +11,7 @@ test_that("default", {
   )
 
   expect_is(tagst, "shiny.tag")
-  expect_length(htmltools::findDependencies(tagst), 3)
+  expect_true(htmltools::findDependencies(tagst) >= 3)
   expect_identical(htmltools::findDependencies(tagst)[[1]]$script, "js/ion.rangeSlider.min.js")
   expect_true(htmltools::tagHasAttribute(tagst$children[[2]], "id"))
   expect_identical(htmltools::tagGetAttribute(tagst$children[[2]], "id"), "MY_ID")
