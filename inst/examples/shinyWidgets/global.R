@@ -10,7 +10,7 @@
 
 # shinyWidgets examples ---------------------------------------------------
 
-library(bs4Dash) # shinydashboard
+library(shinydashboard) # shinydashboard bs4Dash
 library(shinyWidgets)
 
 if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))

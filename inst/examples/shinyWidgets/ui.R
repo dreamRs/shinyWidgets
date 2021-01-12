@@ -164,7 +164,8 @@ body <- dashboardBody(
                 multiple = TRUE, selected = "Badge danger",
                 choicesOpt = list(
                   content=sprintf(
-                    "<span class='badge badge-%1$s bg-%1$s'>%2$s</span>", c("info", "success", "danger", "primary", "warning"),
+                    # "<span class='badge badge-%1$s bg-%1$s'>%2$s</span>", c("info", "success", "danger", "primary", "warning"),
+                    "<span class='label label-%s'>%s</span>", c("info", "success", "danger", "primary", "warning"),
                     paste("Badge", c("info", "success", "danger", "primary", "warning"))
                   )
                 )
@@ -1727,6 +1728,6 @@ body <- dashboardBody(
 
 # app ----
 
-dashboardPage(header = header, sidebar = sidebar, body = body) # , skin = "red"
+dashboardPage(header = header, sidebar = sidebar, body = body, skin = "red") #
 
 
