@@ -10,9 +10,12 @@ test_that("default", {
     selected = month.name[c(4, 7)]
   )
 
+  deps <- htmltools::findDependencies(tagst)
+  nmdeps <- vapply(deps, `[[`, "name", FUN.VALUE = character(1))
   expect_is(tagst, "shiny.tag")
-  expect_true(htmltools::findDependencies(tagst) >= 3)
-  expect_identical(htmltools::findDependencies(tagst)[[1]]$script, "js/ion.rangeSlider.min.js")
+  expect_true(length(deps) >= 3)
+  expect_true("ionrangeslider" %in% nmdeps)
+  expect_true("shinyWidgets" %in% nmdeps)
   expect_true(htmltools::tagHasAttribute(tagst$children[[2]], "id"))
   expect_identical(htmltools::tagGetAttribute(tagst$children[[2]], "id"), "MY_ID")
 })
