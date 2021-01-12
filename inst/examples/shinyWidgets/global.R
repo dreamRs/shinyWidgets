@@ -129,3 +129,7 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
 }
 
 
+# Message for tests
+
+message("Running shinyWidgets gallery...")
+
