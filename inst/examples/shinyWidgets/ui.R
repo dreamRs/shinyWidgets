@@ -1,14 +1,11 @@
 
-
-# shinyWidgets examples ---------------------------------------------------
-
-
-# Packages ----
-
-library("shinydashboard")
-library("shinyWidgets")
-
-
+#  ------------------------------------------------------------------------
+#
+# Title : shinyWidgets Gallery - ui
+#    By : Victor
+#  Date : 2020-12-01
+#
+#  ------------------------------------------------------------------------
 
 
 # dropdown code ----
@@ -44,7 +41,7 @@ ID <- function(.shinyWidgetGalleryId) {
 
 # header ----
 
-header <- dashboardHeader(title = "shinyWidgets")
+header <- dashboardHeader(title = "shinyWidgets gallery")
 
 
 
@@ -167,7 +164,7 @@ body <- dashboardBody(
                 multiple = TRUE, selected = "Badge danger",
                 choicesOpt = list(
                   content=sprintf(
-                    "<span class='label label-%s'>%s</span>", c("info", "success", "danger", "primary", "warning"),
+                    "<span class='badge badge-%1$s bg-%1$s'>%2$s</span>", c("info", "success", "danger", "primary", "warning"),
                     paste("Badge", c("info", "success", "danger", "primary", "warning"))
                   )
                 )
@@ -196,7 +193,8 @@ body <- dashboardBody(
                 inputId = ID(.shinyWidgetGalleryId),
                 label = "Countries :", choices = NULL,
                 choiceNames = lapply(seq_along(countries), function(i) tagList(tags$img(src = flags[i], width=20, height=15), countries[i])),
-                choiceValues = countries
+                choiceValues = countries,
+                width = "100%"
               )
             )
           )
@@ -1373,7 +1371,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "Default",
-            progressBar(id = "pb1", value = 50),
+            shinyWidgets::progressBar(id = "pb1", value = 50),
             sliderInput(inputId = "uppb1", label = "Update", min = 0, max = 100, value = 50),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb1",
@@ -1384,7 +1382,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status : info & title",
-            progressBar(id = "pb2", value = 50, status = "info", title = "This is a progress bar"),
+            shinyWidgets::progressBar(id = "pb2", value = 50, status = "info", title = "This is a progress bar"),
             sliderInput(inputId = "uppb2", label = "Update", min = 0, max = 100, value = 50),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb2",
@@ -1395,7 +1393,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status : danger & striped : true",
-            progressBar(id = "pb3", value = 50, status = "danger", striped = TRUE),
+            shinyWidgets::progressBar(id = "pb3", value = 50, status = "danger", striped = TRUE),
             sliderInput(inputId = "uppb3", label = "Update", min = 0, max = 100, value = 50),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb3",
@@ -1410,7 +1408,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "Display : percent",
-            progressBar(id = "pb4", value = 50, display_pct = TRUE),
+            shinyWidgets::progressBar(id = "pb4", value = 50, display_pct = TRUE),
             sliderInput(inputId = "uppb4", label = "Update", min = 0, max = 100, value = 50, step = 5),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb4",
@@ -1421,7 +1419,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status : warning & value > 100 (force value and total to appear)",
-            progressBar(id = "pb5", value = 1500, total = 5000, status = "warning"),
+            shinyWidgets::progressBar(id = "pb5", value = 1500, total = 5000, status = "warning"),
             sliderInput(inputId = "uppb5", label = "Update", min = 0, max = 5000, value = 50),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb5",
@@ -1432,7 +1430,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status : success & size : xs",
-            progressBar(id = "pb6", value = 50, status = "success", size = "xs"),
+            shinyWidgets::progressBar(id = "pb6", value = 50, status = "success", size = "xs"),
             sliderInput(inputId = "uppb6", label = "Update", min = 0, max = 100, value = 50),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb6",
@@ -1448,7 +1446,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "Status update",
-            progressBar(id = "pb7", value = 50, display_pct = TRUE, status = "warning"),
+            shinyWidgets::progressBar(id = "pb7", value = 50, display_pct = TRUE, status = "warning"),
             sliderInput(inputId = "uppb7", label = "Update", min = 0, max = 100, value = 50, step = 5),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb7",
@@ -1469,7 +1467,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "",
-            progressBar(id = "pb8", value = 1500, total = 5000, status = "info", display_pct = TRUE, striped = TRUE, title = "All options"),
+            shinyWidgets::progressBar(id = "pb8", value = 1500, total = 5000, status = "info", display_pct = TRUE, striped = TRUE, title = "All options"),
             sliderInput(inputId = "uppb8", label = "Update", min = 0, max = 5000, value = 50),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb8",
@@ -1480,7 +1478,7 @@ body <- dashboardBody(
 
           .shinyWidgetGalleryFuns$box_wrapper(
             title = "Update total",
-            progressBar(id = "pb9", value = 1000, total = 1000, display_pct = TRUE),
+            shinyWidgets::progressBar(id = "pb9", value = 1000, total = 1000, display_pct = TRUE),
             sliderInput(inputId = "uppb9", label = "Update", min = 1000, max = 5000, value = 1000, step = 50),
             .shinyWidgetGalleryFuns$pb_code(
               id = "pb9",
@@ -1729,6 +1727,6 @@ body <- dashboardBody(
 
 # app ----
 
-dashboardPage(header = header, sidebar = sidebar, body = body, skin = "red")
+dashboardPage(header = header, sidebar = sidebar, body = body) # , skin = "red"
 
 
