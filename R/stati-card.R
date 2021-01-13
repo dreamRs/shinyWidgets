@@ -11,7 +11,7 @@
 #' @param duration Duration of animation.
 #' @param id An id that can be used to update the card server-side.
 #'
-#' @note Adapted from \url{https://codepen.io/ArielDavid/pen/BaBjVEr}.
+#' @note Based on work by Dastanbek and ArielDavid on codepen.io
 #'
 #' @return A UI definition.
 #' @export

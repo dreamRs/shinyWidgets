@@ -53,7 +53,7 @@ A UI definition.
 Minimal statistic cards
 }
 \note{
-Adapted from \url{https://codepen.io/ArielDavid/pen/BaBjVEr}.
+Based on work by Dastanbek and ArielDavid on codepen.io
 }
 \examples{
 library(shiny)

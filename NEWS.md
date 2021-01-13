@@ -2,6 +2,8 @@ shinyWidgets 0.5.5
 ======================
 
 * `show_alert()`, `sendSweetAlert()` and `inputSweetAlert()` now accept parameters directly passed to JavaScript method.
+* New function `statiCard()` to create minimal statistic cards.
+* `airDatepicker()` now support italian, thanks to [@ClaudioZandonella](https://github.com/ClaudioZandonella).
 
 
 
@@ -16,6 +18,7 @@ shinyWidgets 0.5.4
 ### Bug fixes
 
 * Disable `radioGroupButtons()` and `checkboxGroupButtons()` with checkIcon not working properly ([#311](https://github.com/dreamRs/shinyWidgets/issues/311))
+
 
 
 shinyWidgets 0.5.3
