@@ -1,3 +1,10 @@
+shinyWidgets 0.5.6
+======================
+
+* Fixed failing test with upcoming shiny release
+
+
+
 shinyWidgets 0.5.5
 ======================
 
