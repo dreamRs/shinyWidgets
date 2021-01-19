@@ -14,7 +14,7 @@ test_that("default", {
   nmdeps <- vapply(deps, `[[`, "name", FUN.VALUE = character(1))
   expect_is(tagst, "shiny.tag")
   expect_true(length(deps) >= 3)
-  expect_true("ionrangeslider" %in% nmdeps)
+  expect_true(any(grepl("^ionrangeslider", nmdeps)))
   expect_true("shinyWidgets" %in% nmdeps)
   expect_true(htmltools::tagHasAttribute(tagst$children[[2]], "id"))
   expect_identical(htmltools::tagGetAttribute(tagst$children[[2]], "id"), "MY_ID")
