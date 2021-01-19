@@ -141,7 +141,7 @@ server <- function(input, output, session) {
   output$card <- renderUI({
     req(input$show)
     statiCard(
-      paste0(format(sample.int(1e6, 1), big.mark = " "), "â‚¬"),
+      format(sample.int(1e6, 1), big.mark = " "),
       "Total spend",
       icon("shopping-cart"),
       left = TRUE,

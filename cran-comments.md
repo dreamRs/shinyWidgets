@@ -6,17 +6,12 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 note
+0 errors | 0 warnings | 1 note
 
-
-## Reverse dependencies
-
-* All reverse dependencies tested, except : `pkgsearch`, `Prostar`.
-  No apparent problems for those tested.
-  Summary available here: https://github.com/dreamRs/shinyWidgets/blob/master/revdep/README.md
 
 -------
 
-This release includes bug fixes and new features.
-Thanks!
+Fixed failing test with upcoming shiny release causing to resubmit despite last release 6 days ago.
+Sorry and thank you,
+
 Victor
