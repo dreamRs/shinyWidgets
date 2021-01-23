@@ -87,11 +87,11 @@ chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",
         tags$head(
           tags$style(
             sprintf(
-              ".irs-bar-edge, .irs-bar, .irs-single, .irs-from, .irs-to {background: %s;}",
+              ".irs-bar-edge, .irs-bar, .irs-single, .irs-from, .irs-to {background: %s !important;}",
               color
             ),
             if (skin == "Modern")
-              sprintf(".irs-from:after, .irs-to:after, .irs-single:after {border-top-color: %s;}", color)
+              sprintf(".irs-from:after, .irs-to:after, .irs-single:after {border-top-color: %s !important;}", color)
           )
         )
       )
@@ -113,7 +113,18 @@ chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",
         tags$head(
           tags$style(
             colImg,
-            sprintf(".irs-single, .irs-from, .irs-to {background: %s;}", color)
+            HTML(paste(
+              ".irs-single, .irs-from, .irs-to, .irs-handle>i:first-child",
+              sprintf(
+                "{background: %s !important;}", color
+              )
+            )),
+            HTML(paste(
+              ".irs-single:before, .irs-from:before, .irs-to:before",
+              sprintf(
+                "{border-top-color: %s !important;}", color
+              )
+            ))
           )
         )
       )
@@ -141,14 +152,29 @@ chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",
     #   )
     }
   }
-  tagList(
-    cssColor,
-    htmltools::attachDependencies(
-      x = tags$div(),
-      value = sliderInputDep(skin),
-      append = FALSE
+  if (packageVersion("shiny") > "1.5.0.9000") {
+    tagList(
+      cssColor,
+      htmltools::htmlDependency(
+        name = "ionrangeslider-skin",
+        version = packageVersion("shinyWidgets"),
+        package = "shinyWidgets",
+        src = c(href = "shinyWidgets/ion-rangeslider", file = "assets/ion-rangeslider"),
+        script = c("jquery.initialize.min.js", "custom-skin.js"),
+        stylesheet = "ion.rangeSlider.min.css",
+        head = sprintf("<script type='custom-slider-skin'>{\"name\":\"%s\"}</script>", tolower(skin))
+      )
     )
-  )
+  } else {
+    tagList(
+      cssColor,
+      htmltools::attachDependencies(
+        x = tags$div(),
+        value = sliderInputDep(skin),
+        append = FALSE
+      )
+    )
+  }
 }
 
 
