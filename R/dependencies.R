@@ -218,7 +218,7 @@ html_dependency_picker <- function() {
     version = "1.13.18",
     package = "shinyWidgets",
     src = c(href = "shinyWidgets/bootstrap-select", file = "assets/bootstrap-select"),
-    script = "js/bootstrap-select.min.js",
+    script = c("js/bootstrap-select.min.js", "picker-bindings.js"),
     stylesheet = "css/bootstrap-select.min.css"
   )
 }

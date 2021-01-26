@@ -1,5 +1,4 @@
 // picker input binding
-
 var pickerInputBinding = new Shiny.InputBinding();
 $.extend(pickerInputBinding, {
   find: function find(scope) {
@@ -13,7 +12,7 @@ $.extend(pickerInputBinding, {
   },
   setValue: function setValue(el, value) {
     $(el).val(value);
-    $(el.id).selectpicker("refresh");
+    $(el).selectpicker("refresh");
   },
   getState: function getState(el) {
     // Store options in an array of objects, each with with value and label
@@ -34,12 +33,13 @@ $.extend(pickerInputBinding, {
   receiveMessage: function receiveMessage(el, data) {
     var $el = $(el);
 
+/*
     if (data.hasOwnProperty("options")) {
       //this.picker.selectpicker('destroy');
       $(el).attr(data.options);
       this.picker.selectpicker("render");
     }
-
+*/
     // This will replace all the choices
     if (data.hasOwnProperty("choices")) {
       // Clear existing choices and add each new one
@@ -71,8 +71,11 @@ $.extend(pickerInputBinding, {
     $(el).off(".pickerInputBinding");
   },
   initialize: function initialize(el) {
-    this.picker = $(el).selectpicker();
+    $(el).selectpicker();
+    $(el).on("focusout.dropdown.data-api", ".dropdown-menu", function(e) {
+      e.stopPropagation();
+    });
   }
 });
-Shiny.inputBindings.register(pickerInputBinding, "shiny.pickerInput");
+Shiny.inputBindings.register(pickerInputBinding, "shinyWidgets.pickerInput");
 
