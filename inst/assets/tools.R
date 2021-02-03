@@ -39,8 +39,8 @@ jshint_file(input = bindings, options = jshint_options(jquery = TRUE, globals = 
 # Compress ----------------------------------------------------------------
 
 # remove sweet alert
-bindings <- setdiff(bindings, grep("sweetalert-bindings.js", bindings, value = TRUE))
-bindings <- setdiff(bindings, grep("picker-bindings", bindings, value = TRUE))
+bindings <- setdiff(bindings, grep("/sweetalert-bindings.js", bindings, value = TRUE))
+# bindings <- setdiff(bindings, grep("/picker-bindings", bindings, value = TRUE))
 
 # bundle all scripts
 terser_file(input = bindings, output = "inst/assets/shinyWidgets-bindings.min.js")

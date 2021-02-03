@@ -1,7 +1,8 @@
-#' Attach shinyWidgets dependancies
+
+#' Attach shinyWidgets dependencies
 #'
 #' @param tag An object which has (or should have) HTML dependencies.
-#' @param widget Name of a widget for particular dependancies
+#' @param widget Name of a widget for specific dependency.
 #'
 #' @noRd
 #' @importFrom utils packageVersion
@@ -43,7 +44,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         htmltools::htmlDependency(
           name = "dropdown-patch",
           version = packageVersion("shinyWidgets"),
-          src = c(href="shinyWidgets/dropdown"),
+          src = c(href = "shinyWidgets/dropdown"),
           script = "dropdown-click.js"
         )
       )
@@ -53,7 +54,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         htmltools::htmlDependency(
           name = "sw-dropdown",
           version = packageVersion("shinyWidgets"),
-          src = c(href="shinyWidgets/sw-dropdown"),
+          src = c(href = "shinyWidgets/sw-dropdown"),
           script = "sw-dropdown.js",
           stylesheet = "sw-dropdown.css"
         )
@@ -138,7 +139,7 @@ html_dependency_awesome <- function() {
     version = "0.3.7",
     src = c(
       href = "shinyWidgets/awesome-bootstrap-checkbox",
-      file = "awesome-bootstrap-checkbox"
+      file = "assets/awesome-bootstrap-checkbox"
     ),
     package = "shinyWidgets",
     stylesheet = "awesome-bootstrap-checkbox.min.css",
@@ -152,7 +153,7 @@ html_dependency_bttn <- function() {
   htmlDependency(
     name = "bttn",
     version = "0.2.4",
-    src = c(href = "shinyWidgets/bttn", file = "bttn"),
+    src = c(href = "shinyWidgets/bttn", file = "assets/bttn"),
     package = "shinyWidgets",
     stylesheet = "bttn.min.css"
   )
@@ -164,7 +165,7 @@ html_dependency_pretty <- function() {
   htmlDependency(
     name = "pretty",
     version = "3.0.3",
-    src = c(href = "shinyWidgets/pretty-checkbox", file = "pretty-checkbox"),
+    src = c(href = "shinyWidgets/pretty-checkbox", file = "assets/pretty-checkbox"),
     package = "shinyWidgets",
     stylesheet = "pretty-checkbox.min.css"
   )
@@ -178,7 +179,7 @@ html_dependency_bsswitch <- function() {
     name = "bootstrap-switch",
     version = "3.3.4",
     package = "shinyWidgets",
-    src = c(href = "shinyWidgets/bootstrap-switch", file = "bootstrap-switch"),
+    src = c(href = "shinyWidgets/bootstrap-switch", file = "assets/bootstrap-switch"),
     script = "bootstrap-switch-3.3.4/bootstrap-switch.min.js",
     stylesheet = "bootstrap-switch-3.3.4/bootstrap-switch.min.css"
   )
@@ -201,7 +202,7 @@ html_dependency_sweetalert2 <- function(theme = c("sweetalert2",
   htmlDependency(
     name = "sweetalert2",
     version = "9.17.1",
-    src = c(href="shinyWidgets/sweetalert2", file = "sweetalert2"),
+    src = c(href="shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
     script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
     stylesheet = sprintf("css/%s.min.css", theme)
   )
@@ -218,8 +219,8 @@ html_dependency_picker <- function() {
     version = "1.13.18",
     package = "shinyWidgets",
     src = c(href = "shinyWidgets/bootstrap-select", file = "assets/bootstrap-select"),
-    script = c("js/bootstrap-select.min.js", "picker-bindings.js"),
-    stylesheet = "css/bootstrap-select.min.css"
+    script = c("js/bootstrap-select.min.js"),
+    stylesheet = c("css/bootstrap-select.min.css")
   )
 }
 
@@ -230,7 +231,7 @@ html_dependency_airdatepicker <- function() {
     package = "shinyWidgets",
     src = c(href = "shinyWidgets/air-datepicker2", file = "assets/air-datepicker2"),
     script = "datepicker.min.js",
-    stylesheet = "datepicker.min.css"
+    stylesheet = c("datepicker.min.css", "airdatepicker-custom.css")
   )
 }
 
@@ -301,7 +302,7 @@ html_dependency_polyfill_promise <- function() {
   htmlDependency(
     name = "promise-polyfill",
     version = "7.1.0",
-    src = c(href="shinyWidgets/sweetalert2", file = "sweetalert2"),
+    src = c(href="shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
     script = "js/promise.min.js"
   )
 }
