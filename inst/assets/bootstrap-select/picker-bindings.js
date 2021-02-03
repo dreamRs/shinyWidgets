@@ -72,9 +72,8 @@ $.extend(pickerInputBinding, {
   },
   initialize: function initialize(el) {
     $(el).selectpicker();
-    $(el).on("focusout.dropdown.data-api", ".dropdown-menu", function(e) {
-      e.stopPropagation();
-    });
+    // TEMPORARY FIX FOR SHINY V1.6.0
+    $(document).off("focusout.dropdown.data-api");
   }
 });
 Shiny.inputBindings.register(pickerInputBinding, "shinyWidgets.pickerInput");
