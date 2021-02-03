@@ -1,5 +1,9 @@
 // airDatepicker bindings //
-// by Vic //
+
+/*jshint
+  jquery:true
+*/
+/*global Shiny */
 
 var AirPickerInputBinding = new Shiny.InputBinding();
 $.extend(AirPickerInputBinding, {
@@ -46,8 +50,8 @@ $.extend(AirPickerInputBinding, {
     options.onRenderCell = function(d, type) {
       if (type == "day") {
         var disabled = false,
-            highlighted = 0,
-            formatted = getFormattedDate(d);
+          highlighted = 0,
+          formatted = getFormattedDate(d);
 
         disabled = disabledDates.filter(function(date) {
           return date == formatted;
@@ -196,6 +200,42 @@ $.extend(AirPickerInputBinding, {
       if (data.options.hasOwnProperty("maxDate")) {
         data.options.maxDate = new Date(data.options.maxDate);
       }
+      var disabledDates = [];
+      if (data.options.hasOwnProperty("disabledDates")) {
+        disabledDates = data.options.disabledDates;
+      }
+      var highlightedDates = [];
+      if (data.options.hasOwnProperty("highlightedDates")) {
+        highlightedDates = data.options.highlightedDates;
+      }
+      data.options.onRenderCell = function(d, type) {
+        if (type == "day") {
+          var disabled = false,
+            highlighted = 0,
+            formatted = getFormattedDate(d);
+
+          disabled = disabledDates.filter(function(date) {
+            return date == formatted;
+          }).length;
+
+          highlighted = highlightedDates.filter(function(date) {
+            return date == formatted;
+          }).length;
+
+          var html = d.getDate();
+          var classes = "";
+          if (highlighted > 0) {
+            html = d.getDate() + '<span class="dp-note"></span>';
+            classes = "airdatepicker-highlighted";
+          }
+
+          return {
+            html: html,
+            classes: classes,
+            disabled: disabled
+          };
+        }
+      };
       $(el)
         .airdatepicker()
         .data("airdatepicker")
@@ -216,7 +256,10 @@ $.extend(AirPickerInputBinding, {
     $(el).trigger("change");
   }
 });
-Shiny.inputBindings.register(AirPickerInputBinding, "shinyWidgets.AirPickerInput");
+Shiny.inputBindings.register(
+  AirPickerInputBinding,
+  "shinyWidgets.AirPickerInput"
+);
 
 /*
   function parse_date(date) {
