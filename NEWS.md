@@ -1,3 +1,13 @@
+shinyWidgets 0.5.7
+======================
+
+* Fixed `chooseSliderSkin()` to work with shiny > 1.6.0
+* Temporary fix for `pickerInput()` to work with shiny > 1.6.0 (this is fixed in dev version of shiny).
+* `airDatepickerInput()` had a new argument `highlightedDates` to mark some dates in calendar as specific.
+* Fixed timezone issues in `updateAirDateInput()` by [@ericnewkirk](https://github.com/ericnewkirk).
+
+
+
 shinyWidgets 0.5.6
 ======================
 
