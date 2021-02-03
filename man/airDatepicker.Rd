@@ -22,6 +22,7 @@ airDatepickerInput(
   minDate = NULL,
   maxDate = NULL,
   disabledDates = NULL,
+  highlightedDates = NULL,
   view = c("days", "months", "years"),
   startView = NULL,
   minView = c("days", "months", "years"),
@@ -85,6 +86,8 @@ but if it passed here then it will have higher priority.}
 \item{maxDate}{The maximum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.}
 
 \item{disabledDates}{A vector of dates to disable, e.g. won't be able to select one of dates passed.}
+
+\item{highlightedDates}{A vector of dates to highlight.}
 
 \item{view}{Starting view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.}
 
