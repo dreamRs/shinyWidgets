@@ -35,23 +35,42 @@ $.extend(AirPickerInputBinding, {
     }
 
     // disable dates
+    var disabledDates = [];
     if (config.hasOwnProperty("disabledDates")) {
-      var disabledDates = config.disabledDates;
-      options.onRenderCell = function(d, type) {
-        if (type == "day") {
-          var disabled = false,
+      disabledDates = config.disabledDates;
+    }
+    var highlightedDates = [];
+    if (config.hasOwnProperty("highlightedDates")) {
+      highlightedDates = config.highlightedDates;
+    }
+    options.onRenderCell = function(d, type) {
+      if (type == "day") {
+        var disabled = false,
+            highlighted = 0,
             formatted = getFormattedDate(d);
 
-          disabled = disabledDates.filter(function(date) {
-            return date == formatted;
-          }).length;
+        disabled = disabledDates.filter(function(date) {
+          return date == formatted;
+        }).length;
 
-          return {
-            disabled: disabled
-          };
+        highlighted = highlightedDates.filter(function(date) {
+          return date == formatted;
+        }).length;
+
+        var html = d.getDate();
+        var classes = "";
+        if (highlighted > 0) {
+          html = d.getDate() + '<span class="dp-note"></span>';
+          classes = "airdatepicker-highlighted";
         }
-      };
-    }
+
+        return {
+          html: html,
+          classes: classes,
+          disabled: disabled
+        };
+      }
+    };
 
     if (config.updateOn == "close") {
       options.onHide = function(inst, animationCompleted) {

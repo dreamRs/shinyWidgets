@@ -1,0 +1,27 @@
+.airdatepicker {
+  z-index: 1100;
+}
+.airdatepicker--cell.-disabled- {
+  cursor: not-allowed !important;
+}
+
+/* For highlighting dates */
+.dp-note {
+  position: absolute;
+}
+.dp-note {
+  background: #ccc;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  left: 50%;
+  bottom: 1px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.-selected- .dp-note {
+  bottom: 2px;
+  background: #fff;
+  opacity: 0.5;
+}
+

@@ -21,6 +21,7 @@
 #' @param minDate The minimum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.
 #' @param maxDate The maximum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.
 #' @param disabledDates A vector of dates to disable, e.g. won't be able to select one of dates passed.
+#' @param highlightedDates A vector of dates to highlight.
 #' @param view Starting view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.
 #' @param startView Date shown in calendar when date picker is opened.
 #' @param minView Minimal view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.
@@ -112,6 +113,7 @@ airDatepickerInput <- function(inputId,
                                minDate = NULL,
                                maxDate = NULL,
                                disabledDates = NULL,
+                               highlightedDates = NULL,
                                view = c("days", "months", "years"),
                                startView = NULL,
                                minView = c("days", "months", "years"),
@@ -151,6 +153,7 @@ airDatepickerInput <- function(inputId,
     autoClose = isTRUE(autoClose),
     updateOn = match.arg(update_on),
     disabledDates = list1(disabledDates),
+    highlightedDates = list1(highlightedDates),
     startView = startView,
     value = list1(value),
     todayButtonAsDate = inherits(todayButton, c("Date", "POSIXt")),
@@ -221,9 +224,6 @@ airDatepickerInput <- function(inputId,
       paste0("width: ", validateCssUnit(width), ";"),
     if (!is.null(label)) tags$label(label, class = "control-label", `for` = inputId),
     tagAir,
-    singleton(tags$head(
-      tags$style(".airdatepicker {z-index: 1100;}")
-    )),
     tags$script(
       type = "application/json",
       `data-for` = inputId,
