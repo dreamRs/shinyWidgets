@@ -17,13 +17,20 @@ $.extend(pickrColorBinding, {
       callback();
     });
     var event = this["update" + el.id];
-    var hideOnselect = this["hideOnselect" + el.id];
-    this["instance" + el.id].on(event, function(color, instance) {
-      if (hideOnselect === true) {
-        instance.hide();
-      }
-      callback();
-    });
+    var hideOnSave = this["hideOnSave" + el.id];
+    if (event == "change") {
+      this["instance" + el.id].on(event, function(color, source, instance) {
+        callback();
+      });
+    } else {
+      this["instance" + el.id].on(event, function(color, instance) {
+        if (hideOnSave === true & event != "changestop") {
+          instance.hide();
+        }
+        callback();
+      });
+    }
+
   },
   unsubscribe: function(el) {
     //$(el).off(".pickrColorBinding");
@@ -56,27 +63,42 @@ $.extend(pickrColorBinding, {
     options.appClass = "pickr-color";
     const pickr = new Pickr(options);
     const root = pickr.getRoot();
+    if (config.hasOwnProperty("width")) {
+      root.app.style.width = config.width;
+    }
     if (options.useAsButton === false) {
       root.button.id = el.id;
       root.button.classList.add("pickr-color");
+      if (config.inline) {
+        root.button.style.display = "none";
+      }
     } else {
       el.value = options.default;
       el.style.backgroundColor = options.default;
       el.style.color = getCorrectTextColor(options.default);
-      pickr.on(config.update, function(color) {
-        el.value = color.toHEXA().toString(0);
-        el.style.backgroundColor = color.toHEXA().toString(0);
-        el.style.color = getCorrectTextColor(color.toHEXA().toString(0));
-      });
+      if (config.update == "changestop") {
+        pickr.on(config.update, function(source, instance) {
+          var color = instance.getColor();
+          el.value = color.toHEXA().toString(0);
+          el.style.backgroundColor = color.toHEXA().toString(0);
+          el.style.color = getCorrectTextColor(color.toHEXA().toString(0));
+        });
+      } else {
+        pickr.on(config.update, function(color) {
+          el.value = color.toHEXA().toString(0);
+          el.style.backgroundColor = color.toHEXA().toString(0);
+          el.style.color = getCorrectTextColor(color.toHEXA().toString(0));
+        });
+      }
     }
     this["instance" + el.id] = pickr;
     this["update" + el.id] = config.update;
-    this["hideOnselect" + el.id] = config.hideOnselect;
+    this["hideOnSave" + el.id] = config.hideOnSave;
   }
 });
 Shiny.inputBindings.register(pickrColorBinding, "shinyWidgets.colorPickr");
 
-// Bu David Halford : https://codepen.io/davidhalford/pen/ywEva
+// By David Halford : https://codepen.io/davidhalford/pen/ywEva
 function getCorrectTextColor(hex) {
   threshold = 130;
 
