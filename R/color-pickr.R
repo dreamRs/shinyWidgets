@@ -1,6 +1,33 @@
 
-
-
+#' @title Color Pickr
+#'
+#' @description A widget to pick color with different themes and options.
+#'
+#' @param inputId The \code{input} slot that will be used to access the value.
+#' @param label Display label for the color pickr, or \code{NULL} for no label.
+#' @param selected Default selected value.
+#' @param swatchesOptional color swatches. When \code{NULL}, swatches are disabled.
+#' @param preview Display comparison between previous state and new color.
+#' @param hue Display hue slider.
+#' @param opacity Display opacity slider.
+#' @param interaction List of parameters to show or hide components on the
+#'  bottom interaction bar. See link below for documentation.
+#' @param theme Which theme you want to use. Can be 'classic', 'monolith' or 'nano'.
+#' @param update When to update value server-side.
+#' @param position Defines the position of the color-picker.
+#' @param hideOnSave Hide color-picker after selecting a color.
+#' @param useAsButton Show color-picker in a button instead of an input with value displayed.
+#' @param inline Always show color-picker in page as a full element.
+#' @param pickr_width Color-picker width (correspond to popup window).
+#' @param width Color-picker width (correspond to input).
+#'
+#' @note Widget based on JS library pickr by \href{https://github.com/Simonwep}{Simonwep}.
+#'  See online documentation for more information: \url{https://github.com/Simonwep/pickr}.
+#'
+#' @return a color picker input widget that can be added to the UI of a shiny app.
+#' @export
+#'
+#' @example examples/ex-color-pickr.R
 colorPickr <- function(inputId,
                        label,
                        selected = "#112446",
@@ -13,7 +40,6 @@ colorPickr <- function(inputId,
                        update = c("save", "changestop", "change", "swatchselect"),
                        position = "bottom-middle",
                        hideOnSave = TRUE,
-                       comparison = TRUE,
                        useAsButton = FALSE,
                        inline = FALSE,
                        pickr_width = NULL,
@@ -65,7 +91,6 @@ colorPickr <- function(inputId,
       theme = theme,
       default = selected,
       swatches = swatches,
-      comparison = comparison,
       inline = inline,
       showAlways = inline,
       position = position,
@@ -81,7 +106,12 @@ colorPickr <- function(inputId,
   tags$div(
     class = "form-group shiny-input-container",
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
-    if (!is.null(label)) tags$label(class = "control-label", `for` = inputId, label),
+    tags$label(
+      class = "control-label",
+      `for` = inputId, label,
+      class = if (is.null(label)) "shiny-label-null",
+      style = if (isTRUE(useAsButton)) "vertical-align: bottom;"
+    ),
     tags$input(
       id = inputId,
       type = "text",
@@ -98,7 +128,7 @@ colorPickr <- function(inputId,
 }
 
 
-
+#' @importFrom htmltools htmlDependency
 html_dependency_pickr <- function() {
   htmlDependency(
     name = "pickr",
