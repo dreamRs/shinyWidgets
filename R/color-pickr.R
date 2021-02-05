@@ -18,6 +18,7 @@
 #' @param hideOnSave Hide color-picker after selecting a color.
 #' @param useAsButton Show color-picker in a button instead of an input with value displayed.
 #' @param inline Always show color-picker in page as a full element.
+#' @param i18n List of translations for labels, see online documentation.
 #' @param pickr_width Color-picker width (correspond to popup window).
 #' @param width Color-picker width (correspond to input).
 #'
@@ -26,6 +27,10 @@
 #'
 #' @return a color picker input widget that can be added to the UI of a shiny app.
 #' @export
+#'
+#' @importFrom htmltools tags
+#' @importFrom utils modifyList
+#' @importFrom jsonlite toJSON
 #'
 #' @example examples/ex-color-pickr.R
 colorPickr <- function(inputId,
@@ -42,6 +47,7 @@ colorPickr <- function(inputId,
                        hideOnSave = TRUE,
                        useAsButton = FALSE,
                        inline = FALSE,
+                       i18n = NULL,
                        pickr_width = NULL,
                        width = NULL) {
 
@@ -99,7 +105,8 @@ colorPickr <- function(inputId,
         opacity = opacity,
         hue = hue,
         interaction = interaction
-      ))
+      )),
+      i18n = i18n
     ))
   ))
 

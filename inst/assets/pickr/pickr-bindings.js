@@ -1,3 +1,10 @@
+// colorPickr bindings //
+
+/*jshint
+  jquery:true
+*/
+/*global Shiny,Pickr */
+
 var pickrColorBinding = new Shiny.InputBinding();
 $.extend(pickrColorBinding, {
   find: function(scope) {
@@ -7,7 +14,10 @@ $.extend(pickrColorBinding, {
     return $(el).attr("id");
   },
   getValue: function(el) {
-    return this["instance" + el.id].getColor().toHEXA().toString(0);
+    return this["instance" + el.id]
+      .getColor()
+      .toHEXA()
+      .toString(0);
   },
   setValue: function(el, value) {
     this["instance" + el.id].setColor({ str: value });
@@ -24,13 +34,12 @@ $.extend(pickrColorBinding, {
       });
     } else {
       this["instance" + el.id].on(event, function(color, instance) {
-        if (hideOnSave === true & event != "changestop") {
+        if ((hideOnSave === true) & (event != "changestop")) {
           instance.hide();
         }
         callback();
       });
     }
-
   },
   unsubscribe: function(el) {
     //$(el).off(".pickrColorBinding");
@@ -61,8 +70,8 @@ $.extend(pickrColorBinding, {
 
     options.el = el;
     options.appClass = "pickr-color";
-    const pickr = new Pickr(options);
-    const root = pickr.getRoot();
+    var pickr = new Pickr(options);
+    var root = pickr.getRoot();
     if (config.hasOwnProperty("width")) {
       root.app.style.width = config.width;
     }
@@ -101,11 +110,7 @@ Shiny.inputBindings.register(pickrColorBinding, "shinyWidgets.colorPickr");
 
 // By David Halford : https://codepen.io/davidhalford/pen/ywEva
 function getCorrectTextColor(hex) {
-  threshold = 130;
-
-  hRed = hexToR(hex);
-  hGreen = hexToG(hex);
-  hBlue = hexToB(hex);
+  var threshold = 130;
 
   function hexToR(h) {
     return parseInt(cutHex(h).substring(0, 2), 16);
@@ -120,7 +125,11 @@ function getCorrectTextColor(hex) {
     return h.charAt(0) == "#" ? h.substring(1, 7) : h;
   }
 
-  cBrightness = (hRed * 299 + hGreen * 587 + hBlue * 114) / 1000;
+  var hRed = hexToR(hex);
+  var hGreen = hexToG(hex);
+  var hBlue = hexToB(hex);
+
+  var cBrightness = (hRed * 299 + hGreen * 587 + hBlue * 114) / 1000;
   if (cBrightness > threshold) {
     return "#000000";
   } else {
