@@ -2,6 +2,7 @@
 % Please edit documentation in R/color-pickr.R
 \name{colorPickr}
 \alias{colorPickr}
+\alias{updateColorPickr}
 \title{Color Pickr}
 \usage{
 colorPickr(
@@ -23,13 +24,17 @@ colorPickr(
   pickr_width = NULL,
   width = NULL
 )
+
+updateColorPickr(session, inputId, value = NULL, action = NULL)
 }
 \arguments{
-\item{inputId}{The \code{input} slot that will be used to access the value.}
+\item{inputId}{The id of the input object.}
 
 \item{label}{Display label for the color pickr, or \code{NULL} for no label.}
 
 \item{selected}{Default selected value.}
+
+\item{swatches}{Optional color swatches. When \code{NULL}, swatches are disabled.}
 
 \item{preview}{Display comparison between previous state and new color.}
 
@@ -58,10 +63,16 @@ bottom interaction bar. See link below for documentation.}
 
 \item{width}{Color-picker width (correspond to input).}
 
-\item{swatchesOptional}{color swatches. When \code{NULL}, swatches are disabled.}
+\item{session}{The session object passed to function given to shinyServer.}
+
+\item{value}{The value to set for the input object.}
+
+\item{action}{Action to performon color-picker: enable, disable, show or hide.}
 }
 \value{
 a color picker input widget that can be added to the UI of a shiny app.
+
+No return value.
 }
 \description{
 A widget to pick color with different themes and options.
@@ -147,7 +158,7 @@ ui <- fluidPage(
         inline = TRUE,
         width = "100\%"
       ),
-      verbatimTextOutput("res8")
+      verbatimTextOutput("res7")
     ),
     column(
       width = 4,
@@ -180,6 +191,27 @@ ui <- fluidPage(
         position = "right-start"
       ),
       verbatimTextOutput("res13")
+    ),
+    column(
+      width = 4,
+      tags$h4("Update server-side"),
+      colorPickr(
+        inputId = "id21",
+        label = "Pick a color (update value):",
+        width = "100\%"
+      ),
+      verbatimTextOutput("res21"),
+      actionButton("red", "Update red"),
+      actionButton("green", "Update green"),
+      actionButton("blue", "Update blue"),
+      colorPickr(
+        inputId = "id22",
+        label = "Pick a color (enable/disable):",
+        width = "100\%"
+      ),
+      verbatimTextOutput("res22"),
+      actionButton("enable", "Enable"),
+      actionButton("disable", "Disable")
     )
   )
 )
@@ -192,12 +224,33 @@ server <- function(input, output, session) {
   output$res4 <- renderPrint(input$id4)
   output$res5 <- renderPrint(input$id5)
   output$res6 <- renderPrint(input$id6)
+  output$res7 <- renderPrint(input$id7)
 
   output$res11 <- renderPrint(input$id11)
   output$res12 <- renderPrint(input$id12)
   output$res13 <- renderPrint(input$id13)
 
+  output$res21 <- renderPrint(input$id21)
+  observeEvent(input$red, {
+    updateColorPickr(session, "id21", "firebrick")
+  })
+  observeEvent(input$green, {
+    updateColorPickr(session, "id21", "forestgreen")
+  })
+  observeEvent(input$blue, {
+    updateColorPickr(session, "id21", "steelblue")
+  })
+
+  output$res22 <- renderPrint(input$id22)
+  observeEvent(input$enable, {
+    updateColorPickr(session, "id22", action = "enable")
+  })
+  observeEvent(input$disable, {
+    updateColorPickr(session, "id22", action = "disable")
+  })
+
 }
 
-shinyApp(ui, server)
+if (interactive())
+  shinyApp(ui, server)
 }

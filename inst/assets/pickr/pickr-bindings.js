@@ -20,7 +20,7 @@ $.extend(pickrColorBinding, {
       .toString(0);
   },
   setValue: function(el, value) {
-    this["instance" + el.id].setColor({ str: value });
+    this["instance" + el.id].setColor(value);
   },
   subscribe: function(el, callback) {
     this["instance" + el.id].on("init", function(color, instance) {
@@ -45,6 +45,9 @@ $.extend(pickrColorBinding, {
     //$(el).off(".pickrColorBinding");
   },
   receiveMessage: function(el, data) {
+    if (data.hasOwnProperty("value")) {
+      this["instance" + el.id].setColor(data.value);
+    }
     if (data.hasOwnProperty("action")) {
       if (data.action == "enable") {
         this["instance" + el.id].enable();

@@ -74,7 +74,7 @@ ui <- fluidPage(
         inline = TRUE,
         width = "100%"
       ),
-      verbatimTextOutput("res8")
+      verbatimTextOutput("res7")
     ),
     column(
       width = 4,
@@ -107,6 +107,27 @@ ui <- fluidPage(
         position = "right-start"
       ),
       verbatimTextOutput("res13")
+    ),
+    column(
+      width = 4,
+      tags$h4("Update server-side"),
+      colorPickr(
+        inputId = "id21",
+        label = "Pick a color (update value):",
+        width = "100%"
+      ),
+      verbatimTextOutput("res21"),
+      actionButton("red", "Update red"),
+      actionButton("green", "Update green"),
+      actionButton("blue", "Update blue"),
+      colorPickr(
+        inputId = "id22",
+        label = "Pick a color (enable/disable):",
+        width = "100%"
+      ),
+      verbatimTextOutput("res22"),
+      actionButton("enable", "Enable"),
+      actionButton("disable", "Disable")
     )
   )
 )
@@ -119,11 +140,32 @@ server <- function(input, output, session) {
   output$res4 <- renderPrint(input$id4)
   output$res5 <- renderPrint(input$id5)
   output$res6 <- renderPrint(input$id6)
+  output$res7 <- renderPrint(input$id7)
 
   output$res11 <- renderPrint(input$id11)
   output$res12 <- renderPrint(input$id12)
   output$res13 <- renderPrint(input$id13)
 
+  output$res21 <- renderPrint(input$id21)
+  observeEvent(input$red, {
+    updateColorPickr(session, "id21", "firebrick")
+  })
+  observeEvent(input$green, {
+    updateColorPickr(session, "id21", "forestgreen")
+  })
+  observeEvent(input$blue, {
+    updateColorPickr(session, "id21", "steelblue")
+  })
+
+  output$res22 <- renderPrint(input$id22)
+  observeEvent(input$enable, {
+    updateColorPickr(session, "id22", action = "enable")
+  })
+  observeEvent(input$disable, {
+    updateColorPickr(session, "id22", action = "disable")
+  })
+
 }
 
-shinyApp(ui, server)
+if (interactive())
+  shinyApp(ui, server)

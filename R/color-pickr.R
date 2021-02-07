@@ -6,7 +6,7 @@
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the color pickr, or \code{NULL} for no label.
 #' @param selected Default selected value.
-#' @param swatchesOptional color swatches. When \code{NULL}, swatches are disabled.
+#' @param swatches Optional color swatches. When \code{NULL}, swatches are disabled.
 #' @param preview Display comparison between previous state and new color.
 #' @param hue Display hue slider.
 #' @param opacity Display opacity slider.
@@ -27,6 +27,7 @@
 #'
 #' @return a color picker input widget that can be added to the UI of a shiny app.
 #' @export
+#'
 #'
 #' @importFrom htmltools tags
 #' @importFrom utils modifyList
@@ -148,8 +149,31 @@ html_dependency_pickr <- function() {
       "css/monolith.min.css",
       "css/nano.min.css"
     ),
+    head = "<style>.pickr-color.disabled{cursor:not-allowed;}</style>",
     all_files = FALSE
   )
+}
+
+
+
+
+#' Update color pickr server-side
+#'
+#' @param session The session object passed to function given to shinyServer.
+#' @param inputId	The id of the input object.
+#' @param value The value to set for the input object.
+#' @param action Action to performon color-picker: enable, disable, show or hide.
+#'
+#' @return No return value.
+#' @export
+#'
+#' @rdname colorPickr
+updateColorPickr <- function(session, inputId, value = NULL, action = NULL) {
+  if (!is.null(action)) {
+    action <- match.arg(action, c("disable", "enable", "hide", "show"))
+  }
+  message <- dropNulls(list(value = value, action = action))
+  session$sendInputMessage(inputId, message)
 }
 
 
