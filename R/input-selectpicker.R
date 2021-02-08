@@ -132,7 +132,8 @@ pickerInput <- function(inputId,
 #' then that name rather than the value is displayed to the user.
 #' @param selected The new selected value (or multiple values if \code{multiple = TRUE}).
 #'  To reset selected value, in case of multiple picker, use \code{character(0)}.
-#' @param choicesOpt Options for choices in the dropdown menu
+#' @param choicesOpt Options for choices in the dropdown menu.
+#' @param options Options for the picker via \code{\link{pickerOptions}}.
 #'
 #' @seealso \link{pickerInput}.
 #'
@@ -211,18 +212,22 @@ pickerInput <- function(inputId,
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updatePickerInput <- function (session, inputId, label = NULL,
-                               selected = NULL, choices = NULL,
-                               choicesOpt = NULL) {
+updatePickerInput <- function (session,
+                               inputId,
+                               label = NULL,
+                               selected = NULL,
+                               choices = NULL,
+                               choicesOpt = NULL,
+                               options = NULL) {
   choices <- if (!is.null(choices))
     choicesWithNames(choices)
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   choices <- if (!is.null(choices))
     as.character(pickerSelectOptions(choices, selected, choicesOpt))
-  options = NULL
-  if (!is.null(options))
-    names(options) <- paste0("data-", names(options))
+  # options = NULL
+  # if (!is.null(options))
+  #   names(options) <- paste0("data-", names(options))
   message <- dropNulls(list(label = label, choices = choices, value = selected, options = options))
   session$sendInputMessage(inputId, message)
 }

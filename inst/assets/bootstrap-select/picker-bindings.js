@@ -33,13 +33,16 @@ $.extend(pickerInputBinding, {
   receiveMessage: function receiveMessage(el, data) {
     var $el = $(el);
 
-/*
     if (data.hasOwnProperty("options")) {
-      //this.picker.selectpicker('destroy');
-      $(el).attr(data.options);
-      this.picker.selectpicker("render");
+      $(el).selectpicker("destroy");
+      $(el).data(data.options);
+      $(el).selectpicker();
+      var callback = this["callback" + el.id];
+      $(el).on("changed.bs.select.pickerInput", function(event) {
+        callback();
+      });
     }
-*/
+
     // This will replace all the choices
     if (data.hasOwnProperty("choices")) {
       // Clear existing choices and add each new one
@@ -58,17 +61,17 @@ $.extend(pickerInputBinding, {
         .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(data.label);
 
-    //$(el).selectpicker('refresh');
+    $(el).selectpicker("refresh");
     $(el).trigger("change");
   },
   subscribe: function subscribe(el, callback) {
-    $(el).on("changed.bs.select", function(event) {
-      //$(el).selectpicker('refresh');
+    this["callback" + el.id] = callback;
+    $(el).on("changed.bs.select.pickerInput", function(event) {
       callback();
     });
   },
   unsubscribe: function unsubscribe(el) {
-    $(el).off(".pickerInputBinding");
+    $(el).off(".pickerInput");
   },
   initialize: function initialize(el) {
     $(el).selectpicker();
