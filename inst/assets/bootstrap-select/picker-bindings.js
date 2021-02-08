@@ -37,7 +37,7 @@ $.extend(pickerInputBinding, {
       $(el).selectpicker("destroy");
       $(el).data(data.options);
       $(el).selectpicker();
-      var callback = this["callback" + el.id];
+      var callback = $(el).data("callback");
       $(el).on("changed.bs.select.pickerInput", function(event) {
         callback();
       });
@@ -65,7 +65,7 @@ $.extend(pickerInputBinding, {
     $(el).trigger("change");
   },
   subscribe: function subscribe(el, callback) {
-    this["callback" + el.id] = callback;
+    $(el).data("callback", callback);
     $(el).on("changed.bs.select.pickerInput", function(event) {
       callback();
     });
