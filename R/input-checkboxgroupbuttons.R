@@ -1,3 +1,4 @@
+
 #' @title Buttons Group checkbox Input Control
 #'
 #' @description
@@ -109,7 +110,13 @@ checkboxGroupButtons <- function(inputId,
   checkboxGroupButtonsTag <- tags$div(
     class = "form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline",
     style = if(!is.null(width)) paste("width:", validateCssUnit(width)),
-    if (!is.null(label)) tags$label(class="control-label", `for` = inputId, label),
+    tags$label(
+      id = paste0(inputId, "-label"),
+      class = "control-label",
+      `for` = inputId,
+      label,
+      class = if (is.null(label)) "shiny-label-null",
+    ),
     if (!is.null(label)) tags$br(),
     tags$div(
       id = inputId,
@@ -118,14 +125,13 @@ checkboxGroupButtons <- function(inputId,
       tags$div(
         class = divClass,
         role = "group",
-        `aria-label`="...",
+        `aria-labelledby` = paste0(inputId, "-label"),
         `data-toggle` = "buttons",
         class = "btn-group-container-sw",
         generateCBGB(inputId, args, selected, status, size, checkIcon, disabled = disabled)
       )
     )
   )
-  # Dep
   attachShinyWidgetsDep(checkboxGroupButtonsTag)
 }
 

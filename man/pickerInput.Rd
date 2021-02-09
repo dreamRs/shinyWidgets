@@ -37,7 +37,7 @@ To limit the number of selection possible, see example below.}
 
 \item{width}{The width of the input : 'auto', 'fit', '100px', '75\%'.}
 
-\item{inline}{Put the label and the picker on the same line.}
+\item{inline}{Display picker inline, to have label and menu on same line use \code{width = "fit"}.}
 }
 \value{
 A select control that can be added to a UI definition.

@@ -1,3 +1,4 @@
+
 #' @title Select Picker Input Control
 #'
 #' @description An alternative to \code{selectInput} with plenty of options to customize it.
@@ -14,7 +15,7 @@
 #' To limit the number of selection possible, see example below.
 #' @param choicesOpt Options for choices in the dropdown menu.
 #' @param width The width of the input : 'auto', 'fit', '100px', '75\%'.
-#' @param inline Put the label and the picker on the same line.
+#' @param inline Display picker inline, to have label and menu on same line use \code{width = "fit"}.
 #'
 #' @seealso \link{updatePickerInput} to update value server-side.
 #'
@@ -101,20 +102,21 @@ pickerInput <- function(inputId,
 
   if (multiple)
     selectTag$attribs$multiple <- "multiple"
-  divClass <- "form-group shiny-input-container"
-  labelClass <- "control-label"
-  if (inline) {
-    divClass <- paste(divClass, "form-horizontal")
-    selectTag <- tags$div(class="col-sm-10", selectTag)
-    labelClass <- paste(labelClass, "col-sm-2")
-  }
+
   pickerTag <- tags$div(
-    class = divClass,
+    class = "form-group shiny-input-container",
+    class = if (isTRUE(inline)) "shiny-input-container-inline",
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
-    if (!is.null(label)) tags$label(class = labelClass, `for` = inputId, label),
+    style = if (isTRUE(inline)) "display: inline-block;",
+    tags$label(
+      class = "control-label",
+      `for` = inputId,
+      label,
+      class = if (is.null(label)) "shiny-label-null",
+      style = if (isTRUE(inline)) "display: inline-block;",
+    ),
     selectTag
   )
-  # Deps
   attachShinyWidgetsDep(pickerTag, "picker")
 }
 

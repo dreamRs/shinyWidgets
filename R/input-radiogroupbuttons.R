@@ -1,3 +1,4 @@
+
 #' @title Buttons Group Radio Input Control
 #'
 #' @description
@@ -113,8 +114,14 @@ radioGroupButtons <- function(inputId,
 
   radioGroupButtonsTag <- tags$div(
     class = "form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline",
-    style = if(!is.null(width)) paste("width:", validateCssUnit(width)),
-    if (!is.null(label)) tags$label(class="control-label", `for` = inputId, label),
+    style = if (!is.null(width)) paste0("width:", validateCssUnit(width), ";"),
+    tags$label(
+      id = paste0(inputId, "-label"),
+      class = "control-label",
+      `for` = inputId,
+      label,
+      class = if (is.null(label)) "shiny-label-null",
+    ),
     if (!is.null(label)) tags$br(),
     tags$div(
       id = inputId,
@@ -123,14 +130,13 @@ radioGroupButtons <- function(inputId,
       tags$div(
         class = divClass,
         role = "group",
-        `aria-label` = "...",
+        `aria-labelledby` = paste0(inputId, "-label"),
         `data-toggle` = "buttons",
         class = "btn-group-container-sw",
         generateRGB(inputId, args, selected, status, size, checkIcon, disabled = disabled)
       )
     )
   )
-  # Dep
   attachShinyWidgetsDep(radioGroupButtonsTag)
 }
 
