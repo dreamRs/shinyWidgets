@@ -136,6 +136,7 @@ pickerInput <- function(inputId,
 #'  To reset selected value, in case of multiple picker, use \code{character(0)}.
 #' @param choicesOpt Options for choices in the dropdown menu.
 #' @param options Options for the picker via \code{\link{pickerOptions}}.
+#' @param clearOptions Clear previous options, otherwise the ones set previously are still active.
 #'
 #' @seealso \link{pickerInput}.
 #'
@@ -220,17 +221,21 @@ updatePickerInput <- function (session,
                                selected = NULL,
                                choices = NULL,
                                choicesOpt = NULL,
-                               options = NULL) {
+                               options = NULL,
+                               clearOptions = FALSE) {
   choices <- if (!is.null(choices))
     choicesWithNames(choices)
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   choices <- if (!is.null(choices))
     as.character(pickerSelectOptions(choices, selected, choicesOpt))
-  # options = NULL
-  # if (!is.null(options))
-  #   names(options) <- paste0("data-", names(options))
-  message <- dropNulls(list(label = label, choices = choices, value = selected, options = options))
+  message <- dropNulls(list(
+    label = label,
+    choices = choices,
+    value = selected,
+    options = options,
+    clearOptions = isTRUE(clearOptions)
+  ))
   session$sendInputMessage(inputId, message)
 }
 

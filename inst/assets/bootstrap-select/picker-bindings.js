@@ -34,10 +34,16 @@ $.extend(pickerInputBinding, {
     var $el = $(el);
 
     if (data.hasOwnProperty("options")) {
+      var callback = $(el).data("callback");
       $(el).selectpicker("destroy");
+      if (data.clearOptions) {
+        var shinyInputBinding = $(el).data("shinyInputBinding");
+        $(el).removeData();
+        $(el).data("callback", callback);
+        $(el).data("shinyInputBinding", shinyInputBinding);
+      }
       $(el).data(data.options);
       $(el).selectpicker();
-      var callback = $(el).data("callback");
       $(el).on("changed.bs.select.pickerInput", function(event) {
         callback();
       });
