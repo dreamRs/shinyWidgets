@@ -80,16 +80,19 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status) {
         inputTag$attribs$checked <- "checked"
       if (inline) {
         tags$div(
-          class = paste0("awesome-checkbox checkbox-inline checkbox-", status),
+          class = paste0("awesome-checkbox checkbox-inline form-check-inline checkbox-", status),
           inputTag,
-          tags$label(name, `for` = paste0(inputId, value))
+          tags$label(
+            name,
+            `for` = paste0(inputId, value),
+            class = "form-check-label form-check-label-inline"
+          )
         )
-      }
-      else {
+      } else {
         tags$div(
           class = paste0("awesome-checkbox checkbox-", status),
           inputTag,
-          tags$label(name, `for` = paste0(inputId, value))
+          tags$label(name, `for` = paste0(inputId, value), class = "form-check-label")
         )
       }
     }, SIMPLIFY = FALSE, USE.NAMES = FALSE
@@ -178,7 +181,13 @@ awesomeCheckboxGroup <- function(inputId,
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
     class = divClass,
-    tags$label(label, `for` = inputId, style = "margin-bottom: 10px;"),
+    tags$label(
+      class = "control-label",
+      label,
+      `for` = inputId,
+      style = "margin-bottom: 10px;",
+      class = if (is.null(label)) "shiny-label-null"
+    ),
     options
   )
   # Dep

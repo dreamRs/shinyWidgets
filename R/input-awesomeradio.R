@@ -19,7 +19,7 @@ radioAlone <- function(id,
   }
   if (inline)
     # if (!checkbox)
-      divClass <- paste(divClass, "radio-inline radio-inline")
+      divClass <- paste(divClass, "radio-inline radio-inline form-check-inline")
     # else
     #   divClass <- paste(divClass, "checkbox-inline checkbox-inline")
   inputTag <- tags$input(name=name, id=id, value=value, type="radio")
@@ -133,18 +133,19 @@ awesomeRadio <- function(inputId,
   } else {
     as.character(selected)
   }
-  tagLabel <- tags$label(
-    class = "control-label",
-    `for` = inputId,
-    label, style = "margin-bottom: 5px;"
-  )
   awesomeRadioTag <- tags$div(
     id = inputId,
     class = "form-group shiny-input-radiogroup awesome-bootstrap-radio shiny-input-container",
-    class = if(inline) "shiny-input-container-inline",
+    class = if (inline) "shiny-input-container-inline",
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
-    if (!is.null(label)) tagLabel,
+    tags$label(
+      class = "control-label",
+      `for` = inputId,
+      label,
+      style = "margin-bottom: 5px;",
+      class = if (is.null(label)) "shiny-label-null"
+    ),
     if (!is.null(label) & !inline) tags$div(style = "height: 7px;"),
     generateAwesomeRadio(inputId, choices, selected, inline, status, checkbox)
   )
