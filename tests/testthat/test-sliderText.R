@@ -12,12 +12,12 @@ test_that("default", {
 
   deps <- htmltools::findDependencies(tagst)
   nmdeps <- vapply(deps, `[[`, "name", FUN.VALUE = character(1))
-  expect_is(tagst, "shiny.tag")
+  expect_is(tagst, "shiny.tag.list")
   expect_true(length(deps) >= 3)
   expect_true(any(grepl("^ionrangeslider", nmdeps)))
   expect_true("shinyWidgets" %in% nmdeps)
-  expect_true(htmltools::tagHasAttribute(tagst$children[[2]], "id"))
-  expect_identical(htmltools::tagGetAttribute(tagst$children[[2]], "id"), "MY_ID")
+  expect_true(htmltools::tagHasAttribute(tagst[[1]]$children[[2]], "id"))
+  expect_identical(htmltools::tagGetAttribute(tagst[[1]]$children[[2]], "id"), "MY_ID")
 })
 
 
@@ -31,9 +31,9 @@ test_that("animation", {
     animate = TRUE
   )
 
-  expect_is(tagst, "shiny.tag")
-  expect_true(htmltools::tagHasAttribute(tagst$children[[3]], "class"))
-  expect_identical(htmltools::tagGetAttribute(tagst$children[[3]], "class"), "slider-animate-container")
+  expect_is(tagst, "shiny.tag.list")
+  expect_true(htmltools::tagHasAttribute(tagst[[1]]$children[[3]], "class"))
+  expect_identical(htmltools::tagGetAttribute(tagst[[1]]$children[[3]], "class"), "slider-animate-container")
 })
 
 

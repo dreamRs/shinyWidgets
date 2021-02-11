@@ -26,7 +26,7 @@
 #' @return The value retrieved server-side is a character vector.
 #' @export
 #'
-#' @importFrom htmltools validateCssUnit tagAppendChild findDependencies tags
+#' @importFrom htmltools validateCssUnit tagAppendChild htmlDependencies tags tagList
 #' @importFrom shiny icon sliderInput animationOptions restoreInput
 #' @importFrom jsonlite toJSON
 #'
@@ -54,13 +54,24 @@
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-sliderTextInput <- function (inputId, label, choices, selected = NULL,
-                             animate = FALSE, grid = FALSE,
+sliderTextInput <- function (inputId,
+                             label,
+                             choices,
+                             selected = NULL,
+                             animate = FALSE,
+                             grid = FALSE,
                              hide_min_max = FALSE,
-                             from_fixed = FALSE, to_fixed = FALSE,
-                             from_min = NULL, from_max = NULL,
-                             to_min = NULL, to_max = NULL, force_edges = FALSE,
-                             width = NULL, pre = NULL, post = NULL, dragRange = TRUE)
+                             from_fixed = FALSE,
+                             to_fixed = FALSE,
+                             from_min = NULL,
+                             from_max = NULL,
+                             to_min = NULL,
+                             to_max = NULL,
+                             force_edges = FALSE,
+                             width = NULL,
+                             pre = NULL,
+                             post = NULL,
+                             dragRange = TRUE)
 {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   if (!is.character(choices)) {
@@ -120,36 +131,53 @@ sliderTextInput <- function (inputId, label, choices, selected = NULL,
       "false"
     else x
   })
-  sliderTag <- htmltools::tags$div(class = "form-group shiny-input-container",
-                   style = if (!is.null(width))
-                     paste0("width: ", htmltools::validateCssUnit(width), ";"),
-                   if (!is.null(label))
-                     htmltools::tags$label(class = "control-label", `for` = inputId,
-                                label), do.call(htmltools::tags$input, sliderProps))
+  sliderTag <- tags$div(
+    class = "form-group shiny-input-container",
+    style = if (!is.null(width))
+      paste0("width: ", validateCssUnit(width), ";"),
+    tags$label(
+      class = "control-label",
+      class = if (is.null(label)) "shiny-label-null",
+      `for` = inputId,
+      label
+    ),
+    do.call(htmltools::tags$input, sliderProps)
+  )
   if (identical(animate, TRUE))
     animate <- animationOptions()
   if (!is.null(animate) && !identical(animate, FALSE)) {
     if (is.null(animate$playButton))
-      animate$playButton <- shiny::icon("play", lib = "glyphicon")
+      animate$playButton <- icon("play", lib = "glyphicon")
     if (is.null(animate$pauseButton))
-      animate$pauseButton <- shiny::icon("pause", lib = "glyphicon")
-    sliderTag <- htmltools::tagAppendChild(
+      animate$pauseButton <- icon("pause", lib = "glyphicon")
+    sliderTag <- tagAppendChild(
       sliderTag,
-      htmltools::tags$div(
+      tags$div(
         class = "slider-animate-container",
-        htmltools::tags$a(
-          href = "#", class = "slider-animate-button",
-          `data-target-id` = inputId, `data-interval` = animate$interval,
-          `data-loop` = animate$loop, htmltools::tags$span(class = "play",
-                                                           animate$playButton), htmltools::tags$span(class = "pause",
-                                                                                                     animate$pauseButton)
+        tags$a(
+          href = "#",
+          class = "slider-animate-button",
+          `data-target-id` = inputId,
+          `data-interval` = animate$interval,
+          `data-loop` = animate$loop,
+          tags$span(
+            class = "play",
+            animate$playButton
+          ),
+          tags$span(
+            class = "pause",
+            animate$pauseButton
+          )
         )
-      ))
+      )
+    )
   }
-
-  dep <- htmltools::findDependencies(shiny::sliderInput(inputId = "id", label = "label", min = 1, max = 10, value = 5))
+  slider <- sliderInput(inputId = "id", label = "label", min = 1, max = 10, value = 5)
   attachShinyWidgetsDep(
-    htmltools::attachDependencies(sliderTag, dep)
+    tagList(
+      sliderTag,
+      htmlDependencies(slider)
+    )
   )
 }
 
