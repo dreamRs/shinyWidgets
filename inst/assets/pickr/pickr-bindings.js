@@ -4,7 +4,10 @@
   jquery:true
 */
 /*global Shiny,Pickr */
-
+Shiny.InputBinding.prototype.store = [];
+Shiny.InputBinding.prototype.updateStore = function(el, instance) {
+  this.store[el.id] = instance;
+};
 var pickrColorBinding = new Shiny.InputBinding();
 $.extend(pickrColorBinding, {
   find: function(scope) {
@@ -15,36 +18,32 @@ $.extend(pickrColorBinding, {
   },
   getValue: function(el) {
     var pickr = this.getPickr(el);
-    if (typeof pickr !== "undefined") {
-      return pickr
-        .getColor()
-        .toHEXA()
-        .toString(0);
-    }
+    return pickr
+      .getColor()
+      .toHEXA()
+      .toString(0);
   },
   setValue: function(el, value) {
     this.getPickr(el).setColor(value);
   },
   subscribe: function(el, callback) {
     var pickr = this.getPickr(el);
-    if (typeof pickr !== "undefined") {
-      pickr.on("init", function(color, instance) {
+    pickr.on("init", function(color, instance) {
+      callback();
+    });
+    var event = this.getUpdate(el);
+    var hideOnSave = this.getHideOnSave(el);
+    if (event == "change") {
+      pickr.on(event, function(color, source, instance) {
         callback();
       });
-      var event = this.getUpdate(el);
-      var hideOnSave = this.getHideOnSave(el);
-      if (event == "change") {
-        pickr.on(event, function(color, source, instance) {
-          callback();
-        });
-      } else {
-        pickr.on(event, function(color, instance) {
-          if ((hideOnSave === true) & (event != "changestop")) {
-            instance.hide();
-          }
-          callback();
-        });
-      }
+    } else {
+      pickr.on(event, function(color, instance) {
+        if ((hideOnSave === true) & (event != "changestop")) {
+          instance.hide();
+        }
+        callback();
+      });
     }
   },
   unsubscribe: function(el) {
@@ -111,18 +110,18 @@ $.extend(pickrColorBinding, {
         });
       }
     }
-    $(el).data("instance", pickr);
-    $(el).data("update", config.update);
-    $(el).data("hideOnSave", config.hideOnSave);
+    pickr.options.update = config.update;
+    pickr.options.hideOnSave = config.hideOnSave;
+    this.updateStore(el, pickr);
   },
   getPickr: function getPickr(el) {
-    return $(el).data("instance");
+    return this.store[el.id];
   },
   getUpdate: function getUpdate(el) {
-    return $(el).data("update");
+    return this.store[el.id].options.update;
   },
   getHideOnSave: function getHideOnSave(el) {
-    return $(el).data("hideOnSave");
+    return this.store[el.id].options.hideOnSave;
   }
 });
 Shiny.inputBindings.register(pickrColorBinding, "shinyWidgets.colorPickr");

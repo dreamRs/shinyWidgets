@@ -131,28 +131,11 @@ colorPickr <- function(inputId,
       `data-for` = inputId,
       toJSON(config, auto_unbox = TRUE, json_verbatim = TRUE)
     ),
-    html_dependency_pickr()
+    html_dependency_pickr(),
+    html_dependency_shinyWidgets()
   )
 }
 
-
-#' @importFrom htmltools htmlDependency
-html_dependency_pickr <- function() {
-  htmlDependency(
-    name = "pickr",
-    version = "1.8.0",
-    src = list(href = "shinyWidgets/pickr", file = "assets/pickr"),
-    package = "shinyWidgets",
-    script = c("js/pickr.min.js", "pickr-bindings.js"),
-    stylesheet = c(
-      "css/classic.min.css",
-      "css/monolith.min.css",
-      "css/nano.min.css"
-    ),
-    head = "<style>.pickr-color.disabled{cursor:not-allowed;}</style>",
-    all_files = FALSE
-  )
-}
 
 
 

@@ -327,3 +327,21 @@ html_dependency_stati <- function() {
     stylesheet = "stati.css"
   )
 }
+
+
+html_dependency_pickr <- function() {
+  htmlDependency(
+    name = "pickr",
+    version = "1.8.0",
+    src = list(href = "shinyWidgets/pickr", file = "assets/pickr"),
+    package = "shinyWidgets",
+    script = "js/pickr.min.js",
+    stylesheet = c(
+      "css/classic.min.css",
+      "css/monolith.min.css",
+      "css/nano.min.css"
+    ),
+    head = "<style>.pickr-color.disabled{cursor:not-allowed;}</style>",
+    all_files = FALSE
+  )
+}
