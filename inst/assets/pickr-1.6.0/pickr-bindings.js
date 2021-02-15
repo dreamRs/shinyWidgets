@@ -83,8 +83,10 @@ $.extend(pickrColorBinding, {
     var options = config.options;
 
     options.el = el;
+    el.value = options.default;
     options.appClass = "pickr-color";
     var pickr = new Pickr(options);
+    pickr.setColor(options.default);
     var root = pickr.getRoot();
     if (config.hasOwnProperty("width")) {
       root.app.style.width = config.width;
@@ -97,7 +99,6 @@ $.extend(pickrColorBinding, {
         root.button.style.display = "none";
       }
     } else {
-      el.value = options.default;
       el.style.backgroundColor = options.default;
       el.style.color = getCorrectTextColor(options.default);
       if (config.update == "changestop") {
@@ -115,6 +116,8 @@ $.extend(pickrColorBinding, {
         });
       }
     }
+    pickr.options.color = options.default;
+    pickr.options.inline = config.inline;
     pickr.options.update = config.update;
     pickr.options.hideOnSave = config.hideOnSave;
     this.updateStore(el, pickr);
@@ -127,6 +130,12 @@ $.extend(pickrColorBinding, {
   },
   getHideOnSave: function getHideOnSave(el) {
     return this.store[el.id].options.hideOnSave;
+  },
+  getColor: function getHideOnSave(el) {
+    return this.store[el.id].options.color;
+  },
+  isInline: function getHideOnSave(el) {
+    return this.store[el.id].options.inline;
   }
 });
 Shiny.inputBindings.register(pickrColorBinding, "shinyWidgets.colorPickr");

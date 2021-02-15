@@ -332,8 +332,8 @@ html_dependency_stati <- function() {
 html_dependency_pickr <- function() {
   htmlDependency(
     name = "pickr",
-    version = "1.8.0",
-    src = list(href = "shinyWidgets/pickr", file = "assets/pickr"),
+    version = "1.6.0",
+    src = list(href = "shinyWidgets/pickr-1.6.0", file = "assets/pickr-1.6.0"),
     package = "shinyWidgets",
     script = "js/pickr.min.js",
     stylesheet = c(
