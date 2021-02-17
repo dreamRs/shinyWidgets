@@ -79,34 +79,33 @@ function swDrop(
       $("#" + swDropdownId).has(e.target).length === 0 &&
       $("#" + swDropdownId).find(e.target).length === 0 &&
       !(
-        $(e.target).prop("tagName") === "A" &&
-        $(e.target).attr("role") === "option"
+        $(e.target).parents('.shiny-input-container').length
       ) && // hack for bootstrap select
       !(
         $(e.target).parents('.bootstrap-select').length
       ) && // hack for pickr color
       !(
         $(e.target).parents('.pcr-app').length
-      ) && // hack for bootstrap select
+      ) && // hack for shinytree
       !(
         $(e.target).prop("tagName") === "I" &&
         $(e.target).attr("class") === "jstree-icon jstree-ocl"
-      ) && // hack for shinyTree
+      ) && // hack for DT
       !(
         $(e.target).prop("tagName") === "A" &&
         RegExp("paginate_button").test($(e.target).attr("class")) === true
-      ) && // hack for DT
-      //$(e.target).parents(".datepicker").length === 0 &&
+      ) && // hack for airdatepicker
       (
         parentClass.indexOf("datepicker") < 0
-      ) &&
+      ) && // hack for airdatepicker2
+      (
+        parentClass.indexOf("airdatepicker") < 0
+      ) && // hack for selectize
       !(
-        $(e.target)
-          .parent()
-          .prop("tagName") === "DIV" &&
-        $(e.target)
-          .parent()
-          .attr("class") === "selectize-dropdown-content"
+        $(e.target).parents('.selectize-input').length
+      ) && // hack for selectize
+      !(
+        $(e.target).hasClass("remove")
       ) && // hack for selectize
       !(
         $(e.target).prop("tagName") === "DIV" &&
