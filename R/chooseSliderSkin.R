@@ -91,7 +91,15 @@ chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",
               color
             ),
             if (skin == "Modern")
-              sprintf(".irs-from:after, .irs-to:after, .irs-single:after {border-top-color: %s !important;}", color)
+              sprintf(
+                ".irs-from:after, .irs-to:after, .irs-single:after {border-top-color: %s !important;}",
+                color
+              ),
+            if (skin == "Modern")
+              sprintf(
+                ".irs-from:before, .irs-to:before, .irs-single:before {border-top-color: %s !important;}",
+                color
+              )
           )
         )
       )
