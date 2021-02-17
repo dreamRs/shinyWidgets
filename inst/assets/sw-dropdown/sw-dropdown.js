@@ -83,8 +83,10 @@ function swDrop(
         $(e.target).attr("role") === "option"
       ) && // hack for bootstrap select
       !(
-        $(e.target).prop("tagName") === "SPAN" &&
-        $(e.target).attr("class") === "text"
+        $(e.target).parents('.bootstrap-select').length
+      ) && // hack for pickr color
+      !(
+        $(e.target).parents('.pcr-app').length
       ) && // hack for bootstrap select
       !(
         $(e.target).prop("tagName") === "I" &&
