@@ -75,10 +75,17 @@
 #' shinyApp(ui, server)
 #'
 #' }
-chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Modern", "Nice",
-                                      "Simple", "HTML5", "Round", "Square"),
+chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Big", "Modern", "Sharp", "Round", "Square",
+                                      "Nice", "Simple", "HTML5"),
                              color = NULL) {
   skin <- match.arg(arg = skin)
+  if (skin %in% c("Nice", "Simple", "HTML5")) {
+    warning(paste(
+      "Skin '", skin,
+      "' is deprecated, please see http://ionden.com/a/plugins/ion.rangeSlider/skins.html for available ones."
+    ))
+    skin <- "Sharp"
+  }
   cssColor <- NULL
   if (!is.null(color)) {
     stopifnot(length(color) == 1)

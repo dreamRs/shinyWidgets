@@ -5,7 +5,8 @@
 \title{Theme selector for \code{sliderInput}}
 \usage{
 chooseSliderSkin(
-  skin = c("Shiny", "Flat", "Modern", "Nice", "Simple", "HTML5", "Round", "Square"),
+  skin = c("Shiny", "Flat", "Big", "Modern", "Sharp", "Round", "Square", "Nice",
+    "Simple", "HTML5"),
   color = NULL
 )
 }
