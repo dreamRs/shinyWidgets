@@ -79,12 +79,12 @@ chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Big", "Modern", "Sharp",
                                       "Nice", "Simple", "HTML5"),
                              color = NULL) {
   skin <- match.arg(arg = skin)
-  if (skin %in% c("Nice", "Simple", "HTML5")) {
+  if (packageVersion("shiny") > "1.5.0.9000" & skin %in% c("Nice", "Simple", "HTML5")) {
     warning(paste(
       "Skin '", skin,
       "' is deprecated, please see http://ionden.com/a/plugins/ion.rangeSlider/skins.html for available ones."
     ))
-    skin <- "Sharp"
+    skin <- "Flat"
   }
   cssColor <- NULL
   if (!is.null(color)) {
