@@ -85,6 +85,12 @@ $.extend(AirPickerInputBinding, {
     } else {
       options.onSelect = function(formattedDate, date, inst) {
         $(el).trigger("change");
+        if (config.autoClose) {
+          $(el)
+            .airdatepicker()
+            .data("airdatepicker")
+            .hide();
+        }
       };
     }
 
