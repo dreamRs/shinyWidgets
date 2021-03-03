@@ -85,12 +85,6 @@ $.extend(AirPickerInputBinding, {
     } else {
       options.onSelect = function(formattedDate, date, inst) {
         $(el).trigger("change");
-        if (config.autoClose) {
-          $(el)
-            .airdatepicker()
-            .data("airdatepicker")
-            .hide();
-        }
       };
     }
 
@@ -182,11 +176,17 @@ $.extend(AirPickerInputBinding, {
     $(el).off(".AirPickerInputBinding");
   },
   receiveMessage: function(el, data) {
-    if (data.clear) {
-      $(el)
+    var calendar = $(el)
         .airdatepicker()
-        .data("airdatepicker")
-        .clear();
+        .data("airdatepicker");
+    if (data.clear) {
+      calendar.clear();
+    }
+    if (data.show) {
+      calendar.show();
+    }
+    if (data.hide) {
+      calendar.hide();
     }
     if (data.hasOwnProperty("value")) this.setValue(el, data.value);
 

@@ -10,7 +10,9 @@ updateAirDateInput(
   label = NULL,
   value = NULL,
   clear = FALSE,
-  options = NULL
+  options = NULL,
+  show = FALSE,
+  hide = FALSE
 )
 }
 \arguments{
@@ -25,6 +27,8 @@ updateAirDateInput(
 \item{clear}{Logical, clear all previous selected dates.}
 
 \item{options}{Options to update, see available ones here: \url{http://t1m0n.name/air-datepicker/docs/}.}
+
+\item{show, hide}{Show / hide datepicker.}
 }
 \description{
 Change the value of \code{\link{airDatepickerInput}} on the client

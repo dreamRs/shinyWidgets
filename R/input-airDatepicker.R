@@ -150,7 +150,6 @@ airDatepickerInput <- function(inputId,
   }
 
   airParams <- dropNulls(list(
-    autoClose = isTRUE(autoClose),
     updateOn = match.arg(update_on),
     disabledDates = list1(disabledDates),
     highlightedDates = list1(highlightedDates),
@@ -158,6 +157,7 @@ airDatepickerInput <- function(inputId,
     value = list1(value),
     todayButtonAsDate = inherits(todayButton, c("Date", "POSIXt")),
     options = c(dropNulls(list(
+      autoClose = isTRUE(autoClose),
       language = language,
       timepicker = isTRUE(timepicker),
       # startDate = startDate,
@@ -343,6 +343,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #' @param value The value to set for the input object.
 #' @param clear Logical, clear all previous selected dates.
 #' @param options Options to update, see available ones here: \url{http://t1m0n.name/air-datepicker/docs/}.
+#' @param show,hide Show / hide datepicker.
 #'
 #' @export
 #'
@@ -354,7 +355,14 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #'   demoAirDatepicker("update")
 #'
 #' }
-updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, clear = FALSE, options = NULL) {
+updateAirDateInput <- function(session,
+                               inputId,
+                               label = NULL,
+                               value = NULL,
+                               clear = FALSE,
+                               options = NULL,
+                               show = FALSE,
+                               hide = FALSE) {
   stopifnot(is.logical(clear))
   to_ms <- function(x) {
     if (is.null(x))
@@ -372,8 +380,10 @@ updateAirDateInput <- function(session, inputId, label = NULL, value = NULL, cle
     id = session$ns(inputId),
     label = label,
     value = value,
-    clear = clear,
-    options = options
+    clear = isTRUE(clear),
+    options = options,
+    show = isTRUE(show),
+    hide = isTRUE(hide)
   ))
   session$sendInputMessage(inputId, message)
 }
