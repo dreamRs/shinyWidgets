@@ -16,12 +16,13 @@
 #'   library(shinydashboardPlus)
 #'   library(shinyWidgets)
 #'
-#'   boxTag <- boxPlus(
+#'   boxTag <- box(
 #'    title = "Closable box, with label",
 #'    closable = TRUE,
-#'    enable_label = TRUE,
-#'    label_text = 1,
-#'    label_status = "danger",
+#'    label = boxLabel(
+#'     text = 1,
+#'     status = "danger"
+#'    ),
 #'    status = "warning",
 #'    solidHeader = FALSE,
 #'    collapsible = TRUE,
@@ -29,11 +30,8 @@
 #'   )
 #'
 #'   shinyApp(
-#'    ui = dashboardPagePlus(
-#'      header = dashboardHeaderPlus(
-#'        enable_rightsidebar = TRUE,
-#'        rightSidebarIcon = "gears"
-#'      ),
+#'    ui = dashboardPage(
+#'      header = dashboardHeader(),
 #'      sidebar = dashboardSidebar(),
 #'      body = dashboardBody(
 #'
@@ -44,27 +42,23 @@
 #'       fluidRow(boxTag, boxTag),
 #'       tags$h2("Add shadow only to the first element using id"),
 #'       tagAppendAttributes(
-#'        verticalProgress(
+#'        shinydashboardPlus::progressBar(
 #'         value = 10,
 #'         striped = TRUE,
-#'         active = TRUE
+#'         animated = TRUE
 #'        ),
 #'        id = "my-progress"
 #'       ),
-#'       verticalProgress(
+#'       shinydashboardPlus::progressBar(
 #'         value = 50,
-#'         active = TRUE,
-#'         status = "warning",
-#'         size = "xs"
+#'         status = "warning"
 #'       ),
-#'       verticalProgress(
+#'       shinydashboardPlus::progressBar(
 #'         value = 20,
-#'         status = "danger",
-#'         size = "sm",
-#'         height = "60%"
+#'         status = "danger"
 #'       )
 #'      ),
-#'      rightsidebar = rightSidebar(),
+#'      controlbar = dashboardControlbar(),
 #'      title = "DashboardPage"
 #'    ),
 #'    server = function(input, output) { }
