@@ -25,65 +25,36 @@
 #'   setBackgroundColor(color = "ghostwhite"),
 #'
 #'   # boxPlus
-#'   fluidRow(
-#'    boxPlus(
-#'      title = "Closable Box with dropdown",
-#'      closable = TRUE,
-#'      status = "warning",
-#'      solidHeader = FALSE,
-#'      collapsible = TRUE,
-#'      enable_dropdown = TRUE,
-#'      dropdown_icon = "wrench",
-#'      dropdown_menu = dropdownItemList(
-#'        dropdownItem(url = "http://www.google.com", name = "Link to google"),
-#'        dropdownItem(url = "#", name = "item 2"),
-#'        dropdownDivider(),
-#'        dropdownItem(url = "#", name = "item 3")
-#'      ),
-#'      p("Box Content")
+#'   box(
+#'    title = "Improved box",
+#'    closable = TRUE,
+#'    width = 12,
+#'    status = "warning",
+#'    solidHeader = FALSE,
+#'    collapsible = TRUE,
+#'    label = boxLabel(
+#'      text = 1,
+#'      status = "danger",
+#'      style = "circle"
 #'    ),
-#'    boxPlus(
-#'      title = "Closable box, with label",
-#'      closable = TRUE,
-#'      enable_label = TRUE,
-#'      label_text = 1,
-#'      label_status = "danger",
-#'      status = "warning",
-#'      solidHeader = FALSE,
-#'      collapsible = TRUE,
-#'      p("Box Content")
-#'    )
-#'   ),
-#'
-#'   br(),
-#'
-#'   # gradientBoxes
-#'   fluidRow(
-#'     gradientBox(
-#'      title = "My gradient Box",
-#'      icon = "fa fa-th",
-#'      gradientColor = "teal",
-#'      boxToolSize = "sm",
-#'      footer = column(
-#'        width = 12,
-#'        align = "center",
-#'        sliderInput(
-#'          "obs",
-#'          "Number of observations:",
-#'          min = 0, max = 1000, value = 500
-#'        )
-#'      ),
-#'      plotOutput("distPlot")
-#'     ),
-#'     gradientBox(
-#'      title = "My gradient Box",
-#'      icon = "fa fa-heart",
-#'      gradientColor = "maroon",
-#'      boxToolSize = "xs",
-#'      closable = TRUE,
-#'      footer = "The footer goes here. You can include anything",
-#'      "This is a gradient box"
-#'     )
+#'    dropdownMenu = boxDropdown(
+#'      boxDropdownItem("Link to google", href = "http://www.google.com"),
+#'      boxDropdownItem("item 2", href = "#"),
+#'      dropdownDivider(),
+#'      boxDropdownItem("item 3", href = "#", icon = icon("th"))
+#'    ),
+#'    sidebar = boxSidebar(
+#'      startOpen = TRUE,
+#'      id = "mycardsidebar",
+#'      sliderInput(
+#'        "obs",
+#'        "Number of observations:",
+#'        min = 0,
+#'        max = 1000,
+#'        value = 500
+#'      )
+#'    ),
+#'    plotOutput("distPlot")
 #'   ),
 #'
 #'   br(),
@@ -93,32 +64,32 @@
 #'   column(
 #'    width = 6,
 #'    timelineBlock(
-#'      reversed = FALSE,
-#'      timelineEnd(color = "danger"),
-#'      timelineLabel(2018, color = "teal"),
-#'      timelineItem(
-#'        title = "Item 1",
-#'        icon = "gears",
-#'        color = "olive",
-#'        time = "now",
-#'        footer = "Here is the footer",
-#'        "This is the body"
-#'      ),
-#'      timelineItem(
-#'        title = "Item 2",
-#'        border = FALSE
-#'      ),
-#'      timelineLabel(2015, color = "orange"),
-#'      timelineItem(
-#'        title = "Item 3",
-#'        icon = "paint-brush",
-#'        color = "maroon",
-#'        timelineItemMedia(src = "http://placehold.it/150x100"),
-#'        timelineItemMedia(src = "http://placehold.it/150x100")
-#'      ),
-#'      timelineStart(color = "gray")
-#'     )
-#'    ),
+#'     reversed = FALSE,
+#'     timelineEnd(color = "red"),
+#'     timelineLabel(2018, color = "teal"),
+#'     timelineItem(
+#'       title = "Item 1",
+#'       icon = icon("gears"),
+#'       color = "olive",
+#'       time = "now",
+#'       footer = "Here is the footer",
+#'       "This is the body"
+#'     ),
+#'     timelineItem(
+#'       title = "Item 2",
+#'       border = FALSE
+#'     ),
+#'     timelineLabel(2015, color = "orange"),
+#'     timelineItem(
+#'       title = "Item 3",
+#'       icon = icon("paint-brush"),
+#'       color = "maroon",
+#'       timelineItemMedia(image = "https://placehold.it/150x100"),
+#'       timelineItemMedia(image = "https://placehold.it/150x100")
+#'     ),
+#'     timelineStart(color = "purple")
+#'    )
+#'   ),
 #'   column(
 #'    width = 6,
 #'    box(
@@ -191,8 +162,8 @@
 useShinydashboardPlus <- function() {
   if (!requireNamespace(package = "shinydashboardPlus"))
     message("Package 'shinydashboardPlus' is required to run this function")
-  deps <- findDependencies(shinydashboardPlus::dashboardPagePlus(
-    header = shinydashboardPlus::dashboardHeaderPlus(),
+  deps <- findDependencies(shinydashboardPlus::dashboardPage(
+    header = shinydashboardPlus::dashboardHeader(),
     sidebar = shinydashboard::dashboardSidebar(),
     body = shinydashboard::dashboardBody()
   ))
