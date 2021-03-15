@@ -134,18 +134,58 @@ html_dependency_shinyWidgets <- function() {
 #' )
 #'
 html_dependency_awesome <- function() {
-  htmlDependency(
+  bslib::bs_dependency_defer(awesomeDependencyCSS)
+}
+
+#' @importFrom sass sass_file
+#' @importFrom bslib bs_dependency
+awesomeDependencyCSS <- function(theme) {
+  if (!bslib::is_bs_theme(theme)) {
+    return(htmlDependency(
+      name = "awesome-bootstrap",
+      version = "0.3.7",
+      src = c(
+        href = "shinyWidgets/awesome-bootstrap-checkbox",
+        file = "assets/awesome-bootstrap-checkbox"
+      ),
+      package = "shinyWidgets",
+      stylesheet = "awesome-bootstrap-checkbox.min.css",
+      all_files = FALSE
+    ))
+  }
+
+  sass_input <- list(
+    list(
+      "fa-var-check" = "\"\\f00c\"",
+      "input-bg-disabled" = "$gray-300",
+      "brand-primary" = "$primary",
+      "brand-info" = "$info",
+      "brand-success" = "$success",
+      "brand-warning" = "$warning",
+      "brand-danger" = "$danger",
+      "awesome-label-inline-margin-left" = "10px"
+    ),
+    # sass::sass_file(
+    #   system.file(package = "shinyWidgets", "assets/awesome-bootstrap-checkbox/_variables.scss")
+    # ),
+    sass::sass_file(
+      system.file(package = "shinyWidgets", "assets/awesome-bootstrap-checkbox/_mixins.scss")
+    ),
+    sass::sass_file(
+      system.file(package = "shinyWidgets", "assets/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.scss")
+    )
+  )
+
+  bslib::bs_dependency(
+    input = sass_input,
+    theme = theme,
     name = "awesome-bootstrap",
     version = "0.3.7",
-    src = c(
-      href = "shinyWidgets/awesome-bootstrap-checkbox",
-      file = "assets/awesome-bootstrap-checkbox"
-    ),
-    package = "shinyWidgets",
-    stylesheet = "awesome-bootstrap-checkbox.min.css",
-    all_files = FALSE
+    cache_key_extra = packageVersion("shinyWidgets")
   )
 }
+
+
 
 #' @export
 #' @rdname html-dependencies
@@ -161,13 +201,43 @@ html_dependency_bttn <- function() {
 
 #' @export
 #' @rdname html-dependencies
+#' @importFrom bslib bs_dependency_defer
 html_dependency_pretty <- function() {
-  htmlDependency(
+  bslib::bs_dependency_defer(prettyDependencyCSS)
+}
+
+#' @importFrom sass sass_file
+#' @importFrom bslib bs_dependency
+prettyDependencyCSS <- function(theme) {
+  if (!bslib::is_bs_theme(theme)) {
+    return(htmlDependency(
+      name = "pretty",
+      version = "3.0.3",
+      src = c(href = "shinyWidgets/pretty-checkbox", file = "assets/pretty-checkbox"),
+      package = "shinyWidgets",
+      stylesheet = "pretty-checkbox.min.css"
+    ))
+  }
+
+  sass_input <- list(
+    list(
+      "pretty--color-primary" = "$primary",
+      "pretty--color-info" = "$info",
+      "pretty--color-success" = "$success",
+      "pretty--color-warning" = "$warning",
+      "pretty--color-danger" = "$danger"
+    ),
+    sass::sass_file(
+      system.file(package = "shinyWidgets", "assets/pretty-checkbox/pretty-checkbox.scss")
+    )
+  )
+
+  bslib::bs_dependency(
+    input = sass_input,
+    theme = theme,
     name = "pretty",
     version = "3.0.3",
-    src = c(href = "shinyWidgets/pretty-checkbox", file = "assets/pretty-checkbox"),
-    package = "shinyWidgets",
-    stylesheet = "pretty-checkbox.min.css"
+    cache_key_extra = packageVersion("shinyWidgets")
   )
 }
 

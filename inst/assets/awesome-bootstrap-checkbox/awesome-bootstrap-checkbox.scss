@@ -17,6 +17,8 @@ $fa-var-check: "\f00c" !default;
 $check-icon: $fa-var-check !default;
 $abc-border-width: 1px !default;
 
+$awesome-label-inline-margin-left: 0 !default;
+
 @mixin checkbox-variant($parent, $color) {
   #{$parent} input[type="checkbox"]:checked + label,
   #{$parent} input[type="radio"]:checked + label {
@@ -43,18 +45,21 @@ $abc-border-width: 1px !default;
   }
 }
 
-
+.form-check-label-inline{
+  margin-left: $awesome-label-inline-margin-left;
+}
 
 .awesome-checkbox{
   padding-left: 5px;
 
   label{
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     position: relative;
     padding-left: 5px;
     font-weight: 400;
     cursor: pointer;
+    margin-bottom: 0;
 
     &::before{
       content: "";
@@ -63,6 +68,7 @@ $abc-border-width: 1px !default;
       width: 17px;
       height: 17px;
       left: 0;
+      top: 2px;
       margin-left: -20px;
       border: $abc-border-width solid $input-border;
       border-radius: 3px;
@@ -76,7 +82,7 @@ $abc-border-width: 1px !default;
       width: 16px;
       height: 16px;
       left: 0;
-      top: 0;
+      top: 2px;
       margin-left: -20px;
       padding-left: 3px;
       padding-top: 1px;
@@ -177,11 +183,12 @@ $abc-border-width: 1px !default;
 
   label{
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     position: relative;
     padding-left: 5px;
     font-weight: 400;
     cursor: pointer;
+    margin-bottom: 0;
 
     &::before{
       content: "";
@@ -190,6 +197,7 @@ $abc-border-width: 1px !default;
       width: 17px;
       height: 17px;
       left: 0;
+      top: 2px;
       margin-left: -20px;
       border: $abc-border-width solid $input-border;
       border-radius: 50%;
@@ -204,7 +212,7 @@ $abc-border-width: 1px !default;
       width: 11px;
       height: 11px;
       left: 3px;
-      top: 3px;
+      top: 5px;
       margin-left: -20px;
       border-radius: 50%;
       background-color: $input-color;
@@ -243,6 +251,7 @@ $abc-border-width: 1px !default;
   }
 
   &.radio-inline{
+    display: inline-block;
     margin-top: 0;
   }
 }
