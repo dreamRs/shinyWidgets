@@ -251,6 +251,7 @@ $awesome-label-inline-margin-left: 0 !default;
   }
 
   &.radio-inline{
+    display: inline-block;
     margin-top: 0;
   }
 }
