@@ -1,7 +1,7 @@
 ## Test environments
 
 * local Windows 10 install, R 4.0.3
-* ubuntu 16.04, Windows 10, macOS (on GitHub Actions), R 4.0.3
+* ubuntu 16.04, Windows 10, macOS (on GitHub Actions), R 4.0.4
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,7 +11,7 @@
 
 -------
 
-Fixed some bugs due to last shiny release.
+Fixed problems reported by CRAN + new function and new features.
 Thanks!
 
 Victor

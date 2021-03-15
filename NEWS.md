@@ -1,3 +1,14 @@
+shinyWidgets 0.6.0
+======================
+
+* [{bslib}](https://github.com/rstudio/bslib) support for `pretty***()` and `awesome***()` functions.
+* Update to work with [{shinydashboardPlus}](https://github.com/RinteRface/shinydashboardPlus) 2.0.0
+* `updateAirDateInput()` has new arguments `show` and `hide` to show/hide the picker from server.
+* New `colorPickr()` function: a color picker based on https://github.com/Simonwep/pickr.
+* Updated skins available in `chooseSliderSkin()`.
+
+
+
 shinyWidgets 0.5.7
 ======================
 
