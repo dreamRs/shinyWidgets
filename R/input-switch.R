@@ -21,7 +21,7 @@
 #'
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools tags validateCssUnit
+#' @importFrom htmltools tags validateCssUnit attachDependencies findDependencies
 #'
 #' @export
 #'
@@ -48,17 +48,35 @@
 #' }
 #' shinyApp(ui, server)
 #' }
-switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', offLabel = 'OFF',
-                        onStatus = NULL, offStatus = NULL, size = "default", labelWidth = "auto",
-                        handleWidth = "auto", disabled = FALSE, inline = FALSE, width = NULL) {
+switchInput <- function(inputId,
+                        label = NULL,
+                        value = FALSE,
+                        onLabel = "ON",
+                        offLabel = "OFF",
+                        onStatus = NULL,
+                        offStatus = NULL,
+                        size = "default",
+                        labelWidth = "auto",
+                        handleWidth = "auto",
+                        disabled = FALSE,
+                        inline = FALSE,
+                        width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   size <- match.arg(arg = size, choices = c('default', 'mini', 'small', 'normal', 'large'))
   switchProps <- dropNulls(
     list(
-      id = inputId, type = "checkbox", class = "sw-switchInput", `data-input-id` = inputId,
-      `data-on-text` = onLabel, `data-off-text` = offLabel, `data-label-text` = label,
-      `data-on-color` = onStatus, `data-off-color` = offStatus, #`data-state` = value,
-      `data-label-width` = labelWidth, `data-handle-width` = handleWidth,
+      id = inputId,
+      type = "checkbox",
+      class = "sw-switchInput",
+      `data-input-id` = inputId,
+      `data-on-text` = onLabel,
+      `data-off-text` = offLabel,
+      `data-label-text` = label,
+      `data-on-color` = onStatus,
+      `data-off-color` = offStatus,
+      #`data-state` = value,
+      `data-label-width` = labelWidth,
+      `data-handle-width` = handleWidth,
       `disabled` =  if (!disabled) NULL else disabled,
       `data-size` = if (size == "default") "" else size
     )
@@ -80,7 +98,11 @@ switchInput <- function(inputId, label = NULL, value = FALSE, onLabel = 'ON', of
     style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
     inputTag
   )
-  # Dep
+  # Dependencies
+  switchInputTag <- attachDependencies(
+    switchInputTag,
+    htmltools::findDependencies(tagList(label, offLabel, onLabel))
+  )
   attachShinyWidgetsDep(switchInputTag, "bsswitch")
 }
 
