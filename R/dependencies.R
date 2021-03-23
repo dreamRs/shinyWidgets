@@ -138,7 +138,7 @@ html_dependency_awesome <- function() {
 }
 
 #' @importFrom sass sass_file
-#' @importFrom bslib bs_dependency
+#' @importFrom bslib bs_dependency is_bs_theme theme_version
 awesomeDependencyCSS <- function(theme) {
   if (!bslib::is_bs_theme(theme)) {
     return(htmlDependency(
@@ -153,9 +153,19 @@ awesomeDependencyCSS <- function(theme) {
       all_files = FALSE
     ))
   }
-
-  sass_input <- list(
-    list(
+  if (identical(bslib::theme_version(theme), "3")) {
+    sass_vars <- list(
+      "fa-var-check" = "\"\\f00c\"",
+      "input-bg-disabled" = "$gray",
+      "brand-primary" = "$brand-primary",
+      "brand-info" = "$brand-info",
+      "brand-success" = "$brand-success",
+      "brand-warning" = "$brand-warning",
+      "brand-danger" = "$brand-danger",
+      "awesome-label-inline-margin-left" = "10px"
+    )
+  } else {
+    sass_vars <- list(
       "fa-var-check" = "\"\\f00c\"",
       "input-bg-disabled" = "$gray-300",
       "brand-primary" = "$primary",
@@ -164,10 +174,10 @@ awesomeDependencyCSS <- function(theme) {
       "brand-warning" = "$warning",
       "brand-danger" = "$danger",
       "awesome-label-inline-margin-left" = "10px"
-    ),
-    # sass::sass_file(
-    #   system.file(package = "shinyWidgets", "assets/awesome-bootstrap-checkbox/_variables.scss")
-    # ),
+    )
+  }
+  sass_input <- list(
+    sass_vars,
     sass::sass_file(
       system.file(package = "shinyWidgets", "assets/awesome-bootstrap-checkbox/_mixins.scss")
     ),
@@ -207,7 +217,7 @@ html_dependency_pretty <- function() {
 }
 
 #' @importFrom sass sass_file
-#' @importFrom bslib bs_dependency
+#' @importFrom bslib bs_dependency is_bs_theme theme_version
 prettyDependencyCSS <- function(theme) {
   if (!bslib::is_bs_theme(theme)) {
     return(htmlDependency(
@@ -219,14 +229,25 @@ prettyDependencyCSS <- function(theme) {
     ))
   }
 
-  sass_input <- list(
-    list(
+  if (identical(bslib::theme_version(theme), "3")) {
+    sass_vars <- list(
+      "pretty--color-primary" = "$brand-primary",
+      "pretty--color-info" = "$brand-info",
+      "pretty--color-success" = "$brand-success",
+      "pretty--color-warning" = "$brand-warning",
+      "pretty--color-danger" = "$brand-danger"
+    )
+  } else {
+    sass_vars <- list(
       "pretty--color-primary" = "$primary",
       "pretty--color-info" = "$info",
       "pretty--color-success" = "$success",
       "pretty--color-warning" = "$warning",
       "pretty--color-danger" = "$danger"
-    ),
+    )
+  }
+  sass_input <- list(
+    sass_vars,
     sass::sass_file(
       system.file(package = "shinyWidgets", "assets/pretty-checkbox/pretty-checkbox.scss")
     )
