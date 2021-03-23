@@ -65,13 +65,16 @@ setSliderColor <- function(color, sliderId) {
   # create custom css background for each slider
   # selected by the user
   sliderCol <- lapply(sliderId, FUN = function(i) {
-    paste0(".js-irs-", i, " .irs-single,",
-           " .js-irs-", i, " .irs-from,",
-           " .js-irs-", i, " .irs-to,",
-           " .js-irs-", i, " .irs-bar-edge,",
-           " .js-irs-", i, " .irs-bar{
-           background: ", color[i+1], ";
-  }"
+    paste0(
+      ".js-irs-", i, " .irs-single,",
+      " .js-irs-", i, " .irs-from,",
+      " .js-irs-", i, " .irs-to,",
+      " .js-irs-", i, " .irs-bar-edge,",
+      " .js-irs-", i,
+      " .irs-bar{background: ", color[i+1],
+      "; border-top: 1px solid ", color[i+1],
+      "; border-bottom: 1px solid ", color[i+1],
+      ";}"
     )
   })
 
