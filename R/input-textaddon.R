@@ -31,17 +31,16 @@
 #' @importFrom htmltools tags htmlDependency attachDependencies validateCssUnit
 #'
 #' @export
-textInputAddon <- function (inputId, label, value = "", placeholder = NULL, addon, width = NULL)
-{
+textInputAddon <- function (inputId, label, value = "", placeholder = NULL, addon, width = NULL) {
   .Deprecated("textInputIcon", package = "shinyWidgets", old = "textInputAddon")
   value <- shiny::restoreInput(id = inputId, default = value)
   htmltools::tags$div(
     class = "form-group shiny-input-container",
-    label %AND% htmltools::tags$label(label, `for` = inputId),
+    htmltools::tags$label(label, `for` = inputId),
     style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
     htmltools::tags$div(
       style = "margin-bottom: 5px;", class="input-group",
-      addon %AND% htmltools::tags$span(class="input-group-addon", addon),
+      htmltools::tags$span(class="input-group-addon", addon),
       htmltools::tags$input(
         id = inputId, type = "text", class = "form-control",
         value = value, placeholder = placeholder

@@ -65,7 +65,12 @@ numericRangeInput <- function(inputId, label, value,
       class = "shiny-numeric-range-input form-group shiny-input-container",
       style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
 
-      controlLabel(inputId, label),
+      tags$label(
+        class = "control-label",
+        `for` = inputId,
+        label,
+        class = if (is.null(label)) "shiny-label-null"
+      ),
       # input-daterange class is needed for dropdown behavior
       htmltools::tags$div(
         class = "input-numeric-range input-group",
