@@ -177,8 +177,8 @@ $.extend(AirPickerInputBinding, {
   },
   receiveMessage: function(el, data) {
     var calendar = $(el)
-        .airdatepicker()
-        .data("airdatepicker");
+      .airdatepicker()
+      .data("airdatepicker");
     if (data.clear) {
       calendar.clear();
     }
@@ -200,58 +200,67 @@ $.extend(AirPickerInputBinding, {
     }
 
     if (data.hasOwnProperty("options")) {
-      if (data.options.hasOwnProperty("minDate")) {
-        data.options.minDate = new Date(data.options.minDate);
-      }
-      if (data.options.hasOwnProperty("maxDate")) {
-        data.options.maxDate = new Date(data.options.maxDate);
-      }
-      var disabledDates = [];
-      if (data.options.hasOwnProperty("disabledDates")) {
-        disabledDates = data.options.disabledDates;
-      }
-      var highlightedDates = [];
-      if (data.options.hasOwnProperty("highlightedDates")) {
-        highlightedDates = data.options.highlightedDates;
-      }
-      data.options.onRenderCell = function(d, type) {
-        if (type == "day") {
-          var disabled = false,
-            highlighted = 0,
-            formatted = getFormattedDate(d);
+      var options = data.options;
 
-          disabled = disabledDates.filter(function(date) {
-            return date == formatted;
-          }).length;
+      if (options.hasOwnProperty("minDate")) {
+        options.minDate = new Date(options.minDate);
+      }
+      if (options.hasOwnProperty("maxDate")) {
+        options.maxDate = new Date(options.maxDate);
+      }
 
-          highlighted = highlightedDates.filter(function(date) {
-            return date == formatted;
-          }).length;
-
-          var html = d.getDate();
-          var classes = "";
-          if (highlighted > 0) {
-            html = d.getDate() + '<span class="dp-note"></span>';
-            classes = "airdatepicker-highlighted";
-          }
-
-          return {
-            html: html,
-            classes: classes,
-            disabled: disabled
-          };
+      if (
+        options.hasOwnProperty("disabledDates") |
+        options.hasOwnProperty("highlightedDates")
+      ) {
+        var disabledDates = [];
+        if (options.hasOwnProperty("disabledDates")) {
+          disabledDates = options.disabledDates;
         }
-      };
+        var highlightedDates = [];
+        if (options.hasOwnProperty("highlightedDates")) {
+          highlightedDates = options.highlightedDates;
+        }
+        options.onRenderCell = function(d, type) {
+          if (type == "day") {
+            var disabled = false,
+              highlighted = 0,
+              formatted = getFormattedDate(d);
+
+            disabled = disabledDates.filter(function(date) {
+              return date == formatted;
+            }).length;
+
+            highlighted = highlightedDates.filter(function(date) {
+              return date == formatted;
+            }).length;
+
+            var html = d.getDate();
+            var classes = "";
+            if (highlighted > 0) {
+              html = d.getDate() + '<span class="dp-note"></span>';
+              classes = "airdatepicker-highlighted";
+            }
+
+            return {
+              html: html,
+              classes: classes,
+              disabled: disabled
+            };
+          }
+        };
+      }
+
       $(el)
         .airdatepicker()
         .data("airdatepicker")
-        .update(data.options);
+        .update(options);
 
-      if (data.options.hasOwnProperty("startView")) {
+      if (options.hasOwnProperty("startView")) {
         var dp = $(el)
           .airdatepicker()
           .data("airdatepicker");
-        dp.date = new Date(data.options.startView);
+        dp.date = new Date(options.startView);
       }
     }
 

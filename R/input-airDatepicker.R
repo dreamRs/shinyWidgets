@@ -376,12 +376,18 @@ updateAirDateInput <- function(session,
     options$minDate <- to_ms(options$minDate)
     options$maxDate <- to_ms(options$maxDate)
   }
+  if (!is.null(options$disabledDates)) {
+    options$disabledDates <- list1(options$disabledDates)
+  }
+  if (!is.null(options$highlightedDates)) {
+    options$highlightedDates <- list1(options$highlightedDates)
+  }
   message <- dropNulls(list(
     id = session$ns(inputId),
     label = label,
     value = value,
     clear = isTRUE(clear),
-    options = options,
+    options = dropNulls(options),
     show = isTRUE(show),
     hide = isTRUE(hide)
   ))
