@@ -200,14 +200,60 @@ awesomeDependencyCSS <- function(theme) {
 #' @export
 #' @rdname html-dependencies
 html_dependency_bttn <- function() {
-  htmlDependency(
+  bslib::bs_dependency_defer(bttnDependencyCSS)
+}
+
+
+#' @importFrom sass sass_file
+#' @importFrom bslib bs_dependency is_bs_theme theme_version bs_get_variables bs_add_variables
+bttnDependencyCSS <- function(theme) {
+  if (!bslib::is_bs_theme(theme)) {
+    return(htmlDependency(
+      name = "bttn",
+      version = "0.2.4",
+      src = c(href = "shinyWidgets/bttn", file = "assets/bttn"),
+      package = "shinyWidgets",
+      stylesheet = "bttn.min.css"
+    ))
+  }
+
+  if (is.na(bslib::bs_get_variables(theme, "royal"))) {
+    theme <- bslib::bs_add_variables(theme, royal = "#bd2df5")
+  }
+
+  if (identical(bslib::theme_version(theme), "3")) {
+    sass_vars <- list(
+      "bttn--color-primary" = "$brand-primary",
+      "bttn--color-success" = "$brand-success",
+      "bttn--color-warning" = "$brand-warning",
+      "bttn--color-danger" = "$brand-danger",
+      "bttn--color-royal" = "$royal"
+    )
+  } else {
+    sass_vars <- list(
+      "bttn--color-primary" = "$primary",
+      "bttn--color-success" = "$success",
+      "bttn--color-warning" = "$warning",
+      "bttn--color-danger" = "$danger",
+      "bttn--color-royal" = "$royal"
+    )
+  }
+  sass_input <- list(
+    sass_vars,
+    sass::sass_file(
+      system.file(package = "shinyWidgets", "assets/bttn/bttn.scss")
+    )
+  )
+
+  bslib::bs_dependency(
+    input = sass_input,
+    theme = theme,
     name = "bttn",
     version = "0.2.4",
-    src = c(href = "shinyWidgets/bttn", file = "assets/bttn"),
-    package = "shinyWidgets",
-    stylesheet = "bttn.min.css"
+    cache_key_extra = packageVersion("shinyWidgets")
   )
 }
+
 
 #' @export
 #' @rdname html-dependencies
