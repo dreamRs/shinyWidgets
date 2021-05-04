@@ -23,6 +23,7 @@ autonumericInput(
   maximumValue = NULL,
   minimumValue = NULL,
   modifyValueOnWheel = NULL,
+  emptyInputBehavior = "null",
   ...
 )
 }
@@ -75,6 +76,8 @@ initialization. Defaults to TRUE.}
 \item{modifyValueOnWheel}{Allows the user to increment or decrement the
 element value with the mouse wheel. The wheel behavior can be modified
 by the \code{wheelStep} option. Defaults to TRUE.}
+
+\item{emptyInputBehavior}{Defines what should be displayed in the element if the raw value is an empty string ''.}
 
 \item{...}{Additional parameters that can be passed to AutoNumeric.  See
 details for more information.}

@@ -4,6 +4,10 @@
 /*global AutoNumeric, Shiny */
 
 // Autonumeric Input Binding
+Shiny.InputBinding.prototype.store = [];
+Shiny.InputBinding.prototype.updateStore = function(el, instance) {
+  this.store[el.id] = instance;
+};
 var autonumericInputBinding = new Shiny.InputBinding();
 $.extend(autonumericInputBinding, {
 
@@ -12,19 +16,27 @@ $.extend(autonumericInputBinding, {
   },
 
   initialize: function(el) {
+    var autonum, emptyInputBehavior;
     var config = $(el)
       .parent()
       .find('script[data-for="' + el.id + '"]');
     config = JSON.parse(config.html());
     if (config.hasOwnProperty("format")) {
-      this[el.id] = new AutoNumeric(el, config.format);
+      autonum = new AutoNumeric(el, config.format);
+      emptyInputBehavior = config.format.emptyInputBehavior;
     } else {
-      this[el.id] = new AutoNumeric(el, config.options);
+      autonum = new AutoNumeric(el, config.options);
+      emptyInputBehavior = config.options.emptyInputBehavior;
     }
+    if ($(el).val() === "" & emptyInputBehavior === "null") {
+      autonum.set(null);
+    }
+    this.updateStore(el, autonum);
   },
 
   getValue: function(el) {
-    return this[el.id].getNumber();
+    var autonum = this.getAutonumeric(el);
+    return autonum.getNumber();
   },
 
   subscribe: function(el, callback) {
@@ -38,16 +50,17 @@ $.extend(autonumericInputBinding, {
   },
 
   receiveMessage: function(el, data) {
+    var autonum = this.getAutonumeric(el);
     if (data.hasOwnProperty("value")) {
-      this[el.id].set(data.value);
+      autonum.set(data.value);
     }
 
     if (data.hasOwnProperty("format")) {
-      this[el.id].update(data.format);
+      autonum.update(data.format);
     }
 
     if (data.hasOwnProperty("options")) {
-      this[el.id].update(data.options);
+      autonum.update(data.options);
     }
 
     if (data.hasOwnProperty("label"))
@@ -61,14 +74,15 @@ $.extend(autonumericInputBinding, {
   },
 
   getState: function(el) {
+    var autonum = this.getAutonumeric(el);
     return{
       label: $(el)
         .parent()
         .parent()
         .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(),
-      value: this[el.id].getNumber(),
-      options: this[el.id].getSettings()
+      value: autonum.getNumber(),
+      options: autonum.getSettings()
     };
   },
 
@@ -77,6 +91,9 @@ $.extend(autonumericInputBinding, {
       policy: "debounce",
       delay: 500
     };
+  },
+  getAutonumeric: function(el) {
+    return this.store[el.id];
   }
 });
 

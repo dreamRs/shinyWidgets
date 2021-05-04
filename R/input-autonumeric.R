@@ -247,6 +247,7 @@ updateFormatNumericInput <- function(session, inputId,
 #' @param modifyValueOnWheel Allows the user to increment or decrement the
 #'   element value with the mouse wheel. The wheel behavior can be modified
 #'   by the \code{wheelStep} option. Defaults to TRUE.
+#' @param emptyInputBehavior Defines what should be displayed in the element if the raw value is an empty string ''.
 #' @param ... Additional parameters that can be passed to AutoNumeric.  See
 #'   details for more information.
 #'
@@ -462,6 +463,7 @@ autonumericInput <- function(inputId, label, value,
                              maximumValue = NULL,
                              minimumValue = NULL,
                              modifyValueOnWheel = NULL,
+                             emptyInputBehavior = "null",
                              ...) {
   value <- shiny::restoreInput(inputId, value)
 
@@ -485,7 +487,8 @@ autonumericInput <- function(inputId, label, value,
             formatOnPageLoad = formatOnPageLoad,
             maximumValue = maximumValue,
             minimumValue = minimumValue,
-            modifyValueOnWheel = modifyValueOnWheel
+            modifyValueOnWheel = modifyValueOnWheel,
+            emptyInputBehavior = emptyInputBehavior
           ),
           list(...)
         )
