@@ -322,6 +322,8 @@ updateCheckboxGroupButtons <- function(session,
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues, mustExist = FALSE)
   if (!is.null(selected))
     selected <- as.character(selected)
+  if (!is.null(disabledChoices))
+    disabledChoices <- as.character(disabledChoices)
   options <- if (!is.null(args$choiceNames)) {
     as.character(tagList(generateCBGB(
       session$ns(inputId),

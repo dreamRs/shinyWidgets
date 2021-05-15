@@ -286,6 +286,8 @@ updateRadioGroupButtons <- function(session,
   if (is.null(selected) && !is.null(args$choiceValues)) {
     selected <- args$choiceValues[[1]]
   }
+  if (!is.null(disabledChoices))
+    disabledChoices <- as.character(disabledChoices)
   options <- if (!is.null(args$choiceValues)) {
     as.character(tagList(
       generateRGB(
