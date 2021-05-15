@@ -173,12 +173,7 @@ sliderTextInput <- function (inputId,
     )
   }
   slider <- sliderInput(inputId = "id", label = "label", min = 1, max = 10, value = 5)
-  attachShinyWidgetsDep(
-    tagList(
-      sliderTag,
-      htmlDependencies(slider)
-    )
-  )
+  attachShinyWidgetsDep(sliderTag, extra_deps = htmlDependencies(slider))
 }
 
 

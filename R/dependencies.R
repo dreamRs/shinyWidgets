@@ -9,38 +9,38 @@
 #' @importFrom htmltools htmlDependency attachDependencies findDependencies
 #' @importFrom shiny icon
 #'
-attachShinyWidgetsDep <- function(tag, widget = NULL) {
-  dep <- html_dependency_shinyWidgets()
+attachShinyWidgetsDep <- function(tag, widget = NULL, extra_deps = NULL) {
+  dependencies <- html_dependency_shinyWidgets()
   if (!is.null(widget)) {
     if (widget == "picker") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_picker()
       )
     } else if (widget == "awesome") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_awesome(),
         htmltools::findDependencies(shiny::icon("rebel"))[[1]]
       )
     } else if (widget == "bsswitch") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_bsswitch()
       )
     } else if (widget == "multi") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_multi()
       )
     } else if (widget == "jquery-knob") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_knob()
       )
     } else if (widget == "dropdown") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         htmltools::htmlDependency(
           name = "dropdown-patch",
           version = packageVersion("shinyWidgets"),
@@ -49,8 +49,8 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         )
       )
     } else if (widget == "sw-dropdown") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         htmltools::htmlDependency(
           name = "sw-dropdown",
           version = packageVersion("shinyWidgets"),
@@ -60,38 +60,45 @@ attachShinyWidgetsDep <- function(tag, widget = NULL) {
         )
       )
     } else if (widget == "animate") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_animate()
       )
     } else if (widget == "bttn") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_bttn()
       )
     } else if (widget == "spectrum") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_spectrum()
       )
     } else if (widget == "pretty") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_pretty()
       )
     } else if (widget == "nouislider") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_nouislider()
       )
     } else if (widget == "airdatepicker") {
-      dep <- list(
-        dep,
+      dependencies <- list(
+        dependencies,
         html_dependency_airdatepicker()
       )
     }
+    dependencies <- c(dependencies, extra_deps)
+  } else {
+    dependencies <- c(list(dependencies), extra_deps)
   }
-  htmltools::attachDependencies(tag, dep, append = TRUE)
+  htmltools::attachDependencies(
+    x = tag,
+    value = dependencies,
+    append = TRUE
+  )
 }
 
 
