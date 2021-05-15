@@ -13,9 +13,9 @@ Shiny.addCustomMessageHandler("update-progressBar-shinyWidgets", function(
   if (total > 0) {
     pct = Math.round((value / total) * 100);
     if (elVal !== null)
-      elVal.innerText = value;
+      elVal.innerText = data.commas ? value.toLocaleString("en-US") : value;
     if (elTot !== null)
-      elTot.innerText = total;
+      elTot.innerText = data.commas ? total.toLocaleString("en-US") : total;
     value = Math.round((value / total) * 100);
   } else {
     pct = data.percent > 0 ? data.percent : value;
