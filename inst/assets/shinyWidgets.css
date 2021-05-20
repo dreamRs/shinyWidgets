@@ -1,6 +1,6 @@
 
 
-/* CSS icone btn */
+/* CSS checkbox buttons for icons */
 
 
 .btn.checkbtn:focus {
@@ -24,6 +24,15 @@
 }
 
 
+.btn.checkbtn.disabled > .check-btn-icon-yes {
+	pointer-events: none;
+}
+.btn.checkbtn.disabled > .check-btn-icon-no {
+	pointer-events: none;
+}
+
+
+
 
 
 /*
@@ -35,6 +44,106 @@
 }
 */
 
+
+
+
+/* CSS radio buttons for icons */
+
+
+.btn.radiobtn:focus {
+  outline: none !important;
+}
+
+.btn.radiobtn .radio-btn-icon-yes {
+	opacity: 0;
+	display: none;
+}
+.btn.radiobtn.active .radio-btn-icon-yes {
+	opacity: 1;
+	display: inline-block;
+}
+
+.btn.radiobtn.active .radio-btn-icon-no {
+	opacity: 0;
+	display: none;
+}
+.btn.radiobtn .radio-btn-icon-no {
+	opacity: 1;
+	display: inline-block;
+}
+
+.btn.radiobtn.disabled > .radio-btn-icon-yes {
+	pointer-events: none;
+}
+.btn.radiobtn.disabled > .radio-btn-icon-no {
+	pointer-events: none;
+}
+
+
+
+
+/* Option 1 */
+/*
+.btn.radiobtn span.glyphicon-unchecked {
+	opacity: 1; display: inline-block;
+}
+.btn.radiobtn.active span.glyphicon-unchecked {
+	opacity: 1; display: none;
+}
+
+.btn.radiobtn span.glyphicon-check {
+	opacity: 1; display: none;
+}
+.btn.radiobtn.active span.glyphicon-check {
+	opacity: 1; display: inline-block;
+}
+*/
+
+
+
+/* Option 2*/
+/*
+.btn.radiobtn span.glyphicon-remove {
+	opacity: 1; display: inline-block;
+}
+.btn.radiobtn.active span.glyphicon-remove {
+	opacity: 1; display: none;
+}
+
+.btn.radiobtn span.glyphicon-ok {
+	opacity: 1; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok {
+	opacity: 1; display: inline-block;
+}
+*/
+
+
+/* Option 3*/
+/*
+.btn.radiobtn span.glyphicon-ok.blank.hide {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok.blank.hide {
+	opacity: 0; display: inline-block;
+}
+.btn.radiobtn span.glyphicon-ok.blank {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-ok.blank {
+	opacity: 1; display: inline-block;
+}
+*/
+
+/* Option 4*/
+/*
+.btn.radiobtn span.glyphicon-check.blank {
+	opacity: 0; display: none;
+}
+.btn.radiobtn.active span.glyphicon-check.blank {
+	opacity: 1; display: inline-block;
+}
+*/
 
 
 /* http://bootsnipp.com/snippets/8deZ */
@@ -203,95 +312,3 @@
     background: inherit;
     left: 20px;
 }
-
-
-/* CSS icone btn */
-
-
-.btn.radiobtn:focus {
-  outline: none !important;
-}
-
-.btn.radiobtn .radio-btn-icon-yes {
-	opacity: 0; display: none;
-}
-.btn.radiobtn.active .radio-btn-icon-yes {
-	opacity: 1; display: inline-block;
-}
-
-.btn.radiobtn.active .radio-btn-icon-no {
-	opacity: 0; display: none;
-}
-.btn.radiobtn .radio-btn-icon-no {
-	opacity: 1; display: inline-block;
-}
-
-
-
-
-
-
-
-/* Option 1 */
-/*
-.btn.radiobtn span.glyphicon-unchecked {
-	opacity: 1; display: inline-block;
-}
-.btn.radiobtn.active span.glyphicon-unchecked {
-	opacity: 1; display: none;
-}
-
-.btn.radiobtn span.glyphicon-check {
-	opacity: 1; display: none;
-}
-.btn.radiobtn.active span.glyphicon-check {
-	opacity: 1; display: inline-block;
-}
-*/
-
-
-
-/* Option 2*/
-/*
-.btn.radiobtn span.glyphicon-remove {
-	opacity: 1; display: inline-block;
-}
-.btn.radiobtn.active span.glyphicon-remove {
-	opacity: 1; display: none;
-}
-
-.btn.radiobtn span.glyphicon-ok {
-	opacity: 1; display: none;
-}
-.btn.radiobtn.active span.glyphicon-ok {
-	opacity: 1; display: inline-block;
-}
-*/
-
-
-/* Option 3*/
-/*
-.btn.radiobtn span.glyphicon-ok.blank.hide {
-	opacity: 0; display: none;
-}
-.btn.radiobtn.active span.glyphicon-ok.blank.hide {
-	opacity: 0; display: inline-block;
-}
-.btn.radiobtn span.glyphicon-ok.blank {
-	opacity: 0; display: none;
-}
-.btn.radiobtn.active span.glyphicon-ok.blank {
-	opacity: 1; display: inline-block;
-}
-*/
-
-/* Option 4*/
-/*
-.btn.radiobtn span.glyphicon-check.blank {
-	opacity: 0; display: none;
-}
-.btn.radiobtn.active span.glyphicon-check.blank {
-	opacity: 1; display: inline-block;
-}
-*/
-

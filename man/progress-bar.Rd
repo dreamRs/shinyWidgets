@@ -16,6 +16,7 @@ progressBar(
   striped = FALSE,
   title = NULL,
   range_value = NULL,
+  commas = TRUE,
   unit_mark = "\%"
 )
 
@@ -27,6 +28,7 @@ updateProgressBar(
   title = NULL,
   status = NULL,
   range_value = NULL,
+  commas = TRUE,
   unit_mark = "\%"
 )
 }
@@ -49,6 +51,8 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 \item{title}{character, optional title.}
 
 \item{range_value}{Default is to display percentage (\code{[0, 100]}), but you can specify a custom range, e.g. \code{-50, 50}.}
+
+\item{commas}{logical, add commas on total and value.}
 
 \item{unit_mark}{Unit for value displayed on the progress bar, default to \code{"\%"}.}
 

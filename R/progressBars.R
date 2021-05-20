@@ -12,6 +12,7 @@
 #' @param striped logical, add a striped effect.
 #' @param title character, optional title.
 #' @param range_value Default is to display percentage (\code{[0, 100]}), but you can specify a custom range, e.g. \code{-50, 50}.
+#' @param commas logical, add commas on total and value.
 #' @param unit_mark Unit for value displayed on the progress bar, default to \code{"\%"}.
 #'
 #' @return A progress bar that can be added to a UI definition.
@@ -90,6 +91,7 @@ progressBar <- function(id,
                         striped = FALSE,
                         title = NULL,
                         range_value = NULL,
+                        commas = TRUE,
                         unit_mark = "%") {
   if (!is.null(total)) {
     percent <- round(value / total * 100)
@@ -110,12 +112,20 @@ progressBar <- function(id,
     )
   }
 
+  if(commas) {
+    value_for_display <- prettyNum(value, big.mark = ",", scientific = FALSE)
+    total_for_display <- prettyNum(total, big.mark = ",", scientific = FALSE)
+  } else {
+    value_for_display <- value
+    total_for_display <- total
+  }
+
   if (!is.null(total)) {
     total <- tags$span(
       class = "progress-number",
-      tags$b(value, id = paste0(id, "-value")),
+      tags$b(value_for_display, id = paste0(id, "-value")),
       "/",
-      tags$span(id = paste0(id, "-total"), total)
+      tags$span(id = paste0(id, "-total"), total_for_display)
     )
   }
 
@@ -156,7 +166,8 @@ progressBar <- function(id,
 #' @rdname progress-bar
 updateProgressBar <- function(session, id, value, total = NULL,
                               title = NULL, status = NULL,
-                              range_value = NULL, unit_mark = "%") {
+                              range_value = NULL, commas = TRUE,
+                              unit_mark = "%") {
   message <- "update-progressBar-shinyWidgets"
   if (!is.null(range_value)) {
     percent <- rescale(x = value, from = range_value, to = c(0, 100))
@@ -177,6 +188,7 @@ updateProgressBar <- function(session, id, value, total = NULL,
       total = if (is.null(total)) -1 else total,
       title = title,
       status = status,
+      commas = commas,
       unit_mark = unit_mark
     )
   )

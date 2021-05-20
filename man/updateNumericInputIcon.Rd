@@ -17,19 +17,19 @@ updateNumericInputIcon(
 }
 \arguments{
 \item{session}{The \code{session} object passed to function given to
-\code{shinyServer}. Default is \code{getDefaultReactiveDomain()}.}
+\code{shinyServer}.}
 
 \item{inputId}{The id of the input object.}
 
 \item{label}{The label to set for the input object.}
 
-\item{value}{Initial value.}
+\item{value}{The value to set for the input object.}
 
-\item{min}{Minimum allowed value}
+\item{min}{Minimum value.}
 
-\item{max}{Maximum allowed value}
+\item{max}{Maximum value.}
 
-\item{step}{Interval to use when stepping between min and max}
+\item{step}{Step size.}
 
 \item{icon}{Icon to update, note that you can update icon only
 if initialized in \code{\link{numericInputIcon}}.}
