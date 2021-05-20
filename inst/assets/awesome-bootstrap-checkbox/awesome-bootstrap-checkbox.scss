@@ -97,6 +97,7 @@ $awesome-label-inline-margin-left: 0 !default;
     opacity: 0;
     z-index: 1;
     cursor: pointer;
+    position: absolute;
 
     &:focus + label::before{
       @include tab-focus();
