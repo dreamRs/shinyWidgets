@@ -45,6 +45,10 @@ A select control that can be added to a UI definition.
 \description{
 An alternative to \code{selectInput} with plenty of options to customize it.
 }
+\note{
+State of the picker (open or close) is accessible server-side through the input value:
+ \code{input$<inputId>_open}, which can be \code{TRUE} (opened) or \code{FALSE} (closed).
+}
 \examples{
 ## Only run examples in interactive R sessions
 if (interactive()) {

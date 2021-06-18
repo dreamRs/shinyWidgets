@@ -21,6 +21,15 @@
 #'
 #' @return A select control that can be added to a UI definition.
 #'
+#' @importFrom shiny restoreInput
+#' @importFrom htmltools tags htmlEscape validateCssUnit
+#'  tagAppendAttributes tagAppendChildren tag
+#'
+#' @export
+#'
+#' @note State of the picker (open or close) is accessible server-side through the input value:
+#'  \code{input$<inputId>_open}, which can be \code{TRUE} (opened) or \code{FALSE} (closed).
+#'
 #' @references SnapAppointments and contributors. "The jQuery plugin that brings
 #'  select elements into the 21st century with intuitive multiselection,
 #'  searching, and much more. Now with Bootstrap 4 support".
@@ -58,12 +67,6 @@
 #' @example examples/picker-select-all.R
 #' @example examples/picker-value-display.R
 #' @example examples/picker-limits.R
-#'
-#' @importFrom shiny restoreInput
-#' @importFrom htmltools tags htmlEscape validateCssUnit
-#'  tagAppendAttributes tagAppendChildren tag
-#'
-#' @export
 pickerInput <- function(inputId,
                         label = NULL,
                         choices,
