@@ -71,7 +71,7 @@ setSliderColor <- function(color, sliderId) {
       " .js-irs-", i, " .irs-to,",
       " .js-irs-", i, " .irs-bar-edge,",
       " .js-irs-", i,
-      " .irs-bar{background: ", color[i+1],
+      " .irs-bar{  border-color: transparent;background: ", color[i+1],
       "; border-top: 1px solid ", color[i+1],
       "; border-bottom: 1px solid ", color[i+1],
       ";}"
