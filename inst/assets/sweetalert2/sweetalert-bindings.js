@@ -25,24 +25,35 @@ Shiny.addCustomMessageHandler("sweetalert-sw", function(data) {
 
 Shiny.addCustomMessageHandler("sweetalert-sw-confirm", function(data) {
   Shiny.onInputChange(data.id, null);
+  function set_confirmation_input(id, result, cancelOnDismiss) {
+    if (cancelOnDismiss) {
+      if (result.value) {
+        Shiny.onInputChange(id, true);
+      } else {
+        Shiny.onInputChange(id, false);
+      }
+    } else {
+      if (result.value) {
+        Shiny.onInputChange(id, true);
+      } else {
+        if (result.isDismissed && result.dismiss == "cancel") {
+          Shiny.onInputChange(id, false);
+        } else {
+          Shiny.onInputChange(id, null);
+        }
+      }
+    }
+  }
   if (!data.as_html) {
     Swal.fire(data.swal).then(function(result) {
-      if (result.value) {
-        Shiny.onInputChange(data.id, true);
-      } else {
-        Shiny.onInputChange(data.id, false);
-      }
+      set_confirmation_input(data.id, result, data.cancelOnDismiss)
     });
   } else {
     //var elsw = document.createElement("span");
     //elsw.innerHTML = data.swal.text;
     //data.swal.html = elsw;
     Swal.fire(data.swal).then(function(result) {
-      if (result.value) {
-        Shiny.onInputChange(data.id, true);
-      } else {
-        Shiny.onInputChange(data.id, false);
-      }
+      set_confirmation_input(data.id, result, data.cancelOnDismiss)
       var els = $("#" + data.sw_id);
       els.each(function(i, el) {
         window.Shiny.unbindAll(el, true);

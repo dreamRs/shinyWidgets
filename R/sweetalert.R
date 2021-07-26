@@ -198,6 +198,9 @@ show_alert <- function(title = "Title",
 #' @param closeOnClickOutside Decide whether the user should be able to dismiss
 #'  the modal by clicking outside of it, or not.
 #' @param showCloseButton Show close button in top right corner of the modal.
+#' @param allowEscapeKey If set to \code{FALSE}, the user can't dismiss the popup by pressing the \code{Esc} key.
+#' @param cancelOnDismiss If \code{TRUE}, when dialog is dismissed (click outside, close button or Esc key)
+#'  it will be equivalent to canceling (input value will be \code{FALSE}), if \code{FALSE} nothing happen (input value remain \code{NULL}).
 #' @param html Does \code{text} contains HTML tags ?
 #' @param ... Additional arguments (not used)
 #'
@@ -226,6 +229,8 @@ confirmSweetAlert <- function(session,
                               btn_colors = NULL,
                               closeOnClickOutside = FALSE,
                               showCloseButton = FALSE,
+                              allowEscapeKey = FALSE,
+                              cancelOnDismiss = TRUE,
                               html = FALSE,
                               ...) {
 
@@ -252,6 +257,7 @@ confirmSweetAlert <- function(session,
       message = list(
         id = inputId,
         as_html = html,
+        cancelOnDismiss = cancelOnDismiss,
         swal = dropNullsOrNA(list(
           title = title,
           text = text,
@@ -263,7 +269,9 @@ confirmSweetAlert <- function(session,
           confirmButtonColor = btn_colors[2],
           cancelButtonColor = btn_colors[1],
           showCloseButton = showCloseButton,
-          allowOutsideClick = closeOnClickOutside
+          allowOutsideClick = closeOnClickOutside,
+          allowEscapeKey = allowEscapeKey,
+          ...
         ))
       )
     )
@@ -275,6 +283,7 @@ confirmSweetAlert <- function(session,
         id = inputId,
         as_html = html,
         sw_id = id,
+        cancelOnDismiss = cancelOnDismiss,
         swal = dropNullsOrNA(list(
           title = title,
           icon = type,
@@ -286,7 +295,9 @@ confirmSweetAlert <- function(session,
           confirmButtonColor = btn_colors[2],
           cancelButtonColor = btn_colors[1],
           showCloseButton = showCloseButton,
-          allowOutsideClick = closeOnClickOutside
+          allowOutsideClick = closeOnClickOutside,
+          allowEscapeKey = allowEscapeKey,
+          ...
         ))
       )
     )
@@ -308,6 +319,8 @@ ask_confirmation <- function(inputId,
                              btn_colors = NULL,
                              closeOnClickOutside = FALSE,
                              showCloseButton = FALSE,
+                             allowEscapeKey = FALSE,
+                             cancelOnDismiss = TRUE,
                              html = FALSE,
                              ...,
                              session = shiny::getDefaultReactiveDomain()) {
@@ -321,6 +334,8 @@ ask_confirmation <- function(inputId,
     btn_colors = btn_colors,
     closeOnClickOutside = closeOnClickOutside,
     showCloseButton = showCloseButton,
+    allowEscapeKey = allowEscapeKey,
+    cancelOnDismiss = cancelOnDismiss,
     html = html, ...
   )
 }

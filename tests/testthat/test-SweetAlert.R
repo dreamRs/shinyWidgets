@@ -92,7 +92,7 @@ test_that("confirmSweetAlert", {
   sendCA_msg <- session$lastCustomMessage$message
 
   expect_identical(sendCA_msg$id, "MY_CONFIRMATION")
-  expect_length(sendCA_msg, 3)
+  expect_length(sendCA_msg, 4)
   expect_identical(sendCA_msg$swal$title, "TITLE")
   expect_is(sendCA_msg$swal$text, "character")
   expect_identical(sendCA_msg$swal$icon, "success")

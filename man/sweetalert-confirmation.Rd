@@ -16,6 +16,8 @@ confirmSweetAlert(
   btn_colors = NULL,
   closeOnClickOutside = FALSE,
   showCloseButton = FALSE,
+  allowEscapeKey = FALSE,
+  cancelOnDismiss = TRUE,
   html = FALSE,
   ...
 )
@@ -29,6 +31,8 @@ ask_confirmation(
   btn_colors = NULL,
   closeOnClickOutside = FALSE,
   showCloseButton = FALSE,
+  allowEscapeKey = FALSE,
+  cancelOnDismiss = TRUE,
   html = FALSE,
   ...,
   session = shiny::getDefaultReactiveDomain()
@@ -54,6 +58,11 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 the modal by clicking outside of it, or not.}
 
 \item{showCloseButton}{Show close button in top right corner of the modal.}
+
+\item{allowEscapeKey}{If set to \code{FALSE}, the user can't dismiss the popup by pressing the \code{Esc} key.}
+
+\item{cancelOnDismiss}{If \code{TRUE}, when dialog is dismissed (click outside, close button or Esc key)
+it will be equivalent to canceling (input value will be \code{FALSE}), if \code{FALSE} nothing happen (input value remain \code{NULL}).}
 
 \item{html}{Does \code{text} contains HTML tags ?}
 
