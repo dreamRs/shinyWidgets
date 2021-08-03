@@ -28,16 +28,24 @@ $.extend(sliderTextBinding, {
     var slider = $(el).data("ionRangeSlider");
     var result = slider.result;
     var options = slider.options;
-
-    ////var values = $(el).data("values").split(",");
-    //var values = $(el).data("swvalues");
     var values = options.values;
 
-    if (this._numValues(el) === 2) {
-      return [values[result.from], values[result.to]];
+    var dataType = $(el).data("data-type");
+
+    if (dataType === "text") {
+      if (this._numValues(el) === 2) {
+        return [values[result.from].toString(), values[result.to].toString()];
+      } else {
+        return values[result.from].toString();
+      }
     } else {
-      return values[result.from];
+      if (this._numValues(el) === 2) {
+        return [values[result.from], values[result.to]];
+      } else {
+        return values[result.from];
+      }
     }
+
   },
   setValue: function setValue(el, value) {
     var $el = $(el);

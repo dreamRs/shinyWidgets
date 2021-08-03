@@ -71,12 +71,11 @@ sliderTextInput <- function (inputId,
                              width = NULL,
                              pre = NULL,
                              post = NULL,
-                             dragRange = TRUE)
-{
+                             dragRange = TRUE) {
+
   selected <- shiny::restoreInput(id = inputId, default = selected)
-  if (!is.character(choices)) {
-    choices <- as.character(choices)
-  }
+  choices_as_char <- inherits(choices, c("character", "factor"))
+  choices <- as.character(choices)
 
   if (is.null(selected)) {
     selected <- choices[1]
@@ -106,23 +105,31 @@ sliderTextInput <- function (inputId,
     to_max <- match(x = to_max, table = choices) - 1
 
   sliderProps <- dropNulls(list(
-    class = "js-range-slider", class = "sw-slider-text",
-    id = inputId, `data-type` = if (length(selected) > 1) "double",
-    `data-from` = from, `data-skin` = "shiny",
+    class = "js-range-slider",
+    class = "sw-slider-text",
+    id = inputId,
+    `data-type` = if (length(selected) > 1) "double",
+    `data-from` = from,
+    `data-skin` = "shiny",
     `data-to` = if (length(selected) > 1) to,
-    `data-grid` = grid, `data-prettify-enabled` = FALSE,
+    `data-grid` = grid,
+    `data-prettify-enabled` = FALSE,
     `data-force-edges` = force_edges,
     `data-hide-min-max` = hide_min_max,
-    `data-prefix` = pre, `data-postfix` = post,
-    `data-from-fixed` = from_fixed, `data-to-fixed` = to_fixed,
-    `data-from-min` = from_min, `data-from-max` = from_max,
-    `data-to-min` = to_min, `data-to-max` = to_max,
+    `data-prefix` = pre,
+    `data-postfix` = post,
+    `data-from-fixed` = from_fixed,
+    `data-to-fixed` = to_fixed,
+    `data-from-min` = from_min,
+    `data-from-max` = from_max,
+    `data-to-min` = to_min,
+    `data-to-max` = to_max,
     `data-from-shadow` = !is.null(from_min) | !is.null(from_max),
     `data-to-shadow` = !is.null(to_min) | !is.null(to_max),
     `data-swvalues` = enc2native(jsonlite::toJSON(x = choices)),
     `data-keyboard` = TRUE,
     `data-drag-interval` = if (length(selected) > 1) dragRange,
-    `data-data-type` = "text"
+    `data-data-type` = if (choices_as_char) "text" else "num"
   ))
   sliderProps <- lapply(sliderProps, function(x) {
     if (identical(x, TRUE))
