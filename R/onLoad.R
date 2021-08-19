@@ -6,6 +6,19 @@
 #'
 .onLoad <- function(...) {
   shiny::addResourcePath('shinyWidgets', system.file("assets", package = "shinyWidgets"))
+  shiny::registerInputHandler("sw.numericRange", function(data, ...) {
+    if (is.null(data)) {
+      NULL
+    } else {
+      data[vapply(data, is.null, logical(1))] <- NA
+      result <- as.numeric(unlist(data))
+      if (all(is.na(result))) {
+        return(NULL)
+      } else {
+        return(result)
+      }
+    }
+  }, force = TRUE)
   shiny::registerInputHandler("air.date", function(data, ...) {
     if (is.null(data)) {
       NULL
