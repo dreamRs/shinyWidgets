@@ -243,7 +243,7 @@ confirmSweetAlert <- function(session,
   )
   if (is.null(type))
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
-  if ("shiny.tag" %in% class(text))
+  if (inherits(text, c("shiny.tag", "shiny.tag.list")))
     html <- TRUE
   # If we are inside a module, turn the (relative) inputId (e.g. 'input') into an absolute input id (e.g. 'module-input')
   if (inherits(session, "session_proxy")) {

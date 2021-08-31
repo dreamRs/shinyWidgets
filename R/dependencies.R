@@ -299,7 +299,7 @@ html_dependency_sweetalert2 <- function(theme = c("sweetalert2",
     theme <- "default"
   htmlDependency(
     name = "sweetalert2",
-    version = "9.17.1",
+    version = "11.1.4",
     src = c(href="shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
     script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
     stylesheet = sprintf("css/%s.min.css", theme)

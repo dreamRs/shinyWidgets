@@ -6,6 +6,7 @@ shinyWidgets 0.6.1
 * Add position absolute to `awesomeCheckboxGroup()`, thanks to [@MayaGans](https://github.com/MayaGans) ([#390](https://github.com/dreamRs/shinyWidgets/pull/390))
 * `autonumericInput()`: distinguish between no input and input=0, see [#384](https://github.com/dreamRs/shinyWidgets/issues/384)
 * Update of `disabledDates` argument's behavior in `updateAirDateInput()`, see [#379](https://github.com/dreamRs/shinyWidgets/issues/379)
+* Updated [sweetalert2](https://sweetalert2.github.io/) dependencies to 11.1.4
 
 
 
