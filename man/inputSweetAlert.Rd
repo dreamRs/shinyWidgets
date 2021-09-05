@@ -10,7 +10,8 @@ inputSweetAlert(
   title = NULL,
   text = NULL,
   type = NULL,
-  input = c("text", "password", "textarea", "radio", "checkbox", "select"),
+  input = c("text", "password", "textarea", "radio", "checkbox", "select", "email",
+    "url"),
   inputOptions = NULL,
   inputPlaceholder = NULL,
   btn_labels = "Ok",
@@ -54,73 +55,107 @@ Launch a popup with a text input
 This function use the JavaScript sweetalert2 library, see the official documentation for more \url{https://sweetalert2.github.io/}.
 }
 \examples{
-if (interactive()) {
-  library("shiny")
-  library("shinyWidgets")
+
+# Input in alert ----
+
+library(shiny)
+library(shinyWidgets)
 
 
-  ui <- fluidPage(
-    tags$h1("Input sweet alert"),
-    actionButton(inputId = "text", label = "Text Input"),
-    verbatimTextOutput(outputId = "text"),
-    actionButton(inputId = "password", label = "Password Input"),
-    verbatimTextOutput(outputId = "password"),
-    actionButton(inputId = "radio", label = "Radio Input"),
-    verbatimTextOutput(outputId = "radio"),
-    actionButton(inputId = "checkbox", label = "Checkbox Input"),
-    verbatimTextOutput(outputId = "checkbox"),
-    actionButton(inputId = "select", label = "Select Input"),
-    verbatimTextOutput(outputId = "select")
-  )
-  server <- function(input, output, session) {
+ui <- fluidPage(
+  tags$h1("Input sweet alert"),
 
-    observeEvent(input$text, {
-      inputSweetAlert(
-        session = session, inputId = "mytext", input = "text",
-        title = "What's your name ?"
-      )
-    })
-    output$text <- renderPrint(input$mytext)
+  actionButton("btn_text", "Text Input"),
+  verbatimTextOutput(outputId = "text"),
 
-    observeEvent(input$password, {
-      inputSweetAlert(
-        session = session, inputId = "mypassword", input = "password",
-        title = "What's your password ?"
-      )
-    })
-    output$password <- renderPrint(input$mypassword)
+  actionButton("btn_password", "Password Input"),
+  verbatimTextOutput(outputId = "password"),
 
-    observeEvent(input$radio, {
-      inputSweetAlert(
-        session = session, inputId = "myradio", input = "radio",
-        inputOptions = c("Banana" , "Orange", "Apple"),
-        title = "What's your favorite fruit ?"
-      )
-    })
-    output$radio <- renderPrint(input$myradio)
+  actionButton("btn_radio", "Radio Input"),
+  verbatimTextOutput(outputId = "radio"),
 
-    observeEvent(input$checkbox, {
-      inputSweetAlert(
-        session = session, inputId = "mycheckbox", input = "checkbox",
-        inputPlaceholder = "Yes I agree",
-        title = "Do you agree ?"
-      )
-    })
-    output$checkbox <- renderPrint(input$mycheckbox)
+  actionButton("btn_checkbox", "Checkbox Input"),
+  verbatimTextOutput(outputId = "checkbox"),
 
-    observeEvent(input$select, {
-      inputSweetAlert(
-        session = session, inputId = "myselect", input = "select",
-        inputOptions = c("Banana" , "Orange", "Apple"),
-        title = "What's your favorite fruit ?"
-      )
-    })
-    output$select <- renderPrint(input$myselect)
+  actionButton("btn_select", "Select Input"),
+  verbatimTextOutput(outputId = "select"),
 
-  }
+  actionButton("btn_email", "Email Input"),
+  verbatimTextOutput(outputId = "email")
+)
+server <- function(input, output, session) {
 
-  shinyApp(ui = ui, server = server)
+   observeEvent(input$btn_text, {
+    inputSweetAlert(
+      session = session,
+      "mytext",
+      input = "text",
+      title = "What's your name ?",
+      inputPlaceholder = "e.g.: Victor",
+      allowOutsideClick = FALSE,
+      showCloseButton = TRUE
+    )
+  })
+  output$text <- renderPrint(input$mytext)
+
+   observeEvent(input$btn_password, {
+    inputSweetAlert(
+      session = session,
+      "mypassword",
+      input = "password",
+      title = "What's your password ?"
+    )
+  })
+  output$password <- renderPrint(input$mypassword)
+
+   observeEvent(input$btn_radio, {
+    inputSweetAlert(
+      session = session,
+      "myradio",
+      input = "radio",
+      inputOptions = c("Banana" , "Orange", "Apple"),
+      title = "What's your favorite fruit ?"
+    )
+  })
+  output$radio <- renderPrint(input$myradio)
+
+   observeEvent(input$btn_checkbox, {
+    inputSweetAlert(
+      session = session,
+      "mycheckbox",
+      input = "checkbox",
+      inputPlaceholder = "Yes I agree",
+      title = "Do you agree ?"
+    )
+  })
+  output$checkbox <- renderPrint(input$mycheckbox)
+
+   observeEvent(input$btn_select, {
+    inputSweetAlert(
+      session = session,
+      "myselect",
+      input = "select",
+      inputOptions = c("Banana" , "Orange", "Apple"),
+      title = "What's your favorite fruit ?"
+    )
+  })
+  output$select <- renderPrint(input$myselect)
+
+  observeEvent(input$btn_email, {
+    inputSweetAlert(
+      session = session,
+      inputId = "myemail",
+      input = "email",
+      title = "What's your email ?",
+      validationMessage= "this does not look like a valid email!"
+    )
+  })
+  output$email <- renderPrint(input$myemail)
+
 }
+
+if (interactive())
+  shinyApp(ui = ui, server = server)
 }
 \seealso{
 \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
