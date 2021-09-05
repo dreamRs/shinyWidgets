@@ -356,6 +356,7 @@ ask_confirmation <- function(inputId,
 #'  \code{"password"},\code{"textarea"}, \code{"radio"}, \code{"checkbox"} or \code{"select"}.
 #' @param inputOptions Options for the input. For \code{"radio"} and \code{"select"} it will be choices.
 #' @param inputPlaceholder Placeholder for the input, use it for \code{"text"} or \code{"checkbox"}.
+#' @param inputValidator JavaScript function to validate input. Must be a character wrapped in \code{I()}.
 #' @param btn_labels Label(s) for button(s).
 #' @param btn_colors Color(s) for button(s).
 #' @param reset_input Set the input value to \code{NULL} when alert is displayed.
@@ -383,6 +384,7 @@ inputSweetAlert <- function(session,
                                       "email", "url"),
                             inputOptions = NULL,
                             inputPlaceholder = NULL,
+                            inputValidator = NULL,
                             btn_labels = "Ok",
                             btn_colors = NULL,
                             reset_input = TRUE,
@@ -407,25 +409,30 @@ inputSweetAlert <- function(session,
   if (!is.null(inputOptions)) {
     inputOptions <- choicesWithNames(inputOptions)
   }
+  swal <- dropNullsOrNA(list(
+    title = title,
+    text = text,
+    icon = type,
+    input = input,
+    inputOptions = inputOptions,
+    inputPlaceholder = inputPlaceholder,
+    confirmButtonText = btn_labels[1],
+    confirmButtonColor = btn_colors[1],
+    cancelButtonText = btn_labels[2],
+    cancelButtonColor = btn_colors[2],
+    showCancelButton = !is.na(btn_labels[2]),
+    ...
+  ))
+  toeval <- unlist(lapply(swal, function(x) {
+    inherits(x, "AsIs")
+  }))
   session$sendCustomMessage(
     type = "sweetalert-sw-input",
     message = list(
       id = inputId,
       reset_input = reset_input,
-      swal = dropNullsOrNA(list(
-        title = title,
-        text = text,
-        icon = type,
-        input = input,
-        inputOptions = inputOptions,
-        inputPlaceholder = inputPlaceholder,
-        confirmButtonText = btn_labels[1],
-        confirmButtonColor = btn_colors[1],
-        cancelButtonText = btn_labels[2],
-        cancelButtonColor = btn_colors[2],
-        showCancelButton = !is.na(btn_labels[2]),
-        ...
-      ))
+      eval = list1(names(swal)[toeval]),
+      swal = swal
     )
   )
 }

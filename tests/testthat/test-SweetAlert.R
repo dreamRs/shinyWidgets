@@ -128,7 +128,7 @@ test_that("inputSweetAlert", {
   sendIA_msg <- session$lastCustomMessage$message
 
   expect_identical(sendIA_msg$id, "MY_INPUT")
-  expect_length(sendIA_msg, 3)
+  expect_length(sendIA_msg, 4)
   expect_identical(sendIA_msg$swal$title, "TITLE")
   expect_is(sendIA_msg$swal$text, "json")
 })

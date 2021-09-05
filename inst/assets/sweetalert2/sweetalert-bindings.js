@@ -1,5 +1,6 @@
 /*jshint
-  jquery:true
+  jquery:true,
+  evil: true
 */
 /*global Swal, CharacterData, DocumentType, Shiny */
 
@@ -67,6 +68,11 @@ Shiny.addCustomMessageHandler("sweetalert-sw-confirm", function(data) {
 Shiny.addCustomMessageHandler("sweetalert-sw-input", function(data) {
   if (data.reset_input) {
     Shiny.setInputValue(data.id, null);
+  }
+  if (data.eval instanceof Array) {
+    $.each(data.eval, function (i, x) {
+      data.swal[x] = eval("(" + data.swal[x][0] + ")");
+    });
   }
   Swal.fire(data.swal).then(function(result) {
     Shiny.setInputValue(data.id, result.value, { priority: "event" });

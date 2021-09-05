@@ -57,7 +57,14 @@ server <- function(input, output, session) {
       "myradio",
       input = "radio",
       inputOptions = c("Banana" , "Orange", "Apple"),
-      title = "What's your favorite fruit ?"
+      title = "What's your favorite fruit ?",
+      inputValidator = I(
+        "function(value) {
+          if (!value) {
+            return 'You need to choose something!';
+          }
+        }"
+      )
     )
   })
   output$radio <- renderPrint(input$myradio)

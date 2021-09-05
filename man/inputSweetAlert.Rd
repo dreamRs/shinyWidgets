@@ -14,6 +14,7 @@ inputSweetAlert(
     "url"),
   inputOptions = NULL,
   inputPlaceholder = NULL,
+  inputValidator = NULL,
   btn_labels = "Ok",
   btn_colors = NULL,
   reset_input = TRUE,
@@ -39,6 +40,8 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 \item{inputOptions}{Options for the input. For \code{"radio"} and \code{"select"} it will be choices.}
 
 \item{inputPlaceholder}{Placeholder for the input, use it for \code{"text"} or \code{"checkbox"}.}
+
+\item{inputValidator}{JavaScript function to validate input. Must be a character wrapped in \code{I()}.}
 
 \item{btn_labels}{Label(s) for button(s).}
 
@@ -114,7 +117,14 @@ server <- function(input, output, session) {
       "myradio",
       input = "radio",
       inputOptions = c("Banana" , "Orange", "Apple"),
-      title = "What's your favorite fruit ?"
+      title = "What's your favorite fruit ?",
+      inputValidator = I(
+        "function(value) {
+          if (!value) {
+            return 'You need to choose something!';
+          }
+        }"
+      )
     )
   })
   output$radio <- renderPrint(input$myradio)
