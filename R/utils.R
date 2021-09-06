@@ -1,4 +1,8 @@
 
+`%||%` <- function(x, y) {
+  if (!is.null(x)) x else y
+}
+
 starts_with <- function(x, prefix) {
   # grepl(pattern = sprintf("^%s", prefix), x = x, fixed = TRUE)
   substring(x, 1, nchar(prefix)) == prefix
@@ -94,14 +98,6 @@ validateSelected <- function (selected, choices, inputId) {
   }
   selected
 }
-
-
-
-`%||%` <- function(x, y) {
-  if (!is.null(x)) x else y
-}
-
-
 
 
 firstChoice <- function(choices) {

@@ -55,7 +55,7 @@ test_that("sendSweetAlert", {
 
   sendSA_msg <- session$lastCustomMessage$message
 
-  expect_length(sendSA_msg, 2)
+  expect_length(sendSA_msg, 3)
   expect_identical(sendSA_msg$config$title, "TITLE")
   expect_is(sendSA_msg$config$text, "character")
   expect_identical(sendSA_msg$config$icon, "success")
