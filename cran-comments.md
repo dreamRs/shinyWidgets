@@ -1,7 +1,7 @@
 ## Test environments
 
-* local Windows 10 install, R 4.0.3
-* ubuntu 16.04, Windows 10, macOS (on GitHub Actions), R 4.0.4
+* local Windows 10 install, R 4.10
+* ubuntu 20.04, Windows 10, macOS (on GitHub Actions), R 4.1.0
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,7 +11,6 @@
 
 -------
 
-Fixed problems reported by CRAN + new function and new features.
 Thanks!
 
 Victor
