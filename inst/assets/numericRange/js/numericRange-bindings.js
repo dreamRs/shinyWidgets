@@ -54,6 +54,6 @@ $.extend(numericRangeInputBinding, {
 
 Shiny.inputBindings.register(
   numericRangeInputBinding,
-  "wd.numericRangeInputBin"
+  "shinyWidgets.numericRange"
 );
 

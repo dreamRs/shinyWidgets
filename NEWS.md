@@ -1,3 +1,10 @@
+shinyWidgets 0.6.1.9000
+======================
+
+* `numericRangeInput()`: added `min`, `max`, `step` arguments
+
+
+
 shinyWidgets 0.6.1
 ======================
 

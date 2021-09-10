@@ -4,7 +4,16 @@
 \alias{numericRangeInput}
 \title{Numeric Range Input}
 \usage{
-numericRangeInput(inputId, label, value, width = NULL, separator = " to ")
+numericRangeInput(
+  inputId,
+  label,
+  value,
+  width = NULL,
+  separator = " to ",
+  min = NA,
+  max = NA,
+  step = NA
+)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -20,6 +29,12 @@ and maximum set the minimum and maximum of the range.}
 see \code{\link[shiny:reexports]{validateCssUnit()}}.}
 
 \item{separator}{String to display between the start and end input boxes.}
+
+\item{min}{Minimum allowed value}
+
+\item{max}{Maximum allowed value}
+
+\item{step}{Interval to use when stepping between min and max}
 }
 \description{
 Create an input group of numeric inputs that function as a range
