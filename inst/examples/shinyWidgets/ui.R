@@ -58,9 +58,9 @@ sidebar <- dashboardSidebar(
     menuItem(text = "radio Buttons", tabName = "tabradioButtons", icon = icon("circle")),
     menuItem(text = "materialSwitch", tabName = "tabMaterialSwitch", icon = icon("toggle-off")),
     menuItem(text = "pickerInput", tabName = "tabPickerInput", icon = icon("caret-down")),
-    menuItem(text = "sliderText", tabName = "tabSliderText", icon = icon("sliders")),
+    menuItem(text = "sliderText", tabName = "tabSliderText", icon = icon("sliders-h")),
     menuItem(text = "progressBar", tabName = "tabProgressBars", icon = icon("tasks")),
-    menuItem(text = "bttn", tabName = "tabBttn", icon = icon("square-o")),
+    menuItem(text = "bttn", tabName = "tabBttn", icon = icon("square")),
     menuItem(text = "dropdowns & sweetalert", tabName = "tabOtherStuff", icon = icon("plus-circle"))
   )
 )
@@ -181,7 +181,7 @@ body <- dashboardBody(
                 inputId = ID(.shinyWidgetGalleryId), label = "Click search icon to update or hit 'Enter'",
                 placeholder = "A placeholder",
                 btnSearch = icon("search"),
-                btnReset = icon("remove"),
+                btnReset = icon("times"),
                 width = "100%"
               )
             )
@@ -431,7 +431,7 @@ body <- dashboardBody(
               args = list(inputId = ID(.shinyWidgetGalleryId),
                           label_on = "Yes!", icon_on = icon("check"),
                           status_on = "info", status_off = "warning",
-                          label_off = "No..", icon_off = icon("remove"))
+                          label_off = "No..", icon_off = icon("times"))
             )
           )
           ,
@@ -483,7 +483,7 @@ body <- dashboardBody(
             .shinyWidgetGalleryFuns$widget_wrapper(
               fun = prettyCheckboxGroup,
               args = list(inputId = ID(.shinyWidgetGalleryId), label = "Choose:", choices = c("Click me !", "Me !", "Or me !"),
-                          icon = icon("check-square-o"), status = "primary", outline = TRUE, animation = "jelly")
+                          icon = icon("check-square"), status = "primary", outline = TRUE, animation = "jelly")
             )
           )
           ,
@@ -1569,7 +1569,7 @@ body <- dashboardBody(
             title = NULL,
             .shinyWidgetGalleryFuns$widget_wrapper(
               fun = actionBttn,
-              args = list(inputId = ID(.shinyWidgetGalleryId), label = "bordered", style = "bordered", color = "success", icon = icon("sliders"))
+              args = list(inputId = ID(.shinyWidgetGalleryId), label = "bordered", style = "bordered", color = "success", icon = icon("sliders-h"))
             ),
             footer = NULL
           ),
@@ -1630,7 +1630,7 @@ body <- dashboardBody(
               selectInput(inputId = 'xcol', label = 'X Variable', choices = names(iris)),
               selectInput(inputId = 'ycol', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]]),
               sliderInput(inputId = 'clusters', label = 'Cluster count', value = 3, min = 1, max = 9),
-              circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
+              circle = TRUE, status = "danger", icon = icon("cog"), width = "300px",
               tooltip = tooltipOptions(title = "Click to see inputs !")
             ),
             plotOutput(outputId = 'plot1'),
@@ -1652,7 +1652,7 @@ body <- dashboardBody(
               pickerInput(inputId = 'xcol2', label = 'X Variable', choices = names(iris), options = list(`style` = "btn-info")),
               pickerInput(inputId = 'ycol2', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]], options = list(`style` = "btn-warning")),
               sliderInput(inputId = 'clusters2', label = 'Cluster count', value = 3, min = 1, max = 9),
-              style = "unite", icon = icon("gear"), status = "danger", width = "300px",
+              style = "unite", icon = icon("cog"), status = "danger", width = "300px",
               animate = animateOptions(enter = animations$fading_entrances$fadeInLeftBig, exit = animations$fading_exits$fadeOutRightBig)
             ),
             plotOutput(outputId = 'plot2'),
