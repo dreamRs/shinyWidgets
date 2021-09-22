@@ -94,12 +94,12 @@ checkboxGroupButtons <- function(inputId,
   direction <- match.arg(arg = direction, choices = c("horizontal", "vertical"))
 
   divClass <- if (individual) "" else "btn-group"
-  if (!individual & direction == "vertical") {
+  if (!isTRUE(individual) & direction == "vertical") {
     divClass <- paste0(divClass, "-vertical")
   }
-  if (justified) {
+  if (isTRUE(justified)) {
     if (direction != "vertical") {
-      divClass <- paste(divClass, "btn-group-justified")
+      divClass <- paste(divClass, "btn-group-justified d-flex")
     } else {
       divClass <- paste(divClass, "btn-block")
     }
@@ -128,7 +128,16 @@ checkboxGroupButtons <- function(inputId,
         `aria-labelledby` = paste0(inputId, "-label"),
         `data-toggle` = "buttons",
         class = "btn-group-container-sw",
-        generateCBGB(inputId, args, selected, status, size, checkIcon, disabled = disabled)
+        generateCBGB(
+          inputId = inputId,
+          choices = args,
+          selected = selected,
+          status = status,
+          size = size,
+          checkIcon = checkIcon,
+          disabled = disabled,
+          justified = justified
+        )
       )
     )
   )
@@ -139,11 +148,12 @@ checkboxGroupButtons <- function(inputId,
 
 
 
-generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, disabled = FALSE) {
+generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, disabled = FALSE, justified = FALSE) {
   btn_wrapper <- function(...) {
     htmltools::tags$div(
       class = "btn-group btn-group-toggle",
-      class = if (size != "normal") paste0("btn-group-", size),
+      class = if (!identical(size, "normal")) paste0("btn-group-", size),
+      class = if (isTRUE(justified)) "w-100",
       role = "group",
       ...
     )

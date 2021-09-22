@@ -82,7 +82,7 @@ test_that("Justified", {
     justified = TRUE
   )
   justified <- rtag$children[[3]]$children[[1]]$attribs$class
-  expect_identical(justified, "btn-group btn-group-justified")
+  expect_identical(justified, "btn-group btn-group-justified d-flex")
 })
 
 

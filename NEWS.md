@@ -1,3 +1,10 @@
+shinyWidgets 0.6.2.9000
+======================
+
+* `checkboxGroupButtons()`/`radioGroupButtons()` fixed `justified = TRUE` argument compatibility with Bootstrap 4 (fix [#423](https://github.com/dreamRs/shinyWidgets/issues/423))
+
+
+
 shinyWidgets 0.6.2
 ======================
 
