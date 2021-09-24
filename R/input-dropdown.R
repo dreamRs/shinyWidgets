@@ -81,11 +81,19 @@
 #' shinyApp(ui, server)
 #'
 #' }
-dropdownButton <- function(..., circle = TRUE, status = "default",
-                           size = "default", icon = NULL,
-                           label = NULL, tooltip = FALSE,
-                           right = FALSE, up = FALSE,
-                           width = NULL, margin = "10px", inline = FALSE, inputId = NULL) {
+dropdownButton <- function(...,
+                           circle = TRUE,
+                           status = "default",
+                           size = "default",
+                           icon = NULL,
+                           label = NULL,
+                           tooltip = FALSE,
+                           right = FALSE,
+                           up = FALSE,
+                           width = NULL,
+                           margin = "10px",
+                           inline = FALSE,
+                           inputId = NULL) {
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   if (is.null(inputId)) {
     inputId <- paste0("drop", sample.int(1e9, 1))
@@ -99,17 +107,24 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
     style = if (!is.null(width))
       paste0("width: ", htmltools::validateCssUnit(width), ";"),
     `aria-labelledby` = inputId,
-    lapply(X = list(...), FUN = htmltools::tags$li,
-        style = paste0("margin-left: ", htmltools::validateCssUnit(margin),
-        "; margin-right: ", htmltools::validateCssUnit(margin), ";"))
+    lapply(
+      X = list(...),
+      FUN = htmltools::tags$li,
+      style = paste0("margin-left: ", htmltools::validateCssUnit(margin),
+                     "; margin-right: ", htmltools::validateCssUnit(margin), ";")
+    )
   )
 
   # button
   if (circle) {
     html_button <- circleButton(
-      inputId = inputId, icon = icon, status = status, size = size,
+      inputId = inputId,
+      icon = icon,
+      status = status,
+      size = size,
       class = "dropdown-toggle",
-      `data-toggle` = "dropdown"
+      `data-toggle` = "dropdown",
+      `data-bs-toggle` = "dropdown"
     )
   } else {
     html_button <- list(
@@ -118,6 +133,7 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
       type = "button",
       id = inputId,
       `data-toggle` = "dropdown",
+      `data-bs-toggle` = "dropdown",
       `aria-haspopup` = "true",
       `aria-expanded` = "true",
       list(icon, label),
@@ -153,7 +169,8 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
   dropdownTag <- container(
     class = ifelse(up, "dropup", "dropdown"),
     class = "btn-dropdown-input",
-    html_button, id = paste0(inputId, "_state"),
+    html_button,
+    id = paste0(inputId, "_state"),
     do.call(htmltools::tags$ul, html_ul),
     tooltipJs
   )
@@ -172,8 +189,9 @@ dropdownButton <- function(..., circle = TRUE, status = "default",
 #'
 #'
 #' @export
-tooltipOptions <- function(placement = "right", title = "Params", html
-                           = FALSE) {
+tooltipOptions <- function(placement = "right",
+                           title = "Params",
+                           html = FALSE) {
   list(placement = placement, title = title, html = html)
 }
 
