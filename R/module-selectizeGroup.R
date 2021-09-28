@@ -59,7 +59,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
       actionLink(
         inputId = ns("reset_all"),
         label = btn_label,
-        icon = icon("remove"),
+        icon = icon("times"),
         style = "float: right;"
       )
     )
@@ -88,7 +88,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
       actionLink(
         inputId = ns("reset_all"),
         label = btn_label,
-        icon = icon("remove"),
+        icon = icon("times"),
         style = "float: right;"
       )
     )
