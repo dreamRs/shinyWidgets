@@ -70,16 +70,19 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
         X = seq_along(params),
         FUN = function(x) {
           input <- params[[x]]
-          tagSelect <- selectizeInput(
-            inputId = ns(input$inputId),
-            label = input$title,
-            choices = input$choices,
-            selected = input$selected,
-            multiple = ifelse(is.null(input$multiple), TRUE, input$multiple),
-            width = "100%",
-            options = list(
-              placeholder = input$placeholder, plugins = list("remove_button"),
-              onInitialize = I('function() { this.setValue(""); }')
+          tagSelect <- tags$div(
+            id = ns(paste0("container-", input$inputId)),
+            selectizeInput(
+              inputId = ns(input$inputId),
+              label = input$title,
+              choices = input$choices,
+              selected = input$selected,
+              multiple = ifelse(is.null(input$multiple), TRUE, input$multiple),
+              width = "100%",
+              options = list(
+                placeholder = input$placeholder, plugins = list("remove_button"),
+                onInitialize = I('function() { this.setValue(""); }')
+              )
             )
           )
           return(tagSelect)
