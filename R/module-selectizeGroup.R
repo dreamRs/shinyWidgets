@@ -124,7 +124,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
 #'
 #' @rdname selectizeGroup-module
 #' @importFrom shiny updateSelectizeInput observeEvent reactiveValues reactive is.reactive
-selectizeGroupServer <- function(input, output, session, data, vars) { # nocov start
+selectizeGroupServer <- function(input, output, session, data, vars, inline = TRUE) { # nocov start
 
   # Namespace
   ns <- session$ns
@@ -149,7 +149,7 @@ selectizeGroupServer <- function(input, output, session, data, vars) { # nocov s
     for (var in names(rv$data)) {
       if (var %in% rv$vars) {
         toggleDisplayServer(
-          session = session, id = ns(paste0("container-", var)), display = "table-cell"
+          session = session, id = ns(paste0("container-", var)), display = ifelse(inline, "table-cell", "block")
         )
       } else {
         toggleDisplayServer(
