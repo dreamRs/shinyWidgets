@@ -5,7 +5,7 @@
 #'
 #' @param actionsBox When set to true, adds two buttons to the top of the dropdown menu (Select All & Deselect All). Type: boolean; Default: false.
 #' @param container When set to a string, appends the select to a specific element or selector, e.g., container: 'body' | '.main-body' Type: string | false; Default: false.
-#' @param countSelectedText Sets the format for the text displayed when selectedTextFormat is count or count > #. {0} is the selected amount. {1} is total available for selection. When set to a function, the first parameter is the number of selected options, and the second is the total number of options. The function must return a string. Type: string | function; Default: function.
+#' @param countSelectedText Sets the format for the text displayed when selectedTextFormat is `count` or `count > #`. `{0}` is the selected amount. `{1}` is total available for selection. When set to a function, the first parameter is the number of selected options, and the second is the total number of options. The function must return a string. Type: string | function; Default: function.
 #' @param deselectAllText The text on the button that deselects all options when actionsBox is enabled. Type: string; Default: 'Deselect All'.
 #' @param dropdownAlignRight Align the menu to the right instead of the left. If set to 'auto', the menu will automatically align right if there isn't room for the menu's full width when aligned to the left. Type: boolean | 'auto'; Default: false.
 #' @param dropupAuto checks to see which has more room, above or below. If the dropup has enough room to fully open normally, but there is more room above, the dropup still opens normally. Otherwise, it becomes a dropup. If dropupAuto is set to false, dropups must be called manually. Type: boolean; Default: true.
@@ -17,7 +17,7 @@
 #' @param liveSearchPlaceholder When set to a string, a placeholder attribute equal to the string will be added to the liveSearch input. Type: string; Default: null.
 #' @param liveSearchStyle When set to 'contains', searching will reveal options that contain the searched text. For example, searching for pl with return both Apple, Plum, and Plantain. When set to 'startsWith', searching for pl will return only Plum and Plantain. Type: string; Default: 'contains'.
 #' @param maxOptions When set to an integer and in a multi-select, the number of selected options cannot exceed the given value. This option can also exist as a data-attribute for an `<optgroup>`, in which case it only applies to that `<optgroup>`. Type: integer | false; Default: false.
-#' @param maxOptionsText The text that is displayed when maxOptions is enabled and the maximum number of options for the given scenario have been selected. If a function is used, it must return an array. array[0] is the text used when maxOptions is applied to the entire select element. array[1] is the text used when maxOptions is used on an optgroup. If a string is used, the same text is used for both the element and the optgroup. Type: string | array | function; Default: function.
+#' @param maxOptionsText The text that is displayed when maxOptions is enabled and the maximum number of options for the given scenario have been selected. If a function is used, it must return an array. `array[0]` is the text used when maxOptions is applied to the entire select element. `array[1]` is the text used when maxOptions is used on an optgroup. If a string is used, the same text is used for both the element and the optgroup. Type: string | array | function; Default: function.
 #' @param mobile When set to true, enables the device's native menu for select menus. Type: boolean; Default: false.
 #' @param multipleSeparator Set the character displayed in the button that separates selected options. Type: string; Default: ', '.
 #' @param noneSelectedText The text that is displayed when a multiple select has no selected options. Type: string; Default: 'Nothing selected'.
@@ -35,10 +35,10 @@
 #' @param title The default title for the selectpicker. Type: string | null; Default: null.
 #' @param virtualScroll If enabled, the items in the dropdown will be rendered using virtualization (i.e. only the items that are within the viewport will be rendered). This drastically improves performance for selects with a large number of options. Set to an integer to only use virtualization if the select has at least that number of options. Type: boolean | integer; Default: 600.
 #' @param width When set to auto, the width of the selectpicker is automatically adjusted to accommodate the widest option. When set to a css-width, the width of the selectpicker is forced inline to the given value. When set to false, all width information is removed. Type: 'auto' | 'fit' | css-width | false (where css-width is a CSS width with units, e.g. 100px); Default: false.
-#' @param windowPadding This is useful in cases where the window has areas that the dropdown menu should not cover - for instance a fixed header. When set to an integer, the same padding will be added to all sides. Alternatively, an array of integers can be used in the format [top, right, bottom, left]. Type: integer | array; Default: 0.
+#' @param windowPadding This is useful in cases where the window has areas that the dropdown menu should not cover - for instance a fixed header. When set to an integer, the same padding will be added to all sides. Alternatively, an array of integers can be used in the format `top, right, bottom, left`. Type: integer | array; Default: 0.
 #' @param ... Other options not listed here.
 #'
-#' @note Documentation is from Bootstrap-select page (https://developer.snapappointments.com/bootstrap-select/options/).
+#' @note Documentation is from [Bootstrap-select onlin page](https://developer.snapappointments.com/bootstrap-select/options/).
 #'
 #' @export
 #'
