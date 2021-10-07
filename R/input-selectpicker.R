@@ -14,7 +14,7 @@
 #' @param options List of options, see \link{pickerOptions} for all available options.
 #' To limit the number of selection possible, see example below.
 #' @param choicesOpt Options for choices in the dropdown menu.
-#' @param width The width of the input : 'auto', 'fit', '100px', '75\%'.
+#' @param width The width of the input : 'auto', 'fit', '100px', '75%'.
 #' @param inline Display picker inline, to have label and menu on same line use \code{width = "fit"}.
 #'
 #' @seealso \link{updatePickerInput} to update value server-side.

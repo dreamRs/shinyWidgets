@@ -22,9 +22,9 @@ textInputAddon(
 
 \item{placeholder}{A character string giving the user a hint as to what can be entered into the control.}
 
-\item{addon}{An icon tag, created by \link[shiny]{icon}.}
+\item{addon}{An icon tag, created by \code{\link[shiny:icon]{shiny::icon()}}.}
 
-\item{width}{The width of the input : 'auto', 'fit', '100px', '75\%'}
+\item{width}{The width of the input : 'auto', 'fit', '100px', '75\%'.}
 }
 \value{
 A switch control that can be added to a UI definition.

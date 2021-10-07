@@ -54,7 +54,7 @@ sliderTextInput(
 
 \item{force_edges}{Slider will be always inside it's container.}
 
-\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 
 \item{pre}{A prefix string to put in front of the value.}
 

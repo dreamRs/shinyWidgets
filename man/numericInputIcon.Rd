@@ -47,7 +47,7 @@ A numeric input control that can be added to a UI definition.
 }
 \description{
 Extend form controls by adding text or icons before,
- after, or on both sides of a classic \code{numericInput}.
+after, or on both sides of a classic \code{numericInput}.
 }
 \examples{
 if (interactive()) {

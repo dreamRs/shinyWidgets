@@ -11,7 +11,7 @@
 #' @param fill Change the style of the switch (\code{TRUE} or \code{FALSE}), see examples.
 #' @param bigger Scale the switch a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param inline Display the input inline, if you want to place switch next to each other.
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #'
 #' @note Appearance is better in a browser such as Chrome than in RStudio Viewer
 #'
@@ -106,7 +106,7 @@ updatePrettySwitch <- function(session,
 #' @param animation Add an animation when checkbox is checked, a value between
 #' \code{smooth}, \code{jelly}, \code{tada}, \code{rotate}, \code{pulse}.
 #' @param inline Display the input inline, if you want to place checkboxes next to each other.
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #'
 #' @seealso See \code{\link{updatePrettyToggle}} to update the value server-side.
 #'
@@ -230,7 +230,7 @@ updatePrettyToggle <- function(session,
 #' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
 #' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param inline Display the input inline, if you want to place checkboxes next to each other.
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #'
 #' @note Due to the nature of different checkbox design, certain animations are not applicable in some arguments combinations.
 #' You can find examples on the pretty-checkbox official page : \url{https://lokesh-coder.github.io/pretty-checkbox/}.
@@ -350,7 +350,7 @@ updatePrettyCheckbox <- function(session,
 #' @param plain Remove the border when checkbox is checked (\code{TRUE} or \code{FALSE}).
 #' @param bigger Scale the checkboxes a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #' @param choiceNames List of names to display to the user.
 #' @param choiceValues List of values corresponding to \code{choiceNames}
 #'
@@ -611,7 +611,7 @@ updatePrettyOptions <- function(session,
 #' @param plain Remove the border when radio is checked (\code{TRUE} or \code{FALSE}).
 #' @param bigger Scale the radio a bit bigger (\code{TRUE} or \code{FALSE}).
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #' @param choiceNames List of names to display to the user.
 #' @param choiceValues List of values corresponding to \code{choiceNames}
 #'

@@ -27,7 +27,7 @@ materialSwitch(
 
 \item{inline}{Display the input inline, if you want to place buttons next to each other.}
 
-\item{width}{The width of the input, e.g. '400px', or '100\%'.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 }
 \value{
 A switch control that can be added to a UI definition.

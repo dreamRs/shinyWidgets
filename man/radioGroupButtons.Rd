@@ -44,7 +44,7 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'm
 \item{checkIcon}{A list, if no empty must contain at least one element named 'yes'
 corresponding to an icon to display if the button is checked.}
 
-\item{width}{The width of the input, e.g. '400px', or '100\%'.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 
 \item{choiceNames, choiceValues}{Same as in \code{\link[shiny]{radioButtons}}. List of names and values, respectively, that are displayed to
 the user in the app and correspond to the each choice (for this reason,

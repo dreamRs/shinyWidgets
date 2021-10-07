@@ -27,7 +27,7 @@ progressSweetAlert(
 
 \item{display_pct}{logical, display percentage on the progress bar.}
 
-\item{size}{Size, `NULL` by default or a value in 'xxs', 'xs', 'sm', only work with package `shinydashboard`.}
+\item{size}{Size, \code{NULL} by default or a value in 'xxs', 'xs', 'sm', only work with package \code{shinydashboard}.}
 
 \item{status}{Color, must be a valid Bootstrap status : primary, info, success, warning, danger.}
 

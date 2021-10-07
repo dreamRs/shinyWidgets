@@ -28,12 +28,12 @@ execute_safely(
 }
 \value{
 Result of \code{expr} if no error, otherwise the value of
- \code{error_return} (\code{NULL} by default to use \code{\link[shiny]{req}
+\code{error_return} (\code{NULL} by default to use \code{\link[shiny]{req}
  in other reactive context}).
 }
 \description{
 Execute an expression without generating an error,
- instead display the error to the user in an alert.
+instead display the error to the user in an alert.
 }
 \examples{
 library(shiny)

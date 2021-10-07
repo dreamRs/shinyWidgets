@@ -3,12 +3,13 @@
 #' @description
 #' Create text field with add-on.
 #'
-#' @param inputId The \code{input} slot that will be used to access the value.
-#' @param label Display label for the control, or \code{NULL} for no label.
+#' @param inputId The `input` slot that will be used to access the value.
+#' @param label Display label for the control, or `NULL` for no label.
 #' @param value Initial value..
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
-#' @param addon An icon tag, created by \link[shiny]{icon}.
-#' @param width The width of the input : 'auto', 'fit', '100px', '75\%'
+#' @param addon An icon tag, created by [shiny::icon()].
+#' @param width The width of the input : 'auto', 'fit', '100px', '75%'.
+#'
 #' @return A switch control that can be added to a UI definition.
 #'
 #' @examples

@@ -6,7 +6,7 @@
 #' @param label Display label for the control, or \code{NULL} for no label.
 #' @param choices List of values to select from.
 #' @param selected The initially selected value.
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #' @param choiceNames List of names to display to the user.
 #' @param choiceValues List of values corresponding to \code{choiceNames}.
 #' @param options List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example).

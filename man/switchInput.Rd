@@ -55,7 +55,7 @@ Create a toggle switch.
 }
 \note{
 For more information, see the project on Github
- \url{https://github.com/Bttstrp/bootstrap-switch}.
+\url{https://github.com/Bttstrp/bootstrap-switch}.
 }
 \examples{
 ## Only run examples in interactive R sessions

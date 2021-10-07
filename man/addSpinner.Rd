@@ -22,8 +22,8 @@ Display a spinner above an output when this one recalculate
 }
 \note{
 The spinner don't disappear from the page, it's only masked by the plot,
- so the plot must have a non-transparent background. For a more robust way to
- insert loaders, see package "shinycssloaders".
+so the plot must have a non-transparent background. For a more robust way to
+insert loaders, see package "shinycssloaders".
 }
 \examples{
 # wrap an output:

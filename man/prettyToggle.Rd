@@ -60,7 +60,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 
 \item{inline}{Display the input inline, if you want to place checkboxes next to each other.}
 
-\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 }
 \value{
 \code{TRUE} or \code{FALSE} server-side.

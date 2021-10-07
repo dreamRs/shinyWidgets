@@ -127,5 +127,5 @@ if (interactive())
 }
 \seealso{
 \code{\link{show_alert}}, \code{\link{ask_confirmation}},
- \code{\link{closeSweetAlert}}.
+\code{\link{closeSweetAlert}}.
 }

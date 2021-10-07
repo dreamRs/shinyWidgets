@@ -65,7 +65,7 @@ which decides where the upper side of the slider is.}
 
 \item{behaviour}{Option to handle user interaction, a value or several between
 \code{"drag"}, \code{"tap"}, \code{"fixed"}, \code{"snap"} or \code{"none"}.
- See \url{https://refreshless.com/nouislider/behaviour-option/} for more examples.}
+See \url{https://refreshless.com/nouislider/behaviour-option/} for more examples.}
 
 \item{range}{list, can be used to define non-linear sliders.}
 
@@ -79,9 +79,9 @@ which decides where the upper side of the slider is.}
 
 \item{inline}{If \code{TRUE}, it's possible to position sliders side-by-side.}
 
-\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 
-\item{height}{The height of the input, e.g. \code{400px}, or \code{100\%}.}
+\item{height}{The height of the input, e.g. \verb{400px}, or \verb{100\%}.}
 }
 \value{
 a ui definition
@@ -91,7 +91,7 @@ A minimal numeric range slider with a lot of features.
 }
 \note{
 See \code{\link{updateNoUiSliderInput}} for updating slider value server-side.
- And \code{\link{demoNoUiSlider}} for examples.
+And \code{\link{demoNoUiSlider}} for examples.
 }
 \examples{
 if (interactive()) {

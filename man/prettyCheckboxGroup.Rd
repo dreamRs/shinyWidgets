@@ -59,7 +59,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 
 \item{inline}{If \code{TRUE}, render the choices inline (i.e. horizontally).}
 
-\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 
 \item{choiceNames}{List of names to display to the user.}
 

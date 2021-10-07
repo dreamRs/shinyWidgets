@@ -15,7 +15,7 @@
 #' @param handleWidth Width of the left and right sides in pixels.
 #' @param disabled Logical, display the toggle switch in disabled state?.
 #' @param inline Logical, display the toggle switch inline?
-#' @param width The width of the input : 'auto', 'fit', '100px', '75\%'.
+#' @param width The width of the input : 'auto', 'fit', '100px', '75%'.
 #'
 #' @return A switch control that can be added to a UI definition.
 #'

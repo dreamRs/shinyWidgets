@@ -30,7 +30,7 @@ an \code{\link[htmltools]{htmlDependency}}.
 }
 \description{
 These functions are used internally to load dependencies for widgets.
- Not all of them are exported. Below are the ones needed for package \href{https://github.com/dreamRs/fresh}{fresh}.
+Not all of them are exported. Below are the ones needed for package \href{https://github.com/dreamRs/fresh}{fresh}.
 }
 \examples{
 

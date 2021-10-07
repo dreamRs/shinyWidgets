@@ -30,7 +30,7 @@ awesomeRadio(
 
 \item{checkbox}{Logical, render radio like checkboxes (with a square shape).}
 
-\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 }
 \value{
 A set of radio buttons that can be added to a UI definition.

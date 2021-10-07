@@ -77,7 +77,7 @@ knobInput(
 
 \item{skin}{Change Knob skin, only one option available : 'tron'.}
 
-\item{width, height}{The width and height of the input, e.g. \code{400px}, or \code{100\%}.
+\item{width, height}{The width and height of the input, e.g. \verb{400px}, or \verb{100\%}.
 A value a pixel is recommended, otherwise the knob won't be able to initialize itself in some case
 (if hidden at start for example).}
 

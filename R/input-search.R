@@ -11,7 +11,7 @@
 #' @param btnReset An icon for the button which reset the search.
 #' @param resetValue Value used when reset button is clicked, default to \code{""},
 #'  if \code{NULL} value is not reset.
-#' @param width The width of the input, e.g. '400px', or '100\%'.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #'
 #' @note The two buttons ('search' and 'reset') act like \code{actionButton}, you can
 #' retrieve their value server-side with \code{input$<INPUTID>_search} and \code{input$<INPUTID>_reset}.

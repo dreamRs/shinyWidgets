@@ -8,9 +8,9 @@
 #'  `inputId` (obligatory, must be variable name), `label`, `placeholder`.
 #' @param label Character, global label on top of all labels.
 #' @param btn_label Character, reset button label.
-#' @param inline If \code{TRUE} (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.
+#' @param inline If `TRUE` (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.
 #'
-#' @return a \code{reactive} function containing data filtered.
+#' @return a [shiny::reactive()] function containing data filtered.
 #' @export
 #'
 #' @name selectizeGroup-module
@@ -41,13 +41,14 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
               id = ns(paste0("container-", input$inputId)),
               selectizeInput(
                 inputId = ns(input$inputId),
-                label = input$title,
+                label = input$label %||% input$title,
                 choices = input$choices,
                 selected = input$selected,
                 multiple = ifelse(is.null(input$multiple), TRUE, input$multiple),
                 width = "100%",
                 options = list(
-                  placeholder = input$placeholder, plugins = list("remove_button"),
+                  placeholder = input$placeholder,
+                  plugins = list("remove_button"),
                   onInitialize = I('function() { this.setValue(""); }')
                 )
               )
@@ -74,13 +75,14 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
             id = ns(paste0("container-", input$inputId)),
             selectizeInput(
               inputId = ns(input$inputId),
-              label = input$title,
+              label = input$label %||% input$title,
               choices = input$choices,
               selected = input$selected,
               multiple = ifelse(is.null(input$multiple), TRUE, input$multiple),
               width = "100%",
               options = list(
-                placeholder = input$placeholder, plugins = list("remove_button"),
+                placeholder = input$placeholder,
+                plugins = list("remove_button"),
                 onInitialize = I('function() { this.setValue(""); }')
               )
             )
@@ -113,8 +115,8 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
 }
 
 
-#' @param input,output,session standards \code{shiny} server arguments.
-#' @param data Either a \code{data.frame} or a \code{reactive}
+#' @param input,output,session standards `shiny` server arguments.
+#' @param data Either a [data.frame()] or a [shiny::reactive()]
 #'  function returning a \code{data.frame} (do not use parentheses).
 #' @param vars character, columns to use to create filters,
 #'  must correspond to variables listed in \code{params}. Can be a

@@ -14,23 +14,23 @@ selectizeGroupUI(
   inline = TRUE
 )
 
-selectizeGroupServer(input, output, session, data, vars)
+selectizeGroupServer(input, output, session, data, vars, inline = TRUE)
 }
 \arguments{
 \item{id}{Module's id.}
 
-\item{params}{A named list of parameters passed to each `selectizeInput`, you can use :
-`inputId` (obligatory, must be variable name), `label`, `placeholder`.}
+\item{params}{A named list of parameters passed to each \code{selectizeInput}, you can use :
+\code{inputId} (obligatory, must be variable name), \code{label}, \code{placeholder}.}
 
 \item{label}{Character, global label on top of all labels.}
 
 \item{btn_label}{Character, reset button label.}
 
-\item{inline}{If \code{TRUE} (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.}
+\item{inline}{If \code{TRUE} (the default), \code{selectizeInput}s are horizontally positioned, otherwise vertically.}
 
 \item{input, output, session}{standards \code{shiny} server arguments.}
 
-\item{data}{Either a \code{data.frame} or a \code{reactive}
+\item{data}{Either a \code{\link[=data.frame]{data.frame()}} or a \code{\link[shiny:reactive]{shiny::reactive()}}
 function returning a \code{data.frame} (do not use parentheses).}
 
 \item{vars}{character, columns to use to create filters,
@@ -38,10 +38,10 @@ must correspond to variables listed in \code{params}. Can be a
 \code{reactive} function, but values must be included in the initial ones (in \code{params}).}
 }
 \value{
-a \code{reactive} function containing data filtered.
+a \code{\link[shiny:reactive]{shiny::reactive()}} function containing data filtered.
 }
 \description{
-Group of mutually dependent `selectizeInput` for filtering data.frame's columns (like in Excel).
+Group of mutually dependent \code{selectizeInput} for filtering data.frame's columns (like in Excel).
 }
 \examples{
 # Default -----------------------------------------------------------------

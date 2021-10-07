@@ -73,7 +73,7 @@ generateAwesomeRadio <- function(inputId,
 #' @param status Color of the buttons, a valid Bootstrap status : default, primary, info, success, warning, danger.
 #' @param inline If \code{TRUE}, render the choices inline (i.e. horizontally).
 #' @param checkbox Logical, render radio like checkboxes (with a square shape).
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #' @return A set of radio buttons that can be added to a UI definition.
 #'
 #' @seealso \code{\link{updateAwesomeRadio}}

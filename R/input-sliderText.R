@@ -16,7 +16,7 @@
 #' @param to_min Set minimum limit for right handle.
 #' @param to_max Set the maximum limit for right handle.
 #' @param force_edges Slider will be always inside it's container.
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #' @param pre A prefix string to put in front of the value.
 #' @param post A suffix string to put after the value.
 #' @param dragRange See the same argument in \code{\link[shiny]{sliderInput}}.

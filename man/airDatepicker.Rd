@@ -155,7 +155,7 @@ a \code{Date} object or a \code{POSIXct} in UTC timezone.
 }
 \description{
 An alternative to \code{dateInput} to select single, multiple or date range.
- And two alias to select months or years.
+And two alias to select months or years.
 }
 \note{
 Since shinyWidgets 0.5.2 there's no more conflicts with \code{dateInput}.
@@ -199,5 +199,5 @@ shinyApp(ui, server)
 }
 \seealso{
 See \code{\link{updateAirDateInput}} for updating slider value server-side.
- And \code{\link{demoAirDatepicker}} for examples.
+And \code{\link{demoAirDatepicker}} for examples.
 }

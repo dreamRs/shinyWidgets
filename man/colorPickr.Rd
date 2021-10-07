@@ -79,7 +79,7 @@ A widget to pick color with different themes and options.
 }
 \note{
 Widget based on JS library pickr by \href{https://github.com/Simonwep}{Simonwep}.
- See online documentation for more information: \url{https://github.com/Simonwep/pickr}.
+See online documentation for more information: \url{https://github.com/Simonwep/pickr}.
 }
 \examples{
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/pickerOptions.R
 \name{pickerOptions}
 \alias{pickerOptions}
-\title{Options for `pickerInput`}
+\title{Options for \code{pickerInput}}
 \usage{
 pickerOptions(
   actionsBox = NULL,
@@ -68,9 +68,9 @@ pickerOptions(
 
 \item{liveSearchStyle}{When set to 'contains', searching will reveal options that contain the searched text. For example, searching for pl with return both Apple, Plum, and Plantain. When set to 'startsWith', searching for pl will return only Plum and Plantain. Type: string; Default: 'contains'.}
 
-\item{maxOptions}{When set to an integer and in a multi-select, the number of selected options cannot exceed the given value. This option can also exist as a data-attribute for an <optgroup>, in which case it only applies to that <optgroup>. Type: integer | false; Default: false.}
+\item{maxOptions}{When set to an integer and in a multi-select, the number of selected options cannot exceed the given value. This option can also exist as a data-attribute for an \verb{<optgroup>}, in which case it only applies to that \verb{<optgroup>}. Type: integer | false; Default: false.}
 
-\item{maxOptionsText}{The text that is displayed when maxOptions is enabled and the maximum number of options for the given scenario have been selected. If a function is used, it must return an array. array[0] is the text used when maxOptions is applied to the entire select element. array[1] is the text used when maxOptions is used on an optgroup. If a string is used, the same text is used for both the element and the optgroup. Type: string | array | function; Default: function.}
+\item{maxOptionsText}{The text that is displayed when maxOptions is enabled and the maximum number of options for the given scenario have been selected. If a function is used, it must return an array. array\link{0} is the text used when maxOptions is applied to the entire select element. array\link{1} is the text used when maxOptions is used on an optgroup. If a string is used, the same text is used for both the element and the optgroup. Type: string | array | function; Default: function.}
 
 \item{mobile}{When set to true, enables the device's native menu for select menus. Type: boolean; Default: false.}
 
@@ -106,15 +106,15 @@ pickerOptions(
 
 \item{width}{When set to auto, the width of the selectpicker is automatically adjusted to accommodate the widest option. When set to a css-width, the width of the selectpicker is forced inline to the given value. When set to false, all width information is removed. Type: 'auto' | 'fit' | css-width | false (where css-width is a CSS width with units, e.g. 100px); Default: false.}
 
-\item{windowPadding}{This is useful in cases where the window has areas that the dropdown menu should not cover - for instance a fixed header. When set to an integer, the same padding will be added to all sides. Alternatively, an array of integers can be used in the format [top, right, bottom, left]. Type: integer | array; Default: 0.}
+\item{windowPadding}{This is useful in cases where the window has areas that the dropdown menu should not cover - for instance a fixed header. When set to an integer, the same padding will be added to all sides. Alternatively, an array of integers can be used in the format \link{top, right, bottom, left}. Type: integer | array; Default: 0.}
 
 \item{...}{Other options not listed here.}
 }
 \description{
-Wrapper of options available here: \url{https://developer.snapappointments.com/bootstrap-select/options/}
+Wrapper of options available here: https://developer.snapappointments.com/bootstrap-select/options/
 }
 \note{
-Documentation is from Bootstrap-select page (\url{https://developer.snapappointments.com/bootstrap-select/options/}).
+Documentation is from Bootstrap-select page (https://developer.snapappointments.com/bootstrap-select/options/).
 }
 \examples{
 

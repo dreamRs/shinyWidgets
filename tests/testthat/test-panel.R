@@ -9,7 +9,8 @@ test_that("Default", {
     shiny::checkboxInput(inputId = "id1", label = "Label")
   )
   expect_is(tagp, "shiny.tag")
-  expect_identical(tagp$attribs$class, "panel panel-default")
+  expect_true(grepl(tagp$attribs$class, pattern = "panel"))
+  expect_true(grepl(tagp$attribs$class, pattern = "panel-default"))
 })
 
 
@@ -34,5 +35,7 @@ test_that("With status", {
     heading = "My title",
     status = "primary"
   )
-  expect_true(grepl(pattern = "panel panel-primary", x = as.character(tagp)))
+  expect_is(tagp, "shiny.tag")
+  expect_true(grepl(tagp$attribs$class, pattern = "panel"))
+  expect_true(grepl(tagp$attribs$class, pattern = "panel-primary"))
 })

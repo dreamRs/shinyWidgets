@@ -9,7 +9,7 @@
 #' @param status Color, must be a valid Bootstrap status : default, primary, info, success, warning, danger.
 #' @param right Should the the label be on the right? default to FALSE.
 #' @param inline Display the input inline, if you want to place buttons next to each other.
-#' @param width The width of the input, e.g. '400px', or '100\%'.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #'
 #' @return A switch control that can be added to a UI definition.
 #'

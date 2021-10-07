@@ -26,7 +26,7 @@ multiInput(
 
 \item{options}{List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example).}
 
-\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 
 \item{choiceNames}{List of names to display to the user.}
 

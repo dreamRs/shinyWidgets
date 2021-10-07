@@ -31,7 +31,7 @@ searchInput(
 \item{resetValue}{Value used when reset button is clicked, default to \code{""},
 if \code{NULL} value is not reset.}
 
-\item{width}{The width of the input, e.g. '400px', or '100\%'.}
+\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 }
 \description{
 A text input only triggered when Enter key is pressed or search button clicked

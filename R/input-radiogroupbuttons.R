@@ -16,7 +16,7 @@
 #' @param individual If TRUE, buttons are separated.
 #' @param checkIcon A list, if no empty must contain at least one element named 'yes'
 #'  corresponding to an icon to display if the button is checked.
-#' @param width The width of the input, e.g. '400px', or '100\%'.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #' @param choiceNames,choiceValues Same as in \code{\link[shiny]{radioButtons}}. List of names and values, respectively, that are displayed to
 #'  the user in the app and correspond to the each choice (for this reason,
 #'  \code{choiceNames} and \code{choiceValues} must have the same length).

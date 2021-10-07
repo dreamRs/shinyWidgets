@@ -11,7 +11,7 @@
 #'  possible values are described here : \url{https://bgrins.github.io/spectrum/#options}.
 #' @param update_on When to update value server-side: \code{"move"} (default, each time a new color is selected),
 #'  \code{"dragstop"} (when use user stop dragging cursor), \code{"change"} (when the input is closed).
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
 #'
 #'
 #' @return The selected color in Hex format server-side

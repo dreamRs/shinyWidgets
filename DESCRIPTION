@@ -18,6 +18,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
+Roxygen: list(markdown = TRUE)
 Depends:
     R (>= 3.1.0)
 Imports:

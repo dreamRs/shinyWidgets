@@ -24,7 +24,7 @@
 #' @param fontSize Font size, must be a valid CSS unit.
 #' @param readOnly Disable knob (\code{TRUE} or \code{FALSE}).
 #' @param skin Change Knob skin, only one option available : 'tron'.
-#' @param width,height The width and height of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width,height The width and height of the input, e.g. `400px`, or `100%`.
 #'  A value a pixel is recommended, otherwise the knob won't be able to initialize itself in some case
 #'  (if hidden at start for example).
 #' @param immediate If \code{TRUE} (default), server-side value is updated each time value change,

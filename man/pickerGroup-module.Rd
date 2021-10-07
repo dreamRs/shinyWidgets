@@ -21,7 +21,7 @@ pickerGroupServer(input, output, session, data, vars)
 \item{id}{Module's id.}
 
 \item{params}{A named list of parameters passed to each \code{\link{pickerInput}}, you can use :
-`inputId` (obligatory, must be variable name), `label`, `placeholder`.}
+\code{inputId} (obligatory, must be variable name), \code{label}, \code{placeholder}.}
 
 \item{label}{Character, global label on top of all labels.}
 

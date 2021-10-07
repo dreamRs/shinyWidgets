@@ -21,6 +21,6 @@ a \code{list} of options to be used in \code{\link{dropMenu}}.
 }
 \description{
 Those options will passed to the underlying JavaScript
- library powering \code{dropMenu} : tippy.js. See all available options
- here \url{https://atomiks.github.io/tippyjs/all-props/}.
+library powering \code{dropMenu} : tippy.js. See all available options
+here \url{https://atomiks.github.io/tippyjs/all-props/}.
 }

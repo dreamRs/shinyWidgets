@@ -1,7 +1,7 @@
 
 #' @title Options for `pickerInput`
 #'
-#' @description Wrapper of options available here: \url{https://developer.snapappointments.com/bootstrap-select/options/}
+#' @description Wrapper of options available here: https://developer.snapappointments.com/bootstrap-select/options/
 #'
 #' @param actionsBox When set to true, adds two buttons to the top of the dropdown menu (Select All & Deselect All). Type: boolean; Default: false.
 #' @param container When set to a string, appends the select to a specific element or selector, e.g., container: 'body' | '.main-body' Type: string | false; Default: false.
@@ -16,7 +16,7 @@
 #' @param liveSearchNormalize Setting liveSearchNormalize to true allows for accent-insensitive searching. Type: boolean; Default: false.
 #' @param liveSearchPlaceholder When set to a string, a placeholder attribute equal to the string will be added to the liveSearch input. Type: string; Default: null.
 #' @param liveSearchStyle When set to 'contains', searching will reveal options that contain the searched text. For example, searching for pl with return both Apple, Plum, and Plantain. When set to 'startsWith', searching for pl will return only Plum and Plantain. Type: string; Default: 'contains'.
-#' @param maxOptions When set to an integer and in a multi-select, the number of selected options cannot exceed the given value. This option can also exist as a data-attribute for an <optgroup>, in which case it only applies to that <optgroup>. Type: integer | false; Default: false.
+#' @param maxOptions When set to an integer and in a multi-select, the number of selected options cannot exceed the given value. This option can also exist as a data-attribute for an `<optgroup>`, in which case it only applies to that `<optgroup>`. Type: integer | false; Default: false.
 #' @param maxOptionsText The text that is displayed when maxOptions is enabled and the maximum number of options for the given scenario have been selected. If a function is used, it must return an array. array[0] is the text used when maxOptions is applied to the entire select element. array[1] is the text used when maxOptions is used on an optgroup. If a string is used, the same text is used for both the element and the optgroup. Type: string | array | function; Default: function.
 #' @param mobile When set to true, enables the device's native menu for select menus. Type: boolean; Default: false.
 #' @param multipleSeparator Set the character displayed in the button that separates selected options. Type: string; Default: ', '.
@@ -38,7 +38,7 @@
 #' @param windowPadding This is useful in cases where the window has areas that the dropdown menu should not cover - for instance a fixed header. When set to an integer, the same padding will be added to all sides. Alternatively, an array of integers can be used in the format [top, right, bottom, left]. Type: integer | array; Default: 0.
 #' @param ... Other options not listed here.
 #'
-#' @note Documentation is from Bootstrap-select page (\url{https://developer.snapappointments.com/bootstrap-select/options/}).
+#' @note Documentation is from Bootstrap-select page (https://developer.snapappointments.com/bootstrap-select/options/).
 #'
 #' @export
 #'

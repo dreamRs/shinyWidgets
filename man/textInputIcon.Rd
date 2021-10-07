@@ -39,7 +39,7 @@ A text input control that can be added to a UI definition.
 }
 \description{
 Extend form controls by adding text or icons before,
- after, or on both sides of a classic \code{textInput}.
+after, or on both sides of a classic \code{textInput}.
 }
 \examples{
 if (interactive()) {

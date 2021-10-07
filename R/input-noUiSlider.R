@@ -32,8 +32,8 @@
 #' @param update_on When to send value to server: \code{"end"} (when slider is released) or \code{"update"} (each time value changes).
 #' @param color color in Hex format for the slider.
 #' @param inline If \code{TRUE}, it's possible to position sliders side-by-side.
-#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
-#' @param height The height of the input, e.g. \code{400px}, or \code{100\%}.
+#' @param width The width of the input, e.g. `400px`, or `100%`.
+#' @param height The height of the input, e.g. `400px`, or `100%`.
 #'
 #' @note See \code{\link{updateNoUiSliderInput}} for updating slider value server-side.
 #'  And \code{\link{demoNoUiSlider}} for examples.

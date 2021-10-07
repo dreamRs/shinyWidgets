@@ -26,7 +26,7 @@ list are named then that name rather than the value is displayed to the user.}
 
 \item{selected}{The initially selected value (or multiple values if \code{multiple = TRUE}).
 If not specified then defaults to the first value for single-select lists
- and no values for multiple select lists.}
+and no values for multiple select lists.}
 
 \item{multiple}{Is selection of multiple items allowed?}
 
@@ -47,7 +47,7 @@ An alternative to \code{selectInput} with plenty of options to customize it.
 }
 \note{
 State of the picker (open or close) is accessible server-side through the input value:
- \code{input$<inputId>_open}, which can be \code{TRUE} (opened) or \code{FALSE} (closed).
+\code{input$<inputId>_open}, which can be \code{TRUE} (opened) or \code{FALSE} (closed).
 }
 \examples{
 ## Only run examples in interactive R sessions
@@ -246,9 +246,9 @@ if (interactive()) {
 }
 \references{
 SnapAppointments and contributors. "The jQuery plugin that brings
- select elements into the 21st century with intuitive multiselection,
- searching, and much more. Now with Bootstrap 4 support".
- \url{https://github.com/snapappointments/bootstrap-select/}
+select elements into the 21st century with intuitive multiselection,
+searching, and much more. Now with Bootstrap 4 support".
+\url{https://github.com/snapappointments/bootstrap-select/}
 }
 \seealso{
 \link{updatePickerInput} to update value server-side.

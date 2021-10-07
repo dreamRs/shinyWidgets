@@ -8,8 +8,8 @@ useTablerDash()
 }
 \description{
 Allow to use functions from 'tablerDash'
- (\url{https://github.com/RinteRface/tablerDash})
- into a classic 'shiny' app.
+(\url{https://github.com/RinteRface/tablerDash})
+into a classic 'shiny' app.
 }
 \examples{
 if (interactive()) {
