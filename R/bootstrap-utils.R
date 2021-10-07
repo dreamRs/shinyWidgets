@@ -38,6 +38,7 @@ panel <- function(...,
   if (!is.null(heading)) {
     heading <- tags$div(
       class = "panel-heading card-header",
+      class = paste0("bg-", status),
       if (is.character(heading))
         tags$h3(class = "panel-title m-0 card-title", heading)
       else
@@ -45,8 +46,7 @@ panel <- function(...,
     )
   }
   tags$div(
-    class = paste0("panel panel-", status),
-    class = paste0("card mb-3 bg-", status),
+    class = paste0("panel card mb-3 panel-", status),
     heading, body, extra,
     if (!is.null(footer)) tags$div(class = "panel-footer card-footer", footer)
   )
