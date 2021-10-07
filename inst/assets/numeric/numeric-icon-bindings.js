@@ -20,28 +20,30 @@ function addError(element) {
     .parent()
     .parent()
     .addClass("has-error");
+  $(element).addClass("is-invalid");
 }
 function removeError(element) {
   $(element)
     .parent()
     .parent()
-    .removeClass("has-error");
+    .removeClass("has-error is-invalid");
+  $(element).removeClass("is-invalid");
 }
 function showHelp(element) {
   $(element)
     .parent()
     .parent()
     .find(".help-block")
-    .removeClass("hidden")
-    .addClass("show");
+    .removeClass("hidden d-none")
+    .addClass("show d-block");
 }
 function hideHelp(element) {
   $(element)
     .parent()
     .parent()
     .find(".help-block")
-    .removeClass("show")
-    .addClass("hidden");
+    .removeClass("show d-block")
+    .addClass("hidden d-none");
 }
 var numericInputIconBinding = new Shiny.InputBinding();
 $.extend(numericInputIconBinding, {

@@ -105,7 +105,7 @@ numericRangeInput <- function(inputId,
       tags$div(
         class = "input-numeric-range input-group",
         fromTag,
-        tags$span(class = "input-group-addon", separator),
+        tags$span(class = "input-group-addon input-group-text rounded-0", separator),
         toTag
       )
     )

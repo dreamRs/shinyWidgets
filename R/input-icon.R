@@ -17,8 +17,13 @@
 #' @importFrom htmltools tags validateCssUnit
 #'
 #' @example examples/textInputIcon.R
-textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
-                          icon = NULL, size = NULL, width = NULL) {
+textInputIcon <- function(inputId,
+                          label,
+                          value = "",
+                          placeholder = NULL,
+                          icon = NULL,
+                          size = NULL,
+                          width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   addons <- validate_addon(icon)
   tag <- tags$div(
@@ -30,13 +35,15 @@ textInputIcon <- function(inputId, label, value = "", placeholder = NULL,
     tags$div(
       class = "input-group",
       class = validate_size(size),
-      addons$left, tags$input(
+      addons$left,
+      tags$input(
         id = inputId,
         type = "text",
         class = "form-control text-input-icon",
         value = value,
         placeholder = placeholder
-      ), addons$right
+      ),
+      addons$right
     )
   )
   attachShinyWidgetsDep(tag)
@@ -170,7 +177,7 @@ numericInputIcon <- function(inputId,
         step = step
       ), addons$right
     ),
-    tags$span(class = "help-block hidden", help_text)
+    tags$span(class = "help-block invalid-feedback hidden d-none", help_text)
   )
   attachShinyWidgetsDep(tag)
 }
@@ -268,19 +275,19 @@ validate_size <- function(size) {
 validate_addon <- function(icon) {
   if (!is.null(icon)) {
     if (inherits(icon, "shiny.tag")) {
-      left <- tags$span(class = "input-group-addon", icon)
+      left <- tags$span(class = "input-group-text", icon)
       right <- NULL
     } else if (inherits(icon, "list")) {
       if (length(icon) <= 1) {
-        left <- tags$span(class = "input-group-addon", icon)
+        left <- tags$span(class = "input-group-text", icon)
         right <- NULL
       } else {
         left <- if (!is.null(icon[[1]])) {
-          tags$span(class = "input-group-addon", icon[[1]])
+          tags$span(class = "input-group-text", icon[[1]])
         } else {
           NULL
         }
-        right <- tags$span(class = "input-group-addon", icon[[2]])
+        right <- tags$span(class = "input-group-text", icon[[2]])
       }
     } else {
       stop("InputIcon: icon must be an icon or a list.")
@@ -288,6 +295,10 @@ validate_addon <- function(icon) {
   } else {
     left <- right <- NULL
   }
+  if (!is.null(left))
+    left <- tags$div(class = "input-group-addon input-group-prepend", left)
+  if (!is.null(right))
+    right <- tags$div(class = "input-group-addon input-group-append", right)
   list(left = left, right = right)
 }
 

@@ -34,7 +34,8 @@ test_that("Default", {
   expect_identical(object = nr$children[[2]]$children[[1]]$attribs$class, expected = "form-control")
   expect_identical(object = nr$children[[2]]$children[[1]]$attribs$value, expected = "2")
 
-  expect_identical(object = nr$children[[2]]$children[[2]]$attribs$class, expected = "input-group-addon")
+  expect_true(grepl(nr$children[[2]]$children[[2]]$attribs$class, pattern = "input-group-addon"))
+  expect_true(grepl(nr$children[[2]]$children[[2]]$attribs$class, pattern = "input-group-text"))
 
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$type, expected = "number")
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$class, expected = "form-control")
@@ -61,7 +62,8 @@ test_that("Single Value", {
   expect_identical(object = nr$children[[2]]$children[[1]]$attribs$class, expected = "form-control")
   expect_identical(object = nr$children[[2]]$children[[1]]$attribs$value, expected = "3")
 
-  expect_identical(object = nr$children[[2]]$children[[2]]$attribs$class, expected = "input-group-addon")
+  expect_true(grepl(nr$children[[2]]$children[[2]]$attribs$class, pattern = "input-group-addon"))
+  expect_true(grepl(nr$children[[2]]$children[[2]]$attribs$class, pattern = "input-group-text"))
 
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$type, expected = "number")
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$class, expected = "form-control")

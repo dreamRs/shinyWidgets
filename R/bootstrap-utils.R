@@ -22,30 +22,33 @@
 #' @example examples/alert.R
 #' @example examples/list_group.R
 panel <- function(...,
-                  heading = NULL, footer = NULL, extra = NULL,
+                  heading = NULL,
+                  footer = NULL,
+                  extra = NULL,
                   status = c("default", "primary", "success", "info", "warning", "danger")) {
   status <- match.arg(
     arg = status,
     choices = c("default", "primary", "success", "info", "warning", "danger")
   )
   if (...length() > 0) {
-    body <- tags$div(class = "panel-body", ...)
+    body <- tags$div(class = "panel-body card-body", ...)
   } else {
     body <- NULL
   }
   if (!is.null(heading)) {
     heading <- tags$div(
-      class = "panel-heading",
+      class = "panel-heading card-header",
       if (is.character(heading))
-        tags$h3(class = "panel-title", heading)
+        tags$h3(class = "panel-title m-0 card-title", heading)
       else
         heading
     )
   }
   tags$div(
     class = paste0("panel panel-", status),
+    class = paste0("card mb-3 bg-", status),
     heading, body, extra,
-    if (!is.null(footer)) tags$div(class = "panel-footer", footer)
+    if (!is.null(footer)) tags$div(class = "panel-footer card-footer", footer)
   )
 }
 
