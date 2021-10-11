@@ -55,7 +55,7 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 Launch a popup with a text input
 }
 \note{
-This function use the JavaScript sweetalert2 library, see the official documentation for more \url{https://sweetalert2.github.io/}.
+This function use the JavaScript sweetalert2 library, see the official documentation for more https://sweetalert2.github.io/.
 }
 \examples{
 
@@ -168,6 +168,6 @@ if (interactive())
   shinyApp(ui = ui, server = server)
 }
 \seealso{
-\code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
-\code{\link{closeSweetAlert}}.
+\code{\link[=sendSweetAlert]{sendSweetAlert()}}, \code{\link[=confirmSweetAlert]{confirmSweetAlert()}},
+\code{\link[=closeSweetAlert]{closeSweetAlert()}}.
 }

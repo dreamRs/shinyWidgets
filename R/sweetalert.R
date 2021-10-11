@@ -2,15 +2,15 @@
 #' @title Load Sweet Alert dependencies
 #'
 #' @description
-#' This function isn't necessary for \code{sendSweetAlert}, \code{confirmSweetAlert},
-#'  \code{inputSweetAlert} (except if you want to use a theme other than the default one),
-#'  but is still needed for \code{progressSweetAlert}.
+#' This function isn't necessary for `sendSweetAlert`, `confirmSweetAlert`,
+#'  `inputSweetAlert` (except if you want to use a theme other than the default one),
+#'  but is still needed for `progressSweetAlert`.
 #'
 #' @param theme Theme to modify alerts appearance.
 #' @param ie Add a polyfill to work in Internet Explorer.
 #'
-#' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
-#'  \code{\link{inputSweetAlert}}, \code{\link{closeSweetAlert}}.
+#' @seealso [sendSweetAlert()], [confirmSweetAlert()],
+#'  [inputSweetAlert()], [closeSweetAlert()].
 #'
 #' @importFrom htmltools attachDependencies singleton tagList tags
 #'
@@ -48,21 +48,21 @@ useSweetAlert <- function(theme = c("sweetalert2",
 #'
 #' @description Show an alert message to the user to provide some feedback.
 #'
-#' @param session The \code{session} object passed to function given to shinyServer.
+#' @param session The `session` object passed to function given to shinyServer.
 #' @param title Title of the alert.
 #' @param text Text of the alert.
 #' @param type Type of the alert : info, success, warning or error.
 #' @param btn_labels Label(s) for button(s), can be of length 2,
-#' in which case the alert will have two buttons. Use \code{NA} for no buttons.s
+#' in which case the alert will have two buttons. Use `NA` for no buttons.s
 #' @param btn_colors Color(s) for the buttons.
-#' @param html Does \code{text} contains HTML tags ?
+#' @param html Does `text` contains HTML tags ?
 #' @param closeOnClickOutside Decide whether the user should be able to dismiss
 #'  the modal by clicking outside of it, or not.
 #' @param showCloseButton Show close button in top right corner of the modal.
 #' @param width Width of the modal (in pixel).
 #' @param ... Other arguments passed to JavaScript method.
 #'
-#' @note This function use the JavaScript sweetalert2 library, see the official documentation for more \url{https://sweetalert2.github.io/}.
+#' @note This function use the JavaScript sweetalert2 library, see the official documentation for more https://sweetalert2.github.io/.
 #'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags
@@ -71,8 +71,7 @@ useSweetAlert <- function(theme = c("sweetalert2",
 #' @export
 #' @name sweetalert
 #'
-#' @seealso \code{\link{confirmSweetAlert}}, \code{\link{inputSweetAlert}},
-#'  \code{\link{closeSweetAlert}}.
+#' @seealso [confirmSweetAlert()], [inputSweetAlert()], [closeSweetAlert()].
 #'
 #' @example examples/show_alert.R
 #' @example examples/show_alert-ouput.R
@@ -173,21 +172,21 @@ show_alert <- function(title = "Title",
 #'
 #' @description Launch a popup to ask the user for confirmation.
 #'
-#' @param session The \code{session} object passed to function given to shinyServer.
-#' @param inputId The \code{input} slot that will be used to access the value.
+#' @param session The `session` object passed to function given to shinyServer.
+#' @param inputId The `input` slot that will be used to access the value.
 #'  If in a Shiny module, it use same logic than inputs : use namespace in UI, not in server.
 #' @param title Title of the alert.
 #' @param text Text of the alert, can contains HTML tags.
 #' @param type Type of the alert : info, success, warning or error.
-#' @param btn_labels Labels for buttons, cancel button (\code{FALSE}) first then confirm button (\code{TRUE}).
+#' @param btn_labels Labels for buttons, cancel button (`FALSE`) first then confirm button (`TRUE`).
 #' @param btn_colors Colors for buttons.
 #' @param closeOnClickOutside Decide whether the user should be able to dismiss
 #'  the modal by clicking outside of it, or not.
 #' @param showCloseButton Show close button in top right corner of the modal.
-#' @param allowEscapeKey If set to \code{FALSE}, the user can't dismiss the popup by pressing the \code{Esc} key.
-#' @param cancelOnDismiss If \code{TRUE}, when dialog is dismissed (click outside, close button or Esc key)
-#'  it will be equivalent to canceling (input value will be \code{FALSE}), if \code{FALSE} nothing happen (input value remain \code{NULL}).
-#' @param html Does \code{text} contains HTML tags ?
+#' @param allowEscapeKey If set to `FALSE`, the user can't dismiss the popup by pressing the `Esc` key.
+#' @param cancelOnDismiss If `TRUE`, when dialog is dismissed (click outside, close button or Esc key)
+#'  it will be equivalent to canceling (input value will be `FALSE`), if `FALSE` nothing happen (input value remain `NULL`).
+#' @param html Does `text` contains HTML tags ?
 #' @param ... Additional arguments (not used)
 #'
 #'
@@ -199,8 +198,7 @@ show_alert <- function(title = "Title",
 #'
 #' @name sweetalert-confirmation
 #'
-#' @seealso \code{\link{sendSweetAlert}}, \code{\link{inputSweetAlert}},
-#'  \code{\link{closeSweetAlert}}.
+#' @seealso [sendSweetAlert()], [inputSweetAlert()], [closeSweetAlert()].
 #'
 #' @example examples/ask_confirmation.R
 #' @examples
@@ -331,24 +329,24 @@ ask_confirmation <- function(inputId,
 #'
 #' @description Launch a popup with a text input
 #'
-#' @param session The \code{session} object passed to function given to shinyServer.
-#' @param inputId The \code{input} slot that will be used to access the value.
+#' @param session The `session` object passed to function given to shinyServer.
+#' @param inputId The `input` slot that will be used to access the value.
 #'  If in a Shiny module, it use same logic than inputs : use namespace in UI, not in server.
 #' @param title Title of the pop-up.
 #' @param text Text of the pop-up.
-#' @param type Type of the pop-up : \code{"info"}, \code{"success"},
-#'  \code{"warning"}, \code{"error"} or \code{"question"}.
-#' @param input Type of input, possible values are : \code{"text"},
-#'  \code{"password"},\code{"textarea"}, \code{"radio"}, \code{"checkbox"} or \code{"select"}.
-#' @param inputOptions Options for the input. For \code{"radio"} and \code{"select"} it will be choices.
-#' @param inputPlaceholder Placeholder for the input, use it for \code{"text"} or \code{"checkbox"}.
-#' @param inputValidator JavaScript function to validate input. Must be a character wrapped in \code{I()}.
+#' @param type Type of the pop-up : `"info"`, `"success"`,
+#'  `"warning"`, `"error"` or `"question"`.
+#' @param input Type of input, possible values are : `"text"`,
+#'  `"password"`,`"textarea"`, `"radio"`, `"checkbox"` or `"select"`.
+#' @param inputOptions Options for the input. For `"radio"` and `"select"` it will be choices.
+#' @param inputPlaceholder Placeholder for the input, use it for `"text"` or `"checkbox"`.
+#' @param inputValidator JavaScript function to validate input. Must be a character wrapped in `I()`.
 #' @param btn_labels Label(s) for button(s).
 #' @param btn_colors Color(s) for button(s).
-#' @param reset_input Set the input value to \code{NULL} when alert is displayed.
+#' @param reset_input Set the input value to `NULL` when alert is displayed.
 #' @param ... Other arguments passed to JavaScript method.
 #'
-#' @note This function use the JavaScript sweetalert2 library, see the official documentation for more \url{https://sweetalert2.github.io/}.
+#' @note This function use the JavaScript sweetalert2 library, see the official documentation for more https://sweetalert2.github.io/.
 #'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags
@@ -356,8 +354,8 @@ ask_confirmation <- function(inputId,
 #'
 #' @export
 #'
-#' @seealso \code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
-#'  \code{\link{closeSweetAlert}}.
+#' @seealso [sendSweetAlert()], [confirmSweetAlert()],
+#'  [closeSweetAlert()].
 #'
 #' @example examples/sweetalert-input.R
 inputSweetAlert <- function(session,
@@ -428,7 +426,7 @@ inputSweetAlert <- function(session,
 
 #' Progress bar in a sweet alert
 #'
-#' @param session The \code{session} object passed to function given to shinyServer.
+#' @param session The `session` object passed to function given to shinyServer.
 #' @param id An id used to update the progress bar.
 #' @param value Value of the progress bar between 0 and 100, if >100 you must provide total.
 #' @param total Used to calculate percentage if value > 100, force an indicator to appear on top right of the progress bar.
@@ -437,6 +435,9 @@ inputSweetAlert <- function(session,
 #' @param status Color, must be a valid Bootstrap status : primary, info, success, warning, danger.
 #' @param striped logical, add a striped effect.
 #' @param title character, optional title.
+#' @param ... Arguments passed to [sendSweetAlert()]
+#'
+#' @seealso [progressBar()]
 #'
 #' @export
 #'
@@ -485,9 +486,16 @@ inputSweetAlert <- function(session,
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-progressSweetAlert <- function(session, id, value, total = NULL,
-                               display_pct = FALSE, size = NULL,
-                               status = NULL, striped = FALSE, title = NULL) {
+progressSweetAlert <- function(session,
+                               id,
+                               value,
+                               total = NULL,
+                               display_pct = FALSE,
+                               size = NULL,
+                               status = NULL,
+                               striped = FALSE,
+                               title = NULL,
+                               ...) {
   # If we are inside a module, turn the (relative) id (e.g. 'input') into an absolute id (e.g. 'module-input')
   if (inherits(session, "session_proxy")) {
     # Keep old code working which externally uses session$ns() to create an absolute id.
@@ -499,12 +507,21 @@ progressSweetAlert <- function(session, id, value, total = NULL,
     title = NULL,
     btn_labels = NA,
     text = tags$div(id = "sweet-alert-progress-sw"),
-    closeOnClickOutside = FALSE
+    closeOnClickOutside = FALSE,
+    backdrop = TRUE,
+    ...
   )
   shiny::insertUI(
     selector = "#sweet-alert-progress-sw",
     ui = progressBar(
-      id, value, total, display_pct, size, status, striped, title
+      id = id,
+      value = value,
+      total = total,
+      display_pct = display_pct,
+      size = size,
+      status = status,
+      striped = striped,
+      title = title
     ),
     immediate = TRUE, session = session
   )
@@ -518,22 +535,21 @@ progressSweetAlert <- function(session, id, value, total = NULL,
 #'
 #' @param title Title for the toast.
 #' @param text Text for the toast.
-#' @param type Type of the toast: \code{"default"},
-#'  \code{"success"}, \code{"error"}, \code{"info"},
-#'  \code{"warning"} or \code{"question"}.
+#' @param type Type of the toast: `"default"`,
+#'  `"success"`, `"error"`, `"info"`,
+#'  `"warning"` or `"question"`.
 #' @param timer Auto close timer of the modal. Set in ms (milliseconds).
 #' @param timerProgressBar If set to true, the timer will have a progress bar at the bottom of a popup.
-#' @param position Modal window position, can be \code{"top"}, \code{"top-start"},
-#'  \code{"top-end"}, \code{"center"}, \code{"center-start"}, \code{"center-end"},
-#'  \code{"bottom"}, \code{"bottom-start"}, or \code{"bottom-end"}.
+#' @param position Modal window position, can be `"top"`, `"top-start"`,
+#'  `"top-end"`, `"center"`, `"center-start"`, `"center-end"`,
+#'  `"bottom"`, `"bottom-start"`, or `"bottom-end"`.
 #' @param width Modal window width, including paddings.
-#' @param session The \code{session} object passed to function given to shinyServer.
+#' @param session The `session` object passed to function given to shinyServer.
 #'
 #' @return No value.
 #' @export
 #'
-#' @seealso \code{\link{show_alert}}, \code{\link{ask_confirmation}},
-#'  \code{\link{closeSweetAlert}}.
+#' @seealso [show_alert()], [ask_confirmation()], [closeSweetAlert()].
 #'
 #' @example examples/show_toast.R
 show_toast <- function(title,
@@ -584,7 +600,7 @@ show_toast <- function(title,
 
 #' Close Sweet Alert
 #'
-#' @param session The \code{session} object passed to function given
+#' @param session The `session` object passed to function given
 #' to shinyServer.
 #'
 #' @export

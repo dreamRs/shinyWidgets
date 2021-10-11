@@ -13,7 +13,8 @@ progressSweetAlert(
   size = NULL,
   status = NULL,
   striped = FALSE,
-  title = NULL
+  title = NULL,
+  ...
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ progressSweetAlert(
 \item{striped}{logical, add a striped effect.}
 
 \item{title}{character, optional title.}
+
+\item{...}{Arguments passed to \code{\link[=sendSweetAlert]{sendSweetAlert()}}}
 }
 \description{
 Progress bar in a sweet alert
@@ -83,4 +86,7 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 
 }
+}
+\seealso{
+\code{\link[=progressBar]{progressBar()}}
 }

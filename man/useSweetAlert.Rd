@@ -92,6 +92,6 @@ if (interactive()) {
 }
 }
 \seealso{
-\code{\link{sendSweetAlert}}, \code{\link{confirmSweetAlert}},
-\code{\link{inputSweetAlert}}, \code{\link{closeSweetAlert}}.
+\code{\link[=sendSweetAlert]{sendSweetAlert()}}, \code{\link[=confirmSweetAlert]{confirmSweetAlert()}},
+\code{\link[=inputSweetAlert]{inputSweetAlert()}}, \code{\link[=closeSweetAlert]{closeSweetAlert()}}.
 }

@@ -126,6 +126,5 @@ if (interactive())
   shinyApp(ui, server)
 }
 \seealso{
-\code{\link{show_alert}}, \code{\link{ask_confirmation}},
-\code{\link{closeSweetAlert}}.
+\code{\link[=show_alert]{show_alert()}}, \code{\link[=ask_confirmation]{ask_confirmation()}}, \code{\link[=closeSweetAlert]{closeSweetAlert()}}.
 }
