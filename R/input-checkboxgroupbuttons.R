@@ -164,10 +164,10 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, di
     displayIcon <- FALSE
   }
   mapply(
-    FUN = function(name, value) {
+    FUN = function(name, value, statusElement) {
       btn_wrapper(
         tags$button(
-          class = paste0("btn checkbtn btn-", status),
+          class = paste0("btn checkbtn btn-", statusElement),
           class = if (value %in% selected) "active",
           if (displayIcon) tags$span(class="check-btn-icon-yes", checkIcon$yes),
           if (displayIcon) tags$span(class="check-btn-icon-no", checkIcon$no),
@@ -186,6 +186,7 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, di
     },
     name = choices$choiceNames,
     value = choices$choiceValues,
+    statusElement = rep(status, length.out = length(choices$choiceNames)),
     SIMPLIFY = FALSE,
     USE.NAMES = FALSE
   )
