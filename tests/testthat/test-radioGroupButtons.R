@@ -73,6 +73,24 @@ test_that("Success status", {
 })
 
 
+test_that("Multiple status", {
+  status <- c("success", "primary", "secondary")
+
+  cbtag <- radioGroupButtons(
+    inputId = "Id031",
+    label = "Label",
+    choices = c("A", "B", "C", "D"),
+    status = status
+  )
+
+  status <- c("success", "primary", "secondary", "success")
+  choicestag <- cbtag$children[[3]]$children[[1]]$children[[1]]
+  success <- lapply(seq_along(choicestag), function(x) grepl(pattern = status[x], x = as.character(choicestag[x])))
+  success <- unlist(success)
+  expect_true(all(success))
+})
+
+
 test_that("Justified", {
 
   rtag <- radioGroupButtons(
