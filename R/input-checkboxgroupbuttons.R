@@ -4,76 +4,19 @@
 #' @description
 #' Create buttons grouped that act like checkboxes.
 #'
-#' @param inputId The \code{input} slot that will be used to access the value.
-#' @param label Input label.
-#' @param choices List of values to select from (if elements of the list are named
-#'  then that name rather than the value is displayed to the user)
-#' @param selected The initially selected value.
-#' @param status Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
-#'  Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.
-#' @param size Size of the buttons ('xs', 'sm', 'normal', 'lg')
-#' @param direction Horizontal or vertical.
-#' @param justified If TRUE, fill the width of the parent div.
-#' @param individual If TRUE, buttons are separated.
-#' @param checkIcon A list, if no empty must contain at least one element named 'yes'
-#' corresponding to an icon to display if the button is checked.
-#' @param width The width of the input, e.g. `400px`, or `100%`.
-#' @param choiceNames,choiceValues Same as in \code{\link[shiny]{checkboxGroupInput}}. List of names and values, respectively, that are displayed to
-#'  the user in the app and correspond to the each choice (for this reason,
-#'  \code{choiceNames} and \code{choiceValues} must have the same length).
-#' @param disabled Initialize buttons in a disabled state (users won't be able to select a value).
+#' @inheritParams shiny::checkboxGroupInput
+#' @inheritParams radioGroupButtons
 #'
 #' @return A buttons group control that can be added to a UI definition.
 #'
-#' @seealso \code{\link{updateCheckboxGroupButtons}}
+#' @seealso [updateCheckboxGroupButtons()]
 #'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags HTML validateCssUnit
 #'
 #' @export
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#'   ui <- fluidPage(
-#'     tags$h1("checkboxGroupButtons examples"),
-#'
-#'     checkboxGroupButtons(
-#'       inputId = "somevalue1",
-#'       label = "Make a choice: ",
-#'       choices = c("A", "B", "C")
-#'     ),
-#'     verbatimTextOutput("value1"),
-#'
-#'     checkboxGroupButtons(
-#'       inputId = "somevalue2",
-#'       label = "With custom status:",
-#'       choices = names(iris),
-#'       status = "primary"
-#'     ),
-#'     verbatimTextOutput("value2"),
-#'
-#'     checkboxGroupButtons(
-#'       inputId = "somevalue3",
-#'       label = "With icons:",
-#'       choices = names(mtcars),
-#'       checkIcon = list(
-#'         yes = icon("check-square"),
-#'         no = icon("square-o")
-#'       )
-#'     ),
-#'     verbatimTextOutput("value3")
-#'   )
-#'   server <- function(input, output) {
-#'
-#'     output$value1 <- renderPrint({ input$somevalue1 })
-#'     output$value2 <- renderPrint({ input$somevalue2 })
-#'     output$value3 <- renderPrint({ input$somevalue3 })
-#'
-#'   }
-#'   shinyApp(ui, server)
-#'
-#' }
+#' @example examples/checkboxGroupButtons.R
 checkboxGroupButtons <- function(inputId,
                                  label = NULL,
                                  choices = NULL,
@@ -200,24 +143,15 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, di
 #' @description
 #' Change the value of a radio group buttons input on the client
 #'
-#' @param session The session object passed to function given to shinyServer.
-#' @param inputId	The id of the input object.
-#' @param selected The values selected.
-#' @param label The label to set.
-#' @param choices The new choices for the input.
-#' @param status Status, only used if choices is not NULL.
-#' @param size Size, only used if choices is not NULL.
-#' @param checkIcon Icon, only used if choices is not NULL.
-#' @param choiceNames,choiceValues List of names and values, an alternative to choices.
-#' @param disabled Logical, disable or enable buttons,
-#'  if \code{TRUE} users won't be able to select a value.
-#' @param disabledChoices Vector of specific choices to disable.
+#' @inheritParams shiny::updateCheckboxGroupInput
+#' @inheritParams updateRadioGroupButtons
 #'
 #' @export
 #'
-#' @importFrom htmltools tagList
+#' @seealso [checkboxGroupButtons()]
 #'
-#' @seealso \code{\link{checkboxGroupButtons}}
+#' @importFrom htmltools tagList
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -318,7 +252,7 @@ generateCBGB <- function(inputId, choices, selected, status, size, checkIcon, di
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updateCheckboxGroupButtons <- function(session,
+updateCheckboxGroupButtons <- function(session = getDefaultReactiveDomain(),
                                        inputId,
                                        label = NULL,
                                        choices = NULL,

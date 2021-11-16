@@ -5,7 +5,7 @@
 \title{Change the value of a radio group buttons input on the client}
 \usage{
 updateRadioGroupButtons(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   choices = NULL,
@@ -20,15 +20,22 @@ updateRadioGroupButtons(
 )
 }
 \arguments{
-\item{session}{The session object passed to function given to shinyServer.}
+\item{session}{The \code{session} object passed to function given to
+\code{shinyServer}. Default is \code{getDefaultReactiveDomain()}.}
 
 \item{inputId}{The id of the input object.}
 
-\item{label}{The label to set.}
+\item{label}{The label to set for the input object.}
 
-\item{choices}{The new choices for the input.}
+\item{choices}{List of values to select from (if elements of the list are
+named then that name rather than the value is displayed to the user). If
+this argument is provided, then \code{choiceNames} and \code{choiceValues} must not
+be provided, and vice-versa. The values should be strings; other types
+(such as logicals and numbers) will be coerced to strings.}
 
-\item{selected}{The value selected.}
+\item{selected}{The initially selected value. If not specified, then it
+defaults to the first item in \code{choices}. To start with no items selected,
+use \code{character(0)}.}
 
 \item{status}{Status, only used if choices is not NULL.}
 
@@ -36,7 +43,23 @@ updateRadioGroupButtons(
 
 \item{checkIcon}{Icon, only used if choices is not NULL.}
 
-\item{choiceNames, choiceValues}{List of names and values, an alternative to choices.}
+\item{choiceNames}{List of names and values, respectively, that
+are displayed to the user in the app and correspond to the each choice (for
+this reason, \code{choiceNames} and \code{choiceValues} must have the same length).
+If either of these arguments is provided, then the other \emph{must} be provided
+and \code{choices} \emph{must not} be provided. The advantage of using both of these
+over a named list for \code{choices} is that \code{choiceNames} allows any type of UI
+object to be passed through (tag objects, icons, HTML code, ...), instead
+of just simple text. See Examples.}
+
+\item{choiceValues}{List of names and values, respectively, that
+are displayed to the user in the app and correspond to the each choice (for
+this reason, \code{choiceNames} and \code{choiceValues} must have the same length).
+If either of these arguments is provided, then the other \emph{must} be provided
+and \code{choices} \emph{must not} be provided. The advantage of using both of these
+over a named list for \code{choices} is that \code{choiceNames} allows any type of UI
+object to be passed through (tag objects, icons, HTML code, ...), instead
+of just simple text. See Examples.}
 
 \item{disabled}{Logical, disable or enable buttons,
 if \code{TRUE} users won't be able to select a value.}
@@ -106,4 +129,7 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 
 }
+}
+\seealso{
+\code{\link[=radioGroupButtons]{radioGroupButtons()}}
 }

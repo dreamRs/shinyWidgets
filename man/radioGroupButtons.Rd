@@ -24,14 +24,20 @@ radioGroupButtons(
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
 
-\item{label}{Input label.}
+\item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{choices}{List of values to select from (if elements of the list are named then that name rather than the value is displayed to the user).}
+\item{choices}{List of values to select from (if elements of the list are
+named then that name rather than the value is displayed to the user). If
+this argument is provided, then \code{choiceNames} and \code{choiceValues} must not
+be provided, and vice-versa. The values should be strings; other types
+(such as logicals and numbers) will be coerced to strings.}
 
-\item{selected}{The initially selected value.}
+\item{selected}{The initially selected value. If not specified, then it
+defaults to the first item in \code{choices}. To start with no items selected,
+use \code{character(0)}.}
 
 \item{status}{Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
-Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.}
+Or use an arbitrary strings to add a custom class, e.g. : with \code{status = "custom-class"}, buttons will have class \code{btn-custom-class}.}
 
 \item{size}{Size of the buttons ('xs', 'sm', 'normal', 'lg')}
 
@@ -44,11 +50,26 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'm
 \item{checkIcon}{A list, if no empty must contain at least one element named 'yes'
 corresponding to an icon to display if the button is checked.}
 
-\item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
+\item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
+see \code{\link[shiny:reexports]{validateCssUnit()}}.}
 
-\item{choiceNames, choiceValues}{Same as in \code{\link[shiny]{radioButtons}}. List of names and values, respectively, that are displayed to
-the user in the app and correspond to the each choice (for this reason,
-\code{choiceNames} and \code{choiceValues} must have the same length).}
+\item{choiceNames}{List of names and values, respectively, that
+are displayed to the user in the app and correspond to the each choice (for
+this reason, \code{choiceNames} and \code{choiceValues} must have the same length).
+If either of these arguments is provided, then the other \emph{must} be provided
+and \code{choices} \emph{must not} be provided. The advantage of using both of these
+over a named list for \code{choices} is that \code{choiceNames} allows any type of UI
+object to be passed through (tag objects, icons, HTML code, ...), instead
+of just simple text. See Examples.}
+
+\item{choiceValues}{List of names and values, respectively, that
+are displayed to the user in the app and correspond to the each choice (for
+this reason, \code{choiceNames} and \code{choiceValues} must have the same length).
+If either of these arguments is provided, then the other \emph{must} be provided
+and \code{choices} \emph{must not} be provided. The advantage of using both of these
+over a named list for \code{choices} is that \code{choiceNames} allows any type of UI
+object to be passed through (tag objects, icons, HTML code, ...), instead
+of just simple text. See Examples.}
 
 \item{disabled}{Initialize buttons in a disabled state (users won't be able to select a value).}
 }
@@ -59,48 +80,50 @@ A buttons group control that can be added to a UI definition.
 Create buttons grouped that act like radio buttons.
 }
 \examples{
-if (interactive()) {
+library(shiny)
+library(shinyWidgets)
 
-  ui <- fluidPage(
-    tags$h1("radioGroupButtons examples"),
+ui <- fluidPage(
+  tags$h1("radioGroupButtons examples"),
 
-    radioGroupButtons(
-      inputId = "somevalue1",
-      label = "Make a choice: ",
-      choices = c("A", "B", "C")
-    ),
-    verbatimTextOutput("value1"),
+  radioGroupButtons(
+    inputId = "somevalue1",
+    label = "Choose a value: ",
+    choices = c("A", "B", "C")
+  ),
+  verbatimTextOutput("value1"),
 
-    radioGroupButtons(
-      inputId = "somevalue2",
-      label = "With custom status:",
-      choices = names(iris),
-      status = "primary"
-    ),
-    verbatimTextOutput("value2"),
+  radioGroupButtons(
+    inputId = "somevalue2",
+    label = "With custom status:",
+    choices = names(iris),
+    status = "primary"
+  ),
+  verbatimTextOutput("value2"),
 
-    radioGroupButtons(
-      inputId = "somevalue3",
-      label = "With icons:",
-      choices = names(mtcars),
-      checkIcon = list(
-        yes = icon("check-square"),
-        no = icon("square-o")
-      )
-    ),
-    verbatimTextOutput("value3")
-  )
-  server <- function(input, output) {
+  radioGroupButtons(
+    inputId = "somevalue3",
+    label = "With icons:",
+    choices = names(mtcars),
+    checkIcon = list(
+      yes = icon("check-square"),
+      no = icon("square-o")
+    )
+  ),
+  verbatimTextOutput("value3")
+)
 
-    output$value1 <- renderPrint({ input$somevalue1 })
-    output$value2 <- renderPrint({ input$somevalue2 })
-    output$value3 <- renderPrint({ input$somevalue3 })
+server <- function(input, output) {
 
-  }
-  shinyApp(ui, server)
+  output$value1 <- renderPrint({ input$somevalue1 })
+  output$value2 <- renderPrint({ input$somevalue2 })
+  output$value3 <- renderPrint({ input$somevalue3 })
 
 }
+
+if (interactive())
+  shinyApp(ui, server)
 }
 \seealso{
-\code{\link{updateRadioGroupButtons}}
+\code{\link[=updateRadioGroupButtons]{updateRadioGroupButtons()}}
 }
