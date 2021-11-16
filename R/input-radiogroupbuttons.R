@@ -166,10 +166,10 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon, dis
     displayIcon <- FALSE
   }
   mapply(
-    FUN = function(name, value) {
+    FUN = function(name, value, statusElement) {
       btn_wrapper(
         tags$button(
-          class = paste0("btn radiobtn btn-", status),
+          class = paste0("btn radiobtn btn-", statusElement),
           class = if (value %in% selected) "active",
           if (displayIcon) tags$span(class="radio-btn-icon-yes", checkIcon$yes),
           if (displayIcon) tags$span(class="radio-btn-icon-no", checkIcon$no),
@@ -188,6 +188,7 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon, dis
     },
     name = choices$choiceNames,
     value = choices$choiceValues,
+    statusElement = rep(status, length.out = length(choices$choiceNames)),
     SIMPLIFY = FALSE,
     USE.NAMES = FALSE
   )
