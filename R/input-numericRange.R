@@ -119,7 +119,10 @@ numericRangeInput <- function(inputId,
 #' @inheritParams numericRangeInput
 #' @export
 #'
-updateNumericRangeInput <- function(session, inputId, label = NULL, value = NULL) {
+updateNumericRangeInput <- function(session = getDefaultReactiveDomain(),
+                                    inputId,
+                                    label = NULL,
+                                    value = NULL) {
 
   value <- c(min(value), max(value))
 

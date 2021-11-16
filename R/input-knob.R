@@ -207,7 +207,11 @@ knobInput <- function(inputId, label, value,
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updateKnobInput <- function(session, inputId, label = NULL, value = NULL, options = NULL) {
+updateKnobInput <- function(session = getDefaultReactiveDomain(),
+                            inputId,
+                            label = NULL,
+                            value = NULL,
+                            options = NULL) {
   message <- dropNulls(list(label = label, value = value, options = options))
   session$sendInputMessage(inputId, message)
 }

@@ -151,7 +151,7 @@ colorPickr <- function(inputId,
 #' @export
 #'
 #' @rdname colorPickr
-updateColorPickr <- function(session, inputId, value = NULL, action = NULL) {
+updateColorPickr <- function(session = getDefaultReactiveDomain(), inputId, value = NULL, action = NULL) {
   if (!is.null(action)) {
     action <- match.arg(action, c("disable", "enable", "hide", "show"))
   }

@@ -4,7 +4,12 @@
 \alias{updatePrettyCheckbox}
 \title{Change the value of a pretty checkbox on the client}
 \usage{
-updatePrettyCheckbox(session, inputId, label = NULL, value = NULL)
+updatePrettyCheckbox(
+  session = getDefaultReactiveDomain(),
+  inputId,
+  label = NULL,
+  value = NULL
+)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}

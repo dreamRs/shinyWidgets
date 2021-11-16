@@ -5,7 +5,7 @@
 \title{Change the value of a \code{\link{awesomeCheckboxGroup}} input on the client}
 \usage{
 updateAwesomeCheckboxGroup(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   choices = NULL,

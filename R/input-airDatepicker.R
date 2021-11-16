@@ -355,7 +355,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #'   demoAirDatepicker("update")
 #'
 #' }
-updateAirDateInput <- function(session,
+updateAirDateInput <- function(session = getDefaultReactiveDomain(),
                                inputId,
                                label = NULL,
                                value = NULL,

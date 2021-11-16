@@ -5,7 +5,7 @@
 \title{Change the value of a no ui slider input on the client}
 \usage{
 updateNoUiSliderInput(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   value = NULL,
   range = NULL,

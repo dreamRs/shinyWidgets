@@ -5,7 +5,7 @@
 \title{Change the value of \code{\link{airDatepickerInput}} on the client}
 \usage{
 updateAirDateInput(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   value = NULL,

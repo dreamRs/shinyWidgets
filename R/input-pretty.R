@@ -71,7 +71,7 @@ prettySwitch <- function(inputId,
 #' @export
 #'
 #' @example examples/updatePrettySwitch.R
-updatePrettySwitch <- function(session,
+updatePrettySwitch <- function(session = getDefaultReactiveDomain(),
                                inputId,
                                label = NULL,
                                value = NULL) {
@@ -196,7 +196,7 @@ prettyToggle <- function(inputId,
 #' @export
 #'
 #' @example examples/updatePrettyToggle.R
-updatePrettyToggle <- function(session,
+updatePrettyToggle <- function(session = getDefaultReactiveDomain(),
                                inputId,
                                label = NULL,
                                value = NULL) {
@@ -309,7 +309,7 @@ prettyCheckbox <- function(inputId,
 #' @export
 #'
 #' @example examples/updatePrettyCheckbox.R
-updatePrettyCheckbox <- function(session,
+updatePrettyCheckbox <- function(session = getDefaultReactiveDomain(),
                                  inputId,
                                  label = NULL,
                                  value = NULL) {
@@ -523,7 +523,7 @@ generatePretty <- function(inputId,
 #' @export
 #'
 #' @example examples/updatePrettyCheckboxGroup.R
-updatePrettyCheckboxGroup <- function(session,
+updatePrettyCheckboxGroup <- function(session = getDefaultReactiveDomain(),
                                       inputId,
                                       label = NULL,
                                       choices = NULL,
@@ -540,7 +540,7 @@ updatePrettyCheckboxGroup <- function(session,
 
 
 
-updatePrettyOptions <- function(session,
+updatePrettyOptions <- function(session = getDefaultReactiveDomain(),
                                 inputId,
                                 label = NULL,
                                 choices = NULL,
@@ -709,7 +709,7 @@ prettyRadioButtons <- function(inputId,
 #' @export
 #'
 #' @example examples/updatePrettyRadioButtons.R
-updatePrettyRadioButtons <- function(session,
+updatePrettyRadioButtons <- function(session = getDefaultReactiveDomain(),
                                      inputId,
                                      label = NULL,
                                      choices = NULL,

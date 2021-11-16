@@ -100,7 +100,7 @@ textInputIcon <- function(inputId,
 #'
 #' if (interactive())
 #'   shinyApp(ui, server)
-updateTextInputIcon <- function(session,
+updateTextInputIcon <- function(session = getDefaultReactiveDomain(),
                                 inputId,
                                 label = NULL,
                                 value = NULL,
@@ -235,7 +235,7 @@ numericInputIcon <- function(inputId,
 #'
 #' if (interactive())
 #'   shinyApp(ui, server)
-updateNumericInputIcon <- function(session,
+updateNumericInputIcon <- function(session = getDefaultReactiveDomain(),
                                    inputId,
                                    label = NULL,
                                    value = NULL,

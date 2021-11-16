@@ -6,7 +6,7 @@
 \title{Update a Formatted Numeric Input Widget}
 \usage{
 updateCurrencyInput(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   value = NULL,
@@ -14,7 +14,7 @@ updateCurrencyInput(
 )
 
 updateFormatNumericInput(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   value = NULL,

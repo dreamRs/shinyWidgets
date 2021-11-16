@@ -4,7 +4,12 @@
 \alias{updatePrettyToggle}
 \title{Change the value of a pretty toggle on the client}
 \usage{
-updatePrettyToggle(session, inputId, label = NULL, value = NULL)
+updatePrettyToggle(
+  session = getDefaultReactiveDomain(),
+  inputId,
+  label = NULL,
+  value = NULL
+)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}

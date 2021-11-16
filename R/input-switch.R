@@ -325,7 +325,8 @@ switchInput <- function(inputId,
 #'   shinyApp(ui = ui, server = server)
 #'
 #' }
-updateSwitchInput <- function(session, inputId,
+updateSwitchInput <- function(session = getDefaultReactiveDomain(),
+                              inputId,
                               value = NULL, label = NULL,
                               onLabel = NULL, offLabel = NULL,
                               onStatus = NULL, offStatus = NULL,

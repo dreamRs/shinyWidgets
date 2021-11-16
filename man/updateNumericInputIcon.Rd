@@ -5,7 +5,7 @@
 \title{Change the value of a numeric input icon on the client}
 \usage{
 updateNumericInputIcon(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   value = NULL,

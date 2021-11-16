@@ -5,7 +5,7 @@
 \title{Change the value of a text input icon on the client}
 \usage{
 updateTextInputIcon(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   value = NULL,

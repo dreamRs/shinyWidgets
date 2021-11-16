@@ -21,7 +21,7 @@ progressBar(
 )
 
 updateProgressBar(
-  session,
+  session = getDefaultReactiveDomain(),
   id,
   value,
   total = NULL,

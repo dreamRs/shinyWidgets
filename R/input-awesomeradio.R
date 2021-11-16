@@ -223,7 +223,7 @@ awesomeRadio <- function(inputId,
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updateAwesomeRadio <- function(session,
+updateAwesomeRadio <- function(session = getDefaultReactiveDomain(),
                                inputId,
                                label = NULL,
                                choices = NULL,

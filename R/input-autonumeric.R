@@ -190,7 +190,8 @@ formatNumericInput <- function(inputId,
 #'
 #'   shinyApp(ui, server)
 #' }
-updateCurrencyInput <- function(session, inputId,
+updateCurrencyInput <- function(session = getDefaultReactiveDomain(),
+                                inputId,
                                 label = NULL,
                                 value = NULL,
                                 format = NULL) {
@@ -199,7 +200,8 @@ updateCurrencyInput <- function(session, inputId,
 }
 
 #' @rdname formaNumericInputUpdate
-updateFormatNumericInput <- function(session, inputId,
+updateFormatNumericInput <- function(session = getDefaultReactiveDomain(),
+                                     inputId,
                                      label = NULL,
                                      value = NULL,
                                      format = NULL) {
@@ -597,7 +599,8 @@ autonumericInput <- function(inputId, label, value,
 #'
 #'   shinyApp(ui, server)
 #' }
-updateAutonumericInput <- function(session, inputId,
+updateAutonumericInput <- function(session = getDefaultReactiveDomain(),
+                                   inputId,
                                    label = NULL,
                                    value = NULL,
                                    options = NULL) {

@@ -25,7 +25,12 @@ colorPickr(
   width = NULL
 )
 
-updateColorPickr(session, inputId, value = NULL, action = NULL)
+updateColorPickr(
+  session = getDefaultReactiveDomain(),
+  inputId,
+  value = NULL,
+  action = NULL
+)
 }
 \arguments{
 \item{inputId}{The id of the input object.}

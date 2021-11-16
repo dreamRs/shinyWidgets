@@ -164,9 +164,14 @@ progressBar <- function(id,
 #' @export
 #'
 #' @rdname progress-bar
-updateProgressBar <- function(session, id, value, total = NULL,
-                              title = NULL, status = NULL,
-                              range_value = NULL, commas = TRUE,
+updateProgressBar <- function(session = getDefaultReactiveDomain(),
+                              id,
+                              value,
+                              total = NULL,
+                              title = NULL,
+                              status = NULL,
+                              range_value = NULL,
+                              commas = TRUE,
                               unit_mark = "%") {
   message <- "update-progressBar-shinyWidgets"
   if (!is.null(range_value)) {

@@ -5,7 +5,7 @@
 \title{Launch an input text dialog}
 \usage{
 inputSweetAlert(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   title = NULL,
   text = NULL,

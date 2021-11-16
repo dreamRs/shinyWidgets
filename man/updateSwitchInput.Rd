@@ -5,7 +5,7 @@
 \title{Change the value of a switch input on the client}
 \usage{
 updateSwitchInput(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   value = NULL,
   label = NULL,

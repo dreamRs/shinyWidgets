@@ -5,7 +5,7 @@
 \title{Update an Autonumeric Input Object}
 \usage{
 updateAutonumericInput(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   value = NULL,

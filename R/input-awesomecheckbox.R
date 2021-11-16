@@ -265,7 +265,7 @@ awesomeCheckboxGroup <- function(inputId,
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updateAwesomeCheckboxGroup <- function(session,
+updateAwesomeCheckboxGroup <- function(session = getDefaultReactiveDomain(),
                                        inputId,
                                        label = NULL,
                                        choices = NULL,

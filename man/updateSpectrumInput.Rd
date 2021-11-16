@@ -4,7 +4,7 @@
 \alias{updateSpectrumInput}
 \title{Change the value of a spectrum input on the client}
 \usage{
-updateSpectrumInput(session, inputId, selected)
+updateSpectrumInput(session = getDefaultReactiveDomain(), inputId, selected)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}

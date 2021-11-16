@@ -7,7 +7,7 @@
 \title{Display a Sweet Alert to the user}
 \usage{
 sendSweetAlert(
-  session,
+  session = getDefaultReactiveDomain(),
   title = "Title",
   text = NULL,
   type = NULL,

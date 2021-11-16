@@ -75,7 +75,7 @@ useSweetAlert <- function(theme = c("sweetalert2",
 #'
 #' @example examples/show_alert.R
 #' @example examples/show_alert-ouput.R
-sendSweetAlert <- function(session,
+sendSweetAlert <- function(session = getDefaultReactiveDomain(),
                            title = "Title",
                            text = NULL,
                            type = NULL,
@@ -204,7 +204,7 @@ show_alert <- function(title = "Title",
 #' @examples
 #' # ------------------------------------
 #' @example examples/ask_confirmation-options.R
-confirmSweetAlert <- function(session,
+confirmSweetAlert <- function(session = getDefaultReactiveDomain(),
                               inputId,
                               title = NULL,
                               text = NULL,
@@ -358,7 +358,7 @@ ask_confirmation <- function(inputId,
 #'  [closeSweetAlert()].
 #'
 #' @example examples/sweetalert-input.R
-inputSweetAlert <- function(session,
+inputSweetAlert <- function(session = getDefaultReactiveDomain(),
                             inputId,
                             title = NULL,
                             text = NULL,
@@ -486,7 +486,7 @@ inputSweetAlert <- function(session,
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-progressSweetAlert <- function(session,
+progressSweetAlert <- function(session = getDefaultReactiveDomain(),
                                id,
                                value,
                                total = NULL,

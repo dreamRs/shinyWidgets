@@ -261,10 +261,14 @@ wNumbFormat <- function(decimals = NULL, mark = NULL,
 #'  demoNoUiSlider("update")
 #'
 #' }
-updateNoUiSliderInput <- function(session, inputId, value = NULL, range = NULL, disable = FALSE) {
+updateNoUiSliderInput <- function(session = getDefaultReactiveDomain(),
+                                  inputId,
+                                  value = NULL,
+                                  range = NULL,
+                                  disable = FALSE) {
   if (!is.null(range) && length(range) != 2) {
     range <- NULL
-    warning("'range' must be of lentgh 2, value will be ignored.")
+    warning("'range' must be of length 2, value will be ignored.")
   }
   message <- dropNulls(list(value = value, range = range, disable = disable))
   session$sendInputMessage(inputId, message)

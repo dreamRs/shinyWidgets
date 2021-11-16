@@ -162,7 +162,9 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
 #' shinyApp(ui, server)
 #'
 #' }
-updateSpectrumInput <- function(session, inputId, selected) {
+updateSpectrumInput <- function(session = getDefaultReactiveDomain(),
+                                inputId,
+                                selected) {
   session$sendInputMessage(inputId, list(value = selected))
 }
 

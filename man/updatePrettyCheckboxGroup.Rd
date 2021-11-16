@@ -5,7 +5,7 @@
 \title{Change the value of a pretty checkbox on the client}
 \usage{
 updatePrettyCheckboxGroup(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   choices = NULL,

@@ -5,7 +5,7 @@
 \title{Change the value pretty radio buttons on the client}
 \usage{
 updatePrettyRadioButtons(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   choices = NULL,

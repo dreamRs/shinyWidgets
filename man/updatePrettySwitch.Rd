@@ -4,7 +4,12 @@
 \alias{updatePrettySwitch}
 \title{Change the value of a pretty switch on the client}
 \usage{
-updatePrettySwitch(session, inputId, label = NULL, value = NULL)
+updatePrettySwitch(
+  session = getDefaultReactiveDomain(),
+  inputId,
+  label = NULL,
+  value = NULL
+)
 }
 \arguments{
 \item{session}{The session object passed to function given to shinyServer.}

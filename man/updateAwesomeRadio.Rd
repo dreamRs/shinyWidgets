@@ -5,7 +5,7 @@
 \title{Change the value of a radio input on the client}
 \usage{
 updateAwesomeRadio(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   choices = NULL,

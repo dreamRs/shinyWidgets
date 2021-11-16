@@ -5,7 +5,7 @@
 \title{Progress bar in a sweet alert}
 \usage{
 progressSweetAlert(
-  session,
+  session = getDefaultReactiveDomain(),
   id,
   value,
   total = NULL,

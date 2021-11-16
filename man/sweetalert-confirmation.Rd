@@ -7,7 +7,7 @@
 \title{Launch a confirmation dialog}
 \usage{
 confirmSweetAlert(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   title = NULL,
   text = NULL,
