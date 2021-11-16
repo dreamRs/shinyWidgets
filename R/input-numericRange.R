@@ -15,6 +15,8 @@
 #' @importFrom shiny sliderInput restoreInput
 #' @importFrom utils packageVersion
 #'
+#' @seealso [updateNumericRangeInput()]
+#'
 #' @export
 #'
 #' @examples
@@ -37,7 +39,7 @@
 #'   tags$br(),
 #'
 #'   numericRangeInput(
-#'     inputId = "noui1", label = "Numeric Range Input:",
+#'     inputId = "my_id", label = "Numeric Range Input:",
 #'     value = c(100, 400)
 #'   ),
 #'   verbatimTextOutput(outputId = "res1")
@@ -46,7 +48,7 @@
 #'
 #' server <- function(input, output, session) {
 #'
-#'   output$res1 <- renderPrint(input$noui1)
+#'   output$res1 <- renderPrint(input$my_id)
 #'
 #' }
 #'
@@ -117,20 +119,22 @@ numericRangeInput <- function(inputId,
 #'
 #' @param session The session object passed to function given to shinyServer.
 #' @inheritParams numericRangeInput
+#'
+#' @seealso [numericRangeInput()]
+#'
 #' @export
 #'
+#' @example examples/updateNumericRangeInput.R
 updateNumericRangeInput <- function(session = getDefaultReactiveDomain(),
                                     inputId,
                                     label = NULL,
                                     value = NULL) {
 
-  value <- c(min(value), max(value))
-
-  message <- dropNulls(list(
+  if (!is.null(value))
+    value <- c(min(value), max(value))
+  message <- list(
     label = label,
     value = value
-  ))
-
-  session$sendInputMessage(inputId, message)
-
+  )
+  session$sendInputMessage(inputId, dropNulls(message))
 }

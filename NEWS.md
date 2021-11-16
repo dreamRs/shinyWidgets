@@ -2,6 +2,10 @@ shinyWidgets 0.6.2.9000
 ======================
 
 * `checkboxGroupButtons()`/`radioGroupButtons()` fixed `justified = TRUE` argument compatibility with Bootstrap 4 (fix [#423](https://github.com/dreamRs/shinyWidgets/issues/423))
+* `checkboxGroupButtons()`/`radioGroupButtons()`: `status` argument now accept a vector, thanks to [@jassler](https://github.com/jassler) ([#440](https://github.com/dreamRs/shinyWidgets/pull/440))
+
+### Bug fixes
+* `updateNumericRangeInput()` failed to correctly update `label` ([#441](https://github.com/dreamRs/shinyWidgets/issues/441))
 
 
 

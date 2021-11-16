@@ -41,10 +41,13 @@ $.extend(numericRangeInputBinding, {
   receiveMessage: function(el, data) {
     var $el = $(el);
 
-    //if (data.hasOwnProperty('label')) $el.find('label[for="' + $escape(el.id) + '"]').text(data.label);
+    if (data.hasOwnProperty("label")) {
+      $el.find('label[for="' + Shiny.$escape(el.id) + '"]').text(data.label);
+    }
 
-    if (data.hasOwnProperty("value")) this.setValue($el, data.value);
-
+    if (data.hasOwnProperty("value")) {
+      this.setValue($el, data.value);
+    }
     $(el).trigger("change");
   },
   unsubscribe: function(el) {

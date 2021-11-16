@@ -60,7 +60,7 @@ ui <- fluidPage(
   tags$br(),
 
   numericRangeInput(
-    inputId = "noui1", label = "Numeric Range Input:",
+    inputId = "my_id", label = "Numeric Range Input:",
     value = c(100, 400)
   ),
   verbatimTextOutput(outputId = "res1")
@@ -69,7 +69,7 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
-  output$res1 <- renderPrint(input$noui1)
+  output$res1 <- renderPrint(input$my_id)
 
 }
 
@@ -77,4 +77,7 @@ shinyApp(ui, server)
 
 
 }
+}
+\seealso{
+\code{\link[=updateNumericRangeInput]{updateNumericRangeInput()}}
 }
