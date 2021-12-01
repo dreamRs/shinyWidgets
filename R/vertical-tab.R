@@ -13,8 +13,8 @@
 #'
 #' @export
 #'
-#' @importFrom htmltools tagGetAttribute tags tagList
-#' @importFrom shiny singleton
+#' @importFrom htmltools tagGetAttribute tags tagList htmlDependency
+#' @importFrom sass sass sass_file
 #'
 #' @name vertical-tab
 #'
@@ -69,7 +69,7 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
   } else {
     vtabTag <- tags$div(
       class = "col-sm-12 vrtc-tab-panel-container tabbable",
-      id = if(is.null(id)) id else paste0(id,"-tabbable"),
+      id = paste0(id, "-tabbable"),
       tags$div(
         class = sprintf("col-sm-%s vrtc-tab-panel  tab-content", contentWidth),
         lapply(X = tabs, FUN = `[[`, "tabcontent")
@@ -86,38 +86,9 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
   }
 
   vtabStyle <- tags$style(
-    HTML(sprintf(
-      "#%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a.active .fa{background-color: %s;background-image: %s !important;}",
-      id, color, color
-    )),
-    HTML(sprintf(
-      "#%s-tabbable > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-left div.list-group>a.active:after{border-left: 10px solid %s !important;}",
-      id, color
-    )),
-    HTML(sprintf(
-      "#%s-tabbable > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-right div.list-group>a.active:after{border-right: 10px solid %s !important;}",
-      id, color
-    )),
-    HTML(sprintf(
-      "#%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a .glyphicon,
-      #%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a .fa {color: %s !important;}",
-      id, id, color
-    )),
-    HTML(sprintf(
-      "#%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a.active,
-      #%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a.active .glyphicon,
-      #%s-tabbable > div.vrtc-tab-panel-menu div.list-group>a.active .fa{
-       background-color: %s !important; background-image: %s !important; color: #ffffff !important;
-      }",
-      id, id, id, color, color
-    )),
-    HTML(sprintf(
-      "#%s-tabbable > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-left div.list-group>a.active:after{border-left: 10px solid %s !important;}",
-      id, color
-    )),
-    HTML(sprintf(
-      "#%s-tabbable > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-right div.list-group>a.active:after{border-right: 10px solid %s !important;}",
-      id, color
+    sass::sass(list(
+      list(id = paste0(id, "-tabbable"), color = color),
+      sass::sass_file(input = system.file("assets/vertical-tab-panel/vtb-custom.scss", package = "shinyWidgets"))
     ))
   )
 

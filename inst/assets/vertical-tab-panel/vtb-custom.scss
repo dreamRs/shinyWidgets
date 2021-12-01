@@ -1,0 +1,29 @@
+##{$id} > div.vrtc-tab-panel-menu div.list-group > a.active .fa {
+  background-color: $color;
+}
+##{$id} > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-left div.list-group > a.active:after {
+  border-left: 10px solid $color !important;
+}
+##{$id} > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-right div.list-group > a.active:after {
+  border-right: 10px solid $color !important;
+}
+##{$id} > div.vrtc-tab-panel-menu div.list-group > a .glyphicon, ##{$id} > div.vrtc-tab-panel-menu div.list-group > a .fa {
+  color: $color !important;
+}
+
+##{$id} > div.vrtc-tab-panel-menu div.list-group > a.active,
+ ##{$id} > div.vrtc-tab-panel-menu div.list-group > a.active .glyphicon,
+ ##{$id} > div.vrtc-tab-panel-menu div.list-group > a.active .fa {
+  background-color: $color !important;
+  border-color: $color !important;
+  color: #ffffff !important;
+}
+
+##{$id} > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-left div.list-group > a.active:after {
+  border-left: 10px solid $color !important;
+}
+
+##{$id} > div.vrtc-tab-panel-menu.vrtc-tab-panel-menu-right div.list-group > a.active:after {
+  border-right: 10px solid $color !important;
+}
+
