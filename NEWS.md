@@ -1,4 +1,4 @@
-shinyWidgets 0.6.2.9000
+shinyWidgets (unreleased)
 ======================
 
 * `checkboxGroupButtons()`/`radioGroupButtons()` fixed `justified = TRUE` argument compatibility with Bootstrap 4 (fix [#423](https://github.com/dreamRs/shinyWidgets/issues/423))
@@ -6,6 +6,7 @@ shinyWidgets 0.6.2.9000
 
 ### Bug fixes
 * `updateNumericRangeInput()` failed to correctly update `label` ([#441](https://github.com/dreamRs/shinyWidgets/issues/441))
+* `verticalTabsetPanel()` didn't work inside `renderUI` and with more than one panel ([#446](https://github.com/dreamRs/shinyWidgets/issues/446))
 
 
 

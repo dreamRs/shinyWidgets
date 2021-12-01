@@ -20,43 +20,7 @@
 #'
 #' @seealso \code{\link{updateVerticalTabsetPanel}} for updating selected tabs.
 #'
-#' @examples
-#'
-#' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   fluidRow(
-#'     column(
-#'       width = 10, offset = 1,
-#'       tags$h2("Vertical tab panel example"),
-#'       verticalTabsetPanel(
-#'         verticalTabPanel(
-#'           title = "Title 1", icon = icon("home", "fa-2x"),
-#'           "Content panel 1"
-#'         ),
-#'         verticalTabPanel(
-#'           title = "Title 2", icon = icon("map", "fa-2x"),
-#'           "Content panel 2"
-#'         ),
-#'         verticalTabPanel(
-#'           title = "Title 3", icon = icon("rocket", "fa-2x"),
-#'           "Content panel 3"
-#'         )
-#'       )
-#'     )
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
+#' @example examples/vertical-tab.R
 verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#112446", contentWidth = 9, menuSide = "left") {
   stopifnot(is.numeric(contentWidth))
   stopifnot(contentWidth >= 1, contentWidth <= 12)
@@ -88,11 +52,11 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
   if (identical(menuSide, "left")) {
     vtabTag <- tags$div(
       class="col-sm-12 vrtc-tab-panel-container tabbable",
-      id = if(is.null(id)) id else paste0(id,"-tabbable"),
+      id = if (is.null(id)) id else paste0(id,"-tabbable"),
       tags$div(
         class = sprintf("col-sm-%s vrtc-tab-panel-menu vrtc-tab-panel-menu-%s", 12 - contentWidth, menuSide),
         tags$div(
-          class="list-group vertical-tab-panel",
+          class = "list-group vertical-tab-panel",
           lapply(X = tabs, FUN = `[[`, "tabbox"),
           id=id
         )
@@ -104,7 +68,7 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
     )
   } else {
     vtabTag <- tags$div(
-      class="col-sm-12 vrtc-tab-panel-container tabbable",
+      class = "col-sm-12 vrtc-tab-panel-container tabbable",
       id = if(is.null(id)) id else paste0(id,"-tabbable"),
       tags$div(
         class = sprintf("col-sm-%s vrtc-tab-panel  tab-content", contentWidth),
@@ -166,7 +130,7 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
         file = "assets/vertical-tab-panel"
       ),
       package = "shinyWidgets",
-      script = c("vertical-tab-panel.js", "vertical-tab-panel-bindings.js"),
+      script = c("vertical-tab-panel-bindings.js"),
       stylesheet = "vertical-tab-panel.css"
     ),
     vtabStyle,
@@ -186,15 +150,17 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
 #' @rdname vertical-tab
 verticalTabPanel <- function(title, ..., value = title, icon = NULL, box_height = "160px") {
   tabbox <- tags$a(
-    class="list-group-item text-center",
+    class = "list-group-item text-center",
     style = "cursor: pointer;",
-    style = if (!is.null(box_height)) paste("height:", box_height),
-    `data-value` = value, `data-toggle` = "tab",
+    style = if (!is.null(box_height)) paste("height:", box_height, ";"),
+    `data-value` = value,
+    `data-toggle` = "tab",
     if (!is.null(icon)) tags$h4(icon),
     tags$h4(title)
   )
   tabcontent <- tags$div(
-    class="vrtc-tab-panel-content", `data-value` = value,
+    class="vrtc-tab-panel-content",
+    `data-value` = value,
     ...
   )
   list(tabbox = tabbox, tabcontent = tabcontent)
@@ -306,30 +272,38 @@ updateVerticalTabsetPanel <- function (session, inputId, selected = NULL) {
 #'
 #' }
 #' @export
-appendVerticalTab <- function(inputId, tab, session=shiny::getDefaultReactiveDomain()){
-  shiny::insertUI(paste0("#",inputId,"-tabbable > .tab-content"),
-           "beforeEnd",
-           tab$tabcontent,
-           immediate = TRUE)
-  shiny::insertUI(paste0("#",inputId),
-           "beforeEnd",
-           tab$tabbox,
-           immediate = TRUE)
+appendVerticalTab <- function(inputId, tab, session = shiny::getDefaultReactiveDomain()) {
+  shiny::insertUI(
+    selector = paste0("#", inputId, "-tabbable > .tab-content"),
+    where = "beforeEnd",
+    ui = tab$tabcontent,
+    immediate = TRUE
+  )
+  shiny::insertUI(
+    selector = paste0("#",inputId),
+    where = "beforeEnd",
+    ui = tab$tabbox,
+    immediate = TRUE
+  )
 }
 
 #' @rdname appendVerticalTab
 #' @export
-removeVerticalTab <- function(inputId, index, session=shiny::getDefaultReactiveDomain()){
-  shiny::removeUI(paste0("#",inputId,"-tabbable > div > .vrtc-tab-panel-content:nth-child(",index,")"),
-           immediate = TRUE)
-  shiny::removeUI(paste0("#",inputId," > a:nth-child(",index,")"),
-           immediate = TRUE)
-  session$sendInputMessage(inputId, message = list(validate=TRUE))
+removeVerticalTab <- function(inputId, index, session = shiny::getDefaultReactiveDomain()) {
+  shiny::removeUI(
+    selector = paste0("#", inputId, "-tabbable > div > .vrtc-tab-panel-content:nth-child(", index,")"),
+    immediate = TRUE
+  )
+  shiny::removeUI(
+    selector = paste0("#", inputId, " > a:nth-child(", index,")"),
+    immediate = TRUE
+  )
+  session$sendInputMessage(inputId, message = list(validate = TRUE))
 }
 
 #' @param newOrder The new index order.
 #' @rdname appendVerticalTab
 #' @export
-reorderVerticalTabs <- function(inputId, newOrder, session=shiny::getDefaultReactiveDomain()){
-  session$sendInputMessage(inputId, message = list(reorder=newOrder))
+reorderVerticalTabs <- function(inputId, newOrder, session = shiny::getDefaultReactiveDomain()) {
+  session$sendInputMessage(inputId, message = list(reorder = newOrder))
 }

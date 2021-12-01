@@ -5,6 +5,26 @@ var shinyMode = typeof(window.Shiny) !== "undefined" && !!window.Shiny.inputBind
 if (shinyMode) {
   var VerticalTabInputBinding = new Shiny.InputBinding();
     $.extend(VerticalTabInputBinding, {
+      initialize: function(el) {
+        $(el).on("click", "> *", function(e) {
+          e.preventDefault();
+          $(this)
+            .siblings("a.active")
+            .removeClass("active");
+          $(this).addClass("active");
+          $(this).css("display", "");
+          var index = $(this).index();
+          $(this)
+            .parents(".vrtc-tab-panel-container")
+            .find("div.vrtc-tab-panel>div.vrtc-tab-panel-content")
+            .removeClass("active");
+          $(this)
+            .parents(".vrtc-tab-panel-container")
+            .find("div.vrtc-tab-panel>div.vrtc-tab-panel-content")
+            .eq(index)
+            .addClass("active");
+        });
+      },
       find: function(scope) {
         return $(scope).find('.vertical-tab-panel');
       },
@@ -43,4 +63,25 @@ if (shinyMode) {
       }
   });
   Shiny.inputBindings.register(VerticalTabInputBinding, 'shiny.VerticalTabInput');
+} else {
+  $(document).ready(function() {
+    $("div.vrtc-tab-panel-menu>div.list-group").on("click", "> *", function(e) {
+      e.preventDefault();
+      $(this)
+        .siblings("a.active")
+        .removeClass("active");
+      $(this).addClass("active");
+      $(this).css("display", "");
+      var index = $(this).index();
+      $(this)
+        .parents(".vrtc-tab-panel-container")
+        .find("div.vrtc-tab-panel>div.vrtc-tab-panel-content")
+        .removeClass("active");
+      $(this)
+        .parents(".vrtc-tab-panel-container")
+        .find("div.vrtc-tab-panel>div.vrtc-tab-panel-content")
+        .eq(index)
+        .addClass("active");
+    });
+  });
 }
