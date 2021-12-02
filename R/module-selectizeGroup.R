@@ -187,7 +187,6 @@ selectizeGroupServer <- function(input, output, session, data, vars, inline = TR
           session = session,
           inputId = x,
           choices = vals,
-          selected = isolate(input[[x]]),
           server = TRUE
         )
       }
