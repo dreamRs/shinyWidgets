@@ -6,6 +6,7 @@ test_that("Send message", {
 
   session <- as.environment(list(
     ns = identity,
+    getCurrentTheme = function() NULL,
     sendInputMessage = function(inputId, message) {
       session$lastInputMessage = list(id = inputId, message = message)
     }
@@ -25,6 +26,7 @@ test_that("Works in modules", {
   createModuleSession <- function(moduleId) {
     session <- as.environment(list(
       ns = shiny::NS(moduleId),
+      getCurrentTheme = function() NULL,
       sendInputMessage = function(inputId, message) {
         session$lastInputMessage = list(id = inputId, message = message)
       }

@@ -24,7 +24,7 @@ function(input, output, session) {
 
 
   lapply(
-    X = seq_len(12),
+    X = seq_len(14),
     FUN = function(x) {
       output[[paste0("res", x)]] <- renderPrint({
         input[[paste0("test", x)]]

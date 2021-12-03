@@ -35,11 +35,13 @@ types (such as logicals and numbers) will be coerced to strings.}
 
 \item{selected}{The values that should be initially selected, if any.}
 
-\item{status}{Status, only used if choices is not NULL.}
+\item{status}{Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
+Or use an arbitrary strings to add a custom class, e.g. : with \code{status = "custom-class"}, buttons will have class \code{btn-custom-class}.}
 
-\item{size}{Size, only used if choices is not NULL.}
+\item{size}{Size of the buttons ('xs', 'sm', 'normal', 'lg')}
 
-\item{checkIcon}{Icon, only used if choices is not NULL.}
+\item{checkIcon}{A list, if no empty must contain at least one element named 'yes'
+corresponding to an icon to display if the button is checked.}
 
 \item{choiceNames}{List of names and values, respectively,
 that are displayed to the user in the app and correspond to the each

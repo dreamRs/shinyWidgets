@@ -65,5 +65,5 @@ css_files <- css_files[
   ]
 
 
-crass_file(input = css_files, output = "inst/assets/shinyWidgets.min.css")
+jstools::crass_file(input = css_files, output = "inst/assets/shinyWidgets.min.css")
 

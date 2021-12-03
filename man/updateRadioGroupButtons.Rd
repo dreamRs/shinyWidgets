@@ -12,6 +12,7 @@ updateRadioGroupButtons(
   selected = NULL,
   status = "default",
   size = "normal",
+  justified = FALSE,
   checkIcon = list(),
   choiceNames = NULL,
   choiceValues = NULL,
@@ -37,11 +38,15 @@ be provided, and vice-versa. The values should be strings; other types
 defaults to the first item in \code{choices}. To start with no items selected,
 use \code{character(0)}.}
 
-\item{status}{Status, only used if choices is not NULL.}
+\item{status}{Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
+Or use an arbitrary strings to add a custom class, e.g. : with \code{status = "custom-class"}, buttons will have class \code{btn-custom-class}.}
 
-\item{size}{Size, only used if choices is not NULL.}
+\item{size}{Size of the buttons ('xs', 'sm', 'normal', 'lg')}
 
-\item{checkIcon}{Icon, only used if choices is not NULL.}
+\item{justified}{If TRUE, fill the width of the parent div}
+
+\item{checkIcon}{A list, if no empty must contain at least one element named 'yes'
+corresponding to an icon to display if the button is checked.}
 
 \item{choiceNames}{List of names and values, respectively, that
 are displayed to the user in the app and correspond to the each choice (for
@@ -70,10 +75,8 @@ if \code{TRUE} users won't be able to select a value.}
 Change the value of a radio group buttons input on the client
 }
 \examples{
-if (interactive()) {
-
-library("shiny")
-library("shinyWidgets")
+library(shiny)
+library(shinyWidgets)
 
 ui <- fluidPage(
   radioGroupButtons(
@@ -99,13 +102,15 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$updatechoices, {
-    newchoices <- sample(letters, sample(2:6))
+    newchoices <- sample(letters, sample(3:7))
     updateRadioGroupButtons(
-      session = session, inputId = "somevalue",
+      session = session,
+      inputId = "somevalue",
       choices = newchoices
     )
     updatePickerInput(
-      session = session, inputId = "updateselected",
+      session = session,
+      inputId = "updateselected",
       choices = newchoices
     )
   })
@@ -126,9 +131,8 @@ server <- function(input, output, session) {
 
 }
 
-shinyApp(ui = ui, server = server)
-
-}
+if (interactive())
+  shinyApp(ui = ui, server = server)
 }
 \seealso{
 \code{\link[=radioGroupButtons]{radioGroupButtons()}}

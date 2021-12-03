@@ -14,6 +14,7 @@ test_that("Default", {
     choices = choices
   )
   choicestag <- rtag$children[[3]]$children[[1]]$children[[1]]
+  choicestag <- choicestag()
   expect_length(choicestag, length(choices))
 
   checked <- lapply(choicestag, function(x) grepl(pattern = "checked", x = as.character(x)))
@@ -33,6 +34,7 @@ test_that("With choices", {
   )
 
   choicestag <- rtag$children[[3]]$children[[1]]$children[[1]]
+  choicestag <- choicestag()
   expect_length(choicestag, length(choices))
 
   checked <- lapply(choicestag, function(x) grepl(pattern = "checked", x = as.character(x)))
@@ -51,6 +53,7 @@ test_that("Danger status", {
   )
 
   choicestag <- rtag$children[[3]]$children[[1]]$children[[1]]
+  choicestag <- choicestag()
   danger <- lapply(choicestag, function(x) grepl(pattern = "danger", x = as.character(x)))
   danger <- unlist(danger)
   expect_true(all(danger))
@@ -67,6 +70,7 @@ test_that("Success status", {
   )
 
   choicestag <- rtag$children[[3]]$children[[1]]$children[[1]]
+  choicestag <- choicestag()
   success <- lapply(choicestag, function(x) grepl(pattern = "success", x = as.character(x)))
   success <- unlist(success)
   expect_true(all(success))
@@ -85,6 +89,7 @@ test_that("Multiple status", {
 
   status <- c("success", "primary", "secondary", "success")
   choicestag <- cbtag$children[[3]]$children[[1]]$children[[1]]
+  choicestag <- choicestag()
   success <- lapply(seq_along(choicestag), function(x) grepl(pattern = status[x], x = as.character(choicestag[x])))
   success <- unlist(success)
   expect_true(all(success))

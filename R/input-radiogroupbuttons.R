@@ -20,8 +20,8 @@
 #'
 #' @seealso [updateRadioGroupButtons()]
 #'
-#' @importFrom shiny restoreInput
-#' @importFrom htmltools tags HTML validateCssUnit
+#' @importFrom shiny restoreInput getCurrentTheme
+#' @importFrom htmltools tags HTML validateCssUnit css tagFunction
 #'
 #' @export
 #'
@@ -64,9 +64,9 @@ radioGroupButtons <- function(inputId,
     divClass <- paste0(divClass, " btn-group-", size)
   }
 
-  radioGroupButtonsTag <- tags$div(
+  TAG <- tags$div(
     class = "form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline",
-    style = if (!is.null(width)) paste0("width:", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     tags$label(
       id = paste0(inputId, "-label"),
       class = "control-label",
@@ -85,24 +85,40 @@ radioGroupButtons <- function(inputId,
         `aria-labelledby` = paste0(inputId, "-label"),
         `data-toggle` = "buttons",
         class = "btn-group-container-sw",
-        generateRGB(
-          inputId = inputId,
-          choices = args,
-          selected = selected,
-          status = status,
-          size = size,
-          checkIcon = checkIcon,
-          disabled = disabled,
-          justified = justified
-        )
+        style = if (direction == "vertical") css(width = validateCssUnit(width)),
+        htmltools::tagFunction(function() {
+          markup_buttons_radio(
+            shiny::getCurrentTheme(),
+            list(
+              inputId = inputId,
+              choices = args,
+              selected = selected,
+              status = status,
+              size = size,
+              checkIcon = checkIcon,
+              disabled = disabled,
+              justified = justified
+            )
+          )
+        })
       )
     )
   )
-  attachShinyWidgetsDep(radioGroupButtonsTag)
+  attachShinyWidgetsDep(TAG)
 }
 
+#' @importFrom bslib is_bs_theme theme_version
+markup_buttons_radio <- function(theme, args) {
+  if (!bslib::is_bs_theme(theme)) {
+    return(do.call(markup_buttons_radio_bs3, args))
+  }
+  if (bslib::theme_version(theme) %in% c("5")) {
+    return(do.call(markup_buttons_radio_bs5, args))
+  }
+  do.call(markup_buttons_radio_bs3, args)
+}
 
-generateRGB <- function(inputId, choices, selected, status, size, checkIcon, disabled = FALSE, justified = FALSE) {
+markup_buttons_radio_bs3 <- function(inputId, choices, selected, status, size, checkIcon, disabled = FALSE, justified = FALSE) {
   btn_wrapper <- function(...) {
     htmltools::tags$div(
       class = "btn-group btn-group-toggle",
@@ -147,6 +163,45 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon, dis
 }
 
 
+markup_buttons_radio_bs5 <- function(inputId, choices, selected, status, size, checkIcon, disabled = FALSE, justified = FALSE) {
+  if (!is.null(checkIcon) && !is.null(checkIcon$yes)) {
+    displayIcon <- TRUE
+  } else {
+    displayIcon <- FALSE
+  }
+  mapply(
+    FUN = function(name, value, statusElement) {
+      if (identical(statusElement, "default"))
+        statusElement <- "outline-primary"
+      tagList(
+        tags$input(
+          type = "radio",
+          autocomplete = "off",
+          id = paste0(inputId, which(choices$choiceValues == value)),
+          name = inputId,
+          value = value,
+          class = "btn-check",
+          checked = if (value %in% selected) "checked"
+        ),
+        tags$label(
+          class = paste0("btn radiobtn btn-", statusElement),
+          disabled = if (isTRUE(disabled)) "disabled",
+          class = if (isTRUE(disabled)) "disabled",
+          `for` = paste0(inputId, which(choices$choiceValues == value)),
+          if (displayIcon) tags$span(class = "radio-btn-icon-yes", checkIcon$yes),
+          if (displayIcon) tags$span(class = "radio-btn-icon-no", checkIcon$no),
+          if (is.list(name)) name else HTML(name)
+        )
+      )
+    },
+    name = choices$choiceNames,
+    value = choices$choiceValues,
+    statusElement = rep(status, length.out = length(choices$choiceNames)),
+    SIMPLIFY = FALSE,
+    USE.NAMES = FALSE
+  )
+}
+
 
 
 #' @title Change the value of a radio group buttons input on the client
@@ -155,9 +210,7 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon, dis
 #' Change the value of a radio group buttons input on the client
 #'
 #' @inheritParams shiny::updateRadioButtons
-#' @param status Status, only used if choices is not NULL.
-#' @param size Size, only used if choices is not NULL.
-#' @param checkIcon Icon, only used if choices is not NULL.
+#' @inheritParams radioGroupButtons
 #' @param disabled Logical, disable or enable buttons,
 #'  if \code{TRUE} users won't be able to select a value.
 #' @param disabledChoices Vector of specific choices to disable.
@@ -166,69 +219,10 @@ generateRGB <- function(inputId, choices, selected, status, size, checkIcon, dis
 #'
 #' @seealso [radioGroupButtons()]
 #'
-#' @importFrom htmltools tagList
+#' @importFrom htmltools tagList doRenderTags
 #' @importFrom shiny getDefaultReactiveDomain
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#' ui <- fluidPage(
-#'   radioGroupButtons(
-#'     inputId = "somevalue",
-#'     choices = c("A", "B", "C"),
-#'     label = "My label"
-#'   ),
-#'
-#'   verbatimTextOutput(outputId = "res"),
-#'
-#'   actionButton(inputId = "updatechoices", label = "Random choices"),
-#'   pickerInput(
-#'     inputId = "updateselected", label = "Update selected:",
-#'     choices = c("A", "B", "C"), multiple = FALSE
-#'   ),
-#'   textInput(inputId = "updatelabel", label = "Update label")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint({
-#'     input$somevalue
-#'   })
-#'
-#'   observeEvent(input$updatechoices, {
-#'     newchoices <- sample(letters, sample(2:6))
-#'     updateRadioGroupButtons(
-#'       session = session, inputId = "somevalue",
-#'       choices = newchoices
-#'     )
-#'     updatePickerInput(
-#'       session = session, inputId = "updateselected",
-#'       choices = newchoices
-#'     )
-#'   })
-#'
-#'   observeEvent(input$updateselected, {
-#'     updateRadioGroupButtons(
-#'       session = session, inputId = "somevalue",
-#'       selected = input$updateselected
-#'     )
-#'   }, ignoreNULL = TRUE, ignoreInit = TRUE)
-#'
-#'   observeEvent(input$updatelabel, {
-#'     updateRadioGroupButtons(
-#'       session = session, inputId = "somevalue",
-#'       label = input$updatelabel
-#'     )
-#'   }, ignoreInit = TRUE)
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#' }
+#' @example examples/update-radio-buttons.R
 updateRadioGroupButtons <- function(session = getDefaultReactiveDomain(),
                                     inputId,
                                     label = NULL,
@@ -236,6 +230,7 @@ updateRadioGroupButtons <- function(session = getDefaultReactiveDomain(),
                                     selected = NULL,
                                     status = "default",
                                     size = "normal",
+                                    justified = FALSE,
                                     checkIcon = list(),
                                     choiceNames = NULL,
                                     choiceValues = NULL,
@@ -250,13 +245,16 @@ updateRadioGroupButtons <- function(session = getDefaultReactiveDomain(),
   if (!is.null(disabledChoices))
     disabledChoices <- as.character(disabledChoices)
   options <- if (!is.null(args$choiceValues)) {
-    as.character(tagList(
-      generateRGB(
-        session$ns(inputId),
-        args, selected,
+    doRenderTags(markup_buttons_radio(
+      session$getCurrentTheme(),
+      list(
+        inputId = session$ns(inputId),
+        choices = args,
+        selected = selected,
         status = status,
         size = size,
-        checkIcon = checkIcon
+        checkIcon = checkIcon,
+        justified = justified
       )
     ))
   }
