@@ -1,14 +1,14 @@
 shinyWidgets (unreleased)
 ======================
 
-* `checkboxGroupButtons()`/`radioGroupButtons()` fixed `justified = TRUE` argument compatibility with Bootstrap 4 (fix [#423](https://github.com/dreamRs/shinyWidgets/issues/423))
+* `radioGroupButtons()` is now compatible with Bootstrap 4 & 5, via `bslib::bs_theme()`
 * `checkboxGroupButtons()`/`radioGroupButtons()`: `status` argument now accept a vector, thanks to [@jassler](https://github.com/jassler) ([#440](https://github.com/dreamRs/shinyWidgets/pull/440))
 
 ### Bug fixes
 * `updateNumericRangeInput()` failed to correctly update `label` ([#441](https://github.com/dreamRs/shinyWidgets/issues/441))
 * `verticalTabsetPanel()` didn't work inside `renderUI` and with more than one panel ([#446](https://github.com/dreamRs/shinyWidgets/issues/446))
 * `statiCard()`: fixed rendering in `renderUI` and value not displayed if animation interrupted ([#406](https://github.com/dreamRs/shinyWidgets/issues/406), [#407](https://github.com/dreamRs/shinyWidgets/issues/407))
-
+* `checkboxGroupButtons()`/`radioGroupButtons()` fixed `justified = TRUE` argument compatibility with Bootstrap 4 (fix [#423](https://github.com/dreamRs/shinyWidgets/issues/423))
 
 
 shinyWidgets 0.6.2

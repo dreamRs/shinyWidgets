@@ -77,7 +77,7 @@ radioGroupButtons <- function(inputId,
     if (!is.null(label)) tags$br(),
     tags$div(
       id = inputId,
-      class = "radioGroupButtons",
+      class = "radio-group-buttons",
       style = if (justified) "width: 100%;",
       tags$div(
         class = divClass,
