@@ -34,7 +34,6 @@ statiCard <- function(value,
     id <- paste0("stati-value-", sample.int(1e6, 1))
   tags$div(
     html_dependency_stati(),
-    if (isTRUE(animate)) html_dependency_bounty(),
     class = "stati",
     class = if (isTRUE(left)) "left",
     style = sprintf("color:%s; background:%s;", color, background),
@@ -43,7 +42,7 @@ statiCard <- function(value,
       class = "stati-content",
       tags$b(
         class = "stati-value",
-        class = if (isTRUE(animate)) "stati-card-bounty",
+        class = if (isTRUE(animate)) "stati-card-animated",
         style = if (isTRUE(animate)) sprintf("fill:%s;", color),
         id = id,
         `data-value` = value,
@@ -73,8 +72,8 @@ updateStatiCard <- function(id,
                             value,
                             duration = 2000,
                             session = getDefaultReactiveDomain()) {
-  session$sendCustomMessage(
-    type = "update-stati-card",
+  session$sendInputMessage(
+    inputId = id,
     message = list(
       id = session$ns(id),
       value = value,

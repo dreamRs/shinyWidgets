@@ -7,6 +7,7 @@ shinyWidgets (unreleased)
 ### Bug fixes
 * `updateNumericRangeInput()` failed to correctly update `label` ([#441](https://github.com/dreamRs/shinyWidgets/issues/441))
 * `verticalTabsetPanel()` didn't work inside `renderUI` and with more than one panel ([#446](https://github.com/dreamRs/shinyWidgets/issues/446))
+* `statiCard()`: fixed rendering in `renderUI` and value not displayed if animation interrupted ([#406](https://github.com/dreamRs/shinyWidgets/issues/406), [#407](https://github.com/dreamRs/shinyWidgets/issues/407))
 
 
 

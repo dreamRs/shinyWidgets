@@ -108,7 +108,7 @@ ui <- fluidPage(
       statiCard(
         "123456 something very very long",
         "Long value text with icon",
-        icon = icon("tachometer"),
+        icon = icon("tachometer-alt"),
         left = TRUE
       ),
       statiCard(
