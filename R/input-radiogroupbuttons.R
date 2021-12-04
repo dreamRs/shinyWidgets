@@ -212,7 +212,7 @@ markup_buttons_radio_bs5 <- function(inputId, choices, selected, status, size, c
 #' @inheritParams shiny::updateRadioButtons
 #' @inheritParams radioGroupButtons
 #' @param disabled Logical, disable or enable buttons,
-#'  if \code{TRUE} users won't be able to select a value.
+#'  if `TRUE` users won't be able to select a value.
 #' @param disabledChoices Vector of specific choices to disable.
 #'
 #' @export

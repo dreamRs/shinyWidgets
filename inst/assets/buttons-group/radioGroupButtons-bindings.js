@@ -101,12 +101,16 @@ $.extend(radioGroupButtonsBinding, {
         .text(data.label);
 
     if (data.disabled) {
+      // bs3
       $el.find("button").attr("disabled", "disabled");
       $el.find("button").addClass("disabled");
+      // bs5
       $el.find("label").addClass("disabled");
     } else {
+      // bs3
       $el.find("button").removeAttr("disabled");
       $el.find("button").removeClass("disabled");
+      // bs5
       $el.find("label").removeClass("disabled");
     }
     if (data.hasOwnProperty("disabledChoices")) {
@@ -118,9 +122,11 @@ $.extend(radioGroupButtonsBinding, {
             Shiny.$escape(data.disabledChoices[i]) +
             '"]'
         );
+        // bs5
         toDisable
           .next("label")
           .addClass("disabled");
+        // bs3
         toDisable
           .parent()
           .attr("disabled", "disabled")

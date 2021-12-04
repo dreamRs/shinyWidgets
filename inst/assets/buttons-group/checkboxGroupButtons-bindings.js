@@ -27,7 +27,7 @@ document.addEventListener("click", function(e) {
 var checkboxGroupButtonsBinding = new Shiny.InputBinding();
 $.extend(checkboxGroupButtonsBinding, {
   find: function(scope) {
-    return $(scope).find(".checkboxGroupButtons");
+    return $(scope).find(".checkbox-group-buttons");
   },
   getId: function(el) {
     return el.id;
@@ -128,21 +128,31 @@ $.extend(checkboxGroupButtonsBinding, {
       $el.find('label[for="' + Shiny.$escape(el.id) + '"]').text(data.label);
 
     if (data.disabled) {
+      // bs3
       $el.find("button").attr("disabled", "disabled");
       $el.find("button").addClass("disabled");
+      // bs5
+      $el.find("label").addClass("disabled");
     } else {
+      // bs3
       $el.find("button").removeAttr("disabled");
       $el.find("button").removeClass("disabled");
+      // bs5
+      $el.find("label").removeClass("disabled");
     }
     if (data.hasOwnProperty("disabledChoices")) {
       for (var i = 0; i < data.disabledChoices.length; i++) {
-        $(
+        var toDisable = $(
           'input:checkbox[name="' +
             Shiny.$escape(el.id) +
             '"][value="' +
             Shiny.$escape(data.disabledChoices[i]) +
             '"]'
-        )
+        );
+        // bs5
+        toDisable.next("label").addClass("disabled");
+        // bs3
+        toDisable
           .parent()
           .attr("disabled", "disabled")
           .addClass("disabled");
@@ -155,6 +165,6 @@ $.extend(checkboxGroupButtonsBinding, {
 
 Shiny.inputBindings.register(
   checkboxGroupButtonsBinding,
-  "shiny.checkboxGroupButtonsInput"
+  "shinyWidgets.checkboxGroupButtonsInput"
 );
 

@@ -1,28 +1,9 @@
 
-
 /* CSS checkbox buttons for icons */
-
 
 .btn.checkbtn:focus {
   outline: none !important;
 }
-
-
-
-.btn.checkbtn .check-btn-icon-yes {
-	opacity: 0; display: none;
-}
-.btn.checkbtn.active .check-btn-icon-yes {
-	opacity: 1; display: inline-block;
-}
-
-.btn.checkbtn.active .check-btn-icon-no {
-	opacity: 0; display: none;
-}
-.btn.checkbtn .check-btn-icon-no {
-	opacity: 1; display: inline-block;
-}
-
 
 .btn.checkbtn.disabled > .check-btn-icon-yes {
 	pointer-events: none;
@@ -32,16 +13,45 @@
 }
 
 
-
-
-
-/*
-.btn.checkbtn span.glyphicon {
+/*** BS3 ***/
+/* show "yes" icon if active */
+.btn.checkbtn .check-btn-icon-yes {
 	opacity: 0; display: none;
 }
-.btn.checkbtn.active span.glyphicon {
+.btn.checkbtn.active .check-btn-icon-yes {
 	opacity: 1; display: inline-block;
 }
-*/
+
+/* show "no" icon if not active */
+.btn.checkbtn.active .check-btn-icon-no {
+	opacity: 0; display: none;
+}
+.btn.checkbtn .check-btn-icon-no {
+	opacity: 1; display: inline-block;
+}
+
+
+/*** BS5 ***/
+/* show "yes" icon if checkbox is checked */
+.btn.checkbtn>.check-btn-icon-yes {
+	opacity: 0;
+	display: none;
+}
+.btn-check:checked+.btn.checkbtn>.check-btn-icon-yes,
+  .btn-check:active+.btn.checkbtn>.check-btn-icon-yes{
+	opacity: 1 !important;
+	display: inline-block !important;
+}
+
+/* show "no" icon if checkbox not checked */
+.btn-check:checked+.btn.checkbtn>.check-btn-icon-no {
+	opacity: 0;
+	display: none;
+}
+.btn.checkbtn>.check-btn-icon-no {
+	opacity: 1;
+	display: inline-block;
+}
+
 
 

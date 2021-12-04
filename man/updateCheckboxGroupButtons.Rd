@@ -12,6 +12,7 @@ updateCheckboxGroupButtons(
   selected = NULL,
   status = "default",
   size = "normal",
+  justified = FALSE,
   checkIcon = list(),
   choiceNames = NULL,
   choiceValues = NULL,
@@ -40,6 +41,8 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = "c
 
 \item{size}{Size of the buttons ('xs', 'sm', 'normal', 'lg')}
 
+\item{justified}{If TRUE, fill the width of the parent div}
+
 \item{checkIcon}{A list, if no empty must contain at least one element named 'yes'
 corresponding to an icon to display if the button is checked.}
 
@@ -63,56 +66,14 @@ a named list for \code{choices} is that \code{choiceNames} allows any
 type of UI object to be passed through (tag objects, icons, HTML code,
 ...), instead of just simple text. See Examples.}
 
-\item{disabled}{Logical, disable or enable buttons,
-if \code{TRUE} users won't be able to select a value.}
+\item{disabled}{Initialize buttons in a disabled state (users won't be able to select a value).}
 
 \item{disabledChoices}{Vector of specific choices to disable.}
 }
 \description{
-Change the value of a radio group buttons input on the client
+Change the value of a checkbox group buttons input on the client
 }
 \examples{
-if (interactive()) {
-
-library(shiny)
-library(shinyWidgets)
-
-# Example 1 ----
-
-ui <- fluidPage(
-
-  radioButtons(inputId = "up", label = "Update button :", choices = c("All", "None")),
-
-  checkboxGroupButtons(
-    inputId = "btn", label = "Power :",
-    choices = c("Nuclear", "Hydro", "Solar", "Wind"),
-    selected = "Hydro"
-  ),
-
-  verbatimTextOutput(outputId = "res")
-
-)
-
-server <- function(input,output, session){
-
-  observeEvent(input$up, {
-    if (input$up == "All"){
-      updateCheckboxGroupButtons(session, "btn", selected = c("Nuclear", "Hydro", "Solar", "Wind"))
-    } else {
-      updateCheckboxGroupButtons(session, "btn", selected = character(0))
-    }
-  }, ignoreInit = TRUE)
-
-  output$res <- renderPrint({
-    input$btn
-  })
-}
-
-shinyApp(ui = ui, server = server)
-
-
-# Example 2 ----
-
 library("shiny")
 library("shinyWidgets")
 
@@ -127,9 +88,12 @@ ui <- fluidPage(
 
   actionButton(inputId = "updatechoices", label = "Random choices"),
   pickerInput(
-    inputId = "updateselected", label = "Update selected:",
-    choices = c("A", "B", "C"), multiple = TRUE
+    inputId = "updateselected",
+    label = "Update selected:",
+    choices = c("A", "B", "C"),
+    multiple = TRUE
   ),
+  actionButton(inputId = "clear", label = "Clear selected"),
   textInput(inputId = "updatelabel", label = "Update label")
 )
 
@@ -142,34 +106,45 @@ server <- function(input, output, session) {
   observeEvent(input$updatechoices, {
     newchoices <- sample(letters, sample(2:6))
     updateCheckboxGroupButtons(
-      session = session, inputId = "somevalue",
+      session = session,
+      inputId = "somevalue",
       choices = newchoices
     )
     updatePickerInput(
-      session = session, inputId = "updateselected",
+      session = session,
+      inputId = "updateselected",
       choices = newchoices
     )
   })
 
   observeEvent(input$updateselected, {
     updateCheckboxGroupButtons(
-      session = session, inputId = "somevalue",
+      session = session,
+      inputId = "somevalue",
       selected = input$updateselected
     )
   }, ignoreNULL = TRUE, ignoreInit = TRUE)
 
+  observeEvent(input$clear, {
+    updateCheckboxGroupButtons(
+      session = session,
+      inputId = "somevalue",
+      selected = character(0)
+    )
+  })
+
   observeEvent(input$updatelabel, {
     updateCheckboxGroupButtons(
-      session = session, inputId = "somevalue",
+      session = session,
+      inputId = "somevalue",
       label = input$updatelabel
     )
   }, ignoreInit = TRUE)
 
 }
 
-shinyApp(ui = ui, server = server)
-
-}
+if (interactive())
+  shinyApp(ui = ui, server = server)
 }
 \seealso{
 \code{\link[=checkboxGroupButtons]{checkboxGroupButtons()}}
