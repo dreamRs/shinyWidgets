@@ -28,7 +28,7 @@ be entered into the control. Internet Explorer 8 and 9 do not support this
 option.}
 
 \item{icon}{Icon to update, note that you can update icon only
-if initialized in \code{\link{textInputIcon}}.}
+if initialized in \code{\link[=textInputIcon]{textInputIcon()}}.}
 }
 \value{
 No value.
@@ -44,7 +44,7 @@ ui <- fluidPage(
   textInputIcon(
     inputId = "id",
     label = "With an icon",
-    icon = icon("user-circle-o")
+    icon = icon("user-circle")
   ),
   actionButton("updateValue", "Update value"),
   actionButton("updateIcon", "Update icon"),
@@ -64,7 +64,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$updateIcon, {
-    i <- sample(c("home", "gears", "dollar", "globe", "sliders"), 1)
+    i <- sample(c("home", "cogs", "dollar-sign", "globe", "sliders-h"), 1)
     updateTextInputIcon(
       session = session,
       inputId = "id",
@@ -76,4 +76,7 @@ server <- function(input, output, session) {
 
 if (interactive())
   shinyApp(ui, server)
+}
+\seealso{
+\code{\link[=textInputIcon]{textInputIcon()}}
 }

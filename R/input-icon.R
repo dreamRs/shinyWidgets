@@ -2,15 +2,16 @@
 #' @title Create a text input control with icon(s)
 #'
 #' @description Extend form controls by adding text or icons before,
-#'  after, or on both sides of a classic \code{textInput}.
+#'  after, or on both sides of a classic `textInput`.
 #'
 #' @inheritParams shiny::textInput
-#' @param icon An \code{icon} or a \code{list}, containing \code{icon}s
+#' @param icon An [shiny::icon()] (or equivalent) or a `list`, containing `icon`s
 #'  or text, to be displayed on the right or left of the text input.
-#' @param size Size of the input, default to \code{NULL}, can
-#'  be \code{"sm"} (small) or \code{"lg"} (large).
+#' @param size Size of the input, default to `NULL`, can
+#'  be `"sm"` (small) or `"lg"` (large).
 #'
 #' @return A text input control that can be added to a UI definition.
+#' @seealso See [updateTextInputIcon()] to update server-side, and [numericInputIcon()] for using numeric value.
 #' @export
 #'
 #' @importFrom shiny restoreInput
@@ -25,7 +26,6 @@ textInputIcon <- function(inputId,
                           size = NULL,
                           width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-  addons <- validate_addon(icon)
   tag <- tags$div(
     class = "form-group shiny-input-container",
     if (!is.null(label)) {
@@ -35,7 +35,7 @@ textInputIcon <- function(inputId,
     tags$div(
       class = "input-group",
       class = validate_size(size),
-      addons$left,
+      markup_input_group(icon, "left", theme_func = shiny::getCurrentTheme),
       tags$input(
         id = inputId,
         type = "text",
@@ -43,7 +43,7 @@ textInputIcon <- function(inputId,
         value = value,
         placeholder = placeholder
       ),
-      addons$right
+      markup_input_group(icon, "right", theme_func = shiny::getCurrentTheme),
     )
   )
   attachShinyWidgetsDep(tag)
@@ -53,9 +53,10 @@ textInputIcon <- function(inputId,
 #'
 #' @inheritParams shiny::updateTextInput
 #' @param icon Icon to update, note that you can update icon only
-#'  if initialized in \code{\link{textInputIcon}}.
+#'  if initialized in [textInputIcon()].
 #'
 #' @return No value.
+#' @seealso [textInputIcon()]
 #' @export
 #'
 #' @importFrom htmltools doRenderTags
@@ -68,7 +69,7 @@ textInputIcon <- function(inputId,
 #'   textInputIcon(
 #'     inputId = "id",
 #'     label = "With an icon",
-#'     icon = icon("user-circle-o")
+#'     icon = icon("user-circle")
 #'   ),
 #'   actionButton("updateValue", "Update value"),
 #'   actionButton("updateIcon", "Update icon"),
@@ -88,7 +89,7 @@ textInputIcon <- function(inputId,
 #'   })
 #'
 #'   observeEvent(input$updateIcon, {
-#'     i <- sample(c("home", "gears", "dollar", "globe", "sliders"), 1)
+#'     i <- sample(c("home", "cogs", "dollar-sign", "globe", "sliders-h"), 1)
 #'     updateTextInputIcon(
 #'       session = session,
 #'       inputId = "id",
@@ -106,17 +107,18 @@ updateTextInputIcon <- function(session = getDefaultReactiveDomain(),
                                 value = NULL,
                                 placeholder = NULL,
                                 icon = NULL) {
-  addons <- validate_addon(icon)
-  if (!is.null(addons$right))
-    addons$right <- htmltools::doRenderTags(addons$right)
-  if (!is.null(addons$left))
-    addons$left <- htmltools::doRenderTags(addons$left)
+  right <- markup_input_group(icon, "right", theme_func = session$getCurrentTheme)
+  if (!is.null(right))
+    right <- as.character(right)
+  left <- markup_input_group(icon, "left", theme_func = session$getCurrentTheme)
+  if (!is.null(left))
+    left <- as.character(left)
   message <- dropNulls(list(
     label = label,
     value = value,
     placeholder = placeholder,
-    right = addons$right,
-    left = addons$left
+    right = right,
+    left = left
   ))
   session$sendInputMessage(inputId, message)
 }
@@ -129,21 +131,19 @@ updateTextInputIcon <- function(session = getDefaultReactiveDomain(),
 #' @title Create a numeric input control with icon(s)
 #'
 #' @description Extend form controls by adding text or icons before,
-#'  after, or on both sides of a classic \code{numericInput}.
+#'  after, or on both sides of a classic `numericInput`.
 #'
 #' @inheritParams shiny::numericInput
-#' @param icon An \code{icon} or a \code{list}, containing \code{icon}s
-#'  or text, to be displayed on the right or left of the numeric input.
-#' @param size Size of the input, default to \code{NULL}, can
-#'  be \code{"sm"} (small) or \code{"lg"} (large).
+#' @inheritParams textInputIcon
 #' @param help_text Help text placed below the widget and only
-#'  displayed if value entered by user is outside of \code{min} and \code{max}.
+#'  displayed if value entered by user is outside of `min` and `max`.
 #'
 #' @return A numeric input control that can be added to a UI definition.
+#' @seealso See [updateNumericInputIcon()] to update server-side, and [textInputIcon()] for using text value.
 #' @export
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools tags validateCssUnit
+#' @importFrom htmltools tags validateCssUnit css
 #'
 #' @example examples/numericInputIcon.R
 numericInputIcon <- function(inputId,
@@ -157,17 +157,17 @@ numericInputIcon <- function(inputId,
                              help_text = NULL,
                              width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-  addons <- validate_addon(icon)
   tag <- tags$div(
     class = "form-group shiny-input-container",
     if (!is.null(label)) {
       tags$label(label, class = "control-label", `for` = inputId)
     },
-    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     tags$div(
       class = "input-group",
       class = validate_size(size),
-      addons$left, tags$input(
+      markup_input_group(icon, "left", theme_func = shiny::getCurrentTheme),
+      tags$input(
         id = inputId,
         type = "number",
         class = "form-control numeric-input-icon",
@@ -175,7 +175,8 @@ numericInputIcon <- function(inputId,
         min = min,
         max = max,
         step = step
-      ), addons$right
+      ),
+      markup_input_group(icon, "right", theme_func = shiny::getCurrentTheme)
     ),
     tags$span(class = "help-block invalid-feedback hidden d-none", help_text)
   )
@@ -187,9 +188,10 @@ numericInputIcon <- function(inputId,
 #'
 #' @inheritParams shiny::updateNumericInput
 #' @param icon Icon to update, note that you can update icon only
-#'  if initialized in \code{\link{numericInputIcon}}.
+#'  if initialized in [numericInputIcon()].
 #'
 #' @return No value.
+#' @seealso [numericInputIcon()]
 #' @export
 #'
 #' @importFrom htmltools doRenderTags
@@ -223,7 +225,7 @@ numericInputIcon <- function(inputId,
 #'   })
 #'
 #'   observeEvent(input$updateIcon, {
-#'     i <- sample(c("home", "gears", "dollar", "globe", "sliders"), 1)
+#'     i <- sample(c("home", "cogs", "dollar-sign", "globe", "sliders-h"), 1)
 #'     updateNumericInputIcon(
 #'       session = session,
 #'       inputId = "id",
@@ -243,19 +245,20 @@ updateNumericInputIcon <- function(session = getDefaultReactiveDomain(),
                                    max = NULL,
                                    step = NULL,
                                    icon = NULL) {
-  addons <- validate_addon(icon)
-  if (!is.null(addons$right))
-    addons$right <- htmltools::doRenderTags(addons$right)
-  if (!is.null(addons$left))
-    addons$left <- htmltools::doRenderTags(addons$left)
+  right <- markup_input_group(icon, "right", theme_func = session$getCurrentTheme)
+  if (!is.null(right))
+    right <- as.character(right)
+  left <- markup_input_group(icon, "left", theme_func = session$getCurrentTheme)
+  if (!is.null(left))
+    left <- as.character(left)
   message <- dropNulls(list(
     label = label,
     value = formatNoSci(value),
     min = formatNoSci(min),
     max = formatNoSci(max),
     step = formatNoSci(step),
-    right = addons$right,
-    left = addons$left
+    right = right,
+    left = left
   ))
   session$sendInputMessage(inputId, message)
 }
@@ -272,36 +275,47 @@ validate_size <- function(size) {
   }
 }
 
-validate_addon <- function(icon) {
-  if (!is.null(icon)) {
-    if (inherits(icon, "shiny.tag")) {
-      left <- tags$span(class = "input-group-text", icon)
-      right <- NULL
-    } else if (inherits(icon, "list")) {
-      if (length(icon) <= 1) {
-        left <- tags$span(class = "input-group-text", icon)
-        right <- NULL
-      } else {
-        left <- if (!is.null(icon[[1]])) {
-          tags$span(class = "input-group-text", icon[[1]])
-        } else {
-          NULL
-        }
-        right <- tags$span(class = "input-group-text", icon[[2]])
-      }
-    } else {
-      stop("InputIcon: icon must be an icon or a list.")
+#' @importFrom htmltools tagList tagFunction
+#' @importFrom shiny getCurrentTheme
+#' @importFrom bslib is_bs_theme theme_version
+markup_input_group <- function(icon, side = c("left", "right"), theme_func = NULL) {
+  side <- match.arg(side)
+  if (is.null(icon))
+    return(NULL)
+  if (inherits(icon, "shiny.tag") & side == "right")
+    return(NULL)
+  if (!inherits(icon, "shiny.tag") & length(icon) < 2)
+    icon <- c(icon, list(NULL))
+  if (!inherits(icon, "shiny.tag"))
+    icon <- icon[which(side == c("left", "right"))]
+  if (is.null(icon[[1]]))
+    return(NULL)
+  tagList(tagFunction(function() {
+    if (is.function(theme_func))
+      theme <- theme_func()
+    if (!bslib::is_bs_theme(theme)) {
+      return(markup_input_group_bs3(icon, side))
     }
-  } else {
-    left <- right <- NULL
-  }
-  if (!is.null(left))
-    left <- tags$div(class = "input-group-addon input-group-prepend", left)
-  if (!is.null(right))
-    right <- tags$div(class = "input-group-addon input-group-append", right)
-  list(left = left, right = right)
+    if (bslib::theme_version(theme) %in% c("5")) {
+      return(markup_input_group_bs5(icon, side))
+    }
+    markup_input_group_bs3(icon, side)
+  }))
 }
 
 
+markup_input_group_bs3 <- function(icon, side = c("left", "right")) {
+  tags$div(
+    class = "input-group-addon sw-input-icon",
+    class = switch(
+      side,
+      left = "input-group-prepend",
+      right = "input-group-append"
+    ),
+    tags$span(class = "input-group-text", icon)
+  )
+}
 
-
+markup_input_group_bs5 <- function(icon, side = c("left", "right")) {
+  tags$span(class = "input-group-text sw-input-icon", icon)
+}

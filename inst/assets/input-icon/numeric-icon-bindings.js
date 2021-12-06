@@ -114,10 +114,10 @@ $.extend(numericInputIconBinding, {
     if (data.hasOwnProperty("step")) el.step = data.step;
     updateLabel(data.label, this._getLabelNode(el));
     if (data.hasOwnProperty("left")) {
-      $(el).prev(".input-group-addon").replaceWith(data.left);
+      $(el).prev(".sw-input-icon").replaceWith(data.left);
     }
     if (data.hasOwnProperty("right")) {
-      $(el).next(".input-group-addon").replaceWith(data.right);
+      $(el).next(".sw-input-icon").replaceWith(data.right);
     }
     $(el).trigger("change");
   },

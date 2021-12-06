@@ -32,7 +32,7 @@ updateNumericInputIcon(
 \item{step}{Interval to use when stepping between min and max}
 
 \item{icon}{Icon to update, note that you can update icon only
-if initialized in \code{\link{numericInputIcon}}.}
+if initialized in \code{\link[=numericInputIcon]{numericInputIcon()}}.}
 }
 \value{
 No value.
@@ -69,7 +69,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$updateIcon, {
-    i <- sample(c("home", "gears", "dollar", "globe", "sliders"), 1)
+    i <- sample(c("home", "cogs", "dollar-sign", "globe", "sliders-h"), 1)
     updateNumericInputIcon(
       session = session,
       inputId = "id",
@@ -81,4 +81,7 @@ server <- function(input, output, session) {
 
 if (interactive())
   shinyApp(ui, server)
+}
+\seealso{
+\code{\link[=numericInputIcon]{numericInputIcon()}}
 }

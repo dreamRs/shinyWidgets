@@ -1,8 +1,11 @@
 shinyWidgets (unreleased)
 ======================
 
-* `radioGroupButtons()` is now compatible with Bootstrap 4 & 5, via `bslib::bs_theme()`.
-* `checkboxGroupButtons()` is now compatible with Bootstrap 4 & 5, via `bslib::bs_theme()`.
+*  Following functions are now compatible with Bootstrap 4 & 5, when using `bslib::bs_theme()` :
+    + `radioGroupButtons()`
+    + `checkboxGroupButtons()`
+    + `textInputIcon()`
+    + `numericInputIcon()`
 * `checkboxGroupButtons()`/`radioGroupButtons()`: `status` argument now accept a vector, thanks to [@jassler](https://github.com/jassler) ([#440](https://github.com/dreamRs/shinyWidgets/pull/440))
 
 ### Bug fixes
