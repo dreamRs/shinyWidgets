@@ -126,7 +126,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
 #' @export
 #'
 #' @rdname selectizeGroup-module
-#' @importFrom shiny updateSelectizeInput observeEvent reactiveValues reactive is.reactive
+#' @importFrom shiny updateSelectizeInput observeEvent reactiveValues reactive is.reactive isolate
 selectizeGroupServer <- function(input, output, session, data, vars, inline = TRUE) { # nocov start
 
   # Namespace
