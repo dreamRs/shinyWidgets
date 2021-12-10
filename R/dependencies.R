@@ -24,8 +24,8 @@ attachShinyWidgetsDep <- function(tag, widget = NULL, extra_deps = NULL) {
         htmltools::findDependencies(shiny::icon("rebel"))[[1]]
       )
     } else if (widget == "bsswitch") {
-      dependencies <- list(
-        dependencies,
+      dependencies <- c(
+        list(dependencies),
         html_dependency_bsswitch()
       )
     } else if (widget == "multi") {
@@ -273,13 +273,54 @@ prettyDependencyCSS <- function(theme) {
 #' @export
 #' @rdname html-dependencies
 html_dependency_bsswitch <- function() {
-  htmlDependency(
-    name = "bootstrap-switch",
-    version = "3.3.4",
-    package = "shinyWidgets",
-    src = c(href = "shinyWidgets/bootstrap-switch", file = "assets/bootstrap-switch"),
-    script = "bootstrap-switch-3.3.4/bootstrap-switch.min.js",
-    stylesheet = "bootstrap-switch-3.3.4/bootstrap-switch.min.css"
+  list(
+    bslib::bs_dependency_defer(bsswitchDependencyCSS),
+    htmlDependency(
+      name = "bootstrap-switch-js",
+      version = "3.4",
+      package = "shinyWidgets",
+      src = c(href = "shinyWidgets/bootstrap-switch", file = "assets/bootstrap-switch"),
+      script = "bootstrap-switch-3.4/bootstrap-switch.min.js"
+    )
+  )
+}
+
+bsswitchDependencyCSS <- function(theme) {
+  if (!bslib::is_bs_theme(theme)) {
+    return(htmlDependency(
+      name = "bootstrap-switch-css",
+      version = "3.4",
+      package = "shinyWidgets",
+      src = c(href = "shinyWidgets/bootstrap-switch", file = "assets/bootstrap-switch"),
+      script = "bootstrap-switch-3.4/bootstrap-switch.min.js",
+      stylesheet = "bootstrap-switch-3.4/bootstrap-switch.min.css"
+    ))
+  }
+
+  if (identical(bslib::theme_version(theme), "3")) {
+    sass_vars <- list(
+      "primary" = "$brand-primary",
+      "info" = "$brand-info",
+      "success" = "$brand-success",
+      "warning" = "$brand-warning",
+      "danger" = "$brand-danger"
+    )
+  } else {
+    sass_vars <- list()
+  }
+  sass_input <- list(
+    sass_vars,
+    sass::sass_file(
+      system.file(package = "shinyWidgets", "assets/bootstrap-switch/bootstrap-switch-3.4/bootstrap-switch.scss")
+    )
+  )
+
+  bslib::bs_dependency(
+    input = sass_input,
+    theme = theme,
+    name = "bootstrap-switch-css",
+    version = "3.4",
+    cache_key_extra = packageVersion("shinyWidgets")
   )
 }
 
