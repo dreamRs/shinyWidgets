@@ -12,7 +12,8 @@ Authors@R: c(
   )
 Description: Collection of custom input controls and user interface components for 'Shiny' applications. 
   Give your applications a unique and colorful style !
-URL: https://github.com/dreamRs/shinyWidgets
+URL: https://github.com/dreamRs/shinyWidgets,
+    https://dreamrs.github.io/shinyWidgets/
 BugReports: https://github.com/dreamRs/shinyWidgets/issues
 License: GPL-3
 Encoding: UTF-8

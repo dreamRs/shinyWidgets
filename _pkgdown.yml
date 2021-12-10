@@ -1,15 +1,26 @@
+url: https://dreamrs.github.io/shinyWidgets/
 
 template:
-  params:
-    bootswatch: flatly
+  bootstrap: 5
+  bslib:
+    base_font:
+      google: Poppins
+    primary: "#112446"
+
+navbar:
+  bg: primary
 
 authors:
   Victor Perrier:
     href: https://twitter.com/_pvictorr
-    html: <img src="https://pbs.twimg.com/profile_images/844237339404722177/E1U61aM8_normal.jpg"/> Victor Perrier
+    html: <img src="https://pbs.twimg.com/profile_images/844237339404722177/E1U61aM8_normal.jpg"/>
+      Victor Perrier
   Fanny Meyer:
     href: https://twitter.com/_mfaan
-    html: <img src="https://pbs.twimg.com/profile_images/912313931326218240/o1-wvA18_normal.jpg" /> Fanny Meyer
+    html: <img src="https://pbs.twimg.com/profile_images/912313931326218240/o1-wvA18_normal.jpg"
+      /> Fanny Meyer
   David Granjon:
     href: https://twitter.com/divadnojnarg
-    html: <img src="https://pbs.twimg.com/profile_images/974404925110267905/fi0Wt9vF_normal.jpg" /> David Granjon
+    html: <img src="https://pbs.twimg.com/profile_images/974404925110267905/fi0Wt9vF_normal.jpg"
+      /> David Granjon
+
