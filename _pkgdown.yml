@@ -2,9 +2,9 @@ url: https://dreamrs.github.io/shinyWidgets/
 
 template:
   bootstrap: 5
+  bootswatch: zephyr
   bslib:
-    base_font:
-      google: Poppins
+    base_font: {google: "Poppins"}
     primary: "#112446"
 
 navbar:
