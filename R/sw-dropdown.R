@@ -59,7 +59,7 @@
 #'                 value = 3,
 #'                 min = 1, max = 9),
 #'
-#'     style = "unite", icon = icon("gear"),
+#'     style = "unite", icon = icon("cog"),
 #'     status = "danger", width = "300px",
 #'     animate = animateOptions(
 #'       enter = animations$fading_entrances$fadeInLeftBig,
@@ -215,7 +215,7 @@ dropdown <- function(..., style = "default", status = "default",
 #'
 #' dropdown(
 #'  "Your contents goes here ! You can pass several elements",
-#'  circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
+#'  circle = TRUE, status = "danger", icon = icon("cog"), width = "300px",
 #'  animate = animateOptions(enter = "fadeInDown", exit = "fadeOutUp", duration = 3)
 #' )
 #'
