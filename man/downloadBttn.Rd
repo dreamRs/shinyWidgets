@@ -2,7 +2,7 @@
 % Please edit documentation in R/actionBttn.R
 \name{downloadBttn}
 \alias{downloadBttn}
-\title{Create a download \code{\link{actionBttn}}}
+\title{Create a download \code{actionBttn}}
 \usage{
 downloadBttn(
   outputId,
@@ -11,13 +11,14 @@ downloadBttn(
   color = "primary",
   size = "md",
   block = FALSE,
-  no_outline = TRUE
+  no_outline = TRUE,
+  icon = icon("download")
 )
 }
 \arguments{
-\item{outputId}{The name of the output slot that the \code{downloadHandler} is assigned to.}
+\item{outputId}{The name of the output slot that the \code{\link[shiny:downloadHandler]{shiny::downloadHandler()}} is assigned to.}
 
-\item{label}{The label that should appear on the button.}
+\item{label}{The contents of the button, usually a text label.}
 
 \item{style}{Style of the button, to choose between \code{simple}, \code{bordered},
 \code{minimal}, \code{stretch}, \code{jelly}, \code{gradient}, \code{fill},
@@ -32,9 +33,11 @@ downloadBttn(
 
 \item{no_outline}{Logical, don't show outline when navigating with
 keyboard/interact using mouse or touch.}
+
+\item{icon}{An optional icon to appear on the button.}
 }
 \description{
-Create a download button with \link{actionBttn}.
+Create a download button with \code{\link[=actionBttn]{actionBttn()}}.
 }
 \examples{
 if (interactive()) {
@@ -67,4 +70,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 
 }
+}
+\seealso{
+\code{\link[=actionBttn]{actionBttn()}}
 }

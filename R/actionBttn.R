@@ -1,23 +1,23 @@
 #' @title Awesome action button
 #'
-#' @description Like \code{actionButton} but awesome, via \url{https://bttn.surge.sh/}
+#' @description Like [shiny::actionButton()] but awesome, via \url{https://bttn.surge.sh/}
 #'
-#' @param inputId The \code{input} slot that will be used to access the value.
+#' @param inputId The `input` slot that will be used to access the value.
 #' @param label The contents of the button, usually a text label.
 #' @param icon An optional icon to appear on the button.
-#' @param style Style of the button, to choose between \code{simple}, \code{bordered},
-#' \code{minimal}, \code{stretch}, \code{jelly}, \code{gradient}, \code{fill},
-#' \code{material-circle}, \code{material-flat}, \code{pill}, \code{float}, \code{unite}.
-#' @param color Color of the button : \code{default}, \code{primary}, \code{warning},
-#'  \code{danger}, \code{success}, \code{royal}.
-#' @param size Size of the button : \code{xs},\code{sm}, \code{md}, \code{lg}.
+#' @param style Style of the button, to choose between `simple`, `bordered`,
+#'   `minimal`, `stretch`, `jelly`, `gradient`, `fill`,
+#'   `material-circle`, `material-flat`, `pill`, `float`, `unite`.
+#' @param color Color of the button : `default`, `primary`, `warning`,
+#'   `danger`, `success`, `royal`.
+#' @param size Size of the button : `xs`,`sm`, `md`, `lg`.
 #' @param block Logical, full width button.
 #' @param no_outline Logical, don't show outline when navigating with
 #'  keyboard/interact using mouse or touch.
 #'
 #' @export
 #'
-#' @seealso \link{downloadBttn}
+#' @seealso [downloadBttn()]
 #'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags
@@ -97,21 +97,14 @@ actionBttn <- function(inputId,
 
 
 
-#' Create a download \code{\link{actionBttn}}
+#' Create a download `actionBttn`
 #'
-#' Create a download button with \link{actionBttn}.
+#' Create a download button with [actionBttn()].
 #'
-#' @param outputId The name of the output slot that the \code{downloadHandler} is assigned to.
-#' @param label The label that should appear on the button.
-#' @param style Style of the button, to choose between \code{simple}, \code{bordered},
-#' \code{minimal}, \code{stretch}, \code{jelly}, \code{gradient}, \code{fill},
-#' \code{material-circle}, \code{material-flat}, \code{pill}, \code{float}, \code{unite}.
-#' @param color Color of the button : \code{default}, \code{primary}, \code{warning},
-#'  \code{danger}, \code{success}, \code{royal}.
-#' @param size Size of the button : \code{xs},\code{sm}, \code{md}, \code{lg}.
-#' @param block Logical, full width button.
-#' @param no_outline Logical, don't show outline when navigating with
-#'  keyboard/interact using mouse or touch.
+#' @param outputId The name of the output slot that the [shiny::downloadHandler()] is assigned to.
+#' @inheritParams actionBttn
+#'
+#' @seealso [actionBttn()]
 #'
 #' @export
 #'
@@ -155,7 +148,8 @@ downloadBttn <- function(outputId,
                          color = "primary",
                          size = "md",
                          block = FALSE,
-                         no_outline = TRUE) {
+                         no_outline = TRUE,
+                         icon = icon("download")) {
   bttn <- actionBttn(
     inputId = paste0(outputId, "_bttn"),
     label = tagList(
@@ -168,10 +162,12 @@ downloadBttn <- function(outputId,
       ),
       label
     ),
-    color = color, style = style,
-    size = size, block = block,
+    color = color,
+    style = style,
+    size = size,
+    block = block,
     no_outline = no_outline,
-    icon = icon("download")
+    icon = icon
   )
   htmltools::tagAppendAttributes(
     bttn,

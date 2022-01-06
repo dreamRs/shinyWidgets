@@ -37,7 +37,7 @@ actionBttn(
 keyboard/interact using mouse or touch.}
 }
 \description{
-Like \code{actionButton} but awesome, via \url{https://bttn.surge.sh/}
+Like \code{\link[shiny:actionButton]{shiny::actionButton()}} but awesome, via \url{https://bttn.surge.sh/}
 }
 \examples{
 if (interactive()) {
@@ -79,5 +79,5 @@ shinyApp(ui = ui, server = server)
 }
 }
 \seealso{
-\link{downloadBttn}
+\code{\link[=downloadBttn]{downloadBttn()}}
 }

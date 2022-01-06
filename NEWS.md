@@ -7,6 +7,7 @@ shinyWidgets (unreleased)
     + `textInputIcon()`
     + `numericInputIcon()`
 * `checkboxGroupButtons()`/`radioGroupButtons()`: `status` argument now accept a vector, thanks to [@jassler](https://github.com/jassler) ([#440](https://github.com/dreamRs/shinyWidgets/pull/440))
+* `downloadBttn()` now has a `icon` argument.
 
 ### Bug fixes
 * `updateNumericRangeInput()` failed to correctly update `label` ([#441](https://github.com/dreamRs/shinyWidgets/issues/441))
