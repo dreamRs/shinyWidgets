@@ -13,7 +13,8 @@ ui <- fluidPage(
   downloadBttn(
     outputId = "downloadData2",
     style = "simple",
-    color = "primary"
+    color = "primary",
+    icon = icon("file-pdf")
   ),
   tags$br(), tags$br(),
   downloadBttn(

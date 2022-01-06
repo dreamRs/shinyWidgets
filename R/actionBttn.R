@@ -149,7 +149,7 @@ downloadBttn <- function(outputId,
                          size = "md",
                          block = FALSE,
                          no_outline = TRUE,
-                         icon = icon("download")) {
+                         icon = shiny::icon("download")) {
   bttn <- actionBttn(
     inputId = paste0(outputId, "_bttn"),
     label = tagList(

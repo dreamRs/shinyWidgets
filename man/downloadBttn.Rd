@@ -12,7 +12,7 @@ downloadBttn(
   size = "md",
   block = FALSE,
   no_outline = TRUE,
-  icon = icon("download")
+  icon = shiny::icon("download")
 )
 }
 \arguments{
