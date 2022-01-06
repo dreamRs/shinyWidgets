@@ -11,7 +11,7 @@ ui <- fluidPage(
     shinyWidgets::pickerInput(inputId = 'xcol', label = 'X Variable', choices = names(iris)),
     selectInput(inputId = 'ycol', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]]),
     sliderInput(inputId = 'clusters', label = 'Cluster count', value = 3, min = 1, max = 9),
-    style = "material-circle", icon = icon("gear"), status = "danger",
+    style = "material-circle", icon = icon("cog"), status = "danger",
     animate = animateOptions(enter = animations$zooming_entrances$zoomInDown, exit = animations$zooming_exits$zoomOutUp, duration = 1)
   ),
   plotOutput(outputId = 'plot1')

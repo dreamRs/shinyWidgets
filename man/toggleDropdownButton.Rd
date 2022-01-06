@@ -40,7 +40,7 @@ ui <- fluidPage(
                      label = "Close dropdown"),
         circle = TRUE, status = "danger",
         inputId = "mydropdown",
-        icon = icon("gear"), width = "300px"
+        icon = icon("cog"), width = "300px"
       )
     ),
     column(
