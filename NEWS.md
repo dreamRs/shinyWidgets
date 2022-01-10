@@ -1,4 +1,4 @@
-shinyWidgets (unreleased)
+shinyWidgets 0.6.3
 ======================
 
 *  Following functions are now compatible with Bootstrap 4 & 5, when using `bslib::bs_theme()` :
