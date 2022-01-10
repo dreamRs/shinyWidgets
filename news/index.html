@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9400</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +44,30 @@
       <small>Source: <a href="https://github.com/dreamRs/shinyWidgets/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.3" id="shinywidgets-063">shinyWidgets 0.6.3<a class="anchor" aria-label="anchor" href="#shinywidgets-063"></a></h2>
+<ul><li>Following functions are now compatible with Bootstrap 4 &amp; 5, when using <code><a href="https://rstudio.github.io/bslib/reference/bs_theme.html" class="external-link">bslib::bs_theme()</a></code> :
+<ul><li><code><a href="../reference/radioGroupButtons.html">radioGroupButtons()</a></code></li>
+<li><code><a href="../reference/checkboxGroupButtons.html">checkboxGroupButtons()</a></code></li>
+<li><code><a href="../reference/textInputIcon.html">textInputIcon()</a></code></li>
+<li><code><a href="../reference/numericInputIcon.html">numericInputIcon()</a></code></li>
+</ul></li>
+<li>
+<code><a href="../reference/checkboxGroupButtons.html">checkboxGroupButtons()</a></code>/<code><a href="../reference/radioGroupButtons.html">radioGroupButtons()</a></code>: <code>status</code> argument now accept a vector, thanks to <a href="https://github.com/jassler" class="external-link">@jassler</a> (<a href="https://github.com/dreamRs/shinyWidgets/pull/440" class="external-link">#440</a>)</li>
+<li>
+<code><a href="../reference/downloadBttn.html">downloadBttn()</a></code> now has a <code>icon</code> argument.</li>
+</ul><div class="section level4">
+<h4 id="bug-fixes-0-6-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-6-3"></a></h4>
+<ul><li>
+<code><a href="../reference/updateNumericRangeInput.html">updateNumericRangeInput()</a></code> failed to correctly update <code>label</code> (<a href="https://github.com/dreamRs/shinyWidgets/issues/441" class="external-link">#441</a>)</li>
+<li>
+<code><a href="../reference/vertical-tab.html">verticalTabsetPanel()</a></code> didn’t work inside <code>renderUI</code> and with more than one panel (<a href="https://github.com/dreamRs/shinyWidgets/issues/446" class="external-link">#446</a>)</li>
+<li>
+<code><a href="../reference/stati-card.html">statiCard()</a></code>: fixed rendering in <code>renderUI</code> and value not displayed if animation interrupted (<a href="https://github.com/dreamRs/shinyWidgets/issues/406" class="external-link">#406</a>, <a href="https://github.com/dreamRs/shinyWidgets/issues/407" class="external-link">#407</a>)</li>
+<li>
+<code><a href="../reference/checkboxGroupButtons.html">checkboxGroupButtons()</a></code>/<code><a href="../reference/radioGroupButtons.html">radioGroupButtons()</a></code> fixed <code>justified = TRUE</code> argument compatibility with Bootstrap 4 (fix <a href="https://github.com/dreamRs/shinyWidgets/issues/423" class="external-link">#423</a>)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.2" id="shinywidgets-062">shinyWidgets 0.6.2<a class="anchor" aria-label="anchor" href="#shinywidgets-062"></a></h2><p class="text-muted">CRAN release: 2021-09-17</p>
 <ul><li>
