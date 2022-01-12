@@ -15,6 +15,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL, extra_deps = NULL) {
     if (widget == "picker") {
       dependencies <- list(
         dependencies,
+        # htmltools::htmlDependencies(shiny::fluidPage())[[1]],
         html_dependency_picker()
       )
     } else if (widget == "awesome") {
@@ -351,16 +352,30 @@ html_dependency_sweetalert2 <- function(theme = c("sweetalert2",
 
 # Non exported ------------------------------------------------------------
 
-
+html_dependency_picker_bs <- function(theme) {
+  if (!bslib::is_bs_theme(theme) || identical(bslib::theme_version(theme), "3")) {
+    return(htmlDependency(
+      name = "bootstrap-select",
+      version = "1.13.8",
+      package = "shinyWidgets",
+      src = c(href = "shinyWidgets/bootstrap-select", file = "assets/bootstrap-select"),
+      script = c("js/bootstrap-select.min.js"),
+      stylesheet = c("css/bootstrap-select.min.css")
+    ))
+  } else {
+    return(htmlDependency(
+      name = "bootstrap-select",
+      version = "1.14.0",
+      package = "shinyWidgets",
+      src = c(href = "shinyWidgets/bootstrap-select-1.14.0-beta2", file = "assets/bootstrap-select-1.14.0-beta2"),
+      script = c("js/bootstrap-select.min.js"),
+      stylesheet = c("css/bootstrap-select.min.css")
+    ))
+  }
+}
 html_dependency_picker <- function() {
-  htmlDependency(
-    name = "bootstrap-select",
-    version = "1.13.18",
-    package = "shinyWidgets",
-    src = c(href = "shinyWidgets/bootstrap-select", file = "assets/bootstrap-select"),
-    script = c("js/bootstrap-select.min.js"),
-    stylesheet = c("css/bootstrap-select.min.css")
-  )
+  bslib::bs_dependency_defer(html_dependency_picker_bs)
+
 }
 
 html_dependency_airdatepicker <- function() {
