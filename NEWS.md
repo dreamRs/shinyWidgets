@@ -1,3 +1,11 @@
+shinyWidgets (unreleased)
+======================
+
+### Bug fixes
+* Revert `bootstrap-switch-js` to 3.3.4 to fix bug when `value = TRUE`.
+
+
+
 shinyWidgets 0.6.3
 ======================
 
