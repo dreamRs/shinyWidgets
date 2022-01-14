@@ -278,10 +278,10 @@ html_dependency_bsswitch <- function() {
     bslib::bs_dependency_defer(bsswitchDependencyCSS),
     htmlDependency(
       name = "bootstrap-switch-js",
-      version = "3.4",
+      version = "3.3.4",
       package = "shinyWidgets",
       src = c(href = "shinyWidgets/bootstrap-switch", file = "assets/bootstrap-switch"),
-      script = "bootstrap-switch-3.4/bootstrap-switch.min.js"
+      script = "bootstrap-switch-3.3.4/bootstrap-switch.min.js"
     )
   )
 }
@@ -290,10 +290,10 @@ bsswitchDependencyCSS <- function(theme) {
   if (!bslib::is_bs_theme(theme)) {
     return(htmlDependency(
       name = "bootstrap-switch-css",
-      version = "3.4",
+      version = "3.3.4",
       package = "shinyWidgets",
       src = c(href = "shinyWidgets/bootstrap-switch", file = "assets/bootstrap-switch"),
-      script = "bootstrap-switch-3.4/bootstrap-switch.min.js",
+      script = "bootstrap-switch-3.3.4/bootstrap-switch.min.js",
       stylesheet = "bootstrap-switch-3.4/bootstrap-switch.min.css"
     ))
   }
