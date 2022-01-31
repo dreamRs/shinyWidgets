@@ -41,7 +41,13 @@
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-colorSelectorInput <- function(inputId, label, choices, selected = NULL, mode = c("radio", "checkbox"), display_label = FALSE, ncol = 10) {
+colorSelectorInput <- function(inputId,
+                               label,
+                               choices,
+                               selected = NULL,
+                               mode = c("radio", "checkbox"),
+                               display_label = FALSE,
+                               ncol = 10) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   mode <- match.arg(arg = mode)
   if (!is.list(choices))
@@ -52,13 +58,17 @@ colorSelectorInput <- function(inputId, label, choices, selected = NULL, mode = 
   if (is.null(selected) & mode == "radio")
     selected <- firstChoice(choices)
   tagCS <- htmltools::tags$div(
-    class="shiny-input-container-inline form-group", class=paste0(mode, "GroupButtons"),
-    `data-toggle`="buttons", id = inputId,
-    style="margin-top: 3px; margin-bottom: 10px; ",
+    class = "shiny-input-container-inline form-group",
+    class = paste0(mode, "-group-buttons"),
+    `data-toggle`="buttons",
+    id = inputId,
+    style = "margin-top: 3px; margin-bottom: 10px; ",
     if (!is.null(label)) htmltools::tagList(htmltools::tags$label(class="control-label", label), htmltools::tags$br()),
     colorOptions(
-      inputId = inputId, choices = choices,
-      selected = selected, mode = mode,
+      inputId = inputId,
+      choices = choices,
+      selected = selected,
+      mode = mode,
       display_label = display_label
     )
   )
@@ -135,9 +145,16 @@ colorSelectorExample <- function() {
 #' @export
 #' @describeIn colorSelectorInput Display a colorSelector in a dropdown button
 #' @importFrom htmltools tags validateCssUnit
-colorSelectorDrop <- function(inputId, label, choices, selected = NULL,
-                              display_label = FALSE, ncol = 10, circle = TRUE, size = "sm",
-                              up = FALSE, width = NULL) {
+colorSelectorDrop <- function(inputId,
+                              label,
+                              choices,
+                              selected = NULL,
+                              display_label = FALSE,
+                              ncol = 10,
+                              circle = TRUE,
+                              size = "sm",
+                              up = FALSE,
+                              width = NULL) {
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   btnId <- paste("btn", inputId, sep = "-")
   funButton <- if (circle) circleButton else squareButton
