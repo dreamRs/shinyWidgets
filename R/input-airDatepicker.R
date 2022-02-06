@@ -1,7 +1,7 @@
 
 #' @title Air Date Picker Input
 #'
-#' @description An alternative to \code{dateInput} to select single, multiple or date range.
+#' @description An alternative to [shiny::dateInput()] to select single, multiple or date range.
 #'  And two alias to select months or years.
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
@@ -49,12 +49,13 @@
 #' @param toggleSelected When \code{TRUE}, in range mode, it's not possible to select the same date as start and end.
 #' @param ... Arguments passed to \code{airDatepickerInput}.
 #'
-#' @note Since shinyWidgets 0.5.2 there's no more conflicts with \code{dateInput}.
+#' @note Since shinyWidgets 0.5.2 there's no more conflicts with [shiny::dateInput()].
 #'
 #' @return a \code{Date} object or a \code{POSIXct} in UTC timezone.
 #'
-#' @seealso See \code{\link{updateAirDateInput}} for updating slider value server-side.
-#'  And \code{\link{demoAirDatepicker}} for examples.
+#' @seealso
+#'  * [demoAirDatepicker()] for demo apps
+#'  * [updateAirDateInput()] for updating from server
 #'
 #' @name airDatepicker
 #'
@@ -335,14 +336,14 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 
 
 
-#' Change the value of \code{\link{airDatepickerInput}} on the client
+#' Change the value of [airDatepickerInput()] on the client
 #'
-#' @param session The \code{session} object passed to function given to \code{shinyServer}.
+#' @param session The `session` object passed to function given to `shinyServer`.
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
 #' @param clear Logical, clear all previous selected dates.
-#' @param options Options to update, see available ones here: \url{http://t1m0n.name/air-datepicker/docs/}.
+#' @param options Options to update, see available ones in [JavaScript documentation](https://air-datepicker.com/docs)
 #' @param show,hide Show / hide datepicker.
 #'
 #' @export

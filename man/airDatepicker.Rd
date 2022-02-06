@@ -154,11 +154,11 @@ you can retrieve value server-side with \code{input$<inputId>_button}.}
 a \code{Date} object or a \code{POSIXct} in UTC timezone.
 }
 \description{
-An alternative to \code{dateInput} to select single, multiple or date range.
+An alternative to \code{\link[shiny:dateInput]{shiny::dateInput()}} to select single, multiple or date range.
 And two alias to select months or years.
 }
 \note{
-Since shinyWidgets 0.5.2 there's no more conflicts with \code{dateInput}.
+Since shinyWidgets 0.5.2 there's no more conflicts with \code{\link[shiny:dateInput]{shiny::dateInput()}}.
 }
 \examples{
 if (interactive()) {
@@ -198,6 +198,8 @@ shinyApp(ui, server)
 }
 }
 \seealso{
-See \code{\link{updateAirDateInput}} for updating slider value server-side.
-And \code{\link{demoAirDatepicker}} for examples.
+\itemize{
+\item \code{\link[=demoAirDatepicker]{demoAirDatepicker()}} for demo apps
+\item \code{\link[=updateAirDateInput]{updateAirDateInput()}} for updating from server
+}
 }

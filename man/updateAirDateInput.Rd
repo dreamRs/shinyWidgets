@@ -2,7 +2,7 @@
 % Please edit documentation in R/input-airDatepicker.R
 \name{updateAirDateInput}
 \alias{updateAirDateInput}
-\title{Change the value of \code{\link{airDatepickerInput}} on the client}
+\title{Change the value of \code{\link[=airDatepickerInput]{airDatepickerInput()}} on the client}
 \usage{
 updateAirDateInput(
   session = getDefaultReactiveDomain(),
@@ -26,12 +26,12 @@ updateAirDateInput(
 
 \item{clear}{Logical, clear all previous selected dates.}
 
-\item{options}{Options to update, see available ones here: \url{http://t1m0n.name/air-datepicker/docs/}.}
+\item{options}{Options to update, see available ones in \href{https://air-datepicker.com/docs}{JavaScript documentation}}
 
 \item{show, hide}{Show / hide datepicker.}
 }
 \description{
-Change the value of \code{\link{airDatepickerInput}} on the client
+Change the value of \code{\link[=airDatepickerInput]{airDatepickerInput()}} on the client
 }
 \examples{
 if (interactive()) {
