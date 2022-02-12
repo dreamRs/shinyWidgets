@@ -14,7 +14,7 @@ see https://getbootstrap.com/docs/3.4/components/#panels."><!-- mathjax --><scri
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.4.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,12 +103,18 @@ see <a href="https://getbootstrap.com/docs/3.4/components/#panels" class="extern
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span class="r-in">  <span class="co"># Try with different Bootstrap version</span></span>
+<span class="r-in">  <span class="co"># theme = bslib::bs_theme(version = 5),</span></span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Bootstrap panel"</span><span class="op">)</span>,</span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="co"># Default</span></span>
 <span class="r-in">  <span class="fu">panel</span><span class="op">(</span></span>
 <span class="r-in">    <span class="st">"Content goes here"</span>,</span>
+<span class="r-in">  <span class="op">)</span>,</span>
+<span class="r-in">  <span class="fu">panel</span><span class="op">(</span></span>
+<span class="r-in">    <span class="st">"With status"</span>,</span>
+<span class="r-in">    status <span class="op">=</span> <span class="st">"primary"</span></span>
 <span class="r-in">  <span class="op">)</span>,</span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="co"># With header and footer</span></span>
@@ -163,6 +169,10 @@ see <a href="https://getbootstrap.com/docs/3.4/components/#panels" class="extern
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span class="r-in"></span>
+<span class="r-in">  <span class="co"># Try with different Bootstrap version</span></span>
+<span class="r-in">  <span class="co"># theme = bslib::bs_theme(version = 5),</span></span>
+<span class="r-in"></span>
 <span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Alerts"</span><span class="op">)</span>,</span>
 <span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
 <span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
