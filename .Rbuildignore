@@ -18,3 +18,4 @@
 ^\.github$
 ^LICENSE\.md$
 ^pkgdown$
+^CRAN-SUBMISSION$

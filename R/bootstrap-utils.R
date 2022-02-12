@@ -46,7 +46,7 @@ panel <- function(...,
     )
   }
   tags$div(
-    class = paste0("panel card mb-3 panel-", status),
+    class = sprintf("panel card mb-3 panel-%1$s border-%1$s", status),
     heading, body, extra,
     if (!is.null(footer)) tags$div(class = "panel-footer card-footer", footer)
   )
@@ -59,18 +59,47 @@ panel <- function(...,
 #' @importFrom htmltools tags HTML
 alert <- function(..., status = c("info", "success", "danger", "warning"), dismissible = FALSE) {
   status <- match.arg(status)
+  if (!isTRUE(dismissible)) {
+    return(tags$div(
+      class = paste0("alert alert-", status),
+      ...
+    ))
+  }
+  tagFunction(function() {
+    theme <- shiny::getCurrentTheme()
+    if (!bslib::is_bs_theme(theme)) {
+      return(markup_alert_dismiss_bs3(..., status = status))
+    }
+    if (bslib::theme_version(theme) %in% c("5")) {
+      return(markup_alert_dismiss_bs5(..., status = status))
+    }
+    markup_alert_dismiss_bs3(..., status = status)
+  })
+}
+
+markup_alert_dismiss_bs3 <- function(..., status) {
   tags$div(
-    class = paste0("alert alert-", status),
-    class = if (isTRUE(dismissible)) "alert-dismissible",
-    if (isTRUE(dismissible)) {
-      tags$button(
-        type = "button",
-        class = "close",
-        `data-dismiss` = "alert",
-        `aria-label` = "Close",
-        tags$span(`aria-hidden` = "true", HTML("&times;"))
-      )
-    },
+    class = sprintf("alert alert-%s alert-dismissible", status),
+    tags$button(
+      type = "button",
+      class = "close",
+      `data-dismiss` = "alert",
+      `aria-label` = "Close",
+      tags$span(`aria-hidden` = "true", HTML("&times;"))
+    ),
+    ...
+  )
+}
+
+markup_alert_dismiss_bs5 <- function(..., status) {
+  tags$div(
+    class = sprintf("alert alert-%s alert-dismissible", status),
+    tags$button(
+      type = "button",
+      class = "btn-close",
+      `data-bs-dismiss` = "alert",
+      `aria-label` = "Close"
+    ),
     ...
   )
 }

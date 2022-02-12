@@ -5,6 +5,10 @@ library(shiny)
 library(shinyWidgets)
 
 ui <- fluidPage(
+
+  # Try with different Bootstrap version
+  # theme = bslib::bs_theme(version = 5),
+
   tags$h2("Alerts"),
   fluidRow(
     column(
