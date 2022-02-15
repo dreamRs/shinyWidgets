@@ -76,16 +76,23 @@
 </h2>
 <p>This package offers custom widgets and other components to enhance your shiny applications.</p>
 <p>You can replace classical checkboxes with switch button, add colors to radio buttons and checkbox group, use buttons as radio or checkboxes. Each widget has an <code>update</code> method to change the value of an input from the server.</p>
-<p>Installation :</p>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>Install from <a href="https://CRAN.R-project.org/package=shinyWidgets" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># From CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"shinyWidgets"</span><span class="op">)</span>
-
-<span class="co"># From Github</span>
-<span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dreamRs/shinyWidgets"</span><span class="op">)</span></code></pre></div>
-<p>Demo :</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"shinyWidgets"</span><span class="op">)</span></code></pre></div>
+<p>Or install the development version from <a href="https://github.com/dreamRs/shinyWidgets" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dreamRs/shinyWidgets"</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="demo">Demo<a class="anchor" aria-label="anchor" href="#demo"></a>
+</h2>
+<p>A gallery application is included in the package. Once installed, use the following command to launch it:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">shinyWidgets</span><span class="fu">::</span><span class="fu"><a href="reference/shinyWidgetsGallery.html">shinyWidgetsGallery</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>A live version is available here : <a href="http://shinyapps.dreamrs.fr/shinyWidgets" class="external-link uri">http://shinyapps.dreamrs.fr/shinyWidgets</a></p>
 </div>
@@ -108,41 +115,41 @@
 <h3 id="bootstrap-switch">Bootstrap switch<a class="anchor" aria-label="anchor" href="#bootstrap-switch"></a>
 </h3>
 <p>Turn checkboxes into toggle switches : <br><img src="reference/figures/switchInput.png" alt="switchInput"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/switchInput.html">switchInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"id"</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="material-switch">Material switch<a class="anchor" aria-label="anchor" href="#material-switch"></a>
 </h3>
 <p>Turn checkboxes into toggle switches (again) : <br><img src="reference/figures/materialSwitch.png" alt="materialSwitch"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/materialSwitch.html">materialSwitch</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"id"</span>, label <span class="op">=</span> <span class="st">"Primary switch"</span>, status <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="pretty-checkbox">Pretty Checkbox<a class="anchor" aria-label="anchor" href="#pretty-checkbox"></a>
 </h3>
 <p>Checkbox and radio buttons with the beautiful CSS library <a href="https://lokesh-coder.github.io/pretty-checkbox/" class="external-link">pretty-checkbox</a> : <img src="reference/figures/pretty.png" alt="prettycheckbox"></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">prettyCheckbox</span>(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_1"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"check"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3"></a>),</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="kw">prettyCheckbox</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_2"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"thumbs-up"</span>), </span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="dt">status =</span> <span class="st">"default"</span>, <span class="dt">shape =</span> <span class="st">"curve"</span>, <span class="dt">animation =</span> <span class="st">"pulse"</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>),</span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="kw">prettyCheckbox</span>(</span>
-<span id="cb5-9"><a href="#cb5-9"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_3"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"users"</span>), </span>
-<span id="cb5-10"><a href="#cb5-10"></a>  <span class="dt">animation =</span> <span class="st">"pulse"</span>, <span class="dt">plain =</span> <span class="ot">TRUE</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>),</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="kw">prettyCheckbox</span>(</span>
-<span id="cb5-13"><a href="#cb5-13"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_4"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14"></a>  <span class="dt">status =</span> <span class="st">"success"</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a>),</span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="kw">prettyCheckbox</span>(</span>
-<span id="cb5-17"><a href="#cb5-17"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_5"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>,</span>
-<span id="cb5-18"><a href="#cb5-18"></a>  <span class="dt">shape =</span> <span class="st">"round"</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span>, <span class="dt">status =</span> <span class="st">"info"</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a>),</span>
-<span id="cb5-20"><a href="#cb5-20"></a></span>
-<span id="cb5-21"><a href="#cb5-21"></a>...</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">prettyCheckbox</span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_1"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"check"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>),</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="kw">prettyCheckbox</span>(</span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_2"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"thumbs-up"</span>), </span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="dt">status =</span> <span class="st">"default"</span>, <span class="dt">shape =</span> <span class="st">"curve"</span>, <span class="dt">animation =</span> <span class="st">"pulse"</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>),</span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="kw">prettyCheckbox</span>(</span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_3"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>, <span class="dt">icon =</span> <span class="kw">icon</span>(<span class="st">"users"</span>), </span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="dt">animation =</span> <span class="st">"pulse"</span>, <span class="dt">plain =</span> <span class="ot">TRUE</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>),</span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="kw">prettyCheckbox</span>(</span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_4"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="dt">status =</span> <span class="st">"success"</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>),</span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="kw">prettyCheckbox</span>(</span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="dt">inputId =</span> <span class="st">"pretty_5"</span>, <span class="dt">label =</span> <span class="st">"Check me!"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18"></a>  <span class="dt">shape =</span> <span class="st">"round"</span>, <span class="dt">outline =</span> <span class="ot">TRUE</span>, <span class="dt">status =</span> <span class="st">"info"</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>),</span>
+<span id="cb6-20"><a href="#cb6-20"></a></span>
+<span id="cb6-21"><a href="#cb6-21"></a>...</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="sweet-alert">Sweet Alert<a class="anchor" aria-label="anchor" href="#sweet-alert"></a>
@@ -162,7 +169,7 @@
 <h3 id="slider-text">Slider Text<a class="anchor" aria-label="anchor" href="#slider-text"></a>
 </h3>
 <p>Slider with strings, to pass whatever you want : <br><img src="reference/figures/sliderText.png" alt="sliderText"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/sliderTextInput.html">sliderTextInput</a></span><span class="op">(</span>
   inputId <span class="op">=</span> <span class="st">"mySliderText"</span>, 
   label <span class="op">=</span> <span class="st">"Your choice:"</span>, 
@@ -177,7 +184,7 @@
 <h3 id="knob-input">Knob Input<a class="anchor" aria-label="anchor" href="#knob-input"></a>
 </h3>
 <p>A <a href="https://github.com/aterrien/jQuery-Knob" class="external-link">jQuery</a> based knob, similar to sliderInput or sliderTextInput: <br><img src="reference/figures/knob.gif" alt="knobInput"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/knobInput.html">knobInput</a></span><span class="op">(</span>
   inputId <span class="op">=</span> <span class="st">"myKnob"</span>,
   label <span class="op">=</span> <span class="st">"jQuery knob example:"</span>,
@@ -193,7 +200,7 @@
 <h3 id="select-picker">Select picker<a class="anchor" aria-label="anchor" href="#select-picker"></a>
 </h3>
 <p>Dropdown menu with a lot of options : <br><img src="reference/figures/pickerInput.png" alt="pickerInput"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/pickerInput.html">pickerInput</a></span><span class="op">(</span>
   inputId <span class="op">=</span> <span class="st">"myPicker"</span>, 
   label <span class="op">=</span> <span class="st">"Select/deselect all + format selected"</span>, 
@@ -210,7 +217,7 @@
 <h3 id="checkbox-and-radio-buttons">Checkbox and radio buttons<a class="anchor" aria-label="anchor" href="#checkbox-and-radio-buttons"></a>
 </h3>
 <p>Turn buttons into checkbox or radio : <br><img src="reference/figures/checkboxGroupButtons.png" alt="checkboxGroupButtons"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/checkboxGroupButtons.html">checkboxGroupButtons</a></span><span class="op">(</span>
   inputId <span class="op">=</span> <span class="st">"somevalue"</span>, label <span class="op">=</span> <span class="st">"Make a choice :"</span>, 
   choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Choice A"</span>, <span class="st">"Choice B"</span>, <span class="st">" Choice C"</span>, <span class="st">"Choice D"</span><span class="op">)</span>, 
@@ -222,7 +229,7 @@
 <h3 id="search-bar">Search bar<a class="anchor" aria-label="anchor" href="#search-bar"></a>
 </h3>
 <p>A text input only triggered by hitting ‘Enter’ or clicking search button : <br><img src="reference/figures/search_input.png" alt="search_input"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/searchInput.html">searchInput</a></span><span class="op">(</span>
   inputId <span class="op">=</span> <span class="st">"id"</span>, 
   label <span class="op">=</span> <span class="st">"Enter your search :"</span>, 
@@ -236,7 +243,7 @@
 <h3 id="dropdown-button">Dropdown button<a class="anchor" aria-label="anchor" href="#dropdown-button"></a>
 </h3>
 <p>Hide input in a button : <br><img src="reference/figures/dropdown_btn_off.png" alt="dropdown_off"><img src="reference/figures/dropdown_btn_on.png" alt="dropdown_on"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/dropdownButton.html">dropdownButton</a></span><span class="op">(</span>
   <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"List of Input"</span><span class="op">)</span>,
   <span class="fu">selectInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'xcol'</span>, label <span class="op">=</span> <span class="st">'X Variable'</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>,
