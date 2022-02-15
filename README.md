@@ -20,17 +20,27 @@ You can replace classical checkboxes with switch button, add colors to radio but
 Each widget has an `update` method to change the value of an input from the server.
 
 
-Installation :
-```r
-# From CRAN
-install.packages("shinyWidgets")
 
-# From Github
-# install.packages("devtools")
-devtools::install_github("dreamRs/shinyWidgets")
+## Installation
+
+Install from [CRAN](https://CRAN.R-project.org/package=shinyWidgets) with:
+
+```r
+install.packages("shinyWidgets")
 ```
 
-Demo :
+Or install the development version from [GitHub](https://github.com/dreamRs/shinyWidgets) with:
+
+```r
+# install.packages("remotes")
+remotes::install_github("dreamRs/shinyWidgets")
+```
+
+
+## Demo
+
+A gallery application is included in the package. Once installed, use the following command to launch it:
+
 ```r
 shinyWidgets::shinyWidgetsGallery()
 ```

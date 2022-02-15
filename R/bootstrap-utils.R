@@ -56,7 +56,7 @@ panel <- function(...,
 #' @param dismissible Adds the possibility to close the alert.
 #' @export
 #' @rdname bootstrap-utils
-#' @importFrom htmltools tags HTML
+#' @importFrom htmltools tags HTML tagFunction
 alert <- function(..., status = c("info", "success", "danger", "warning"), dismissible = FALSE) {
   status <- match.arg(status)
   if (!isTRUE(dismissible)) {
