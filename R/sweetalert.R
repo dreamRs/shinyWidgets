@@ -62,7 +62,8 @@ useSweetAlert <- function(theme = c("sweetalert2",
 #' @param width Width of the modal (in pixel).
 #' @param ... Other arguments passed to JavaScript method.
 #'
-#' @note This function use the JavaScript sweetalert2 library, see the official documentation for more https://sweetalert2.github.io/.
+#' @note This function use the JavaScript sweetalert2 library, see the official
+#'  documentation for more [https://sweetalert2.github.io/](https://sweetalert2.github.io/).
 #'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools tags
