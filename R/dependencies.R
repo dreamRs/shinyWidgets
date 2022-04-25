@@ -356,7 +356,7 @@ html_dependency_picker_bs <- function(theme) {
   if (identical(bslib::theme_version(theme), "5")) {
     htmlDependency(
       name = "bootstrap-select",
-      version = "1.14.0",
+      version = "1.14.0-3",
       package = "shinyWidgets",
       src = c(href = "shinyWidgets/bootstrap-select-1.14.0-beta2", file = "assets/bootstrap-select-1.14.0-beta2"),
       script = c("js/bootstrap-select.min.js"),
