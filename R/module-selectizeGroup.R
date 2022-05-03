@@ -9,6 +9,7 @@
 #' @param label Character, global label on top of all labels.
 #' @param btn_label Character, reset button label.
 #' @param inline If `TRUE` (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.
+#'  Use this argument in `selectizeGroupUI` **and** in `selectizeGroupServer` to make it work properly.
 #'
 #' @return a [shiny::reactive()] function containing data filtered.
 #' @export
@@ -121,7 +122,6 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
 #' @param vars character, columns to use to create filters,
 #'  must correspond to variables listed in \code{params}. Can be a
 #'  \code{reactive} function, but values must be included in the initial ones (in \code{params}).
-#' @param inline If \code{TRUE} (the default), `selectizeInput`s are horizontally positioned, otherwise vertically.
 #'
 #' @export
 #'

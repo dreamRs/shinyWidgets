@@ -26,7 +26,8 @@ selectizeGroupServer(input, output, session, data, vars, inline = TRUE)
 
 \item{btn_label}{Character, reset button label.}
 
-\item{inline}{If \code{TRUE} (the default), \code{selectizeInput}s are horizontally positioned, otherwise vertically.}
+\item{inline}{If \code{TRUE} (the default), \code{selectizeInput}s are horizontally positioned, otherwise vertically.
+Use this argument in \code{selectizeGroupUI} \strong{and} in \code{selectizeGroupServer} to make it work properly.}
 
 \item{input, output, session}{standards \code{shiny} server arguments.}
 
