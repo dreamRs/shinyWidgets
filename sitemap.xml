@@ -79,6 +79,9 @@
     <loc>https://dreamrs.github.io/shinyWidgets/reference/demoNumericRange.html</loc>
   </url>
   <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/demoVirtualSelect.html</loc>
+  </url>
+  <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/downloadBttn.html</loc>
   </url>
   <url>
@@ -140,6 +143,9 @@
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/pickerOptions.html</loc>
+  </url>
+  <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/prepare_choices.html</loc>
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/prettyCheckbox.html</loc>
@@ -298,6 +304,9 @@
     <loc>https://dreamrs.github.io/shinyWidgets/reference/updateVerticalTabsetPanel.html</loc>
   </url>
   <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/updateVirtualSelect.html</loc>
+  </url>
+  <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/useArgonDash.html</loc>
   </url>
   <url>
@@ -317,6 +326,9 @@
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/vertical-tab.html</loc>
+  </url>
+  <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/virtualSelectInput.html</loc>
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/wNumbFormat.html</loc>
