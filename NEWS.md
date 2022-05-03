@@ -1,7 +1,14 @@
-shinyWidgets 0.6.4
+shinyWidgets (unreleased)
 ======================
 
-New widget `virtualSelectInput()`, a select dropdown widget that support a lot of choices, based on [virtual-select](https://github.com/sa-si-dev/virtual-select) JavaScript library.
+* New widget `virtualSelectInput()`, a select dropdown widget that support a lot of choices, based on [virtual-select](https://github.com/sa-si-dev/virtual-select) JavaScript library.
+* Updated bootstrap-select to v1.14.0-beta3, to make `pickerInput()` works with Bootstrap 5.
+* Updated `alert()` and `panel()` Bootstrap utilities to work with Bootstrap 5.
+
+
+
+shinyWidgets 0.6.4
+======================
 
 ### Bug fixes
 * Revert `bootstrap-switch-js` to 3.3.4 to fix bug when `value = TRUE`.
