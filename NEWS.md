@@ -1,6 +1,8 @@
 shinyWidgets 0.6.4
 ======================
 
+New widget `virtualSelectInput()`, a select dropdown widget that support a lot of choices, based on [virtual-select](https://github.com/sa-si-dev/virtual-select) JavaScript library.
+
 ### Bug fixes
 * Revert `bootstrap-switch-js` to 3.3.4 to fix bug when `value = TRUE`.
 * Fixed a bug in `colorSelectorInput()` causing not returning an input value.
