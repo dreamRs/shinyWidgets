@@ -109,7 +109,7 @@ airDatepickerInput <- function(inputId,
                                timepicker = FALSE,
                                separator = " - ",
                                placeholder = NULL,
-                               dateFormat = "yyyy-mm-dd",
+                               dateFormat = "yyyy-MM-dd",
                                firstDay = NULL,
                                minDate = NULL,
                                maxDate = NULL,
@@ -157,9 +157,9 @@ airDatepickerInput <- function(inputId,
     startView = startView,
     value = list1(value),
     todayButtonAsDate = inherits(todayButton, c("Date", "POSIXt")),
+    language = toupper(language),
     options = c(dropNulls(list(
       autoClose = isTRUE(autoClose),
-      language = language,
       timepicker = isTRUE(timepicker),
       # startDate = startDate,
       range = isTRUE(range),
@@ -237,15 +237,7 @@ airDatepickerInput <- function(inputId,
     )
   )
 
-  attachDependencies(
-    x = attachShinyWidgetsDep(tagAir, "airdatepicker"),
-    value = htmlDependency(
-      name = paste0("air-datepicker-i18n-", language),
-      version = "2.2.3",
-      src = c(href = "shinyWidgets/air-datepicker2"),
-      script = sprintf("i18n/datepicker.%s.js", language)
-    ), append = TRUE
-  )
+  attachShinyWidgetsDep(tagAir, "airdatepicker")
 }
 
 

@@ -17,7 +17,7 @@ airDatepickerInput(
   timepicker = FALSE,
   separator = " - ",
   placeholder = NULL,
-  dateFormat = "yyyy-mm-dd",
+  dateFormat = "yyyy-MM-dd",
   firstDay = NULL,
   minDate = NULL,
   maxDate = NULL,

@@ -27,24 +27,28 @@ ui <- fluidPage(
 
       airDatepickerInput(
         inputId = "multiple",
-        label = "Select multiple dates:",
+        label = "Select multiple dates (max 3):",
         placeholder = "You can pick 3 dates",
-        multiple = 3, clearButton = TRUE
+        multiple = 3,
+        clearButton = TRUE
       ),
       verbatimTextOutput(outputId = "res_multiple"),
 
       airDatepickerInput(
         inputId = "range",
         label = "Select range of dates:",
-        range = TRUE, value = c(Sys.Date()-7, Sys.Date())
+        range = TRUE,
+        value = c(Sys.Date()-7, Sys.Date())
       ),
       verbatimTextOutput(outputId = "res_range"),
 
       airDatepickerInput(
         inputId = "close",
         label = "Update when closing:",
-        value = Sys.Date(), position = "right top",
-        update_on = "close", addon = "left"
+        value = Sys.Date(),
+        position = "right top",
+        update_on = "close",
+        addon = "left"
       ),
       verbatimTextOutput(outputId = "res_close"),
 
@@ -52,7 +56,7 @@ ui <- fluidPage(
         inputId = "french",
         label = "En fran\u00e7ais:",
         value = Sys.Date(),
-        dateFormat = "dd MM yyyy",
+        dateFormat = "dd/MM/yyyy",
         language = "fr"
       ),
       verbatimTextOutput(outputId = "res_french"),
@@ -60,7 +64,8 @@ ui <- fluidPage(
       airDatepickerInput(
         inputId = "disable",
         label = "Disable some dates:",
-        value = Sys.Date(), position = "top left",
+        value = Sys.Date(),
+        position = "top left",
         disabledDates = Sys.Date() + c(-9, -5, 2, 5, 8)
       ),
       verbatimTextOutput(outputId = "res_disable")
@@ -80,15 +85,18 @@ ui <- fluidPage(
       airDatepickerInput(
         inputId = "month",
         label = "Select months:",
-        view = "months", minView = "months",
-        dateFormat = "MM yyyy", monthsField = "months"
+        view = "months",
+        minView = "months",
+        dateFormat = "MM yyyy",
+        monthsField = "months"
       ),
       verbatimTextOutput(outputId = "res_month"),
 
       airDatepickerInput(
         inputId = "minmax",
         label = "Min & max dates:",
-        minDate = "2018-01-10", maxDate = "2018-01-21"
+        minDate = "2018-01-10",
+        maxDate = "2018-01-21"
       ),
       verbatimTextOutput(outputId = "res_minmax"),
 
