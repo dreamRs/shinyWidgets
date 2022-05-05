@@ -269,7 +269,7 @@ $.extend(AirDatepickerBindings, {
     if (data.hide) {
       dp.hide();
     }
-    if (data.hasOwnProperty("value")) this.setValue(el, data.value);
+    if (data.hasOwnProperty("value")) AirDatepickerBindings.setValue(el, data.value);
 
     if (data.hasOwnProperty("label")) {
       // console.log(el);
