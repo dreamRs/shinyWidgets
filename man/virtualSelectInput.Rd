@@ -76,7 +76,7 @@ single-select lists and no values for multiple select lists.}
 \item{inline}{Display inline with label or not.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link[shiny:reexports]{validateCssUnit()}}.}
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 }
 \value{
 A \code{shiny.tag} object that can be used in a UI definition.
