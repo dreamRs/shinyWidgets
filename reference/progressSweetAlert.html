@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,42 +51,61 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">progressSweetAlert</span><span class="op">(</span>
-  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="va">id</span>,
-  <span class="va">value</span>,
-  total <span class="op">=</span> <span class="cn">NULL</span>,
-  display_pct <span class="op">=</span> <span class="cn">FALSE</span>,
-  size <span class="op">=</span> <span class="cn">NULL</span>,
-  status <span class="op">=</span> <span class="cn">NULL</span>,
-  striped <span class="op">=</span> <span class="cn">FALSE</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">progressSweetAlert</span><span class="op">(</span></span>
+<span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">id</span>,</span>
+<span>  <span class="va">value</span>,</span>
+<span>  total <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  display_pct <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  size <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  status <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  striped <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>session</dt>
 <dd><p>The <code>session</code> object passed to function given to shinyServer.</p></dd>
+
+
 <dt>id</dt>
 <dd><p>An id used to update the progress bar.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>Value of the progress bar between 0 and 100, if &gt;100 you must provide total.</p></dd>
+
+
 <dt>total</dt>
 <dd><p>Used to calculate percentage if value &gt; 100, force an indicator to appear on top right of the progress bar.</p></dd>
+
+
 <dt>display_pct</dt>
 <dd><p>logical, display percentage on the progress bar.</p></dd>
+
+
 <dt>size</dt>
 <dd><p>Size, <code>NULL</code> by default or a value in 'xxs', 'xs', 'sm', only work with package <code>shinydashboard</code>.</p></dd>
+
+
 <dt>status</dt>
 <dd><p>Color, must be a valid Bootstrap status : primary, info, success, warning, danger.</p></dd>
+
+
 <dt>striped</dt>
 <dd><p>logical, add a striped effect.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>character, optional title.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Arguments passed to <code><a href="sweetalert.html">sendSweetAlert()</a></code></p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -95,50 +114,50 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.rstudio.com/" class="external-link">"shiny"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">"shinyWidgets"</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Progress bar in Sweet Alert"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="useSweetAlert.html">useSweetAlert</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># /!\ needed with 'progressSweetAlert'</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span>
-<span class="r-in">    inputId <span class="op">=</span> <span class="st">"go"</span>,</span>
-<span class="r-in">    label <span class="op">=</span> <span class="st">"Launch long calculation !"</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">go</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">progressSweetAlert</span><span class="op">(</span></span>
-<span class="r-in">      session <span class="op">=</span> <span class="va">session</span>, id <span class="op">=</span> <span class="st">"myprogress"</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"Work in progress"</span>,</span>
-<span class="r-in">      display_pct <span class="op">=</span> <span class="cn">TRUE</span>, value <span class="op">=</span> <span class="fl">0</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span></span>
-<span class="r-in">      <span class="fu"><a href="progress-bar.html">updateProgressBar</a></span><span class="op">(</span></span>
-<span class="r-in">        session <span class="op">=</span> <span class="va">session</span>,</span>
-<span class="r-in">        id <span class="op">=</span> <span class="st">"myprogress"</span>,</span>
-<span class="r-in">         value <span class="op">=</span> <span class="va">i</span><span class="op">*</span><span class="fl">2</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">}</span></span>
-<span class="r-in">    <span class="fu"><a href="closeSweetAlert.html">closeSweetAlert</a></span><span class="op">(</span>session <span class="op">=</span> <span class="va">session</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu"><a href="sweetalert.html">sendSweetAlert</a></span><span class="op">(</span></span>
-<span class="r-in">      session <span class="op">=</span> <span class="va">session</span>,</span>
-<span class="r-in">      title <span class="op">=</span><span class="st">" Calculation completed !"</span>,</span>
-<span class="r-in">      type <span class="op">=</span> <span class="st">"success"</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.rstudio.com/" class="external-link">"shiny"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">"shinyWidgets"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Progress bar in Sweet Alert"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="useSweetAlert.html">useSweetAlert</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># /!\ needed with 'progressSweetAlert'</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"go"</span>,</span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"Launch long calculation !"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">go</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">progressSweetAlert</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>, id <span class="op">=</span> <span class="st">"myprogress"</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"Work in progress"</span>,</span></span>
+<span class="r-in"><span>      display_pct <span class="op">=</span> <span class="cn">TRUE</span>, value <span class="op">=</span> <span class="fl">0</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="progress-bar.html">updateProgressBar</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>        id <span class="op">=</span> <span class="st">"myprogress"</span>,</span></span>
+<span class="r-in"><span>         value <span class="op">=</span> <span class="va">i</span><span class="op">*</span><span class="fl">2</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">}</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="closeSweetAlert.html">closeSweetAlert</a></span><span class="op">(</span>session <span class="op">=</span> <span class="va">session</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="sweetalert.html">sendSweetAlert</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span><span class="st">" Calculation completed !"</span>,</span></span>
+<span class="r-in"><span>      type <span class="op">=</span> <span class="st">"success"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -150,7 +169,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

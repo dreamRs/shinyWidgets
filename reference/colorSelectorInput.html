@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,58 +51,79 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">colorSelectorInput</span><span class="op">(</span>
-  <span class="va">inputId</span>,
-  <span class="va">label</span>,
-  <span class="va">choices</span>,
-  selected <span class="op">=</span> <span class="cn">NULL</span>,
-  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"radio"</span>, <span class="st">"checkbox"</span><span class="op">)</span>,
-  display_label <span class="op">=</span> <span class="cn">FALSE</span>,
-  ncol <span class="op">=</span> <span class="fl">10</span>
-<span class="op">)</span>
-
-<span class="fu">colorSelectorExample</span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu">colorSelectorDrop</span><span class="op">(</span>
-  <span class="va">inputId</span>,
-  <span class="va">label</span>,
-  <span class="va">choices</span>,
-  selected <span class="op">=</span> <span class="cn">NULL</span>,
-  display_label <span class="op">=</span> <span class="cn">FALSE</span>,
-  ncol <span class="op">=</span> <span class="fl">10</span>,
-  circle <span class="op">=</span> <span class="cn">TRUE</span>,
-  size <span class="op">=</span> <span class="st">"sm"</span>,
-  up <span class="op">=</span> <span class="cn">FALSE</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">colorSelectorInput</span><span class="op">(</span></span>
+<span>  <span class="va">inputId</span>,</span>
+<span>  <span class="va">label</span>,</span>
+<span>  <span class="va">choices</span>,</span>
+<span>  selected <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"radio"</span>, <span class="st">"checkbox"</span><span class="op">)</span>,</span>
+<span>  display_label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">colorSelectorExample</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">colorSelectorDrop</span><span class="op">(</span></span>
+<span>  <span class="va">inputId</span>,</span>
+<span>  <span class="va">label</span>,</span>
+<span>  <span class="va">choices</span>,</span>
+<span>  selected <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  display_label <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  circle <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  size <span class="op">=</span> <span class="st">"sm"</span>,</span>
+<span>  up <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>inputId</dt>
 <dd><p>The <code>input</code> slot that will be used to access the value.</p></dd>
+
+
 <dt>label</dt>
 <dd><p>Display label for the control, or <code>NULL</code> for no label.</p></dd>
+
+
 <dt>choices</dt>
 <dd><p>A list of colors, can be a list of named list, see example.</p></dd>
+
+
 <dt>selected</dt>
 <dd><p>Default selected color, if <code>NULL</code> the first color for <code>mode = 'radio'</code>
 and none for <code>mode = 'checkbox'</code></p></dd>
+
+
 <dt>mode</dt>
 <dd><p><code>'radio'</code> for only one choice, <code>'checkbox'</code> for
 selecting multiple values.</p></dd>
+
+
 <dt>display_label</dt>
 <dd><p>Display list's names after palette of color.</p></dd>
+
+
 <dt>ncol</dt>
 <dd><p>If choices is not a list but a vector, go to line after n elements.</p></dd>
+
+
 <dt>circle</dt>
 <dd><p>Logical, use a circle or a square button</p></dd>
+
+
 <dt>size</dt>
 <dd><p>Size of the button : default, lg, sm, xs.</p></dd>
+
+
 <dt>up</dt>
 <dd><p>Logical. Display the dropdown menu above.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>Width of the dropdown menu content.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
@@ -113,31 +134,31 @@ selecting multiple values.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Full example</span></span>
-<span class="r-in"><span class="fu">colorSelectorExample</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Simple example</span></span>
-<span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu">colorSelectorInput</span><span class="op">(</span></span>
-<span class="r-in">    inputId <span class="op">=</span> <span class="st">"mycolor1"</span>, label <span class="op">=</span> <span class="st">"Pick a color :"</span>,</span>
-<span class="r-in">    choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"steelblue"</span>, <span class="st">"cornflowerblue"</span>,</span>
-<span class="r-in">                <span class="st">"firebrick"</span>, <span class="st">"palegoldenrod"</span>,</span>
-<span class="r-in">                <span class="st">"forestgreen"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"result1"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">result1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="op">{</span></span>
-<span class="r-in">    <span class="va">input</span><span class="op">$</span><span class="va">mycolor1</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Full example</span></span></span>
+<span class="r-in"><span><span class="fu">colorSelectorExample</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Simple example</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">colorSelectorInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"mycolor1"</span>, label <span class="op">=</span> <span class="st">"Pick a color :"</span>,</span></span>
+<span class="r-in"><span>    choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"steelblue"</span>, <span class="st">"cornflowerblue"</span>,</span></span>
+<span class="r-in"><span>                <span class="st">"firebrick"</span>, <span class="st">"palegoldenrod"</span>,</span></span>
+<span class="r-in"><span>                <span class="st">"forestgreen"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"result1"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">result1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">input</span><span class="op">$</span><span class="va">mycolor1</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -149,7 +170,7 @@ selecting multiple values.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

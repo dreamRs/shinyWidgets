@@ -12,7 +12,7 @@ formatting numeric inputs in shiny applications."><!-- mathjax --><script src="h
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,89 +54,128 @@ formatting numeric inputs in shiny applications.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">autonumericInput</span><span class="op">(</span>
-  <span class="va">inputId</span>,
-  <span class="va">label</span>,
-  <span class="va">value</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  align <span class="op">=</span> <span class="st">"center"</span>,
-  currencySymbol <span class="op">=</span> <span class="cn">NULL</span>,
-  currencySymbolPlacement <span class="op">=</span> <span class="cn">NULL</span>,
-  decimalCharacter <span class="op">=</span> <span class="cn">NULL</span>,
-  digitGroupSeparator <span class="op">=</span> <span class="cn">NULL</span>,
-  allowDecimalPadding <span class="op">=</span> <span class="cn">NULL</span>,
-  decimalPlaces <span class="op">=</span> <span class="cn">NULL</span>,
-  divisorWhenUnfocused <span class="op">=</span> <span class="cn">NULL</span>,
-  rawValueDivisor <span class="op">=</span> <span class="cn">NULL</span>,
-  formatOnPageLoad <span class="op">=</span> <span class="cn">NULL</span>,
-  maximumValue <span class="op">=</span> <span class="cn">NULL</span>,
-  minimumValue <span class="op">=</span> <span class="cn">NULL</span>,
-  modifyValueOnWheel <span class="op">=</span> <span class="cn">NULL</span>,
-  emptyInputBehavior <span class="op">=</span> <span class="st">"null"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">autonumericInput</span><span class="op">(</span></span>
+<span>  <span class="va">inputId</span>,</span>
+<span>  <span class="va">label</span>,</span>
+<span>  <span class="va">value</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  align <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>  currencySymbol <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  currencySymbolPlacement <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  decimalCharacter <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  digitGroupSeparator <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  allowDecimalPadding <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  decimalPlaces <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  divisorWhenUnfocused <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rawValueDivisor <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  formatOnPageLoad <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maximumValue <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  minimumValue <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  modifyValueOnWheel <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  emptyInputBehavior <span class="op">=</span> <span class="st">"null"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>inputId</dt>
 <dd><p>The <code>input</code> slot that will be used to access the value.</p></dd>
+
+
 <dt>label</dt>
 <dd><p>Display label for the control, or NULL for no label.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>Initial value (unformatted).</p></dd>
+
+
 <dt>width</dt>
 <dd><p>The width of the input box, eg. <code>"200px"</code> or
 <code>"100%"</code>.</p></dd>
+
+
 <dt>align</dt>
 <dd><p>The alignment of the text inside the input box, one of
 "center" (default), "left", "right".</p></dd>
+
+
 <dt>currencySymbol</dt>
 <dd><p>Defines the currency symbol string. It can be a string
 of more than one character (allowing for instance to use a space on either
 side of it, example: '$ ' or ' $'). Defaults to "".</p></dd>
+
+
 <dt>currencySymbolPlacement</dt>
 <dd><p>Defines where the currency symbol should be
 placed, "p" for prefix or "s" for suffix (default).</p></dd>
+
+
 <dt>decimalCharacter</dt>
 <dd><p>Defines what decimal separator character is used.
 Defaults to ",".</p></dd>
+
+
 <dt>digitGroupSeparator</dt>
 <dd><p>Defines what decimal separator character is used.
 Defaults to ".".</p></dd>
+
+
 <dt>allowDecimalPadding</dt>
 <dd><p>Defines if decimal places should be padded with
 zeros.  Defaults to TRUE.</p></dd>
+
+
 <dt>decimalPlaces</dt>
 <dd><p>Defines the default number of decimal places to show
 on the formatted value, and keep for the precision. Must be 0 or a
 positive integer. Defaults to 2.</p></dd>
+
+
 <dt>divisorWhenUnfocused</dt>
 <dd><p>The number that divides the element value on
 blur.  On focus, the number is multiplied back in. Defaults to NULL.</p></dd>
+
+
 <dt>rawValueDivisor</dt>
 <dd><p>Divides the formatted value shown in the AutoNumeric
 element and store the divided result in <code>rawValue</code>. Defaults to 1.</p></dd>
+
+
 <dt>formatOnPageLoad</dt>
 <dd><p>Determine if the default value will be formatted on
 initialization. Defaults to TRUE.</p></dd>
+
+
 <dt>maximumValue</dt>
 <dd><p>Defines the maximum possible value a user can enter.</p></dd>
+
+
 <dt>minimumValue</dt>
 <dd><p>Defines the minimum possible value a user can enter.</p></dd>
+
+
 <dt>modifyValueOnWheel</dt>
 <dd><p>Allows the user to increment or decrement the
 element value with the mouse wheel. The wheel behavior can be modified
 by the <code>wheelStep</code> option. Defaults to TRUE.</p></dd>
+
+
 <dt>emptyInputBehavior</dt>
 <dd><p>Defines what should be displayed in the element if the raw value is an empty string ''.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional parameters that can be passed to AutoNumeric.  See
 details for more information.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An autonumericInput object to be used in the UI function of a Shiny
+    
+
+<p>An autonumericInput object to be used in the UI function of a Shiny
 App.</p>
     </div>
     <div class="section level2">
@@ -282,58 +321,58 @@ external changes made without using <code>.set()</code>. Defaults to <code>FALSE
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Autonumeric Inputs"</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu">autonumericInput</span><span class="op">(</span></span>
-<span class="r-in">      inputId <span class="op">=</span> <span class="st">"id1"</span>,</span>
-<span class="r-in">      label <span class="op">=</span> <span class="st">"Default Input"</span>,</span>
-<span class="r-in">      value <span class="op">=</span> <span class="fl">1234.56</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res1"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">    <span class="fu">autonumericInput</span><span class="op">(</span></span>
-<span class="r-in">      inputId <span class="op">=</span> <span class="st">"id2"</span>,</span>
-<span class="r-in">      label <span class="op">=</span> <span class="st">"Custom Thousands of Dollars Input"</span>,</span>
-<span class="r-in">      value <span class="op">=</span> <span class="fl">1234.56</span>,</span>
-<span class="r-in">      align <span class="op">=</span> <span class="st">"right"</span>,</span>
-<span class="r-in">      currencySymbol <span class="op">=</span> <span class="st">"$"</span>,</span>
-<span class="r-in">      currencySymbolPlacement <span class="op">=</span> <span class="st">"p"</span>,</span>
-<span class="r-in">      decimalCharacter <span class="op">=</span> <span class="st">"."</span>,</span>
-<span class="r-in">      digitGroupSeparator <span class="op">=</span> <span class="st">","</span>,</span>
-<span class="r-in">      divisorWhenUnfocused <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span class="r-in">      symbolWhenUnfocused <span class="op">=</span> <span class="st">"K"</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res2"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">    <span class="fu">autonumericInput</span><span class="op">(</span></span>
-<span class="r-in">      inputId <span class="op">=</span> <span class="st">"id3"</span>,</span>
-<span class="r-in">      label <span class="op">=</span> <span class="st">"Custom Millions of Euros Input with Positive Sign"</span>,</span>
-<span class="r-in">      value <span class="op">=</span> <span class="fl">12345678910</span>,</span>
-<span class="r-in">      align <span class="op">=</span> <span class="st">"right"</span>,</span>
-<span class="r-in">      currencySymbol <span class="op">=</span> <span class="st">"\u20ac"</span>,</span>
-<span class="r-in">      currencySymbolPlacement <span class="op">=</span> <span class="st">"s"</span>,</span>
-<span class="r-in">      decimalCharacter <span class="op">=</span> <span class="st">","</span>,</span>
-<span class="r-in">      digitGroupSeparator <span class="op">=</span> <span class="st">"."</span>,</span>
-<span class="r-in">      divisorWhenUnfocused <span class="op">=</span> <span class="fl">1000000</span>,</span>
-<span class="r-in">      symbolWhenUnfocused <span class="op">=</span> <span class="st">" (millions)"</span>,</span>
-<span class="r-in">      showPositiveSign <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res3"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">    <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id1</span><span class="op">)</span></span>
-<span class="r-in">    <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id2</span><span class="op">)</span></span>
-<span class="r-in">    <span class="va">output</span><span class="op">$</span><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id3</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Autonumeric Inputs"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">autonumericInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"id1"</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Default Input"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="fl">1234.56</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res1"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="fu">autonumericInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"id2"</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Custom Thousands of Dollars Input"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="fl">1234.56</span>,</span></span>
+<span class="r-in"><span>      align <span class="op">=</span> <span class="st">"right"</span>,</span></span>
+<span class="r-in"><span>      currencySymbol <span class="op">=</span> <span class="st">"$"</span>,</span></span>
+<span class="r-in"><span>      currencySymbolPlacement <span class="op">=</span> <span class="st">"p"</span>,</span></span>
+<span class="r-in"><span>      decimalCharacter <span class="op">=</span> <span class="st">"."</span>,</span></span>
+<span class="r-in"><span>      digitGroupSeparator <span class="op">=</span> <span class="st">","</span>,</span></span>
+<span class="r-in"><span>      divisorWhenUnfocused <span class="op">=</span> <span class="fl">1000</span>,</span></span>
+<span class="r-in"><span>      symbolWhenUnfocused <span class="op">=</span> <span class="st">"K"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res2"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="fu">autonumericInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"id3"</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Custom Millions of Euros Input with Positive Sign"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="fl">12345678910</span>,</span></span>
+<span class="r-in"><span>      align <span class="op">=</span> <span class="st">"right"</span>,</span></span>
+<span class="r-in"><span>      currencySymbol <span class="op">=</span> <span class="st">"\u20ac"</span>,</span></span>
+<span class="r-in"><span>      currencySymbolPlacement <span class="op">=</span> <span class="st">"s"</span>,</span></span>
+<span class="r-in"><span>      decimalCharacter <span class="op">=</span> <span class="st">","</span>,</span></span>
+<span class="r-in"><span>      digitGroupSeparator <span class="op">=</span> <span class="st">"."</span>,</span></span>
+<span class="r-in"><span>      divisorWhenUnfocused <span class="op">=</span> <span class="fl">1000000</span>,</span></span>
+<span class="r-in"><span>      symbolWhenUnfocused <span class="op">=</span> <span class="st">" (millions)"</span>,</span></span>
+<span class="r-in"><span>      showPositiveSign <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res3"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">output</span><span class="op">$</span><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -345,7 +384,7 @@ external changes made without using <code>.set()</code>. Defaults to <code>FALSE
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

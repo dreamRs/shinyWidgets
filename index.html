@@ -29,7 +29,7 @@
     
     <a class="navbar-brand me-2" href="index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,18 +79,18 @@
 </h2>
 <p>Install from <a href="https://CRAN.R-project.org/package=shinyWidgets" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"shinyWidgets"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"shinyWidgets"</span><span class="op">)</span></span></code></pre></div>
 <p>Or install the development version from <a href="https://github.com/dreamRs/shinyWidgets" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dreamRs/shinyWidgets"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"dreamRs/shinyWidgets"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="demo">Demo<a class="anchor" aria-label="anchor" href="#demo"></a>
 </h2>
 <p>A gallery application is included in the package. Once installed, use the following command to launch it:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">shinyWidgets</span><span class="fu">::</span><span class="fu"><a href="reference/shinyWidgetsGallery.html">shinyWidgetsGallery</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">shinyWidgets</span><span class="fu">::</span><span class="fu"><a href="reference/shinyWidgetsGallery.html">shinyWidgetsGallery</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>A live version is available here : <a href="http://shinyapps.dreamrs.fr/shinyWidgets" class="external-link uri">http://shinyapps.dreamrs.fr/shinyWidgets</a></p>
 <div class="section level3">
 <h3 id="bootstrap-switch">Bootstrap switch<a class="anchor" aria-label="anchor" href="#bootstrap-switch"></a>
@@ -100,7 +100,7 @@
 <img src="reference/figures/switchInput.png" alt=""><p class="caption">switchInput</p>
 </div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/switchInput.html">switchInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"id"</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/switchInput.html">switchInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"id"</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="material-switch">Material switch<a class="anchor" aria-label="anchor" href="#material-switch"></a>
@@ -110,7 +110,7 @@
 <img src="reference/figures/materialSwitch.png" alt=""><p class="caption">materialSwitch</p>
 </div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/materialSwitch.html">materialSwitch</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"id"</span>, label <span class="op">=</span> <span class="st">"Primary switch"</span>, status <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/materialSwitch.html">materialSwitch</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"id"</span>, label <span class="op">=</span> <span class="st">"Primary switch"</span>, status <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="pretty-checkbox">Pretty Checkbox<a class="anchor" aria-label="anchor" href="#pretty-checkbox"></a>
@@ -157,15 +157,15 @@
 </h3>
 <p>Slider with strings, to pass whatever you want : <br><img src="reference/figures/sliderText.png" alt="sliderText"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/sliderTextInput.html">sliderTextInput</a></span><span class="op">(</span>
-  inputId <span class="op">=</span> <span class="st">"mySliderText"</span>, 
-  label <span class="op">=</span> <span class="st">"Your choice:"</span>, 
-  grid <span class="op">=</span> <span class="cn">TRUE</span>, 
-  force_edges <span class="op">=</span> <span class="cn">TRUE</span>,
-  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Strongly disagree"</span>,
-              <span class="st">"Disagree"</span>, <span class="st">"Neither agree nor disagree"</span>, 
-              <span class="st">"Agree"</span>, <span class="st">"Strongly agree"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/sliderTextInput.html">sliderTextInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"mySliderText"</span>, </span>
+<span>  label <span class="op">=</span> <span class="st">"Your choice:"</span>, </span>
+<span>  grid <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  force_edges <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Strongly disagree"</span>,</span>
+<span>              <span class="st">"Disagree"</span>, <span class="st">"Neither agree nor disagree"</span>, </span>
+<span>              <span class="st">"Agree"</span>, <span class="st">"Strongly agree"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="select-picker">Select picker<a class="anchor" aria-label="anchor" href="#select-picker"></a>
@@ -175,17 +175,17 @@
 <img src="reference/figures/pickerInput.png" alt=""><p class="caption">pickerInput</p>
 </div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/pickerInput.html">pickerInput</a></span><span class="op">(</span>
-  inputId <span class="op">=</span> <span class="st">"myPicker"</span>, 
-  label <span class="op">=</span> <span class="st">"Select/deselect all + format selected"</span>, 
-  choices <span class="op">=</span> <span class="va">LETTERS</span>, 
-  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-    `actions-box` <span class="op">=</span> <span class="cn">TRUE</span>, 
-    size <span class="op">=</span> <span class="fl">10</span>,
-    `selected-text-format` <span class="op">=</span> <span class="st">"count &gt; 3"</span>
-  <span class="op">)</span>, 
-  multiple <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/pickerInput.html">pickerInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"myPicker"</span>, </span>
+<span>  label <span class="op">=</span> <span class="st">"Select/deselect all + format selected"</span>, </span>
+<span>  choices <span class="op">=</span> <span class="va">LETTERS</span>, </span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    `actions-box` <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    size <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>    `selected-text-format` <span class="op">=</span> <span class="st">"count &gt; 3"</span></span>
+<span>  <span class="op">)</span>, </span>
+<span>  multiple <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="checkbox-and-radio-buttons">Checkbox and radio buttons<a class="anchor" aria-label="anchor" href="#checkbox-and-radio-buttons"></a>
@@ -195,12 +195,12 @@
 <img src="reference/figures/checkboxGroupButtons.png" alt=""><p class="caption">checkboxGroupButtons</p>
 </div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/checkboxGroupButtons.html">checkboxGroupButtons</a></span><span class="op">(</span>
-  inputId <span class="op">=</span> <span class="st">"somevalue"</span>, label <span class="op">=</span> <span class="st">"Make a choice :"</span>, 
-  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Choice A"</span>, <span class="st">"Choice B"</span>, <span class="st">" Choice C"</span>, <span class="st">"Choice D"</span><span class="op">)</span>, 
-  justified <span class="op">=</span> <span class="cn">TRUE</span>, status <span class="op">=</span> <span class="st">"primary"</span>,
-  checkIcon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>yes <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"ok"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>, no <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"remove"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/checkboxGroupButtons.html">checkboxGroupButtons</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"somevalue"</span>, label <span class="op">=</span> <span class="st">"Make a choice :"</span>, </span>
+<span>  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Choice A"</span>, <span class="st">"Choice B"</span>, <span class="st">" Choice C"</span>, <span class="st">"Choice D"</span><span class="op">)</span>, </span>
+<span>  justified <span class="op">=</span> <span class="cn">TRUE</span>, status <span class="op">=</span> <span class="st">"primary"</span>,</span>
+<span>  checkIcon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>yes <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"ok"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>, no <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"remove"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="search-input">Search input<a class="anchor" aria-label="anchor" href="#search-input"></a>
@@ -210,28 +210,28 @@
 <img src="reference/figures/search_input.png" alt=""><p class="caption">search_input</p>
 </div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/searchInput.html">searchInput</a></span><span class="op">(</span>
-  inputId <span class="op">=</span> <span class="st">"id"</span>, 
-  label <span class="op">=</span> <span class="st">"Enter your search :"</span>, 
-  placeholder <span class="op">=</span> <span class="st">"This is a placeholder"</span>, 
-  btnSearch <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"search"</span><span class="op">)</span>, 
-  btnReset <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"remove"</span><span class="op">)</span>, 
-  width <span class="op">=</span> <span class="st">"100%"</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/searchInput.html">searchInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>, </span>
+<span>  label <span class="op">=</span> <span class="st">"Enter your search :"</span>, </span>
+<span>  placeholder <span class="op">=</span> <span class="st">"This is a placeholder"</span>, </span>
+<span>  btnSearch <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"search"</span><span class="op">)</span>, </span>
+<span>  btnReset <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"remove"</span><span class="op">)</span>, </span>
+<span>  width <span class="op">=</span> <span class="st">"100%"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="dropdown-button">Dropdown button<a class="anchor" aria-label="anchor" href="#dropdown-button"></a>
 </h3>
 <p>Hide input in a button : <br><img src="reference/figures/dropdown_btn_off.png" alt="dropdown_off"><img src="reference/figures/dropdown_btn_on.png" alt="dropdown_on"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/dropdownButton.html">dropdownButton</a></span><span class="op">(</span>
-  <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"List of Input"</span><span class="op">)</span>,
-  <span class="fu">selectInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'xcol'</span>, label <span class="op">=</span> <span class="st">'X Variable'</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>,
-  <span class="fu">selectInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'ycol'</span>, label <span class="op">=</span> <span class="st">'Y Variable'</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, selected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,
-  <span class="fu">sliderInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'clusters'</span>, label <span class="op">=</span> <span class="st">'Cluster count'</span>, value <span class="op">=</span> <span class="fl">3</span>, min <span class="op">=</span> <span class="fl">1</span>, max <span class="op">=</span> <span class="fl">9</span><span class="op">)</span>,
-  circle <span class="op">=</span> <span class="cn">TRUE</span>, status <span class="op">=</span> <span class="st">"danger"</span>, icon <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"cog"</span><span class="op">)</span>, width <span class="op">=</span> <span class="st">"300px"</span>,
-  tooltip <span class="op">=</span> <span class="fu"><a href="reference/tooltipOptions.html">tooltipOptions</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Click to see inputs !"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dropdownButton.html">dropdownButton</a></span><span class="op">(</span></span>
+<span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"List of Input"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">selectInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'xcol'</span>, label <span class="op">=</span> <span class="st">'X Variable'</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu">selectInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'ycol'</span>, label <span class="op">=</span> <span class="st">'Y Variable'</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, selected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  <span class="fu">sliderInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'clusters'</span>, label <span class="op">=</span> <span class="st">'Cluster count'</span>, value <span class="op">=</span> <span class="fl">3</span>, min <span class="op">=</span> <span class="fl">1</span>, max <span class="op">=</span> <span class="fl">9</span><span class="op">)</span>,</span>
+<span>  circle <span class="op">=</span> <span class="cn">TRUE</span>, status <span class="op">=</span> <span class="st">"danger"</span>, icon <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"cog"</span><span class="op">)</span>, width <span class="op">=</span> <span class="st">"300px"</span>,</span>
+<span>  tooltip <span class="op">=</span> <span class="fu"><a href="reference/tooltipOptions.html">tooltipOptions</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Click to see inputs !"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>See also <code>?dropMenu()</code></p>
 </div>
 </div>
@@ -297,7 +297,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer>

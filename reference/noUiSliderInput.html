@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,91 +51,136 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">noUiSliderInput</span><span class="op">(</span>
-  <span class="va">inputId</span>,
-  label <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">min</span>,
-  <span class="va">max</span>,
-  <span class="va">value</span>,
-  step <span class="op">=</span> <span class="cn">NULL</span>,
-  tooltips <span class="op">=</span> <span class="cn">TRUE</span>,
-  connect <span class="op">=</span> <span class="cn">TRUE</span>,
-  padding <span class="op">=</span> <span class="fl">0</span>,
-  margin <span class="op">=</span> <span class="cn">NULL</span>,
-  limit <span class="op">=</span> <span class="cn">NULL</span>,
-  orientation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"horizontal"</span>, <span class="st">"vertical"</span><span class="op">)</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ltr"</span>, <span class="st">"rtl"</span><span class="op">)</span>,
-  behaviour <span class="op">=</span> <span class="st">"tap"</span>,
-  range <span class="op">=</span> <span class="cn">NULL</span>,
-  pips <span class="op">=</span> <span class="cn">NULL</span>,
-  format <span class="op">=</span> <span class="fu"><a href="wNumbFormat.html">wNumbFormat</a></span><span class="op">(</span><span class="op">)</span>,
-  update_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"end"</span>, <span class="st">"change"</span><span class="op">)</span>,
-  color <span class="op">=</span> <span class="cn">NULL</span>,
-  inline <span class="op">=</span> <span class="cn">FALSE</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">noUiSliderInput</span><span class="op">(</span></span>
+<span>  <span class="va">inputId</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">min</span>,</span>
+<span>  <span class="va">max</span>,</span>
+<span>  <span class="va">value</span>,</span>
+<span>  step <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tooltips <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  connect <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  padding <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  margin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  limit <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  orientation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"horizontal"</span>, <span class="st">"vertical"</span><span class="op">)</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ltr"</span>, <span class="st">"rtl"</span><span class="op">)</span>,</span>
+<span>  behaviour <span class="op">=</span> <span class="st">"tap"</span>,</span>
+<span>  range <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pips <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  format <span class="op">=</span> <span class="fu"><a href="wNumbFormat.html">wNumbFormat</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  update_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"end"</span>, <span class="st">"change"</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  inline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>inputId</dt>
 <dd><p>The <code>input</code> slot that will be used to access the value.</p></dd>
+
+
 <dt>label</dt>
 <dd><p>Display label for the control, or NULL for no label.</p></dd>
+
+
 <dt>min</dt>
 <dd><p>Minimal value that can be selected.</p></dd>
+
+
 <dt>max</dt>
 <dd><p>Maximal value that can be selected.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>The initial value of the slider. as many cursors will be created as values provided.</p></dd>
+
+
 <dt>step</dt>
 <dd><p>numeric, by default, the slider slides fluently.
 In order to make the handles jump between intervals, you can use
 the step option.</p></dd>
+
+
 <dt>tooltips</dt>
 <dd><p>logical, display slider's value in a tooltip above slider.</p></dd>
+
+
 <dt>connect</dt>
 <dd><p>logical, vector of length <code>value</code> + 1, color slider between handle(s).</p></dd>
+
+
 <dt>padding</dt>
 <dd><p>numeric, padding limits how close to the slider edges handles can be.</p></dd>
+
+
 <dt>margin</dt>
 <dd><p>numeric, when using two handles, the minimum distance between
 the handles can be set using the margin option.</p></dd>
+
+
 <dt>limit</dt>
 <dd><p>numeric, the limit option is the opposite of the <code>margin</code> option,
 limiting the maximum distance between two handles.</p></dd>
+
+
 <dt>orientation</dt>
 <dd><p>The orientation setting can be used to set the
 slider to <code>"vertical"</code> or <code>"horizontal"</code>.</p></dd>
+
+
 <dt>direction</dt>
 <dd><p><code>"ltr"</code> or <code>"rtl"</code>, By default the sliders are top-to-bottom and left-to-right,
 but you can change this using the direction option,
 which decides where the upper side of the slider is.</p></dd>
+
+
 <dt>behaviour</dt>
 <dd><p>Option to handle user interaction, a value or several between
 <code>"drag"</code>, <code>"tap"</code>, <code>"fixed"</code>, <code>"snap"</code> or <code>"none"</code>.
 See <a href="https://refreshless.com/nouislider/behaviour-option/" class="external-link">https://refreshless.com/nouislider/behaviour-option/</a> for more examples.</p></dd>
+
+
 <dt>range</dt>
 <dd><p>list, can be used to define non-linear sliders.</p></dd>
+
+
 <dt>pips</dt>
 <dd><p>list, used to generate points along the slider.</p></dd>
+
+
 <dt>format</dt>
 <dd><p>numbers format, see <code><a href="wNumbFormat.html">wNumbFormat</a></code>.</p></dd>
+
+
 <dt>update_on</dt>
 <dd><p>When to send value to server: <code>"end"</code> (when slider is released) or <code>"update"</code> (each time value changes).</p></dd>
+
+
 <dt>color</dt>
 <dd><p>color in Hex format for the slider.</p></dd>
+
+
 <dt>inline</dt>
 <dd><p>If <code>TRUE</code>, it's possible to position sliders side-by-side.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>The width of the input, e.g. <code>400px</code>, or <code>100%</code>.</p></dd>
+
+
 <dt>height</dt>
 <dd><p>The height of the input, e.g. <code>400px</code>, or <code>100%</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a ui definition</p>
+    
+
+<p>a ui definition</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -145,54 +190,54 @@ And <code><a href="demoNoUiSlider.html">demoNoUiSlider</a></code> for examples.<
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">### examples ----</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># see ?demoNoUiSlider</span></span>
-<span class="r-in"><span class="fu"><a href="demoNoUiSlider.html">demoNoUiSlider</a></span><span class="op">(</span><span class="st">"more"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">###  basic usage ----</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span> <span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span> <span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span> <span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span> <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">noUiSliderInput</span><span class="op">(</span></span>
-<span class="r-in">    inputId <span class="op">=</span> <span class="st">"noui1"</span>,</span>
-<span class="r-in">    min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">100</span>,</span>
-<span class="r-in">    value <span class="op">=</span> <span class="fl">20</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res1"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">noUiSliderInput</span><span class="op">(</span></span>
-<span class="r-in">    inputId <span class="op">=</span> <span class="st">"noui2"</span>, label <span class="op">=</span> <span class="st">"Slider vertical:"</span>,</span>
-<span class="r-in">    min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1000</span>, step <span class="op">=</span> <span class="fl">50</span>,</span>
-<span class="r-in">    value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">400</span><span class="op">)</span>, margin <span class="op">=</span> <span class="fl">100</span>,</span>
-<span class="r-in">    orientation <span class="op">=</span> <span class="st">"vertical"</span>,</span>
-<span class="r-in">    width <span class="op">=</span> <span class="st">"100px"</span>, height <span class="op">=</span> <span class="st">"300px"</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res2"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">noui1</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">noui2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">### examples ----</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># see ?demoNoUiSlider</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="demoNoUiSlider.html">demoNoUiSlider</a></span><span class="op">(</span><span class="st">"more"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">###  basic usage ----</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span> <span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span> <span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span> <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">noUiSliderInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"noui1"</span>,</span></span>
+<span class="r-in"><span>    min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">100</span>,</span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="fl">20</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res1"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">noUiSliderInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"noui2"</span>, label <span class="op">=</span> <span class="st">"Slider vertical:"</span>,</span></span>
+<span class="r-in"><span>    min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1000</span>, step <span class="op">=</span> <span class="fl">50</span>,</span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">400</span><span class="op">)</span>, margin <span class="op">=</span> <span class="fl">100</span>,</span></span>
+<span class="r-in"><span>    orientation <span class="op">=</span> <span class="st">"vertical"</span>,</span></span>
+<span class="r-in"><span>    width <span class="op">=</span> <span class="st">"100px"</span>, height <span class="op">=</span> <span class="st">"300px"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res2"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">noui1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">noui2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -204,7 +249,7 @@ And <code><a href="demoNoUiSlider.html">demoNoUiSlider</a></code> for examples.<
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

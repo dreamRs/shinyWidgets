@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,92 +51,141 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">knobInput</span><span class="op">(</span>
-  <span class="va">inputId</span>,
-  <span class="va">label</span>,
-  <span class="va">value</span>,
-  min <span class="op">=</span> <span class="fl">0</span>,
-  max <span class="op">=</span> <span class="fl">100</span>,
-  step <span class="op">=</span> <span class="fl">1</span>,
-  angleOffset <span class="op">=</span> <span class="fl">0</span>,
-  angleArc <span class="op">=</span> <span class="fl">360</span>,
-  cursor <span class="op">=</span> <span class="cn">FALSE</span>,
-  thickness <span class="op">=</span> <span class="cn">NULL</span>,
-  lineCap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"round"</span><span class="op">)</span>,
-  displayInput <span class="op">=</span> <span class="cn">TRUE</span>,
-  displayPrevious <span class="op">=</span> <span class="cn">FALSE</span>,
-  rotation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"clockwise"</span>, <span class="st">"anticlockwise"</span><span class="op">)</span>,
-  fgColor <span class="op">=</span> <span class="cn">NULL</span>,
-  inputColor <span class="op">=</span> <span class="cn">NULL</span>,
-  bgColor <span class="op">=</span> <span class="cn">NULL</span>,
-  pre <span class="op">=</span> <span class="cn">NULL</span>,
-  post <span class="op">=</span> <span class="cn">NULL</span>,
-  fontSize <span class="op">=</span> <span class="cn">NULL</span>,
-  readOnly <span class="op">=</span> <span class="cn">FALSE</span>,
-  skin <span class="op">=</span> <span class="cn">NULL</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  height <span class="op">=</span> <span class="cn">NULL</span>,
-  immediate <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">knobInput</span><span class="op">(</span></span>
+<span>  <span class="va">inputId</span>,</span>
+<span>  <span class="va">label</span>,</span>
+<span>  <span class="va">value</span>,</span>
+<span>  min <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  max <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  step <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  angleOffset <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  angleArc <span class="op">=</span> <span class="fl">360</span>,</span>
+<span>  cursor <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  thickness <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  lineCap <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"round"</span><span class="op">)</span>,</span>
+<span>  displayInput <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  displayPrevious <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  rotation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"clockwise"</span>, <span class="st">"anticlockwise"</span><span class="op">)</span>,</span>
+<span>  fgColor <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  inputColor <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  bgColor <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pre <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  post <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fontSize <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  readOnly <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  skin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  immediate <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>inputId</dt>
 <dd><p>The <code>input</code> slot that will be used to access the value.</p></dd>
+
+
 <dt>label</dt>
 <dd><p>Display label for the control, or NULL for no label.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>Initial value.</p></dd>
+
+
 <dt>min</dt>
 <dd><p>Minimum allowed value, default to <code>0</code>.</p></dd>
+
+
 <dt>max</dt>
 <dd><p>Maximum allowed value, default to <code>100</code>.</p></dd>
+
+
 <dt>step</dt>
 <dd><p>Specifies the interval between each selectable value, default to <code>1</code>.</p></dd>
+
+
 <dt>angleOffset</dt>
 <dd><p>Starting angle in degrees, default to <code>0</code>.</p></dd>
+
+
 <dt>angleArc</dt>
 <dd><p>Arc size in degrees, default to <code>360</code>.</p></dd>
+
+
 <dt>cursor</dt>
 <dd><p>Display mode "cursor", don't work properly if <code>width</code> is not set in pixel, (<code>TRUE</code> or <code>FALSE</code>).</p></dd>
+
+
 <dt>thickness</dt>
 <dd><p>Gauge thickness, numeric value.</p></dd>
+
+
 <dt>lineCap</dt>
 <dd><p>Gauge stroke endings, 'default' or 'round'.</p></dd>
+
+
 <dt>displayInput</dt>
 <dd><p>Hide input in the middle of the knob (<code>TRUE</code> or <code>FALSE</code>).</p></dd>
+
+
 <dt>displayPrevious</dt>
 <dd><p>Display the previous value with transparency (<code>TRUE</code> or <code>FALSE</code>).</p></dd>
+
+
 <dt>rotation</dt>
 <dd><p>Direction of progression, 'clockwise' or 'anticlockwise'.</p></dd>
+
+
 <dt>fgColor</dt>
 <dd><p>Foreground color.</p></dd>
+
+
 <dt>inputColor</dt>
 <dd><p>Input value (number) color.</p></dd>
+
+
 <dt>bgColor</dt>
 <dd><p>Background color.</p></dd>
+
+
 <dt>pre</dt>
 <dd><p>A prefix string to put in front of the value.</p></dd>
+
+
 <dt>post</dt>
 <dd><p>A suffix string to put after the value.</p></dd>
+
+
 <dt>fontSize</dt>
 <dd><p>Font size, must be a valid CSS unit.</p></dd>
+
+
 <dt>readOnly</dt>
 <dd><p>Disable knob (<code>TRUE</code> or <code>FALSE</code>).</p></dd>
+
+
 <dt>skin</dt>
 <dd><p>Change Knob skin, only one option available : 'tron'.</p></dd>
+
+
 <dt>width, height</dt>
 <dd><p>The width and height of the input, e.g. <code>400px</code>, or <code>100%</code>.
 A value a pixel is recommended, otherwise the knob won't be able to initialize itself in some case
 (if hidden at start for example).</p></dd>
+
+
 <dt>immediate</dt>
 <dd><p>If <code>TRUE</code> (default), server-side value is updated each time value change,
 if <code>FALSE</code> value is updated when user release the widget.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Numeric value server-side.</p>
+    
+
+<p>Numeric value server-side.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -145,33 +194,33 @@ if <code>FALSE</code> value is updated when user release the widget.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.rstudio.com/" class="external-link">"shiny"</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">"shinyWidgets"</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu">knobInput</span><span class="op">(</span></span>
-<span class="r-in">    inputId <span class="op">=</span> <span class="st">"myKnob"</span>,</span>
-<span class="r-in">    label <span class="op">=</span> <span class="st">"Display previous:"</span>,</span>
-<span class="r-in">    value <span class="op">=</span> <span class="fl">50</span>,</span>
-<span class="r-in">    min <span class="op">=</span> <span class="op">-</span><span class="fl">100</span>,</span>
-<span class="r-in">    displayPrevious <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">    fgColor <span class="op">=</span> <span class="st">"#428BCA"</span>,</span>
-<span class="r-in">    inputColor <span class="op">=</span> <span class="st">"#428BCA"</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">myKnob</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.rstudio.com/" class="external-link">"shiny"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">"shinyWidgets"</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">knobInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"myKnob"</span>,</span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"Display previous:"</span>,</span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="fl">50</span>,</span></span>
+<span class="r-in"><span>    min <span class="op">=</span> <span class="op">-</span><span class="fl">100</span>,</span></span>
+<span class="r-in"><span>    displayPrevious <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    fgColor <span class="op">=</span> <span class="st">"#428BCA"</span>,</span></span>
+<span class="r-in"><span>    inputColor <span class="op">=</span> <span class="st">"#428BCA"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">myKnob</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -183,7 +232,7 @@ if <code>FALSE</code> value is updated when user release the widget.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

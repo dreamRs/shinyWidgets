@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,14 +51,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">wNumbFormat</span><span class="op">(</span>
-  decimals <span class="op">=</span> <span class="cn">NULL</span>,
-  mark <span class="op">=</span> <span class="cn">NULL</span>,
-  thousand <span class="op">=</span> <span class="cn">NULL</span>,
-  prefix <span class="op">=</span> <span class="cn">NULL</span>,
-  suffix <span class="op">=</span> <span class="cn">NULL</span>,
-  negative <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">wNumbFormat</span><span class="op">(</span></span>
+<span>  decimals <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mark <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  thousand <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  prefix <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  suffix <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  negative <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -66,23 +66,36 @@
     <dl><dt>decimals</dt>
 <dd><p>The number of decimals to include in
 the result. Limited to 7.</p></dd>
+
+
 <dt>mark</dt>
 <dd><p>The decimal separator. Defaults to <code>'.'</code>
 if thousand isn't already set to <code>'.'</code>.</p></dd>
+
+
 <dt>thousand</dt>
 <dd><p>Separator for large numbers. For example: <code>' '</code>
 would result in a formatted number of 1 000 000.</p></dd>
+
+
 <dt>prefix</dt>
 <dd><p>A string to prepend to the number. Use cases
 include prefixing with money symbols such as <code>'$'</code> or the euro sign.</p></dd>
+
+
 <dt>suffix</dt>
 <dd><p>A number to append to a number. For example: <code>',-'</code>.</p></dd>
+
+
 <dt>negative</dt>
 <dd><p>The prefix for negative values. Defaults to <code>'-'</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a named list.</p>
+    
+
+<p>a named list.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -91,51 +104,51 @@ include prefixing with money symbols such as <code>'$'</code> or the euro sign.<
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span> <span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span> <span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span> <span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span> <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"Format numbers"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="noUiSliderInput.html">noUiSliderInput</a></span><span class="op">(</span></span>
-<span class="r-in">    inputId <span class="op">=</span> <span class="st">"form1"</span>,</span>
-<span class="r-in">    min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">10000</span>,</span>
-<span class="r-in">    value <span class="op">=</span> <span class="fl">800</span>,</span>
-<span class="r-in">    format <span class="op">=</span> <span class="fu">wNumbFormat</span><span class="op">(</span>decimals <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">                         thousand <span class="op">=</span> <span class="st">"."</span>,</span>
-<span class="r-in">                         suffix <span class="op">=</span> <span class="st">" (US $)"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res1"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="noUiSliderInput.html">noUiSliderInput</a></span><span class="op">(</span></span>
-<span class="r-in">    inputId <span class="op">=</span> <span class="st">"form2"</span>,</span>
-<span class="r-in">    min <span class="op">=</span> <span class="fl">1988</span>, max <span class="op">=</span> <span class="fl">2018</span>,</span>
-<span class="r-in">    value <span class="op">=</span> <span class="fl">1988</span>,</span>
-<span class="r-in">    format <span class="op">=</span> <span class="fu">wNumbFormat</span><span class="op">(</span>decimals <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">                         thousand <span class="op">=</span> <span class="st">""</span>,</span>
-<span class="r-in">                         prefix <span class="op">=</span> <span class="st">"Year: "</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res2"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">form1</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">form2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span> <span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span> <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span> <span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span> <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"Format numbers"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="noUiSliderInput.html">noUiSliderInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"form1"</span>,</span></span>
+<span class="r-in"><span>    min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">10000</span>,</span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="fl">800</span>,</span></span>
+<span class="r-in"><span>    format <span class="op">=</span> <span class="fu">wNumbFormat</span><span class="op">(</span>decimals <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>                         thousand <span class="op">=</span> <span class="st">"."</span>,</span></span>
+<span class="r-in"><span>                         suffix <span class="op">=</span> <span class="st">" (US $)"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res1"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="noUiSliderInput.html">noUiSliderInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"form2"</span>,</span></span>
+<span class="r-in"><span>    min <span class="op">=</span> <span class="fl">1988</span>, max <span class="op">=</span> <span class="fl">2018</span>,</span></span>
+<span class="r-in"><span>    value <span class="op">=</span> <span class="fl">1988</span>,</span></span>
+<span class="r-in"><span>    format <span class="op">=</span> <span class="fu">wNumbFormat</span><span class="op">(</span>decimals <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>                         thousand <span class="op">=</span> <span class="st">""</span>,</span></span>
+<span class="r-in"><span>                         prefix <span class="op">=</span> <span class="st">"Year: "</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res2"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">form1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">form2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -147,7 +160,7 @@ include prefixing with money symbols such as <code>'$'</code> or the euro sign.<
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

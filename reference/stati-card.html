@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,52 +51,73 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">statiCard</span><span class="op">(</span>
-  <span class="va">value</span>,
-  <span class="va">subtitle</span>,
-  icon <span class="op">=</span> <span class="cn">NULL</span>,
-  left <span class="op">=</span> <span class="cn">FALSE</span>,
-  color <span class="op">=</span> <span class="st">"steelblue"</span>,
-  background <span class="op">=</span> <span class="st">"white"</span>,
-  animate <span class="op">=</span> <span class="cn">FALSE</span>,
-  duration <span class="op">=</span> <span class="fl">2000</span>,
-  id <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span>
-
-<span class="fu">updateStatiCard</span><span class="op">(</span>
-  <span class="va">id</span>,
-  <span class="va">value</span>,
-  duration <span class="op">=</span> <span class="fl">2000</span>,
-  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">statiCard</span><span class="op">(</span></span>
+<span>  <span class="va">value</span>,</span>
+<span>  <span class="va">subtitle</span>,</span>
+<span>  icon <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  left <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"steelblue"</span>,</span>
+<span>  background <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>  animate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  duration <span class="op">=</span> <span class="fl">2000</span>,</span>
+<span>  id <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">updateStatiCard</span><span class="op">(</span></span>
+<span>  <span class="va">id</span>,</span>
+<span>  <span class="va">value</span>,</span>
+<span>  duration <span class="op">=</span> <span class="fl">2000</span>,</span>
+<span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>value</dt>
 <dd><p>Value to display.</p></dd>
+
+
 <dt>subtitle</dt>
 <dd><p>A subtitle to describe the value.</p></dd>
+
+
 <dt>icon</dt>
 <dd><p>An optional icon created with <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon()</a></code>.</p></dd>
+
+
 <dt>left</dt>
 <dd><p>Display value and subtitle to the right.</p></dd>
+
+
 <dt>color</dt>
 <dd><p>Text color.</p></dd>
+
+
 <dt>background</dt>
 <dd><p>Background color.</p></dd>
+
+
 <dt>animate</dt>
 <dd><p>Add an animation when value is displayed.</p></dd>
+
+
 <dt>duration</dt>
 <dd><p>Duration of animation.</p></dd>
+
+
 <dt>id</dt>
 <dd><p>An id that can be used to update the card server-side.</p></dd>
+
+
 <dt>session</dt>
 <dd><p>Shiny session.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A UI definition.</p>
+    
+
+<p>A UI definition.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -105,103 +126,103 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Stati Card"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
-<span class="r-in">      width <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">      <span class="fu">statiCard</span><span class="op">(</span><span class="fl">12</span>, <span class="st">"Subtitle"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"home"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">statiCard</span><span class="op">(</span></span>
-<span class="r-in">        <span class="fl">93</span>, <span class="st">"Animated card"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"users"</span><span class="op">)</span>,</span>
-<span class="r-in">        background <span class="op">=</span> <span class="st">"deepskyblue"</span>,</span>
-<span class="r-in">        color <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span class="r-in">        animate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">        id <span class="op">=</span> <span class="st">"card1"</span></span>
-<span class="r-in">      <span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"update1"</span>, <span class="st">"Update card above server-side"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">statiCard</span><span class="op">(</span></span>
-<span class="r-in">        <span class="fl">93</span>, <span class="st">"No animation"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"users"</span><span class="op">)</span>,</span>
-<span class="r-in">        background <span class="op">=</span> <span class="st">"deepskyblue"</span>,</span>
-<span class="r-in">        color <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span class="r-in">        id <span class="op">=</span> <span class="st">"card2"</span></span>
-<span class="r-in">      <span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"update2"</span>, <span class="st">"Update card above server-side"</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
-<span class="r-in">      width <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">      <span class="fu">statiCard</span><span class="op">(</span><span class="st">"$123,456"</span>, <span class="st">"Total spend"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"rocket"</span><span class="op">)</span>, left <span class="op">=</span> <span class="cn">TRUE</span>, animate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"show"</span>, <span class="st">"Show card (rendered server-side)"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html" class="external-link">uiOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"card"</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
-<span class="r-in">      width <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">      <span class="fu">statiCard</span><span class="op">(</span><span class="fl">12</span>, <span class="st">"No animation"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"home"</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
-<span class="r-in">      width <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">      <span class="fu">statiCard</span><span class="op">(</span></span>
-<span class="r-in">        <span class="st">"123456 something very very long"</span>,</span>
-<span class="r-in">        <span class="st">"Long value text"</span>,</span>
-<span class="r-in">        icon <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">        left <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">        background <span class="op">=</span> <span class="st">"steelblue"</span>,</span>
-<span class="r-in">        color <span class="op">=</span> <span class="st">"white"</span></span>
-<span class="r-in">      <span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">statiCard</span><span class="op">(</span></span>
-<span class="r-in">        <span class="st">"123456 something very very long"</span>,</span>
-<span class="r-in">        <span class="st">"Long value text with icon"</span>,</span>
-<span class="r-in">        icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"tachometer-alt"</span><span class="op">)</span>,</span>
-<span class="r-in">        left <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">      <span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu">statiCard</span><span class="op">(</span></span>
-<span class="r-in">        <span class="st">"123456 something very very long"</span>,</span>
-<span class="r-in">        <span class="st">"Long value text with icon right"</span>,</span>
-<span class="r-in">        icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"tasks"</span><span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">update1</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">updateStatiCard</span><span class="op">(</span></span>
-<span class="r-in">      id <span class="op">=</span> <span class="st">"card1"</span>,</span>
-<span class="r-in">      value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">update2</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">updateStatiCard</span><span class="op">(</span></span>
-<span class="r-in">      id <span class="op">=</span> <span class="st">"card2"</span>,</span>
-<span class="r-in">      value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">card</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">show</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu">statiCard</span><span class="op">(</span></span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">1e6</span>, <span class="fl">1</span><span class="op">)</span>, big.mark <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="st">"Total spend"</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"shopping-cart"</span><span class="op">)</span>,</span>
-<span class="r-in">      left <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">      animate <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Stati Card"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="fl">12</span>, <span class="st">"Subtitle"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"home"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fl">93</span>, <span class="st">"Animated card"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"users"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        background <span class="op">=</span> <span class="st">"deepskyblue"</span>,</span></span>
+<span class="r-in"><span>        color <span class="op">=</span> <span class="st">"white"</span>,</span></span>
+<span class="r-in"><span>        animate <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        id <span class="op">=</span> <span class="st">"card1"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"update1"</span>, <span class="st">"Update card above server-side"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fl">93</span>, <span class="st">"No animation"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"users"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        background <span class="op">=</span> <span class="st">"deepskyblue"</span>,</span></span>
+<span class="r-in"><span>        color <span class="op">=</span> <span class="st">"white"</span>,</span></span>
+<span class="r-in"><span>        id <span class="op">=</span> <span class="st">"card2"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"update2"</span>, <span class="st">"Update card above server-side"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="st">"$123,456"</span>, <span class="st">"Total spend"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"rocket"</span><span class="op">)</span>, left <span class="op">=</span> <span class="cn">TRUE</span>, animate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"show"</span>, <span class="st">"Show card (rendered server-side)"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html" class="external-link">uiOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"card"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="fl">12</span>, <span class="st">"No animation"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"home"</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="st">"123456 something very very long"</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"Long value text"</span>,</span></span>
+<span class="r-in"><span>        icon <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>        left <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        background <span class="op">=</span> <span class="st">"steelblue"</span>,</span></span>
+<span class="r-in"><span>        color <span class="op">=</span> <span class="st">"white"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="st">"123456 something very very long"</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"Long value text with icon"</span>,</span></span>
+<span class="r-in"><span>        icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"tachometer-alt"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        left <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="st">"123456 something very very long"</span>,</span></span>
+<span class="r-in"><span>        <span class="st">"Long value text with icon right"</span>,</span></span>
+<span class="r-in"><span>        icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"tasks"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">update1</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">updateStatiCard</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      id <span class="op">=</span> <span class="st">"card1"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">update2</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">updateStatiCard</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      id <span class="op">=</span> <span class="st">"card2"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">card</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">show</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">statiCard</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">1e6</span>, <span class="fl">1</span><span class="op">)</span>, big.mark <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"Total spend"</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"shopping-cart"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      left <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      animate <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -213,7 +234,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

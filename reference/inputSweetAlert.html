@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,55 +51,80 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">inputSweetAlert</span><span class="op">(</span>
-  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="va">inputId</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  text <span class="op">=</span> <span class="cn">NULL</span>,
-  type <span class="op">=</span> <span class="cn">NULL</span>,
-  input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="st">"password"</span>, <span class="st">"textarea"</span>, <span class="st">"radio"</span>, <span class="st">"checkbox"</span>, <span class="st">"select"</span>, <span class="st">"email"</span>,
-    <span class="st">"url"</span><span class="op">)</span>,
-  inputOptions <span class="op">=</span> <span class="cn">NULL</span>,
-  inputPlaceholder <span class="op">=</span> <span class="cn">NULL</span>,
-  inputValidator <span class="op">=</span> <span class="cn">NULL</span>,
-  btn_labels <span class="op">=</span> <span class="st">"Ok"</span>,
-  btn_colors <span class="op">=</span> <span class="cn">NULL</span>,
-  reset_input <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">inputSweetAlert</span><span class="op">(</span></span>
+<span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">inputId</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"text"</span>, <span class="st">"password"</span>, <span class="st">"textarea"</span>, <span class="st">"radio"</span>, <span class="st">"checkbox"</span>, <span class="st">"select"</span>, <span class="st">"email"</span>,</span>
+<span>    <span class="st">"url"</span><span class="op">)</span>,</span>
+<span>  inputOptions <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  inputPlaceholder <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  inputValidator <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  btn_labels <span class="op">=</span> <span class="st">"Ok"</span>,</span>
+<span>  btn_colors <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  reset_input <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>session</dt>
 <dd><p>The <code>session</code> object passed to function given to shinyServer.</p></dd>
+
+
 <dt>inputId</dt>
 <dd><p>The <code>input</code> slot that will be used to access the value.
 If in a Shiny module, it use same logic than inputs : use namespace in UI, not in server.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>Title of the pop-up.</p></dd>
+
+
 <dt>text</dt>
 <dd><p>Text of the pop-up.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>Type of the pop-up : <code>"info"</code>, <code>"success"</code>,
 <code>"warning"</code>, <code>"error"</code> or <code>"question"</code>.</p></dd>
+
+
 <dt>input</dt>
 <dd><p>Type of input, possible values are : <code>"text"</code>,
 <code>"password"</code>,<code>"textarea"</code>, <code>"radio"</code>, <code>"checkbox"</code> or <code>"select"</code>.</p></dd>
+
+
 <dt>inputOptions</dt>
 <dd><p>Options for the input. For <code>"radio"</code> and <code>"select"</code> it will be choices.</p></dd>
+
+
 <dt>inputPlaceholder</dt>
 <dd><p>Placeholder for the input, use it for <code>"text"</code> or <code>"checkbox"</code>.</p></dd>
+
+
 <dt>inputValidator</dt>
 <dd><p>JavaScript function to validate input. Must be a character wrapped in <code><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I()</a></code>.</p></dd>
+
+
 <dt>btn_labels</dt>
 <dd><p>Label(s) for button(s).</p></dd>
+
+
 <dt>btn_colors</dt>
 <dd><p>Color(s) for button(s).</p></dd>
+
+
 <dt>reset_input</dt>
 <dd><p>Set the input value to <code>NULL</code> when alert is displayed.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other arguments passed to JavaScript method.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -113,114 +138,114 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># Input in alert ----</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Input sweet alert"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_text"</span>, <span class="st">"Text Input"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_password"</span>, <span class="st">"Password Input"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"password"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_radio"</span>, <span class="st">"Radio Input"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"radio"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_checkbox"</span>, <span class="st">"Checkbox Input"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"checkbox"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_select"</span>, <span class="st">"Select Input"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"select"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_email"</span>, <span class="st">"Email Input"</span><span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"email"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_text</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">inputSweetAlert</span><span class="op">(</span></span>
-<span class="r-in">      session <span class="op">=</span> <span class="va">session</span>,</span>
-<span class="r-in">      <span class="st">"mytext"</span>,</span>
-<span class="r-in">      input <span class="op">=</span> <span class="st">"text"</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"What's your name ?"</span>,</span>
-<span class="r-in">      inputPlaceholder <span class="op">=</span> <span class="st">"e.g.: Victor"</span>,</span>
-<span class="r-in">      allowOutsideClick <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">      showCloseButton <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">mytext</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_password</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">inputSweetAlert</span><span class="op">(</span></span>
-<span class="r-in">      session <span class="op">=</span> <span class="va">session</span>,</span>
-<span class="r-in">      <span class="st">"mypassword"</span>,</span>
-<span class="r-in">      input <span class="op">=</span> <span class="st">"password"</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"What's your password ?"</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">password</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">mypassword</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_radio</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">inputSweetAlert</span><span class="op">(</span></span>
-<span class="r-in">      session <span class="op">=</span> <span class="va">session</span>,</span>
-<span class="r-in">      <span class="st">"myradio"</span>,</span>
-<span class="r-in">      input <span class="op">=</span> <span class="st">"radio"</span>,</span>
-<span class="r-in">      inputOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Banana"</span> , <span class="st">"Orange"</span>, <span class="st">"Apple"</span><span class="op">)</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"What's your favorite fruit ?"</span>,</span>
-<span class="r-in">      inputValidator <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span></span>
-<span class="r-in">        <span class="st">"function(value) {</span>
-<span class="r-in">          if (!value) {</span>
-<span class="r-in">            return 'You need to choose something!';</span>
-<span class="r-in">          }</span>
-<span class="r-in">        }"</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">radio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">myradio</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_checkbox</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">inputSweetAlert</span><span class="op">(</span></span>
-<span class="r-in">      session <span class="op">=</span> <span class="va">session</span>,</span>
-<span class="r-in">      <span class="st">"mycheckbox"</span>,</span>
-<span class="r-in">      input <span class="op">=</span> <span class="st">"checkbox"</span>,</span>
-<span class="r-in">      inputPlaceholder <span class="op">=</span> <span class="st">"Yes I agree"</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"Do you agree ?"</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">checkbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">mycheckbox</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_select</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">inputSweetAlert</span><span class="op">(</span></span>
-<span class="r-in">      session <span class="op">=</span> <span class="va">session</span>,</span>
-<span class="r-in">      <span class="st">"myselect"</span>,</span>
-<span class="r-in">      input <span class="op">=</span> <span class="st">"select"</span>,</span>
-<span class="r-in">      inputOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Banana"</span> , <span class="st">"Orange"</span>, <span class="st">"Apple"</span><span class="op">)</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"What's your favorite fruit ?"</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">myselect</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_email</span>, <span class="op">{</span></span>
-<span class="r-in">    <span class="fu">inputSweetAlert</span><span class="op">(</span></span>
-<span class="r-in">      session <span class="op">=</span> <span class="va">session</span>,</span>
-<span class="r-in">      inputId <span class="op">=</span> <span class="st">"myemail"</span>,</span>
-<span class="r-in">      input <span class="op">=</span> <span class="st">"email"</span>,</span>
-<span class="r-in">      title <span class="op">=</span> <span class="st">"What's your email ?"</span>,</span>
-<span class="r-in">      validationMessage<span class="op">=</span> <span class="st">"this does not look like a valid email!"</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">myemail</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Input in alert ----</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Input sweet alert"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_text"</span>, <span class="st">"Text Input"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"text"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_password"</span>, <span class="st">"Password Input"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"password"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_radio"</span>, <span class="st">"Radio Input"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"radio"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_checkbox"</span>, <span class="st">"Checkbox Input"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"checkbox"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_select"</span>, <span class="st">"Select Input"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"select"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"btn_email"</span>, <span class="st">"Email Input"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"email"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_text</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">inputSweetAlert</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"mytext"</span>,</span></span>
+<span class="r-in"><span>      input <span class="op">=</span> <span class="st">"text"</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"What's your name ?"</span>,</span></span>
+<span class="r-in"><span>      inputPlaceholder <span class="op">=</span> <span class="st">"e.g.: Victor"</span>,</span></span>
+<span class="r-in"><span>      allowOutsideClick <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>      showCloseButton <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">mytext</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_password</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">inputSweetAlert</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"mypassword"</span>,</span></span>
+<span class="r-in"><span>      input <span class="op">=</span> <span class="st">"password"</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"What's your password ?"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">password</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">mypassword</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_radio</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">inputSweetAlert</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"myradio"</span>,</span></span>
+<span class="r-in"><span>      input <span class="op">=</span> <span class="st">"radio"</span>,</span></span>
+<span class="r-in"><span>      inputOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Banana"</span> , <span class="st">"Orange"</span>, <span class="st">"Apple"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"What's your favorite fruit ?"</span>,</span></span>
+<span class="r-in"><span>      inputValidator <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="st">"function(value) {</span></span></span>
+<span class="r-in"><span><span class="st">          if (!value) {</span></span></span>
+<span class="r-in"><span><span class="st">            return 'You need to choose something!';</span></span></span>
+<span class="r-in"><span><span class="st">          }</span></span></span>
+<span class="r-in"><span><span class="st">        }"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">radio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">myradio</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_checkbox</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">inputSweetAlert</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"mycheckbox"</span>,</span></span>
+<span class="r-in"><span>      input <span class="op">=</span> <span class="st">"checkbox"</span>,</span></span>
+<span class="r-in"><span>      inputPlaceholder <span class="op">=</span> <span class="st">"Yes I agree"</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"Do you agree ?"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">checkbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">mycheckbox</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_select</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">inputSweetAlert</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"myselect"</span>,</span></span>
+<span class="r-in"><span>      input <span class="op">=</span> <span class="st">"select"</span>,</span></span>
+<span class="r-in"><span>      inputOptions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Banana"</span> , <span class="st">"Orange"</span>, <span class="st">"Apple"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"What's your favorite fruit ?"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">myselect</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">btn_email</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">inputSweetAlert</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>,</span></span>
+<span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"myemail"</span>,</span></span>
+<span class="r-in"><span>      input <span class="op">=</span> <span class="st">"email"</span>,</span></span>
+<span class="r-in"><span>      title <span class="op">=</span> <span class="st">"What's your email ?"</span>,</span></span>
+<span class="r-in"><span>      validationMessage<span class="op">=</span> <span class="st">"this does not look like a valid email!"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">email</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">myemail</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -232,7 +257,7 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

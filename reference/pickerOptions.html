@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,114 +51,181 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">pickerOptions</span><span class="op">(</span>
-  actionsBox <span class="op">=</span> <span class="cn">NULL</span>,
-  container <span class="op">=</span> <span class="cn">NULL</span>,
-  countSelectedText <span class="op">=</span> <span class="cn">NULL</span>,
-  deselectAllText <span class="op">=</span> <span class="cn">NULL</span>,
-  dropdownAlignRight <span class="op">=</span> <span class="cn">NULL</span>,
-  dropupAuto <span class="op">=</span> <span class="cn">NULL</span>,
-  header <span class="op">=</span> <span class="cn">NULL</span>,
-  hideDisabled <span class="op">=</span> <span class="cn">NULL</span>,
-  iconBase <span class="op">=</span> <span class="cn">NULL</span>,
-  liveSearch <span class="op">=</span> <span class="cn">NULL</span>,
-  liveSearchNormalize <span class="op">=</span> <span class="cn">NULL</span>,
-  liveSearchPlaceholder <span class="op">=</span> <span class="cn">NULL</span>,
-  liveSearchStyle <span class="op">=</span> <span class="cn">NULL</span>,
-  maxOptions <span class="op">=</span> <span class="cn">NULL</span>,
-  maxOptionsText <span class="op">=</span> <span class="cn">NULL</span>,
-  mobile <span class="op">=</span> <span class="cn">NULL</span>,
-  multipleSeparator <span class="op">=</span> <span class="cn">NULL</span>,
-  noneSelectedText <span class="op">=</span> <span class="cn">NULL</span>,
-  noneResultsText <span class="op">=</span> <span class="cn">NULL</span>,
-  selectAllText <span class="op">=</span> <span class="cn">NULL</span>,
-  selectedTextFormat <span class="op">=</span> <span class="cn">NULL</span>,
-  selectOnTab <span class="op">=</span> <span class="cn">NULL</span>,
-  showContent <span class="op">=</span> <span class="cn">NULL</span>,
-  showIcon <span class="op">=</span> <span class="cn">NULL</span>,
-  showSubtext <span class="op">=</span> <span class="cn">NULL</span>,
-  showTick <span class="op">=</span> <span class="cn">NULL</span>,
-  size <span class="op">=</span> <span class="cn">NULL</span>,
-  style <span class="op">=</span> <span class="cn">NULL</span>,
-  tickIcon <span class="op">=</span> <span class="cn">NULL</span>,
-  title <span class="op">=</span> <span class="cn">NULL</span>,
-  virtualScroll <span class="op">=</span> <span class="cn">NULL</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  windowPadding <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pickerOptions</span><span class="op">(</span></span>
+<span>  actionsBox <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  container <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  countSelectedText <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  deselectAllText <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dropdownAlignRight <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dropupAuto <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  header <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  hideDisabled <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  iconBase <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  liveSearch <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  liveSearchNormalize <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  liveSearchPlaceholder <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  liveSearchStyle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maxOptions <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maxOptionsText <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mobile <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  multipleSeparator <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  noneSelectedText <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  noneResultsText <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  selectAllText <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  selectedTextFormat <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  selectOnTab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  showContent <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  showIcon <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  showSubtext <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  showTick <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  size <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  style <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tickIcon <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  virtualScroll <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  windowPadding <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>actionsBox</dt>
 <dd><p>When set to true, adds two buttons to the top of the dropdown menu (Select All &amp; Deselect All). Type: boolean; Default: false.</p></dd>
+
+
 <dt>container</dt>
 <dd><p>When set to a string, appends the select to a specific element or selector, e.g., container: 'body' | '.main-body' Type: string | false; Default: false.</p></dd>
+
+
 <dt>countSelectedText</dt>
 <dd><p>Sets the format for the text displayed when selectedTextFormat is <code>count</code> or <code>count &gt; #</code>. <code>{0}</code> is the selected amount. <code>{1}</code> is total available for selection. When set to a function, the first parameter is the number of selected options, and the second is the total number of options. The function must return a string. Type: string | function; Default: function.</p></dd>
+
+
 <dt>deselectAllText</dt>
 <dd><p>The text on the button that deselects all options when actionsBox is enabled. Type: string; Default: 'Deselect All'.</p></dd>
+
+
 <dt>dropdownAlignRight</dt>
 <dd><p>Align the menu to the right instead of the left. If set to 'auto', the menu will automatically align right if there isn't room for the menu's full width when aligned to the left. Type: boolean | 'auto'; Default: false.</p></dd>
+
+
 <dt>dropupAuto</dt>
 <dd><p>checks to see which has more room, above or below. If the dropup has enough room to fully open normally, but there is more room above, the dropup still opens normally. Otherwise, it becomes a dropup. If dropupAuto is set to false, dropups must be called manually. Type: boolean; Default: true.</p></dd>
+
+
 <dt>header</dt>
 <dd><p>adds a header to the top of the menu; includes a close button by default Type: string; Default: false.</p></dd>
+
+
 <dt>hideDisabled</dt>
 <dd><p>removes disabled options and optgroups from the menu data-hide-disabled: true Type: boolean; Default: false.</p></dd>
+
+
 <dt>iconBase</dt>
 <dd><p>Set the base to use a different icon font instead of Glyphicons. If changing iconBase, you might also want to change tickIcon, in case the new icon font uses a different naming scheme. Type: string; Default: 'glyphicon'.</p></dd>
+
+
 <dt>liveSearch</dt>
 <dd><p>When set to true, adds a search box to the top of the selectpicker dropdown. Type: boolean; Default: false.</p></dd>
+
+
 <dt>liveSearchNormalize</dt>
 <dd><p>Setting liveSearchNormalize to true allows for accent-insensitive searching. Type: boolean; Default: false.</p></dd>
+
+
 <dt>liveSearchPlaceholder</dt>
 <dd><p>When set to a string, a placeholder attribute equal to the string will be added to the liveSearch input. Type: string; Default: null.</p></dd>
+
+
 <dt>liveSearchStyle</dt>
 <dd><p>When set to 'contains', searching will reveal options that contain the searched text. For example, searching for pl with return both Apple, Plum, and Plantain. When set to 'startsWith', searching for pl will return only Plum and Plantain. Type: string; Default: 'contains'.</p></dd>
+
+
 <dt>maxOptions</dt>
 <dd><p>When set to an integer and in a multi-select, the number of selected options cannot exceed the given value. This option can also exist as a data-attribute for an <code>&lt;optgroup&gt;</code>, in which case it only applies to that <code>&lt;optgroup&gt;</code>. Type: integer | false; Default: false.</p></dd>
+
+
 <dt>maxOptionsText</dt>
 <dd><p>The text that is displayed when maxOptions is enabled and the maximum number of options for the given scenario have been selected. If a function is used, it must return an array. <code>array[0]</code> is the text used when maxOptions is applied to the entire select element. <code>array[1]</code> is the text used when maxOptions is used on an optgroup. If a string is used, the same text is used for both the element and the optgroup. Type: string | array | function; Default: function.</p></dd>
+
+
 <dt>mobile</dt>
 <dd><p>When set to true, enables the device's native menu for select menus. Type: boolean; Default: false.</p></dd>
+
+
 <dt>multipleSeparator</dt>
 <dd><p>Set the character displayed in the button that separates selected options. Type: string; Default: ', '.</p></dd>
+
+
 <dt>noneSelectedText</dt>
 <dd><p>The text that is displayed when a multiple select has no selected options. Type: string; Default: 'Nothing selected'.</p></dd>
+
+
 <dt>noneResultsText</dt>
 <dd><p>The text displayed when a search doesn't return any results. Type: string; Default: 'No results matched 0'.</p></dd>
+
+
 <dt>selectAllText</dt>
 <dd><p>The text on the button that selects all options when actionsBox is enabled. Type: string; Default: 'Select All'.</p></dd>
+
+
 <dt>selectedTextFormat</dt>
 <dd><p>Specifies how the selection is displayed with a multiple select. 'values' displays a list of the selected options (separated by multipleSeparator. 'static' simply displays the select element's title. 'count' displays the total number of selected options. 'count &gt; x' behaves like 'values' until the number of selected options is greater than x; after that, it behaves like 'count'. Type: 'values' | 'static' | 'count' | 'count &gt; x' (where x is an integer); Default: 'values'.</p></dd>
+
+
 <dt>selectOnTab</dt>
 <dd><p>When set to true, treats the tab character like the enter or space characters within the selectpicker dropdown. Type: boolean; Default: false.</p></dd>
+
+
 <dt>showContent</dt>
 <dd><p>When set to true, display custom HTML associated with selected option(s) in the button. When set to false, the option value will be displayed instead. Type: boolean; Default: true.</p></dd>
+
+
 <dt>showIcon</dt>
 <dd><p>When set to true, display icon(s) associated with selected option(s) in the button. Type: boolean; Default: true.</p></dd>
+
+
 <dt>showSubtext</dt>
 <dd><p>When set to true, display subtext associated with a selected option in the button. Type: boolean; Default: false.</p></dd>
+
+
 <dt>showTick</dt>
 <dd><p>Show checkmark on selected option (for items without multiple attribute). Type: boolean; Default: false.</p></dd>
+
+
 <dt>size</dt>
 <dd><p>When set to 'auto', the menu always opens up to show as many items as the window will allow without being cut off. When set to an integer, the menu will show the given number of items, even if the dropdown is cut off. When set to false, the menu will always show all items. Type: 'auto' | integer | false; Default: 'auto'.</p></dd>
+
+
 <dt>style</dt>
 <dd><p>When set to a string, add the value to the button's style. Type: string | null; Default: null.</p></dd>
+
+
 <dt>tickIcon</dt>
 <dd><p>Set which icon to use to display as the "tick" next to selected options. Type: string; Default: 'glyphicon-ok'.</p></dd>
+
+
 <dt>title</dt>
 <dd><p>The default title for the selectpicker. Type: string | null; Default: null.</p></dd>
+
+
 <dt>virtualScroll</dt>
 <dd><p>If enabled, the items in the dropdown will be rendered using virtualization (i.e. only the items that are within the viewport will be rendered). This drastically improves performance for selects with a large number of options. Set to an integer to only use virtualization if the select has at least that number of options. Type: boolean | integer; Default: 600.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>When set to auto, the width of the selectpicker is automatically adjusted to accommodate the widest option. When set to a css-width, the width of the selectpicker is forced inline to the given value. When set to false, all width information is removed. Type: 'auto' | 'fit' | css-width | false (where css-width is a CSS width with units, e.g. 100px); Default: false.</p></dd>
+
+
 <dt>windowPadding</dt>
 <dd><p>This is useful in cases where the window has areas that the dropdown menu should not cover - for instance a fixed header. When set to an integer, the same padding will be added to all sides. Alternatively, an array of integers can be used in the format <code>top, right, bottom, left</code>. Type: integer | array; Default: 0.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other options not listed here.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -167,32 +234,32 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="fu"><a href="pickerInput.html">pickerInput</a></span><span class="op">(</span></span>
-<span class="r-in">      inputId <span class="op">=</span> <span class="st">"month"</span>,</span>
-<span class="r-in">      label <span class="op">=</span> <span class="st">"Select a month"</span>,</span>
-<span class="r-in">      choices <span class="op">=</span> <span class="va">month.name</span>,</span>
-<span class="r-in">      multiple <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">      options <span class="op">=</span> <span class="fu">pickerOptions</span><span class="op">(</span></span>
-<span class="r-in">        actionsBox <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">        title <span class="op">=</span> <span class="st">"Please select a month"</span>,</span>
-<span class="r-in">        header <span class="op">=</span> <span class="st">"This is a title"</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="pickerInput.html">pickerInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"month"</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Select a month"</span>,</span></span>
+<span class="r-in"><span>      choices <span class="op">=</span> <span class="va">month.name</span>,</span></span>
+<span class="r-in"><span>      multiple <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      options <span class="op">=</span> <span class="fu">pickerOptions</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        actionsBox <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        title <span class="op">=</span> <span class="st">"Please select a month"</span>,</span></span>
+<span class="r-in"><span>        header <span class="op">=</span> <span class="st">"This is a title"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -204,7 +271,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

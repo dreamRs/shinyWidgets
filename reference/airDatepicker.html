@@ -12,7 +12,7 @@ And two alias to select months or years."><!-- mathjax --><script src="https://c
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,154 +54,233 @@ And two alias to select months or years.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">airDatepickerInput</span><span class="op">(</span>
-  <span class="va">inputId</span>,
-  label <span class="op">=</span> <span class="cn">NULL</span>,
-  value <span class="op">=</span> <span class="cn">NULL</span>,
-  multiple <span class="op">=</span> <span class="cn">FALSE</span>,
-  range <span class="op">=</span> <span class="cn">FALSE</span>,
-  timepicker <span class="op">=</span> <span class="cn">FALSE</span>,
-  separator <span class="op">=</span> <span class="st">" - "</span>,
-  placeholder <span class="op">=</span> <span class="cn">NULL</span>,
-  dateFormat <span class="op">=</span> <span class="st">"yyyy-mm-dd"</span>,
-  firstDay <span class="op">=</span> <span class="cn">NULL</span>,
-  minDate <span class="op">=</span> <span class="cn">NULL</span>,
-  maxDate <span class="op">=</span> <span class="cn">NULL</span>,
-  disabledDates <span class="op">=</span> <span class="cn">NULL</span>,
-  highlightedDates <span class="op">=</span> <span class="cn">NULL</span>,
-  view <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"days"</span>, <span class="st">"months"</span>, <span class="st">"years"</span><span class="op">)</span>,
-  startView <span class="op">=</span> <span class="cn">NULL</span>,
-  minView <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"days"</span>, <span class="st">"months"</span>, <span class="st">"years"</span><span class="op">)</span>,
-  monthsField <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"monthsShort"</span>, <span class="st">"months"</span><span class="op">)</span>,
-  clearButton <span class="op">=</span> <span class="cn">FALSE</span>,
-  todayButton <span class="op">=</span> <span class="cn">FALSE</span>,
-  autoClose <span class="op">=</span> <span class="cn">FALSE</span>,
-  timepickerOpts <span class="op">=</span> <span class="fu">timepickerOptions</span><span class="op">(</span><span class="op">)</span>,
-  position <span class="op">=</span> <span class="cn">NULL</span>,
-  update_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"change"</span>, <span class="st">"close"</span><span class="op">)</span>,
-  addon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"right"</span>, <span class="st">"left"</span>, <span class="st">"none"</span><span class="op">)</span>,
-  language <span class="op">=</span> <span class="st">"en"</span>,
-  inline <span class="op">=</span> <span class="cn">FALSE</span>,
-  onlyTimepicker <span class="op">=</span> <span class="cn">FALSE</span>,
-  width <span class="op">=</span> <span class="cn">NULL</span>,
-  toggleSelected <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="fu">timepickerOptions</span><span class="op">(</span>
-  dateTimeSeparator <span class="op">=</span> <span class="cn">NULL</span>,
-  timeFormat <span class="op">=</span> <span class="cn">NULL</span>,
-  minHours <span class="op">=</span> <span class="cn">NULL</span>,
-  maxHours <span class="op">=</span> <span class="cn">NULL</span>,
-  minMinutes <span class="op">=</span> <span class="cn">NULL</span>,
-  maxMinutes <span class="op">=</span> <span class="cn">NULL</span>,
-  hoursStep <span class="op">=</span> <span class="cn">NULL</span>,
-  minutesStep <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span>
-
-<span class="fu">airMonthpickerInput</span><span class="op">(</span><span class="va">inputId</span>, label <span class="op">=</span> <span class="cn">NULL</span>, value <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">airYearpickerInput</span><span class="op">(</span><span class="va">inputId</span>, label <span class="op">=</span> <span class="cn">NULL</span>, value <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">airDatepickerInput</span><span class="op">(</span></span>
+<span>  <span class="va">inputId</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  multiple <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  range <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  timepicker <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  separator <span class="op">=</span> <span class="st">" - "</span>,</span>
+<span>  placeholder <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dateFormat <span class="op">=</span> <span class="st">"yyyy-mm-dd"</span>,</span>
+<span>  firstDay <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  minDate <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maxDate <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  disabledDates <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  highlightedDates <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  view <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"days"</span>, <span class="st">"months"</span>, <span class="st">"years"</span><span class="op">)</span>,</span>
+<span>  startView <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  minView <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"days"</span>, <span class="st">"months"</span>, <span class="st">"years"</span><span class="op">)</span>,</span>
+<span>  monthsField <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"monthsShort"</span>, <span class="st">"months"</span><span class="op">)</span>,</span>
+<span>  clearButton <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  todayButton <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  autoClose <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  timepickerOpts <span class="op">=</span> <span class="fu">timepickerOptions</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  position <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  update_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"change"</span>, <span class="st">"close"</span><span class="op">)</span>,</span>
+<span>  addon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"right"</span>, <span class="st">"left"</span>, <span class="st">"none"</span><span class="op">)</span>,</span>
+<span>  language <span class="op">=</span> <span class="st">"en"</span>,</span>
+<span>  inline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  onlyTimepicker <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  toggleSelected <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">timepickerOptions</span><span class="op">(</span></span>
+<span>  dateTimeSeparator <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  timeFormat <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  minHours <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maxHours <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  minMinutes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maxMinutes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  hoursStep <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  minutesStep <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">airMonthpickerInput</span><span class="op">(</span><span class="va">inputId</span>, label <span class="op">=</span> <span class="cn">NULL</span>, value <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">airYearpickerInput</span><span class="op">(</span><span class="va">inputId</span>, label <span class="op">=</span> <span class="cn">NULL</span>, value <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>inputId</dt>
 <dd><p>The <code>input</code> slot that will be used to access the value.</p></dd>
+
+
 <dt>label</dt>
 <dd><p>Display label for the control, or <code>NULL</code> for no label.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>Initial value(s), dates as character string are accepted in <code>yyyy-mm-dd</code> format,
 or Date/POSIXct object. Can be a single value or several values.</p></dd>
+
+
 <dt>multiple</dt>
 <dd><p>Select multiple dates. If <code>TRUE</code>, then one can select unlimited dates.
 If <code>numeric</code> is passed, then amount of selected dates will be limited by it.</p></dd>
+
+
 <dt>range</dt>
 <dd><p>Select a date range.</p></dd>
+
+
 <dt>timepicker</dt>
 <dd><p>Add a timepicker below calendar to select time.</p></dd>
+
+
 <dt>separator</dt>
 <dd><p>Separator between dates when several are selected, default to <code>" - "</code>.</p></dd>
+
+
 <dt>placeholder</dt>
 <dd><p>A character string giving the user a hint as to what can be entered into the control.</p></dd>
+
+
 <dt>dateFormat</dt>
 <dd><p>Format to use to display date(s), default to <code>"yyyy-mm-dd"</code>.</p></dd>
+
+
 <dt>firstDay</dt>
 <dd><p>Day index from which week will be started. Possible values are from 0 to 6, where
 0 - Sunday and 6 - Saturday. By default value is taken from current localization,
 but if it passed here then it will have higher priority.</p></dd>
+
+
 <dt>minDate</dt>
 <dd><p>The minimum allowed date. Either a Date object, or a string in <code>yyyy-mm-dd</code> format.</p></dd>
+
+
 <dt>maxDate</dt>
 <dd><p>The maximum allowed date. Either a Date object, or a string in <code>yyyy-mm-dd</code> format.</p></dd>
+
+
 <dt>disabledDates</dt>
 <dd><p>A vector of dates to disable, e.g. won't be able to select one of dates passed.</p></dd>
+
+
 <dt>highlightedDates</dt>
 <dd><p>A vector of dates to highlight.</p></dd>
+
+
 <dt>view</dt>
 <dd><p>Starting view, one of <code>'days'</code> (default), <code>'months'</code> or <code>'years'</code>.</p></dd>
+
+
 <dt>startView</dt>
 <dd><p>Date shown in calendar when date picker is opened.</p></dd>
+
+
 <dt>minView</dt>
 <dd><p>Minimal view, one of <code>'days'</code> (default), <code>'months'</code> or <code>'years'</code>.</p></dd>
+
+
 <dt>monthsField</dt>
 <dd><p>Names for the months when view is 'months',
 use <code>'monthsShort'</code> for abbreviations or <code>'months'</code> for full names.</p></dd>
+
+
 <dt>clearButton</dt>
 <dd><p>If <code>TRUE</code>, then button "Clear" will be visible.</p></dd>
+
+
 <dt>todayButton</dt>
 <dd><p>If <code>TRUE</code>, then button "Today" will be visible to set view to current date,
 if a <code>Date</code> is used, it will set view to the given date and select it..</p></dd>
+
+
 <dt>autoClose</dt>
 <dd><p>If <code>TRUE</code>, then after date selection, datepicker will be closed.</p></dd>
+
+
 <dt>timepickerOpts</dt>
 <dd><p>Options for timepicker, see timepickerOptions.</p></dd>
+
+
 <dt>position</dt>
 <dd><p>Where calendar should appear, a two word string like
 <code>'bottom left'</code> (default), or <code>'top right'</code>, <code>'left top'</code>.</p></dd>
+
+
 <dt>update_on</dt>
 <dd><p>When to send selected value to server: on <code>'change'</code>
 or when calendar is <code>'close'</code>d.</p></dd>
+
+
 <dt>addon</dt>
 <dd><p>Display a calendar icon to <code>'right'</code> or the <code>'left'</code>
 of the widget, or <code>'none'</code>. This icon act likes an <code>actionButton</code>,
 you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code>.</p></dd>
+
+
 <dt>language</dt>
 <dd><p>Language to use, can be one of <code>'cs'</code>, <code>'da'</code>,
 <code>'de'</code>, <code>'en'</code>, <code>'es'</code>, <code>'fi'</code>, <code>'fr'</code>,
 <code>'hu'</code>, <code>'it'</code>, <code>'nl'</code>, <code>'pl'</code>, <code>'pt-BR'</code>, <code>'pt'</code>,
 <code>'ro'</code>, <code>'ru'</code>, <code>'sk'</code>, <code>'zh'</code>, <code>'ja'</code>.</p></dd>
+
+
 <dt>inline</dt>
 <dd><p>If <code>TRUE</code>, datepicker will always be visible.</p></dd>
+
+
 <dt>onlyTimepicker</dt>
 <dd><p>Display only the time picker.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>The width of the input, e.g. <code>'400px'</code>, or <code>'100%'</code>.</p></dd>
+
+
 <dt>toggleSelected</dt>
 <dd><p>When <code>TRUE</code>, in range mode, it's not possible to select the same date as start and end.</p></dd>
+
+
 <dt>dateTimeSeparator</dt>
 <dd><p>Separator between date and time, default to <code>" "</code>.</p></dd>
+
+
 <dt>timeFormat</dt>
 <dd><p>Desirable time format. You can use <code>h</code> (hours), <code>hh</code>
 (hours with leading zero), <code>i</code> (minutes), <code>ii</code> (minutes with leading zero),
 <code>aa</code> (day period - 'am' or 'pm'), <code>AA</code> (day period capitalized)</p></dd>
+
+
 <dt>minHours</dt>
 <dd><p>Minimal hours value, must be between 0 and 23. You will not be able to choose value lower than this.</p></dd>
+
+
 <dt>maxHours</dt>
 <dd><p>Maximum hours value, must be between 0 and 23. You will not be able to choose value higher than this.</p></dd>
+
+
 <dt>minMinutes</dt>
 <dd><p>Minimal minutes value, must be between 0 and 59. You will not be able to choose value lower than this.</p></dd>
+
+
 <dt>maxMinutes</dt>
 <dd><p>Maximum minutes value, must be between 0 and 59. You will not be able to choose value higher than this.</p></dd>
+
+
 <dt>hoursStep</dt>
 <dd><p>Hours step in slider.</p></dd>
+
+
 <dt>minutesStep</dt>
 <dd><p>Minutes step in slider.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Arguments passed to <code>airDatepickerInput</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a <code>Date</code> object or a <code>POSIXct</code> in UTC timezone.</p>
+    
+
+<p>a <code>Date</code> object or a <code>POSIXct</code> in UTC timezone.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -217,41 +296,41 @@ you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># examples of different options to select dates:</span></span>
-<span class="r-in"><span class="fu"><a href="demoAirDatepicker.html">demoAirDatepicker</a></span><span class="op">(</span><span class="st">"datepicker"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># select month(s)</span></span>
-<span class="r-in"><span class="fu"><a href="demoAirDatepicker.html">demoAirDatepicker</a></span><span class="op">(</span><span class="st">"months"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># select year(s)</span></span>
-<span class="r-in"><span class="fu"><a href="demoAirDatepicker.html">demoAirDatepicker</a></span><span class="op">(</span><span class="st">"years"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># select date and time</span></span>
-<span class="r-in"><span class="fu"><a href="demoAirDatepicker.html">demoAirDatepicker</a></span><span class="op">(</span><span class="st">"timepicker"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># You can select multiple dates :</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu">airDatepickerInput</span><span class="op">(</span></span>
-<span class="r-in">    inputId <span class="op">=</span> <span class="st">"multiple"</span>,</span>
-<span class="r-in">    label <span class="op">=</span> <span class="st">"Select multiple dates:"</span>,</span>
-<span class="r-in">    placeholder <span class="op">=</span> <span class="st">"You can pick 5 dates"</span>,</span>
-<span class="r-in">    multiple <span class="op">=</span> <span class="fl">5</span>, clearButton <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">output</span><span class="op">$</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">multiple</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># examples of different options to select dates:</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="demoAirDatepicker.html">demoAirDatepicker</a></span><span class="op">(</span><span class="st">"datepicker"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># select month(s)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="demoAirDatepicker.html">demoAirDatepicker</a></span><span class="op">(</span><span class="st">"months"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># select year(s)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="demoAirDatepicker.html">demoAirDatepicker</a></span><span class="op">(</span><span class="st">"years"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># select date and time</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="demoAirDatepicker.html">demoAirDatepicker</a></span><span class="op">(</span><span class="st">"timepicker"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># You can select multiple dates :</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">airDatepickerInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
+<span class="r-in"><span>    label <span class="op">=</span> <span class="st">"Select multiple dates:"</span>,</span></span>
+<span class="r-in"><span>    placeholder <span class="op">=</span> <span class="st">"You can pick 5 dates"</span>,</span></span>
+<span class="r-in"><span>    multiple <span class="op">=</span> <span class="fl">5</span>, clearButton <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">multiple</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -263,7 +342,7 @@ you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

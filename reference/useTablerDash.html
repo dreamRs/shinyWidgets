@@ -14,7 +14,7 @@ into a classic 'shiny' app."><!-- mathjax --><script src="https://cdnjs.cloudfla
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,188 +57,188 @@ into a classic 'shiny' app.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">useTablerDash</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">useTablerDash</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/tablerDash/" class="external-link">tablerDash</a></span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">profileCard</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerProfileCard.html" class="external-link">tablerProfileCard</a></span><span class="op">(</span></span>
-<span class="r-in">    width <span class="op">=</span> <span class="fl">12</span>,</span>
-<span class="r-in">    title <span class="op">=</span> <span class="st">"Peter Richards"</span>,</span>
-<span class="r-in">    subtitle <span class="op">=</span> <span class="st">"Big belly rude boy, million</span>
-<span class="r-in">        dollar hustler. Unemployed."</span>,</span>
-<span class="r-in">    background <span class="op">=</span> <span class="st">"https://preview.tabler.io/demo/photos/ilnur-kalimullin-218996-500.jpg"</span>,</span>
-<span class="r-in">    src <span class="op">=</span> <span class="st">"https://preview.tabler.io/demo/faces/male/16.jpg"</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerSocialLinks.html" class="external-link">tablerSocialLinks</a></span><span class="op">(</span></span>
-<span class="r-in">      <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerSocialLink.html" class="external-link">tablerSocialLink</a></span><span class="op">(</span></span>
-<span class="r-in">        name <span class="op">=</span> <span class="st">"facebook"</span>,</span>
-<span class="r-in">        href <span class="op">=</span> <span class="st">"https://www.facebook.com"</span>,</span>
-<span class="r-in">        icon <span class="op">=</span> <span class="st">"facebook"</span></span>
-<span class="r-in">      <span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerSocialLink.html" class="external-link">tablerSocialLink</a></span><span class="op">(</span></span>
-<span class="r-in">        name <span class="op">=</span> <span class="st">"twitter"</span>,</span>
-<span class="r-in">        href <span class="op">=</span> <span class="st">"https://www.twitter.com"</span>,</span>
-<span class="r-in">        icon <span class="op">=</span> <span class="st">"twitter"</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">plotCard</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerCard.html" class="external-link">tablerCard</a></span><span class="op">(</span></span>
-<span class="r-in">    title <span class="op">=</span> <span class="st">"Plots"</span>,</span>
-<span class="r-in">    zoomable <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">    closable <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span>
-<span class="r-in">      <span class="fu"><a href="switchInput.html">switchInput</a></span><span class="op">(</span></span>
-<span class="r-in">        inputId <span class="op">=</span> <span class="st">"enable_distPlot"</span>,</span>
-<span class="r-in">        label <span class="op">=</span> <span class="st">"Plot?"</span>,</span>
-<span class="r-in">        value <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">        onStatus <span class="op">=</span> <span class="st">"success"</span>,</span>
-<span class="r-in">        offStatus <span class="op">=</span> <span class="st">"danger"</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span>,</span>
-<span class="r-in">    status <span class="op">=</span> <span class="st">"info"</span>,</span>
-<span class="r-in">    statusSide <span class="op">=</span> <span class="st">"left"</span>,</span>
-<span class="r-in">    width <span class="op">=</span> <span class="fl">12</span>,</span>
-<span class="r-in">    footer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
-<span class="r-in">        width <span class="op">=</span> <span class="fl">12</span>,</span>
-<span class="r-in">        align <span class="op">=</span> <span class="st">"center"</span>,</span>
-<span class="r-in">        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span></span>
-<span class="r-in">          <span class="st">"obs"</span>,</span>
-<span class="r-in">          <span class="st">"Number of observations:"</span>,</span>
-<span class="r-in">          min <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">          max <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span class="r-in">          value <span class="op">=</span> <span class="fl">500</span></span>
-<span class="r-in">        <span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># app</span></span>
-<span class="r-in">  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
-<span class="r-in">    ui <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span class="r-in">      <span class="fu">useTablerDash</span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="chooseSliderSkin.html">chooseSliderSkin</a></span><span class="op">(</span><span class="st">"Nice"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Import tablerDash elements inside shiny!"</span>, align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h5</a></span><span class="op">(</span><span class="st">"Don't need any sidebar, navbar, ..."</span>, align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span>,</span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h5</a></span><span class="op">(</span><span class="st">"Only focus on basic elements for a pure interface"</span>, align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span>,</span>
-<span class="r-in"></span>
-<span class="r-in">      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
-<span class="r-in">        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
-<span class="r-in">          width <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">          <span class="va">profileCard</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerStatCard.html" class="external-link">tablerStatCard</a></span><span class="op">(</span></span>
-<span class="r-in">            value <span class="op">=</span> <span class="fl">43</span>,</span>
-<span class="r-in">            title <span class="op">=</span> <span class="st">"Followers"</span>,</span>
-<span class="r-in">            trend <span class="op">=</span> <span class="op">-</span><span class="fl">10</span>,</span>
-<span class="r-in">            width <span class="op">=</span> <span class="fl">12</span></span>
-<span class="r-in">          <span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatarList.html" class="external-link">tablerAvatarList</a></span><span class="op">(</span></span>
-<span class="r-in">            stacked <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatar.html" class="external-link">tablerAvatar</a></span><span class="op">(</span></span>
-<span class="r-in">              name <span class="op">=</span> <span class="st">"DG"</span>,</span>
-<span class="r-in">              size <span class="op">=</span> <span class="st">"xxl"</span></span>
-<span class="r-in">            <span class="op">)</span>,</span>
-<span class="r-in">            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatar.html" class="external-link">tablerAvatar</a></span><span class="op">(</span></span>
-<span class="r-in">              name <span class="op">=</span> <span class="st">"DG"</span>,</span>
-<span class="r-in">              color <span class="op">=</span> <span class="st">"orange"</span></span>
-<span class="r-in">            <span class="op">)</span>,</span>
-<span class="r-in">            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatar.html" class="external-link">tablerAvatar</a></span><span class="op">(</span></span>
-<span class="r-in">              name <span class="op">=</span> <span class="st">"DG"</span>,</span>
-<span class="r-in">              status <span class="op">=</span> <span class="st">"warning"</span></span>
-<span class="r-in">            <span class="op">)</span>,</span>
-<span class="r-in">            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatar.html" class="external-link">tablerAvatar</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://image.flaticon.com/icons/svg/145/145852.svg"</span><span class="op">)</span></span>
-<span class="r-in">          <span class="op">)</span></span>
-<span class="r-in">        <span class="op">)</span>,</span>
-<span class="r-in">        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
-<span class="r-in">          width <span class="op">=</span> <span class="fl">6</span>,</span>
-<span class="r-in">          <span class="va">plotCard</span></span>
-<span class="r-in">        <span class="op">)</span>,</span>
-<span class="r-in">        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span>
-<span class="r-in">          width <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerCard.html" class="external-link">tablerCard</a></span><span class="op">(</span></span>
-<span class="r-in">            width <span class="op">=</span> <span class="fl">12</span>,</span>
-<span class="r-in">            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerTimeline.html" class="external-link">tablerTimeline</a></span><span class="op">(</span></span>
-<span class="r-in">              <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerTimelineItem.html" class="external-link">tablerTimelineItem</a></span><span class="op">(</span></span>
-<span class="r-in">                title <span class="op">=</span> <span class="st">"Item 1"</span>,</span>
-<span class="r-in">                status <span class="op">=</span> <span class="st">"green"</span>,</span>
-<span class="r-in">                date <span class="op">=</span> <span class="st">"now"</span></span>
-<span class="r-in">              <span class="op">)</span>,</span>
-<span class="r-in">              <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerTimelineItem.html" class="external-link">tablerTimelineItem</a></span><span class="op">(</span></span>
-<span class="r-in">                title <span class="op">=</span> <span class="st">"Item 2"</span>,</span>
-<span class="r-in">                status <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span class="r-in">                date <span class="op">=</span> <span class="st">"yesterday"</span>,</span>
-<span class="r-in">                <span class="st">"Lorem ipsum dolor sit amet,</span>
-<span class="r-in">                  consectetur adipisicing elit."</span></span>
-<span class="r-in">              <span class="op">)</span></span>
-<span class="r-in">            <span class="op">)</span></span>
-<span class="r-in">          <span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerInfoCard.html" class="external-link">tablerInfoCard</a></span><span class="op">(</span></span>
-<span class="r-in">            value <span class="op">=</span> <span class="st">"132 sales"</span>,</span>
-<span class="r-in">            status <span class="op">=</span> <span class="st">"danger"</span>,</span>
-<span class="r-in">            icon <span class="op">=</span> <span class="st">"dollar-sign"</span>,</span>
-<span class="r-in">            description <span class="op">=</span> <span class="st">"12 waiting payments"</span>,</span>
-<span class="r-in">            width <span class="op">=</span> <span class="fl">12</span></span>
-<span class="r-in">          <span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span></span>
-<span class="r-in">            inputId <span class="op">=</span> <span class="st">"totalStorage"</span>,</span>
-<span class="r-in">            label <span class="op">=</span> <span class="st">"Enter storage capacity"</span>,</span>
-<span class="r-in">            value <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html" class="external-link">uiOutput</a></span><span class="op">(</span><span class="st">"info"</span><span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="knobInput.html">knobInput</a></span><span class="op">(</span></span>
-<span class="r-in">            inputId <span class="op">=</span> <span class="st">"knob"</span>,</span>
-<span class="r-in">            width <span class="op">=</span> <span class="st">"50%"</span>,</span>
-<span class="r-in">            label <span class="op">=</span> <span class="st">"Progress value:"</span>,</span>
-<span class="r-in">            value <span class="op">=</span> <span class="fl">10</span>,</span>
-<span class="r-in">            min <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">            max <span class="op">=</span> <span class="fl">100</span>,</span>
-<span class="r-in">            skin <span class="op">=</span> <span class="st">"tron"</span>,</span>
-<span class="r-in">            displayPrevious <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">            fgColor <span class="op">=</span> <span class="st">"#428BCA"</span>,</span>
-<span class="r-in">            inputColor <span class="op">=</span> <span class="st">"#428BCA"</span></span>
-<span class="r-in">          <span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html" class="external-link">uiOutput</a></span><span class="op">(</span><span class="st">"progress"</span><span class="op">)</span></span>
-<span class="r-in">        <span class="op">)</span></span>
-<span class="r-in">      <span class="op">)</span></span>
-<span class="r-in">    <span class="op">)</span>,</span>
-<span class="r-in">    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">      <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
-<span class="r-in">        <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">enable_distPlot</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">      <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">      <span class="va">output</span><span class="op">$</span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span>
-<span class="r-in">        <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerInfoCard.html" class="external-link">tablerInfoCard</a></span><span class="op">(</span></span>
-<span class="r-in">          width <span class="op">=</span> <span class="fl">12</span>,</span>
-<span class="r-in">          value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">totalStorage</span>, <span class="st">"GB"</span><span class="op">)</span>,</span>
-<span class="r-in">          status <span class="op">=</span> <span class="st">"success"</span>,</span>
-<span class="r-in">          icon <span class="op">=</span> <span class="st">"database"</span>,</span>
-<span class="r-in">          description <span class="op">=</span> <span class="st">"Total Storage Capacity"</span></span>
-<span class="r-in">        <span class="op">)</span></span>
-<span class="r-in">      <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">      <span class="va">output</span><span class="op">$</span><span class="va">progress</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span>
-<span class="r-in">        <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span>
-<span class="r-in">          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerProgress.html" class="external-link">tablerProgress</a></span><span class="op">(</span>value <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">knob</span>, size <span class="op">=</span> <span class="st">"xs"</span>, status <span class="op">=</span> <span class="st">"yellow"</span><span class="op">)</span>,</span>
-<span class="r-in">          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerProgress.html" class="external-link">tablerProgress</a></span><span class="op">(</span>value <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">knob</span>, status <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="st">"sm"</span><span class="op">)</span></span>
-<span class="r-in">        <span class="op">)</span></span>
-<span class="r-in">      <span class="op">}</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">    <span class="op">}</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rinterface.github.io/tablerDash/" class="external-link">tablerDash</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">profileCard</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerProfileCard.html" class="external-link">tablerProfileCard</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    width <span class="op">=</span> <span class="fl">12</span>,</span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"Peter Richards"</span>,</span></span>
+<span class="r-in"><span>    subtitle <span class="op">=</span> <span class="st">"Big belly rude boy, million</span></span></span>
+<span class="r-in"><span><span class="st">        dollar hustler. Unemployed."</span>,</span></span>
+<span class="r-in"><span>    background <span class="op">=</span> <span class="st">"https://preview.tabler.io/demo/photos/ilnur-kalimullin-218996-500.jpg"</span>,</span></span>
+<span class="r-in"><span>    src <span class="op">=</span> <span class="st">"https://preview.tabler.io/demo/faces/male/16.jpg"</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerSocialLinks.html" class="external-link">tablerSocialLinks</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerSocialLink.html" class="external-link">tablerSocialLink</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        name <span class="op">=</span> <span class="st">"facebook"</span>,</span></span>
+<span class="r-in"><span>        href <span class="op">=</span> <span class="st">"https://www.facebook.com"</span>,</span></span>
+<span class="r-in"><span>        icon <span class="op">=</span> <span class="st">"facebook"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerSocialLink.html" class="external-link">tablerSocialLink</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        name <span class="op">=</span> <span class="st">"twitter"</span>,</span></span>
+<span class="r-in"><span>        href <span class="op">=</span> <span class="st">"https://www.twitter.com"</span>,</span></span>
+<span class="r-in"><span>        icon <span class="op">=</span> <span class="st">"twitter"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">plotCard</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerCard.html" class="external-link">tablerCard</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"Plots"</span>,</span></span>
+<span class="r-in"><span>    zoomable <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    closable <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="switchInput.html">switchInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"enable_distPlot"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Plot?"</span>,</span></span>
+<span class="r-in"><span>        value <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        onStatus <span class="op">=</span> <span class="st">"success"</span>,</span></span>
+<span class="r-in"><span>        offStatus <span class="op">=</span> <span class="st">"danger"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    status <span class="op">=</span> <span class="st">"info"</span>,</span></span>
+<span class="r-in"><span>    statusSide <span class="op">=</span> <span class="st">"left"</span>,</span></span>
+<span class="r-in"><span>    width <span class="op">=</span> <span class="fl">12</span>,</span></span>
+<span class="r-in"><span>    footer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="fl">12</span>,</span></span>
+<span class="r-in"><span>        align <span class="op">=</span> <span class="st">"center"</span>,</span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          <span class="st">"obs"</span>,</span></span>
+<span class="r-in"><span>          <span class="st">"Number of observations:"</span>,</span></span>
+<span class="r-in"><span>          min <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>          max <span class="op">=</span> <span class="fl">1000</span>,</span></span>
+<span class="r-in"><span>          value <span class="op">=</span> <span class="fl">500</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># app</span></span></span>
+<span class="r-in"><span>  <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    ui <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu">useTablerDash</span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="chooseSliderSkin.html">chooseSliderSkin</a></span><span class="op">(</span><span class="st">"Nice"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Import tablerDash elements inside shiny!"</span>, align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h5</a></span><span class="op">(</span><span class="st">"Don't need any sidebar, navbar, ..."</span>, align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h5</a></span><span class="op">(</span><span class="st">"Only focus on basic elements for a pure interface"</span>, align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          width <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>          <span class="va">profileCard</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerStatCard.html" class="external-link">tablerStatCard</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            value <span class="op">=</span> <span class="fl">43</span>,</span></span>
+<span class="r-in"><span>            title <span class="op">=</span> <span class="st">"Followers"</span>,</span></span>
+<span class="r-in"><span>            trend <span class="op">=</span> <span class="op">-</span><span class="fl">10</span>,</span></span>
+<span class="r-in"><span>            width <span class="op">=</span> <span class="fl">12</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatarList.html" class="external-link">tablerAvatarList</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            stacked <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatar.html" class="external-link">tablerAvatar</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>              name <span class="op">=</span> <span class="st">"DG"</span>,</span></span>
+<span class="r-in"><span>              size <span class="op">=</span> <span class="st">"xxl"</span></span></span>
+<span class="r-in"><span>            <span class="op">)</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatar.html" class="external-link">tablerAvatar</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>              name <span class="op">=</span> <span class="st">"DG"</span>,</span></span>
+<span class="r-in"><span>              color <span class="op">=</span> <span class="st">"orange"</span></span></span>
+<span class="r-in"><span>            <span class="op">)</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatar.html" class="external-link">tablerAvatar</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>              name <span class="op">=</span> <span class="st">"DG"</span>,</span></span>
+<span class="r-in"><span>              status <span class="op">=</span> <span class="st">"warning"</span></span></span>
+<span class="r-in"><span>            <span class="op">)</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerAvatar.html" class="external-link">tablerAvatar</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://image.flaticon.com/icons/svg/145/145852.svg"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          width <span class="op">=</span> <span class="fl">6</span>,</span></span>
+<span class="r-in"><span>          <span class="va">plotCard</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          width <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerCard.html" class="external-link">tablerCard</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            width <span class="op">=</span> <span class="fl">12</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerTimeline.html" class="external-link">tablerTimeline</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>              <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerTimelineItem.html" class="external-link">tablerTimelineItem</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>                title <span class="op">=</span> <span class="st">"Item 1"</span>,</span></span>
+<span class="r-in"><span>                status <span class="op">=</span> <span class="st">"green"</span>,</span></span>
+<span class="r-in"><span>                date <span class="op">=</span> <span class="st">"now"</span></span></span>
+<span class="r-in"><span>              <span class="op">)</span>,</span></span>
+<span class="r-in"><span>              <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerTimelineItem.html" class="external-link">tablerTimelineItem</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>                title <span class="op">=</span> <span class="st">"Item 2"</span>,</span></span>
+<span class="r-in"><span>                status <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
+<span class="r-in"><span>                date <span class="op">=</span> <span class="st">"yesterday"</span>,</span></span>
+<span class="r-in"><span>                <span class="st">"Lorem ipsum dolor sit amet,</span></span></span>
+<span class="r-in"><span><span class="st">                  consectetur adipisicing elit."</span></span></span>
+<span class="r-in"><span>              <span class="op">)</span></span></span>
+<span class="r-in"><span>            <span class="op">)</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerInfoCard.html" class="external-link">tablerInfoCard</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            value <span class="op">=</span> <span class="st">"132 sales"</span>,</span></span>
+<span class="r-in"><span>            status <span class="op">=</span> <span class="st">"danger"</span>,</span></span>
+<span class="r-in"><span>            icon <span class="op">=</span> <span class="st">"dollar-sign"</span>,</span></span>
+<span class="r-in"><span>            description <span class="op">=</span> <span class="st">"12 waiting payments"</span>,</span></span>
+<span class="r-in"><span>            width <span class="op">=</span> <span class="fl">12</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            inputId <span class="op">=</span> <span class="st">"totalStorage"</span>,</span></span>
+<span class="r-in"><span>            label <span class="op">=</span> <span class="st">"Enter storage capacity"</span>,</span></span>
+<span class="r-in"><span>            value <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html" class="external-link">uiOutput</a></span><span class="op">(</span><span class="st">"info"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="knobInput.html">knobInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            inputId <span class="op">=</span> <span class="st">"knob"</span>,</span></span>
+<span class="r-in"><span>            width <span class="op">=</span> <span class="st">"50%"</span>,</span></span>
+<span class="r-in"><span>            label <span class="op">=</span> <span class="st">"Progress value:"</span>,</span></span>
+<span class="r-in"><span>            value <span class="op">=</span> <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>            min <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>            max <span class="op">=</span> <span class="fl">100</span>,</span></span>
+<span class="r-in"><span>            skin <span class="op">=</span> <span class="st">"tron"</span>,</span></span>
+<span class="r-in"><span>            displayPrevious <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>            fgColor <span class="op">=</span> <span class="st">"#428BCA"</span>,</span></span>
+<span class="r-in"><span>            inputColor <span class="op">=</span> <span class="st">"#428BCA"</span></span></span>
+<span class="r-in"><span>          <span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html" class="external-link">uiOutput</a></span><span class="op">(</span><span class="st">"progress"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>        <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">enable_distPlot</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">obs</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerInfoCard.html" class="external-link">tablerInfoCard</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          width <span class="op">=</span> <span class="fl">12</span>,</span></span>
+<span class="r-in"><span>          value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">totalStorage</span>, <span class="st">"GB"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>          status <span class="op">=</span> <span class="st">"success"</span>,</span></span>
+<span class="r-in"><span>          icon <span class="op">=</span> <span class="st">"database"</span>,</span></span>
+<span class="r-in"><span>          description <span class="op">=</span> <span class="st">"Total Storage Capacity"</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>      <span class="va">output</span><span class="op">$</span><span class="va">progress</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerProgress.html" class="external-link">tablerProgress</a></span><span class="op">(</span>value <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">knob</span>, size <span class="op">=</span> <span class="st">"xs"</span>, status <span class="op">=</span> <span class="st">"yellow"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rinterface.github.io/tablerDash/reference/tablerProgress.html" class="external-link">tablerProgress</a></span><span class="op">(</span>value <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">knob</span>, status <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="st">"sm"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="op">}</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -250,7 +250,7 @@ into a classic 'shiny' app.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>
