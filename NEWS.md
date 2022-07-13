@@ -1,3 +1,13 @@
+shinyWidgets 0.7.1
+======================
+
+* Updated virtual-select-plugin to 1.0.30
+* `pickerInput` bindings: fixed update method when using Bootstrap 5.
+* `virtualSelectInput` state (opened or closed) is now available with `input$<inputId>_open`.
+
+
+
+
 shinyWidgets 0.7.0
 ======================
 

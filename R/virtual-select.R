@@ -94,6 +94,9 @@ prepare_choices <- function(.data,
 #'
 #' @return A `shiny.tag` object that can be used in a UI definition.
 #'
+#' @note State of the menu (open or close) is accessible server-side through the input value:
+#'  `input$<inputId>_open`, which can be `TRUE` (opened) or `FALSE` (closed) or `NULL` (when initialized).
+#'
 #' @seealso
 #'  * [demoVirtualSelect()] for demo apps
 #'  * [updateVirtualSelect()] for updating from server
