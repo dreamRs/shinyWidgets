@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">updateNoUiSliderInput</span><span class="op">(</span></span>
 <span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">inputId</span>,</span>
+<span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  range <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  disable <span class="op">=</span> <span class="cn">FALSE</span></span>
@@ -70,6 +71,10 @@
 <dd><p>The id of the input object.</p></dd>
 
 
+<dt>label</dt>
+<dd><p>The new label.</p></dd>
+
+
 <dt>value</dt>
 <dd><p>The new value.</p></dd>
 
@@ -80,9 +85,13 @@
 
 <dt>disable</dt>
 <dd><p>logical, disable or not the slider,
-if disabled the user can no longer modify the slider value</p></dd>
+if disabled the user can no longer modify the slider value.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="noUiSliderInput.html">noUiSliderInput()</a></code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
