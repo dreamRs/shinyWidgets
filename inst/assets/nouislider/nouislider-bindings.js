@@ -1,7 +1,7 @@
 /*jshint
   jquery:true
 */
-/*global noUiSlider, wNumb, Shiny */
+/*global noUiSlider, wNumb, Shiny, updateLabel */
 
 // noUiSlider bindings by VP //
 
@@ -73,6 +73,10 @@ $.extend(noUiSliderBinding, {
     $(el).off(".noUiSliderBinding");
   },
   receiveMessage: function receiveMessage(el, data) {
+    if (data.hasOwnProperty("label")) {
+      var label = $("#" + el.id + "-label");
+      updateLabel(data.label, label);
+    }
     var slider = document.getElementById(el.id);
     if (data.disable) {
       slider.setAttribute("disabled", true);

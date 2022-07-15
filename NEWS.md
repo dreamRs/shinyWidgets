@@ -1,10 +1,16 @@
+shinyWidgets 0.7.2
+======================
+
+* `updateNoUiSliderInput()`: new argument `label =` to update the widget's label.
+
+
+
 shinyWidgets 0.7.1
 ======================
 
 * Updated virtual-select-plugin to 1.0.30
 * `pickerInput` bindings: fixed update method when using Bootstrap 5.
 * `virtualSelectInput` state (opened or closed) is now available with `input$<inputId>_open`.
-
 
 
 
