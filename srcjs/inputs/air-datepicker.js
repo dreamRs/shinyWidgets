@@ -1,6 +1,8 @@
 import $ from "jquery";
 import "shiny";
 import dayjs from "dayjs";
+import dayjsPluginUTC from "dayjs-plugin-utc";
+dayjs.extend(dayjsPluginUTC);
 import AirDatepicker from "air-datepicker";
 import "air-datepicker/air-datepicker.css";
 import localeCS from "air-datepicker/locale/cs";
@@ -136,7 +138,11 @@ $.extend(AirDatepickerBindings, {
       var dateraw = config.value;
       var datedefault = [];
       for (var i = 0; i < dateraw.length; i++) {
-        datedefault[i] = dayjs(dateraw[i]);
+        datedefault[i] = dayjs.utc(dateraw[i]).toISOString();
+        console.log(dateraw[i]);
+        console.log(datedefault[i]);
+        console.log(dayjs.utc(dateraw[i]).utc().toISOString());
+        console.log(dayjs(dateraw[i]).utc().toISOString());
       }
       config.value = datedefault;
     }
@@ -203,16 +209,10 @@ $.extend(AirDatepickerBindings, {
     var timepicker = $(el).attr("data-timepicker");
     var res;
     if (typeof sd != "undefined" && sd.length > 0) {
-      if (timepicker === "false") {
-        res = sd.map(function(e) {
-          //console.log(e);
-          return dayjs(e).format();
-        });
-      } else {
-        res = sd.map(function(e) {
-          return dayjs(e).format();
-        });
-      }
+      res = sd.map(function(e) {
+        //console.log(e);
+        return dayjs(e).format();
+      });
       return res;
     } else {
       return null;
