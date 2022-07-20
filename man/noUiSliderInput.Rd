@@ -90,8 +90,8 @@ a ui definition
 A minimal numeric range slider with a lot of features.
 }
 \note{
-See \code{\link{updateNoUiSliderInput}} for updating slider value server-side.
-And \code{\link{demoNoUiSlider}} for examples.
+See \code{\link[=updateNoUiSliderInput]{updateNoUiSliderInput()}} for updating slider value server-side.
+And \code{\link[=demoNoUiSlider]{demoNoUiSlider()}} for examples.
 }
 \examples{
 if (interactive()) {

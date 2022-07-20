@@ -76,7 +76,7 @@ single-select lists and no values for multiple select lists.}
 \item{inline}{Display inline with label or not.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link[shiny:reexports]{validateCssUnit()}}.}
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 }
 \value{
 A \code{shiny.tag} object that can be used in a UI definition.
@@ -85,6 +85,10 @@ A \code{shiny.tag} object that can be used in a UI definition.
 A select dropdown widget made for performance,
 based on \href{https://github.com/sa-si-dev/virtual-select}{virtual-select} JavaScript library.
 }
+\note{
+State of the menu (open or close) is accessible server-side through the input value:
+\verb{input$<inputId>_open}, which can be \code{TRUE} (opened) or \code{FALSE} (closed) or \code{NULL} (when initialized).
+}
 \examples{
 library(shiny)
 library(shinyWidgets)
@@ -92,26 +96,49 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h2("Virtual Select"),
 
-  virtualSelectInput(
-    inputId = "single",
-    label = "Single select :",
-    choices = month.name,
-    search = TRUE
-  ),
-  verbatimTextOutput("res_single"),
+  fluidRow(
+    column(
+      width = 4,
+      virtualSelectInput(
+        inputId = "single",
+        label = "Single select :",
+        choices = month.name,
+        search = TRUE
+      ),
+      virtualSelectInput(
+        inputId = "multiple",
+        label = "Multiple select:",
+        choices = setNames(month.abb, month.name),
+        multiple = TRUE
+      )
+    ),
+    column(
+      width = 4,
+      tags$b("Single select :"),
+      verbatimTextOutput("res_single"),
+      tags$b("Is virtual select open ?"),
+      verbatimTextOutput(outputId = "res_single_open"),
 
-  virtualSelectInput(
-    inputId = "multiple",
-    label = "Multiple select:",
-    choices = setNames(month.abb, month.name),
-    multiple = TRUE
-  ),
-  verbatimTextOutput("res_multiple")
+      tags$br(),
+
+      tags$b("Multiple select :"),
+      verbatimTextOutput("res_multiple"),
+      tags$b("Is virtual select open ?"),
+      verbatimTextOutput(outputId = "res_multiple_open")
+    )
+  )
+
+
 )
 
 server <- function(input, output, session) {
+
   output$res_single <- renderPrint(input$single)
+  output$res_single_open <- renderPrint(input$single_open)
+
   output$res_multiple <- renderPrint(input$multiple)
+  output$res_multiple_open <- renderPrint(input$multiple_open)
+
 }
 
 if (interactive())

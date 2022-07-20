@@ -85,6 +85,12 @@ $.extend(virtualSelectBinding, {
     config.options = makeOptions(data.options);
     config.ele = el;
     VirtualSelect.init(config);
+    $(el).on("afterOpen", function(e) {
+      Shiny.setInputValue(el.id + "_open", true);
+    });
+    $(el).on("afterClose", function(e) {
+      Shiny.setInputValue(el.id + "_open", false);
+    });
   }
 });
 

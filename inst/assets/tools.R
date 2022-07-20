@@ -26,6 +26,8 @@ bindings <- list.files(
   recursive = TRUE,
   full.names = TRUE
 )
+# add utils
+bindings <- c("inst/assets/utils.js", bindings)
 # remove pickr not used
 bindings <- setdiff(bindings, "inst/assets/pickr/pickr-bindings.js")
 # remove air-datepicker that is not used

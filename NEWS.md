@@ -1,9 +1,28 @@
-shinyWidgets (unreleased)
+shinyWidgets 0.7.2
+======================
+
+* `updateNoUiSliderInput()`: new argument `label =` to update the widget's label.
+
+
+
+shinyWidgets 0.7.1
+======================
+
+* Updated virtual-select-plugin to 1.0.30
+* `pickerInput` bindings: fixed update method when using Bootstrap 5.
+* `virtualSelectInput` state (opened or closed) is now available with `input$<inputId>_open`.
+
+
+
+shinyWidgets 0.7.0
 ======================
 
 * New widget `virtualSelectInput()`, a select dropdown widget that support a lot of choices, based on [virtual-select](https://github.com/sa-si-dev/virtual-select) JavaScript library.
 * Updated bootstrap-select to v1.14.0-beta3, to make `pickerInput()` works with Bootstrap 5.
 * Updated `alert()` and `panel()` Bootstrap utilities to work with Bootstrap 5.
+
+### Bug fixes
+* Removed `formula` argument from `aggregate()` to accomode to R 4.2.0 (fix [#491](https://github.com/dreamRs/shinyWidgets/issues/491))
 
 
 

@@ -40,7 +40,7 @@ be \code{"sm"} (small) or \code{"lg"} (large).}
 displayed if value entered by user is outside of \code{min} and \code{max}.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link[shiny:reexports]{validateCssUnit()}}.}
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 }
 \value{
 A numeric input control that can be added to a UI definition.

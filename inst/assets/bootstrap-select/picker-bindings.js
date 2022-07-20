@@ -11,8 +11,16 @@ $.extend(pickerInputBinding, {
     return $(el).val();
   },
   setValue: function setValue(el, value) {
+    var callback = $(el).data("callback");
+    var shinyInputBinding = $(el).data("shinyInputBinding");
+    $(el).selectpicker("destroy");
     $(el).val(value);
-    $(el).selectpicker("refresh");
+    $(el).data("callback", callback);
+    $(el).data("shinyInputBinding", shinyInputBinding);
+    $(el).selectpicker();
+    $(el).on("changed.bs.select.pickerInput", function(event) {
+      callback();
+    });
   },
   getState: function getState(el) {
     // Store options in an array of objects, each with with value and label
@@ -32,12 +40,12 @@ $.extend(pickerInputBinding, {
   },
   receiveMessage: function receiveMessage(el, data) {
     var $el = $(el);
+    var callback = $(el).data("callback");
+    var shinyInputBinding = $(el).data("shinyInputBinding");
 
     if (data.hasOwnProperty("options")) {
-      var callback = $(el).data("callback");
       $(el).selectpicker("destroy");
       if (data.clearOptions) {
-        var shinyInputBinding = $(el).data("shinyInputBinding");
         $(el).removeData();
         $(el).data("callback", callback);
         $(el).data("shinyInputBinding", shinyInputBinding);
@@ -51,9 +59,14 @@ $.extend(pickerInputBinding, {
 
     // This will replace all the choices
     if (data.hasOwnProperty("choices")) {
-      // Clear existing choices and add each new one
+      $(el).selectpicker("destroy");
       $el.empty().append(data.choices);
-      $(el).selectpicker("refresh");
+      $(el).data("callback", callback);
+      $(el).data("shinyInputBinding", shinyInputBinding);
+      $(el).selectpicker();
+      $(el).on("changed.bs.select.pickerInput", function(event) {
+        callback();
+      });
     }
 
     if (data.hasOwnProperty("value")) {
@@ -67,7 +80,7 @@ $.extend(pickerInputBinding, {
         .find('label[for="' + Shiny.$escape(el.id) + '"]')
         .text(data.label);
 
-    $(el).selectpicker("refresh");
+    //$(el).selectpicker("refresh");
     $(el).trigger("change");
   },
   subscribe: function subscribe(el, callback) {

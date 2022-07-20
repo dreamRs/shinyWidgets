@@ -7,6 +7,7 @@
 updateNoUiSliderInput(
   session = getDefaultReactiveDomain(),
   inputId,
+  label = NULL,
   value = NULL,
   range = NULL,
   disable = FALSE
@@ -17,12 +18,14 @@ updateNoUiSliderInput(
 
 \item{inputId}{The id of the input object.}
 
+\item{label}{The new label.}
+
 \item{value}{The new value.}
 
 \item{range}{The new range, must be of length 2 with \code{c(min, max)}.}
 
 \item{disable}{logical, disable or not the slider,
-if disabled the user can no longer modify the slider value}
+if disabled the user can no longer modify the slider value.}
 }
 \description{
 Change the value of a no ui slider input on the client
@@ -33,4 +36,7 @@ if (interactive()) {
  demoNoUiSlider("update")
 
 }
+}
+\seealso{
+\code{\link[=noUiSliderInput]{noUiSliderInput()}}
 }
