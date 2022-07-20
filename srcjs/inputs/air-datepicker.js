@@ -1,5 +1,6 @@
 import $ from "jquery";
 import "shiny";
+import dayjs from "dayjs";
 import AirDatepicker from "air-datepicker";
 import "air-datepicker/air-datepicker.css";
 import localeCS from "air-datepicker/locale/cs";
@@ -135,22 +136,22 @@ $.extend(AirDatepickerBindings, {
       var dateraw = config.value;
       var datedefault = [];
       for (var i = 0; i < dateraw.length; i++) {
-        datedefault[i] = new Date(dateraw[i]);
+        datedefault[i] = dayjs(dateraw[i]);
       }
       config.value = datedefault;
     }
 
     if (options.hasOwnProperty("minDate")) {
-      options.minDate = new Date(options.minDate);
+      options.minDate = dayjs(options.minDate);
     }
     if (options.hasOwnProperty("maxDate")) {
-      options.maxDate = new Date(options.maxDate);
+      options.maxDate = dayjs(options.maxDate);
     }
     if (options.hasOwnProperty("startDate")) {
-      options.startDate = new Date(options.startDate);
+      options.startDate = dayjs(options.startDate);
     }
     if (config.todayButtonAsDate) {
-      options.todayButton = new Date(options.todayButton);
+      options.todayButton = dayjs(options.todayButton);
     }
 
     // disable dates
@@ -179,7 +180,7 @@ $.extend(AirDatepickerBindings, {
     var dp = new AirDatepicker(el, options);
     dp.selectDate(config.value);
     if (config.hasOwnProperty("startView")) {
-      dp.date = new Date(config.startView);
+      dp.date = dayjs(config.startView);
     }
     AirDatepickerBindings.updateStore(el, dp);
   },
@@ -201,40 +202,16 @@ $.extend(AirDatepickerBindings, {
     var sd = dp.selectedDates;
     var timepicker = $(el).attr("data-timepicker");
     var res;
-
-    function padZeros(n, digits) {
-      var str = n.toString();
-      while (str.length < digits) {
-        str = "0" + str;
-      }
-      return str;
-    }
-    function formatDate(date) {
-      if (date instanceof Date) {
-        return (
-          date.getFullYear() +
-          "-" +
-          padZeros(date.getMonth() + 1, 2) +
-          "-" +
-          padZeros(date.getDate(), 2)
-        );
-      } else {
-        return null;
-      }
-    }
-
     if (typeof sd != "undefined" && sd.length > 0) {
       if (timepicker === "false") {
         res = sd.map(function(e) {
           //console.log(e);
-          return formatDate(e);
+          return dayjs(e).format();
         });
       } else {
-        //var tz = new Date().toString().match(/([-\+][0-9]+)\s/)[1];
         res = sd.map(function(e) {
-          return e.valueOf(); //toISOString() + tz;
+          return dayjs(e).format();
         });
-        //res = sd ;
       }
       return res;
     } else {
@@ -245,7 +222,7 @@ $.extend(AirDatepickerBindings, {
     value = JSON.parse(value);
     var newdate = [];
     for (var i = 0; i < value.length; i++) {
-      newdate[i] = new Date(value[i]);
+      newdate[i] = dayjs(value[i]);
     }
     var dp = AirDatepickerBindings.store[el.id];
     dp.selectDate(newdate);
@@ -284,10 +261,10 @@ $.extend(AirDatepickerBindings, {
       var options = data.options;
 
       if (options.hasOwnProperty("minDate")) {
-        options.minDate = new Date(options.minDate);
+        options.minDate = dayjs(options.minDate);
       }
       if (options.hasOwnProperty("maxDate")) {
-        options.maxDate = new Date(options.maxDate);
+        options.maxDate = dayjs(options.maxDate);
       }
 
       if (
@@ -308,7 +285,7 @@ $.extend(AirDatepickerBindings, {
       dp.update(options);
 
       if (options.hasOwnProperty("startView")) {
-        dp.date = new Date(options.startView);
+        dp.date = dayjs(options.startView);
       }
     }
 

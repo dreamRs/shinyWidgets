@@ -388,7 +388,7 @@ html_dependency_airdatepicker <- function() {
   # )
   htmlDependency(
     name = "air-datepicker",
-    version = "3.1.1",
+    version = "3.2.0",
     src = c(file = system.file("packer", package = "shinyWidgets")),
     script = "air-datepicker.js"
   )
