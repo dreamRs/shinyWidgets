@@ -86,6 +86,10 @@ function getFormattedDate(date) {
   }
 }
 
+function as_date(date) {
+  return dayjs(date).toDate();
+}
+
 function onRenderCell(disabledDates, highlightedDates) {
   return ({ date, cellType, datepicker }) => {
     if (cellType == "day") {
@@ -138,26 +142,22 @@ $.extend(AirDatepickerBindings, {
       var dateraw = config.value;
       var datedefault = [];
       for (var i = 0; i < dateraw.length; i++) {
-        datedefault[i] = dayjs.utc(dateraw[i]).toISOString();
-        console.log(dateraw[i]);
-        console.log(datedefault[i]);
-        console.log(dayjs.utc(dateraw[i]).utc().toISOString());
-        console.log(dayjs(dateraw[i]).utc().toISOString());
+        datedefault[i] = as_date(dateraw[i]);
       }
       config.value = datedefault;
     }
 
     if (options.hasOwnProperty("minDate")) {
-      options.minDate = dayjs(options.minDate);
+      options.minDate = as_date(options.minDate);
     }
     if (options.hasOwnProperty("maxDate")) {
-      options.maxDate = dayjs(options.maxDate);
+      options.maxDate = as_date(options.maxDate);
     }
     if (options.hasOwnProperty("startDate")) {
-      options.startDate = dayjs(options.startDate);
+      options.startDate = as_date(options.startDate);
     }
     if (config.todayButtonAsDate) {
-      options.todayButton = dayjs(options.todayButton);
+      options.todayButton = as_date(options.todayButton);
     }
 
     // disable dates
@@ -184,9 +184,11 @@ $.extend(AirDatepickerBindings, {
     }
 
     var dp = new AirDatepicker(el, options);
-    dp.selectDate(config.value);
+    if (config.hasOwnProperty("value")) {
+      dp.selectDate(config.value);
+    }
     if (config.hasOwnProperty("startView")) {
-      dp.date = dayjs(config.startView);
+      dp.date = as_date(config.startView);
     }
     AirDatepickerBindings.updateStore(el, dp);
   },
@@ -222,7 +224,7 @@ $.extend(AirDatepickerBindings, {
     value = JSON.parse(value);
     var newdate = [];
     for (var i = 0; i < value.length; i++) {
-      newdate[i] = dayjs(value[i]);
+      newdate[i] = as_date(value[i]);
     }
     var dp = AirDatepickerBindings.store[el.id];
     dp.selectDate(newdate);
@@ -261,10 +263,10 @@ $.extend(AirDatepickerBindings, {
       var options = data.options;
 
       if (options.hasOwnProperty("minDate")) {
-        options.minDate = dayjs(options.minDate);
+        options.minDate = as_date(options.minDate);
       }
       if (options.hasOwnProperty("maxDate")) {
-        options.maxDate = dayjs(options.maxDate);
+        options.maxDate = as_date(options.maxDate);
       }
 
       if (
@@ -285,7 +287,7 @@ $.extend(AirDatepickerBindings, {
       dp.update(options);
 
       if (options.hasOwnProperty("startView")) {
-        dp.date = dayjs(options.startView);
+        dp.date = as_date(options.startView);
       }
     }
 
