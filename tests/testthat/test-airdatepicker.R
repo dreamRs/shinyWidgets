@@ -12,9 +12,8 @@ test_that("Dependencies", {
   expect_is(air, "shiny.tag")
 
   air_deps <- htmltools::findDependencies(air)
-  expect_length(object = air_deps, n = 4)
+  expect_true(length(air_deps) > 0)
   expect_true("air-datepicker" %in% unlist(lapply(air_deps, `[[`, "name")))
-
 })
 
 

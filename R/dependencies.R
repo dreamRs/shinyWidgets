@@ -378,13 +378,19 @@ html_dependency_picker <- function() {
 }
 
 html_dependency_airdatepicker <- function() {
+  # htmlDependency(
+  #   name = "air-datepicker",
+  #   version = "2.2.3",
+  #   package = "shinyWidgets",
+  #   src = c(href = "shinyWidgets/air-datepicker2", file = "assets/air-datepicker2"),
+  #   script = "datepicker.min.js",
+  #   stylesheet = c("datepicker.min.css", "airdatepicker-custom.css")
+  # )
   htmlDependency(
     name = "air-datepicker",
-    version = "2.2.3",
-    package = "shinyWidgets",
-    src = c(href = "shinyWidgets/air-datepicker2", file = "assets/air-datepicker2"),
-    script = "datepicker.min.js",
-    stylesheet = c("datepicker.min.css", "airdatepicker-custom.css")
+    version = "3.2.0",
+    src = c(file = system.file("packer", package = "shinyWidgets")),
+    script = "air-datepicker.js"
   )
 }
 

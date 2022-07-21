@@ -1,3 +1,4 @@
 {
-  "virtual-select": "./srcjs/inputs/virtual-select.js"
+  "virtual-select": "./srcjs/inputs/virtual-select.js",
+  "air-datepicker": "./srcjs/inputs/air-datepicker.js"
 }
