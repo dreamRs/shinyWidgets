@@ -188,7 +188,7 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
     actionLink(
       inputId = ns("reset_all"),
       label = btn_label,
-      icon = icon("remove"),
+      icon = icon("xmark"),
       style = "float: right;"
     )
   )

@@ -26,8 +26,8 @@
 #'     searchInput(
 #'       inputId = "search", label = "Enter your text",
 #'       placeholder = "A placeholder",
-#'       btnSearch = icon("search"),
-#'       btnReset = icon("remove"),
+#'       btnSearch = icon("magnifying-glass"),
+#'       btnReset = icon("xmark"),
 #'       width = "450px"
 #'     ),
 #'     br(),
@@ -118,8 +118,8 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
 #'   searchInput(
 #'     inputId = "search", label = "Enter your text",
 #'     placeholder = "A placeholder",
-#'     btnSearch = icon("search"),
-#'     btnReset = icon("remove"),
+#'     btnSearch = icon("magnifying-glass"),
+#'     btnReset = icon("xmark"),
 #'     width = "450px"
 #'   ),
 #'   br(),

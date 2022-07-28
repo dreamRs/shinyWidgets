@@ -14,7 +14,7 @@ ui <- fluidPage(
     choices = setNames(1:6, head(month.name)),
     label = "Radio buttons",
     checkIcon = list(
-      yes = icon("check-square"),
+      yes = icon("square-check"),
       no = icon("square-o")
     )
   ),

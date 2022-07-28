@@ -69,7 +69,7 @@ textInputIcon <- function(inputId,
 #'   textInputIcon(
 #'     inputId = "id",
 #'     label = "With an icon",
-#'     icon = icon("user-circle")
+#'     icon = icon("circle-user")
 #'   ),
 #'   actionButton("updateValue", "Update value"),
 #'   actionButton("updateIcon", "Update icon"),

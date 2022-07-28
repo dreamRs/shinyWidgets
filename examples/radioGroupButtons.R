@@ -24,7 +24,7 @@ ui <- fluidPage(
     label = "With icons:",
     choices = names(mtcars),
     checkIcon = list(
-      yes = icon("check-square"),
+      yes = icon("square-check"),
       no = icon("square-o")
     )
   ),

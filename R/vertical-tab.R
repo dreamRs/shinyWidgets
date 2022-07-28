@@ -171,7 +171,7 @@ verticalTabPanel <- function(title, ..., value = title, icon = NULL, box_height 
 #'       verticalTabsetPanel(
 #'         id = "TABS",
 #'         verticalTabPanel(
-#'           title = "Title 1", icon = icon("home", "fa-2x"),
+#'           title = "Title 1", icon = icon("house", "fa-2x"),
 #'           "Content panel 1"
 #'         ),
 #'         verticalTabPanel(

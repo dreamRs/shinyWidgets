@@ -16,12 +16,12 @@ ui <- fluidPage(
   actionButton(
     inputId = "error",
     label = "Show error toast",
-    icon = icon("remove")
+    icon = icon("xmark")
   ),
   actionButton(
     inputId = "warning",
     label = "Show warning toast",
-    icon = icon("exclamation-triangle")
+    icon = icon("triangle-exclamation")
   ),
   actionButton(
     inputId = "info",
