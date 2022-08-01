@@ -140,6 +140,8 @@ airDatepickerInput <- function(inputId,
     several.ok = FALSE
   )
 
+  version <- getOption("air-datepicker", default = 3)
+
   list1 <- function(x) {
     if (is.null(x))
       return(x)
@@ -160,6 +162,7 @@ airDatepickerInput <- function(inputId,
     language = toupper(language),
     options = c(dropNulls(list(
       autoClose = isTRUE(autoClose),
+      language = if (version < 3) language,
       timepicker = isTRUE(timepicker),
       # startDate = startDate,
       range = isTRUE(range),
@@ -237,7 +240,19 @@ airDatepickerInput <- function(inputId,
     )
   )
 
-  attachShinyWidgetsDep(tagAir, "airdatepicker")
+  if (version < 3) {
+    attachDependencies(
+      x = attachShinyWidgetsDep(tagAir, "airdatepicker"),
+      value = htmlDependency(
+        name = paste0("air-datepicker-i18n-", language),
+        version = "2.2.3",
+        src = c(href = "shinyWidgets/air-datepicker2"),
+        script = sprintf("i18n/datepicker.%s.js", language)
+      ), append = TRUE
+    )
+  } else {
+    attachShinyWidgetsDep(tagAir, "airdatepicker")
+  }
 }
 
 

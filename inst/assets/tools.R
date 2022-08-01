@@ -32,6 +32,7 @@ bindings <- c("inst/assets/utils.js", bindings)
 bindings <- setdiff(bindings, "inst/assets/pickr/pickr-bindings.js")
 # remove air-datepicker that is not used
 bindings <- setdiff(bindings, "inst/assets/air-datepicker/datepicker-bindings.js")
+bindings <- setdiff(bindings, "inst/assets/air-datepicker2/datepicker-bindings.js")
 
 # check for errors
 jshint_file(input = bindings, options = jshint_options(jquery = TRUE, globals = list("Shiny")))
