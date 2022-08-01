@@ -61,11 +61,11 @@ Choose between a restrictive set of colors.
 }
 \section{Functions}{
 \itemize{
-\item \code{colorSelectorExample}: Examples of use for colorSelectorInput
+\item \code{colorSelectorExample()}: Examples of use for colorSelectorInput
 
-\item \code{colorSelectorDrop}: Display a colorSelector in a dropdown button
+\item \code{colorSelectorDrop()}: Display a colorSelector in a dropdown button
+
 }}
-
 \examples{
 if (interactive()) {
 
