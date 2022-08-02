@@ -8,7 +8,7 @@
 [![cran checks](https://cranchecks.info/badges/worst/shinyWidgets)](https://cranchecks.info/pkgs/shinyWidgets)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dreamRs/shinyWidgets/master.svg)](https://codecov.io/github/dreamRs/shinyWidgets?branch=master)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/dreamRs/shinyWidgets?branch=master&svg=true)](https://ci.appveyor.com/project/dreamRs/shinyWidgets)
-[![R build status](https://github.com/dreamRs/shinyWidgets/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/shinyWidgets/actions)
+[![R-CMD-check](https://github.com/dreamRs/shinyWidgets/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dreamRs/shinyWidgets/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
