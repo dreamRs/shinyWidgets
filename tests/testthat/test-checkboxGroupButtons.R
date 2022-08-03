@@ -144,15 +144,15 @@ test_that("Icons button", {
     inputId = "Id036",
     label = "Choose a graph :",
     choiceNames = list(
-      shiny::icon("cog"),
-      shiny::icon("cogs")
+      shiny::icon("gear"),
+      shiny::icon("gears")
     ),
     choiceValues = c("A", "B"),
     justified = TRUE
   )
   cbtag <- as.character(cbtag)
-  expect_true(grepl(pattern = as.character(shiny::icon("cog")), x = cbtag))
-  expect_true(grepl(pattern = as.character(shiny::icon("cogs")), x = cbtag))
+  expect_true(grepl(pattern = as.character(shiny::icon("gear")), x = cbtag))
+  expect_true(grepl(pattern = as.character(shiny::icon("gears")), x = cbtag))
 })
 
 
@@ -178,7 +178,7 @@ test_that("Icons check / uncheck", {
     label = "Label", choices = c("A", "B", "C", "D"),
     status = "primary",
     checkIcon = list(yes = shiny::icon("ok", lib = "glyphicon"),
-                     no = shiny::icon("remove", lib = "glyphicon"))
+                     no = shiny::icon("xmark", lib = "glyphicon"))
   )
   cbtag <- as.character(cbtag)
   expect_true(grepl(pattern = "check-btn-icon-no", x = cbtag))

@@ -5,7 +5,7 @@ test_that("verticalTabPanel works", {
 
   tag <- verticalTabsetPanel(
     verticalTabPanel(
-      title = "Title 1", icon = shiny::icon("home", "fa-2x"),
+      title = "Title 1", icon = shiny::icon("house", "fa-2x"),
       "Content panel 1"
     ),
     verticalTabPanel(
@@ -30,7 +30,7 @@ test_that("verticalTabPanel (with args) works", {
     menuSide = "right",
     selected = "Title 2",
     verticalTabPanel(
-      title = "Title 1", icon = shiny::icon("home", "fa-2x"),
+      title = "Title 1", icon = shiny::icon("house", "fa-2x"),
       "Content panel 1"
     ),
     verticalTabPanel(

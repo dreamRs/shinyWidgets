@@ -55,7 +55,7 @@
 #'       label_on = "NAs keeped",
 #'       label_off = "NAs removed",
 #'       icon_on = icon("check"),
-#'       icon_off = icon("remove")
+#'       icon_off = icon("xmark")
 #'     )
 #'   ),
 #'   tags$div(style = "height: 140px;"), # spacing
@@ -234,7 +234,7 @@ tooltipOptions <- function(placement = "right",
 #'                      label = "Close dropdown"),
 #'         circle = TRUE, status = "danger",
 #'         inputId = "mydropdown",
-#'         icon = icon("cog"), width = "300px"
+#'         icon = icon("gear"), width = "300px"
 #'       )
 #'     ),
 #'     column(

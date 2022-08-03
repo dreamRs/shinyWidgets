@@ -7,7 +7,7 @@ test_that("textInputIcon works", {
   tag <- textInputIcon(
     inputId = "ID",
     label = "With an icon",
-    icon = shiny::icon("user-circle-o")
+    icon = shiny::icon("circle-user")
   )
 
   expect_is(tag, "shiny.tag")
@@ -36,7 +36,7 @@ test_that("textInputIcon works", {
     inputId = "ID",
     label = "With an icon",
     value = 0,
-    icon = shiny::icon("user-circle-o")
+    icon = shiny::icon("circle-user")
   )
 
   expect_is(tag, "shiny.tag")

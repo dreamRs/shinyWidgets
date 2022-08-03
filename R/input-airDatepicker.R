@@ -200,7 +200,7 @@ airDatepickerInput <- function(inputId,
           tags$div(
             class = "btn action-button input-group-addon",
             id = paste0(inputId, "_button"),
-            icon("calendar")
+            icon("calendar-days")
           )
         },
         tagAir,
@@ -208,7 +208,7 @@ airDatepickerInput <- function(inputId,
           tags$div(
             class = "btn action-button input-group-addon",
             id = paste0(inputId, "_button"),
-            icon("calendar")
+            icon("calendar-days")
           )
         }
       )

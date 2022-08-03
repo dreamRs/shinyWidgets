@@ -24,7 +24,7 @@ ui <- fluidPage(
                 max = 9),
 
     circle = TRUE, status = "danger",
-    icon = icon("cog"), width = "300px",
+    icon = icon("gear"), width = "300px",
 
     tooltip = tooltipOptions(title = "Click to see inputs !")
   ),

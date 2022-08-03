@@ -134,7 +134,7 @@ fluidPage(
         choices = c("Choice 1", "Choice 2", "Choice 3"),
         checkIcon = list(
           yes = icon("check"),
-          no = icon("times")
+          no = icon("xmark")
         )
       ),
       verbatimTextOutput(outputId = "res13")

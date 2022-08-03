@@ -24,8 +24,8 @@ ui <- fluidPage(
     label = "With icons:",
     choices = names(mtcars),
     checkIcon = list(
-      yes = icon("check-square"),
-      no = icon("square-o")
+      yes = icon("square-check"),
+      no = icon("square")
     )
   ),
   verbatimTextOutput("value3")

@@ -13,7 +13,7 @@ ui <- fluidPage(
         label = "Update my value!",
         choices = month.name[1:4],
         status = "danger",
-        icon = icon("remove")
+        icon = icon("xmark")
       ),
       verbatimTextOutput(outputId = "res1"),
       br(),

@@ -31,8 +31,8 @@ test_that("Search Input", {
   tag_searchInput <- searchInput(
     inputId = "search", label = "Enter your text",
     placeholder = "A placeholder",
-    btnSearch = shiny::icon("search"),
-    btnReset = shiny::icon("remove"),
+    btnSearch = shiny::icon("magnifying-glass"),
+    btnReset = shiny::icon("xmark"),
     width = "450px"
   )
 
