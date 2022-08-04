@@ -56,13 +56,13 @@ ui <- fluidPage(
       textInputIcon(
         inputId = "ex1",
         label = "With an icon",
-        icon = icon("user-circle")
+        icon = icon("circle-user")
       ),
       verbatimTextOutput("res1"),
       textInputIcon(
         inputId = "ex2",
         label = "With an icon (right)",
-        icon = list(NULL, icon("user-circle"))
+        icon = list(NULL, icon("circle-user"))
       ),
       verbatimTextOutput("res2"),
       textInputIcon(

@@ -84,7 +84,7 @@ ui <- fluidPage(
                 value = 3,
                 min = 1, max = 9),
 
-    style = "unite", icon = icon("cog"),
+    style = "unite", icon = icon("gear"),
     status = "danger", width = "300px",
     animate = animateOptions(
       enter = animations$fading_entrances$fadeInLeftBig,

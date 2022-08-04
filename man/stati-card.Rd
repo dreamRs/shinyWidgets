@@ -67,7 +67,7 @@ ui <- fluidPage(
   fluidRow(
     column(
       width = 3,
-      statiCard(12, "Subtitle", icon("home")),
+      statiCard(12, "Subtitle", icon("house")),
       statiCard(
         93, "Animated card", icon("users"),
         background = "deepskyblue",
@@ -93,7 +93,7 @@ ui <- fluidPage(
     ),
     column(
       width = 3,
-      statiCard(12, "No animation", icon("home"), color = "firebrick")
+      statiCard(12, "No animation", icon("house"), color = "firebrick")
     ),
     column(
       width = 3,
@@ -108,13 +108,13 @@ ui <- fluidPage(
       statiCard(
         "123456 something very very long",
         "Long value text with icon",
-        icon = icon("tachometer-alt"),
+        icon = icon("gauge"),
         left = TRUE
       ),
       statiCard(
         "123456 something very very long",
         "Long value text with icon right",
-        icon = icon("tasks")
+        icon = icon("list-check")
       )
     )
   )
@@ -143,7 +143,7 @@ server <- function(input, output, session) {
     statiCard(
       format(sample.int(1e6, 1), big.mark = " "),
       "Total spend",
-      icon("shopping-cart"),
+      icon("cart-shopping"),
       left = TRUE,
       animate = TRUE
     )

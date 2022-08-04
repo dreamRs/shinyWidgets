@@ -33,7 +33,7 @@ ui <- fluidPage(
       "Orders", uiOutput("orderNum2"), "Subtitle", icon = icon("credit-card")
     ),
     infoBox(
-      "Approval Rating", "60\%", icon = icon("line-chart"), color = "green",
+      "Approval Rating", "60\%", icon = icon("chart-line"), color = "green",
       fill = TRUE
     ),
     infoBox(
@@ -49,7 +49,7 @@ ui <- fluidPage(
     ),
     valueBox(
       tagList("60", tags$sup(style="font-size: 20px", "\%")),
-      "Approval Rating", icon = icon("line-chart"), color = "green"
+      "Approval Rating", icon = icon("chart-line"), color = "green"
     ),
     valueBox(
       htmlOutput("progress"), "Progress", icon = icon("users"), color = "purple"

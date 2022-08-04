@@ -42,7 +42,7 @@ if (interactive()) {
     br(),
     actionGroupButtons(
       inputIds = c("btn1", "btn2", "btn3"),
-      labels = list("Action 1", "Action 2", tags$span(icon("cog"), "Action 3")),
+      labels = list("Action 1", "Action 2", tags$span(icon("gear"), "Action 3")),
       status = "primary"
     ),
     verbatimTextOutput(outputId = "res1"),

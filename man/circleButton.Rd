@@ -27,7 +27,7 @@ if (interactive()) {
 
   ui <- fluidPage(
     tags$h3("Rounded actionBution"),
-    circleButton(inputId = "btn1", icon = icon("cog")),
+    circleButton(inputId = "btn1", icon = icon("gear")),
     circleButton(
       inputId = "btn2",
       icon = icon("sliders"),

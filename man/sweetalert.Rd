@@ -80,7 +80,7 @@ ui <- fluidPage(
   actionButton(
     inputId = "error",
     label = "Launch an error sweet alert",
-    icon = icon("remove")
+    icon = icon("xmark")
   ),
   actionButton(
     inputId = "sw_html",

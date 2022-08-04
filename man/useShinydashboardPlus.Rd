@@ -44,7 +44,7 @@ ui <- fluidPage(
      boxDropdownItem("Link to google", href = "http://www.google.com"),
      boxDropdownItem("item 2", href = "#"),
      dropdownDivider(),
-     boxDropdownItem("item 3", href = "#", icon = icon("th"))
+     boxDropdownItem("item 3", href = "#", icon = icon("table-cells"))
    ),
    sidebar = boxSidebar(
      startOpen = TRUE,

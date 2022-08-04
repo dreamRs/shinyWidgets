@@ -101,7 +101,7 @@ ui <- fluidPage(
         inputId = "toggle2",
         label_on = "Yes!", icon_on = icon("check"),
         status_on = "info", status_off = "warning",
-        label_off = "No..", icon_off = icon("remove")
+        label_off = "No..", icon_off = icon("xmark")
       ),
       verbatimTextOutput(outputId = "res2")
     ),
@@ -160,7 +160,7 @@ ui <- fluidPage(
     inputId = "toggle3",
     label_on = "",
     label_off = "",
-    icon_on = icon("volume-up", lib = "glyphicon"),
+    icon_on = icon("volume-high", lib = "glyphicon"),
     icon_off = icon("volume-off", lib = "glyphicon"),
     status_on = "primary",
     status_off = "default",

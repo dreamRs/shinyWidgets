@@ -60,7 +60,7 @@ ui <- fluidPage(
         id = "my_vertical_tab_panel",
         verticalTabPanel(
           title = "Title 1",
-          icon = icon("home", "fa-2x"),
+          icon = icon("house", "fa-2x"),
           "Content panel 1"
         ),
         verticalTabPanel(
