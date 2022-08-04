@@ -190,7 +190,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"toggle2"</span>,</span></span>
 <span class="r-in"><span>        label_on <span class="op">=</span> <span class="st">"Yes!"</span>, icon_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"check"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        status_on <span class="op">=</span> <span class="st">"info"</span>, status_off <span class="op">=</span> <span class="st">"warning"</span>,</span></span>
-<span class="r-in"><span>        label_off <span class="op">=</span> <span class="st">"No.."</span>, icon_off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"remove"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        label_off <span class="op">=</span> <span class="st">"No.."</span>, icon_off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"xmark"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
@@ -206,9 +206,6 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> This Font Awesome icon ('remove') does not exist:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> * if providing a custom `html_dependency` these `name` checks can </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   be deactivated with `verify_fa = FALSE`</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
@@ -252,7 +249,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 <span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"toggle3"</span>,</span></span>
 <span class="r-in"><span>    label_on <span class="op">=</span> <span class="st">""</span>,</span></span>
 <span class="r-in"><span>    label_off <span class="op">=</span> <span class="st">""</span>,</span></span>
-<span class="r-in"><span>    icon_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"volume-up"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    icon_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"volume-high"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    icon_off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"volume-off"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    status_on <span class="op">=</span> <span class="st">"primary"</span>,</span></span>
 <span class="r-in"><span>    status_off <span class="op">=</span> <span class="st">"default"</span>,</span></span>
