@@ -63,7 +63,9 @@
 <span>  up <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  animate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  inputId <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  inputId <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  block <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  no_outline <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -74,29 +76,29 @@
 
 
 <dt>style</dt>
-<dd><p>Character. if <code>default</code> use Bootstrap button (like an <code>actionButton</code>), else use an
-<code><a href="actionBttn.html">actionBttn</a></code>, see argument <code>style</code> (in <code><a href="actionBttn.html">actionBttn</a></code> documentation) for possible values.</p></dd>
+<dd><p>Style of the button, to choose between <code>simple</code>, <code>bordered</code>,
+<code>minimal</code>, <code>stretch</code>, <code>jelly</code>, <code>gradient</code>, <code>fill</code>,
+<code>material-circle</code>, <code>material-flat</code>, <code>pill</code>, <code>float</code>, <code>unite</code>.</p></dd>
 
 
 <dt>status</dt>
-<dd><p>Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
-Or use an arbitrary strings to add a custom class, e.g. : with <code>status = 'myClass'</code>, buttons will have class <code>btn-myClass</code>.</p></dd>
+<dd><p>Color of the button, see <code><a href="actionBttn.html">actionBttn()</a></code>.</p></dd>
 
 
 <dt>size</dt>
-<dd><p>Size of the button : default, lg, sm, xs.</p></dd>
+<dd><p>Size of the button : <code>xs</code>,<code>sm</code>, <code>md</code>, <code>lg</code>.</p></dd>
 
 
 <dt>icon</dt>
-<dd><p>An icon to appear on the button.</p></dd>
+<dd><p>An optional icon to appear on the button.</p></dd>
 
 
 <dt>label</dt>
-<dd><p>Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip.</p></dd>
+<dd><p>The contents of the button, usually a text label.</p></dd>
 
 
 <dt>tooltip</dt>
-<dd><p>Put a tooltip on the button, you can customize tooltip with <code>tooltipOptions</code>.</p></dd>
+<dd><p>Put a tooltip on the button, you can customize tooltip with <code><a href="tooltipOptions.html">tooltipOptions()</a></code>.</p></dd>
 
 
 <dt>right</dt>
@@ -112,23 +114,31 @@ Or use an arbitrary strings to add a custom class, e.g. : with <code>status = 'm
 
 
 <dt>animate</dt>
-<dd><p>Add animation on the dropdown, can be logical or result of <code>animateOptions</code>.</p></dd>
+<dd><p>Add animation on the dropdown, can be logical or result of <code><a href="animateOptions.html">animateOptions()</a></code>.</p></dd>
 
 
 <dt>inputId</dt>
 <dd><p>Optional, id for the button, the button act like an <code>actionButton</code>,
 and you can use the id to toggle the dropdown menu server-side.</p></dd>
 
+
+<dt>block</dt>
+<dd><p>Logical, full width button.</p></dd>
+
+
+<dt>no_outline</dt>
+<dd><p>Logical, don't show outline when navigating with
+keyboard/interact using mouse or touch.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This function is similar to <code>dropdownButton</code> but don't use Bootstrap, so you can put <code>pickerInput</code> in it.
+    <p>This function is similar to <code><a href="dropdownButton.html">dropdownButton()</a></code> but don't use Bootstrap, so you can use <code><a href="pickerInput.html">pickerInput()</a></code> in it.
 Moreover you can add animations on the appearance / disappearance of the dropdown with animate.css.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="animateOptions.html">animateOptions</a></code> for animation, <code><a href="tooltipOptions.html">tooltipOptions</a></code> for tooltip and
-<code><a href="actionBttn.html">actionBttn</a></code> for the button.</p></div>
+    <div class="dont-index"><p><code><a href="dropMenu.html">dropMenu()</a></code> for a more robust alternative.</p></div>
     </div>
 
     <div class="section level2">
