@@ -5,6 +5,7 @@ import dayjsPluginUTC from "dayjs-plugin-utc";
 dayjs.extend(dayjsPluginUTC);
 import AirDatepicker from "air-datepicker";
 import "air-datepicker/air-datepicker.css";
+import "../css/air-datepicker.css";
 import localeCS from "air-datepicker/locale/cs";
 import localeDA from "air-datepicker/locale/da";
 import localeDE from "air-datepicker/locale/de";

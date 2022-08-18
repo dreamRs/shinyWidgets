@@ -152,6 +152,15 @@ airDatepickerInput <- function(inputId,
     }
   }
 
+  buttons <- character(0)
+  if (clearButton)
+    buttons <- c(buttons, "clear")
+  if (todayButton)
+    buttons <- c(buttons, "today")
+  if (length(buttons) < 1)
+    buttons <- FALSE
+
+
   airParams <- dropNulls(list(
     updateOn = match.arg(update_on),
     disabledDates = list1(disabledDates),
@@ -164,7 +173,7 @@ airDatepickerInput <- function(inputId,
       autoClose = isTRUE(autoClose),
       language = if (version < 3) language,
       timepicker = isTRUE(timepicker),
-      # startDate = startDate,
+      startDate = startView,
       range = isTRUE(range),
       dateFormat = dateFormat,
       firstDay = firstDay,
@@ -175,7 +184,8 @@ airDatepickerInput <- function(inputId,
       view = match.arg(view),
       minView = match.arg(minView),
       clearButton = isTRUE(clearButton),
-      todayButton = todayButton,
+      todayButton = isTRUE(todayButton),
+      buttons = buttons,
       monthsField = match.arg(monthsField),
       position = position,
       onlyTimepicker = isTRUE(onlyTimepicker),
