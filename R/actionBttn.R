@@ -14,6 +14,7 @@
 #' @param block Logical, full width button.
 #' @param no_outline Logical, don't show outline when navigating with
 #'  keyboard/interact using mouse or touch.
+#' @param ... Other arguments to pass to the container tag function.
 #'
 #' @export
 #'
@@ -67,13 +68,16 @@ actionBttn <- function(inputId,
                        color = "default",
                        size = "md",
                        block = FALSE,
-                       no_outline = TRUE) {
+                       no_outline = TRUE,
+                       ...) {
   value <- shiny::restoreInput(id = inputId, default = NULL)
   style <- match.arg(
     arg = style,
-    choices = c("simple", "bordered", "minimal", "stretch", "jelly",
-                "gradient", "fill", "material-circle", "material-flat",
-                "pill", "float", "unite")
+    choices = c(
+      "simple", "bordered", "minimal", "stretch", "jelly",
+      "gradient", "fill", "material-circle", "material-flat",
+      "pill", "float", "unite"
+    )
   )
   color <- match.arg(
     arg = color,
@@ -88,9 +92,10 @@ actionBttn <- function(inputId,
     `data-val` = value,
     class = paste0("bttn-", style),
     class = paste0("bttn-", size),
-    class = paste0("bttn-", color), list(icon, label),
+    class = paste0("bttn-", color),
     class = if (block) "bttn-block",
-    class = if (no_outline) "bttn-no-outline"
+    class = if (no_outline) "bttn-no-outline",
+    icon, label, ...
   )
   attachShinyWidgetsDep(tagBttn, "bttn")
 }

@@ -1,3 +1,12 @@
+shinyWidgets 0.7.3
+======================
+
+* Fixed `airDatepickerInput()` z-index and buttons.
+* `dropdown()`: added `block` & `no_outline` arguments.
+* [actionBttn()]: added ability to pass arguments to tag container.
+
+
+
 shinyWidgets 0.7.2
 ======================
 

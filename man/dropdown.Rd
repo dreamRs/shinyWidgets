@@ -16,25 +16,27 @@ dropdown(
   up = FALSE,
   width = NULL,
   animate = FALSE,
-  inputId = NULL
+  inputId = NULL,
+  block = FALSE,
+  no_outline = TRUE
 )
 }
 \arguments{
 \item{...}{List of tag to be displayed into the dropdown menu.}
 
-\item{style}{Character. if \code{default} use Bootstrap button (like an \code{actionButton}), else use an
-\code{\link{actionBttn}}, see argument \code{style} (in \code{\link{actionBttn}} documentation) for possible values.}
+\item{style}{Style of the button, to choose between \code{simple}, \code{bordered},
+\code{minimal}, \code{stretch}, \code{jelly}, \code{gradient}, \code{fill},
+\code{material-circle}, \code{material-flat}, \code{pill}, \code{float}, \code{unite}.}
 
-\item{status}{Add a class to the buttons, you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'success'.
-Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'myClass'}, buttons will have class \code{btn-myClass}.}
+\item{status}{Color of the button, see \code{\link[=actionBttn]{actionBttn()}}.}
 
-\item{size}{Size of the button : default, lg, sm, xs.}
+\item{size}{Size of the button : \code{xs},\code{sm}, \code{md}, \code{lg}.}
 
-\item{icon}{An icon to appear on the button.}
+\item{icon}{An optional icon to appear on the button.}
 
-\item{label}{Label to appear on the button. If circle = TRUE and tooltip = TRUE, label is used in tooltip.}
+\item{label}{The contents of the button, usually a text label.}
 
-\item{tooltip}{Put a tooltip on the button, you can customize tooltip with \code{tooltipOptions}.}
+\item{tooltip}{Put a tooltip on the button, you can customize tooltip with \code{\link[=tooltipOptions]{tooltipOptions()}}.}
 
 \item{right}{Logical. The dropdown menu starts on the right.}
 
@@ -42,16 +44,21 @@ Or use an arbitrary strings to add a custom class, e.g. : with \code{status = 'm
 
 \item{width}{Width of the dropdown menu content.}
 
-\item{animate}{Add animation on the dropdown, can be logical or result of \code{animateOptions}.}
+\item{animate}{Add animation on the dropdown, can be logical or result of \code{\link[=animateOptions]{animateOptions()}}.}
 
 \item{inputId}{Optional, id for the button, the button act like an \code{actionButton},
 and you can use the id to toggle the dropdown menu server-side.}
+
+\item{block}{Logical, full width button.}
+
+\item{no_outline}{Logical, don't show outline when navigating with
+keyboard/interact using mouse or touch.}
 }
 \description{
 Create a dropdown menu
 }
 \details{
-This function is similar to \code{dropdownButton} but don't use Bootstrap, so you can put \code{pickerInput} in it.
+This function is similar to \code{\link[=dropdownButton]{dropdownButton()}} but don't use Bootstrap, so you can use \code{\link[=pickerInput]{pickerInput()}} in it.
 Moreover you can add animations on the appearance / disappearance of the dropdown with animate.css.
 }
 \examples{
@@ -124,6 +131,5 @@ shinyApp(ui = ui, server = server)
 }
 }
 \seealso{
-\code{\link{animateOptions}} for animation, \code{\link{tooltipOptions}} for tooltip and
-\code{\link{actionBttn}} for the button.
+\code{\link[=dropMenu]{dropMenu()}} for a more robust alternative.
 }
