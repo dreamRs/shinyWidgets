@@ -6,6 +6,11 @@ shinyWidgets 0.7.3
 * [actionBttn()]: added ability to pass arguments to tag container.
 
 
+### Bug fixes
+
+* `pickerInput`'s custom input to know if the menu is open or closed wasn't working anymore after using `updatePickerInput` [#522](https://github.com/dreamRs/shinyWidgets/issues/522)
+
+
 
 shinyWidgets 0.7.2
 ======================
