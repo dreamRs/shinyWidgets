@@ -17,7 +17,7 @@ $.extend(pickerInputBinding, {
     $(el).val(value);
     $(el).data("callback", callback);
     $(el).data("shinyInputBinding", shinyInputBinding);
-    $(el).selectpicker();
+    this.initialize(el);
     $(el).on("changed.bs.select.pickerInput", function(event) {
       callback();
     });
@@ -51,7 +51,7 @@ $.extend(pickerInputBinding, {
         $(el).data("shinyInputBinding", shinyInputBinding);
       }
       $(el).data(data.options);
-      $(el).selectpicker();
+      this.initialize(el);
       $(el).on("changed.bs.select.pickerInput", function(event) {
         callback();
       });
@@ -63,7 +63,7 @@ $.extend(pickerInputBinding, {
       $el.empty().append(data.choices);
       $(el).data("callback", callback);
       $(el).data("shinyInputBinding", shinyInputBinding);
-      $(el).selectpicker();
+      this.initialize(el);
       $(el).on("changed.bs.select.pickerInput", function(event) {
         callback();
       });
