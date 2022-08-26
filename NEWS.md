@@ -12,11 +12,18 @@ shinyWidgets 0.7.3
 
 
 
+
 shinyWidgets 0.7.2
 ======================
 
 * Updated [air-datepicker](https://github.com/t1m0n/air-datepicker) library to latest version (3.2.0), updating bindings to use [dayjs](https://github.com/iamkun/dayjs/) to manipulate date.
 * `updateNoUiSliderInput()`: new argument `label =` to update the widget's label.
+
+## Breaking changes
+
+* `airDatepickerInput()`: argument `dateFormat` has a new notation, default value changed from `yyyy-mm-dd` to `yyyy-MM-dd`. See https://air-datepicker.com/docs?scrollTo=dateFormat for potential alues.
+
+
 
 
 

@@ -1,7 +1,8 @@
 
 #' @title Air Date Picker Input
 #'
-#' @description An alternative to [shiny::dateInput()] to select single, multiple or date range.
+#' @description An alternative to [shiny::dateInput()] to select single, multiple or date range
+#'  based on [Air Datepicker library](https://air-datepicker.com/).
 #'  And two alias to select months or years.
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
@@ -14,7 +15,8 @@
 #' @param timepicker Add a timepicker below calendar to select time.
 #' @param separator Separator between dates when several are selected, default to \code{" - "}.
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
-#' @param dateFormat Format to use to display date(s), default to \code{"yyyy-mm-dd"}.
+#' @param dateFormat Format to use to display date(s), default to \code{"yyyy-MM-dd"},
+#'  see [online documentation](https://air-datepicker.com/docs?scrollTo=dateFormat) for possible values.
 #' @param firstDay Day index from which week will be started. Possible values are from 0 to 6, where
 #'  0 - Sunday and 6 - Saturday. By default value is taken from current localization,
 #'  but if it passed here then it will have higher priority.
