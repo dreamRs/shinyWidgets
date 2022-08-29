@@ -1,7 +1,7 @@
 shinyWidgets 0.7.3
 ======================
 
-* Updated [air-datepicker](https://github.com/t1m0n/air-datepicker) library to 3.2.1 with language support for italian and arabic.
+* Updated [air-datepicker](https://github.com/t1m0n/air-datepicker) to 3.2.1 with language support for italian and arabic.
 * Fixed `airDatepickerInput()` z-index and buttons.
 * `dropdown()`: added `block` & `no_outline` arguments.
 * [actionBttn()]: added ability to pass arguments to tag container.
