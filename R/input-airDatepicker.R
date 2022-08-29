@@ -41,10 +41,8 @@
 #' @param addon Display a calendar icon to \code{'right'} or the \code{'left'}
 #'  of the widget, or \code{'none'}. This icon act likes an \code{actionButton},
 #'  you can retrieve value server-side with \code{input$<inputId>_button}.
-#' @param language Language to use, can be one of \code{'cs'}, \code{'da'},
-#'  \code{'de'}, \code{'en'}, \code{'es'}, \code{'fi'}, \code{'fr'},
-#'  \code{'hu'}, \code{'it'}, \code{'nl'}, \code{'pl'}, \code{'pt-BR'}, \code{'pt'},
-#'  \code{'ro'}, \code{'ru'}, \code{'sk'}, \code{'zh'}, \code{'ja'}.
+# paste(sprintf("`%s`", tools::file_path_sans_ext(list.files("node_modules/air-datepicker/locale/", pattern = "\\.js"))), collapse = ", ")
+#' @param language Language to use, can be one of `ar`, `cs`, `da`, `de`, `en`, `es`, `fi`, `fr`, `hu`, `it`, `nl`, `pl`, `pt-BR`, `pt`, `ro`, `ru`, `si`, `sk`, `sv`, `th`, `tr`, `uk`, `zh`.
 #' @param inline If \code{TRUE}, datepicker will always be visible.
 #' @param onlyTimepicker Display only the time picker.
 #' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
@@ -135,10 +133,12 @@ airDatepickerInput <- function(inputId,
                                toggleSelected = TRUE) {
   value <- shiny::restoreInput(inputId, value)
   addon <- match.arg(addon)
+  # dput(tools::file_path_sans_ext(list.files("node_modules/air-datepicker/locale/", pattern = "\\.js")))
   language <- match.arg(
     arg = language,
-    choices = c("cs", "da", "de", "en", "es", "fi", "fr", "it", "hu", "nl",
-                "pl", "pt-BR", "pt", "ro", "ru", "sk", "tr", "zh", "ja"),
+    choices = c("ar", "cs", "da", "de", "en", "es", "fi", "fr", "hu", "it",
+                "nl", "pl", "pt-BR", "pt", "ro", "ru", "si", "sk", "sv", "th",
+                "tr", "uk", "zh"),
     several.ok = FALSE
   )
 

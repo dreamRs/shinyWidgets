@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/dreamRs/shinyWidgets#readme",
   "devDependencies": {
-    "air-datepicker": "^3.2.0",
+    "air-datepicker": "^3.2.1",
     "virtual-select-plugin": "^1.0.30",
     "css-loader": "^6.5.1",
     "dayjs": "^1.11.4",

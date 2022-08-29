@@ -6,6 +6,7 @@ dayjs.extend(dayjsPluginUTC);
 import AirDatepicker from "air-datepicker";
 import "air-datepicker/air-datepicker.css";
 import "../css/air-datepicker.css";
+import localeAR from "air-datepicker/locale/ar";
 import localeCS from "air-datepicker/locale/cs";
 import localeDA from "air-datepicker/locale/da";
 import localeDE from "air-datepicker/locale/de";
@@ -14,6 +15,7 @@ import localeES from "air-datepicker/locale/es";
 import localeFI from "air-datepicker/locale/fi";
 import localeFR from "air-datepicker/locale/fr";
 import localeHU from "air-datepicker/locale/hu";
+import localeIT from "air-datepicker/locale/it";
 import localeNL from "air-datepicker/locale/nl";
 import localePL from "air-datepicker/locale/pl";
 import localePTBR from "air-datepicker/locale/pt-BR";
@@ -28,6 +30,7 @@ import localeUK from "air-datepicker/locale/uk";
 import localeZH from "air-datepicker/locale/zh";
 
 let locales = {
+  AR: localeAR,
   CS: localeCS,
   DA: localeDA,
   DE: localeDE,
@@ -36,6 +39,7 @@ let locales = {
   FI: localeFI,
   FR: localeFR,
   HU: localeHU,
+  IT: localeIT,
   NL: localeNL,
   PL: localePL,
   "PT-BR": localePTBR,
