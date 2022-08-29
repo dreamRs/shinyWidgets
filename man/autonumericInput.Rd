@@ -10,7 +10,7 @@ autonumericInput(
   label,
   value,
   width = NULL,
-  align = "center",
+  align = "right",
   currencySymbol = NULL,
   currencySymbolPlacement = NULL,
   decimalCharacter = NULL,
@@ -24,6 +24,7 @@ autonumericInput(
   minimumValue = NULL,
   modifyValueOnWheel = NULL,
   emptyInputBehavior = "null",
+  style = NULL,
   ...
 )
 }
@@ -78,6 +79,8 @@ element value with the mouse wheel. The wheel behavior can be modified
 by the \code{wheelStep} option. Defaults to TRUE.}
 
 \item{emptyInputBehavior}{Defines what should be displayed in the element if the raw value is an empty string ''.}
+
+\item{style}{CSS styles to add to the \verb{<input>} tag.}
 
 \item{...}{Additional parameters that can be passed to AutoNumeric.  See
 details for more information.}
