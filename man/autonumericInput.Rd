@@ -80,7 +80,7 @@ by the \code{wheelStep} option. Defaults to TRUE.}
 
 \item{emptyInputBehavior}{Defines what should be displayed in the element if the raw value is an empty string ''.}
 
-\item{style}{CSS styles to add to the \verb{<input>} tag.}
+\item{style}{CSS styles (as a character string) to add to the \verb{<input>} tag.}
 
 \item{...}{Additional parameters that can be passed to AutoNumeric.  See
 details for more information.}
