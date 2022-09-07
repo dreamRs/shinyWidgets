@@ -304,7 +304,8 @@ bsswitchDependencyCSS <- function(theme) {
       "info" = "$brand-info",
       "success" = "$brand-success",
       "warning" = "$brand-warning",
-      "danger" = "$brand-danger"
+      "danger" = "$brand-danger",
+      "secondary" = "$gray-base"
     )
   } else {
     sass_vars <- list()

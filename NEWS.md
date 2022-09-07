@@ -1,3 +1,13 @@
+shinyWidgets 0.7.4
+======================
+
+### Bug fixes
+
+* `switchInput()` produced an error when using `bslib::bs_theme(version = "3")` [#528](https://github.com/dreamRs/shinyWidgets/issues/528)
+
+
+
+
 shinyWidgets 0.7.3
 ======================
 
