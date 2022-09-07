@@ -21,7 +21,9 @@
   }
 }
 
-
+ws2underscore <- function(x) {
+  gsub(" ", "_", x)
+}
 
 #' Hide/Show an HTML tag
 #'
