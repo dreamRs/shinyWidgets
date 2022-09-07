@@ -1,4 +1,8 @@
-// multi input binding
+import $ from "jquery";
+import "shiny";
+import multi from "multi.js/dist/multi-es6.min.js";
+import "multi.js/dist/multi.min.css";
+import "../css/multi.css";
 
 var multiInputBinding = new Shiny.InputBinding();
 $.extend(multiInputBinding, {

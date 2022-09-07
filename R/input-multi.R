@@ -79,24 +79,38 @@
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-multiInput <- function(inputId, label, choices = NULL, selected = NULL, options = NULL, width = NULL, choiceNames = NULL, choiceValues = NULL) {
+multiInput <- function(inputId,
+                       label,
+                       choices = NULL,
+                       selected = NULL,
+                       options = NULL,
+                       width = NULL,
+                       choiceNames = NULL,
+                       choiceValues = NULL) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
-  selectTag <- htmltools::tags$select(
+  selectTag <- tags$select(
     id = inputId, multiple = "multiple", class= "form-control multijs",
     makeChoices(choices = choices, choiceNames = choiceNames,
                 choiceValues = choiceValues, selected = selected)
   )
-  multiTag <- htmltools::tags$div(
+  tags$div(
     class = "form-group shiny-input-container",
-    style = if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
-    htmltools::tags$label(class = "control-label", `for` = inputId, label),
+    style = if (!is.null(width)) paste("width:", validateCssUnit(width)),
+    tags$label(
+      id = paste0(inputId, "-label"),
+      class = "control-label",
+      class = if (is.null(label)) "shiny-label-null",
+      `for` = inputId,
+      label
+    ),
     selectTag,
     tags$script(
-      type = "application/json", `data-for` = inputId,
+      type = "application/json",
+      `data-for` = inputId,
       jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE)
-    )
+    ),
+    html_dependency_multi()
   )
-  attachShinyWidgetsDep(multiTag, "multi")
 }
 
 
