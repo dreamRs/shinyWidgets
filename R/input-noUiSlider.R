@@ -44,55 +44,7 @@
 #' @importFrom htmltools tags validateCssUnit
 #' @importFrom jsonlite toJSON
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' ### examples ----
-#'
-#' # see ?demoNoUiSlider
-#' demoNoUiSlider("more")
-#'
-#'
-#' ###  basic usage ----
-#'
-#' library( shiny )
-#' library( shinyWidgets )
-#'
-#'
-#' ui <- fluidPage(
-#'
-#'   tags$br(),
-#'
-#'   noUiSliderInput(
-#'     inputId = "noui1",
-#'     min = 0, max = 100,
-#'     value = 20
-#'   ),
-#'   verbatimTextOutput(outputId = "res1"),
-#'
-#'   tags$br(),
-#'
-#'   noUiSliderInput(
-#'     inputId = "noui2", label = "Slider vertical:",
-#'     min = 0, max = 1000, step = 50,
-#'     value = c(100, 400), margin = 100,
-#'     orientation = "vertical",
-#'     width = "100px", height = "300px"
-#'   ),
-#'   verbatimTextOutput(outputId = "res2")
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$noui1)
-#'   output$res2 <- renderPrint(input$noui2)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
+#' @example examples/noUiSlider.R
 noUiSliderInput <- function(inputId, label = NULL, min, max, value,
                             step = NULL, tooltips = TRUE,
                             connect = TRUE, padding = 0,
@@ -129,7 +81,7 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
     behaviour = behaviour,
     format = format
   ))
-  noUiTag <- tags$div(
+  tags$div(
     class = "form-group shiny-input-container",
     class = if (inline) "shiny-input-container-inline",
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
@@ -156,9 +108,9 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
         `data-for` = inputId,
         jsonlite::toJSON(noUiProps, auto_unbox = TRUE, json_verbatim = TRUE)
       )
-    )
+    ),
+    html_dependency_nouislider()
   )
-  attachShinyWidgetsDep(noUiTag, "nouislider")
 }
 
 

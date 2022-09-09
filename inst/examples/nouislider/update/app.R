@@ -100,12 +100,12 @@ server <- function(input, output, session) {
 
   output$res_updated <- renderPrint(input$to_update)
   observeEvent(input$update, {
-    updateNoUiSliderInput(session, "to_update", input$update)
+    updateNoUiSliderInput(session, "to_update", value = input$update)
   }, ignoreInit = TRUE)
 
   output$res_updated_range <- renderPrint(input$to_update_range)
   observeEvent(input$update_range, {
-    updateNoUiSliderInput(session, "to_update_range", input$update_range)
+    updateNoUiSliderInput(session, "to_update_range", value = input$update_range)
   }, ignoreInit = TRUE)
 
 

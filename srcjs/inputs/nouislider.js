@@ -1,9 +1,9 @@
-/*jshint
-  jquery:true
-*/
-/*global noUiSlider, wNumb, Shiny, updateLabel */
-
-// noUiSlider bindings by VP //
+import $ from "jquery";
+import "shiny";
+import noUiSlider from "nouislider";
+import "nouislider/dist/nouislider.css";
+import wNumb from "wnumb";
+import { updateLabel } from "../modules/utils";
 
 var noUiSliderBinding = new Shiny.InputBinding();
 $.extend(noUiSliderBinding, {
@@ -133,4 +133,3 @@ $.extend(noUiSliderBinding, {
 });
 
 Shiny.inputBindings.register(noUiSliderBinding, "shinyWidgets.noUiSlider");
-

@@ -402,11 +402,9 @@ html_dependency_airdatepicker <- function() {
 html_dependency_nouislider <- function() {
   htmlDependency(
     name = "nouislider",
-    version = "11.0.3",
-    package = "shinyWidgets",
-    src = c(href = "shinyWidgets/nouislider", file = "assets/nouislider"),
-    script = c("nouislider.min.js", "wNumb.js"),
-    stylesheet = "nouislider.min.css"
+    version = "15.6.1",
+    src = c(file = system.file("packer", package = "shinyWidgets")),
+    script = "nouislider.js"
   )
 }
 
