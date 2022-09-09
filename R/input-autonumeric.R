@@ -112,7 +112,6 @@ currencyInput <- function(inputId, label, value, format = "euro",
         json_verbatim = TRUE
       )
     ),
-    html_dependency_shinyWidgets(),
     html_dependency_autonumeric()
   )
 }
@@ -511,7 +510,6 @@ autonumericInput <- function(inputId, label, value,
       `data-for` = inputId,
       data
     ),
-    html_dependency_shinyWidgets(),
     html_dependency_autonumeric()
   )
 }

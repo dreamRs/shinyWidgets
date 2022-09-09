@@ -454,9 +454,8 @@ html_dependency_autonumeric <- function() {
   htmlDependency(
     name = "autonumeric",
     version = "4.6.0",
-    package = "shinyWidgets",
-    src = c(href = "shinyWidgets/autonumeric", file = "assets/autonumeric"),
-    script = "autoNumeric.min.js"
+    src = c(file = system.file("packer", package = "shinyWidgets")),
+    script = "autonumeric.js"
   )
 }
 

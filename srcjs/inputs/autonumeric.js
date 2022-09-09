@@ -1,9 +1,7 @@
-/*jshint
-  jquery:true
-*/
-/*global AutoNumeric, Shiny */
+import $ from "jquery";
+import "shiny";
+import AutoNumeric from "autonumeric";
 
-// Autonumeric Input Binding
 Shiny.InputBinding.prototype.store = [];
 Shiny.InputBinding.prototype.updateStore = function(el, instance) {
   this.store[el.id] = instance;
