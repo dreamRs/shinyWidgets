@@ -261,8 +261,8 @@ pickerGroupServer <- function(input, output, session, data, vars) { # nocov star
       X = vars,
       FUN = function(x) {
         tmp <- aggregate(
-          as.formula(paste("indicator", x, sep = "~")),
-          data = data,
+          list(indicator = data$indicator),
+          by = setNames(list(data[[x]]), x),
           FUN = Reduce, f = `|`
         )
         updatePickerInput(
