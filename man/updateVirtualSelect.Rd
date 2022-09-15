@@ -10,6 +10,7 @@ updateVirtualSelect(
   choices = NULL,
   selected = NULL,
   disable = NULL,
+  disabled_choices = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -31,6 +32,8 @@ You can use:
 single-select lists and no values for multiple select lists.}
 
 \item{disable}{Disable (\code{TRUE}) or enable (\code{FALSE}) the select menu.}
+
+\item{disabled_choices}{List of disabled option's values.}
 
 \item{session}{The \code{session} object passed to function given to
 \code{shinyServer}. Default is \code{getDefaultReactiveDomain()}.}

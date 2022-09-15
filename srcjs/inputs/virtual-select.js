@@ -77,6 +77,10 @@ $.extend(virtualSelectBinding, {
         el.enable();
       }
     }
+
+    if (data.hasOwnProperty("disabled_choices")) {
+      el.setDisabledOptions(data.disabled_choices, true);
+    }
   },
   initialize: el => {
     var data = el.querySelector('script[data-for="' + el.id + '"]');
