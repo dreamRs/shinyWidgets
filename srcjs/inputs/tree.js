@@ -44,6 +44,9 @@ $.extend(treeWidgetBinding, {
     config.onChange = function() {
       $(el).trigger("change");
     };
+    config.loaded = function() {
+      $(el).find(".treejs-nodes").first().css("padding-left", 0);
+    };
     const tree = new Tree("#" + el.id, config);
     treeWidgetBinding.updateStore(el, tree);
   }

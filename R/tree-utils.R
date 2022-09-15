@@ -5,7 +5,7 @@
 #' @param levels Variables identifying hierarchical levels,
 #'  values of those variables will be used as text displayed.
 #' @param checked Default checked value(s).
-#' @param levels_id Variable to use as ID for nodes.
+#' @param levels_id Variable to use as ID for nodes. Careful! Spaces are not allowed in IDs.
 #' @param ... Addtional arguments.
 #'
 #' @return a `list` that can be used in [treeInput()].
@@ -23,7 +23,7 @@ create_tree <- function(data, levels, checked = NULL, levels_id = NULL, ...) {
       FUN = function(var) {
         dat <- data[data[[levels[1]]] == var, , drop = FALSE]
         args_level <- args[[levels[1]]]
-        if (!is.null(checked) && isTRUE(text %in% checked)) {
+        if (!is.null(checked) && isTRUE(var %in% checked)) {
           args_level$checked <- TRUE
         }
         if (length(levels) == 1) {
@@ -57,24 +57,24 @@ create_tree <- function(data, levels, checked = NULL, levels_id = NULL, ...) {
       FUN = function(text, id) {
         dat <- data[data[[levels[1]]] == text, , drop = FALSE]
         args_level <- args[[levels[1]]]
-        if (!is.null(checked) && isTRUE(text %in% checked)) {
+        if (!is.null(checked) && isTRUE(var %in% checked)) {
           args_level$checked <- TRUE
         }
         if (length(levels) == 1) {
           dropNullsOrEmpty(c(list(text = text, id = id), args_level))
         } else {
           c(
-            list(
+            dropNullsOrEmpty(list(
               text = text,
               id = id,
               children = create_tree(
                 data = dat,
                 levels = levels[-1],
                 levels_id = levels_id[-1],
-                selected = selected,
+                checked = checked,
                 ...
               )
-            ),
+            )),
             args_level
           )
         }
