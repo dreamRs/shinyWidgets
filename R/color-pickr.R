@@ -120,16 +120,19 @@ colorPickr <- function(inputId,
       class = if (is.null(label)) "shiny-label-null",
       style = if (isTRUE(useAsButton)) "vertical-align: bottom;"
     ),
-    tags$input(
+    tags$div(
       id = inputId,
-      type = "text",
-      class = "form-control pickr-color",
-      readonly = "readonly"
-    ),
-    tags$script(
-      type = "application/json",
-      `data-for` = inputId,
-      toJSON(config, auto_unbox = TRUE, json_verbatim = TRUE)
+      class = "pickr-color-container",
+      tags$input(
+        type = "text",
+        class = "form-control pickr-color",
+        readonly = "readonly"
+      ),
+      tags$script(
+        type = "application/json",
+        `data-for` = inputId,
+        toJSON(config, auto_unbox = TRUE, json_verbatim = TRUE)
+      )
     ),
     html_dependency_pickr(),
     html_dependency_shinyWidgets()

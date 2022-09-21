@@ -11,7 +11,7 @@ Shiny.InputBinding.prototype.updateStore = function(el, instance) {
 var pickrColorBinding = new Shiny.InputBinding();
 $.extend(pickrColorBinding, {
   find: function(scope) {
-    return $(scope).find(".pickr-color");
+    return $(scope).find(".pickr-color-container");
   },
   getId: function(el) {
     return $(el).attr("id");
@@ -77,13 +77,14 @@ $.extend(pickrColorBinding, {
   getState: function(el) {},
   initialize: function initialize(el) {
     var config = $(el)
-      .parent()
       .find('script[data-for="' + el.id + '"]');
     config = JSON.parse(config.html());
     var options = config.options;
 
-    options.el = el;
-    el.value = options.default;
+    var input = el.querySelector("input");
+
+    options.el = input;
+    input.value = options.default;
     options.appClass = "pickr-color";
     var pickr = new Pickr(options);
     pickr.setColor(options.default);
@@ -99,20 +100,20 @@ $.extend(pickrColorBinding, {
         root.button.style.display = "none";
       }
     } else {
-      el.style.backgroundColor = options.default;
-      el.style.color = getCorrectTextColor(options.default);
+      input.style.backgroundColor = options.default;
+      input.style.color = getCorrectTextColor(options.default);
       if (config.update == "changestop") {
         pickr.on(config.update, function(source, instance) {
           var color = instance.getColor();
-          el.value = color.toHEXA().toString(0);
-          el.style.backgroundColor = color.toHEXA().toString(0);
-          el.style.color = getCorrectTextColor(color.toHEXA().toString(0));
+          input.value = color.toHEXA().toString(0);
+          input.style.backgroundColor = color.toHEXA().toString(0);
+          input.style.color = getCorrectTextColor(color.toHEXA().toString(0));
         });
       } else {
         pickr.on(config.update, function(color) {
-          el.value = color.toHEXA().toString(0);
-          el.style.backgroundColor = color.toHEXA().toString(0);
-          el.style.color = getCorrectTextColor(color.toHEXA().toString(0));
+          input.value = color.toHEXA().toString(0);
+          input.style.backgroundColor = color.toHEXA().toString(0);
+          input.style.color = getCorrectTextColor(color.toHEXA().toString(0));
         });
       }
     }
