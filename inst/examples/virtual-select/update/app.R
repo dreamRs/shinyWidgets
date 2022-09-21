@@ -43,7 +43,8 @@ ui <- fluidPage(
     choices = tolower(month.name)
   ),
   verbatimTextOutput("res5"),
-  checkboxInput("disable", "Disable", value = FALSE)
+  checkboxInput("disable", "Disable", value = FALSE),
+  checkboxInput("disableChoices", "Disable march and june", value = FALSE)
 
 )
 
@@ -92,6 +93,13 @@ server <- function(input, output, session) {
       updateVirtualSelect(inputId = "sel5", disable = TRUE)
     } else {
       updateVirtualSelect(inputId = "sel5", disable = FALSE)
+    }
+  })
+  observe({
+    if (isTRUE(input$disableChoices)) {
+      updateVirtualSelect(inputId = "sel5", disabledChoices = c("march", "june"))
+    } else {
+      updateVirtualSelect(inputId = "sel5", disabledChoices = character(0))
     }
   })
 }

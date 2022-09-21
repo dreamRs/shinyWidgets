@@ -78,8 +78,8 @@ $.extend(virtualSelectBinding, {
       }
     }
 
-    if (data.hasOwnProperty("disabled_choices")) {
-      el.setDisabledOptions(data.disabled_choices, true);
+    if (data.hasOwnProperty("disabledChoices")) {
+      el.setDisabledOptions(data.disabledChoices, true);
     }
   },
   initialize: el => {

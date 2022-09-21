@@ -190,7 +190,7 @@ virtualSelectInput <- function(inputId,
 #' @inheritParams virtualSelectInput
 #' @inheritParams shiny::updateSelectInput
 #' @param disable Disable (`TRUE`) or enable (`FALSE`) the select menu.
-#' @param disabled_choices List of disabled option's values.
+#' @param disabledChoices List of disabled option's values.
 #'
 #' @return No value.
 #' @export
@@ -204,7 +204,7 @@ updateVirtualSelect <- function(inputId,
                                 choices = NULL,
                                 selected = NULL,
                                 disable = NULL,
-                                disabled_choices = NULL,
+                                disabledChoices = NULL,
                                 session = shiny::getDefaultReactiveDomain()) {
   if (!is.null(label))
     label <- doRenderTags(label)
@@ -217,7 +217,7 @@ updateVirtualSelect <- function(inputId,
     options = choices,
     value = selected,
     disable = disable,
-    disabled_choices = list1(disabled_choices)
+    disabledChoices = list1(disabledChoices)
   ))
   session$sendInputMessage(inputId, message)
 }
