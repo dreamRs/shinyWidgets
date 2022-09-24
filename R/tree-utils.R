@@ -4,13 +4,12 @@
 #' @param data A `data.frame`.
 #' @param levels Variables identifying hierarchical levels,
 #'  values of those variables will be used as text displayed.
-#' @param checked Default checked value(s).
 #' @param levels_id Variable to use as ID for nodes. Careful! Spaces are not allowed in IDs.
 #' @param ... Addtional arguments.
 #'
 #' @return a `list` that can be used in [treeInput()].
 #' @export
-create_tree <- function(data, levels = names(data), checked = NULL, levels_id = NULL, ...) {
+create_tree <- function(data, levels = names(data), levels_id = NULL, ...) {
   args <- list(...)
   data <- as.data.frame(data)
   if (!all(levels %in% names(data)))
@@ -23,9 +22,6 @@ create_tree <- function(data, levels = names(data), checked = NULL, levels_id = 
       FUN = function(var) {
         dat <- data[data[[levels[1]]] == var, , drop = FALSE]
         args_level <- args[[levels[1]]]
-        if (!is.null(checked) && isTRUE(var %in% checked)) {
-          args_level$checked <- TRUE
-        }
         if (length(levels) == 1) {
           dropNullsOrEmpty(c(list(text = var, id = paste0("tree", sample.int(1e7, 1))), args_level))
         } else {
@@ -36,7 +32,6 @@ create_tree <- function(data, levels = names(data), checked = NULL, levels_id = 
               children = create_tree(
                 data = dat,
                 levels = levels[-1],
-                checked = checked,
                 ...
               )
             )),
@@ -59,9 +54,6 @@ create_tree <- function(data, levels = names(data), checked = NULL, levels_id = 
       FUN = function(text, id) {
         dat <- data[data[[levels[1]]] == text, , drop = FALSE]
         args_level <- args[[levels[1]]]
-        if (!is.null(checked) && isTRUE(var %in% checked)) {
-          args_level$checked <- TRUE
-        }
         if (length(levels) == 1) {
           dropNullsOrEmpty(c(list(text = text, id = id), args_level))
         } else {
@@ -73,7 +65,6 @@ create_tree <- function(data, levels = names(data), checked = NULL, levels_id = 
                 data = dat,
                 levels = levels[-1],
                 levels_id = levels_id[-1],
-                checked = checked,
                 ...
               )
             )),

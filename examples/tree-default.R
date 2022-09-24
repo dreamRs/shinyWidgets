@@ -21,6 +21,7 @@ ui <- fluidPage(
     inputId = "ID1",
     label = "Select cities:",
     choices = create_tree(cities),
+    selected = "San Francisco",
     returnValue = "text"
   ),
   verbatimTextOutput("res1")
@@ -32,4 +33,5 @@ server <- function(input, output, session) {
 
 }
 
-shinyApp(ui, server)
+if (interactive())
+  shinyApp(ui, server)

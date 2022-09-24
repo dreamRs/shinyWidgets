@@ -37,7 +37,16 @@ $.extend(treeWidgetBinding, {
   },
   setValue: (el, value) => {
     var tree = treeWidgetBinding.store[el.id];
-    tree.values = value;
+    var nodesId = tree.nodesById;
+    var checked = Object.entries(nodesId).map((a) => {
+      if (value.includes(a[1].text[0])) {
+        return a[1].id[0]
+      } else {
+        return null;
+      }
+    });
+    checked = checked.filter(a => a !== null);
+    tree.values = checked;
   },
   subscribe: (el, callback) => {
     $(el).on("change.treeWidgetBinding", function(e) {
@@ -52,6 +61,9 @@ $.extend(treeWidgetBinding, {
       var label = $("#" + el.id + "-label");
       updateLabel(data.label, label);
     }
+    if (data.hasOwnProperty("values")) {
+      treeWidgetBinding.setValue(el, data.values);
+    }
   },
   initialize: el => {
     var data = el.querySelector('script[data-for="' + el.id + '"]');
@@ -64,7 +76,11 @@ $.extend(treeWidgetBinding, {
       $(el).find(".treejs-nodes").first().css("padding-left", 0);
     };
     const tree = new Tree("#" + el.id, config);
+    console.log(tree);
     treeWidgetBinding.updateStore(el, tree);
+    if (config.hasOwnProperty("values")) {
+      treeWidgetBinding.setValue(el, config.values);
+    }
   }
 });
 

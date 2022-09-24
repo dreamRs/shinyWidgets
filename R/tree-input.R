@@ -24,7 +24,9 @@ html_dependency_tree <- function() {
 #' @return A `shiny.tag` object that can be used in a UI definition.
 #' @export
 #'
-#' @examples
+#' @seealso [updateTreeInput()] for updating from server.
+#'
+#' @example examples/tree-default.R
 treeInput <- function(inputId,
                       label,
                       choices,
@@ -61,4 +63,30 @@ treeInput <- function(inputId,
     ),
     html_dependency_tree()
   )
+}
+
+
+
+#' @title Update Tree Input
+#'
+#' @description Update [treeInput()] from server.
+#'
+#' @inheritParams shiny::updateCheckboxGroupInput
+#'
+#' @return No value.
+#' @export
+#'
+#'
+#' @examples
+updateTreeInput <- function(inputId,
+                            label = NULL,
+                            selected = NULL,
+                            session = shiny::getDefaultReactiveDomain()) {
+  if (!is.null(label))
+    label <- doRenderTags(label)
+  message <- dropNulls(list(
+    label = label,
+    values = list1(selected)
+  ))
+  session$sendInputMessage(inputId, message)
 }
