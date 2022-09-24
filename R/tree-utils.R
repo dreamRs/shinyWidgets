@@ -10,7 +10,7 @@
 #'
 #' @return a `list` that can be used in [treeInput()].
 #' @export
-create_tree <- function(data, levels, checked = NULL, levels_id = NULL, ...) {
+create_tree <- function(data, levels = names(data), checked = NULL, levels_id = NULL, ...) {
   args <- list(...)
   data <- as.data.frame(data)
   if (!all(levels %in% names(data)))
@@ -49,6 +49,8 @@ create_tree <- function(data, levels, checked = NULL, levels_id = NULL, ...) {
     stopifnot(
       "levels and levels_id must be of same length" = length(levels) == length(levels_id)
     )
+    if (!all(levels_id %in% names(data)))
+      stop("All levels_id must be valid variables in data", call. = FALSE)
     mapply(
       SIMPLIFY = FALSE,
       USE.NAMES = FALSE,

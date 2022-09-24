@@ -4,7 +4,7 @@
 \alias{create_tree}
 \title{Create choice structure for \code{\link[=treeInput]{treeInput()}}}
 \usage{
-create_tree(data, levels, checked = NULL, levels_id = NULL, ...)
+create_tree(data, levels = names(data), checked = NULL, levels_id = NULL, ...)
 }
 \arguments{
 \item{data}{A \code{data.frame}.}
@@ -14,7 +14,7 @@ values of those variables will be used as text displayed.}
 
 \item{checked}{Default checked value(s).}
 
-\item{levels_id}{Variable to use as ID for nodes.}
+\item{levels_id}{Variable to use as ID for nodes. Careful! Spaces are not allowed in IDs.}
 
 \item{...}{Addtional arguments.}
 }

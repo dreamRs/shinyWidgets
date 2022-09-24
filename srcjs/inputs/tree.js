@@ -1,6 +1,7 @@
 import $ from "jquery";
 import "shiny";
 import Tree from "@widgetjs/tree";
+import { updateLabel } from "../modules/utils";
 
 var treeWidgetBinding = new Shiny.InputBinding();
 
@@ -13,11 +14,26 @@ $.extend(treeWidgetBinding, {
     return $(scope).find(".tree-widget");
   },
   getType: el => {
+    if ($(el).attr("data-return") == "all") {
+      return "sw.tree.all";
+    }
     return "sw.tree";
   },
   getValue: el => {
     var tree = treeWidgetBinding.store[el.id];
-    return tree.selectedNodes;
+    var checked = tree.selectedNodes;
+    if (checked.length < 1)
+      return null;
+    if ($(el).attr("data-return") == "text") {
+      checked = checked.map((a) => {
+        if (a.status == 2) return a.text[0];
+      });
+    } else if ($(el).attr("data-return") == "id") {
+      checked = checked.map((a) => {
+        if (a.status == 2) return a.id[0];
+      });
+    }
+    return checked;
   },
   setValue: (el, value) => {
     var tree = treeWidgetBinding.store[el.id];
@@ -33,8 +49,8 @@ $.extend(treeWidgetBinding, {
   },
   receiveMessage: (el, data) => {
     if (data.hasOwnProperty("label")) {
-      var label = document.getElementById(el.id + "-label");
-      label.innerHTML = data.label;
+      var label = $("#" + el.id + "-label");
+      updateLabel(data.label, label);
     }
   },
   initialize: el => {

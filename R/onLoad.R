@@ -6,13 +6,6 @@
 #'
 .onLoad <- function(...) {
   shiny::addResourcePath('shinyWidgets', system.file("assets", package = "shinyWidgets"))
-  shiny::registerInputHandler("sw.tree", function(data, ...) {
-    if (is.null(data)) {
-      NULL
-    } else {
-      data
-    }
-  }, force = TRUE)
   shiny::registerInputHandler("sw.numericRange", function(data, ...) {
     if (is.null(data)) {
       NULL
@@ -52,6 +45,20 @@
       } else {
         res
       }
+    }
+  }, force = TRUE)
+  shiny::registerInputHandler("sw.tree", function(data, ...) {
+    if (is.null(data) || length(data) < 1) {
+      NULL
+    } else {
+      return(unlist(data, use.names = FALSE))
+    }
+  }, force = TRUE)
+  shiny::registerInputHandler("sw.tree.all", function(data, ...) {
+    if (is.null(data)) {
+      NULL
+    } else {
+      data
     }
   }, force = TRUE)
 }
