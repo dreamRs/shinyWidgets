@@ -25,6 +25,10 @@ treeInput(
 
 \item{closeDepth}{Expand level, default to only first one visible.}
 
+\item{returnValue}{Value returned server-side, default to \code{"text"} the node text,
+other possibilities are \code{"id"} (if no ID provided in \verb{choices = }, one is generated) or
+\code{"all"} to returned all the tree under the element selected.}
+
 \item{width}{The width of the input, e.g. \verb{400px}, or \verb{"100\%}.}
 }
 \value{
@@ -57,7 +61,7 @@ ui <- fluidPage(
     inputId = "ID1",
     label = "Select cities:",
     choices = create_tree(cities),
-    selected = "San Francisco",
+    # selected = "San Francisco",
     returnValue = "text"
   ),
   verbatimTextOutput("res1")

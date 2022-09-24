@@ -21,7 +21,7 @@ ui <- fluidPage(
     inputId = "ID1",
     label = "Select cities:",
     choices = create_tree(cities),
-    selected = "San Francisco",
+    # selected = "San Francisco",
     returnValue = "text"
   ),
   verbatimTextOutput("res1")

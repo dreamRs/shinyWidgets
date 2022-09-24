@@ -68,7 +68,7 @@ $.extend(treeWidgetBinding, {
   initialize: el => {
     var data = el.querySelector('script[data-for="' + el.id + '"]');
     var config = JSON.parse(data.text);
-    console.log(config);
+    //console.log(config);
     config.onChange = function() {
       $(el).trigger("change");
     };
@@ -76,7 +76,7 @@ $.extend(treeWidgetBinding, {
       $(el).find(".treejs-nodes").first().css("padding-left", 0);
     };
     const tree = new Tree("#" + el.id, config);
-    console.log(tree);
+    //console.log(tree);
     treeWidgetBinding.updateStore(el, tree);
     if (config.hasOwnProperty("values")) {
       treeWidgetBinding.setValue(el, config.values);
