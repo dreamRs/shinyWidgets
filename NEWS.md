@@ -1,9 +1,17 @@
 shinyWidgets 0.7.4
 ======================
 
+* New widget `treeInput()` based on [treejs](https://github.com/daweilv/treejs) library.
+* Updated virtual-select-plugin to 1.0.33.
+* `updateVirtualSelect()` has a new argument `disabledChoices` to disable some choices from the menu.
+* It's now possible to use variable with space in their name in `selectizeGroup` module, thanks to [@evgeniyftw](https://github.com/evgeniyftw).
+
+
 ### Bug fixes
 
 * `switchInput()` produced an error when using `bslib::bs_theme(version = "3")` [#528](https://github.com/dreamRs/shinyWidgets/issues/528)
+* Fixed a bug in `pickerGroup` module when using `aggregate` [#491](https://github.com/dreamRs/shinyWidgets/issues/491).
+* Fixed highlightedDates no longer works for `airDatePicker()` [#532](https://github.com/dreamRs/shinyWidgets/issues/532).
 
 
 
