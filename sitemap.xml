@@ -70,6 +70,9 @@
     <loc>https://dreamrs.github.io/shinyWidgets/reference/colorSelectorInput.html</loc>
   </url>
   <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/create_tree.html</loc>
+  </url>
+  <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/demoAirDatepicker.html</loc>
   </url>
   <url>
@@ -229,6 +232,9 @@
     <loc>https://dreamrs.github.io/shinyWidgets/reference/tooltipOptions.html</loc>
   </url>
   <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/treeInput.html</loc>
+  </url>
+  <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/updateAirDateInput.html</loc>
   </url>
   <url>
@@ -299,6 +305,9 @@
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/updateTextInputIcon.html</loc>
+  </url>
+  <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/updateTreeInput.html</loc>
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/updateVerticalTabsetPanel.html</loc>
