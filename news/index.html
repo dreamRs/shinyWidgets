@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.3.9210</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,11 +46,19 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.4" id="shinywidgets-074">shinyWidgets 0.7.4<a class="anchor" aria-label="anchor" href="#shinywidgets-074"></a></h2>
-<div class="section level4">
+<ul><li>New widget <code><a href="../reference/treeInput.html">treeInput()</a></code> based on <a href="https://github.com/daweilv/treejs" class="external-link">treejs</a> library.</li>
+<li>Updated virtual-select-plugin to 1.0.33.</li>
+<li>
+<code><a href="../reference/updateVirtualSelect.html">updateVirtualSelect()</a></code> has a new argument <code>disabledChoices</code> to disable some choices from the menu.</li>
+<li>It’s now possible to use variable with space in their name in <code>selectizeGroup</code> module, thanks to <a href="https://github.com/evgeniyftw" class="external-link">@evgeniyftw</a>.</li>
+</ul><div class="section level4">
 <h4 id="bug-fixes-0-7-4">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-7-4"></a></h4>
 <ul><li>
 <code><a href="../reference/switchInput.html">switchInput()</a></code> produced an error when using <code>bslib::bs_theme(version = "3")</code> <a href="https://github.com/dreamRs/shinyWidgets/issues/528" class="external-link">#528</a>
-</li></ul></div>
+</li>
+<li>Fixed a bug in <code>pickerGroup</code> module when using <code>aggregate</code> <a href="https://github.com/dreamRs/shinyWidgets/issues/491" class="external-link">#491</a>.</li>
+<li>Fixed highlightedDates no longer works for <code>airDatePicker()</code> <a href="https://github.com/dreamRs/shinyWidgets/issues/532" class="external-link">#532</a>.</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.3" id="shinywidgets-073">shinyWidgets 0.7.3<a class="anchor" aria-label="anchor" href="#shinywidgets-073"></a></h2><p class="text-muted">CRAN release: 2022-08-31</p>
