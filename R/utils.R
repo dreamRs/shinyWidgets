@@ -36,6 +36,14 @@ nullOrNA <- function(x) {
   is.null(x) || is.na(x)
 }
 
+dropNullsOrEmpty <- function(x) {
+  x[!vapply(x, null_or_empty, FUN.VALUE = logical(1))]
+}
+null_or_empty <- function(x) {
+  is.null(x) || length(x) == 0
+}
+
+
 # choicesWithNames
 choicesWithNames <- function(choices) {
   listify <- function(obj) {
