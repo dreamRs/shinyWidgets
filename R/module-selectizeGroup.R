@@ -41,7 +41,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
               class = "btn-group",
               id = ns(paste0("container-", input$inputId)),
               selectizeInput(
-                inputId = ns(input$inputId),
+                inputId = ns(ws2underscore(input$inputId)),
                 label = input$label %||% input$title,
                 choices = input$choices,
                 selected = input$selected,
@@ -75,7 +75,7 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
           tagSelect <- tags$div(
             id = ns(paste0("container-", input$inputId)),
             selectizeInput(
-              inputId = ns(input$inputId),
+              inputId = ns(ws2underscore(input$inputId)),
               label = input$label %||% input$title,
               choices = input$choices,
               selected = input$selected,
@@ -169,7 +169,7 @@ selectizeGroupServer <- function(input, output, session, data, vars, inline = TR
         vals <- sort(unique(rv$data[[x]]))
         updateSelectizeInput(
           session = session,
-          inputId = x,
+          inputId = ws2underscore(x),
           choices = vals,
           selected = isolate(input[[x]]),
           server = TRUE
@@ -185,7 +185,7 @@ selectizeGroupServer <- function(input, output, session, data, vars, inline = TR
         vals <- sort(unique(rv$data[[x]]))
         updateSelectizeInput(
           session = session,
-          inputId = x,
+          inputId = ws2underscore(x),
           choices = vals,
           server = TRUE
         )
@@ -202,14 +202,14 @@ selectizeGroupServer <- function(input, output, session, data, vars, inline = TR
 
         ovars <- vars[vars != x]
 
-        observeEvent(input[[x]], {
+        observeEvent(input[[ws2underscore(x)]], {
 
           data <- rv$data
 
           indicator <- lapply(
             X = vars,
             FUN = function(x) {
-              data[[x]] %inT% input[[x]]
+              data[[x]] %inT% input[[ws2underscore(x)]]
             }
           )
           indicator <- Reduce(f = `&`, x = indicator)
@@ -222,20 +222,20 @@ selectizeGroupServer <- function(input, output, session, data, vars, inline = TR
           }
 
           for (i in ovars) {
-            if (is.null(input[[i]])) {
+            if (is.null(input[[ws2underscore(i)]])) {
               updateSelectizeInput(
                 session = session,
-                inputId = i,
+                inputId = ws2underscore(i),
                 choices = sort(unique(data[[i]])),
                 server = TRUE
               )
             }
           }
 
-          if (is.null(input[[x]])) {
+          if (is.null(input[[ws2underscore(x)]])) {
             updateSelectizeInput(
               session = session,
-              inputId = x,
+              inputId = ws2underscore(x),
               choices = sort(unique(data[[x]])),
               server = TRUE
             )
@@ -253,7 +253,7 @@ selectizeGroupServer <- function(input, output, session, data, vars, inline = TR
     indicator <- lapply(
       X = vars,
       FUN = function(x) {
-        data[[x]] %inT% input[[x]]
+        data[[x]] %inT% input[[ws2underscore(x)]]
       }
     )
     indicator <- Reduce(f = `&`, x = indicator)
