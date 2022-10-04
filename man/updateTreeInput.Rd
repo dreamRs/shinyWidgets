@@ -76,7 +76,8 @@ ui <- fluidPage(
         label = "Select cities:",
         choices = unique(cities$city),
         inline = TRUE
-      )
+      ),
+      actionButton("clear", "Clear selected")
     )
   )
 )
@@ -85,11 +86,22 @@ server <- function(input, output, session) {
 
   output$res1 <- renderPrint(input$ID1)
 
-  observe(updateTreeInput(inputId = "ID1", label = input$label))
+  observe(
+    updateTreeInput(inputId = "ID1", label = input$label)
+  )
 
-  observe(updateTreeInput(inputId = "ID1", selected = input$val_country))
+  observe(
+    updateTreeInput(inputId = "ID1", selected = input$val_country)
+  )
 
-  observe(updateTreeInput(inputId = "ID1", selected = input$val_city))
+  observe(
+    updateTreeInput(inputId = "ID1", selected = input$val_city)
+  )
+
+  observeEvent(
+    input$clear,
+    updateTreeInput(inputId = "ID1", selected = character(0))
+  )
 }
 
 if (interactive())
