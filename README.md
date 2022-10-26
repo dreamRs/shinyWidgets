@@ -210,7 +210,9 @@ dropdownButton(
   selectInput(inputId = 'xcol', label = 'X Variable', choices = names(iris)),
   selectInput(inputId = 'ycol', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]]),
   sliderInput(inputId = 'clusters', label = 'Cluster count', value = 3, min = 1, max = 9),
-  circle = TRUE, status = "danger", icon = icon("cog"), width = "300px",
+  circle = TRUE,
+  status = "danger", 
+  icon = icon("gear"), width = "300px",
   tooltip = tooltipOptions(title = "Click to see inputs !")
 )
 ```

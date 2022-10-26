@@ -89,7 +89,7 @@ textInputIcon <- function(inputId,
 #'   })
 #'
 #'   observeEvent(input$updateIcon, {
-#'     i <- sample(c("home", "cogs", "dollar-sign", "globe", "sliders-h"), 1)
+#'     i <- sample(c("home", "gears", "dollar-sign", "globe", "sliders-h"), 1)
 #'     updateTextInputIcon(
 #'       session = session,
 #'       inputId = "id",
@@ -225,7 +225,7 @@ numericInputIcon <- function(inputId,
 #'   })
 #'
 #'   observeEvent(input$updateIcon, {
-#'     i <- sample(c("home", "cogs", "dollar-sign", "globe", "sliders-h"), 1)
+#'     i <- sample(c("home", "gears", "dollar-sign", "globe", "sliders-h"), 1)
 #'     updateNumericInputIcon(
 #'       session = session,
 #'       inputId = "id",

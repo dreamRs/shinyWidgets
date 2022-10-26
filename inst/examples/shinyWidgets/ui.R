@@ -1234,7 +1234,7 @@ body <- dashboardBody(
               fun = pickerInput,
               args = list(inputId = "uppickerIcons",
                           label = "Glyphicon <> FontAwesome",
-                          choices = c("glyphicon-arrow-right / fa-arrow-right", "glyphicon-cog / fa-cog", "glyphicon-play / fa-play",
+                          choices = c("glyphicon-arrow-right / fa-arrow-right", "glyphicon-cog / fa-gear", "glyphicon-play / fa-play",
                                       "glyphicon-ok-sign / fa-check", "glyphicon-euro / fa-eur", "glyphicon-music / fa-music"),
                           choicesOpt = list(
                             icon = c("glyphicon glyphicon-arrow-right", "glyphicon glyphicon-cog", "glyphicon glyphicon-play",

@@ -180,10 +180,10 @@ function(input, output, session) {
     } else {
       updatePickerInput(
         session = session, inputId = "uppickerIcons", selected = input$uppickerIcons,
-        choices = c("glyphicon-arrow-right / fa-arrow-right", "glyphicon-cog / fa-cog", "glyphicon-play / fa-play",
+        choices = c("glyphicon-arrow-right / fa-arrow-right", "glyphicon-cog / fa-gear", "glyphicon-play / fa-play",
                     "glyphicon-ok-sign / fa-check", "glyphicon-euro / fa-eur", "glyphicon-music / fa-music"),
         choicesOpt = list(
-          icon = c("fa fa-arrow-right", "fa fa-cog", "fa fa-play",
+          icon = c("fa fa-arrow-right", "fa fa-gear", "fa fa-play",
                    "fa fa-check", "fa fa-eur", "fa fa-music")
         )
       )

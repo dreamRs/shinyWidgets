@@ -69,7 +69,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$updateIcon, {
-    i <- sample(c("home", "cogs", "dollar-sign", "globe", "sliders-h"), 1)
+    i <- sample(c("home", "gears", "dollar-sign", "globe", "sliders-h"), 1)
     updateNumericInputIcon(
       session = session,
       inputId = "id",
