@@ -15,18 +15,21 @@
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
-#'
-#' ui <- fluidPage(
-#'  awesomeCheckbox(inputId = "somevalue",
-#'                  label = "A single checkbox",
-#'                  value = TRUE,
-#'                  status = "danger"),
-#'  verbatimTextOutput("value")
-#' )
-#' server <- function(input, output) {
-#'   output$value <- renderText({ input$somevalue })
-#' }
-#' shinyApp(ui, server)
+#'   ui <- fluidPage(
+#'     awesomeCheckbox(
+#'       inputId = "somevalue",
+#'       label = "A single checkbox",
+#'       value = TRUE,
+#'       status = "danger"
+#'     ),
+#'     verbatimTextOutput("value")
+#'   )
+#'   server <- function(input, output) {
+#'     output$value <- renderText({
+#'       input$somevalue
+#'     })
+#'   }
+#'   shinyApp(ui, server)
 #' }
 #'
 #' @importFrom shiny restoreInput
@@ -44,12 +47,14 @@ awesomeCheckbox <- function(inputId,
     choices = c("default", "primary", "success", "info", "warning", "danger")
   )
   inputTag <- tags$input(id = inputId, type = "checkbox")
-  if (!is.null(value) && value)
+  if (!is.null(value) && value) {
     inputTag$attribs$checked <- "checked"
+  }
   awesomeTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", validateCssUnit(width), ";")
+    },
     tags$div(
       class = paste0("awesome-checkbox checkbox-", status),
       inputTag,
@@ -76,8 +81,9 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status) {
         value = value,
         id = paste0(inputId, value)
       )
-      if (value %in% selected)
+      if (value %in% selected) {
         inputTag$attribs$checked <- "checked"
+      }
       if (inline) {
         tags$div(
           class = paste0("awesome-checkbox checkbox-inline form-check-inline checkbox-", status),
@@ -127,39 +133,33 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status) {
 #'
 #' @examples
 #' if (interactive()) {
+#'   ui <- fluidPage(
+#'     br(),
+#'     awesomeCheckboxGroup(
+#'       inputId = "id1", label = "Make a choice:",
+#'       choices = c("graphics", "ggplot2")
+#'     ),
+#'     verbatimTextOutput(outputId = "res1"),
+#'     br(),
+#'     awesomeCheckboxGroup(
+#'       inputId = "id2", label = "Make a choice:",
+#'       choices = c("base", "dplyr", "data.table"),
+#'       inline = TRUE, status = "danger"
+#'     ),
+#'     verbatimTextOutput(outputId = "res2")
+#'   )
 #'
+#'   server <- function(input, output, session) {
+#'     output$res1 <- renderPrint({
+#'       input$id1
+#'     })
 #'
-#' ui <- fluidPage(
-#'   br(),
-#'   awesomeCheckboxGroup(
-#'     inputId = "id1", label = "Make a choice:",
-#'     choices = c("graphics", "ggplot2")
-#'   ),
-#'   verbatimTextOutput(outputId = "res1"),
-#'   br(),
-#'   awesomeCheckboxGroup(
-#'     inputId = "id2", label = "Make a choice:",
-#'     choices = c("base", "dplyr", "data.table"),
-#'     inline = TRUE, status = "danger"
-#'   ),
-#'   verbatimTextOutput(outputId = "res2")
-#' )
+#'     output$res2 <- renderPrint({
+#'       input$id2
+#'     })
+#'   }
 #'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint({
-#'     input$id1
-#'   })
-#'
-#'   output$res2 <- renderPrint({
-#'     input$id2
-#'   })
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 awesomeCheckboxGroup <- function(inputId,
                                  label,
@@ -170,16 +170,19 @@ awesomeCheckboxGroup <- function(inputId,
                                  width = NULL) {
   choices <- choicesWithNames(choices)
   selected <- shiny::restoreInput(id = inputId, default = selected)
-  if (!is.null(selected))
+  if (!is.null(selected)) {
     selected <- validateSelected(selected, choices, inputId)
+  }
   options <- generateAwesomeOptions(inputId, choices, selected, inline, status = status)
   divClass <- "form-group shiny-input-container shiny-input-checkboxgroup awesome-bootstrap-checkbox"
-  if (inline)
+  if (inline) {
     divClass <- paste(divClass, "shiny-input-container-inline")
+  }
   awesomeTag <- tags$div(
     id = inputId,
-    style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", validateCssUnit(width), ";")
+    },
     class = divClass,
     tags$label(
       class = "control-label",
@@ -222,48 +225,45 @@ awesomeCheckboxGroup <- function(inputId,
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
 #'
+#'   ui <- fluidPage(
+#'     awesomeCheckboxGroup(
+#'       inputId = "somevalue",
+#'       choices = c("A", "B", "C"),
+#'       label = "My label"
+#'     ),
+#'     verbatimTextOutput(outputId = "res"),
+#'     actionButton(inputId = "updatechoices", label = "Random choices"),
+#'     textInput(inputId = "updatelabel", label = "Update label")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   awesomeCheckboxGroup(
-#'     inputId = "somevalue",
-#'     choices = c("A", "B", "C"),
-#'     label = "My label"
-#'   ),
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint({
+#'       input$somevalue
+#'     })
 #'
-#'   verbatimTextOutput(outputId = "res"),
+#'     observeEvent(input$updatechoices, {
+#'       updateAwesomeCheckboxGroup(
+#'         session = session, inputId = "somevalue",
+#'         choices = sample(letters, sample(2:6))
+#'       )
+#'     })
 #'
-#'   actionButton(inputId = "updatechoices", label = "Random choices"),
-#'   textInput(inputId = "updatelabel", label = "Update label")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint({
-#'     input$somevalue
-#'   })
-#'
-#'   observeEvent(input$updatechoices, {
-#'     updateAwesomeCheckboxGroup(
-#'       session = session, inputId = "somevalue",
-#'       choices = sample(letters, sample(2:6))
+#'     observeEvent(input$updatelabel,
+#'       {
+#'         updateAwesomeCheckboxGroup(
+#'           session = session, inputId = "somevalue",
+#'           label = input$updatelabel
+#'         )
+#'       },
+#'       ignoreInit = TRUE
 #'     )
-#'   })
+#'   }
 #'
-#'   observeEvent(input$updatelabel, {
-#'     updateAwesomeCheckboxGroup(
-#'       session = session, inputId = "somevalue",
-#'       label = input$updatelabel
-#'     )
-#'   }, ignoreInit = TRUE)
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 updateAwesomeCheckboxGroup <- function(session = getDefaultReactiveDomain(),
                                        inputId,
@@ -272,12 +272,15 @@ updateAwesomeCheckboxGroup <- function(session = getDefaultReactiveDomain(),
                                        selected = NULL,
                                        inline = FALSE,
                                        status = "primary") {
-  if (!is.null(choices))
+  if (!is.null(choices)) {
     choices <- choicesWithNames(choices)
-  if (!is.null(selected))
+  }
+  if (!is.null(selected)) {
     selected <- as.character(selected)
-  if (!is.null(selected))
+  }
+  if (!is.null(selected)) {
     selected <- validateSelected(selected, choices, inputId)
+  }
   options <- if (!is.null(choices)) {
     as.character(generateAwesomeOptions(session$ns(inputId), choices, selected, inline, status))
   }
@@ -303,52 +306,47 @@ updateAwesomeCheckboxGroup <- function(session = getDefaultReactiveDomain(),
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
 #'
+#'   ui <- fluidPage(
+#'     awesomeCheckbox(
+#'       inputId = "somevalue",
+#'       label = "My label",
+#'       value = FALSE
+#'     ),
+#'     verbatimTextOutput(outputId = "res"),
+#'     actionButton(inputId = "updatevalue", label = "Toggle value"),
+#'     textInput(inputId = "updatelabel", label = "Update label")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   awesomeCheckbox(
-#'     inputId = "somevalue",
-#'     label = "My label",
-#'     value = FALSE
-#'   ),
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint({
+#'       input$somevalue
+#'     })
 #'
-#'   verbatimTextOutput(outputId = "res"),
+#'     observeEvent(input$updatevalue, {
+#'       updateAwesomeCheckbox(
+#'         session = session, inputId = "somevalue",
+#'         value = as.logical(input$updatevalue %% 2)
+#'       )
+#'     })
 #'
-#'   actionButton(inputId = "updatevalue", label = "Toggle value"),
-#'   textInput(inputId = "updatelabel", label = "Update label")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint({
-#'     input$somevalue
-#'   })
-#'
-#'   observeEvent(input$updatevalue, {
-#'     updateAwesomeCheckbox(
-#'       session = session, inputId = "somevalue",
-#'       value = as.logical(input$updatevalue %%2)
+#'     observeEvent(input$updatelabel,
+#'       {
+#'         updateAwesomeCheckbox(
+#'           session = session, inputId = "somevalue",
+#'           label = input$updatelabel
+#'         )
+#'       },
+#'       ignoreInit = TRUE
 #'     )
-#'   })
+#'   }
 #'
-#'   observeEvent(input$updatelabel, {
-#'     updateAwesomeCheckbox(
-#'       session = session, inputId = "somevalue",
-#'       label = input$updatelabel
-#'     )
-#'   }, ignoreInit = TRUE)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#' }
-updateAwesomeCheckbox <- function (session, inputId, label = NULL, value = NULL) {
+updateAwesomeCheckbox <- function(session, inputId, label = NULL, value = NULL) {
   message <- dropNulls(list(label = label, value = value))
   session$sendInputMessage(inputId, message)
 }
-
-

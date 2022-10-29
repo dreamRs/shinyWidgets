@@ -17,7 +17,6 @@
 ui <- fluidPage(
   tags$h3("color picker !"),
   tags$br(),
-
   fluidRow(
     column(
       width = 6,
@@ -79,16 +78,14 @@ ui <- fluidPage(
       )
     )
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$color <- renderUI({
     tags$div(
       style = "height: 100px; width: 100px;",
       style = "border: 1px solid #fff; box-shadow: 0 0 10px;",
-      style = paste0("background: ", rgb(input$red/255, input$green/255, input$blue/255), ";")
+      style = paste0("background: ", rgb(input$red / 255, input$green / 255, input$blue / 255), ";")
     )
   })
 
@@ -96,11 +93,9 @@ server <- function(input, output, session) {
     tags$div(
       style = "height: 100px; width: 100px;",
       style = "border: 1px solid #fff; box-shadow: 0 0 10px;",
-      style = paste0("background: ", rgb(input$redb/255, input$greenb/255, input$blueb/255), ";")
+      style = paste0("background: ", rgb(input$redb / 255, input$greenb / 255, input$blueb / 255), ";")
     )
   })
-
 }
 
 shinyApp(ui, server)
-

@@ -52,16 +52,16 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
   value <- shiny::restoreInput(id = inputId, default = value)
   if (!is.null(btnSearch)) {
     btnSearch <- htmltools::tags$button(
-      class="btn btn-default btn-addon action-button",
+      class = "btn btn-default btn-addon action-button",
       id = paste0(inputId, "_search"),
-      type="button", btnSearch
+      type = "button", btnSearch
     )
   }
   if (!is.null(btnReset)) {
     btnReset <- htmltools::tags$button(
-      class="btn btn-default btn-addon action-button",
+      class = "btn btn-default btn-addon action-button",
       id = paste0(inputId, "_reset"),
-      type="button", btnReset
+      type = "button", btnReset
     )
   }
 
@@ -72,19 +72,22 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
   )
 
   searchTag <- htmltools::tags$div(
-    class="form-group shiny-input-container",
-    style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+    class = "form-group shiny-input-container",
+    style = if (!is.null(width)) {
+      paste0("width: ", validateCssUnit(width), ";")
+    },
     if (!is.null(label)) htmltools::tags$label(label, `for` = inputId),
     htmltools::tags$div(
       id = inputId, `data-reset` = !is.null(resetValue),
       `data-reset-value` = resetValue,
       class = "input-group search-text",
-      htmltools::tags$input(id = paste0(inputId, "_text"),
-                 style = "border-radius: 0.25em 0 0 0.25em !important;",
-                 type = "text", class = "form-control", value = value,
-                 placeholder = placeholder),
-      htmltools::tags$div(class="input-group-btn", btnReset, btnSearch)
+      htmltools::tags$input(
+        id = paste0(inputId, "_text"),
+        style = "border-radius: 0.25em 0 0 0.25em !important;",
+        type = "text", class = "form-control", value = value,
+        placeholder = placeholder
+      ),
+      htmltools::tags$div(class = "input-group-btn", btnReset, btnSearch)
     ),
     singleton(tags$head(tags$style(css_btn_addon)))
   )
@@ -109,60 +112,59 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
 #'
 #' @examples
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h2("Update searchinput"),
-#'   searchInput(
-#'     inputId = "search", label = "Enter your text",
-#'     placeholder = "A placeholder",
-#'     btnSearch = icon("magnifying-glass"),
-#'     btnReset = icon("xmark"),
-#'     width = "450px"
-#'   ),
-#'   br(),
-#'   verbatimTextOutput(outputId = "res"),
-#'   br(),
-#'   textInput(
-#'     inputId = "update_search",
-#'     label = "Update search"
-#'   ),
-#'   checkboxInput(
-#'     inputId = "trigger_search",
-#'     label = "Trigger update search",
-#'     value = TRUE
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint({
-#'     input$search
-#'   })
-#'
-#'   observeEvent(input$update_search, {
-#'     updateSearchInput(
-#'       session = session,
-#'       inputId = "search",
-#'       value = input$update_search,
-#'       trigger = input$trigger_search
+#'   ui <- fluidPage(
+#'     tags$h2("Update searchinput"),
+#'     searchInput(
+#'       inputId = "search", label = "Enter your text",
+#'       placeholder = "A placeholder",
+#'       btnSearch = icon("magnifying-glass"),
+#'       btnReset = icon("xmark"),
+#'       width = "450px"
+#'     ),
+#'     br(),
+#'     verbatimTextOutput(outputId = "res"),
+#'     br(),
+#'     textInput(
+#'       inputId = "update_search",
+#'       label = "Update search"
+#'     ),
+#'     checkboxInput(
+#'       inputId = "trigger_search",
+#'       label = "Trigger update search",
+#'       value = TRUE
 #'     )
-#'   }, ignoreInit = TRUE)
-#' }
+#'   )
 #'
-#' shinyApp(ui, server)
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint({
+#'       input$search
+#'     })
 #'
+#'     observeEvent(input$update_search,
+#'       {
+#'         updateSearchInput(
+#'           session = session,
+#'           inputId = "search",
+#'           value = input$update_search,
+#'           trigger = input$trigger_search
+#'         )
+#'       },
+#'       ignoreInit = TRUE
+#'     )
+#'   }
+#'
+#'   shinyApp(ui, server)
 #' }
-updateSearchInput <- function (session, inputId, label = NULL, value = NULL, placeholder = NULL, trigger = FALSE) {
-  message <- list(label = label, value = value,
-                  placeholder = placeholder,
-                  trigger = trigger,
-                  id = inputId)
+updateSearchInput <- function(session, inputId, label = NULL, value = NULL, placeholder = NULL, trigger = FALSE) {
+  message <- list(
+    label = label, value = value,
+    placeholder = placeholder,
+    trigger = trigger,
+    id = inputId
+  )
   message <- dropNulls(message)
   session$sendInputMessage(inputId, message)
 }
-
-
-

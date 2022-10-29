@@ -11,9 +11,7 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'
 #'   demoNoUiSlider("color")
-#'
 #' }
 demoNoUiSlider <- function(example = "color") {
   example <- match.arg(arg = example, choices = c("color", "update", "behaviour", "more", "format"))
@@ -37,9 +35,7 @@ demoNoUiSlider <- function(example = "color") {
 #'
 #' @examples
 #' if (interactive()) {
-#'
 #'   demoAirDatepicker("datepicker")
-#'
 #' }
 demoAirDatepicker <- function(example = "datepicker") {
   example <- match.arg(arg = example, choices = c("datepicker", "timepicker", "months", "years", "update"))
@@ -56,9 +52,7 @@ demoAirDatepicker <- function(example = "datepicker") {
 #'
 #' @examples
 #' if (interactive()) {
-#'
 #'   demoNumericRange()
-#'
 #' }
 demoNumericRange <- function() {
   shiny::shinyAppFile(

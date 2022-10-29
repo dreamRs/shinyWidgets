@@ -11,7 +11,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   options(warn = 2) # turns warnings into errors
   onStop(function() {
     options(warn = 0)
@@ -27,8 +26,8 @@ server <- function(input, output, session) {
   output$file_value <- renderPrint({
     head(r())
   })
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

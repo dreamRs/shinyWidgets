@@ -63,4 +63,3 @@ $.extend(switchInputBinding, {
 });
 
 Shiny.inputBindings.register(switchInputBinding, "shinyWidgets.switchInput");
-

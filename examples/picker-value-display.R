@@ -1,7 +1,6 @@
 ### Customize the values displayed in the box ----
 
 if (interactive()) {
-
   library(shiny)
   library(shinyWidgets)
 
@@ -30,8 +29,10 @@ if (interactive()) {
       multiple = TRUE,
       choices = rownames(mtcars),
       selected = rownames(mtcars)[1:5],
-      options = list(`selected-text-format`= "static",
-                     title = "Won't change")
+      options = list(
+        `selected-text-format` = "static",
+        title = "Won't change"
+      )
     ),
     br(),
     pickerInput(
@@ -40,7 +41,7 @@ if (interactive()) {
       multiple = TRUE,
       choices = rownames(mtcars),
       selected = rownames(mtcars)[1:5],
-      options = list(`selected-text-format`= "count")
+      options = list(`selected-text-format` = "count")
     ),
     br(),
     pickerInput(
@@ -50,7 +51,7 @@ if (interactive()) {
       choices = rownames(mtcars),
       selected = rownames(mtcars)[1:5],
       options = list(
-        `selected-text-format`= "count",
+        `selected-text-format` = "count",
         `count-selected-text` = "{0} models choosed (on a total of {1})"
       )
     )
@@ -61,6 +62,4 @@ if (interactive()) {
   }
 
   shinyApp(ui = ui, server = server)
-
 }
-

@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Pretty toggle update value"),
   br(),
-
   prettyToggle(
     inputId = "toggle1",
     label_on = "Checked!",
@@ -16,11 +15,9 @@ ui <- fluidPage(
     label = "Value to set:",
     choices = c("FALSE", "TRUE")
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$toggle1)
 
   observeEvent(input$update, {
@@ -30,8 +27,8 @@ server <- function(input, output, session) {
       value = as.logical(input$update)
     )
   })
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

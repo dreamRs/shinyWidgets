@@ -3,28 +3,24 @@ library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h2("Virtual Select (choices format)"),
-
   virtualSelectInput(
     inputId = "sel1",
     label = "Simple vector:",
     choices = month.name
   ),
   verbatimTextOutput("res1"),
-
   virtualSelectInput(
     inputId = "sel2",
     label = "Named vector:",
     choices = setNames(month.abb, month.name)
   ),
   verbatimTextOutput("res2"),
-
   virtualSelectInput(
     inputId = "sel3",
     label = "Named list:",
     choices = setNames(as.list(month.abb), month.name)
   ),
   verbatimTextOutput("res3"),
-
   virtualSelectInput(
     inputId = "sel4",
     label = "With groups:",
@@ -36,7 +32,6 @@ ui <- fluidPage(
     )
   ),
   verbatimTextOutput("res4"),
-
   virtualSelectInput(
     inputId = "sel5",
     label = "Already formated list:",
@@ -46,7 +41,6 @@ ui <- fluidPage(
     )
   ),
   verbatimTextOutput("res5"),
-
   virtualSelectInput(
     inputId = "sel6",
     label = "With HTML in choices:",
@@ -71,5 +65,6 @@ server <- function(input, output, session) {
   output$res6 <- renderPrint(input$sel6)
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

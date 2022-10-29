@@ -32,47 +32,44 @@
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
+#'   ui <- fluidPage(
+#'     br(),
+#'     sliderTextInput(
+#'       inputId = "mySliderText",
+#'       label = "Month range slider:",
+#'       choices = month.name,
+#'       selected = month.name[c(4, 7)]
+#'     ),
+#'     verbatimTextOutput(outputId = "result")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   br(),
-#'   sliderTextInput(
-#'     inputId = "mySliderText",
-#'     label = "Month range slider:",
-#'     choices = month.name,
-#'     selected = month.name[c(4, 7)]
-#'   ),
-#'   verbatimTextOutput(outputId = "result")
-#' )
+#'   server <- function(input, output, session) {
+#'     output$result <- renderPrint(str(input$mySliderText))
+#'   }
 #'
-#' server <- function(input, output, session) {
-#'   output$result <- renderPrint(str(input$mySliderText))
+#'   shinyApp(ui = ui, server = server)
 #' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#' }
-sliderTextInput <- function (inputId,
-                             label,
-                             choices,
-                             selected = NULL,
-                             animate = FALSE,
-                             grid = FALSE,
-                             hide_min_max = FALSE,
-                             from_fixed = FALSE,
-                             to_fixed = FALSE,
-                             from_min = NULL,
-                             from_max = NULL,
-                             to_min = NULL,
-                             to_max = NULL,
-                             force_edges = FALSE,
-                             width = NULL,
-                             pre = NULL,
-                             post = NULL,
-                             dragRange = TRUE) {
-
+sliderTextInput <- function(inputId,
+                            label,
+                            choices,
+                            selected = NULL,
+                            animate = FALSE,
+                            grid = FALSE,
+                            hide_min_max = FALSE,
+                            from_fixed = FALSE,
+                            to_fixed = FALSE,
+                            from_min = NULL,
+                            from_max = NULL,
+                            to_min = NULL,
+                            to_max = NULL,
+                            force_edges = FALSE,
+                            width = NULL,
+                            pre = NULL,
+                            post = NULL,
+                            dragRange = TRUE) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   choices_as_char <- inherits(choices, c("character", "factor"))
   choices <- as.character(choices)
@@ -84,25 +81,31 @@ sliderTextInput <- function (inputId,
   }
 
   from <- match(x = selected[1], table = choices) - 1
-  if (is.na(from))
+  if (is.na(from)) {
     stop("Invalid 'selected' arguments, probably not an element of 'choices'.")
+  }
 
   if (length(selected) > 1) {
     to <- match(x = selected[2], table = choices) - 1
-    if (is.na(to))
+    if (is.na(to)) {
       stop("Invalid 'selected' arguments, probably not an element of 'choices'.")
+    }
   } else {
     to <- NULL
   }
 
-  if (!is.null(from_min))
+  if (!is.null(from_min)) {
     from_min <- match(x = from_min, table = choices) - 1
-  if (!is.null(from_max))
+  }
+  if (!is.null(from_max)) {
     from_max <- match(x = from_max, table = choices) - 1
-  if (!is.null(to_min))
+  }
+  if (!is.null(to_min)) {
     to_min <- match(x = to_min, table = choices) - 1
-  if (!is.null(to_max))
+  }
+  if (!is.null(to_max)) {
     to_max <- match(x = to_max, table = choices) - 1
+  }
 
   sliderProps <- dropNulls(list(
     class = "js-range-slider",
@@ -132,16 +135,19 @@ sliderTextInput <- function (inputId,
     `data-data-type` = if (choices_as_char) "text" else "num"
   ))
   sliderProps <- lapply(sliderProps, function(x) {
-    if (identical(x, TRUE))
+    if (identical(x, TRUE)) {
       "true"
-    else if (identical(x, FALSE))
+    } else if (identical(x, FALSE)) {
       "false"
-    else x
+    } else {
+      x
+    }
   })
   sliderTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", validateCssUnit(width), ";")
+    },
     tags$label(
       class = "control-label",
       class = if (is.null(label)) "shiny-label-null",
@@ -150,13 +156,16 @@ sliderTextInput <- function (inputId,
     ),
     do.call(htmltools::tags$input, sliderProps)
   )
-  if (identical(animate, TRUE))
+  if (identical(animate, TRUE)) {
     animate <- animationOptions()
+  }
   if (!is.null(animate) && !identical(animate, FALSE)) {
-    if (is.null(animate$playButton))
+    if (is.null(animate$playButton)) {
       animate$playButton <- icon("play", lib = "glyphicon")
-    if (is.null(animate$pauseButton))
+    }
+    if (is.null(animate$pauseButton)) {
       animate$pauseButton <- icon("pause", lib = "glyphicon")
+    }
     sliderTag <- tagAppendChild(
       sliderTag,
       tags$div(
@@ -205,45 +214,47 @@ sliderTextInput <- function (inputId,
 #'
 #' @examples
 #' if (interactive()) {
-#' library("shiny")
-#' library("shinyWidgets")
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' ui <- fluidPage(
-#'   br(),
-#'   sliderTextInput(
-#'     inputId = "mySlider",
-#'     label = "Pick a month :",
-#'     choices = month.abb,
-#'     selected = "Jan"
-#'   ),
-#'   verbatimTextOutput(outputId = "res"),
-#'   radioButtons(
-#'     inputId = "up",
-#'     label = "Update choices:",
-#'     choices = c("Abbreviations", "Full names")
-#'   )
-#' )
-#'
-#' server <- function(input, output, session) {
-#'   output$res <- renderPrint(str(input$mySlider))
-#'
-#'   observeEvent(input$up, {
-#'     choices <- switch(
-#'       input$up,
-#'       "Abbreviations" = month.abb,
-#'       "Full names" = month.name
-#'     )
-#'     updateSliderTextInput(
-#'       session = session,
+#'   ui <- fluidPage(
+#'     br(),
+#'     sliderTextInput(
 #'       inputId = "mySlider",
-#'       choices = choices
+#'       label = "Pick a month :",
+#'       choices = month.abb,
+#'       selected = "Jan"
+#'     ),
+#'     verbatimTextOutput(outputId = "res"),
+#'     radioButtons(
+#'       inputId = "up",
+#'       label = "Update choices:",
+#'       choices = c("Abbreviations", "Full names")
 #'     )
-#'   }, ignoreInit = TRUE)
-#' }
+#'   )
 #'
-#' shinyApp(ui = ui, server = server)
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint(str(input$mySlider))
+#'
+#'     observeEvent(input$up,
+#'       {
+#'         choices <- switch(input$up,
+#'           "Abbreviations" = month.abb,
+#'           "Full names" = month.name
+#'         )
+#'         updateSliderTextInput(
+#'           session = session,
+#'           inputId = "mySlider",
+#'           choices = choices
+#'         )
+#'       },
+#'       ignoreInit = TRUE
+#'     )
+#'   }
+#'
+#'   shinyApp(ui = ui, server = server)
 #' }
-updateSliderTextInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL, from_fixed = NULL, to_fixed = NULL) {
+updateSliderTextInput <- function(session, inputId, label = NULL, selected = NULL, choices = NULL, from_fixed = NULL, to_fixed = NULL) {
   message <- dropNulls(list(
     label = label, selected = selected, choices = choices,
     from_fixed = from_fixed, to_fixed = to_fixed

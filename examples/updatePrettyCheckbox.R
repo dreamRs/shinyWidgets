@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Pretty checkbox update value"),
   br(),
-
   prettyCheckbox(
     inputId = "checkbox1",
     label = "Update me!",
@@ -18,11 +17,9 @@ ui <- fluidPage(
     label = "Value to set:",
     choices = c("FALSE", "TRUE")
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$checkbox1)
 
   observeEvent(input$update, {
@@ -32,8 +29,8 @@ server <- function(input, output, session) {
       value = as.logical(input$update)
     )
   })
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

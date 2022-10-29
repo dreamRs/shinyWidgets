@@ -85,4 +85,3 @@ $.extend(awesomeRadioBinding, {
 });
 
 Shiny.inputBindings.register(awesomeRadioBinding, "shinyWidgets.awesomeRadio");
-

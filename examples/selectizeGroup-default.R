@@ -1,7 +1,6 @@
 # Default -----------------------------------------------------------------
 
 if (interactive()) {
-
   library(shiny)
   library(shinyWidgets)
 
@@ -21,7 +20,8 @@ if (interactive()) {
               trans = list(inputId = "trans", title = "Trans:"),
               class = list(inputId = "class", title = "Class:")
             )
-          ), status = "primary"
+          ),
+          status = "primary"
         ),
         DT::dataTableOutput(outputId = "table")
       )
@@ -39,5 +39,4 @@ if (interactive()) {
   }
 
   shinyApp(ui, server)
-
 }

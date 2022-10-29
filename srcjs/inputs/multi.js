@@ -84,4 +84,3 @@ $.extend(multiInputBinding, {
   }
 });
 Shiny.inputBindings.register(multiInputBinding, "shinyWidgets.multiInput");
-

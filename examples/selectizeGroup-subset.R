@@ -2,7 +2,6 @@
 # Subset data -------------------------------------------------------------
 
 if (interactive()) {
-
   library(shiny)
   library(shinyWidgets)
 
@@ -39,7 +38,6 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     mpg_filter <- reactive({
       subset(mpg, manufacturer %in% input$car_select)
     })

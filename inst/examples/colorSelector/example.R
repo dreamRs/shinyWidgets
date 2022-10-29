@@ -26,7 +26,7 @@ choices_brewer <- list(
 # Viridis palette (we remove the alpha from hex code because it's not supported in all browsers)
 col2Hex <- function(col) {
   mat <- grDevices::col2rgb(col, alpha = TRUE)
-  grDevices::rgb(mat[1, ]/255, mat[2, ]/255, mat[3,]/255)
+  grDevices::rgb(mat[1, ] / 255, mat[2, ] / 255, mat[3, ] / 255)
 }
 
 choices_viridis <- list(

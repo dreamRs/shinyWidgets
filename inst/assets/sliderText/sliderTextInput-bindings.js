@@ -139,4 +139,3 @@ $.extend(sliderTextBinding, {
 });
 
 Shiny.inputBindings.register(sliderTextBinding, "shiny.sliderText");
-

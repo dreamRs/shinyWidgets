@@ -49,8 +49,3 @@ cat(paste(
   sprintf("#' @param %s %s Type: %s; Default: %s. ", tabOpts$Name, gsub("\\n", " ", tabOpts$Description), tabOpts$Type, tabOpts$Default),
   collapse = "\n"
 ))
-
-
-
-
-

@@ -6,7 +6,6 @@ library("shiny")
 
 
 test_that("Default", {
-
   choices <- c("A", "B", "C")
   cbtag <- checkboxGroupButtons(
     inputId = "Id029",
@@ -24,7 +23,6 @@ test_that("Default", {
 
 
 test_that("With choices", {
-
   choices <- c("A", "B", "C", "D")
   cbtag <- checkboxGroupButtons(
     inputId = "Id030",
@@ -44,7 +42,6 @@ test_that("With choices", {
 
 
 test_that("Danger status", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id031",
     label = "Label",
@@ -61,7 +58,6 @@ test_that("Danger status", {
 
 
 test_that("Success status", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id031",
     label = "Label",
@@ -97,7 +93,6 @@ test_that("Multiple status", {
 
 
 test_that("Justified", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id033",
     label = "Label",
@@ -110,7 +105,6 @@ test_that("Justified", {
 
 
 test_that("Vertical", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id034",
     label = "Label",
@@ -119,12 +113,10 @@ test_that("Vertical", {
   )
   vertical <- cbtag$children[[3]]$children[[1]]$attribs$class
   expect_identical(vertical, "btn-group-vertical")
-
 })
 
 
 test_that("Size", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id035",
     label = "Label",
@@ -134,12 +126,10 @@ test_that("Size", {
 
   lg <- cbtag$children[[3]]$children[[1]]$attribs$class
   expect_identical(lg, "btn-group btn-group-lg")
-
 })
 
 
 test_that("Icons button", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id036",
     label = "Choose a graph :",
@@ -157,7 +147,6 @@ test_that("Icons button", {
 
 
 test_that("Icons check", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id037",
     label = "Label",
@@ -172,13 +161,14 @@ test_that("Icons check", {
 
 
 test_that("Icons check / uncheck", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id038",
     label = "Label", choices = c("A", "B", "C", "D"),
     status = "primary",
-    checkIcon = list(yes = shiny::icon("ok", lib = "glyphicon"),
-                     no = shiny::icon("xmark", lib = "glyphicon"))
+    checkIcon = list(
+      yes = shiny::icon("ok", lib = "glyphicon"),
+      no = shiny::icon("xmark", lib = "glyphicon")
+    )
   )
   cbtag <- as.character(cbtag)
   expect_true(grepl(pattern = "check-btn-icon-no", x = cbtag))
@@ -186,13 +176,14 @@ test_that("Icons check / uncheck", {
 
 
 test_that("Separated buttons", {
-
   cbtag <- checkboxGroupButtons(
     inputId = "Id040",
     label = "Label",
-    choices = c("Option 1",
-                "Option 2", "Option 3",
-                "Option 4"),
+    choices = c(
+      "Option 1",
+      "Option 2", "Option 3",
+      "Option 4"
+    ),
     individual = TRUE
   )
   justified <- cbtag$children[[3]]$children[[1]]$attribs

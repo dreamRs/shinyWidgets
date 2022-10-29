@@ -23,7 +23,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   observeEvent(input$launch1, {
     ask_confirmation(
       inputId = "myconfirmation1",
@@ -59,8 +58,8 @@ server <- function(input, output, session) {
     )
   })
   output$res3 <- renderPrint(input$myconfirmation3)
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

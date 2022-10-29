@@ -75,4 +75,3 @@ $.extend(dropMenuInputBinding, {
   }
 });
 Shiny.inputBindings.register(dropMenuInputBinding, "shinyWidgets.dropMenuInput");
-

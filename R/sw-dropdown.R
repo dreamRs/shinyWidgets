@@ -26,70 +26,70 @@
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
+#'   ui <- fluidPage(
+#'     tags$h2("pickerInput in dropdown"),
+#'     br(),
+#'     dropdown(
 #'
-#' ui <- fluidPage(
-#'   tags$h2("pickerInput in dropdown"),
-#'   br(),
-#'   dropdown(
+#'       tags$h3("List of Input"),
+#'       pickerInput(
+#'         inputId = "xcol2",
+#'         label = "X Variable",
+#'         choices = names(iris),
+#'         options = list(`style` = "btn-info")
+#'       ),
+#'       pickerInput(
+#'         inputId = "ycol2",
+#'         label = "Y Variable",
+#'         choices = names(iris),
+#'         selected = names(iris)[[2]],
+#'         options = list(`style` = "btn-warning")
+#'       ),
+#'       sliderInput(
+#'         inputId = "clusters2",
+#'         label = "Cluster count",
+#'         value = 3,
+#'         min = 1, max = 9
+#'       ),
+#'       style = "unite", icon = icon("gear"),
+#'       status = "danger", width = "300px",
+#'       animate = animateOptions(
+#'         enter = animations$fading_entrances$fadeInLeftBig,
+#'         exit = animations$fading_exits$fadeOutRightBig
+#'       )
+#'     ),
+#'     plotOutput(outputId = "plot2")
+#'   )
 #'
-#'     tags$h3("List of Input"),
+#'   server <- function(input, output, session) {
+#'     selectedData2 <- reactive({
+#'       iris[, c(input$xcol2, input$ycol2)]
+#'     })
 #'
-#'     pickerInput(inputId = 'xcol2',
-#'                 label = 'X Variable',
-#'                 choices = names(iris),
-#'                 options = list(`style` = "btn-info")),
+#'     clusters2 <- reactive({
+#'       kmeans(selectedData2(), input$clusters2)
+#'     })
 #'
-#'     pickerInput(inputId = 'ycol2',
-#'                 label = 'Y Variable',
-#'                 choices = names(iris),
-#'                 selected = names(iris)[[2]],
-#'                 options = list(`style` = "btn-warning")),
+#'     output$plot2 <- renderPlot({
+#'       palette(c(
+#'         "#E41A1C", "#377EB8", "#4DAF4A",
+#'         "#984EA3", "#FF7F00", "#FFFF33",
+#'         "#A65628", "#F781BF", "#999999"
+#'       ))
 #'
-#'     sliderInput(inputId = 'clusters2',
-#'                 label = 'Cluster count',
-#'                 value = 3,
-#'                 min = 1, max = 9),
+#'       par(mar = c(5.1, 4.1, 0, 1))
+#'       plot(selectedData2(),
+#'         col = clusters2()$cluster,
+#'         pch = 20, cex = 3
+#'       )
+#'       points(clusters2()$centers, pch = 4, cex = 4, lwd = 4)
+#'     })
+#'   }
 #'
-#'     style = "unite", icon = icon("gear"),
-#'     status = "danger", width = "300px",
-#'     animate = animateOptions(
-#'       enter = animations$fading_entrances$fadeInLeftBig,
-#'       exit = animations$fading_exits$fadeOutRightBig
-#'     )
-#'   ),
-#'
-#'   plotOutput(outputId = 'plot2')
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   selectedData2 <- reactive({
-#'     iris[, c(input$xcol2, input$ycol2)]
-#'   })
-#'
-#'   clusters2 <- reactive({
-#'     kmeans(selectedData2(), input$clusters2)
-#'   })
-#'
-#'   output$plot2 <- renderPlot({
-#'     palette(c("#E41A1C", "#377EB8", "#4DAF4A",
-#'               "#984EA3", "#FF7F00", "#FFFF33",
-#'               "#A65628", "#F781BF", "#999999"))
-#'
-#'     par(mar = c(5.1, 4.1, 0, 1))
-#'     plot(selectedData2(),
-#'          col = clusters2()$cluster,
-#'          pch = 20, cex = 3)
-#'     points(clusters2()$centers, pch = 4, cex = 4, lwd = 4)
-#'   })
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 dropdown <- function(...,
                      style = "default",
@@ -105,8 +105,6 @@ dropdown <- function(...,
                      inputId = NULL,
                      block = FALSE,
                      no_outline = TRUE) {
-
-
   if (is.null(inputId)) {
     inputId <- paste0("btn-", sample.int(1e9, 1))
   }
@@ -117,22 +115,26 @@ dropdown <- function(...,
   dropcontent <- htmltools::tags$div(
     id = contentId,
     class = "sw-dropdown-content animated",
-    class = if(up) "sw-dropup-content",
-    class = if(right) "sw-dropright-content",
-    style = if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
+    class = if (up) "sw-dropup-content",
+    class = if (right) "sw-dropright-content",
+    style = if (!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
     htmltools::tags$div(class = "sw-dropdown-in", ...)
   )
   # Button
   if (style == "default") {
     btn <- tags$button(
-      class = paste0("btn btn-", status," ",
-                     ifelse(size == "default" | size == "md", "",
-                            paste0("btn-", size))),
+      class = paste0(
+        "btn btn-", status, " ",
+        ifelse(size == "default" | size == "md", "",
+          paste0("btn-", size)
+        )
+      ),
       class = "action-button",
       type = "button", id = inputId, list(icon, label),
       htmltools::tags$span(class = ifelse(test = up,
-                               yes = "glyphicon glyphicon-triangle-top",
-                               no = "glyphicon glyphicon-triangle-bottom"))
+        yes = "glyphicon glyphicon-triangle-top",
+        no = "glyphicon glyphicon-triangle-bottom"
+      ))
     )
   } else {
     btn <- actionBttn(
@@ -149,20 +151,23 @@ dropdown <- function(...,
 
 
   # Final tag
-  dropdownTag <- htmltools::tags$div(class = "sw-dropdown", id=dropId, btn, dropcontent)
+  dropdownTag <- htmltools::tags$div(class = "sw-dropdown", id = dropId, btn, dropcontent)
 
 
   # Tooltip
-  if (identical(tooltip, TRUE))
+  if (identical(tooltip, TRUE)) {
     tooltip <- tooltipOptions(title = label)
+  }
 
   if (!is.null(tooltip) && !identical(tooltip, FALSE)) {
     tooltip <- lapply(tooltip, function(x) {
-      if (identical(x, TRUE))
+      if (identical(x, TRUE)) {
         "true"
-      else if (identical(x, FALSE))
+      } else if (identical(x, FALSE)) {
         "false"
-      else x
+      } else {
+        x
+      }
     })
     tooltipJs <- htmltools::tags$script(
       sprintf(
@@ -174,8 +179,9 @@ dropdown <- function(...,
   }
 
   # Animate
-  if (identical(animate, TRUE))
+  if (identical(animate, TRUE)) {
     animate <- animateOptions()
+  }
 
   if (!is.null(animate) && !identical(animate, FALSE)) {
     dropdownTag <- htmltools::tagAppendChild(
@@ -223,13 +229,11 @@ dropdown <- function(...,
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
-#'
-#' dropdown(
-#'  "Your contents goes here ! You can pass several elements",
-#'  circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
-#'  animate = animateOptions(enter = "fadeInDown", exit = "fadeOutUp", duration = 3)
-#' )
-#'
+#'   dropdown(
+#'     "Your contents goes here ! You can pass several elements",
+#'     circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
+#'     animate = animateOptions(enter = "fadeInDown", exit = "fadeOutUp", duration = 3)
+#'   )
 #' }
 animateOptions <- function(enter = "fadeInDown", exit = "fadeOutUp", duration = 1) {
   list(enter = enter, exit = exit, duration = duration)
@@ -246,8 +250,3 @@ animateOptions <- function(enter = "fadeInDown", exit = "fadeOutUp", duration = 
 #' @format A list of lists
 #' @source \url{https://github.com/animate-css/animate.css}
 "animations"
-
-
-
-
-

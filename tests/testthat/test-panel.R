@@ -3,7 +3,6 @@ context("panel")
 
 
 test_that("Default", {
-
   tagp <- panel(
     "Content goes here",
     shiny::checkboxInput(inputId = "id1", label = "Label")
@@ -15,7 +14,6 @@ test_that("Default", {
 
 
 test_that("With header and footer", {
-
   tagp <- panel(
     "Content goes here",
     shiny::checkboxInput(inputId = "id2", label = "Label"),
@@ -28,7 +26,6 @@ test_that("With header and footer", {
 
 
 test_that("With status", {
-
   tagp <- panel(
     "Content goes here",
     shiny::checkboxInput(inputId = "id3", label = "Label"),

@@ -2,18 +2,19 @@ context("Sweet Alert")
 
 
 test_that("insertUI Sweet Alert", {
-
   session <- as.environment(list(
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     },
     sendCustomMessage = function(type, message) {
       session$lastCustomMessage <- list(type = type, message = message)
     },
     sendInsertUI = function(selector, multiple,
                             where, content) {
-      session$lastInsertUI <- list(selector = selector, multiple = multiple,
-                                   where = where, content = content)
+      session$lastInsertUI <- list(
+        selector = selector, multiple = multiple,
+        where = where, content = content
+      )
     },
     onFlushed = function(callback, once) {
       list(callback = callback, once = once)
@@ -29,18 +30,19 @@ test_that("insertUI Sweet Alert", {
 
 
 test_that("sendSweetAlert", {
-
   session <- as.environment(list(
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     },
     sendCustomMessage = function(type, message) {
       session$lastCustomMessage <- list(type = type, message = message)
     },
     sendInsertUI = function(selector, multiple,
                             where, content) {
-      session$lastInsertUI <- list(selector = selector, multiple = multiple,
-                                   where = where, content = content)
+      session$lastInsertUI <- list(
+        selector = selector, multiple = multiple,
+        where = where, content = content
+      )
     },
     onFlushed = function(callback, once) {
       list(callback = callback, once = once)
@@ -65,18 +67,19 @@ test_that("sendSweetAlert", {
 
 
 test_that("confirmSweetAlert", {
-
   session <- as.environment(list(
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     },
     sendCustomMessage = function(type, message) {
       session$lastCustomMessage <- list(type = type, message = message)
     },
     sendInsertUI = function(selector, multiple,
                             where, content) {
-      session$lastInsertUI <- list(selector = selector, multiple = multiple,
-                                   where = where, content = content)
+      session$lastInsertUI <- list(
+        selector = selector, multiple = multiple,
+        where = where, content = content
+      )
     },
     onFlushed = function(callback, once) {
       list(callback = callback, once = once)
@@ -101,18 +104,19 @@ test_that("confirmSweetAlert", {
 
 
 test_that("inputSweetAlert", {
-
   session <- as.environment(list(
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     },
     sendCustomMessage = function(type, message) {
       session$lastCustomMessage <- list(type = type, message = message)
     },
     sendInsertUI = function(selector, multiple,
                             where, content) {
-      session$lastInsertUI <- list(selector = selector, multiple = multiple,
-                                   where = where, content = content)
+      session$lastInsertUI <- list(
+        selector = selector, multiple = multiple,
+        where = where, content = content
+      )
     },
     onFlushed = function(callback, once) {
       list(callback = callback, once = once)
@@ -137,18 +141,19 @@ test_that("inputSweetAlert", {
 
 
 test_that("progressSweetAlert", {
-
   session <- as.environment(list(
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     },
     sendCustomMessage = function(type, message) {
       session$lastCustomMessage <- list(type = type, message = message)
     },
     sendInsertUI = function(selector, multiple,
                             where, content) {
-      session$lastInsertUI <- list(selector = selector, multiple = multiple,
-                                   where = where, content = content)
+      session$lastInsertUI <- list(
+        selector = selector, multiple = multiple,
+        where = where, content = content
+      )
     },
     onFlushed = function(callback, once) {
       list(callback = callback, once = once)

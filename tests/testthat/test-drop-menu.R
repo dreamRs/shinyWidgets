@@ -1,7 +1,6 @@
 context("drop-menu")
 
 test_that("dropMenu works", {
-
   tag <- dropMenu(
     shiny::actionButton("go0", "See what"),
     shiny::tags$div(
@@ -19,7 +18,6 @@ test_that("dropMenu works", {
 
 
 test_that("dropMenu errors", {
-
   expect_error(
     dropMenu(
       shiny::textInput("ID", "Text:"),
@@ -39,12 +37,10 @@ test_that("dropMenu errors", {
       arrow = FALSE
     )
   )
-
 })
 
 
 test_that("dropMenuOptions works", {
-
   opts <- dropMenuOptions(duration = 500, custom = TRUE)
 
   expect_is(opts, "list")

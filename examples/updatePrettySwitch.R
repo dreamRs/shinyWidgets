@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Pretty switch update value"),
   br(),
-
   prettySwitch(inputId = "switch1", label = "Update me !"),
   verbatimTextOutput(outputId = "res1"),
   radioButtons(
@@ -12,11 +11,9 @@ ui <- fluidPage(
     label = "Value to set:",
     choices = c("FALSE", "TRUE")
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$switch1)
 
   observeEvent(input$update, {
@@ -26,8 +23,8 @@ server <- function(input, output, session) {
       value = as.logical(input$update)
     )
   })
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

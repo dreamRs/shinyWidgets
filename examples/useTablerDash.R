@@ -64,11 +64,9 @@ if (interactive()) {
     ui = fluidPage(
       useTablerDash(),
       chooseSliderSkin("Nice"),
-
       h1("Import tablerDash elements inside shiny!", align = "center"),
       h5("Don't need any sidebar, navbar, ...", align = "center"),
       h5("Only focus on basic elements for a pure interface", align = "center"),
-
       fluidRow(
         column(
           width = 3,
@@ -129,7 +127,8 @@ if (interactive()) {
           numericInput(
             inputId = "totalStorage",
             label = "Enter storage capacity",
-            value = 1000),
+            value = 1000
+          ),
           uiOutput("info"),
           knobInput(
             inputId = "knob",
@@ -148,7 +147,6 @@ if (interactive()) {
       )
     ),
     server = function(input, output) {
-
       output$distPlot <- renderPlot({
         if (input$enable_distPlot) hist(rnorm(input$obs))
       })
@@ -170,7 +168,6 @@ if (interactive()) {
           tablerProgress(value = input$knob, status = "red", size = "sm")
         )
       })
-
     }
   )
 }

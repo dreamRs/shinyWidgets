@@ -96,4 +96,3 @@ $.extend(autonumericInputBinding, {
 });
 
 Shiny.inputBindings.register(autonumericInputBinding, "shinyWidgets.autonumericInput");
-

@@ -75,4 +75,3 @@ $.extend(searchInputBinding, {
   }
 });
 Shiny.inputBindings.register(searchInputBinding, "shinyWidgets.searchInput");
-

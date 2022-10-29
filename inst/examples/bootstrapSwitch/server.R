@@ -20,7 +20,6 @@ library("shiny")
 library("shinyWidgets")
 
 function(input, output, session) {
-
   lapply(
     X = seq_len(8),
     FUN = function(i) {

@@ -22,54 +22,52 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#'
-#' data("mpg", package = "ggplot2")
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
 #'
-#' ui <- fluidPage(
-#'   fluidRow(
-#'     column(
-#'       width = 10, offset = 1,
-#'       tags$h3("Filter data with picker group"),
-#'       panel(
-#'         pickerGroupUI(
-#'           id = "my-filters",
-#'           params = list(
-#'             manufacturer = list(inputId = "manufacturer", label = "Manufacturer:"),
-#'             model = list(inputId = "model", label = "Model:"),
-#'             trans = list(inputId = "trans", label = "Trans:"),
-#'             class = list(inputId = "class", label = "Class:")
-#'           )
-#'         ), status = "primary"
-#'       ),
-#'       DT::dataTableOutput(outputId = "table")
+#'   data("mpg", package = "ggplot2")
+#'
+#'
+#'   ui <- fluidPage(
+#'     fluidRow(
+#'       column(
+#'         width = 10, offset = 1,
+#'         tags$h3("Filter data with picker group"),
+#'         panel(
+#'           pickerGroupUI(
+#'             id = "my-filters",
+#'             params = list(
+#'               manufacturer = list(inputId = "manufacturer", label = "Manufacturer:"),
+#'               model = list(inputId = "model", label = "Model:"),
+#'               trans = list(inputId = "trans", label = "Trans:"),
+#'               class = list(inputId = "class", label = "Class:")
+#'             )
+#'           ),
+#'           status = "primary"
+#'         ),
+#'         DT::dataTableOutput(outputId = "table")
+#'       )
 #'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
-#'   res_mod <- callModule(
-#'     module = pickerGroupServer,
-#'     id = "my-filters",
-#'     data = mpg,
-#'     vars = c("manufacturer", "model", "trans", "class")
-#'   )
-#'   output$table <- DT::renderDataTable(res_mod())
-#' }
+#'   server <- function(input, output, session) {
+#'     res_mod <- callModule(
+#'       module = pickerGroupServer,
+#'       id = "my-filters",
+#'       data = mpg,
+#'       vars = c("manufacturer", "model", "trans", "class")
+#'     )
+#'     output$table <- DT::renderDataTable(res_mod())
+#'   }
 #'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 #'
 #'
 #' ### Not inline example
 #'
 #' if (interactive()) {
-#'
 #'   library(shiny)
 #'   library(shinyWidgets)
 #'
@@ -111,23 +109,21 @@
 #'   }
 #'
 #'   shinyApp(ui, server)
-#'
 #' }
 pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters", options = list(), inline = TRUE) {
-
   # Namespace
   ns <- NS(id)
 
   if (isTRUE(inline)) {
     tagPicker <- tags$div(
-      class="btn-group-justified picker-group",
-      role="group", `data-toggle`="buttons",
+      class = "btn-group-justified picker-group",
+      role = "group", `data-toggle` = "buttons",
       lapply(
         X = seq_along(params),
         FUN = function(x) {
           input <- params[[x]]
           tagSelect <- tags$div(
-            class="btn-group",
+            class = "btn-group",
             pickerInput(
               inputId = ns(input$inputId),
               label = input$label,
@@ -139,7 +135,7 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
                 x = options,
                 val = list(
                   `actions-box` = FALSE,
-                  `selected-text-format`= "count > 5",
+                  `selected-text-format` = "count > 5",
                   `count-selected-text` = "{0} choices (on a total of {1})"
                 )
               )
@@ -164,7 +160,7 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
             x = options,
             val = list(
               `actions-box` = FALSE,
-              `selected-text-format`= "count > 5",
+              `selected-text-format` = "count > 5",
               `count-selected-text` = "{0} choices (on a total of {1})"
             )
           )
@@ -177,9 +173,9 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
     singleton(
       tagList(
         tags$link(
-          rel="stylesheet",
-          type="text/css",
-          href="shinyWidgets/modules/styles-modules.css"
+          rel = "stylesheet",
+          type = "text/css",
+          href = "shinyWidgets/modules/styles-modules.css"
         ), toggleDisplayUi()
       )
     ),
@@ -192,7 +188,6 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
       style = "float: right;"
     )
   )
-
 }
 
 #' @param input standard \code{shiny} input.
@@ -207,7 +202,8 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
 #' @rdname pickerGroup-module
 #' @importFrom shiny observeEvent reactiveValues reactive observe reactiveValuesToList
 #' @importFrom stats aggregate as.formula
-pickerGroupServer <- function(input, output, session, data, vars) { # nocov start
+pickerGroupServer <- function(input, output, session, data, vars) {
+  # nocov start
 
   data <- as.data.frame(data)
 
@@ -297,5 +293,3 @@ pickerGroupServer <- function(input, output, session, data, vars) { # nocov star
   }))
 }
 # nocov end
-
-

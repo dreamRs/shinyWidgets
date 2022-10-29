@@ -4,7 +4,6 @@ if (interactive()) {
 
   ui <- fluidPage(
     tags$h2("Drop Menu Inception"),
-
     dropMenu(
       actionButton("open", "See what's inside"),
       options = list(distance = 0),
@@ -38,7 +37,6 @@ if (interactive()) {
         placement = "right"
       )
     )
-
   )
 
   server <- function(input, output, session) {

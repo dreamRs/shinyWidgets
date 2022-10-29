@@ -3,11 +3,10 @@ context("updateMaterialSwitch")
 
 
 test_that("Send message", {
-
   session <- as.environment(list(
     ns = identity,
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     }
   ))
 
@@ -15,5 +14,4 @@ test_that("Send message", {
   resultSwitch <- session$lastInputMessage
 
   expect_true(resultSwitch$message$value)
-
 })

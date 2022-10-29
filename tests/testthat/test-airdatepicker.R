@@ -3,7 +3,6 @@ context("airDatePicker")
 
 
 test_that("Dependencies", {
-
   air <- airDatepickerInput(
     inputId = "default",
     label = "First example:"
@@ -18,7 +17,6 @@ test_that("Dependencies", {
 
 
 test_that("Default", {
-
   air <- airDatepickerInput(
     inputId = "default",
     label = "First example:",
@@ -35,13 +33,11 @@ test_that("Default", {
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker")
 
   expect_identical(object = options$value, expected = as.character(Sys.Date()))
-
 })
 
 
 
 test_that("Months", {
-
   air <- airMonthpickerInput(
     inputId = "month",
     label = "First example:"
@@ -57,13 +53,11 @@ test_that("Months", {
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker")
 
   expect_identical(object = options$options$view, expected = "months")
-
 })
 
 
 
 test_that("Years", {
-
   air <- airYearpickerInput(
     inputId = "year",
     label = "First example:"
@@ -79,9 +73,4 @@ test_that("Years", {
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker")
 
   expect_identical(object = options$options$view, expected = "years")
-
 })
-
-
-
-

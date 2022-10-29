@@ -11,4 +11,3 @@ export function updateLabel(labelTxt, labelNode) {
     labelNode.removeClass("shiny-label-null");
   }
 }
-

@@ -3,12 +3,11 @@ context("updateCheckboxGroupButtons")
 
 
 test_that("Send message", {
-
   session <- as.environment(list(
     ns = identity,
     getCurrentTheme = function() NULL,
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     }
   ))
 
@@ -17,8 +16,7 @@ test_that("Send message", {
 
   expect_null(resultCBGB$message$selected)
   expect_true(grepl('"idawcbsw"', resultCBGB$message$options))
-  expect_true(grepl('primary', resultCBGB$message$options))
-
+  expect_true(grepl("primary", resultCBGB$message$options))
 })
 
 
@@ -28,7 +26,7 @@ test_that("Works in modules", {
       ns = shiny::NS(moduleId),
       getCurrentTheme = function() NULL,
       sendInputMessage = function(inputId, message) {
-        session$lastInputMessage = list(id = inputId, message = message)
+        session$lastInputMessage <- list(id = inputId, message = message)
       }
     ))
     session
@@ -42,4 +40,3 @@ test_that("Works in modules", {
   expect_equal(object = resultCBGB$id, expected = "idawcbsw")
   expect_true(grepl('"modA-idawcbsw"', resultCBGB$message$options))
 })
-

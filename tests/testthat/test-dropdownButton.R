@@ -3,7 +3,6 @@ context("dropdownButton")
 
 
 test_that("Default", {
-
   tagdropBtn <- dropdownButton(
     "Your contents goes here ! You can pass several elements",
     circle = TRUE, status = "danger", icon = shiny::icon("gear"), width = "300px",
@@ -15,9 +14,9 @@ test_that("Default", {
 
 
 test_that("InputId", {
-
   tagdropBtn <- dropdownButton(
-    "Your contents goes here ! You can pass several elements", inputId = "MYID",
+    "Your contents goes here ! You can pass several elements",
+    inputId = "MYID",
     circle = FALSE, status = "danger", icon = shiny::icon("gear"), width = "300px"
   )
 

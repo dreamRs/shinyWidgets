@@ -72,4 +72,3 @@ $.extend(textInputIconBinding, {
   }
 });
 Shiny.inputBindings.register(textInputIconBinding, "shinyWidgets.textInputIcon");
-

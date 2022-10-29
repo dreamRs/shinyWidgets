@@ -23,61 +23,63 @@
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
-#'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#'
-#' # simple use
-#'
-#' ui <- fluidPage(
-#'   multiInput(
-#'     inputId = "id", label = "Fruits :",
-#'     choices = c("Banana", "Blueberry", "Cherry",
-#'                 "Coconut", "Grapefruit", "Kiwi",
-#'                 "Lemon", "Lime", "Mango", "Orange",
-#'                 "Papaya"),
-#'     selected = "Banana", width = "350px"
-#'   ),
-#'   verbatimTextOutput(outputId = "res")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'   output$res <- renderPrint({
-#'     input$id
-#'   })
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
 #'
-#' # with options
+#'   # simple use
 #'
-#' ui <- fluidPage(
-#'   multiInput(
-#'     inputId = "id", label = "Fruits :",
-#'     choices = c("Banana", "Blueberry", "Cherry",
-#'                 "Coconut", "Grapefruit", "Kiwi",
-#'                 "Lemon", "Lime", "Mango", "Orange",
-#'                 "Papaya"),
-#'     selected = "Banana", width = "400px",
-#'     options = list(
-#'       enable_search = FALSE,
-#'       non_selected_header = "Choose between:",
-#'       selected_header = "You have selected:"
-#'     )
-#'   ),
-#'   verbatimTextOutput(outputId = "res")
-#' )
+#'   ui <- fluidPage(
+#'     multiInput(
+#'       inputId = "id", label = "Fruits :",
+#'       choices = c(
+#'         "Banana", "Blueberry", "Cherry",
+#'         "Coconut", "Grapefruit", "Kiwi",
+#'         "Lemon", "Lime", "Mango", "Orange",
+#'         "Papaya"
+#'       ),
+#'       selected = "Banana", width = "350px"
+#'     ),
+#'     verbatimTextOutput(outputId = "res")
+#'   )
 #'
-#' server <- function(input, output, session) {
-#'   output$res <- renderPrint({
-#'     input$id
-#'   })
-#' }
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint({
+#'       input$id
+#'     })
+#'   }
 #'
-#' shinyApp(ui = ui, server = server)
+#'   shinyApp(ui = ui, server = server)
 #'
+#'
+#'   # with options
+#'
+#'   ui <- fluidPage(
+#'     multiInput(
+#'       inputId = "id", label = "Fruits :",
+#'       choices = c(
+#'         "Banana", "Blueberry", "Cherry",
+#'         "Coconut", "Grapefruit", "Kiwi",
+#'         "Lemon", "Lime", "Mango", "Orange",
+#'         "Papaya"
+#'       ),
+#'       selected = "Banana", width = "400px",
+#'       options = list(
+#'         enable_search = FALSE,
+#'         non_selected_header = "Choose between:",
+#'         selected_header = "You have selected:"
+#'       )
+#'     ),
+#'     verbatimTextOutput(outputId = "res")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint({
+#'       input$id
+#'     })
+#'   }
+#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 multiInput <- function(inputId,
                        label,
@@ -89,9 +91,11 @@ multiInput <- function(inputId,
                        choiceValues = NULL) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   selectTag <- tags$select(
-    id = inputId, multiple = "multiple", class= "form-control multijs",
-    makeChoices(choices = choices, choiceNames = choiceNames,
-                choiceValues = choiceValues, selected = selected)
+    id = inputId, multiple = "multiple", class = "form-control multijs",
+    makeChoices(
+      choices = choices, choiceNames = choiceNames,
+      choiceValues = choiceValues, selected = selected
+    )
   )
   tags$div(
     class = "form-group shiny-input-container",
@@ -118,8 +122,9 @@ multiInput <- function(inputId,
 
 makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL, selected = NULL) {
   if (is.null(choices)) {
-    if (is.null(choiceValues))
+    if (is.null(choiceValues)) {
       stop("If choices = NULL, choiceValues must be not NULL")
+    }
     if (length(choiceNames) != length(choiceValues)) {
       stop("`choiceNames` and `choiceValues` must have the same length.")
     }
@@ -129,8 +134,10 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
       lapply(
         X = seq_along(choiceNames),
         FUN = function(i) {
-          htmltools::tags$option(value = choiceValues[[i]], as.character(choiceNames[[i]]),
-                      selected = if(choiceValues[[i]] %in% selected) "selected")
+          htmltools::tags$option(
+            value = choiceValues[[i]], as.character(choiceNames[[i]]),
+            selected = if (choiceValues[[i]] %in% selected) "selected"
+          )
         }
       )
     )
@@ -139,8 +146,10 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
     tagList(
       lapply(
         X = seq_along(choices), FUN = function(i) {
-          htmltools::tags$option(value = choices[[i]], names(choices)[i],
-                      selected = if(choices[[i]] %in% selected) "selected")
+          htmltools::tags$option(
+            value = choices[[i]], names(choices)[i],
+            selected = if (choices[[i]] %in% selected) "selected"
+          )
         }
       )
     )
@@ -167,67 +176,70 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
 #'
 #' @examples
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinyWidgets)
+#'   fruits <- c(
+#'     "Banana", "Blueberry", "Cherry",
+#'     "Coconut", "Grapefruit", "Kiwi",
+#'     "Lemon", "Lime", "Mango", "Orange",
+#'     "Papaya"
+#'   )
 #'
-#' fruits <- c("Banana", "Blueberry", "Cherry",
-#'             "Coconut", "Grapefruit", "Kiwi",
-#'             "Lemon", "Lime", "Mango", "Orange",
-#'             "Papaya")
-#'
-#' ui <- fluidPage(
-#'   tags$h2("Multi update"),
-#'   multiInput(
-#'     inputId = "my_multi",
-#'     label = "Fruits :",
-#'     choices = fruits,
-#'     selected = "Banana",
-#'     width = "350px"
-#'   ),
-#'   verbatimTextOutput(outputId = "res"),
-#'   selectInput(
-#'     inputId = "selected",
-#'     label = "Update selected:",
-#'     choices = fruits,
-#'     multiple = TRUE
-#'   ),
-#'   textInput(inputId = "label", label = "Update label:")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint(input$my_multi)
-#'
-#'   observeEvent(input$selected, {
-#'     updateMultiInput(
-#'       session = session,
+#'   ui <- fluidPage(
+#'     tags$h2("Multi update"),
+#'     multiInput(
 #'       inputId = "my_multi",
-#'       selected = input$selected
+#'       label = "Fruits :",
+#'       choices = fruits,
+#'       selected = "Banana",
+#'       width = "350px"
+#'     ),
+#'     verbatimTextOutput(outputId = "res"),
+#'     selectInput(
+#'       inputId = "selected",
+#'       label = "Update selected:",
+#'       choices = fruits,
+#'       multiple = TRUE
+#'     ),
+#'     textInput(inputId = "label", label = "Update label:")
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint(input$my_multi)
+#'
+#'     observeEvent(input$selected, {
+#'       updateMultiInput(
+#'         session = session,
+#'         inputId = "my_multi",
+#'         selected = input$selected
+#'       )
+#'     })
+#'
+#'     observeEvent(input$label,
+#'       {
+#'         updateMultiInput(
+#'           session = session,
+#'           inputId = "my_multi",
+#'           label = input$label
+#'         )
+#'       },
+#'       ignoreInit = TRUE
 #'     )
-#'   })
+#'   }
 #'
-#'   observeEvent(input$label, {
-#'     updateMultiInput(
-#'       session = session,
-#'       inputId = "my_multi",
-#'       label = input$label
-#'     )
-#'   }, ignoreInit = TRUE)
+#'   shinyApp(ui, server)
 #' }
-#'
-#' shinyApp(ui, server)
-#'
-#' }
-updateMultiInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL) {
-  choices <- if (!is.null(choices))
+updateMultiInput <- function(session, inputId, label = NULL, selected = NULL, choices = NULL) {
+  choices <- if (!is.null(choices)) {
     choicesWithNames(choices)
-  if (!is.null(selected))
+  }
+  if (!is.null(selected)) {
     selected <- validateSelected(selected, choices, inputId)
-  options <- if (!is.null(choices))
+  }
+  options <- if (!is.null(choices)) {
     as.character(makeChoices(choices, selected = selected))
+  }
   message <- dropNulls(list(label = label, options = options, value = selected))
   session$sendInputMessage(inputId, message)
 }
-
-

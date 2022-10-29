@@ -51,7 +51,6 @@ colorPickr <- function(inputId,
                        i18n = NULL,
                        pickr_width = NULL,
                        width = NULL) {
-
   theme <- match.arg(theme)
   update <- match.arg(update)
 
@@ -161,5 +160,3 @@ updateColorPickr <- function(session = getDefaultReactiveDomain(), inputId, valu
   message <- dropNulls(list(value = value, action = action))
   session$sendInputMessage(inputId, message)
 }
-
-

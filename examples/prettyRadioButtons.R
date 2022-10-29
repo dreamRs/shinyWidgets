@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Pretty radio buttons"),
   br(),
-
   fluidRow(
     column(
       width = 4,
@@ -61,18 +60,16 @@ ui <- fluidPage(
       verbatimTextOutput(outputId = "res3")
     )
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$radio1)
   output$res2 <- renderPrint(input$radio2)
   output$res3 <- renderPrint(input$radio3)
   output$res4 <- renderPrint(input$radio4)
   output$res5 <- renderPrint(input$radio5)
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

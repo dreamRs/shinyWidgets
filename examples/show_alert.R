@@ -21,7 +21,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   observeEvent(input$success, {
     show_alert(
       title = "Success !!",
@@ -43,7 +42,8 @@ server <- function(input, output, session) {
       title = NULL,
       text = tags$span(
         tags$h3("With HTML tags",
-                style = "color: steelblue;"),
+          style = "color: steelblue;"
+        ),
         "In", tags$b("bold"), "and", tags$em("italic"),
         tags$br(),
         "and",
@@ -57,8 +57,8 @@ server <- function(input, output, session) {
       html = TRUE
     )
   })
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

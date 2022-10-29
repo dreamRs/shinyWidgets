@@ -3,9 +3,7 @@ library(shinyWidgets)
 
 
 ui <- fluidPage(
-
   tags$h2("Stati Card"),
-
   fluidRow(
     column(
       width = 3,
@@ -60,12 +58,10 @@ ui <- fluidPage(
       )
     )
   )
-
 )
 
 
 server <- function(input, output, session) {
-
   observeEvent(input$update1, {
     updateStatiCard(
       id = "card1",
@@ -90,8 +86,8 @@ server <- function(input, output, session) {
       animate = TRUE
     )
   })
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

@@ -31,7 +31,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   observeEvent(input$toast, {
     show_toast(
       title = "Notification",
@@ -76,5 +75,6 @@ server <- function(input, output, session) {
   })
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

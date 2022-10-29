@@ -17,13 +17,15 @@
 #' @export
 #'
 #' @example examples/useSweetAlert.R
-useSweetAlert <- function(theme = c("sweetalert2",
-                                    "minimal",
-                                    "dark",
-                                    "bootstrap-4",
-                                    "material-ui",
-                                    "bulma",
-                                    "borderless"),
+useSweetAlert <- function(theme = c(
+                            "sweetalert2",
+                            "minimal",
+                            "dark",
+                            "bootstrap-4",
+                            "material-ui",
+                            "bulma",
+                            "borderless"
+                          ),
                           ie = FALSE) {
   tag <- tagList(
     singleton(
@@ -96,17 +98,20 @@ sendSweetAlert <- function(session = getDefaultReactiveDomain(),
     session = session
   )
   id <- paste0("placeholder-", sample.int(1e6, 1))
-  if (is.null(type))
+  if (is.null(type)) {
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
-  if (inherits(text, c("shiny.tag", "shiny.tag.list")))
+  }
+  if (inherits(text, c("shiny.tag", "shiny.tag.list"))) {
     html <- TRUE
+  }
   if (isTRUE(html)) {
     text_ <- as.character(tags$div(id = id))
   } else {
     text_ <- as.character(text)
   }
-  if (length(text_) < 1)
+  if (length(text_) < 1) {
     text_ <- NULL
+  }
   session$sendCustomMessage(
     type = "sweetalert-sw",
     message = list(
@@ -218,7 +223,6 @@ confirmSweetAlert <- function(session = getDefaultReactiveDomain(),
                               cancelOnDismiss = TRUE,
                               html = FALSE,
                               ...) {
-
   insertUI(
     selector = "body",
     where = "afterBegin",
@@ -226,15 +230,18 @@ confirmSweetAlert <- function(session = getDefaultReactiveDomain(),
     immediate = TRUE,
     session = session
   )
-  if (is.null(type))
+  if (is.null(type)) {
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
-  if (inherits(text, c("shiny.tag", "shiny.tag.list")))
+  }
+  if (inherits(text, c("shiny.tag", "shiny.tag.list"))) {
     html <- TRUE
+  }
   # If we are inside a module, turn the (relative) inputId (e.g. 'input') into an absolute input id (e.g. 'module-input')
   if (inherits(session, "session_proxy")) {
     # Keep old code working which externally uses session$ns() to create an absolute input id.
-    if (!starts_with(inputId, session$ns("")))
+    if (!starts_with(inputId, session$ns(""))) {
       inputId <- session$ns(inputId)
+    }
   }
   if (!isTRUE(html)) {
     session$sendCustomMessage(
@@ -364,9 +371,11 @@ inputSweetAlert <- function(session = getDefaultReactiveDomain(),
                             title = NULL,
                             text = NULL,
                             type = NULL,
-                            input = c("text", "password", "textarea",
-                                      "radio", "checkbox", "select",
-                                      "email", "url"),
+                            input = c(
+                              "text", "password", "textarea",
+                              "radio", "checkbox", "select",
+                              "email", "url"
+                            ),
                             inputOptions = NULL,
                             inputPlaceholder = NULL,
                             inputValidator = NULL,
@@ -382,13 +391,15 @@ inputSweetAlert <- function(session = getDefaultReactiveDomain(),
     immediate = TRUE,
     session = session
   )
-  if (is.null(type))
+  if (is.null(type)) {
     type <- jsonlite::toJSON(NULL, auto_unbox = TRUE, null = "null")
+  }
   # If we are inside a module, turn the (relative) inputId (e.g. 'input') into an absolute input id (e.g. 'module-input')
   if (inherits(session, "session_proxy")) {
     # Keep old code working which externally uses session$ns() to create an absolute input id.
-    if (!starts_with(inputId, session$ns("")))
+    if (!starts_with(inputId, session$ns(""))) {
       inputId <- session$ns(inputId)
+    }
   }
   text <- jsonlite::toJSON(text, auto_unbox = TRUE, null = "null")
   if (!is.null(inputOptions)) {
@@ -444,48 +455,44 @@ inputSweetAlert <- function(session = getDefaultReactiveDomain(),
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
 #'
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Progress bar in Sweet Alert"),
-#'   useSweetAlert(), # /!\ needed with 'progressSweetAlert'
-#'   actionButton(
-#'     inputId = "go",
-#'     label = "Launch long calculation !"
+#'   ui <- fluidPage(
+#'     tags$h1("Progress bar in Sweet Alert"),
+#'     useSweetAlert(), # /!\ needed with 'progressSweetAlert'
+#'     actionButton(
+#'       inputId = "go",
+#'       label = "Launch long calculation !"
+#'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
-#'
-#'   observeEvent(input$go, {
-#'     progressSweetAlert(
-#'       session = session, id = "myprogress",
-#'       title = "Work in progress",
-#'       display_pct = TRUE, value = 0
-#'     )
-#'     for (i in seq_len(50)) {
-#'       Sys.sleep(0.1)
-#'       updateProgressBar(
-#'         session = session,
-#'         id = "myprogress",
-#'          value = i*2
+#'   server <- function(input, output, session) {
+#'     observeEvent(input$go, {
+#'       progressSweetAlert(
+#'         session = session, id = "myprogress",
+#'         title = "Work in progress",
+#'         display_pct = TRUE, value = 0
 #'       )
-#'     }
-#'     closeSweetAlert(session = session)
-#'     sendSweetAlert(
-#'       session = session,
-#'       title =" Calculation completed !",
-#'       type = "success"
-#'     )
-#'   })
+#'       for (i in seq_len(50)) {
+#'         Sys.sleep(0.1)
+#'         updateProgressBar(
+#'           session = session,
+#'           id = "myprogress",
+#'           value = i * 2
+#'         )
+#'       }
+#'       closeSweetAlert(session = session)
+#'       sendSweetAlert(
+#'         session = session,
+#'         title = " Calculation completed !",
+#'         type = "success"
+#'       )
+#'     })
+#'   }
 #'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 progressSweetAlert <- function(session = getDefaultReactiveDomain(),
                                id,
@@ -500,8 +507,9 @@ progressSweetAlert <- function(session = getDefaultReactiveDomain(),
   # If we are inside a module, turn the (relative) id (e.g. 'input') into an absolute id (e.g. 'module-input')
   if (inherits(session, "session_proxy")) {
     # Keep old code working which externally uses session$ns() to create an absolute id.
-    if (!starts_with(id, session$ns("")))
+    if (!starts_with(id, session$ns(""))) {
       id <- session$ns(id)
+    }
   }
   sendSweetAlert(
     session = session,
@@ -555,18 +563,23 @@ progressSweetAlert <- function(session = getDefaultReactiveDomain(),
 #' @example examples/show_toast.R
 show_toast <- function(title,
                        text = NULL,
-                       type = c("default", "success", "error",
-                                "info", "warning", "question"),
+                       type = c(
+                         "default", "success", "error",
+                         "info", "warning", "question"
+                       ),
                        timer = 3000,
                        timerProgressBar = TRUE,
-                       position = c("bottom-end", "top", "top-start",
-                                    "top-end", "center", "center-start",
-                                    "center-end", "bottom", "bottom-start"),
+                       position = c(
+                         "bottom-end", "top", "top-start",
+                         "top-end", "center", "center-start",
+                         "center-end", "bottom", "bottom-start"
+                       ),
                        width = NULL,
                        session = shiny::getDefaultReactiveDomain()) {
   type <- match.arg(type)
-  if (identical(type, "default"))
+  if (identical(type, "default")) {
     type <- NULL
+  }
   position <- match.arg(position)
   insertUI(
     selector = "body",

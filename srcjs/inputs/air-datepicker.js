@@ -307,4 +307,3 @@ Shiny.inputBindings.register(
   AirDatepickerBindings,
   "shinyWidgets.AirDatepicker"
 );
-

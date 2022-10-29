@@ -7,7 +7,6 @@ ui <- fluidPage(
   tags$h1("Update", tags$code("switchInput")),
   br(),
   fluidRow(
-
     column(
       width = 4,
       panel(
@@ -21,7 +20,6 @@ ui <- fluidPage(
         heading = "Update value"
       )
     ),
-
     column(
       width = 4,
       panel(
@@ -31,7 +29,6 @@ ui <- fluidPage(
         heading = "Update label"
       )
     ),
-
     column(
       width = 4,
       panel(
@@ -51,9 +48,7 @@ ui <- fluidPage(
       )
     )
   ),
-
   fluidRow(
-
     column(
       width = 4,
       panel(
@@ -62,19 +57,22 @@ ui <- fluidPage(
         fluidRow(
           column(
             width = 6,
-            pickerInput(inputId = "updateonStatus", label = "Update onStatus:",
-                        choices = c("default", "primary", "success", "info", "warning", "danger"))
+            pickerInput(
+              inputId = "updateonStatus", label = "Update onStatus:",
+              choices = c("default", "primary", "success", "info", "warning", "danger")
+            )
           ),
           column(
             width = 6,
-            pickerInput(inputId = "updateoffStatus", label = "Update offStatus:",
-                        choices = c("default", "primary", "success", "info", "warning", "danger"))
+            pickerInput(
+              inputId = "updateoffStatus", label = "Update offStatus:",
+              choices = c("default", "primary", "success", "info", "warning", "danger")
+            )
           )
         ),
         heading = "Update onStatus & offStatusr"
       )
     ),
-
     column(
       width = 4,
       panel(
@@ -84,13 +82,10 @@ ui <- fluidPage(
         heading = "Disabled"
       )
     )
-
   )
-
 )
 
 server <- function(input, output, session) {
-
   # Update value
   observeEvent(input$updatevaluetrue, {
     updateSwitchInput(session = session, inputId = "switch1", value = TRUE)
@@ -104,46 +99,63 @@ server <- function(input, output, session) {
 
 
   # Update label
-  observeEvent(input$updatelabeltext, {
-    updateSwitchInput(session = session, inputId = "switch2", label = input$updatelabeltext)
-  }, ignoreInit = TRUE)
+  observeEvent(input$updatelabeltext,
+    {
+      updateSwitchInput(session = session, inputId = "switch2", label = input$updatelabeltext)
+    },
+    ignoreInit = TRUE
+  )
   output$resup2 <- renderPrint({
     input$switch2
   })
 
 
   # Update onLabel & offLabel
-  observeEvent(input$updateonLabel, {
-    updateSwitchInput(session = session, inputId = "switch3", onLabel = input$updateonLabel)
-  }, ignoreInit = TRUE)
-  observeEvent(input$updateoffLabel, {
-    updateSwitchInput(session = session, inputId = "switch3", offLabel = input$updateoffLabel)
-  }, ignoreInit = TRUE)
+  observeEvent(input$updateonLabel,
+    {
+      updateSwitchInput(session = session, inputId = "switch3", onLabel = input$updateonLabel)
+    },
+    ignoreInit = TRUE
+  )
+  observeEvent(input$updateoffLabel,
+    {
+      updateSwitchInput(session = session, inputId = "switch3", offLabel = input$updateoffLabel)
+    },
+    ignoreInit = TRUE
+  )
   output$resup3 <- renderPrint({
     input$switch3
   })
 
 
   # Update onStatus & offStatus
-  observeEvent(input$updateonStatus, {
-    updateSwitchInput(session = session, inputId = "switch4", onStatus = input$updateonStatus)
-  }, ignoreInit = TRUE)
-  observeEvent(input$updateoffStatus, {
-    updateSwitchInput(session = session, inputId = "switch4", offStatus = input$updateoffStatus)
-  }, ignoreInit = TRUE)
+  observeEvent(input$updateonStatus,
+    {
+      updateSwitchInput(session = session, inputId = "switch4", onStatus = input$updateonStatus)
+    },
+    ignoreInit = TRUE
+  )
+  observeEvent(input$updateoffStatus,
+    {
+      updateSwitchInput(session = session, inputId = "switch4", offStatus = input$updateoffStatus)
+    },
+    ignoreInit = TRUE
+  )
   output$resup4 <- renderPrint({
     input$switch4
   })
 
 
   # Disabled
-  observeEvent(input$disabled, {
-    updateSwitchInput(session = session, inputId = "switch5", disabled = input$disabled)
-  }, ignoreInit = TRUE)
+  observeEvent(input$disabled,
+    {
+      updateSwitchInput(session = session, inputId = "switch5", disabled = input$disabled)
+    },
+    ignoreInit = TRUE
+  )
   output$resup5 <- renderPrint({
     input$switch5
   })
-
 }
 
 shinyApp(ui = ui, server = server)

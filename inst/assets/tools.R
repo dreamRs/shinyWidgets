@@ -66,8 +66,7 @@ css_files <- css_files[
     grepl(pattern = "material-switch", x = css_files, fixed = TRUE) |
     # grepl(pattern = "multi-shiny", x = css_files) |
     grepl(pattern = "sw-color-selector", x = css_files)
-  ]
+]
 
 
 jstools::crass_file(input = css_files, output = "inst/assets/shinyWidgets.min.css")
-

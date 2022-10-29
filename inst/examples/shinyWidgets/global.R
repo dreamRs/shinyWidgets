@@ -13,8 +13,9 @@
 library(shinydashboard) # shinydashboard bs4Dash
 library(shinyWidgets)
 
-if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
+if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets"))) {
   warning("Some function(s) from GlobalEnv will override those from shinyWidgets")
+}
 
 # ids <- paste0("Id", sprintf("%03d", 1:81))
 .shinyWidgetGalleryId <- 1
@@ -28,7 +29,7 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
 
 .shinyWidgetGalleryFuns <- new.env()
 
-.shinyWidgetGalleryFuns$widget_wrapper <- function(fun, args){
+.shinyWidgetGalleryFuns$widget_wrapper <- function(fun, args) {
   raw <- paste0(
     deparse(substitute(fun)),
     gsub(
@@ -48,11 +49,11 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
     do.call(fun, args), htmltools::hr(),
     htmltools::tags$b("Value :"),
     shiny::verbatimTextOutput(outputId = paste0("res", args$inputId)),
-    htmltools::tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href=paste0("#showcode", args$inputId))),
+    htmltools::tags$b(tags$a(icon("code"), "Show code", `data-toggle` = "collapse", href = paste0("#showcode", args$inputId))),
     htmltools::tags$div(
-      class="collapse", id=paste0("showcode", args$inputId),
+      class = "collapse", id = paste0("showcode", args$inputId),
       .shinyWidgetGalleryFuns$rCodeContainer(
-        id=paste0("code", args$inputId),
+        id = paste0("code", args$inputId),
         formatted
       )
     )
@@ -68,11 +69,11 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
 
 .shinyWidgetGalleryFuns$pb_code <- function(id, ui, server) {
   htmltools::tagList(
-    htmltools::tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href=paste0("#showcode", id))),
+    htmltools::tags$b(tags$a(icon("code"), "Show code", `data-toggle` = "collapse", href = paste0("#showcode", id))),
     htmltools::tags$div(
-      class="collapse", id=paste0("showcode", id),
+      class = "collapse", id = paste0("showcode", id),
       .shinyWidgetGalleryFuns$rCodeContainer(
-        id=paste0("code", id),
+        id = paste0("code", id),
         paste(
           "# ui",
           ui,
@@ -132,4 +133,3 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
 # Message for tests
 
 message("Running shinyWidgets gallery...")
-

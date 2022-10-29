@@ -3,7 +3,6 @@ context("input-icon")
 
 
 test_that("textInputIcon works", {
-
   tag <- textInputIcon(
     inputId = "ID",
     label = "With an icon",
@@ -11,12 +10,10 @@ test_that("textInputIcon works", {
   )
 
   expect_is(tag, "shiny.tag")
-
 })
 
 
 test_that("textInputIcon works with list", {
-
   tag <- textInputIcon(
     inputId = "ID",
     label = "With an icon",
@@ -25,13 +22,11 @@ test_that("textInputIcon works with list", {
   )
 
   expect_is(tag, "shiny.tag")
-
 })
 
 
 
 test_that("textInputIcon works", {
-
   tag <- numericInputIcon(
     inputId = "ID",
     label = "With an icon",
@@ -40,12 +35,10 @@ test_that("textInputIcon works", {
   )
 
   expect_is(tag, "shiny.tag")
-
 })
 
 
 test_that("textInputIcon works with list", {
-
   tag <- numericInputIcon(
     inputId = "ID",
     label = "With an icon",
@@ -55,7 +48,4 @@ test_that("textInputIcon works with list", {
   )
 
   expect_is(tag, "shiny.tag")
-
 })
-
-

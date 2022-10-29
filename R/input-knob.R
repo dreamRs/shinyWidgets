@@ -40,31 +40,27 @@
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
+#'   ui <- fluidPage(
+#'     knobInput(
+#'       inputId = "myKnob",
+#'       label = "Display previous:",
+#'       value = 50,
+#'       min = -100,
+#'       displayPrevious = TRUE,
+#'       fgColor = "#428BCA",
+#'       inputColor = "#428BCA"
+#'     ),
+#'     verbatimTextOutput(outputId = "res")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   knobInput(
-#'     inputId = "myKnob",
-#'     label = "Display previous:",
-#'     value = 50,
-#'     min = -100,
-#'     displayPrevious = TRUE,
-#'     fgColor = "#428BCA",
-#'     inputColor = "#428BCA"
-#'   ),
-#'   verbatimTextOutput(outputId = "res")
-#' )
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint(input$myKnob)
+#'   }
 #'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint(input$myKnob)
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 knobInput <- function(inputId, label, value,
                       min = 0, max = 100, step = 1,
@@ -105,11 +101,13 @@ knobInput <- function(inputId, label, value,
     `data-immediate` = immediate
   ))
   knobParams <- lapply(knobParams, function(x) {
-    if (identical(x, TRUE))
+    if (identical(x, TRUE)) {
       "true"
-    else if (identical(x, FALSE))
+    } else if (identical(x, FALSE)) {
       "false"
-    else x
+    } else {
+      x
+    }
   })
   inputTag <- do.call(tags$input, knobParams)
   knobInputTag <- tags$div(
@@ -144,68 +142,66 @@ knobInput <- function(inputId, label, value,
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#' ui <- fluidPage(
-#'   tags$h1("knob update examples"),
-#'   br(),
-#'
-#'   fluidRow(
-#'
-#'     column(
-#'       width = 6,
-#'       knobInput(
-#'         inputId = "knob1", label = "Update value:",
-#'         value = 75, angleOffset = 90, lineCap = "round"
+#'   ui <- fluidPage(
+#'     tags$h1("knob update examples"),
+#'     br(),
+#'     fluidRow(
+#'       column(
+#'         width = 6,
+#'         knobInput(
+#'           inputId = "knob1", label = "Update value:",
+#'           value = 75, angleOffset = 90, lineCap = "round"
+#'         ),
+#'         verbatimTextOutput(outputId = "res1"),
+#'         sliderInput(
+#'           inputId = "upknob1", label = "Update knob:",
+#'           min = 0, max = 100, value = 75
+#'         )
 #'       ),
-#'       verbatimTextOutput(outputId = "res1"),
-#'       sliderInput(
-#'         inputId = "upknob1", label = "Update knob:",
-#'         min = 0, max = 100, value = 75
+#'       column(
+#'         width = 6,
+#'         knobInput(
+#'           inputId = "knob2", label = "Update label:",
+#'           value = 50, angleOffset = -125, angleArc = 250
+#'         ),
+#'         verbatimTextOutput(outputId = "res2"),
+#'         textInput(inputId = "upknob2", label = "Update label:")
 #'       )
-#'     ),
-#'
-#'     column(
-#'       width = 6,
-#'       knobInput(
-#'         inputId = "knob2", label = "Update label:",
-#'         value = 50, angleOffset = -125, angleArc = 250
-#'       ),
-#'       verbatimTextOutput(outputId = "res2"),
-#'       textInput(inputId = "upknob2", label = "Update label:")
 #'     )
-#'
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
+#'   server <- function(input, output, session) {
+#'     output$res1 <- renderPrint(input$knob1)
 #'
-#'   output$res1 <- renderPrint(input$knob1)
-#'
-#'   observeEvent(input$upknob1, {
-#'     updateKnobInput(
-#'       session = session,
-#'       inputId = "knob1",
-#'       value = input$upknob1
+#'     observeEvent(input$upknob1,
+#'       {
+#'         updateKnobInput(
+#'           session = session,
+#'           inputId = "knob1",
+#'           value = input$upknob1
+#'         )
+#'       },
+#'       ignoreInit = TRUE
 #'     )
-#'   }, ignoreInit = TRUE)
 #'
 #'
-#'   output$res2 <- renderPrint(input$knob2)
-#'   observeEvent(input$upknob2, {
-#'     updateKnobInput(
-#'       session = session,
-#'       inputId = "knob2",
-#'       label = input$upknob2
+#'     output$res2 <- renderPrint(input$knob2)
+#'     observeEvent(input$upknob2,
+#'       {
+#'         updateKnobInput(
+#'           session = session,
+#'           inputId = "knob2",
+#'           label = input$upknob2
+#'         )
+#'       },
+#'       ignoreInit = TRUE
 #'     )
-#'   }, ignoreInit = TRUE)
+#'   }
 #'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 updateKnobInput <- function(session = getDefaultReactiveDomain(),
                             inputId,
@@ -215,5 +211,3 @@ updateKnobInput <- function(session = getDefaultReactiveDomain(),
   message <- dropNulls(list(label = label, value = value, options = options))
   session$sendInputMessage(inputId, message)
 }
-
-

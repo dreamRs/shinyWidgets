@@ -169,4 +169,3 @@ function getCorrectTextColor(hex) {
     return "#ffffff";
   }
 }
-

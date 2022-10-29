@@ -4,7 +4,6 @@ if (interactive()) {
 
   ui <- fluidPage(
     tags$h3("drop example"),
-
     dropMenu(
       actionButton("go0", "See what"),
       tags$div(
@@ -20,10 +19,7 @@ if (interactive()) {
       placement = "right",
       arrow = FALSE
     ),
-
     tags$br(),
-
-
     dropMenu(
       actionButton("go", "See what"),
       tags$h3("Some inputs"),
@@ -33,9 +29,11 @@ if (interactive()) {
       ),
       selectInput(
         "variable", "Variable:",
-        c("Cylinders" = "cyl",
+        c(
+          "Cylinders" = "cyl",
           "Transmission" = "am",
-          "Gears" = "gear")
+          "Gears" = "gear"
+        )
       ),
       pickerInput(
         inputId = "pckr",
@@ -46,10 +44,12 @@ if (interactive()) {
       ),
       radioButtons(
         "dist", "Distribution type:",
-        c("Normal" = "norm",
+        c(
+          "Normal" = "norm",
           "Uniform" = "unif",
           "Log-normal" = "lnorm",
-          "Exponential" = "exp")
+          "Exponential" = "exp"
+        )
       )
     ),
     verbatimTextOutput("slider"),
@@ -59,12 +59,10 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     output$slider <- renderPrint(input$obs)
     output$select <- renderPrint(input$variable)
     output$picker <- renderPrint(input$pckr)
     output$radio <- renderPrint(input$dist)
-
   }
 
   shinyApp(ui, server)

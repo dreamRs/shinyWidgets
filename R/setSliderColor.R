@@ -16,42 +16,38 @@
 #'
 #' @examples
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinyWidgets)
+#'   ui <- fluidPage(
 #'
-#' ui <- fluidPage(
+#'     # only customize the 2 first sliders and the last one
+#'     # the color of the third one is empty
+#'     setSliderColor(c("DeepPink ", "#FF4500", "", "Teal"), c(1, 2, 4)),
+#'     sliderInput("obs", "My pink slider:",
+#'       min = 0, max = 100, value = 50
+#'     ),
+#'     sliderInput("obs2", "My orange slider:",
+#'       min = 0, max = 100, value = 50
+#'     ),
+#'     sliderInput("obs3", "My basic slider:",
+#'       min = 0, max = 100, value = 50
+#'     ),
+#'     sliderInput("obs3", "My teal slider:",
+#'       min = 0, max = 100, value = 50
+#'     ),
+#'     plotOutput("distPlot")
+#'   )
 #'
-#'   # only customize the 2 first sliders and the last one
-#'   # the color of the third one is empty
-#'   setSliderColor(c("DeepPink ", "#FF4500", "", "Teal"), c(1, 2, 4)),
-#'   sliderInput("obs", "My pink slider:",
-#'               min = 0, max = 100, value = 50
-#'   ),
-#'   sliderInput("obs2", "My orange slider:",
-#'               min = 0, max = 100, value = 50
-#'   ),
-#'   sliderInput("obs3", "My basic slider:",
-#'               min = 0, max = 100, value = 50
-#'   ),
-#'   sliderInput("obs3", "My teal slider:",
-#'               min = 0, max = 100, value = 50
-#'   ),
-#'   plotOutput("distPlot")
-#' )
+#'   server <- function(input, output) {
+#'     output$distPlot <- renderPlot({
+#'       hist(rnorm(input$obs))
+#'     })
+#'   }
 #'
-#' server <- function(input, output) {
-#'
-#'   output$distPlot <- renderPlot({
-#'     hist(rnorm(input$obs))
-#'   })
-#' }
-#'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 setSliderColor <- function(color, sliderId) {
-
   # some tests to control inputs
   stopifnot(!is.null(color))
   stopifnot(is.character(color))
@@ -71,9 +67,9 @@ setSliderColor <- function(color, sliderId) {
       " .js-irs-", i, " .irs-to,",
       " .js-irs-", i, " .irs-bar-edge,",
       " .js-irs-", i,
-      " .irs-bar{  border-color: transparent;background: ", color[i+1],
-      "; border-top: 1px solid ", color[i+1],
-      "; border-bottom: 1px solid ", color[i+1],
+      " .irs-bar{  border-color: transparent;background: ", color[i + 1],
+      "; border-top: 1px solid ", color[i + 1],
+      "; border-bottom: 1px solid ", color[i + 1],
       ";}"
     )
   })

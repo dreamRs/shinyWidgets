@@ -113,4 +113,3 @@ Shiny.addCustomMessageHandler("sweetalert-toast", function(data) {
 Shiny.addCustomMessageHandler("sweetalert-sw-close", function(data) {
   Swal.close();
 });
-

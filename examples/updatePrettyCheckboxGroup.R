@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Update pretty checkbox group"),
   br(),
-
   fluidRow(
     column(
       width = 6,
@@ -37,38 +36,41 @@ ui <- fluidPage(
       actionButton(inputId = "update2", label = "Update choices !")
     )
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$checkgroup1)
 
-  observeEvent(input$update1, {
-    if (is.null(input$update1)) {
-      selected_ <- character(0) # no choice selected
-    } else {
-      selected_ <- input$update1
-    }
-    updatePrettyCheckboxGroup(
-      session = session,
-      inputId = "checkgroup1",
-      selected = selected_
-    )
-  }, ignoreNULL = FALSE)
+  observeEvent(input$update1,
+    {
+      if (is.null(input$update1)) {
+        selected_ <- character(0) # no choice selected
+      } else {
+        selected_ <- input$update1
+      }
+      updatePrettyCheckboxGroup(
+        session = session,
+        inputId = "checkgroup1",
+        selected = selected_
+      )
+    },
+    ignoreNULL = FALSE
+  )
 
   output$res2 <- renderPrint(input$checkgroup2)
-  observeEvent(input$update2, {
-    updatePrettyCheckboxGroup(
-      session = session,
-      inputId = "checkgroup2",
-      choices = sample(month.name, 4),
-      prettyOptions = list(animation = "pulse", status = "info")
-    )
-  }, ignoreInit = TRUE)
-
+  observeEvent(input$update2,
+    {
+      updatePrettyCheckboxGroup(
+        session = session,
+        inputId = "checkgroup2",
+        choices = sample(month.name, 4),
+        prettyOptions = list(animation = "pulse", status = "info")
+      )
+    },
+    ignoreInit = TRUE
+  )
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
-
+}

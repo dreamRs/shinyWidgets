@@ -53,6 +53,3 @@ observeEvent(input$warning, {
     type = "warning"
   )
 })
-
-
-

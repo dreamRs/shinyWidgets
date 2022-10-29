@@ -34,27 +34,28 @@
 #'   )
 #'
 #'   server <- function(input, output, session) {
-#'
 #'     output$res1 <- renderPrint({
 #'       paste("value button 1:", input$btn1)
 #'     })
 #'     output$res2 <- renderPrint({
 #'       paste("value button 2:", input$btn2)
 #'     })
-#'
 #'   }
 #'
 #'   shinyApp(ui, server)
 #' }
-circleButton <- function (inputId, icon = NULL, status = "default", size = "default", ...) {
+circleButton <- function(inputId, icon = NULL, status = "default", size = "default", ...) {
   value <- shiny::restoreInput(id = inputId, default = NULL)
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   attachShinyWidgetsDep(
     htmltools::tags$button(
       id = inputId, type = "button", style = "outline: none;", `data-val` = value,
-      class = paste0("btn btn-", status, " action-button ",
-                     ifelse(size == "default", "btn-circle",
-                            paste0("btn-circle-", size))), tags$span(icon), ...
+      class = paste0(
+        "btn btn-", status, " action-button ",
+        ifelse(size == "default", "btn-circle",
+          paste0("btn-circle-", size)
+        )
+      ), tags$span(icon), ...
     )
   )
 }
@@ -62,15 +63,17 @@ circleButton <- function (inputId, icon = NULL, status = "default", size = "defa
 
 
 
-squareButton <- function (inputId, icon = NULL, status = "default", size = "default", ...)
-{
+squareButton <- function(inputId, icon = NULL, status = "default", size = "default", ...) {
   size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
   attachShinyWidgetsDep(
     htmltools::tags$button(
       id = inputId, type = "button", style = "outline: none;",
-      class = paste0("btn btn-", status, " action-button ",
-                     ifelse(size == "default", "btn-square",
-                            paste0("btn-square-", size))), icon, ...
+      class = paste0(
+        "btn btn-", status, " action-button ",
+        ifelse(size == "default", "btn-square",
+          paste0("btn-square-", size)
+        )
+      ), icon, ...
     )
   )
 }

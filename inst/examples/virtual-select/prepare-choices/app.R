@@ -10,7 +10,6 @@ state_data <- data.frame(
 
 ui <- fluidPage(
   tags$h2("Virtual Select: prepare choices"),
-
   virtualSelectInput(
     inputId = "sel1",
     label = "Use a data.frame:",
@@ -18,7 +17,6 @@ ui <- fluidPage(
     search = TRUE
   ),
   verbatimTextOutput("res1"),
-
   virtualSelectInput(
     inputId = "sel2",
     label = "Group choices:",
@@ -26,7 +24,6 @@ ui <- fluidPage(
     multiple = TRUE
   ),
   verbatimTextOutput("res2"),
-
   virtualSelectInput(
     inputId = "sel3",
     label = "Add a description:",
@@ -43,6 +40,6 @@ server <- function(input, output, session) {
   output$res3 <- renderPrint(input$sel3)
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
-
+}

@@ -2,7 +2,6 @@
 ### deselecting all options
 
 if (interactive()) {
-
   library(shiny)
   library(shinyWidgets)
 
@@ -33,13 +32,9 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     output$r1 <- renderPrint(input$p1)
     output$r2 <- renderPrint(input$p2)
-
   }
 
   shinyApp(ui = ui, server = server)
-
 }
-

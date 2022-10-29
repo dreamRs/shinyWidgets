@@ -140,4 +140,3 @@ Shiny.inputBindings.register(
   numericInputIconBinding,
   "shinyWidgets.numericInputIcon"
 );
-

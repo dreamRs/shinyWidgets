@@ -330,20 +330,23 @@ bsswitchDependencyCSS <- function(theme) {
 #' @param theme SweetAlert theme to use.
 #' @export
 #' @rdname html-dependencies
-html_dependency_sweetalert2 <- function(theme = c("sweetalert2",
-                                                  "minimal",
-                                                  "dark",
-                                                  "bootstrap-4",
-                                                  "material-ui",
-                                                  "bulma",
-                                                  "borderless")) {
+html_dependency_sweetalert2 <- function(theme = c(
+                                          "sweetalert2",
+                                          "minimal",
+                                          "dark",
+                                          "bootstrap-4",
+                                          "material-ui",
+                                          "bulma",
+                                          "borderless"
+                                        )) {
   theme <- match.arg(theme)
-  if (identical(theme, "sweetalert2"))
+  if (identical(theme, "sweetalert2")) {
     theme <- "default"
+  }
   htmlDependency(
     name = "sweetalert2",
     version = "11.1.4",
-    src = c(href="shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
+    src = c(href = "shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
     script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
     stylesheet = sprintf("css/%s.min.css", theme)
   )
@@ -461,7 +464,7 @@ html_dependency_polyfill_promise <- function() {
   htmlDependency(
     name = "promise-polyfill",
     version = "7.1.0",
-    src = c(href="shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
+    src = c(href = "shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
     script = "js/promise.min.js"
   )
 }

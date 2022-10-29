@@ -23,7 +23,6 @@
 #' @example examples/selectizeGroup-vars.R
 #' @example examples/selectizeGroup-subset.R
 selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters", inline = TRUE) {
-
   # Namespace
   ns <- NS(id)
 
@@ -31,8 +30,8 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
     selectizeGroupTag <- tagList(
       tags$b(label),
       tags$div(
-        class="btn-group-justified selectize-group",
-        role="group", `data-toggle`="buttons",
+        class = "btn-group-justified selectize-group",
+        role = "group", `data-toggle` = "buttons",
         lapply(
           X = seq_along(params),
           FUN = function(x) {
@@ -104,15 +103,14 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
     singleton(
       tagList(
         tags$link(
-          rel="stylesheet",
-          type="text/css",
-          href="shinyWidgets/modules/styles-modules.css"
+          rel = "stylesheet",
+          type = "text/css",
+          href = "shinyWidgets/modules/styles-modules.css"
         ), toggleDisplayUi()
       )
     ),
     selectizeGroupTag
   )
-
 }
 
 
@@ -127,7 +125,8 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
 #'
 #' @rdname selectizeGroup-module
 #' @importFrom shiny updateSelectizeInput observeEvent reactiveValues reactive is.reactive isolate
-selectizeGroupServer <- function(input, output, session, data, vars, inline = TRUE) { # nocov start
+selectizeGroupServer <- function(input, output, session, data, vars, inline = TRUE) {
+  # nocov start
 
   # Namespace
   ns <- session$ns
@@ -199,50 +198,50 @@ selectizeGroupServer <- function(input, output, session, data, vars, inline = TR
     lapply(
       X = vars,
       FUN = function(x) {
-
         ovars <- vars[vars != x]
 
-        observeEvent(input[[ws2underscore(x)]], {
+        observeEvent(input[[ws2underscore(x)]],
+          {
+            data <- rv$data
 
-          data <- rv$data
+            indicator <- lapply(
+              X = vars,
+              FUN = function(x) {
+                data[[x]] %inT% input[[ws2underscore(x)]]
+              }
+            )
+            indicator <- Reduce(f = `&`, x = indicator)
+            data <- data[indicator, ]
 
-          indicator <- lapply(
-            X = vars,
-            FUN = function(x) {
-              data[[x]] %inT% input[[ws2underscore(x)]]
+            if (all(indicator)) {
+              toggleDisplayServer(session = session, id = ns("reset_all"), display = "none")
+            } else {
+              toggleDisplayServer(session = session, id = ns("reset_all"), display = "block")
             }
-          )
-          indicator <- Reduce(f = `&`, x = indicator)
-          data <- data[indicator, ]
 
-          if (all(indicator)) {
-            toggleDisplayServer(session = session, id = ns("reset_all"), display = "none")
-          } else {
-            toggleDisplayServer(session = session, id = ns("reset_all"), display = "block")
-          }
+            for (i in ovars) {
+              if (is.null(input[[ws2underscore(i)]])) {
+                updateSelectizeInput(
+                  session = session,
+                  inputId = ws2underscore(i),
+                  choices = sort(unique(data[[i]])),
+                  server = TRUE
+                )
+              }
+            }
 
-          for (i in ovars) {
-            if (is.null(input[[ws2underscore(i)]])) {
+            if (is.null(input[[ws2underscore(x)]])) {
               updateSelectizeInput(
                 session = session,
-                inputId = ws2underscore(i),
-                choices = sort(unique(data[[i]])),
+                inputId = ws2underscore(x),
+                choices = sort(unique(data[[x]])),
                 server = TRUE
               )
             }
-          }
-
-          if (is.null(input[[ws2underscore(x)]])) {
-            updateSelectizeInput(
-              session = session,
-              inputId = ws2underscore(x),
-              choices = sort(unique(data[[x]])),
-              server = TRUE
-            )
-          }
-
-        }, ignoreNULL = FALSE, ignoreInit = TRUE)
-
+          },
+          ignoreNULL = FALSE,
+          ignoreInit = TRUE
+        )
       }
     )
   })
@@ -263,7 +262,3 @@ selectizeGroupServer <- function(input, output, session, data, vars, inline = TR
 }
 
 # nocov end
-
-
-
-

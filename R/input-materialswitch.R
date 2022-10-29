@@ -22,19 +22,19 @@
 #'
 #'   ui <- fluidPage(
 #'     tags$h3("Material switch examples"),
-#'
 #'     materialSwitch(inputId = "switch1", label = "Night mode"),
 #'     verbatimTextOutput("value1"),
-#'
 #'     materialSwitch(inputId = "switch2", label = "Night mode", status = "danger"),
 #'     verbatimTextOutput("value2")
 #'   )
 #'   server <- function(input, output) {
+#'     output$value1 <- renderText({
+#'       input$switch1
+#'     })
 #'
-#'     output$value1 <- renderText({ input$switch1 })
-#'
-#'     output$value2 <- renderText({ input$switch2 })
-#'
+#'     output$value2 <- renderText({
+#'       input$switch2
+#'     })
 #'   }
 #'   shinyApp(ui, server)
 #' }
@@ -47,10 +47,13 @@ materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "defau
   value <- restoreInput(id = inputId, default = value)
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
   inputTag <- tags$input(id = inputId, type = "checkbox")
-  if (!is.null(value) && value)
+  if (!is.null(value) && value) {
     inputTag$attribs$checked <- "checked"
-  msTag <- tags$div(class = "form-group shiny-input-container", style = if (!is.null(width))
-    paste0("width: ", validateCssUnit(width), ";"),
+  }
+  msTag <- tags$div(
+    class = "form-group shiny-input-container", style = if (!is.null(width)) {
+      paste0("width: ", validateCssUnit(width), ";")
+    },
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
     # if (right) tags$span(label),
@@ -84,8 +87,7 @@ materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "defau
 #' @seealso \code{\link{materialSwitch}}
 #'
 #' @export
-updateMaterialSwitch <- function (session, inputId, value = NULL) {
+updateMaterialSwitch <- function(session, inputId, value = NULL) {
   message <- dropNulls(list(value = value))
   session$sendInputMessage(inputId, message)
 }
-

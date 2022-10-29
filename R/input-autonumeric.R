@@ -57,22 +57,16 @@
 #'
 #'   ui <- fluidPage(
 #'     tags$h2("Currency Input"),
-#'
 #'     currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
 #'     verbatimTextOutput("res1"),
-#'
 #'     currencyInput("id2", "Dollar:", value = 1234, format = "dollar", width = 200, align = "right"),
 #'     verbatimTextOutput("res2"),
-#'
 #'     currencyInput("id3", "Yen:", value = 1234, format = "Japanese", width = 200, align = "right"),
 #'     verbatimTextOutput("res3"),
-#'
 #'     br(),
 #'     tags$h2("Formatted Numeric Input"),
-#'
 #'     formatNumericInput("id4", "Numeric:", value = 1234, width = 200),
 #'     verbatimTextOutput("res4"),
-#'
 #'     formatNumericInput("id5", "Percent:", value = 1234, width = 200, format = "percentageEU2dec"),
 #'     verbatimTextOutput("res5")
 #'   )
@@ -147,7 +141,6 @@ formatNumericInput <- function(inputId,
 #'
 #'   ui <- fluidPage(
 #'     tags$h2("Currency Input"),
-#'
 #'     currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
 #'     verbatimTextOutput("res1"),
 #'     actionButton("bttn0", "Change Input to Euros"),
@@ -156,7 +149,6 @@ formatNumericInput <- function(inputId,
 #'   )
 #'
 #'   server <- function(input, output, session) {
-#'
 #'     output$res1 <- renderPrint(input$id1)
 #'
 #'     observeEvent(input$bttn0, {
@@ -183,8 +175,6 @@ formatNumericInput <- function(inputId,
 #'         format = "Japanese"
 #'       )
 #'     })
-#'
-#'
 #'   }
 #'
 #'   shinyApp(ui, server)
@@ -405,7 +395,6 @@ updateFormatNumericInput <- function(session = getDefaultReactiveDomain(),
 #'       value = 1234.56
 #'     ),
 #'     verbatimTextOutput("res1"),
-#'
 #'     autonumericInput(
 #'       inputId = "id2",
 #'       label = "Custom Thousands of Dollars Input",
@@ -419,7 +408,6 @@ updateFormatNumericInput <- function(session = getDefaultReactiveDomain(),
 #'       symbolWhenUnfocused = "K"
 #'     ),
 #'     verbatimTextOutput("res2"),
-#'
 #'     autonumericInput(
 #'       inputId = "id3",
 #'       label = "Custom Millions of Euros Input with Positive Sign",
@@ -551,7 +539,8 @@ autonumericInput <- function(inputId, label, value,
 #'     br(),
 #'     br(),
 #'     sliderInput("decimals", "Select Number of Decimal Places",
-#'                 value = 2, step = 1, min = 0, max = 6),
+#'       value = 2, step = 1, min = 0, max = 6
+#'     ),
 #'     actionButton("bttn3", "Update Number of Decimal Places")
 #'   )
 #'

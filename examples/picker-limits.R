@@ -1,7 +1,6 @@
 ### Limit the number of selections ----
 
 if (interactive()) {
-
   library(shiny)
   library(shinyWidgets)
 
@@ -14,7 +13,7 @@ if (interactive()) {
         Group2 = c("A", "B", "C", "D")
       ),
       multiple = TRUE,
-      options =  list("max-options-group" = 1)
+      options = list("max-options-group" = 1)
     ),
     verbatimTextOutput(outputId = "res_grp"),
     pickerInput(
@@ -25,7 +24,7 @@ if (interactive()) {
         Group2 = c("A", "B", "C", "D")
       ),
       multiple = TRUE,
-      options =  list("max-options-group" = 2)
+      options = list("max-options-group" = 2)
     ),
     verbatimTextOutput(outputId = "res_grp_2"),
     pickerInput(
@@ -33,7 +32,7 @@ if (interactive()) {
       label = "Select max two option below:",
       choices = c("A", "B", "C", "D"),
       multiple = TRUE,
-      options =  list(
+      options = list(
         "max-options" = 2,
         "max-options-text" = "No more!"
       )
@@ -42,13 +41,10 @@ if (interactive()) {
   )
 
   server <- function(input, output) {
-
     output$res_grp <- renderPrint(input$groups)
     output$res_grp_2 <- renderPrint(input$groups_2)
     output$res_classic <- renderPrint(input$classic)
-
   }
 
   shinyApp(ui, server)
-
 }

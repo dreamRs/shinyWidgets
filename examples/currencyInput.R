@@ -6,22 +6,16 @@ if (interactive()) {
 
   ui <- fluidPage(
     tags$h2("Currency Input"),
-
     currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
     verbatimTextOutput("res1"),
-
     currencyInput("id2", "Dollar:", value = 1234, format = "dollar", width = 200, align = "right"),
     verbatimTextOutput("res2"),
-
     currencyInput("id3", "Yen:", value = 1234, format = "Japanese", width = 200, align = "right"),
     verbatimTextOutput("res3"),
-
     br(),
     tags$h2("Formatted Numeric Input"),
-
     formatNumericInput("id4", "Numeric:", value = 1234, width = 200),
     verbatimTextOutput("res4"),
-
     formatNumericInput("id5", "Percent:", value = 1234, width = 200, format = "percentageEU2dec"),
     verbatimTextOutput("res5")
   )
@@ -45,7 +39,6 @@ if (interactive()) {
 
   ui <- fluidPage(
     tags$h2("Currency Input"),
-
     currencyInput("id1", "Euro:", value = 1234, format = "euro", width = 200, align = "right"),
     verbatimTextOutput("res1"),
     actionButton("bttn0", "Change Input to Euros"),
@@ -54,7 +47,6 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     output$res1 <- renderPrint(input$id1)
 
     observeEvent(input$bttn0, {
@@ -81,8 +73,6 @@ if (interactive()) {
         format = "Japanese"
       )
     })
-
-
   }
 
   shinyApp(ui, server)

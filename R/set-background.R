@@ -17,99 +17,97 @@
 #'
 #' @examples
 #' if (interactive()) {
+#'   ### Uniform color background :
 #'
-#' ### Uniform color background :
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinyWidgets)
+#'   ui <- fluidPage(
+#'     tags$h2("Change shiny app background"),
+#'     setBackgroundColor("ghostwhite")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   tags$h2("Change shiny app background"),
-#'   setBackgroundColor("ghostwhite")
-#' )
+#'   server <- function(input, output, session) {
 #'
-#' server <- function(input, output, session) {
+#'   }
 #'
-#' }
-#'
-#' shinyApp(ui, server)
+#'   shinyApp(ui, server)
 #'
 #'
-#' ### linear gradient background :
+#'   ### linear gradient background :
 #'
-#' library(shiny)
-#' library(shinyWidgets)
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' ui <- fluidPage(
+#'   ui <- fluidPage(
 #'
-#'   # use a gradient in background
-#'   setBackgroundColor(
-#'     color = c("#F7FBFF", "#2171B5"),
-#'     gradient = "linear",
-#'     direction = "bottom"
-#'   ),
-#'
-#'   titlePanel("Hello Shiny!"),
-#'   sidebarLayout(
-#'     sidebarPanel(
-#'       sliderInput("obs",
-#'                   "Number of observations:",
-#'                   min = 0,
-#'                   max = 1000,
-#'                   value = 500)
+#'     # use a gradient in background
+#'     setBackgroundColor(
+#'       color = c("#F7FBFF", "#2171B5"),
+#'       gradient = "linear",
+#'       direction = "bottom"
 #'     ),
-#'     mainPanel(
-#'       plotOutput("distPlot")
+#'     titlePanel("Hello Shiny!"),
+#'     sidebarLayout(
+#'       sidebarPanel(
+#'         sliderInput("obs",
+#'           "Number of observations:",
+#'           min = 0,
+#'           max = 1000,
+#'           value = 500
+#'         )
+#'       ),
+#'       mainPanel(
+#'         plotOutput("distPlot")
+#'       )
 #'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
-#'   output$distPlot <- renderPlot({
-#'     hist(rnorm(input$obs))
-#'   })
-#' }
+#'   server <- function(input, output, session) {
+#'     output$distPlot <- renderPlot({
+#'       hist(rnorm(input$obs))
+#'     })
+#'   }
 #'
-#' shinyApp(ui, server)
+#'   shinyApp(ui, server)
 #'
 #'
-#' ### radial gradient background :
+#'   ### radial gradient background :
 #'
-#' library(shiny)
-#' library(shinyWidgets)
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' ui <- fluidPage(
+#'   ui <- fluidPage(
 #'
-#'   # use a gradient in background
-#'   setBackgroundColor(
-#'     color = c("#F7FBFF", "#2171B5"),
-#'     gradient = "radial",
-#'     direction = c("top", "left")
-#'   ),
-#'
-#'   titlePanel("Hello Shiny!"),
-#'   sidebarLayout(
-#'     sidebarPanel(
-#'       sliderInput("obs",
-#'                   "Number of observations:",
-#'                   min = 0,
-#'                   max = 1000,
-#'                   value = 500)
+#'     # use a gradient in background
+#'     setBackgroundColor(
+#'       color = c("#F7FBFF", "#2171B5"),
+#'       gradient = "radial",
+#'       direction = c("top", "left")
 #'     ),
-#'     mainPanel(
-#'       plotOutput("distPlot")
+#'     titlePanel("Hello Shiny!"),
+#'     sidebarLayout(
+#'       sidebarPanel(
+#'         sliderInput("obs",
+#'           "Number of observations:",
+#'           min = 0,
+#'           max = 1000,
+#'           value = 500
+#'         )
+#'       ),
+#'       mainPanel(
+#'         plotOutput("distPlot")
+#'       )
 #'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
-#'   output$distPlot <- renderPlot({
-#'     hist(rnorm(input$obs))
-#'   })
-#' }
+#'   server <- function(input, output, session) {
+#'     output$distPlot <- renderPlot({
+#'       hist(rnorm(input$obs))
+#'     })
+#'   }
 #'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 #'
 setBackgroundColor <- function(color = "ghostwhite",
@@ -175,23 +173,21 @@ setBackgroundColor <- function(color = "ghostwhite",
 #'
 #' @examples
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   tags$h2("Add a shiny app background image"),
-#'   setBackgroundImage(
-#'     src = "https://www.fillmurray.com/1920/1080"
+#'   ui <- fluidPage(
+#'     tags$h2("Add a shiny app background image"),
+#'     setBackgroundImage(
+#'       src = "https://www.fillmurray.com/1920/1080"
+#'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
+#'   server <- function(input, output, session) {
 #'
-#' }
+#'   }
 #'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 #'
 setBackgroundImage <- function(src = NULL, shinydashboard = FALSE) {

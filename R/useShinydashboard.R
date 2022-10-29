@@ -9,97 +9,104 @@
 #'
 #' @examples
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinydashboard)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinydashboard)
-#' library(shinyWidgets)
+#'   # example taken from ?box
 #'
-#' # example taken from ?box
+#'   ui <- fluidPage(
+#'     tags$h2("Classic shiny"),
 #'
-#' ui <- fluidPage(
-#'   tags$h2("Classic shiny"),
+#'     # use this in non shinydashboard app
+#'     setBackgroundColor(color = "ghostwhite"),
+#'     useShinydashboard(),
+#'     # -----------------
 #'
-#'   # use this in non shinydashboard app
-#'   setBackgroundColor(color = "ghostwhite"),
-#'   useShinydashboard(),
-#'   # -----------------
-#'
-#'   # infoBoxes
-#'   fluidRow(
-#'     infoBox(
-#'       "Orders", uiOutput("orderNum2"), "Subtitle", icon = icon("credit-card")
+#'     # infoBoxes
+#'     fluidRow(
+#'       infoBox(
+#'         "Orders", uiOutput("orderNum2"), "Subtitle",
+#'         icon = icon("credit-card")
+#'       ),
+#'       infoBox(
+#'         "Approval Rating", "60%",
+#'         icon = icon("chart-line"), color = "green",
+#'         fill = TRUE
+#'       ),
+#'       infoBox(
+#'         "Progress", uiOutput("progress2"),
+#'         icon = icon("users"), color = "purple"
+#'       )
 #'     ),
-#'     infoBox(
-#'       "Approval Rating", "60%", icon = icon("chart-line"), color = "green",
-#'       fill = TRUE
-#'     ),
-#'     infoBox(
-#'       "Progress", uiOutput("progress2"), icon = icon("users"), color = "purple"
-#'     )
-#'   ),
 #'
-#'   # valueBoxes
-#'   fluidRow(
-#'     valueBox(
-#'       uiOutput("orderNum"), "New Orders", icon = icon("credit-card"),
-#'       href = "http://google.com"
+#'     # valueBoxes
+#'     fluidRow(
+#'       valueBox(
+#'         uiOutput("orderNum"), "New Orders",
+#'         icon = icon("credit-card"),
+#'         href = "http://google.com"
+#'       ),
+#'       valueBox(
+#'         tagList("60", tags$sup(style = "font-size: 20px", "%")),
+#'         "Approval Rating",
+#'         icon = icon("chart-line"), color = "green"
+#'       ),
+#'       valueBox(
+#'         htmlOutput("progress"), "Progress",
+#'         icon = icon("users"), color = "purple"
+#'       )
 #'     ),
-#'     valueBox(
-#'       tagList("60", tags$sup(style="font-size: 20px", "%")),
-#'       "Approval Rating", icon = icon("chart-line"), color = "green"
-#'     ),
-#'     valueBox(
-#'       htmlOutput("progress"), "Progress", icon = icon("users"), color = "purple"
-#'     )
-#'   ),
 #'
-#'   # Boxes
-#'   fluidRow(
-#'     box(status = "primary",
+#'     # Boxes
+#'     fluidRow(
+#'       box(
+#'         status = "primary",
 #'         sliderInput("orders", "Orders", min = 1, max = 2000, value = 650),
 #'         selectInput("progress", "Progress",
-#'                     choices = c("0%" = 0, "20%" = 20, "40%" = 40, "60%" = 60, "80%" = 80,
-#'                                 "100%" = 100)
+#'           choices = c(
+#'             "0%" = 0, "20%" = 20, "40%" = 40, "60%" = 60, "80%" = 80,
+#'             "100%" = 100
+#'           )
 #'         )
-#'     ),
-#'     box(title = "Histogram box title",
+#'       ),
+#'       box(
+#'         title = "Histogram box title",
 #'         status = "warning", solidHeader = TRUE, collapsible = TRUE,
 #'         plotOutput("plot", height = 250)
+#'       )
 #'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
+#'   server <- function(input, output, session) {
+#'     output$orderNum <- renderText({
+#'       prettyNum(input$orders, big.mark = ",")
+#'     })
 #'
-#'   output$orderNum <- renderText({
-#'     prettyNum(input$orders, big.mark=",")
-#'   })
+#'     output$orderNum2 <- renderText({
+#'       prettyNum(input$orders, big.mark = ",")
+#'     })
 #'
-#'   output$orderNum2 <- renderText({
-#'     prettyNum(input$orders, big.mark=",")
-#'   })
+#'     output$progress <- renderUI({
+#'       tagList(input$progress, tags$sup(style = "font-size: 20px", "%"))
+#'     })
 #'
-#'   output$progress <- renderUI({
-#'     tagList(input$progress, tags$sup(style="font-size: 20px", "%"))
-#'   })
-#'
-#'   output$progress2 <- renderUI({
-#'     paste0(input$progress, "%")
-#'   })
+#'     output$progress2 <- renderUI({
+#'       paste0(input$progress, "%")
+#'     })
 #'
 #'
-#'   output$plot <- renderPlot({
-#'     hist(rnorm(input$orders))
-#'   })
+#'     output$plot <- renderPlot({
+#'       hist(rnorm(input$orders))
+#'     })
+#'   }
 #'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 useShinydashboard <- function() {
-  if (!requireNamespace(package = "shinydashboard"))
+  if (!requireNamespace(package = "shinydashboard")) {
     message("Package 'shinydashboard' is required to run this function")
+  }
   deps <- findDependencies(shinydashboard::dashboardPage(
     header = shinydashboard::dashboardHeader(),
     sidebar = shinydashboard::dashboardSidebar(),
@@ -107,4 +114,3 @@ useShinydashboard <- function() {
   ))
   attachDependencies(tags$div(class = "main-sidebar", style = "display: none;"), value = deps)
 }
-

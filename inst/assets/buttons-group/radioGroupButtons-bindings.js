@@ -142,4 +142,3 @@ Shiny.inputBindings.register(
   radioGroupButtonsBinding,
   "shinyWidgets.radioGroupButtonsInput"
 );
-

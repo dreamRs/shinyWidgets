@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Pretty toggles"),
   br(),
-
   fluidRow(
     column(
       width = 4,
@@ -16,7 +15,7 @@ ui <- fluidPage(
       verbatimTextOutput(outputId = "res1"),
       br(),
       prettyToggle(
-        inputId = "toggle4",  label_on = "Yes!",
+        inputId = "toggle4", label_on = "Yes!",
         label_off = "No..", outline = TRUE,
         plain = TRUE,
         icon_on = icon("thumbs-up"),
@@ -37,27 +36,25 @@ ui <- fluidPage(
     column(
       width = 4,
       prettyToggle(
-        inputId = "toggle3",  label_on = "Yes!",
+        inputId = "toggle3", label_on = "Yes!",
         label_off = "No..", shape = "round",
         fill = TRUE, value = TRUE
       ),
       verbatimTextOutput(outputId = "res3")
     )
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$toggle1)
   output$res2 <- renderPrint(input$toggle2)
   output$res3 <- renderPrint(input$toggle3)
   output$res4 <- renderPrint(input$toggle4)
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}
 
 
 
@@ -67,7 +64,6 @@ if (interactive())
 ui <- fluidPage(
   tags$h1("Pretty toggles: inline example"),
   br(),
-
   prettyToggle(
     inputId = "toggle1",
     label_on = "Checked!",
@@ -108,21 +104,20 @@ ui <- fluidPage(
     icon_off = icon("thumbs-down"),
     inline = TRUE
   ),
-
   verbatimTextOutput(outputId = "res")
-
 )
 
 server <- function(input, output, session) {
-
   output$res <- renderPrint(
-    c(input$toggle1,
+    c(
+      input$toggle1,
       input$toggle2,
       input$toggle3,
-      input$toggle4)
+      input$toggle4
+    )
   )
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

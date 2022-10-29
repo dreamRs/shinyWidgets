@@ -26,7 +26,6 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     output$isOpen <- renderPrint({
       input$myid_dropmenu
     })
@@ -42,7 +41,6 @@ if (interactive()) {
     observeEvent(input$close, {
       hideDropMenu("dontclose_dropmenu")
     })
-
   }
 
   shinyApp(ui, server)

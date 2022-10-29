@@ -4,12 +4,9 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h3("Behaviour noUiSlider"),
   tags$br(),
-
   fluidRow(
-
     column(
       width = 6,
-
       panel(
         heading = "tap", status = "info",
         noUiSliderInput(
@@ -19,7 +16,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res1")
       ),
-
       panel(
         heading = "drag-tap", status = "info",
         noUiSliderInput(
@@ -29,7 +25,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res3")
       ),
-
       panel(
         heading = "snap", status = "info",
         noUiSliderInput(
@@ -39,12 +34,9 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res5")
       )
-
     ),
-
     column(
       width = 6,
-
       panel(
         heading = "drag", status = "info",
         noUiSliderInput(
@@ -54,7 +46,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res2")
       ),
-
       panel(
         heading = "drag-fixed", status = "info",
         noUiSliderInput(
@@ -64,21 +55,17 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res4")
       )
-
     )
-
   )
 )
 
 server <- function(input, output, session) {
-
   lapply(
     X = seq_len(10),
     FUN = function(i) {
       output[[paste0("res", i)]] <- renderPrint(input[[paste0("beh", i)]])
     }
   )
-
 }
 
 shinyApp(ui, server)

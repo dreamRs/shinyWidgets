@@ -3,7 +3,6 @@ library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h2("Virtual Select (update)"),
-
   virtualSelectInput(
     inputId = "sel1",
     label = "Update label:",
@@ -12,7 +11,6 @@ ui <- fluidPage(
   verbatimTextOutput("res1"),
   textInput("label_text", label = "With text:"),
   textInput("label_html", label = "With HTML:"),
-
   virtualSelectInput(
     inputId = "sel2",
     label = "Update selected value:",
@@ -20,7 +18,6 @@ ui <- fluidPage(
   ),
   verbatimTextOutput("res2"),
   radioButtons("selected", "Selected value:", month.name, inline = TRUE),
-
   virtualSelectInput(
     inputId = "sel3",
     label = "Update choices:",
@@ -28,7 +25,6 @@ ui <- fluidPage(
   ),
   verbatimTextOutput("res3"),
   radioButtons("choices", "Choices:", c("lowercase", "UPPERCASE"), inline = TRUE),
-
   virtualSelectInput(
     inputId = "sel4",
     label = "Update choices + selected:",
@@ -36,7 +32,6 @@ ui <- fluidPage(
   ),
   verbatimTextOutput("res4"),
   radioButtons("choices_select", "Choices:", c("lowercase", "UPPERCASE"), inline = TRUE),
-
   virtualSelectInput(
     inputId = "sel5",
     label = "Disable / enable:",
@@ -45,7 +40,6 @@ ui <- fluidPage(
   verbatimTextOutput("res5"),
   checkboxInput("disable", "Disable", value = FALSE),
   checkboxInput("disableChoices", "Disable march and june", value = FALSE)
-
 )
 
 server <- function(input, output, session) {
@@ -104,5 +98,6 @@ server <- function(input, output, session) {
   })
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

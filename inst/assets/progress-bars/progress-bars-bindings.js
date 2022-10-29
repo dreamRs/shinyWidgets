@@ -35,4 +35,3 @@ Shiny.addCustomMessageHandler("update-progressBar-shinyWidgets", function(
     elTitle.innerText = data.title;
   }
 });
-

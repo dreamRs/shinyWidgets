@@ -3,7 +3,6 @@ context("Tests modules")
 
 
 test_that("pickerGroup", {
-
   tag <- pickerGroupUI(
     id = "my-filters",
     params = list(
@@ -21,7 +20,6 @@ test_that("pickerGroup", {
 
 
 test_that("pickerGroup (inline)", {
-
   tag <- pickerGroupUI(
     id = "my-filters",
     params = list(
@@ -41,7 +39,6 @@ test_that("pickerGroup (inline)", {
 
 
 test_that("selectizeGroup", {
-
   tag <- selectizeGroupUI(
     id = "my-filters",
     params = list(
@@ -59,7 +56,6 @@ test_that("selectizeGroup", {
 
 
 test_that("selectizeGroup (inline)", {
-
   tag <- selectizeGroupUI(
     id = "my-filters",
     params = list(
@@ -75,5 +71,3 @@ test_that("selectizeGroup (inline)", {
   expect_length(tag, 2)
   expect_length(tag[[2]][[2]], 4)
 })
-
-

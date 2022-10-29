@@ -20,7 +20,6 @@ library("shiny")
 library("shinyWidgets")
 
 function(input, output, session) {
-
   lapply(
     X = seq_len(20),
     FUN = function(i) {
@@ -41,5 +40,4 @@ function(input, output, session) {
       updatePickerInput(session = session, inputId = "id17", choices = toupper(c("a", "b", "c", "d")))
     }
   })
-
 }

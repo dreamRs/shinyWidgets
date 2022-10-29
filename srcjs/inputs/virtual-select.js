@@ -104,4 +104,3 @@ Shiny.inputBindings.register(
   virtualSelectBinding,
   "shinyWidgets.virtualSelectBinding"
 );
-

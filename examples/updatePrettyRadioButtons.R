@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Update pretty radio buttons"),
   br(),
-
   fluidRow(
     column(
       width = 6,
@@ -37,34 +36,40 @@ ui <- fluidPage(
       actionButton(inputId = "update2", label = "Update choices !")
     )
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$radio1)
 
-  observeEvent(input$update1, {
-    updatePrettyRadioButtons(
-      session = session,
-      inputId = "radio1",
-      selected = input$update1
-    )
-  }, ignoreNULL = FALSE)
+  observeEvent(input$update1,
+    {
+      updatePrettyRadioButtons(
+        session = session,
+        inputId = "radio1",
+        selected = input$update1
+      )
+    },
+    ignoreNULL = FALSE
+  )
 
   output$res2 <- renderPrint(input$radio2)
-  observeEvent(input$update2, {
-    updatePrettyRadioButtons(
-      session = session,
-      inputId = "radio2",
-      choices = sample(month.name, 4),
-      prettyOptions = list(animation = "pulse",
-                           status = "info",
-                           shape = "round")
-    )
-  }, ignoreInit = TRUE)
-
+  observeEvent(input$update2,
+    {
+      updatePrettyRadioButtons(
+        session = session,
+        inputId = "radio2",
+        choices = sample(month.name, 4),
+        prettyOptions = list(
+          animation = "pulse",
+          status = "info",
+          shape = "round"
+        )
+      )
+    },
+    ignoreInit = TRUE
+  )
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

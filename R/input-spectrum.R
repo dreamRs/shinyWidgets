@@ -24,40 +24,33 @@
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
+#'   library("scales")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
-#' library("scales")
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Spectrum color picker"),
-#'
-#'   br(),
-#'
-#'   spectrumInput(
-#'     inputId = "myColor",
-#'     label = "Pick a color:",
-#'     choices = list(
-#'       list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
-#'       as.list(brewer_pal(palette = "Blues")(9)),
-#'       as.list(brewer_pal(palette = "Greens")(9)),
-#'       as.list(brewer_pal(palette = "Spectral")(11)),
-#'       as.list(brewer_pal(palette = "Dark2")(8))
+#'   ui <- fluidPage(
+#'     tags$h1("Spectrum color picker"),
+#'     br(),
+#'     spectrumInput(
+#'       inputId = "myColor",
+#'       label = "Pick a color:",
+#'       choices = list(
+#'         list("black", "white", "blanchedalmond", "steelblue", "forestgreen"),
+#'         as.list(brewer_pal(palette = "Blues")(9)),
+#'         as.list(brewer_pal(palette = "Greens")(9)),
+#'         as.list(brewer_pal(palette = "Spectral")(11)),
+#'         as.list(brewer_pal(palette = "Dark2")(8))
+#'       ),
+#'       options = list(`toggle-palette-more-text` = "Show more")
 #'     ),
-#'     options = list(`toggle-palette-more-text` = "Show more")
-#'   ),
-#'   verbatimTextOutput(outputId = "res")
+#'     verbatimTextOutput(outputId = "res")
+#'   )
 #'
-#' )
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint(input$myColor)
+#'   }
 #'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint(input$myColor)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
                           flat = FALSE, options = list(),
@@ -92,17 +85,20 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
   ))
   spectrumProps <- utils::modifyList(x = spectrumProps, val = options)
   spectrumProps <- lapply(spectrumProps, function(x) {
-    if (identical(x, TRUE))
+    if (identical(x, TRUE)) {
       "true"
-    else if (identical(x, FALSE))
+    } else if (identical(x, FALSE)) {
       "false"
-    else x
+    } else {
+      x
+    }
   })
   spectrumTag <- htmltools::tags$div(
     class = "form-group shiny-input-container",
     class = if (flat) "shiny-input-container-inline",
-    style = if (!is.null(width))
-      paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", htmltools::validateCssUnit(width), ";")
+    },
     htmltools::tags$label(label, `for` = inputId),
     if (flat) htmltools::tags$br(),
     do.call(htmltools::tags$input, spectrumProps)
@@ -122,51 +118,43 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#' ui <- fluidPage(
-#'   tags$h1("Spectrum color picker"),
-#'
-#'   br(),
-#'
-#'   spectrumInput(
-#'     inputId = "myColor",
-#'     label = "Pick a color:",
-#'     choices = list(
-#'       list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen')
+#'   ui <- fluidPage(
+#'     tags$h1("Spectrum color picker"),
+#'     br(),
+#'     spectrumInput(
+#'       inputId = "myColor",
+#'       label = "Pick a color:",
+#'       choices = list(
+#'         list("black", "white", "blanchedalmond", "steelblue", "forestgreen")
+#'       )
+#'     ),
+#'     verbatimTextOutput(outputId = "res"),
+#'     radioButtons(
+#'       inputId = "update", label = "Update:",
+#'       choices = c(
+#'         "black", "white", "blanchedalmond", "steelblue", "forestgreen"
+#'       )
 #'     )
-#'   ),
-#'   verbatimTextOutput(outputId = "res"),
-#'   radioButtons(
-#'     inputId = "update", label = "Update:",
-#'     choices = c(
-#'       'black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'
-#'     )
-#'
 #'   )
 #'
-#' )
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint(input$myColor)
 #'
-#' server <- function(input, output, session) {
+#'     observeEvent(input$update,
+#'       {
+#'         updateSpectrumInput(session = session, inputId = "myColor", selected = input$update)
+#'       },
+#'       ignoreInit = TRUE
+#'     )
+#'   }
 #'
-#'   output$res <- renderPrint(input$myColor)
-#'
-#'   observeEvent(input$update, {
-#'     updateSpectrumInput(session = session, inputId = "myColor", selected = input$update)
-#'   }, ignoreInit = TRUE)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 updateSpectrumInput <- function(session = getDefaultReactiveDomain(),
                                 inputId,
                                 selected) {
   session$sendInputMessage(inputId, list(value = selected))
 }
-
-
-

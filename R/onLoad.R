@@ -5,7 +5,7 @@
 #' @noRd
 #'
 .onLoad <- function(...) {
-  shiny::addResourcePath('shinyWidgets', system.file("assets", package = "shinyWidgets"))
+  shiny::addResourcePath("shinyWidgets", system.file("assets", package = "shinyWidgets"))
   shiny::registerInputHandler("sw.numericRange", function(data, ...) {
     if (is.null(data)) {
       NULL

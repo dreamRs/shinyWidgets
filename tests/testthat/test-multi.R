@@ -2,13 +2,14 @@ context("multi")
 
 
 test_that("default", {
-
   tagmu <- multiInput(
     inputId = "MY_ID", label = "Fruits :",
-    choices = c("Banana", "Blueberry", "Cherry",
-                "Coconut", "Grapefruit", "Kiwi",
-                "Lemon", "Lime", "Mango", "Orange",
-                "Papaya"),
+    choices = c(
+      "Banana", "Blueberry", "Cherry",
+      "Coconut", "Grapefruit", "Kiwi",
+      "Lemon", "Lime", "Mango", "Orange",
+      "Papaya"
+    ),
     selected = "Banana", width = "350px"
   )
 
@@ -21,19 +22,19 @@ test_that("default", {
 
 
 test_that("updateMultiInput", {
-
-
   session <- as.environment(list(
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     },
     sendCustomMessage = function(type, message) {
       session$lastCustomMessage <- list(type = type, message = message)
     },
     sendInsertUI = function(selector, multiple,
                             where, content) {
-      session$lastInsertUI <- list(selector = selector, multiple = multiple,
-                                   where = where, content = content)
+      session$lastInsertUI <- list(
+        selector = selector, multiple = multiple,
+        where = where, content = content
+      )
     },
     onFlushed = function(callback, once) {
       list(callback = callback, once = once)
@@ -48,5 +49,3 @@ test_that("updateMultiInput", {
   expect_identical(msgmu$id, "MY_ID")
   expect_is(msgmu$message$options, "character")
 })
-
-

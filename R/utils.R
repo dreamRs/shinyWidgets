@@ -17,7 +17,7 @@ list1 <- function(x) {
 }
 
 rescale <- function(x, from, to) {
-  (x - from[1])/diff(from) * diff(to) + to[1]
+  (x - from[1]) / diff(from) * diff(to) + to[1]
 }
 
 
@@ -48,28 +48,34 @@ null_or_empty <- function(x) {
 choicesWithNames <- function(choices) {
   listify <- function(obj) {
     makeNamed <- function(x) {
-      if (is.null(names(x)))
+      if (is.null(names(x))) {
         names(x) <- character(length(x))
+      }
       x
     }
     res <- lapply(obj, function(val) {
-      if (is.list(val))
+      if (is.list(val)) {
         listify(val)
-      else if (length(val) == 1 && is.null(names(val)))
+      } else if (length(val) == 1 && is.null(names(val))) {
         val
-      else makeNamed(as.list(val))
+      } else {
+        makeNamed(as.list(val))
+      }
     })
     makeNamed(res)
   }
   choices <- listify(choices)
-  if (length(choices) == 0)
+  if (length(choices) == 0) {
     return(choices)
+  }
   choices <- mapply(choices, names(choices), FUN = function(choice,
                                                             name) {
-    if (!is.list(choice))
+    if (!is.list(choice)) {
       return(choice)
-    if (name == "")
+    }
+    if (name == "") {
       stop("All sub-lists in \"choices\" must be named.")
+    }
     choicesWithNames(choice)
   }, SIMPLIFY = FALSE)
   missing <- names(choices) == ""
@@ -85,46 +91,57 @@ needOptgroup <- function(choices) {
 }
 
 # validateSelected
-validateSelected <- function (selected, choices, inputId) {
+validateSelected <- function(selected, choices, inputId) {
   selected <- unname(selected)
-  if (needOptgroup(choices))
+  if (needOptgroup(choices)) {
     return(selected)
-  if (is.list(choices))
+  }
+  if (is.list(choices)) {
     choices <- unlist(choices)
+  }
   nms <- names(choices)
-  if (identical(nms, unname(choices)))
+  if (identical(nms, unname(choices))) {
     return(selected)
+  }
   i <- (selected %in% nms) & !(selected %in% choices)
   if (any(i)) {
     warnFun <- if (all(i)) {
       selected <- unname(choices[selected])
       warning
+    } else {
+      stop
     }
-    else stop
-    warnFun("'selected' must be the values instead of names of 'choices' ",
-            "for the input '", inputId, "'")
+    warnFun(
+      "'selected' must be the values instead of names of 'choices' ",
+      "for the input '", inputId, "'"
+    )
   }
   selected
 }
 
 
 firstChoice <- function(choices) {
-  if (length(choices) == 0L)
+  if (length(choices) == 0L) {
     return()
+  }
   choice <- choices[[1]]
-  if (is.list(choice))
+  if (is.list(choice)) {
     firstChoice(choice)
-  else choice
+  } else {
+    choice
+  }
 }
 
 
 
 anyNamed <- function(x) {
-  if (length(x) == 0)
+  if (length(x) == 0) {
     return(FALSE)
+  }
   nms <- names(x)
-  if (is.null(nms))
+  if (is.null(nms)) {
     return(FALSE)
+  }
   any(nzchar(nms))
 }
 
@@ -132,16 +149,18 @@ normalizeChoicesArgs <- function(choices, choiceNames, choiceValues, mustExist =
   if (is.null(choices)) {
     if (is.null(choiceNames) || is.null(choiceValues)) {
       if (mustExist) {
-        stop("Please specify a non-empty vector for `choices` (or, ",
-             "alternatively, for both `choiceNames` AND `choiceValues`).")
-      }
-      else {
+        stop(
+          "Please specify a non-empty vector for `choices` (or, ",
+          "alternatively, for both `choiceNames` AND `choiceValues`)."
+        )
+      } else {
         if (is.null(choiceNames) && is.null(choiceValues)) {
           return(list(choiceNames = NULL, choiceValues = NULL))
-        }
-        else {
-          stop("One of `choiceNames` or `choiceValues` was set to ",
-               "NULL, but either both or none should be NULL.")
+        } else {
+          stop(
+            "One of `choiceNames` or `choiceValues` was set to ",
+            "NULL, but either both or none should be NULL."
+          )
         }
       }
     }
@@ -151,8 +170,7 @@ normalizeChoicesArgs <- function(choices, choiceNames, choiceValues, mustExist =
     if (anyNamed(choiceNames) || anyNamed(choiceValues)) {
       stop("`choiceNames` and `choiceValues` must not be named.")
     }
-  }
-  else {
+  } else {
     if (!is.null(choiceNames) || !is.null(choiceValues)) {
       warning("Using `choices` argument; ignoring `choiceNames` and `choiceValues`.")
     }
@@ -166,11 +184,9 @@ normalizeChoicesArgs <- function(choices, choiceNames, choiceValues, mustExist =
 validateIcon <- function(icon) {
   if (is.null(icon) || identical(icon, character(0))) {
     return(icon)
-  }
-  else if (inherits(icon, "shiny.tag") && icon$name == "i") {
+  } else if (inherits(icon, "shiny.tag") && icon$name == "i") {
     return(icon)
-  }
-  else {
+  } else {
     stop("Invalid icon. Use Shiny's 'icon()' function to generate a valid icon")
   }
 }
@@ -178,6 +194,8 @@ validateIcon <- function(icon) {
 
 
 formatNoSci <- function(x) {
-  if (is.null(x)) return(NULL)
+  if (is.null(x)) {
+    return(NULL)
+  }
   format(x, scientific = FALSE, digits = 15)
 }

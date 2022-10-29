@@ -88,4 +88,3 @@ Shiny.inputBindings.register(
   treeWidgetBinding,
   "shinyWidgets.treeWidgetBinding"
 );
-

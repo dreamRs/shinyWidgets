@@ -28,26 +28,26 @@
 #' @example examples/ex-drop-menu.R
 dropMenu <- function(tag, ...,
                      padding = "5px",
-                     placement = c("bottom",
-                                   "bottom-start",
-                                   "bottom-end",
-                                   "top",
-                                   "top-start",
-                                   "top-end",
-                                   "right",
-                                   "right-start",
-                                   "right-end",
-                                   "left",
-                                   "left-start",
-                                   "left-end"),
+                     placement = c(
+                       "bottom",
+                       "bottom-start",
+                       "bottom-end",
+                       "top",
+                       "top-start",
+                       "top-end",
+                       "right",
+                       "right-start",
+                       "right-end",
+                       "left",
+                       "left-start",
+                       "left-end"
+                     ),
                      trigger = "click",
                      arrow = TRUE,
                      theme = c("light", "light-border", "material", "translucent"),
                      hideOnClick = TRUE,
                      maxWidth = "none",
                      options = NULL) {
-
-
   theme <- match.arg(theme)
   placement <- match.arg(placement)
   trigger <- match.arg(
@@ -150,8 +150,9 @@ dropMenuOptions <- function(duration = c(275, 250), animation = "fade", flip = F
 #'
 #' @example examples/ex-drop-menu-interaction.R
 enableDropMenu <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  if (!grepl(pattern = "_dropmenu$", x = id))
+  if (!grepl(pattern = "_dropmenu$", x = id)) {
     warning("enableDropMenu: 'id' should be suffixed by '_dropmenu'.")
+  }
   session$sendInputMessage(id, list(
     action = "enable"
   ))
@@ -161,8 +162,9 @@ enableDropMenu <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'
 #' @rdname drop-menu-interaction
 disableDropMenu <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  if (!grepl(pattern = "_dropmenu$", x = id))
+  if (!grepl(pattern = "_dropmenu$", x = id)) {
     warning("disableDropMenu: 'id' should be suffixed by '_dropmenu'.")
+  }
   session$sendInputMessage(id, list(
     action = "disable"
   ))
@@ -172,8 +174,9 @@ disableDropMenu <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'
 #' @rdname drop-menu-interaction
 showDropMenu <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  if (!grepl(pattern = "_dropmenu$", x = id))
+  if (!grepl(pattern = "_dropmenu$", x = id)) {
     warning("showDropMenu: 'id' should be suffixed by '_dropmenu'.")
+  }
   session$sendInputMessage(id, list(
     action = "show"
   ))
@@ -183,8 +186,9 @@ showDropMenu <- function(id, session = shiny::getDefaultReactiveDomain()) {
 #'
 #' @rdname drop-menu-interaction
 hideDropMenu <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  if (!grepl(pattern = "_dropmenu$", x = id))
+  if (!grepl(pattern = "_dropmenu$", x = id)) {
     warning("hideDropMenu: 'id' should be suffixed by '_dropmenu'.")
+  }
   session$sendInputMessage(id, list(
     action = "hide"
   ))
@@ -235,7 +239,3 @@ html_dependencies_tippy <- function() {
     all_files = FALSE
   )
 }
-
-
-
-

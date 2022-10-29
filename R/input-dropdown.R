@@ -34,52 +34,48 @@
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   dropdownButton(
-#'     inputId = "mydropdown",
-#'     label = "Controls",
-#'     icon = icon("sliders"),
-#'     status = "primary",
-#'     circle = FALSE,
-#'     sliderInput(
-#'       inputId = "n",
-#'       label = "Number of observations",
-#'       min = 10, max = 100, value = 30
+#'   ui <- fluidPage(
+#'     dropdownButton(
+#'       inputId = "mydropdown",
+#'       label = "Controls",
+#'       icon = icon("sliders"),
+#'       status = "primary",
+#'       circle = FALSE,
+#'       sliderInput(
+#'         inputId = "n",
+#'         label = "Number of observations",
+#'         min = 10, max = 100, value = 30
+#'       ),
+#'       prettyToggle(
+#'         inputId = "na",
+#'         label_on = "NAs keeped",
+#'         label_off = "NAs removed",
+#'         icon_on = icon("check"),
+#'         icon_off = icon("xmark")
+#'       )
 #'     ),
-#'     prettyToggle(
-#'       inputId = "na",
-#'       label_on = "NAs keeped",
-#'       label_off = "NAs removed",
-#'       icon_on = icon("check"),
-#'       icon_off = icon("xmark")
-#'     )
-#'   ),
-#'   tags$div(style = "height: 140px;"), # spacing
-#'   verbatimTextOutput(outputId = "out"),
-#'   verbatimTextOutput(outputId = "state")
-#' )
+#'     tags$div(style = "height: 140px;"), # spacing
+#'     verbatimTextOutput(outputId = "out"),
+#'     verbatimTextOutput(outputId = "state")
+#'   )
 #'
-#' server <- function(input, output, session) {
+#'   server <- function(input, output, session) {
+#'     output$out <- renderPrint({
+#'       cat(
+#'         " # n\n", input$n, "\n",
+#'         "# na\n", input$na
+#'       )
+#'     })
 #'
-#'   output$out <- renderPrint({
-#'     cat(
-#'       " # n\n", input$n, "\n",
-#'       "# na\n", input$na
-#'     )
-#'   })
+#'     output$state <- renderPrint({
+#'       cat("Open:", input$mydropdown_state)
+#'     })
+#'   }
 #'
-#'   output$state <- renderPrint({
-#'     cat("Open:", input$mydropdown_state)
-#'   })
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 dropdownButton <- function(...,
                            circle = TRUE,
@@ -104,14 +100,17 @@ dropdownButton <- function(...,
     class = paste("dropdown-menu", ifelse(right, "dropdown-menu-right", "")),
     class = "dropdown-shinyWidgets",
     id = paste("dropdown-menu", inputId, sep = "-"),
-    style = if (!is.null(width))
-      paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", htmltools::validateCssUnit(width), ";")
+    },
     `aria-labelledby` = inputId,
     lapply(
       X = list(...),
       FUN = htmltools::tags$li,
-      style = paste0("margin-left: ", htmltools::validateCssUnit(margin),
-                     "; margin-right: ", htmltools::validateCssUnit(margin), ";")
+      style = paste0(
+        "margin-left: ", htmltools::validateCssUnit(margin),
+        "; margin-right: ", htmltools::validateCssUnit(margin), ";"
+      )
     )
   )
 
@@ -128,7 +127,7 @@ dropdownButton <- function(...,
     )
   } else {
     html_button <- list(
-      class = paste0("btn btn-", status," action-button dropdown-toggle "),
+      class = paste0("btn btn-", status, " action-button dropdown-toggle "),
       class = if (size != "default") paste0("btn-", size),
       type = "button",
       id = inputId,
@@ -143,16 +142,19 @@ dropdownButton <- function(...,
   }
 
   # tooltip
-  if (identical(tooltip, TRUE))
+  if (identical(tooltip, TRUE)) {
     tooltip <- tooltipOptions(title = label)
+  }
 
   if (!is.null(tooltip) && !identical(tooltip, FALSE)) {
     tooltip <- lapply(tooltip, function(x) {
-      if (identical(x, TRUE))
+      if (identical(x, TRUE)) {
         "true"
-      else if (identical(x, FALSE))
+      } else if (identical(x, FALSE)) {
         "false"
-      else x
+      } else {
+        x
+      }
     })
     tooltipJs <- htmltools::tags$script(
       sprintf(
@@ -164,8 +166,11 @@ dropdownButton <- function(...,
     tooltipJs <- ""
   }
 
-  if( inline ) container <- htmltools::tags$span
-  else container <- htmltools::tags$div
+  if (inline) {
+    container <- htmltools::tags$span
+  } else {
+    container <- htmltools::tags$div
+  }
   dropdownTag <- container(
     class = ifelse(up, "dropup", "dropdown"),
     class = "btn-dropdown-input",
@@ -210,51 +215,58 @@ tooltipOptions <- function(placement = "right",
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#' ui <- fluidPage(
-#'   tags$h2("Toggle Dropdown Button"),
-#'   br(),
-#'   fluidRow(
-#'     column(
-#'       width = 6,
-#'       dropdownButton(
-#'         tags$h3("List of Inputs"),
-#'         selectInput(inputId = 'xcol',
-#'                     label = 'X Variable',
-#'                     choices = names(iris)),
-#'         sliderInput(inputId = 'clusters',
-#'                     label = 'Cluster count',
-#'                     value = 3,
-#'                     min = 1,
-#'                     max = 9),
-#'         actionButton(inputId = "toggle2",
-#'                      label = "Close dropdown"),
-#'         circle = TRUE, status = "danger",
-#'         inputId = "mydropdown",
-#'         icon = icon("gear"), width = "300px"
+#'   ui <- fluidPage(
+#'     tags$h2("Toggle Dropdown Button"),
+#'     br(),
+#'     fluidRow(
+#'       column(
+#'         width = 6,
+#'         dropdownButton(
+#'           tags$h3("List of Inputs"),
+#'           selectInput(
+#'             inputId = "xcol",
+#'             label = "X Variable",
+#'             choices = names(iris)
+#'           ),
+#'           sliderInput(
+#'             inputId = "clusters",
+#'             label = "Cluster count",
+#'             value = 3,
+#'             min = 1,
+#'             max = 9
+#'           ),
+#'           actionButton(
+#'             inputId = "toggle2",
+#'             label = "Close dropdown"
+#'           ),
+#'           circle = TRUE, status = "danger",
+#'           inputId = "mydropdown",
+#'           icon = icon("gear"), width = "300px"
+#'         )
+#'       ),
+#'       column(
+#'         width = 6,
+#'         actionButton(
+#'           inputId = "toggle1",
+#'           label = "Open dropdown"
+#'         )
 #'       )
-#'     ),
-#'     column(
-#'       width = 6,
-#'       actionButton(inputId = "toggle1",
-#'                    label = "Open dropdown")
 #'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
+#'   server <- function(input, output, session) {
+#'     observeEvent(list(input$toggle1, input$toggle2),
+#'       {
+#'         toggleDropdownButton(inputId = "mydropdown")
+#'       },
+#'       ignoreInit = TRUE
+#'     )
+#'   }
 #'
-#'   observeEvent(list(input$toggle1, input$toggle2), {
-#'     toggleDropdownButton(inputId = "mydropdown")
-#'   }, ignoreInit = TRUE)
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 toggleDropdownButton <- function(inputId, session = getDefaultReactiveDomain()) {
   session$sendInputMessage(paste0(inputId, "_state"), list(id = inputId))

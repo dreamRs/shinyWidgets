@@ -11,8 +11,9 @@
 #'
 #' @example examples/useTablerDash.R
 useTablerDash <- function() {
-  if (!requireNamespace(package = "tablerDash"))
+  if (!requireNamespace(package = "tablerDash")) {
     message("Package 'tablerDash' is required to run this function")
+  }
   deps <- findDependencies(
     tablerDash::tablerDashPage(
       navbar = tablerDash::tablerDashNav(),

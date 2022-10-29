@@ -67,39 +67,37 @@
 #'
 #' @examples
 #' if (interactive()) {
+#'   # examples of different options to select dates:
+#'   demoAirDatepicker("datepicker")
 #'
-#' # examples of different options to select dates:
-#' demoAirDatepicker("datepicker")
+#'   # select month(s)
+#'   demoAirDatepicker("months")
 #'
-#' # select month(s)
-#' demoAirDatepicker("months")
+#'   # select year(s)
+#'   demoAirDatepicker("years")
 #'
-#' # select year(s)
-#' demoAirDatepicker("years")
+#'   # select date and time
+#'   demoAirDatepicker("timepicker")
 #'
-#' # select date and time
-#' demoAirDatepicker("timepicker")
+#'   # You can select multiple dates :
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' # You can select multiple dates :
-#' library(shiny)
-#' library(shinyWidgets)
+#'   ui <- fluidPage(
+#'     airDatepickerInput(
+#'       inputId = "multiple",
+#'       label = "Select multiple dates:",
+#'       placeholder = "You can pick 5 dates",
+#'       multiple = 5, clearButton = TRUE
+#'     ),
+#'     verbatimTextOutput("res")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   airDatepickerInput(
-#'     inputId = "multiple",
-#'     label = "Select multiple dates:",
-#'     placeholder = "You can pick 5 dates",
-#'     multiple = 5, clearButton = TRUE
-#'   ),
-#'   verbatimTextOutput("res")
-#' )
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint(input$multiple)
+#'   }
 #'
-#' server <- function(input, output, session) {
-#'   output$res <- renderPrint(input$multiple)
-#' }
-#'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 airDatepickerInput <- function(inputId,
                                label = NULL,
@@ -136,17 +134,20 @@ airDatepickerInput <- function(inputId,
   # dput(tools::file_path_sans_ext(list.files("node_modules/air-datepicker/locale/", pattern = "\\.js")))
   language <- match.arg(
     arg = language,
-    choices = c("ar", "cs", "da", "de", "en", "es", "fi", "fr", "hu", "it",
-                "nl", "pl", "pt-BR", "pt", "ro", "ru", "si", "sk", "sv", "th",
-                "tr", "uk", "zh"),
+    choices = c(
+      "ar", "cs", "da", "de", "en", "es", "fi", "fr", "hu", "it",
+      "nl", "pl", "pt-BR", "pt", "ro", "ru", "si", "sk", "sv", "th",
+      "tr", "uk", "zh"
+    ),
     several.ok = FALSE
   )
 
   version <- getOption("air-datepicker", default = 3)
 
   list1 <- function(x) {
-    if (is.null(x))
+    if (is.null(x)) {
       return(x)
+    }
     if (length(x) == 1 & !is.list(x)) {
       list(x)
     } else {
@@ -155,12 +156,15 @@ airDatepickerInput <- function(inputId,
   }
 
   buttons <- character(0)
-  if (clearButton)
+  if (clearButton) {
     buttons <- c(buttons, "clear")
-  if (todayButton)
+  }
+  if (todayButton) {
     buttons <- c(buttons, "today")
-  if (length(buttons) < 1)
+  }
+  if (length(buttons) < 1) {
     buttons <- FALSE
+  }
 
 
   airParams <- dropNulls(list(
@@ -236,8 +240,9 @@ airDatepickerInput <- function(inputId,
 
   tagAir <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", validateCssUnit(width), ";")
+    },
     if (!is.null(label)) tags$label(label, class = "control-label", `for` = inputId),
     tagAir,
     tags$script(
@@ -371,9 +376,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #'
 #' @examples
 #' if (interactive()) {
-#'
 #'   demoAirDatepicker("update")
-#'
 #' }
 updateAirDateInput <- function(session = getDefaultReactiveDomain(),
                                inputId,
@@ -385,8 +388,9 @@ updateAirDateInput <- function(session = getDefaultReactiveDomain(),
                                hide = FALSE) {
   stopifnot(is.logical(clear))
   to_ms <- function(x) {
-    if (is.null(x))
+    if (is.null(x)) {
       return(NULL)
+    }
     1000 * as.numeric(as.POSIXct(as.character(x), tz = Sys.timezone()))
   }
   if (!is.null(value)) {
@@ -413,5 +417,3 @@ updateAirDateInput <- function(session = getDefaultReactiveDomain(),
   ))
   session$sendInputMessage(inputId, message)
 }
-
-

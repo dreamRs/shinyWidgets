@@ -13,7 +13,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   # Launch sweet alert confirmation
   observeEvent(input$launch, {
     ask_confirmation(
@@ -28,15 +27,18 @@ server <- function(input, output, session) {
   # count click
   true <- reactiveVal(0)
   false <- reactiveVal(0)
-  observeEvent(input$myconfirmation, {
-    if (isTRUE(input$myconfirmation)) {
-      x <- true() + 1
-      true(x)
-    } else {
-      x <- false() + 1
-      false(x)
-    }
-  }, ignoreNULL = TRUE)
+  observeEvent(input$myconfirmation,
+    {
+      if (isTRUE(input$myconfirmation)) {
+        x <- true() + 1
+        true(x)
+      } else {
+        x <- false() + 1
+        false(x)
+      }
+    },
+    ignoreNULL = TRUE
+  )
 
   output$count <- renderUI({
     tags$span(
@@ -47,6 +49,6 @@ server <- function(input, output, session) {
   })
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
-
+}

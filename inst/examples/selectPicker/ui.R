@@ -27,9 +27,9 @@ basicPanel <- function(..., width = 4) {
   column(
     width = width,
     tags$div(
-      class="panel panel-default", style="border: 1px solid; border-color: steelblue;",
+      class = "panel panel-default", style = "border: 1px solid; border-color: steelblue;",
       tags$div(
-        class="panel-body",
+        class = "panel-body",
         ...
       )
     )
@@ -40,21 +40,17 @@ basicPanel <- function(..., width = 4) {
 
 
 fluidPage(
-  tags$h1("Select Picker Gallery", style="color: steelblue;"),
+  tags$h1("Select Picker Gallery", style = "color: steelblue;"),
   tags$h5(
     "via ",
     tags$a(href = "https://silviomoreto.github.io/bootstrap-select/examples/", "select-picker"),
-    style="color: steelblue;"
+    style = "color: steelblue;"
   ),
-
-
   fluidRow(
-
     basicPanel(
       pickerInput(inputId = "id1", label = "Default", choices = c("a", "b", "c", "d")),
       verbatimTextOutput("res1")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id2", label = "Options group",
@@ -62,14 +58,12 @@ fluidPage(
       ),
       verbatimTextOutput("res2")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id3", label = "Multiple", choices = attr(UScitiesD, "Labels"), multiple = TRUE
       ),
       verbatimTextOutput("res3")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id4", label = "Live search", choices = attr(UScitiesD, "Labels"),
@@ -77,7 +71,6 @@ fluidPage(
       ),
       verbatimTextOutput("res4")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id5", label = "Placeholder", choices = c("a", "b", "c", "d"),
@@ -85,7 +78,6 @@ fluidPage(
       ),
       verbatimTextOutput("res5")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id6", label = "Selected text format (select >3 items)", choices = LETTERS,
@@ -93,7 +85,6 @@ fluidPage(
       ),
       verbatimTextOutput("res6")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id7", label = "Style : primary", choices = c("a", "b", "c", "d"),
@@ -101,7 +92,6 @@ fluidPage(
       ),
       verbatimTextOutput("res7")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id8", label = "Style : danger", choices = c("a", "b", "c", "d"),
@@ -109,26 +99,26 @@ fluidPage(
       ),
       verbatimTextOutput("res8")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id9", label = "Style individual options",
         choices = c("steelblue 150%", "right align + red", "bold", "background color"),
         choicesOpt = list(
-          style = c("color: steelblue; font-size: 150%;", "color: firebrick; text-align: right;",
-                    "font-weight: bold;",
-                    "background: forestgreen; color: white;")
+          style = c(
+            "color: steelblue; font-size: 150%;", "color: firebrick; text-align: right;",
+            "font-weight: bold;",
+            "background: forestgreen; color: white;"
+          )
         )
       ),
       verbatimTextOutput("res9")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id19", label = "Style individual options",
         choices = paste("Badge", c("info", "success", "danger", "primary", "warning")),
         choicesOpt = list(
-          content=sprintf(
+          content = sprintf(
             "<span class='label label-%s'>%s</span>", c("info", "success", "danger", "primary", "warning"),
             paste("Badge", c("info", "success", "danger", "primary", "warning"))
           )
@@ -136,7 +126,6 @@ fluidPage(
       ),
       verbatimTextOutput("res19")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id001", label = "width: 'auto'",
@@ -155,31 +144,32 @@ fluidPage(
         choices = c("a", "b", "c", "ddddddddddddddddddddddddddd"), width = "75%"
       )
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id10", label = "Glyphicon",
-        choices = c("glyphicon-cog", "glyphicon-play", "glyphicon-ok-sign",
-                    "glyphicon-arrow-right", "glyphicon-euro", "glyphicon-music"),
+        choices = c(
+          "glyphicon-cog", "glyphicon-play", "glyphicon-ok-sign",
+          "glyphicon-arrow-right", "glyphicon-euro", "glyphicon-music"
+        ),
         choicesOpt = list(
-          icon = c("glyphicon-cog", "glyphicon-play", "glyphicon-ok-sign",
-                   "glyphicon-arrow-right", "glyphicon-euro", "glyphicon-music")
+          icon = c(
+            "glyphicon-cog", "glyphicon-play", "glyphicon-ok-sign",
+            "glyphicon-arrow-right", "glyphicon-euro", "glyphicon-music"
+          )
         )
       ),
       verbatimTextOutput("res10")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id11", label = "Subtext",
         choices = rownames(mtcars),
         choicesOpt = list(
-          subtext = paste("mpg", mtcars$mpg, sep =": ")
+          subtext = paste("mpg", mtcars$mpg, sep = ": ")
         )
       ),
       verbatimTextOutput("res11")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id12", label = "Menu size (5 items visible)", choices = LETTERS,
@@ -187,7 +177,6 @@ fluidPage(
       ),
       verbatimTextOutput("res12")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id13", label = "Select/deselect all options", choices = LETTERS,
@@ -195,7 +184,6 @@ fluidPage(
       ),
       verbatimTextOutput("res13")
     ),
-
     basicPanel(
       pickerInput(
         inputId = "id14", label = "c selected by default", choices = c("a", "b", "c", "d"),
@@ -214,14 +202,12 @@ fluidPage(
       radioButtons(inputId = "update", label = "Update", choices = c("a", "b", "c", "d"), inline = TRUE),
       verbatimTextOutput("res16")
     ),
-
     basicPanel(
       pickerInput(inputId = "id17", label = "Update choices... BUG!!!", choices = c("a", "b", "c", "d")),
       radioButtons(inputId = "update2", label = "Update", choices = c("lower", "upper"), inline = TRUE),
       verbatimTextOutput("res17"),
       tags$button("test", onclick = "$('#id17').selectpicker('refresh');")
     ),
-
     basicPanel(
       pickerInput(inputId = "id18", label = "Inline", choices = c("a", "b", "c", "d"), inline = TRUE),
       verbatimTextOutput("res18")

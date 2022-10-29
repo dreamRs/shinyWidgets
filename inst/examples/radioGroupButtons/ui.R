@@ -23,7 +23,6 @@ library("shinyWidgets")
 
 fluidPage(
   theme = bslib::bs_theme(version = 4),
-
   tags$h1("radioGroupButtons", style = "color: steelblue;"),
   tags$h3("Des radio en forme de boutons."),
   br(),
@@ -58,9 +57,7 @@ fluidPage(
       verbatimTextOutput(outputId = "res3")
     )
   ),
-
   br(), br(),
-
   tags$h4("Avec des statuts bootstrap"),
   fluidRow(
     column(
@@ -94,9 +91,7 @@ fluidPage(
       verbatimTextOutput(outputId = "res6")
     )
   ),
-
   br(), br(),
-
   tags$h4("Avec effets de style"),
   fluidRow(
     column(
@@ -108,7 +103,6 @@ fluidPage(
         size = "lg"
       ),
       verbatimTextOutput(outputId = "res7"),
-
       radioGroupButtons(
         inputId = "test11",
         label = "Icon for checked button:",
@@ -127,7 +121,6 @@ fluidPage(
         width = "100%"
       ),
       verbatimTextOutput(outputId = "res8"),
-
       radioGroupButtons(
         inputId = "test13",
         label = "Icon for checked button:",
@@ -148,7 +141,6 @@ fluidPage(
         justified = TRUE
       ),
       verbatimTextOutput(outputId = "res9"),
-
       radioGroupButtons(
         inputId = "test14",
         label = "Individual buttons:",
@@ -158,9 +150,7 @@ fluidPage(
       verbatimTextOutput(outputId = "res14")
     )
   ),
-
   br(), br(),
-
   tags$h4("Update !"),
   fluidRow(
     column(
@@ -195,7 +185,6 @@ fluidPage(
       )
     )
   ), br(), br(),
-
   fluidRow(
     column(
       width = 4,
@@ -210,6 +199,3 @@ fluidPage(
     )
   )
 )
-
-
-

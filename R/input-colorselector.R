@@ -17,29 +17,29 @@
 #'
 #' @examples
 #' if (interactive()) {
+#'   # Full example
+#'   colorSelectorExample()
 #'
-#' # Full example
-#' colorSelectorExample()
+#'   # Simple example
+#'   ui <- fluidPage(
+#'     colorSelectorInput(
+#'       inputId = "mycolor1", label = "Pick a color :",
+#'       choices = c(
+#'         "steelblue", "cornflowerblue",
+#'         "firebrick", "palegoldenrod",
+#'         "forestgreen"
+#'       )
+#'     ),
+#'     verbatimTextOutput("result1")
+#'   )
 #'
-#' # Simple example
-#' ui <- fluidPage(
-#'   colorSelectorInput(
-#'     inputId = "mycolor1", label = "Pick a color :",
-#'     choices = c("steelblue", "cornflowerblue",
-#'                 "firebrick", "palegoldenrod",
-#'                 "forestgreen")
-#'   ),
-#'   verbatimTextOutput("result1")
-#' )
+#'   server <- function(input, output, session) {
+#'     output$result1 <- renderPrint({
+#'       input$mycolor1
+#'     })
+#'   }
 #'
-#' server <- function(input, output, session) {
-#'   output$result1 <- renderPrint({
-#'     input$mycolor1
-#'   })
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 colorSelectorInput <- function(inputId,
                                label,
@@ -50,20 +50,23 @@ colorSelectorInput <- function(inputId,
                                ncol = 10) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   mode <- match.arg(arg = mode)
-  if (!is.list(choices))
+  if (!is.list(choices)) {
     choices <- split(x = choices, f = (seq_along(choices) - 1) %/% ncol)
+  }
   choices <- choicesWithNames(choices)
-  if (!is.null(selected) && length(selected) > 1)
+  if (!is.null(selected) && length(selected) > 1) {
     stop("selected must be length 1")
-  if (is.null(selected) & mode == "radio")
+  }
+  if (is.null(selected) & mode == "radio") {
     selected <- firstChoice(choices)
+  }
   tagCS <- htmltools::tags$div(
     class = "shiny-input-container-inline form-group",
     class = paste0(mode, "-group-buttons"),
-    `data-toggle`="buttons",
+    `data-toggle` = "buttons",
     id = inputId,
     style = "margin-top: 3px; margin-bottom: 10px; ",
-    if (!is.null(label)) htmltools::tagList(htmltools::tags$label(class="control-label", label), htmltools::tags$br()),
+    if (!is.null(label)) htmltools::tagList(htmltools::tags$label(class = "control-label", label), htmltools::tags$br()),
     colorOptions(
       inputId = inputId,
       choices = choices,
@@ -85,19 +88,18 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
     if (is.list(choice)) {
       htmltools::tagList(
         htmltools::tags$div(
-          class="btn-group",
+          class = "btn-group",
           colorOptions(inputId, choice, selected, mode, display_label)
         ), if (display_label) htmltools::tags$em(htmltools::HTML(names(choices)[i])),
         htmltools::tags$br()
       )
-    }
-    else {
+    } else {
       htmltools::tagList(
         htmltools::tags$span(
-          class = "btn btn-color-sw", type="button",
+          class = "btn btn-color-sw", type = "button",
           style = paste("background-color:", choice),
           htmltools::tags$input(
-            type=mode, name=inputId, value=choice, id=choice,
+            type = mode, name = inputId, value = choice, id = choice,
             checked = if (choice %in% selected) "checked"
           )
         )
@@ -118,9 +120,9 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
 #'
 #' @describeIn colorSelectorInput Examples of use for colorSelectorInput
 colorSelectorExample <- function() {
-
-  if (!requireNamespace(package = "grDevices"))
+  if (!requireNamespace(package = "grDevices")) {
     message("Package 'grDevices' is required to run this function")
+  }
 
   shiny::shinyAppFile(
     appFile = system.file("examples/colorSelector/example.R", package = "shinyWidgets"),
@@ -164,8 +166,9 @@ colorSelectorDrop <- function(inputId,
   )
   dropTag <- htmltools::tags$ul(
     class = "dropdown-menu",
-    style = if (!is.null(width))
-      paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", htmltools::validateCssUnit(width), ";")
+    },
     colorSelectorInput(
       inputId = inputId,
       label = label,
@@ -187,9 +190,3 @@ colorSelectorDrop <- function(inputId,
     btn, dropTag, htmltools::tags$script(HTML(js))
   )
 }
-
-
-
-
-
-

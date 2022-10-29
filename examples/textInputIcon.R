@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   # Test with different version of Bootstrap
   theme = bslib::bs_theme(version = 5),
-
   tags$h2("textInputIcon examples"),
   fluidRow(
     column(
@@ -45,14 +44,13 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$ex1)
   output$res2 <- renderPrint(input$ex2)
   output$res3 <- renderPrint(input$ex3)
   output$res4 <- renderPrint(input$ex4)
   output$res5 <- renderPrint(input$ex5)
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

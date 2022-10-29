@@ -2,12 +2,11 @@ context("spectrum")
 
 
 test_that("example", {
-
   tagsp <- spectrumInput(
     inputId = "myColor",
     label = "Pick a color:",
     choices = list(
-      list('black', 'white', 'blanchedalmond', 'steelblue', 'forestgreen'),
+      list("black", "white", "blanchedalmond", "steelblue", "forestgreen"),
       as.list(scales::brewer_pal(palette = "Blues")(9)),
       as.list(scales::brewer_pal(palette = "Greens")(9)),
       as.list(scales::brewer_pal(palette = "Spectral")(11)),

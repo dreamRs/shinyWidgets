@@ -10,7 +10,6 @@
 
 
 function(input, output, session) {
-
   # cleanup app
   session$onSessionEnded(function() {
     suppressWarnings(
@@ -170,21 +169,29 @@ function(input, output, session) {
     if (input$uppickerIconsRadio == "Glyphicon") {
       updatePickerInput(
         session = session, inputId = "uppickerIcons", selected = input$uppickerIcons,
-        choices = c("glyphicon-arrow-right / fa-arrow-right", "glyphicon-cog / fa-cog", "glyphicon-play / fa-play",
-                    "glyphicon-ok-sign / fa-check", "glyphicon-euro / fa-eur", "glyphicon-music / fa-music"),
+        choices = c(
+          "glyphicon-arrow-right / fa-arrow-right", "glyphicon-cog / fa-cog", "glyphicon-play / fa-play",
+          "glyphicon-ok-sign / fa-check", "glyphicon-euro / fa-eur", "glyphicon-music / fa-music"
+        ),
         choicesOpt = list(
-          icon = c("glyphicon glyphicon-arrow-right", "glyphicon glyphicon-cog", "glyphicon glyphicon-play",
-                   "glyphicon glyphicon-ok-sign", "glyphicon glyphicon-euro", "glyphicon glyphicon-music")
+          icon = c(
+            "glyphicon glyphicon-arrow-right", "glyphicon glyphicon-cog", "glyphicon glyphicon-play",
+            "glyphicon glyphicon-ok-sign", "glyphicon glyphicon-euro", "glyphicon glyphicon-music"
+          )
         )
       )
     } else {
       updatePickerInput(
         session = session, inputId = "uppickerIcons", selected = input$uppickerIcons,
-        choices = c("glyphicon-arrow-right / fa-arrow-right", "glyphicon-cog / fa-gear", "glyphicon-play / fa-play",
-                    "glyphicon-ok-sign / fa-check", "glyphicon-euro / fa-eur", "glyphicon-music / fa-music"),
+        choices = c(
+          "glyphicon-arrow-right / fa-arrow-right", "glyphicon-cog / fa-gear", "glyphicon-play / fa-play",
+          "glyphicon-ok-sign / fa-check", "glyphicon-euro / fa-eur", "glyphicon-music / fa-music"
+        ),
         choicesOpt = list(
-          icon = c("fa fa-arrow-right", "fa fa-gear", "fa fa-play",
-                   "fa fa-check", "fa fa-eur", "fa fa-music")
+          icon = c(
+            "fa fa-arrow-right", "fa fa-gear", "fa fa-play",
+            "fa fa-check", "fa fa-eur", "fa fa-music"
+          )
         )
       )
     }
@@ -197,29 +204,34 @@ function(input, output, session) {
   output$resselectedSliderText <- renderPrint({
     input$selectedSliderText
   })
-  observeEvent(input$upSelectedSliderText, {
-    updateSliderTextInput(
-      session = session,
-      inputId = "selectedSliderText",
-      selected = input$upSelectedSliderText
-    )
-  }, ignoreInit = TRUE)
+  observeEvent(input$upSelectedSliderText,
+    {
+      updateSliderTextInput(
+        session = session,
+        inputId = "selectedSliderText",
+        selected = input$upSelectedSliderText
+      )
+    },
+    ignoreInit = TRUE
+  )
 
   output$reschoicesSliderText <- renderPrint({
     input$choicesSliderText
   })
-  observeEvent(input$upChoicesSliderText, {
-    choices <- switch(
-      input$upChoicesSliderText,
-      "Abbreviations" = month.abb,
-      "Full names" = month.name
-    )
-    updateSliderTextInput(
-      session = session,
-      inputId = "choicesSliderText",
-      choices = choices
-    )
-  }, ignoreInit = TRUE)
+  observeEvent(input$upChoicesSliderText,
+    {
+      choices <- switch(input$upChoicesSliderText,
+        "Abbreviations" = month.abb,
+        "Full names" = month.name
+      )
+      updateSliderTextInput(
+        session = session,
+        inputId = "choicesSliderText",
+        choices = choices
+      )
+    },
+    ignoreInit = TRUE
+  )
 
 
 
@@ -234,13 +246,16 @@ function(input, output, session) {
   })
 
   output$plot1 <- renderPlot({
-    palette(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
-              "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"))
+    palette(c(
+      "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
+      "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"
+    ))
 
     par(mar = c(5.1, 4.1, 0, 1))
     plot(selectedData(),
-         col = clusters()$cluster,
-         pch = 20, cex = 3)
+      col = clusters()$cluster,
+      pch = 20, cex = 3
+    )
     points(clusters()$centers, pch = 4, cex = 4, lwd = 4)
   })
 
@@ -255,13 +270,16 @@ function(input, output, session) {
   })
 
   output$plot2 <- renderPlot({
-    palette(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
-              "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"))
+    palette(c(
+      "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
+      "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"
+    ))
 
     par(mar = c(5.1, 4.1, 0, 1))
     plot(selectedData2(),
-         col = clusters2()$cluster,
-         pch = 20, cex = 3)
+      col = clusters2()$cluster,
+      pch = 20, cex = 3
+    )
     points(clusters2()$centers, pch = 4, cex = 4, lwd = 4)
   })
 
@@ -360,7 +378,4 @@ function(input, output, session) {
   observeEvent(input$uppb9, {
     updateProgressBar(session = session, id = "pb9", value = 1000, total = input$uppb9)
   })
-
-
 }
-

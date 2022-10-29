@@ -30,7 +30,6 @@ ui <- function(request) {
 }
 
 server <- function(input, output, session) {
-
   output$res_chkbtn <- renderPrint({
     input$chkbtn
   })
@@ -40,7 +39,6 @@ server <- function(input, output, session) {
   output$res_pkr <- renderPrint({
     input$pkr
   })
-
 }
 
 enableBookmarking("url")

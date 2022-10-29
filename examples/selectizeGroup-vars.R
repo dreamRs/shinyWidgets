@@ -2,7 +2,6 @@
 # Select variables --------------------------------------------------------
 
 if (interactive()) {
-
   library(shiny)
   library(shinyWidgets)
 
@@ -38,7 +37,6 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     vars_r <- reactive({
       input$vars
     })

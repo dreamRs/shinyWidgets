@@ -3,10 +3,11 @@ context("colorSelectorInput")
 
 
 test_that("Default", {
-
-  choices <- c("steelblue", "cornflowerblue",
-               "firebrick", "palegoldenrod",
-               "forestgreen")
+  choices <- c(
+    "steelblue", "cornflowerblue",
+    "firebrick", "palegoldenrod",
+    "forestgreen"
+  )
   tagcs <- colorSelectorInput(
     inputId = "mycolor1", label = "Pick a color :",
     choices = choices
@@ -18,10 +19,11 @@ test_that("Default", {
 
 
 test_that("Default drp", {
-
-  choices <- c("steelblue", "cornflowerblue",
-               "firebrick", "palegoldenrod",
-               "forestgreen")
+  choices <- c(
+    "steelblue", "cornflowerblue",
+    "firebrick", "palegoldenrod",
+    "forestgreen"
+  )
   tagcs <- colorSelectorDrop(
     inputId = "mycolor1", label = NULL,
     choices = choices

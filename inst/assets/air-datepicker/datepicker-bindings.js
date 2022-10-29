@@ -237,4 +237,3 @@ function getFormattedDate(date) {
     }
   }
 }
-

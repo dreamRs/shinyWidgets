@@ -4,12 +4,9 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h3("format numbers"),
   tags$br(),
-
   fluidRow(
-
     column(
       width = 6,
-
       panel(
         heading = "integer", status = "success",
         noUiSliderInput(
@@ -20,7 +17,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res1")
       ),
-
       panel(
         heading = "decimal mark", status = "success",
         noUiSliderInput(
@@ -31,7 +27,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res3")
       ),
-
       panel(
         heading = "thousand separators", status = "success",
         noUiSliderInput(
@@ -42,12 +37,9 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res5")
       )
-
     ),
-
     column(
       width = 6,
-
       panel(
         heading = "suffix", status = "success",
         noUiSliderInput(
@@ -58,7 +50,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res2")
       ),
-
       panel(
         heading = "prefix", status = "success",
         noUiSliderInput(
@@ -69,21 +60,17 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res4")
       )
-
     )
-
   )
 )
 
 server <- function(input, output, session) {
-
   lapply(
     X = seq_len(10),
     FUN = function(i) {
       output[[paste0("res", i)]] <- renderPrint(input[[paste0("form", i)]])
     }
   )
-
 }
 
 shinyApp(ui, server)

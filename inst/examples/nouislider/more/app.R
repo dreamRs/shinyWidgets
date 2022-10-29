@@ -4,12 +4,9 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h3("Some examples noUiSlider"),
   tags$br(),
-
   fluidRow(
-
     column(
       width = 6,
-
       panel(
         heading = "single handle", status = "info",
         noUiSliderInput(
@@ -18,7 +15,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res1")
       ),
-
       panel(
         heading = "double handles", status = "info",
         noUiSliderInput(
@@ -28,7 +24,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res3")
       ),
-
       panel(
         heading = "multiple handles", status = "info",
         noUiSliderInput(
@@ -38,7 +33,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res5")
       ),
-
       panel(
         heading = "direction", status = "info",
         noUiSliderInput(
@@ -49,7 +43,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res7")
       ),
-
       panel(
         heading = "direction", status = "info",
         noUiSliderInput(
@@ -60,12 +53,9 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res9")
       )
-
     ),
-
     column(
       width = 6,
-
       panel(
         heading = "connect", status = "info",
         noUiSliderInput(
@@ -75,7 +65,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res2")
       ),
-
       panel(
         heading = "connect range", status = "info",
         noUiSliderInput(
@@ -85,7 +74,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res4")
       ),
-
       panel(
         heading = "margin option", status = "info",
         noUiSliderInput(
@@ -95,7 +83,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res6")
       ),
-
       panel(
         heading = "limit option", status = "info",
         noUiSliderInput(
@@ -105,7 +92,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res8")
       ),
-
       panel(
         heading = "color", status = "info",
         noUiSliderInput(
@@ -115,7 +101,6 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res10")
       ),
-
       panel(
         heading = "colors", status = "info",
         noUiSliderInput(
@@ -125,21 +110,17 @@ ui <- fluidPage(
         ),
         verbatimTextOutput(outputId = "res12")
       )
-
     )
-
   )
 )
 
 server <- function(input, output, session) {
-
   lapply(
     X = seq_len(12),
     FUN = function(i) {
       output[[paste0("res", i)]] <- renderPrint(input[[paste0("sli", i)]])
     }
   )
-
 }
 
 shinyApp(ui, server)

@@ -105,4 +105,3 @@ $.extend(pickerInputBinding, {
   }
 });
 Shiny.inputBindings.register(pickerInputBinding, "shinyWidgets.pickerInput");
-

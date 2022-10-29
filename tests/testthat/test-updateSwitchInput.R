@@ -3,11 +3,10 @@ context("updateSwitchInput")
 
 
 test_that("Send message", {
-
   session <- as.environment(list(
     ns = identity,
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     }
   ))
 
@@ -17,5 +16,4 @@ test_that("Send message", {
   expect_true(resultSwitch$message$value)
   expect_equal("YES", resultSwitch$message$onLabel)
   expect_equal("success", resultSwitch$message$onStatus)
-
 })

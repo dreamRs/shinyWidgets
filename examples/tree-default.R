@@ -4,13 +4,19 @@ library(shinyWidgets)
 
 # data
 cities <- data.frame(
-  continent = c("America", "America", "America", "Africa",
-                "Africa", "Africa", "Africa", "Africa",
-                "Europe", "Europe", "Europe", "Antarctica"),
-  country = c("Canada", "Canada", "USA", "Tunisia", "Tunisia",
-              "Tunisia", "Algeria", "Algeria", "Italy", "Germany", "Spain", NA),
-  city = c("Trois-Rivières", "Québec", "San Francisco", "Tunis",
-           "Monastir", "Sousse", "Alger", "Oran", "Rome", "Berlin", "Madrid", NA),
+  continent = c(
+    "America", "America", "America", "Africa",
+    "Africa", "Africa", "Africa", "Africa",
+    "Europe", "Europe", "Europe", "Antarctica"
+  ),
+  country = c(
+    "Canada", "Canada", "USA", "Tunisia", "Tunisia",
+    "Tunisia", "Algeria", "Algeria", "Italy", "Germany", "Spain", NA
+  ),
+  city = c(
+    "Trois-Rivières", "Québec", "San Francisco", "Tunis",
+    "Monastir", "Sousse", "Alger", "Oran", "Rome", "Berlin", "Madrid", NA
+  ),
   stringsAsFactors = FALSE
 )
 
@@ -28,10 +34,9 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$ID1)
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

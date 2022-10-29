@@ -2,7 +2,6 @@ context("noUiSlider")
 
 
 test_that("default", {
-
   tag <- noUiSliderInput(
     inputId = "MY_ID",
     label = "My slider:",

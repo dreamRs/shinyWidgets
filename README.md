@@ -218,4 +218,3 @@ dropdownButton(
 ```
 
 See also `?dropMenu()`
-

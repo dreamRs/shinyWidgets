@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Pretty switches"),
   br(),
-
   fluidRow(
     column(
       width = 4,
@@ -37,17 +36,15 @@ ui <- fluidPage(
       verbatimTextOutput(outputId = "res3")
     )
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$switch1)
   output$res2 <- renderPrint(input$switch2)
   output$res3 <- renderPrint(input$switch3)
   output$res4 <- renderPrint(input$switch4)
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

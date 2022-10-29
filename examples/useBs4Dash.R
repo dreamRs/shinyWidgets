@@ -1,6 +1,5 @@
 
 if (interactive()) {
-
   library(shiny)
   library(bs4Dash)
   library(shinyWidgets)
@@ -82,17 +81,16 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     output$orderNum <- renderText({
-      prettyNum(input$orders, big.mark=",")
+      prettyNum(input$orders, big.mark = ",")
     })
 
     output$orderNum2 <- renderText({
-      prettyNum(input$orders, big.mark=",")
+      prettyNum(input$orders, big.mark = ",")
     })
 
     output$progress <- renderUI({
-      tagList(input$progress, tags$sup(style="font-size: 20px", "%"))
+      tagList(input$progress, tags$sup(style = "font-size: 20px", "%"))
     })
 
     output$progress2 <- renderUI({
@@ -103,9 +101,7 @@ if (interactive()) {
     output$plot <- renderPlot({
       hist(rnorm(input$orders))
     })
-
   }
 
   shinyApp(ui, server)
-
 }

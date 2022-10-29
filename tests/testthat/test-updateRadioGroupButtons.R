@@ -3,12 +3,11 @@ context("updateRadioGroupButtons")
 
 
 test_that("Send message", {
-
   session <- as.environment(list(
     ns = identity,
     getCurrentTheme = function() NULL,
     sendInputMessage = function(inputId, message) {
-      session$lastInputMessage = list(id = inputId, message = message)
+      session$lastInputMessage <- list(id = inputId, message = message)
     }
   ))
 
@@ -17,8 +16,7 @@ test_that("Send message", {
 
   expect_equal("A", resultRGB$message$selected)
   expect_true(grepl('"idawcbsw"', resultRGB$message$options))
-  expect_true(grepl('primary', resultRGB$message$options))
-
+  expect_true(grepl("primary", resultRGB$message$options))
 })
 
 
@@ -28,7 +26,7 @@ test_that("Works in modules", {
       ns = shiny::NS(moduleId),
       getCurrentTheme = function() NULL,
       sendInputMessage = function(inputId, message) {
-        session$lastInputMessage = list(id = inputId, message = message)
+        session$lastInputMessage <- list(id = inputId, message = message)
       }
     ))
     session
@@ -42,4 +40,3 @@ test_that("Works in modules", {
   expect_equal(object = resultRGB$id, expected = "idrgbsw")
   expect_true(grepl('"modA-idrgbsw"', resultRGB$message$options))
 })
-

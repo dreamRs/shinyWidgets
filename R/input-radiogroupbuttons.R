@@ -42,10 +42,12 @@ radioGroupButtons <- function(inputId,
                               disabled = FALSE) {
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues)
   selected <- shiny::restoreInput(id = inputId, default = selected)
-  if (!is.null(selected) && length(selected) > 1)
+  if (!is.null(selected) && length(selected) > 1) {
     stop("selected must be length 1")
-  if (is.null(selected))
+  }
+  if (is.null(selected)) {
     selected <- args$choiceValues[[1]]
+  }
   size <- match.arg(arg = size, choices = c("xs", "sm", "normal", "lg"))
   direction <- match.arg(arg = direction, choices = c("horizontal", "vertical"))
 
@@ -139,8 +141,8 @@ markup_buttons_radio_bs3 <- function(inputId, choices, selected, status, size, c
         tags$button(
           class = paste0("btn radiobtn btn-", statusElement),
           class = if (value %in% selected) "active",
-          if (displayIcon) tags$span(class="radio-btn-icon-yes", checkIcon$yes),
-          if (displayIcon) tags$span(class="radio-btn-icon-no", checkIcon$no),
+          if (displayIcon) tags$span(class = "radio-btn-icon-yes", checkIcon$yes),
+          if (displayIcon) tags$span(class = "radio-btn-icon-no", checkIcon$no),
           disabled = if (isTRUE(disabled)) "disabled",
           class = if (isTRUE(disabled)) "disabled",
           tags$input(
@@ -171,8 +173,9 @@ markup_buttons_radio_bs5 <- function(inputId, choices, selected, status, size, c
   }
   mapply(
     FUN = function(name, value, statusElement) {
-      if (identical(statusElement, "default"))
+      if (identical(statusElement, "default")) {
         statusElement <- "outline-primary"
+      }
       tagList(
         tags$input(
           type = "radio",
@@ -237,13 +240,15 @@ updateRadioGroupButtons <- function(session = getDefaultReactiveDomain(),
                                     disabled = FALSE,
                                     disabledChoices = NULL) {
   args <- normalizeChoicesArgs(choices, choiceNames, choiceValues, mustExist = FALSE)
-  if (!is.null(selected))
+  if (!is.null(selected)) {
     selected <- as.character(selected)
+  }
   if (is.null(selected) && !is.null(args$choiceValues)) {
     selected <- args$choiceValues[[1]]
   }
-  if (!is.null(disabledChoices))
+  if (!is.null(disabledChoices)) {
     disabledChoices <- as.character(disabledChoices)
+  }
   options <- if (!is.null(args$choiceValues)) {
     doRenderTags(markup_buttons_radio(
       session$getCurrentTheme(),
@@ -267,4 +272,3 @@ updateRadioGroupButtons <- function(session = getDefaultReactiveDomain(),
   ))
   session$sendInputMessage(inputId, message)
 }
-

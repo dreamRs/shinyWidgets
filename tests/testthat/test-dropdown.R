@@ -3,7 +3,6 @@ context("dropdown")
 
 
 test_that("Default", {
-
   tagdrop <- dropdown(
     "Content goes here",
     style = "unite", icon = shiny::icon("gear"), status = "danger", width = "300px",
@@ -17,7 +16,6 @@ test_that("Default", {
 })
 
 test_that("inputId", {
-
   tagdrop <- dropdown(
     "Content goes here",
     style = "default", icon = shiny::icon("gear"), status = "danger", width = "300px",
@@ -25,6 +23,3 @@ test_that("inputId", {
   )
   expect_identical(tagdrop$attribs$id, "sw-drop-MYID")
 })
-
-
-

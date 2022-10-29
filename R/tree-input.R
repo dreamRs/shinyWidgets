@@ -85,8 +85,9 @@ updateTreeInput <- function(inputId,
                             label = NULL,
                             selected = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
-  if (!is.null(label))
+  if (!is.null(label)) {
     label <- doRenderTags(label)
+  }
   message <- dropNulls(list(
     label = label,
     values = list1(selected)

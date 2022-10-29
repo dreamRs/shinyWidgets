@@ -35,13 +35,11 @@
 #'   )
 #'
 #'   server <- function(input, output, session) {
-#'
 #'     output$res1 <- renderPrint(input$btn1)
 #'
 #'     output$res2 <- renderPrint(input$btn2)
 #'
 #'     output$res3 <- renderPrint(input$btn3)
-#'
 #'   }
 #'
 #'   shinyApp(ui = ui, server = server)
@@ -66,7 +64,7 @@ actionGroupButtons <- function(inputIds,
     class = "btn-group",
     class = if (direction == "vertical") "btn-group-vertical",
     class = paste0("btn-group-", size),
-    class = if(fullwidth) "btn-group-justified",
+    class = if (fullwidth) "btn-group-justified",
     role = "group",
     lapply(
       X = seq_along(labels),
@@ -78,7 +76,7 @@ actionGroupButtons <- function(inputIds,
             class = paste0("btn-group-", size),
             tags$button(
               id = inputIds[i],
-              type = "button",`data-val` = value,
+              type = "button", `data-val` = value,
               class = paste0("btn action-button btn-", status[i]),
               labels[i]
             )
@@ -86,7 +84,7 @@ actionGroupButtons <- function(inputIds,
         } else {
           tags$button(
             id = inputIds[i],
-            type = "button",`data-val` = value,
+            type = "button", `data-val` = value,
             class = paste0("btn action-button btn-", status[i]),
             labels[i]
           )

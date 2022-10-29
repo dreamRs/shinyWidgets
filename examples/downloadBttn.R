@@ -67,13 +67,12 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   lapply(
     X = seq_len(10),
     FUN = function(i) {
       output[[paste0("downloadData", i)]] <- downloadHandler(
         filename = function() {
-          paste('data-', Sys.Date(), '.csv', sep='')
+          paste("data-", Sys.Date(), ".csv", sep = "")
         },
         content = function(con) {
           write.csv(mtcars, con)
@@ -81,8 +80,8 @@ server <- function(input, output, session) {
       )
     }
   )
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

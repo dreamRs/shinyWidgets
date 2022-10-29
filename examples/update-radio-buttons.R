@@ -7,9 +7,7 @@ ui <- fluidPage(
     choices = c("A", "B", "C"),
     label = "My label"
   ),
-
   verbatimTextOutput(outputId = "res"),
-
   actionButton(inputId = "updatechoices", label = "Random choices"),
   pickerInput(
     inputId = "updateselected", label = "Update selected:",
@@ -19,7 +17,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   output$res <- renderPrint({
     input$somevalue
   })
@@ -38,21 +35,28 @@ server <- function(input, output, session) {
     )
   })
 
-  observeEvent(input$updateselected, {
-    updateRadioGroupButtons(
-      session = session, inputId = "somevalue",
-      selected = input$updateselected
-    )
-  }, ignoreNULL = TRUE, ignoreInit = TRUE)
+  observeEvent(input$updateselected,
+    {
+      updateRadioGroupButtons(
+        session = session, inputId = "somevalue",
+        selected = input$updateselected
+      )
+    },
+    ignoreNULL = TRUE,
+    ignoreInit = TRUE
+  )
 
-  observeEvent(input$updatelabel, {
-    updateRadioGroupButtons(
-      session = session, inputId = "somevalue",
-      label = input$updatelabel
-    )
-  }, ignoreInit = TRUE)
-
+  observeEvent(input$updatelabel,
+    {
+      updateRadioGroupButtons(
+        session = session, inputId = "somevalue",
+        label = input$updatelabel
+      )
+    },
+    ignoreInit = TRUE
+  )
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui = ui, server = server)
+}

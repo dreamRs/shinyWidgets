@@ -167,4 +167,3 @@ Shiny.inputBindings.register(
   checkboxGroupButtonsBinding,
   "shinyWidgets.checkboxGroupButtonsInput"
 );
-

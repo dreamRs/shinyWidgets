@@ -24,11 +24,9 @@ library(shinyWidgets)
 
 fluidPage(
   theme = bslib::bs_theme(version = 5),
-
   tags$h1("checkboxGroupButtons", style = "color: steelblue;"),
   tags$h3("Des checkbox en forme de boutons."),
   br(),
-
   tags$h4("Usage classique"),
   fluidRow(
     column(
@@ -69,10 +67,8 @@ fluidPage(
       verbatimTextOutput(outputId = "res3")
     )
   ),
-
   br(),
   br(),
-
   tags$h4("Avec des statuts bootstrap"),
   fluidRow(
     column(
@@ -116,10 +112,8 @@ fluidPage(
       verbatimTextOutput(outputId = "res6")
     )
   ),
-
   br(),
   br(),
-
   tags$h4("Avec effets de style"),
   fluidRow(
     column(
@@ -131,7 +125,6 @@ fluidPage(
         size = "lg"
       ),
       verbatimTextOutput(outputId = "res7"),
-
       checkboxGroupButtons(
         inputId = "test11",
         label = "Icon for checked button:",
@@ -150,7 +143,6 @@ fluidPage(
         width = "100%"
       ),
       verbatimTextOutput(outputId = "res8"),
-
       checkboxGroupButtons(
         inputId = "test13",
         label = "Icon for checked button:",
@@ -171,7 +163,6 @@ fluidPage(
         justified = TRUE
       ),
       verbatimTextOutput(outputId = "res9"),
-
       checkboxGroupButtons(
         inputId = "test14",
         label = "Individual buttons:",
@@ -181,10 +172,8 @@ fluidPage(
       verbatimTextOutput(outputId = "res14")
     )
   ),
-
   br(),
   br(),
-
   tags$h4("Update !"),
   fluidRow(
     column(
@@ -222,10 +211,8 @@ fluidPage(
       verbatimTextOutput(outputId = "res12")
     )
   )),
-
   br(),
   br(),
-
   fluidRow(
     column(
       width = 4,

@@ -38,30 +38,28 @@
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
+#'   # You can run the gallery to see other examples
+#'   shinyWidgetsGallery()
 #'
-#' # You can run the gallery to see other examples
-#' shinyWidgetsGallery()
 #'
+#'   # Basic usage
+#'   library("shiny")
+#'   library(shinyWidgets)
 #'
-#' # Basic usage
-#' library("shiny")
-#' library(shinyWidgets)
+#'   ui <- fluidPage(
+#'     pickerInput(
+#'       inputId = "somevalue",
+#'       label = "A label",
+#'       choices = c("a", "b")
+#'     ),
+#'     verbatimTextOutput("value")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   pickerInput(
-#'     inputId = "somevalue",
-#'     label = "A label",
-#'     choices = c("a", "b")
-#'   ),
-#'   verbatimTextOutput("value")
-#' )
+#'   server <- function(input, output) {
+#'     output$value <- renderPrint(input$somevalue)
+#'   }
 #'
-#' server <- function(input, output) {
-#'   output$value <- renderPrint(input$somevalue)
-#' }
-#'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 #'
 #' @example examples/picker-select-all.R
@@ -78,18 +76,23 @@ pickerInput <- function(inputId,
                         inline = FALSE) {
   choices <- choicesWithNames(choices)
   selected <- restoreInput(id = inputId, default = selected)
-  if (!is.null(options) && length(options) > 0)
+  if (!is.null(options) && length(options) > 0) {
     names(options) <- paste("data", names(options), sep = "-")
-  if (!is.null(width))
+  }
+  if (!is.null(width)) {
     options <- c(options, list("data-width" = width))
-  if (!is.null(width) && width %in% c("fit"))
+  }
+  if (!is.null(width) && width %in% c("fit")) {
     width <- NULL
+  }
   options <- lapply(options, function(x) {
-    if (identical(x, TRUE))
+    if (identical(x, TRUE)) {
       "true"
-    else if (identical(x, FALSE))
+    } else if (identical(x, FALSE)) {
       "false"
-    else x
+    } else {
+      x
+    }
   })
   maxOptGroup <- options[["data-max-options-group"]]
 
@@ -103,8 +106,9 @@ pickerInput <- function(inputId,
     tag = selectTag, pickerSelectOptions(choices, selected, choicesOpt, maxOptGroup)
   )
 
-  if (multiple)
+  if (multiple) {
     selectTag$attribs$multiple <- "multiple"
+  }
 
   pickerTag <- tags$div(
     class = "form-group shiny-input-container",
@@ -147,91 +151,93 @@ pickerInput <- function(inputId,
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#' ui <- fluidPage(
-#'   tags$h2("Update pickerInput"),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 5, offset = 1,
-#'       pickerInput(
-#'         inputId = "p1",
-#'         label = "classic update",
-#'         choices = rownames(mtcars)
+#'   ui <- fluidPage(
+#'     tags$h2("Update pickerInput"),
+#'     fluidRow(
+#'       column(
+#'         width = 5, offset = 1,
+#'         pickerInput(
+#'           inputId = "p1",
+#'           label = "classic update",
+#'           choices = rownames(mtcars)
+#'         )
+#'       ),
+#'       column(
+#'         width = 5,
+#'         pickerInput(
+#'           inputId = "p2",
+#'           label = "disabled update",
+#'           choices = rownames(mtcars)
+#'         )
 #'       )
 #'     ),
-#'     column(
-#'       width = 5,
-#'       pickerInput(
-#'         inputId = "p2",
-#'         label = "disabled update",
-#'         choices = rownames(mtcars)
-#'       )
-#'     )
-#'   ),
-#'
-#'   fluidRow(
-#'     column(
-#'       width = 10, offset = 1,
-#'       sliderInput(
-#'         inputId = "up",
-#'         label = "Select between models with mpg greater than :",
-#'         width = "50%",
-#'         min = min(mtcars$mpg),
-#'         max = max(mtcars$mpg),
-#'         value = min(mtcars$mpg),
-#'         step = 0.1
+#'     fluidRow(
+#'       column(
+#'         width = 10, offset = 1,
+#'         sliderInput(
+#'           inputId = "up",
+#'           label = "Select between models with mpg greater than :",
+#'           width = "50%",
+#'           min = min(mtcars$mpg),
+#'           max = max(mtcars$mpg),
+#'           value = min(mtcars$mpg),
+#'           step = 0.1
+#'         )
 #'       )
 #'     )
 #'   )
 #'
-#' )
+#'   server <- function(input, output, session) {
+#'     observeEvent(input$up,
+#'       {
+#'         mtcars2 <- mtcars[mtcars$mpg >= input$up, ]
 #'
-#' server <- function(input, output, session) {
+#'         # Method 1
+#'         updatePickerInput(
+#'           session = session, inputId = "p1",
+#'           choices = rownames(mtcars2)
+#'         )
 #'
-#'   observeEvent(input$up, {
-#'     mtcars2 <- mtcars[mtcars$mpg >= input$up, ]
-#'
-#'     # Method 1
-#'     updatePickerInput(session = session, inputId = "p1",
-#'                       choices = rownames(mtcars2))
-#'
-#'     # Method 2
-#'     disabled_choices <- !rownames(mtcars) %in% rownames(mtcars2)
-#'     updatePickerInput(
-#'       session = session, inputId = "p2",
-#'       choices = rownames(mtcars),
-#'       choicesOpt = list(
-#'         disabled = disabled_choices,
-#'         style = ifelse(disabled_choices,
-#'                        yes = "color: rgba(119, 119, 119, 0.5);",
-#'                        no = "")
-#'       )
+#'         # Method 2
+#'         disabled_choices <- !rownames(mtcars) %in% rownames(mtcars2)
+#'         updatePickerInput(
+#'           session = session, inputId = "p2",
+#'           choices = rownames(mtcars),
+#'           choicesOpt = list(
+#'             disabled = disabled_choices,
+#'             style = ifelse(disabled_choices,
+#'               yes = "color: rgba(119, 119, 119, 0.5);",
+#'               no = ""
+#'             )
+#'           )
+#'         )
+#'       },
+#'       ignoreInit = TRUE
 #'     )
-#'   }, ignoreInit = TRUE)
+#'   }
 #'
+#'   shinyApp(ui = ui, server = server)
 #' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#' }
-updatePickerInput <- function (session,
-                               inputId,
-                               label = NULL,
-                               selected = NULL,
-                               choices = NULL,
-                               choicesOpt = NULL,
-                               options = NULL,
-                               clearOptions = FALSE) {
-  choices <- if (!is.null(choices))
+updatePickerInput <- function(session,
+                              inputId,
+                              label = NULL,
+                              selected = NULL,
+                              choices = NULL,
+                              choicesOpt = NULL,
+                              options = NULL,
+                              clearOptions = FALSE) {
+  choices <- if (!is.null(choices)) {
     choicesWithNames(choices)
-  if (!is.null(selected))
+  }
+  if (!is.null(selected)) {
     selected <- validateSelected(selected, choices, inputId)
-  choices <- if (!is.null(choices))
+  }
+  choices <- if (!is.null(choices)) {
     as.character(pickerSelectOptions(choices, selected, choicesOpt))
+  }
   message <- dropNulls(list(
     label = label,
     choices = choices,
@@ -259,11 +265,13 @@ pickerSelectOptions <- function(choices, selected = NULL, choicesOpt = NULL, max
   if (is.null(choicesOpt) & is.null(maxOptGroup)) {
     return(selectOptions(choices, selected))
   }
-  if (is.null(choicesOpt))
+  if (is.null(choicesOpt)) {
     choicesOpt <- list()
+  }
   l <- sapply(choices, length)
-  if (!is.null(maxOptGroup))
+  if (!is.null(maxOptGroup)) {
     maxOptGroup <- rep_len(x = maxOptGroup, length.out = sum(l))
+  }
   m <- matrix(data = c(c(1, cumsum(l)[-length(l)] + 1), cumsum(l)), ncol = 2)
   html <- lapply(seq_along(choices), FUN = function(i) {
     label <- names(choices)[i]
@@ -308,17 +316,14 @@ selectOptions <- function(choices, selected = NULL) {
         htmlEscape(label, TRUE),
         selectOptions(choice, selected)
       )
-
     } else {
       sprintf(
         '<option value="%s"%s>%s</option>',
         htmlEscape(choice, TRUE),
-        if (choice %in% selected) ' selected' else '',
+        if (choice %in% selected) " selected" else "",
         htmlEscape(label)
       )
     }
   })
-  HTML(paste(html, collapse = '\n'))
+  HTML(paste(html, collapse = "\n"))
 }
-
-

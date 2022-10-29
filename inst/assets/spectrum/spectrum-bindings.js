@@ -72,4 +72,3 @@ $.extend(spectrumInputBinding, {
   }
 });
 Shiny.inputBindings.register(spectrumInputBinding, "shinyWidgets.spectrumInput");
-

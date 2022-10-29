@@ -39,10 +39,11 @@ panel <- function(...,
     heading <- tags$div(
       class = "panel-heading card-header",
       class = paste0("bg-", status),
-      if (is.character(heading))
+      if (is.character(heading)) {
         tags$h3(class = "panel-title m-0 card-title", heading)
-      else
+      } else {
         heading
+      }
     )
   }
   tags$div(
@@ -120,13 +121,3 @@ list_group <- function(...) {
     )
   )
 }
-
-
-
-
-
-
-
-
-
-

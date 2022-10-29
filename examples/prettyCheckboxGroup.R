@@ -4,7 +4,6 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h1("Pretty checkbox group"),
   br(),
-
   fluidRow(
     column(
       width = 4,
@@ -61,19 +60,16 @@ ui <- fluidPage(
       verbatimTextOutput(outputId = "res3")
     )
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$checkgroup1)
   output$res2 <- renderPrint(input$checkgroup2)
   output$res3 <- renderPrint(input$checkgroup3)
   output$res4 <- renderPrint(input$checkgroup4)
   output$res5 <- renderPrint(input$checkgroup5)
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
-
+}

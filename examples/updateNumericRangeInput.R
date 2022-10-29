@@ -2,9 +2,7 @@ library(shiny)
 library(shinyWidgets)
 
 ui <- fluidPage(
-
   tags$br(),
-
   numericRangeInput(
     inputId = "my_id",
     label = "Numeric Range Input:",
@@ -14,20 +12,21 @@ ui <- fluidPage(
   textInput("label", "Update label:"),
   numericInput("val1", "Update value 1:", 100),
   numericInput("val2", "Update value 2:", 400)
-
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$my_id)
 
-  observeEvent(input$label, {
-    updateNumericRangeInput(
-      session = session,
-      inputId = "my_id",
-      label = input$label
-    )
-  }, ignoreInit = TRUE)
+  observeEvent(input$label,
+    {
+      updateNumericRangeInput(
+        session = session,
+        inputId = "my_id",
+        label = input$label
+      )
+    },
+    ignoreInit = TRUE
+  )
 
   observe({
     updateNumericRangeInput(
@@ -38,5 +37,6 @@ server <- function(input, output, session) {
   })
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

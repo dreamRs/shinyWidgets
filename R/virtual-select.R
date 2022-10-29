@@ -153,8 +153,9 @@ virtualSelectInput <- function(inputId,
     ))
   )
   data <- toJSON(data, auto_unbox = TRUE, json_verbatim = TRUE)
-  if (isTRUE(html))
+  if (isTRUE(html)) {
     data <- HTML(data)
+  }
   tags$div(
     class = "form-group shiny-input-container",
     style = css(width = validateCssUnit(width)),
@@ -206,8 +207,9 @@ updateVirtualSelect <- function(inputId,
                                 disable = NULL,
                                 disabledChoices = NULL,
                                 session = shiny::getDefaultReactiveDomain()) {
-  if (!is.null(label))
+  if (!is.null(label)) {
     label <- doRenderTags(label)
+  }
   if (!is.null(choices)) {
     choices <- process_choices(choices)
     choices <- toJSON(choices, auto_unbox = FALSE, json_verbatim = TRUE)
@@ -248,10 +250,9 @@ updateVirtualSelect <- function(inputId,
 #'
 #' # Prepare choices from a data.frame
 #' demoVirtualSelect("prepare-choices")
-#'
 #' }
 demoVirtualSelect <- function(name = c("default", "update", "choices-format", "prepare-choices")) {
-  name <- match.arg(name )
+  name <- match.arg(name)
   runApp(
     shinyAppFile(
       appFile = system.file("examples", "virtual-select", name, "app.R", package = "shinyWidgets")
@@ -259,4 +260,3 @@ demoVirtualSelect <- function(name = c("default", "update", "choices-format", "p
     display.mode = "showcase"
   )
 }
-

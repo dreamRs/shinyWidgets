@@ -25,12 +25,11 @@ library("shinyWidgets")
 
 
 fluidPage(
-  tags$h1("Bootstrap switch", style="color: steelblue;"),
+  tags$h1("Bootstrap switch", style = "color: steelblue;"),
   tags$h5("via ",
-          tags$a(href = "http://www.bootstrap-switch.org/examples.html", "bootstrap-switch.org"),
-          style="color: steelblue;"),
-
-
+    tags$a(href = "http://www.bootstrap-switch.org/examples.html", "bootstrap-switch.org"),
+    style = "color: steelblue;"
+  ),
   fluidRow(
     column(
       width = 3,
@@ -84,7 +83,6 @@ fluidPage(
       verbatimTextOutput("resbox1")
     )
   ),
-
   fluidRow(
     column(
       width = 3,
@@ -103,5 +101,4 @@ fluidPage(
       verbatimTextOutput("res8")
     )
   )
-
 )

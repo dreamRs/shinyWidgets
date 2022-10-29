@@ -1,26 +1,23 @@
 context("numericRange")
 
 test_that("Dependencies", {
-
   nr <- numericRangeInput(
     inputId = "default",
     label = "First example:",
-    value = c(2,7)
+    value = c(2, 7)
   )
 
   nr_deps <- htmltools::findDependencies(nr)
   expect_length(object = nr_deps, n = 1)
   expect_true("shinyWidgets" %in% unlist(lapply(nr_deps, `[[`, "name")))
-
 })
 
 
 test_that("Default", {
-
   nr <- numericRangeInput(
     inputId = "default",
     label = "First example:",
-    value = c(2,7)
+    value = c(2, 7)
   )
 
   expect_identical(object = nr$attribs$class, expected = "shiny-numeric-range-input form-group shiny-input-container")
@@ -40,11 +37,9 @@ test_that("Default", {
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$type, expected = "number")
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$class, expected = "form-control")
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$value, expected = "7")
-
 })
 
 test_that("Single Value", {
-
   nr <- numericRangeInput(
     inputId = "default",
     label = "First example:",
@@ -68,5 +63,4 @@ test_that("Single Value", {
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$type, expected = "number")
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$class, expected = "form-control")
   expect_identical(object = nr$children[[2]]$children[[3]]$attribs$value, expected = "3")
-
 })

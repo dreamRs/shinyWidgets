@@ -13,7 +13,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   observeEvent(input$sw_html, {
     show_alert(
       title = "Yay a plot!",
@@ -32,13 +31,16 @@ server <- function(input, output, session) {
 
   output$plot <- renderPlot({
     plot(Sepal.Width ~ Sepal.Length,
-         data = iris, col = Species,
-         pch = 20, cex = 2)
+      data = iris, col = Species,
+      pch = 20, cex = 2
+    )
     points(kmeans(iris[, 1:2], input$clusters)$centers,
-           pch = 4, cex = 4, lwd = 4)
+      pch = 4, cex = 4, lwd = 4
+    )
   })
 }
 
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

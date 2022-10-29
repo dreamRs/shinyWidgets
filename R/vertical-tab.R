@@ -40,8 +40,9 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
     )
     values <- unlist(values)
     indice <- which(values == selected)
-    if (length(indice) < 1)
+    if (length(indice) < 1) {
       indice <- 1
+    }
   }
   tabs[[indice]]$tabcontent$attribs$class <- paste(
     tabs[[indice]]$tabcontent$attribs$class, "active"
@@ -51,14 +52,14 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
   )
   if (identical(menuSide, "left")) {
     vtabTag <- tags$div(
-      class="col-sm-12 vrtc-tab-panel-container tabbable",
-      id = if (is.null(id)) id else paste0(id,"-tabbable"),
+      class = "col-sm-12 vrtc-tab-panel-container tabbable",
+      id = if (is.null(id)) id else paste0(id, "-tabbable"),
       tags$div(
         class = sprintf("col-sm-%s vrtc-tab-panel-menu vrtc-tab-panel-menu-%s", 12 - contentWidth, menuSide),
         tags$div(
           class = "list-group vertical-tab-panel",
           lapply(X = tabs, FUN = `[[`, "tabbox"),
-          id=id
+          id = id
         )
       ),
       tags$div(
@@ -77,7 +78,7 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
       tags$div(
         class = sprintf("col-sm-%s vrtc-tab-panel-menu vrtc-tab-panel-menu-%s", 12 - contentWidth, menuSide),
         tags$div(
-          class="list-group vertical-tab-panel",
+          class = "list-group vertical-tab-panel",
           id = id,
           lapply(X = tabs, FUN = `[[`, "tabbox")
         )
@@ -130,7 +131,7 @@ verticalTabPanel <- function(title, ..., value = title, icon = NULL, box_height 
     tags$h4(title)
   )
   tabcontent <- tags$div(
-    class="vrtc-tab-panel-content",
+    class = "vrtc-tab-panel-content",
     `data-value` = value,
     ...
   )
@@ -153,56 +154,57 @@ verticalTabPanel <- function(title, ..., value = title, icon = NULL, box_height 
 #' @examples
 #'
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'   fluidRow(
-#'     column(
-#'       width = 10, offset = 1,
-#'       tags$h2("Update vertical tab panel example:"),
-#'       verbatimTextOutput("res"),
-#'       radioButtons(
-#'         inputId = "update", label = "Update selected:",
-#'         choices = c("Title 1", "Title 2", "Title 3"),
-#'         inline = TRUE
-#'       ),
-#'       verticalTabsetPanel(
-#'         id = "TABS",
-#'         verticalTabPanel(
-#'           title = "Title 1", icon = icon("house", "fa-2x"),
-#'           "Content panel 1"
+#'   ui <- fluidPage(
+#'     fluidRow(
+#'       column(
+#'         width = 10, offset = 1,
+#'         tags$h2("Update vertical tab panel example:"),
+#'         verbatimTextOutput("res"),
+#'         radioButtons(
+#'           inputId = "update", label = "Update selected:",
+#'           choices = c("Title 1", "Title 2", "Title 3"),
+#'           inline = TRUE
 #'         ),
-#'         verticalTabPanel(
-#'           title = "Title 2", icon = icon("map", "fa-2x"),
-#'           "Content panel 2"
-#'         ),
-#'         verticalTabPanel(
-#'           title = "Title 3", icon = icon("rocket", "fa-2x"),
-#'           "Content panel 3"
+#'         verticalTabsetPanel(
+#'           id = "TABS",
+#'           verticalTabPanel(
+#'             title = "Title 1", icon = icon("house", "fa-2x"),
+#'             "Content panel 1"
+#'           ),
+#'           verticalTabPanel(
+#'             title = "Title 2", icon = icon("map", "fa-2x"),
+#'             "Content panel 2"
+#'           ),
+#'           verticalTabPanel(
+#'             title = "Title 3", icon = icon("rocket", "fa-2x"),
+#'             "Content panel 3"
+#'           )
 #'         )
 #'       )
 #'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
-#'   output$res <- renderPrint(input$TABS)
-#'   observeEvent(input$update, {
-#'     shinyWidgets:::updateVerticalTabsetPanel(
-#'       session = session,
-#'       inputId = "TABS",
-#'       selected = input$update
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint(input$TABS)
+#'     observeEvent(input$update,
+#'       {
+#'         shinyWidgets:::updateVerticalTabsetPanel(
+#'           session = session,
+#'           inputId = "TABS",
+#'           selected = input$update
+#'         )
+#'       },
+#'       ignoreInit = TRUE
 #'     )
-#'   }, ignoreInit = TRUE)
+#'   }
+#'
+#'   shinyApp(ui, server)
 #' }
 #'
-#' shinyApp(ui, server)
-#'
-#' }
-#'
-updateVerticalTabsetPanel <- function (session, inputId, selected = NULL) {
+updateVerticalTabsetPanel <- function(session, inputId, selected = NULL) {
   message <- dropNulls(list(value = selected))
   session$sendInputMessage(inputId, message)
 }
@@ -218,29 +220,26 @@ updateVerticalTabsetPanel <- function (session, inputId, selected = NULL) {
 #' @examples
 #'
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library(shiny)
-#' library(shinyWidgets)
-#'
-#' ui <- fluidPage(
-#'
-#'   verticalTabsetPanel(
-#'     verticalTabPanel("blaa","foo"),
-#'     verticalTabPanel("yarp","bar"),
-#'     id="hippi"
+#'   ui <- fluidPage(
+#'     verticalTabsetPanel(
+#'       verticalTabPanel("blaa", "foo"),
+#'       verticalTabPanel("yarp", "bar"),
+#'       id = "hippi"
+#'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
-#'   appendVerticalTab("hippi", verticalTabPanel("bipi","long"))
-#'   removeVerticalTab("hippi", 1)
-#'   appendVerticalTab("hippi", verticalTabPanel("howdy","fair"))
-#'   reorderVerticalTabs("hippi", c(3,2,1))
-#' }
+#'   server <- function(input, output, session) {
+#'     appendVerticalTab("hippi", verticalTabPanel("bipi", "long"))
+#'     removeVerticalTab("hippi", 1)
+#'     appendVerticalTab("hippi", verticalTabPanel("howdy", "fair"))
+#'     reorderVerticalTabs("hippi", c(3, 2, 1))
+#'   }
 #'
-#' # Run the application
-#' shinyApp(ui = ui, server = server)
-#'
+#'   # Run the application
+#'   shinyApp(ui = ui, server = server)
 #' }
 #' @export
 appendVerticalTab <- function(inputId, tab, session = shiny::getDefaultReactiveDomain()) {
@@ -251,7 +250,7 @@ appendVerticalTab <- function(inputId, tab, session = shiny::getDefaultReactiveD
     immediate = TRUE
   )
   shiny::insertUI(
-    selector = paste0("#",inputId),
+    selector = paste0("#", inputId),
     where = "beforeEnd",
     ui = tab$tabbox,
     immediate = TRUE
@@ -262,11 +261,11 @@ appendVerticalTab <- function(inputId, tab, session = shiny::getDefaultReactiveD
 #' @export
 removeVerticalTab <- function(inputId, index, session = shiny::getDefaultReactiveDomain()) {
   shiny::removeUI(
-    selector = paste0("#", inputId, "-tabbable > div > .vrtc-tab-panel-content:nth-child(", index,")"),
+    selector = paste0("#", inputId, "-tabbable > div > .vrtc-tab-panel-content:nth-child(", index, ")"),
     immediate = TRUE
   )
   shiny::removeUI(
-    selector = paste0("#", inputId, " > a:nth-child(", index,")"),
+    selector = paste0("#", inputId, " > a:nth-child(", index, ")"),
     immediate = TRUE
   )
   session$sendInputMessage(inputId, message = list(validate = TRUE))

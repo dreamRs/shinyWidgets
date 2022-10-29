@@ -19,7 +19,6 @@ ui <- fluidPage(
   prettyCheckbox("success", "Pretty success", value = TRUE, status = "success"),
   prettyCheckbox("warning", "Pretty warning", value = TRUE, status = "warning"),
   prettyCheckbox("danger", "Pretty danger", value = TRUE, status = "danger"),
-
   tags$h2("Checkbox group"),
   tags$hr(),
   prettyCheckboxGroup("primary1", "Pretty primary", choices, choices, status = "primary"),
@@ -27,7 +26,6 @@ ui <- fluidPage(
   prettyCheckboxGroup("success1", "Pretty success", choices, choices, status = "success"),
   prettyCheckboxGroup("warning1", "Pretty warning", choices, choices, status = "warning"),
   prettyCheckboxGroup("danger1", "Pretty danger", choices, choices, status = "danger"),
-
   tags$h2("Checkbox group (inline)"),
   tags$hr(),
   prettyCheckboxGroup("primary2", "Pretty primary", choices, choices, status = "primary", inline = TRUE),
@@ -35,7 +33,6 @@ ui <- fluidPage(
   prettyCheckboxGroup("success2", "Pretty success", choices, choices, status = "success", inline = TRUE),
   prettyCheckboxGroup("warning2", "Pretty warning", choices, choices, status = "warning", inline = TRUE),
   prettyCheckboxGroup("danger2", "Pretty danger", choices, choices, status = "danger", inline = TRUE),
-
   tags$h2("Radio buttons"),
   tags$hr(),
   prettyRadioButtons("primary3", "Pretty primary", choices, status = "primary"),
@@ -43,7 +40,6 @@ ui <- fluidPage(
   prettyRadioButtons("success3", "Pretty success", choices, status = "success"),
   prettyRadioButtons("warning3", "Pretty warning", choices, status = "warning"),
   prettyRadioButtons("danger3", "Pretty danger", choices, status = "danger"),
-
   tags$h2("Radio buttons (inline)"),
   tags$hr(),
   prettyRadioButtons("primary4", "Pretty primary", choices, status = "primary", inline = TRUE),
@@ -57,5 +53,6 @@ server <- function(input, output, session) {
 
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui = ui, server = server)
+}

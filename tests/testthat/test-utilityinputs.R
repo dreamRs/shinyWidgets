@@ -3,7 +3,6 @@ context("utility inputs")
 
 
 test_that("circleButton & squareButton", {
-
   tagsqbtn <- shinyWidgets:::squareButton(
     inputId = "id01",
     icon = shiny::icon("sliders")
@@ -18,7 +17,6 @@ test_that("circleButton & squareButton", {
 
 
 test_that("actionGroupButtons", {
-
   tagbtn1 <- actionGroupButtons(
     inputIds = c("id01", "id02", "id03"),
     labels = c("A", "B", "C")
@@ -46,5 +44,4 @@ test_that("actionGroupButtons", {
     fullwidth = TRUE
   )
   expect_true("btn-group-justified" %in% unlist(tagbtn4$attribs, use.names = FALSE))
-
 })

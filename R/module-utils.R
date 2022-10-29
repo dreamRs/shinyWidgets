@@ -4,7 +4,7 @@
 
 
 `%inT%` <- function(x, table) {
-  if (!is.null(table) && ! "" %in% table) {
+  if (!is.null(table) && !"" %in% table) {
     x %in% table
   } else {
     rep_len(TRUE, length(x))
@@ -14,7 +14,7 @@
 
 
 `%inF%` <- function(x, table) {
-  if (!is.null(table) && ! "" %in% table) {
+  if (!is.null(table) && !"" %in% table) {
     x %in% table
   } else {
     rep_len(FALSE, length(x))
@@ -50,7 +50,7 @@ toggleDisplayUi <- function() {
 toggleDisplayServer <- function(session, id, display = c("none", "block", "inline-block", "table-cell")) {
   display <- match.arg(display)
   session$sendCustomMessage(
-    type = 'toggleDisplay',
+    type = "toggleDisplay",
     message = list(id = id, display = display)
   )
 }

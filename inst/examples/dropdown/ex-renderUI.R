@@ -31,11 +31,13 @@ server <- function(input, output, session) {
     } else {
       adverts <- fruits
     }
-    pickerInput(inputId = "Adverts",
-                label = "Adverts",
-                choices = adverts, # a list of strings
-                options = list(`actions-box` = TRUE, `live-search` = TRUE),
-                multiple = TRUE)
+    pickerInput(
+      inputId = "Adverts",
+      label = "Adverts",
+      choices = adverts, # a list of strings
+      options = list(`actions-box` = TRUE, `live-search` = TRUE),
+      multiple = TRUE
+    )
   })
   # outputOptions(output, "choose_adverts", suspendWhenHidden = FALSE)
   output$res <- renderPrint({

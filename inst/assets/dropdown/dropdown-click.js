@@ -94,4 +94,3 @@ function dropBtn(id, easyClose) {
     });
   }
 }
-

@@ -30,8 +30,9 @@ statiCard <- function(value,
                       animate = FALSE,
                       duration = 2000,
                       id = NULL) {
-  if (is.null(id))
+  if (is.null(id)) {
     id <- paste0("stati-value-", sample.int(1e6, 1))
+  }
   tags$div(
     html_dependency_stati(),
     class = "stati",

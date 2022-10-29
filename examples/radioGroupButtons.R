@@ -3,14 +3,12 @@ library(shinyWidgets)
 
 ui <- fluidPage(
   tags$h1("radioGroupButtons examples"),
-
   radioGroupButtons(
     inputId = "somevalue1",
     label = "Choose a value: ",
     choices = c("A", "B", "C")
   ),
   verbatimTextOutput("value1"),
-
   radioGroupButtons(
     inputId = "somevalue2",
     label = "With custom status:",
@@ -18,7 +16,6 @@ ui <- fluidPage(
     status = "primary"
   ),
   verbatimTextOutput("value2"),
-
   radioGroupButtons(
     inputId = "somevalue3",
     label = "With icons:",
@@ -32,12 +29,17 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-
-  output$value1 <- renderPrint({ input$somevalue1 })
-  output$value2 <- renderPrint({ input$somevalue2 })
-  output$value3 <- renderPrint({ input$somevalue3 })
-
+  output$value1 <- renderPrint({
+    input$somevalue1
+  })
+  output$value2 <- renderPrint({
+    input$somevalue2
+  })
+  output$value3 <- renderPrint({
+    input$somevalue3
+  })
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

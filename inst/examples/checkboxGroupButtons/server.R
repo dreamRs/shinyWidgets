@@ -21,8 +21,6 @@ library("shiny")
 library("shinyWidgets")
 
 function(input, output, session) {
-
-
   lapply(
     X = seq_len(14),
     FUN = function(x) {
@@ -45,5 +43,4 @@ function(input, output, session) {
   output$verifDT <- renderDataTable({
     head(iris)
   })
-
 }

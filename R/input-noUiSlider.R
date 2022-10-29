@@ -64,8 +64,9 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
     several.ok = TRUE
   )
   behaviour <- paste(behaviour, collapse = "-")
-  if (is.null(range))
+  if (is.null(range)) {
     range <- list(min = min, max = max)
+  }
   noUiProps <- dropNulls(list(
     start = value,
     step = step,
@@ -100,7 +101,7 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
       style = if (orientation != "vertical" & tooltips) "margin-top: 40px; ",
       if (!is.null(color)) tags$style(sprintf("#%s .noUi-connect {background: %s;}", inputId, color)),
       tags$div(
-        style = if (!is.null(height))  paste0("height: ", validateCssUnit(height), ";"),
+        style = if (!is.null(height)) paste0("height: ", validateCssUnit(height), ";"),
         id = inputId, class = "sw-no-ui-slider", `data-update` = update_on
       ),
       tags$script(
@@ -136,49 +137,44 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
 #'
 #' @examples
 #' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyWidgets)
 #'
-#' library( shiny )
-#' library( shinyWidgets )
+#'   ui <- fluidPage(
+#'     tags$h3("Format numbers"),
+#'     tags$br(),
+#'     noUiSliderInput(
+#'       inputId = "form1",
+#'       min = 0, max = 10000,
+#'       value = 800,
+#'       format = wNumbFormat(
+#'         decimals = 3,
+#'         thousand = ".",
+#'         suffix = " (US $)"
+#'       )
+#'     ),
+#'     verbatimTextOutput(outputId = "res1"),
+#'     tags$br(),
+#'     noUiSliderInput(
+#'       inputId = "form2",
+#'       min = 1988, max = 2018,
+#'       value = 1988,
+#'       format = wNumbFormat(
+#'         decimals = 0,
+#'         thousand = "",
+#'         prefix = "Year: "
+#'       )
+#'     ),
+#'     verbatimTextOutput(outputId = "res2"),
+#'     tags$br()
+#'   )
 #'
-#' ui <- fluidPage(
-#'   tags$h3("Format numbers"),
-#'   tags$br(),
+#'   server <- function(input, output, session) {
+#'     output$res1 <- renderPrint(input$form1)
+#'     output$res2 <- renderPrint(input$form2)
+#'   }
 #'
-#'   noUiSliderInput(
-#'     inputId = "form1",
-#'     min = 0, max = 10000,
-#'     value = 800,
-#'     format = wNumbFormat(decimals = 3,
-#'                          thousand = ".",
-#'                          suffix = " (US $)")
-#'   ),
-#'   verbatimTextOutput(outputId = "res1"),
-#'
-#'   tags$br(),
-#'
-#'   noUiSliderInput(
-#'     inputId = "form2",
-#'     min = 1988, max = 2018,
-#'     value = 1988,
-#'     format = wNumbFormat(decimals = 0,
-#'                          thousand = "",
-#'                          prefix = "Year: ")
-#'   ),
-#'   verbatimTextOutput(outputId = "res2"),
-#'
-#'   tags$br()
-#'
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res1 <- renderPrint(input$form1)
-#'   output$res2 <- renderPrint(input$form2)
-#'
-#' }
-#'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 wNumbFormat <- function(decimals = NULL,
                         mark = NULL,
@@ -218,9 +214,7 @@ wNumbFormat <- function(decimals = NULL,
 #'
 #' @examples
 #' if (interactive()) {
-#'
-#'  demoNoUiSlider("update")
-#'
+#'   demoNoUiSlider("update")
 #' }
 updateNoUiSliderInput <- function(session = getDefaultReactiveDomain(),
                                   inputId,
@@ -240,10 +234,3 @@ updateNoUiSliderInput <- function(session = getDefaultReactiveDomain(),
   ))
   session$sendInputMessage(inputId, message)
 }
-
-
-
-
-
-
-

@@ -77,7 +77,6 @@ textInputIcon <- function(inputId,
 #' )
 #'
 #' server <- function(input, output, session) {
-#'
 #'   output$value <- renderPrint(input$id)
 #'
 #'   observeEvent(input$updateValue, {
@@ -96,11 +95,11 @@ textInputIcon <- function(inputId,
 #'       icon = icon(i)
 #'     )
 #'   })
-#'
 #' }
 #'
-#' if (interactive())
+#' if (interactive()) {
 #'   shinyApp(ui, server)
+#' }
 updateTextInputIcon <- function(session = getDefaultReactiveDomain(),
                                 inputId,
                                 label = NULL,
@@ -108,11 +107,13 @@ updateTextInputIcon <- function(session = getDefaultReactiveDomain(),
                                 placeholder = NULL,
                                 icon = NULL) {
   right <- markup_input_group(icon, "right", theme_func = session$getCurrentTheme)
-  if (!is.null(right))
+  if (!is.null(right)) {
     right <- as.character(right)
+  }
   left <- markup_input_group(icon, "left", theme_func = session$getCurrentTheme)
-  if (!is.null(left))
+  if (!is.null(left)) {
     left <- as.character(left)
+  }
   message <- dropNulls(list(
     label = label,
     value = value,
@@ -213,7 +214,6 @@ numericInputIcon <- function(inputId,
 #' )
 #'
 #' server <- function(input, output, session) {
-#'
 #'   output$value <- renderPrint(input$id)
 #'
 #'   observeEvent(input$updateValue, {
@@ -232,11 +232,11 @@ numericInputIcon <- function(inputId,
 #'       icon = icon(i)
 #'     )
 #'   })
-#'
 #' }
 #'
-#' if (interactive())
+#' if (interactive()) {
 #'   shinyApp(ui, server)
+#' }
 updateNumericInputIcon <- function(session = getDefaultReactiveDomain(),
                                    inputId,
                                    label = NULL,
@@ -246,11 +246,13 @@ updateNumericInputIcon <- function(session = getDefaultReactiveDomain(),
                                    step = NULL,
                                    icon = NULL) {
   right <- markup_input_group(icon, "right", theme_func = session$getCurrentTheme)
-  if (!is.null(right))
+  if (!is.null(right)) {
     right <- as.character(right)
+  }
   left <- markup_input_group(icon, "left", theme_func = session$getCurrentTheme)
-  if (!is.null(left))
+  if (!is.null(left)) {
     left <- as.character(left)
+  }
   message <- dropNulls(list(
     label = label,
     value = formatNoSci(value),
@@ -280,19 +282,25 @@ validate_size <- function(size) {
 #' @importFrom bslib is_bs_theme theme_version
 markup_input_group <- function(icon, side = c("left", "right"), theme_func = NULL) {
   side <- match.arg(side)
-  if (is.null(icon))
+  if (is.null(icon)) {
     return(NULL)
-  if (inherits(icon, "shiny.tag") & side == "right")
+  }
+  if (inherits(icon, "shiny.tag") & side == "right") {
     return(NULL)
-  if (!inherits(icon, "shiny.tag") & length(icon) < 2)
+  }
+  if (!inherits(icon, "shiny.tag") & length(icon) < 2) {
     icon <- c(icon, list(NULL))
-  if (!inherits(icon, "shiny.tag"))
+  }
+  if (!inherits(icon, "shiny.tag")) {
     icon <- icon[which(side == c("left", "right"))]
-  if (is.null(icon[[1]]))
+  }
+  if (is.null(icon[[1]])) {
     return(NULL)
+  }
   tagList(tagFunction(function() {
-    if (is.function(theme_func))
+    if (is.function(theme_func)) {
       theme <- theme_func()
+    }
     if (!bslib::is_bs_theme(theme)) {
       return(markup_input_group_bs3(icon, side))
     }
@@ -307,8 +315,7 @@ markup_input_group <- function(icon, side = c("left", "right"), theme_func = NUL
 markup_input_group_bs3 <- function(icon, side = c("left", "right")) {
   tags$div(
     class = "input-group-addon sw-input-icon",
-    class = switch(
-      side,
+    class = switch(side,
       left = "input-group-prepend",
       right = "input-group-append"
     ),

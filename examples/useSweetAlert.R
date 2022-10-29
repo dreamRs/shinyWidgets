@@ -1,12 +1,9 @@
 if (interactive()) {
-
   library(shiny)
   library(shinyWidgets)
 
   ui <- fluidPage(
-
     useSweetAlert("borderless", ie = TRUE),
-
     tags$h2("Sweet Alert examples (with custom theme)"),
     actionButton(
       inputId = "success",
@@ -26,7 +23,6 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     observeEvent(input$success, {
       show_alert(
         title = "Success !!",
@@ -48,7 +44,8 @@ if (interactive()) {
         title = NULL,
         text = tags$span(
           tags$h3("With HTML tags",
-                  style = "color: steelblue;"),
+            style = "color: steelblue;"
+          ),
           "In", tags$b("bold"), "and", tags$em("italic"),
           tags$br(),
           "and",
@@ -62,7 +59,6 @@ if (interactive()) {
         html = TRUE
       )
     })
-
   }
 
   shinyApp(ui, server)

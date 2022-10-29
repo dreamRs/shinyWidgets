@@ -51,16 +51,14 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
-  output$table <- renderTable({
-    head(mtcars)
-  }, width = "100%")
-
+  output$table <- renderTable(
+    {
+      head(mtcars)
+    },
+    width = "100%"
+  )
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui = ui, server = server)
-
-
-
-
+}

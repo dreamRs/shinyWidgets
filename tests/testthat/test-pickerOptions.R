@@ -1,7 +1,6 @@
 context("pickerOptions")
 
 test_that("pickerOptions works", {
-
   opts <- pickerOptions()
 
   expect_is(opts, "list")

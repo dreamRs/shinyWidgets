@@ -17,13 +17,11 @@ if (interactive()) {
   )
 
   server <- function(input, output, session) {
-
     output$plot <- renderPlot({
       plot(density(rnorm(input$n)))
     })
 
     output$table <- DT::renderDT(iris)
-
   }
 
   shinyApp(ui, server)

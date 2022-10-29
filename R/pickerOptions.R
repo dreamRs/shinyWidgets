@@ -114,5 +114,3 @@ convert_names <- function(x) {
   x <- gsub(pattern = "([A-Z])", replacement = "-\\1", x = x)
   tolower(x)
 }
-
-

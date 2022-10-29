@@ -48,7 +48,7 @@ css_files <- css_files[
     grepl(pattern = "material-switch", x = css_files, fixed = TRUE) |
     # grepl(pattern = "multi-shiny", x = css_files) |
     grepl(pattern = "sw-color-selector", x = css_files)
-  ]
+]
 
 # read them all
 css_files <- lapply(css_files, readLines)
@@ -61,4 +61,3 @@ writeLines(text = css_files, con = "inst/assets/shinyWidgets.css")
 
 # go here to minify the file
 # https://cssminifier.com/
-

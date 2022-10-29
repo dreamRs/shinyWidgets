@@ -12,8 +12,9 @@
 create_tree <- function(data, levels = names(data), levels_id = NULL, ...) {
   args <- list(...)
   data <- as.data.frame(data)
-  if (!all(levels %in% names(data)))
+  if (!all(levels %in% names(data))) {
     stop("All levels must be valid variables in data", call. = FALSE)
+  }
   data[levels] <- lapply(data[levels], as.character)
   data <- unique(x = data)
   if (is.null(levels_id)) {
@@ -44,8 +45,9 @@ create_tree <- function(data, levels = names(data), levels_id = NULL, ...) {
     stopifnot(
       "levels and levels_id must be of same length" = length(levels) == length(levels_id)
     )
-    if (!all(levels_id %in% names(data)))
+    if (!all(levels_id %in% names(data))) {
       stop("All levels_id must be valid variables in data", call. = FALSE)
+    }
     mapply(
       SIMPLIFY = FALSE,
       USE.NAMES = FALSE,
@@ -75,5 +77,3 @@ create_tree <- function(data, levels = names(data), levels_id = NULL, ...) {
     )
   }
 }
-
-

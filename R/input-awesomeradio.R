@@ -17,15 +17,17 @@ radioAlone <- function(id,
   } else {
     divClass <- paste0("awesome-checkbox checkbox-circle checkbox-", status)
   }
-  if (inline)
+  if (inline) {
     # if (!checkbox)
-      divClass <- paste(divClass, "radio-inline radio-inline form-check-inline")
-    # else
-    #   divClass <- paste(divClass, "checkbox-inline checkbox-inline")
-  inputTag <- tags$input(name=name, id=id, value=value, type="radio")
-  if (selected)
+    divClass <- paste(divClass, "radio-inline radio-inline form-check-inline")
+  }
+  # else
+  #   divClass <- paste(divClass, "checkbox-inline checkbox-inline")
+  inputTag <- tags$input(name = name, id = id, value = value, type = "radio")
+  if (selected) {
     inputTag$attribs$checked <- "checked"
-  tags$div(class=divClass, inputTag, tags$label(`for`=id, label))
+  }
+  tags$div(class = divClass, inputTag, tags$label(`for` = id, label))
 }
 
 
@@ -86,37 +88,33 @@ generateAwesomeRadio <- function(inputId,
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
+#'   ui <- fluidPage(
+#'     br(),
+#'     awesomeRadio(
+#'       inputId = "id1", label = "Make a choice:",
+#'       choices = c("graphics", "ggplot2")
+#'     ),
+#'     verbatimTextOutput(outputId = "res1"),
+#'     br(),
+#'     awesomeRadio(
+#'       inputId = "id2", label = "Make a choice:",
+#'       choices = c("base", "dplyr", "data.table"),
+#'       inline = TRUE, status = "danger"
+#'     ),
+#'     verbatimTextOutput(outputId = "res2")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   br(),
-#'   awesomeRadio(
-#'     inputId = "id1", label = "Make a choice:",
-#'     choices = c("graphics", "ggplot2")
-#'   ),
-#'   verbatimTextOutput(outputId = "res1"),
-#'   br(),
-#'   awesomeRadio(
-#'     inputId = "id2", label = "Make a choice:",
-#'     choices = c("base", "dplyr", "data.table"),
-#'     inline = TRUE, status = "danger"
-#'   ),
-#'   verbatimTextOutput(outputId = "res2")
-#' )
+#'   server <- function(input, output, session) {
+#'     output$res1 <- renderPrint({
+#'       input$id1
+#'     })
 #'
-#' server <- function(input, output, session) {
+#'     output$res2 <- renderPrint({
+#'       input$id2
+#'     })
+#'   }
 #'
-#'   output$res1 <- renderPrint({
-#'     input$id1
-#'   })
-#'
-#'   output$res2 <- renderPrint({
-#'     input$id2
-#'   })
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 awesomeRadio <- function(inputId,
                          label,
@@ -137,8 +135,9 @@ awesomeRadio <- function(inputId,
     id = inputId,
     class = "form-group shiny-input-radiogroup awesome-bootstrap-radio shiny-input-container",
     class = if (inline) "shiny-input-container-inline",
-    style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+    style = if (!is.null(width)) {
+      paste0("width: ", validateCssUnit(width), ";")
+    },
     tags$label(
       class = "control-label",
       `for` = inputId,
@@ -180,48 +179,45 @@ awesomeRadio <- function(inputId,
 #'
 #' @examples
 #' if (interactive()) {
+#'   library("shiny")
+#'   library("shinyWidgets")
 #'
-#' library("shiny")
-#' library("shinyWidgets")
 #'
+#'   ui <- fluidPage(
+#'     awesomeRadio(
+#'       inputId = "somevalue",
+#'       choices = c("A", "B", "C"),
+#'       label = "My label"
+#'     ),
+#'     verbatimTextOutput(outputId = "res"),
+#'     actionButton(inputId = "updatechoices", label = "Random choices"),
+#'     textInput(inputId = "updatelabel", label = "Update label")
+#'   )
 #'
-#' ui <- fluidPage(
-#'   awesomeRadio(
-#'     inputId = "somevalue",
-#'     choices = c("A", "B", "C"),
-#'     label = "My label"
-#'   ),
+#'   server <- function(input, output, session) {
+#'     output$res <- renderPrint({
+#'       input$somevalue
+#'     })
 #'
-#'   verbatimTextOutput(outputId = "res"),
+#'     observeEvent(input$updatechoices, {
+#'       updateAwesomeRadio(
+#'         session = session, inputId = "somevalue",
+#'         choices = sample(letters, sample(2:6))
+#'       )
+#'     })
 #'
-#'   actionButton(inputId = "updatechoices", label = "Random choices"),
-#'   textInput(inputId = "updatelabel", label = "Update label")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint({
-#'     input$somevalue
-#'   })
-#'
-#'   observeEvent(input$updatechoices, {
-#'     updateAwesomeRadio(
-#'       session = session, inputId = "somevalue",
-#'       choices = sample(letters, sample(2:6))
+#'     observeEvent(input$updatelabel,
+#'       {
+#'         updateAwesomeRadio(
+#'           session = session, inputId = "somevalue",
+#'           label = input$updatelabel
+#'         )
+#'       },
+#'       ignoreInit = TRUE
 #'     )
-#'   })
+#'   }
 #'
-#'   observeEvent(input$updatelabel, {
-#'     updateAwesomeRadio(
-#'       session = session, inputId = "somevalue",
-#'       label = input$updatelabel
-#'     )
-#'   }, ignoreInit = TRUE)
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
+#'   shinyApp(ui = ui, server = server)
 #' }
 updateAwesomeRadio <- function(session = getDefaultReactiveDomain(),
                                inputId,
@@ -231,14 +227,18 @@ updateAwesomeRadio <- function(session = getDefaultReactiveDomain(),
                                inline = FALSE,
                                status = "primary",
                                checkbox = FALSE) {
-  if (!is.null(selected))
+  if (!is.null(selected)) {
     selected <- as.character(selected)
-  if (is.null(selected) && !is.null(choices))
+  }
+  if (is.null(selected) && !is.null(choices)) {
     selected <- as.character(choices[[1]])
-  if (!is.null(choices))
+  }
+  if (!is.null(choices)) {
     choices <- choicesWithNames(choices)
-  if (!is.null(selected))
+  }
+  if (!is.null(selected)) {
     selected <- validateSelected(selected, choices, inputId)
+  }
   options <- if (!is.null(choices)) {
     as.character(generateAwesomeRadio(session$ns(inputId), choices, selected, inline, status, checkbox))
   }
@@ -248,9 +248,3 @@ updateAwesomeRadio <- function(session = getDefaultReactiveDomain(),
   ))
   session$sendInputMessage(inputId, message)
 }
-
-
-
-
-
-

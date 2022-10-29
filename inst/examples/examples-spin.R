@@ -26,7 +26,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   dat <- reactive({
     input$refresh
     input$refresh2
@@ -39,11 +38,10 @@ server <- function(input, output, session) {
     FUN = function(i) {
       output[[paste0("plot", i)]] <- renderPlot({
         dat()
-        plot(sin, -pi, i*pi)
+        plot(sin, -pi, i * pi)
       })
     }
   )
-
 }
 
 shinyApp(ui, server)

@@ -11,8 +11,9 @@
 #'
 #' @example examples/useBs4Dash.R
 useBs4Dash <- function(...) {
-  if (!requireNamespace(package = "bs4Dash"))
+  if (!requireNamespace(package = "bs4Dash")) {
     message("Package 'bs4Dash' is required to run this function")
+  }
   deps <- findDependencies(bs4Dash::bs4DashPage(
     header = bs4Dash::bs4DashNavbar(),
     sidebar = bs4Dash::bs4DashSidebar(),

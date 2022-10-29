@@ -16,9 +16,7 @@
 ui <- fluidPage(
   tags$h3("Update method"),
   tags$br(),
-
   fluidRow(
-
     column(
       width = 6,
       panel(
@@ -38,7 +36,6 @@ ui <- fluidPage(
           step = 50, value = 50
         )
       ),
-
       panel(
         status = "danger", heading = "Update range slider",
         noUiSliderInput(
@@ -56,12 +53,9 @@ ui <- fluidPage(
           step = 50, value = c(50, 200)
         )
       )
-
     ),
-
     column(
       width = 6,
-
       panel(
         status = "danger", heading = "Update min/max",
         noUiSliderInput(
@@ -74,7 +68,6 @@ ui <- fluidPage(
         actionButton(inputId = "minmax_0_100", label = "Set min=0 & max=100"),
         actionButton(inputId = "minmax_1000_5000", label = "Set min=1000 & max=5000")
       ),
-
       panel(
         status = "danger", heading = "Disable",
         noUiSliderInput(
@@ -91,22 +84,25 @@ ui <- fluidPage(
         )
       )
     )
-
   )
-
 )
 
 server <- function(input, output, session) {
-
   output$res_updated <- renderPrint(input$to_update)
-  observeEvent(input$update, {
-    updateNoUiSliderInput(session, "to_update", value = input$update)
-  }, ignoreInit = TRUE)
+  observeEvent(input$update,
+    {
+      updateNoUiSliderInput(session, "to_update", value = input$update)
+    },
+    ignoreInit = TRUE
+  )
 
   output$res_updated_range <- renderPrint(input$to_update_range)
-  observeEvent(input$update_range, {
-    updateNoUiSliderInput(session, "to_update_range", value = input$update_range)
-  }, ignoreInit = TRUE)
+  observeEvent(input$update_range,
+    {
+      updateNoUiSliderInput(session, "to_update_range", value = input$update_range)
+    },
+    ignoreInit = TRUE
+  )
 
 
   output$res_update_minmax <- renderPrint(input$to_update_minmax)
@@ -133,7 +129,6 @@ server <- function(input, output, session) {
       disable = input$disable
     )
   })
-
 }
 
 shinyApp(ui, server)

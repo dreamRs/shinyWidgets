@@ -12,19 +12,15 @@ library(shinyWidgets)
 ui <- fluidPage(
   tags$h2("Air datepicker with timepicker example"),
   tags$br(),
-
   fluidRow(
-
     column(
       width = 6,
-
       airDatepickerInput(
         inputId = "datetime",
         label = "Pick date and time:",
         timepicker = TRUE
       ),
       verbatimTextOutput(outputId = "res_datetime"),
-
       airDatepickerInput(
         inputId = "time",
         label = "Pick time:",
@@ -32,12 +28,9 @@ ui <- fluidPage(
         onlyTimepicker = TRUE
       ),
       verbatimTextOutput(outputId = "res_time")
-
     ),
-
     column(
       width = 6,
-
       airDatepickerInput(
         inputId = "options",
         label = "With some options:",
@@ -51,7 +44,6 @@ ui <- fluidPage(
         )
       ),
       verbatimTextOutput(outputId = "res_options"),
-
       airDatepickerInput(
         inputId = "french",
         label = "French locale:",
@@ -65,24 +57,19 @@ ui <- fluidPage(
         )
       ),
       verbatimTextOutput(outputId = "res_french")
-
     )
-
   )
 )
 
 # server ----
 
 server <- function(input, output, session) {
-
-  output$res_datetime <- renderPrint( input$datetime )
-  output$res_time <- renderPrint( input$time )
-  output$res_options <- renderPrint( input$options )
-  output$res_french <- renderPrint( input$french )
-
+  output$res_datetime <- renderPrint(input$datetime)
+  output$res_time <- renderPrint(input$time)
+  output$res_options <- renderPrint(input$options)
+  output$res_french <- renderPrint(input$french)
 }
 
 # app ----
 
 shinyApp(ui = ui, server = server)
-

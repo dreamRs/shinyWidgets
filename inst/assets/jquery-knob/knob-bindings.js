@@ -202,4 +202,3 @@ $.extend(knobInputBinding, {
 });
 
 Shiny.inputBindings.register(knobInputBinding, "shinyWidgets.knobInput");
-

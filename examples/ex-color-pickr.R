@@ -49,7 +49,7 @@ ui <- fluidPage(
         preview = FALSE,
         hue = FALSE,
         interaction = list(
-          hex= FALSE,
+          hex = FALSE,
           rgba = FALSE,
           input = FALSE,
           save = FALSE,
@@ -133,7 +133,6 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$id1)
   output$res2 <- renderPrint(input$id2)
   output$res3 <- renderPrint(input$id3)
@@ -164,8 +163,8 @@ server <- function(input, output, session) {
   observeEvent(input$disable, {
     updateColorPickr(session, "id22", action = "disable")
   })
-
 }
 
-if (interactive())
+if (interactive()) {
   shinyApp(ui, server)
+}

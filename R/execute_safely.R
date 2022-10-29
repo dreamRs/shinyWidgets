@@ -29,7 +29,7 @@ execute_safely <- function(expr, title = "Error",
     error = function(e) {
       if (isTRUE(include_error)) {
         message <- tags$div(
-          style= "text-align: left;",
+          style = "text-align: left;",
           message,
           tags$br(),
           tags$br(),
@@ -53,4 +53,3 @@ execute_safely <- function(expr, title = "Error",
     }
   )
 }
-

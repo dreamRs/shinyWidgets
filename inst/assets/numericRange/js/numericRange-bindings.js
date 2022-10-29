@@ -59,4 +59,3 @@ Shiny.inputBindings.register(
   numericRangeInputBinding,
   "shinyWidgets.numericRange"
 );
-
