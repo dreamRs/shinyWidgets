@@ -129,8 +129,11 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
       lapply(
         X = seq_along(choiceNames),
         FUN = function(i) {
-          htmltools::tags$option(value = choiceValues[[i]], as.character(choiceNames[[i]]),
-                      selected = if(choiceValues[[i]] %in% selected) "selected")
+          htmltools::tags$option(
+            value = choiceValues[[i]],
+            as.character(choiceNames[[i]]),
+            selected = if(choiceValues[[i]] %in% selected) "selected"
+          )
         }
       )
     )
@@ -139,8 +142,11 @@ makeChoices <- function(choices = NULL, choiceNames = NULL, choiceValues = NULL,
     tagList(
       lapply(
         X = seq_along(choices), FUN = function(i) {
-          htmltools::tags$option(value = choices[[i]], names(choices)[i],
-                      selected = if(choices[[i]] %in% selected) "selected")
+          htmltools::tags$option(
+            value = choices[[i]],
+            names(choices)[i],
+            selected = if(choices[[i]] %in% selected) "selected"
+          )
         }
       )
     )
