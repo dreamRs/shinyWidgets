@@ -181,3 +181,11 @@ formatNoSci <- function(x) {
   if (is.null(x)) return(NULL)
   format(x, scientific = FALSE, digits = 15)
 }
+
+
+sanitize <- function(x) {
+  x <- gsub("[[:punct:]]+", "", x)
+  x <- gsub("[[:space:]]+", "_", x)
+  paste0("id", x)
+}
+

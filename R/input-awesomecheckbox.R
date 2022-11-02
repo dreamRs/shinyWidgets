@@ -74,7 +74,7 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status) {
         type = "checkbox",
         name = inputId,
         value = value,
-        id = paste0(inputId, value)
+        id = sanitize(paste0(inputId, value))
       )
       if (value %in% selected)
         inputTag$attribs$checked <- "checked"
@@ -84,7 +84,7 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status) {
           inputTag,
           tags$label(
             name,
-            `for` = paste0(inputId, value),
+            `for` = sanitize(paste0(inputId, value)),
             class = "form-check-label form-check-label-inline"
           )
         )
@@ -92,7 +92,7 @@ generateAwesomeOptions <- function(inputId, choices, selected, inline, status) {
         tags$div(
           class = paste0("awesome-checkbox checkbox-", status),
           inputTag,
-          tags$label(name, `for` = paste0(inputId, value), class = "form-check-label")
+          tags$label(name, `for` = sanitize(paste0(inputId, value)), class = "form-check-label")
         )
       }
     }, SIMPLIFY = FALSE, USE.NAMES = FALSE
