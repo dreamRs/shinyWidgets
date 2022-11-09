@@ -57,19 +57,51 @@ cities <- data.frame(
 # app
 ui <- fluidPage(
   tags$h2("treeInput() example"),
-  treeInput(
-    inputId = "ID1",
-    label = "Select cities:",
-    choices = create_tree(cities),
-    # selected = "San Francisco",
-    returnValue = "text"
-  ),
-  verbatimTextOutput("res1")
+  fluidRow(
+    column(
+      width = 4,
+      treeInput(
+        inputId = "ID1",
+        label = "Select cities:",
+        choices = create_tree(cities),
+        # selected = "San Francisco",
+        returnValue = "text",
+        closeDepth = 0
+      ),
+      verbatimTextOutput("res1")
+    ),
+    column(
+      width = 4,
+      treeInput(
+        inputId = "ID2",
+        label = "Select cities:",
+        choices = create_tree(cities),
+        # selected = "San Francisco",
+        returnValue = "text",
+        closeDepth = 1
+      ),
+      verbatimTextOutput("res2")
+    ),
+    column(
+      width = 4,
+      treeInput(
+        inputId = "ID3",
+        label = "Select cities:",
+        choices = create_tree(cities),
+        # selected = "San Francisco",
+        returnValue = "text",
+        closeDepth = 2
+      ),
+      verbatimTextOutput("res3")
+    )
+  )
 )
 
 server <- function(input, output, session) {
 
   output$res1 <- renderPrint(input$ID1)
+  output$res2 <- renderPrint(input$ID2)
+  output$res3 <- renderPrint(input$ID3)
 
 }
 
