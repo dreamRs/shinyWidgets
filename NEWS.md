@@ -1,3 +1,19 @@
+shinyWidgets 0.7.5
+======================
+
+* Updated virtual-select-plugin to 1.0.34.
+* Updated air-datepicker to 3.3.1 with language support for japanese and korean.
+* Updated `treeInput()` collapse and expand methods (in javascript).
+
+
+### Bug fixes
+
+* `multiInput()` is no longer renders HTML tags inside values [#545](https://github.com/dreamRs/shinyWidgets/issues/545).
+* `awesomeCheckboxGroup()` errors when colon in choices [#543](https://github.com/dreamRs/shinyWidgets/issues/543).
+
+
+
+
 shinyWidgets 0.7.4
 ======================
 
@@ -9,7 +25,7 @@ shinyWidgets 0.7.4
 
 ### Bug fixes
 
-* `switchInput()` produced an error when using `bslib::bs_theme(version = "3")` [#528](https://github.com/dreamRs/shinyWidgets/issues/528)
+* `switchInput()` produced an error when using `bslib::bs_theme(version = "3")` [#528](https://github.com/dreamRs/shinyWidgets/issues/528).
 * Fixed a bug in `pickerGroup` module when using `aggregate` [#491](https://github.com/dreamRs/shinyWidgets/issues/491).
 * Fixed highlightedDates no longer works for `airDatePicker()` [#532](https://github.com/dreamRs/shinyWidgets/issues/532).
 
