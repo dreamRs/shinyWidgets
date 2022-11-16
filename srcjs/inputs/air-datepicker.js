@@ -16,6 +16,8 @@ import localeFI from "air-datepicker/locale/fi";
 import localeFR from "air-datepicker/locale/fr";
 import localeHU from "air-datepicker/locale/hu";
 import localeIT from "air-datepicker/locale/it";
+import localeJA from "air-datepicker/locale/ja";
+import localeKO from "air-datepicker/locale/ko";
 import localeNL from "air-datepicker/locale/nl";
 import localePL from "air-datepicker/locale/pl";
 import localePTBR from "air-datepicker/locale/pt-BR";
@@ -40,6 +42,8 @@ let locales = {
   FR: localeFR,
   HU: localeHU,
   IT: localeIT,
+  JA: localeJA,
+  KO: localeKO,
   NL: localeNL,
   PL: localePL,
   "PT-BR": localePTBR,

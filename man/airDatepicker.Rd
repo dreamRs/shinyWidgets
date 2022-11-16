@@ -118,7 +118,9 @@ or when calendar is \code{'close'}d.}
 of the widget, or \code{'none'}. This icon act likes an \code{actionButton},
 you can retrieve value server-side with \code{input$<inputId>_button}.}
 
-\item{language}{Language to use, can be one of \code{ar}, \code{cs}, \code{da}, \code{de}, \code{en}, \code{es}, \code{fi}, \code{fr}, \code{hu}, \code{it}, \code{nl}, \code{pl}, \code{pt-BR}, \code{pt}, \code{ro}, \code{ru}, \code{si}, \code{sk}, \code{sv}, \code{th}, \code{tr}, \code{uk}, \code{zh}.}
+\item{language}{Language to use, can be one of
+\code{ar}, \code{cs}, \code{da}, \code{de}, \code{en}, \code{es}, \code{fi}, \code{fr}, \code{hu}, \code{it}, \code{ja}, \code{ko}, \code{nl},
+\code{pl}, \code{pt-BR}, \code{pt}, \code{ro}, \code{ru}, \code{si}, \code{sk}, \code{sv}, \code{th}, \code{tr}, \code{uk}, \code{zh}.}
 
 \item{inline}{If \code{TRUE}, datepicker will always be visible.}
 
