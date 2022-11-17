@@ -89,7 +89,7 @@ prepare_choices <- function(.data,
 #' @param disabled Disable entire dropdown.
 #' @param ... Other arguments passed to JavaScript method, see
 #'  [virtual-select documentation](https://sa-si-dev.github.io/virtual-select/#/properties) for a full list of options.
-#' @param stateInput Activate or deactivate the input to know if the menu is opened or not, see details.
+#' @param stateInput Activate or deactivate the special input value `input$<inputId>_open` to know if the menu is opened or not, see details.
 #' @param html Allow usage of HTML in choices.
 #' @param inline Display inline with label or not.
 #'

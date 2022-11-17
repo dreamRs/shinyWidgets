@@ -72,7 +72,7 @@ single-select lists and no values for multiple select lists.}
 \item{...}{Other arguments passed to JavaScript method, see
 \href{https://sa-si-dev.github.io/virtual-select/#/properties}{virtual-select documentation} for a full list of options.}
 
-\item{stateInput}{Activate or deactivate the input to know if the menu is opened or not, see details.}
+\item{stateInput}{Activate or deactivate the special input value \verb{input$<inputId>_open} to know if the menu is opened or not, see details.}
 
 \item{html}{Allow usage of HTML in choices.}
 
