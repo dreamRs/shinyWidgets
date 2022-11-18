@@ -1,6 +1,6 @@
 Package: shinyWidgets
 Title: Custom Inputs Widgets for Shiny
-Version: 0.7.5
+Version: 0.7.5.9000
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre", "cph")),
   person("Fanny", "Meyer", role = "aut"),
@@ -31,7 +31,8 @@ Imports:
     jsonlite,
     grDevices,
     rlang
-Suggests: shinydashboard,
+Suggests: 
+    shinydashboard,
     testthat,
     covr,
     shinydashboardPlus (>= 2.0.0),

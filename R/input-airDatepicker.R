@@ -265,7 +265,10 @@ airDatepickerInput <- function(inputId,
       ), append = TRUE
     )
   } else {
-    attachShinyWidgetsDep(tagAir, "airdatepicker")
+    htmltools::attachDependencies(
+      x = tagAir,
+      value = html_dependency_airdatepicker()
+    )
   }
 }
 
