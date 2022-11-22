@@ -138,9 +138,9 @@ airDatepickerInput <- function(inputId,
   # dput(tools::file_path_sans_ext(list.files("node_modules/air-datepicker/locale/", pattern = "\\.js")))
   language <- match.arg(
     arg = language,
-    choices = c("ar", "cs", "da", "de", "en", "es", "fi", "fr", "hu", "it",
-                "nl", "pl", "pt-BR", "pt", "ro", "ru", "si", "sk", "sv", "th",
-                "tr", "uk", "zh", "ja", "ko"),
+    choices = c("ar", "ca", "cs", "da", "de", "en", "es", "fi", "fr", "hu",
+                "it", "nl", "pl", "pt-BR", "pt", "ro", "ru", "si", "sk", "sv",
+                 "th", "tr", "uk", "zh", "ja", "ko"),
     several.ok = FALSE
   )
 
