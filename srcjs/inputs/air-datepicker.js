@@ -153,7 +153,7 @@ $.extend(AirDatepickerBindings, {
       for (var i = 0; i < dateraw.length; i++) {
         datedefault[i] = as_date(dateraw[i]);
       }
-      config.value = datedefault;
+      options.selectedDates = datedefault;
     }
 
     if (options.hasOwnProperty("minDate")) {
@@ -193,9 +193,6 @@ $.extend(AirDatepickerBindings, {
     }
 
     var dp = new AirDatepicker(el, options);
-    if (config.hasOwnProperty("value")) {
-      dp.selectDate(config.value);
-    }
     if (config.hasOwnProperty("startView")) {
       dp.date = as_date(config.startView);
     }

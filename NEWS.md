@@ -1,6 +1,13 @@
 shinyWidgets 0.7.5
 ======================
 
+* Updated air-datepicker to 3.3.2, fix [#553](https://github.com/dreamRs/shinyWidgets/issues/553).
+
+
+
+shinyWidgets 0.7.5
+======================
+
 * Updated virtual-select-plugin to 1.0.34.
 * Updated air-datepicker to 3.3.1 with language support for japanese and korean.
 * Updated `treeInput()` collapse and expand methods (in javascript).
