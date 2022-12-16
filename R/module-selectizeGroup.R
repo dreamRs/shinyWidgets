@@ -37,6 +37,8 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
           X = seq_along(params),
           FUN = function(x) {
             input <- params[[x]]
+            input$options$onInitialize <- I('function() { this.setValue(""); }')
+            input$options$plugins <- union(as.list(input$options$plugins), "remove_button")
             tagSelect <- tags$div(
               class = "btn-group",
               id = ns(paste0("container-", input$inputId)),
@@ -46,12 +48,8 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
                 choices = input$choices,
                 selected = input$selected,
                 multiple = ifelse(is.null(input$multiple), TRUE, input$multiple),
-                width = "100%",
-                options = list(
-                  placeholder = input$placeholder,
-                  plugins = list("remove_button"),
-                  onInitialize = I('function() { this.setValue(""); }')
-                )
+                width = ifelse(is.null(input$width), "100%", input$width),
+                options = input$options
               )
             )
             return(tagSelect)
@@ -72,6 +70,8 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
         X = seq_along(params),
         FUN = function(x) {
           input <- params[[x]]
+          input$options$onInitialize <- I('function() { this.setValue(""); }')
+          input$options$plugins <- union(as.list(input$options$plugins), "remove_button")
           tagSelect <- tags$div(
             id = ns(paste0("container-", input$inputId)),
             selectizeInput(
@@ -80,12 +80,8 @@ selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filter
               choices = input$choices,
               selected = input$selected,
               multiple = ifelse(is.null(input$multiple), TRUE, input$multiple),
-              width = "100%",
-              options = list(
-                placeholder = input$placeholder,
-                plugins = list("remove_button"),
-                onInitialize = I('function() { this.setValue(""); }')
-              )
+              width = ifelse(is.null(input$width), "100%", input$width),
+              options = input$options
             )
           )
           return(tagSelect)
