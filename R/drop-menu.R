@@ -21,7 +21,7 @@
 #' @return A UI definition.
 #' @export
 #'
-#' @importFrom htmltools tags validateCssUnit HTML
+#' @importFrom htmltools tags validateCssUnit HTML as.tags
 #' @importFrom jsonlite toJSON
 #' @importFrom utils modifyList
 #'
@@ -56,12 +56,14 @@ dropMenu <- function(tag, ...,
     choices = c("click", "mouseenter", "manual", "focus")
   )
   trigger <- paste(trigger, collapse = " ")
-  if (!inherits(tag, c("shiny.tag"))) {
-    stop("dropMenu: 'tag' must be a 'shiny.tag' object.")
+  if (!inherits(tag, c("shiny.tag", "shiny.tag.function"))) {
+    stop("dropMenu: 'tag' must be a 'shiny.tag' or 'shiny.tag.function' object.")
   }
-  if (is.null(tag$attribs$id)) {
+  tag_ <- as.tags(tag)
+  if (is.null(tag_$attribs$id)) {
     stop("dropMenu: 'tag' must have an Id.")
   }
+  ID <- tag_$attribs$id
 
   config <- list(
     options = list(
@@ -84,19 +86,19 @@ dropMenu <- function(tag, ...,
 
   dropTag <- tags$div(
     class = "drop-menu-input",
-    id = paste0(tag$attribs$id, "_dropmenu"),
-    `data-target` = tag$attribs$id,
-    `data-template` = paste0(tag$attribs$id, "-template"),
+    id = paste0(ID, "_dropmenu"),
+    `data-target` = ID,
+    `data-template` = paste0(ID, "-template"),
     tag,
     tags$div(
       style = "display: none;",
       style = sprintf("padding: %s;", validateCssUnit(padding)),
-      id = paste0(tag$attribs$id, "-template"),
+      id = paste0(ID, "-template"),
       ...
     ),
     tags$script(
       type = "application/json",
-      `data-for` = paste0(tag$attribs$id, "_dropmenu"),
+      `data-for` = paste0(ID, "_dropmenu"),
       HTML(toJSON(config, auto_unbox = TRUE, json_verbatim = TRUE))
     )
   )
