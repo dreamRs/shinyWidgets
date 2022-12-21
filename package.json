@@ -23,7 +23,7 @@
   "homepage": "https://github.com/dreamRs/shinyWidgets#readme",
   "devDependencies": {
     "@widgetjs/tree": "^1.8.3",
-    "air-datepicker": "^3.3.2",
+    "air-datepicker": "^3.3.3",
     "autonumeric": "^4.6.0",
     "css-loader": "^6.5.1",
     "dayjs": "^1.11.4",
