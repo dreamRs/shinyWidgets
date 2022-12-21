@@ -51,7 +51,7 @@ verticalTabsetPanel <- function(..., selected = NULL, id = NULL, color = "#11244
   )
   if (identical(menuSide, "left")) {
     vtabTag <- tags$div(
-      class="col-sm-12 vrtc-tab-panel-container tabbable",
+      class="row g-0 row-no-gutters vrtc-tab-panel-container tabbable",
       id = if (is.null(id)) id else paste0(id,"-tabbable"),
       tags$div(
         class = sprintf("col-sm-%s vrtc-tab-panel-menu vrtc-tab-panel-menu-%s", 12 - contentWidth, menuSide),

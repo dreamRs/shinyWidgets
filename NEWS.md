@@ -5,6 +5,11 @@ shinyWidgets 0.7.6
 * Updated air-datepicker to 3.3.3, fix [#553](https://github.com/dreamRs/shinyWidgets/issues/553).
 
 
+### Bug fixes
+
+* `verticalTabsetPanel()` does not work with bslib using Bootstrap 5 [#549](https://github.com/dreamRs/shinyWidgets/issues/549).
+
+
 
 shinyWidgets 0.7.5
 ======================

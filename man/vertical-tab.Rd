@@ -49,6 +49,7 @@ library(shiny)
 library(shinyWidgets)
 
 ui <- fluidPage(
+  # theme = bslib::bs_theme(version = 5L),
   fluidRow(
     column(
       width = 10, offset = 1,
