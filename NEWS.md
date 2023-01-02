@@ -1,7 +1,7 @@
 shinyWidgets 0.7.6
 ======================
 
-* Updated virtual-select-plugin to 1.0.36.
+* Updated virtual-select-plugin to 1.0.37.
 * Updated air-datepicker to 3.3.3, fix [#553](https://github.com/dreamRs/shinyWidgets/issues/553).
 
 
