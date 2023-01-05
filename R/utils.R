@@ -128,7 +128,7 @@ anyNamed <- function(x) {
   any(nzchar(nms))
 }
 
-normalizeChoicesArgs <- function(choices, choiceNames, choiceValues, mustExist = TRUE) {
+normalizeChoicesArgs <- function(choices, choiceNames = NULL, choiceValues = NULL, mustExist = TRUE) {
   if (is.null(choices)) {
     if (is.null(choiceNames) || is.null(choiceValues)) {
       if (mustExist) {
