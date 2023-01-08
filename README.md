@@ -5,7 +5,7 @@
 <!-- badges: start -->
 [![version](http://www.r-pkg.org/badges/version/shinyWidgets)](https://CRAN.R-project.org/package=shinyWidgets)
 [![cranlogs](http://cranlogs.r-pkg.org/badges/shinyWidgets)](https://CRAN.R-project.org/package=shinyWidgets)
-[![cran checks](https://cranchecks.info/badges/worst/shinyWidgets)](https://cranchecks.info/pkgs/shinyWidgets)
+[![cran checks](https://badges.cranchecks.info/worst/shinyWidgets.svg)](https://cran.r-project.org/web/checks/check_results_shinyWidgets.html)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dreamRs/shinyWidgets/master.svg)](https://codecov.io/github/dreamRs/shinyWidgets?branch=master)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/dreamRs/shinyWidgets?branch=master&svg=true)](https://ci.appveyor.com/project/dreamRs/shinyWidgets)
 [![R-CMD-check](https://github.com/dreamRs/shinyWidgets/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dreamRs/shinyWidgets/actions/workflows/R-CMD-check.yaml)
