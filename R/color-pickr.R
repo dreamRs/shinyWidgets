@@ -33,7 +33,7 @@
 #' @importFrom utils modifyList
 #' @importFrom jsonlite toJSON
 #'
-#' @example examples/ex-color-pickr.R
+#' @example examples/pickr-color.R
 colorPickr <- function(inputId,
                        label,
                        selected = "#112446",

@@ -94,7 +94,7 @@ $.extend(pickrColorBinding, {
     }
     if (options.useAsButton === false) {
       root.button.parentNode.style.display = "inline";
-      root.button.id = el.id;
+      root.button.id = el.id + "_btn";
       root.button.classList.add("pickr-color");
       if (config.inline) {
         root.button.style.display = "none";
