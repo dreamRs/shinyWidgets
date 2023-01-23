@@ -18,12 +18,14 @@ if (shinyMode) {
         $(this)
           .parents(".vrtc-tab-panel-container")
           .find("div.vrtc-tab-panel>div.vrtc-tab-panel-content")
-          .removeClass("active");
+          .removeClass("active")
+          .trigger("hidden.bs.collapse");
         $(this)
           .parents(".vrtc-tab-panel-container")
           .find("div.vrtc-tab-panel>div.vrtc-tab-panel-content")
           .eq(index)
-          .addClass("active");
+          .addClass("active")
+          .trigger("shown.bs.collapse");
       });
     },
     find: function(scope) {
@@ -86,12 +88,14 @@ if (shinyMode) {
       $(this)
         .parents(".vrtc-tab-panel-container")
         .find("div.vrtc-tab-panel>div.vrtc-tab-panel-content")
-        .removeClass("active");
+        .removeClass("active")
+        .trigger("hidden.bs.collapse");
       $(this)
         .parents(".vrtc-tab-panel-container")
         .find("div.vrtc-tab-panel>div.vrtc-tab-panel-content")
         .eq(index)
-        .addClass("active");
+        .addClass("active")
+        .trigger("shown.bs.collapse");
     });
   });
 }

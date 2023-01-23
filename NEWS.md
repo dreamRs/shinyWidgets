@@ -1,3 +1,12 @@
+shinyWidgets 0.7.7
+======================
+
+### Bug fixes
+
+* `verticalTabsetPanel()` does not render output content when using Bootstrap 5 [#570](https://github.com/dreamRs/shinyWidgets/issues/570).
+
+
+
 shinyWidgets 0.7.6
 ======================
 
