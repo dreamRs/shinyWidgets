@@ -99,7 +99,7 @@ function as_date(date) {
   return dayjs(date).toDate();
 }
 
-function onRenderCell(disabledDates, highlightedDates) {
+function onRenderCell(disabledDates, disabledDaysOfWeek, highlightedDates) {
   return ({ date, cellType, datepicker }) => {
     if (cellType == "day") {
       var disabled = false,
@@ -109,6 +109,10 @@ function onRenderCell(disabledDates, highlightedDates) {
       disabled = disabledDates.filter(function(date) {
         return date == formatted;
       }).length;
+
+      if (disabledDaysOfWeek.includes(dayjs(date).day())) {
+        disabled = true;
+      }
 
       highlighted = highlightedDates.filter(function(date) {
         return date == formatted;
@@ -174,11 +178,15 @@ $.extend(AirDatepickerBindings, {
     if (config.hasOwnProperty("disabledDates")) {
       disabledDates = config.disabledDates;
     }
+    var disabledDaysOfWeek = [];
+    if (config.hasOwnProperty("disabledDaysOfWeek")) {
+      disabledDaysOfWeek = config.disabledDaysOfWeek;
+    }
     var highlightedDates = [];
     if (config.hasOwnProperty("highlightedDates")) {
       highlightedDates = config.highlightedDates;
     }
-    options.onRenderCell = onRenderCell(disabledDates, highlightedDates);
+    options.onRenderCell = onRenderCell(disabledDates, disabledDaysOfWeek, highlightedDates);
 
     if (config.updateOn == "close") {
       options.onHide = function(isFinished) {
@@ -277,17 +285,22 @@ $.extend(AirDatepickerBindings, {
 
       if (
         options.hasOwnProperty("disabledDates") |
+        options.hasOwnProperty("disabledDaysOfWeek") |
         options.hasOwnProperty("highlightedDates")
       ) {
         var disabledDates = [];
         if (options.hasOwnProperty("disabledDates")) {
           disabledDates = options.disabledDates;
         }
+        var disabledDaysOfWeek = [];
+        if (options.hasOwnProperty("disabledDaysOfWeek")) {
+          disabledDaysOfWeek = options.disabledDaysOfWeek;
+        }
         var highlightedDates = [];
         if (options.hasOwnProperty("highlightedDates")) {
           highlightedDates = options.highlightedDates;
         }
-        options.onRenderCell = onRenderCell(disabledDates, highlightedDates);
+        options.onRenderCell = onRenderCell(disabledDates, disabledDaysOfWeek, highlightedDates);
       }
 
       dp.update(options);

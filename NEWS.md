@@ -1,6 +1,9 @@
 shinyWidgets 0.7.7
 ======================
 
+* `airDatepickerInput()` : added argument `disabledDaysOfWeek` to disable day(s) of the week.
+
+
 ### Bug fixes
 
 * `verticalTabsetPanel()` does not render output content when using Bootstrap 5 [#570](https://github.com/dreamRs/shinyWidgets/issues/570).

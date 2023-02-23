@@ -22,6 +22,7 @@ airDatepickerInput(
   minDate = NULL,
   maxDate = NULL,
   disabledDates = NULL,
+  disabledDaysOfWeek = NULL,
   highlightedDates = NULL,
   view = c("days", "months", "years"),
   startView = NULL,
@@ -33,12 +34,12 @@ airDatepickerInput(
   timepickerOpts = timepickerOptions(),
   position = NULL,
   update_on = c("change", "close"),
+  onlyTimepicker = FALSE,
+  toggleSelected = TRUE,
   addon = c("right", "left", "none"),
   language = "en",
   inline = FALSE,
-  onlyTimepicker = FALSE,
-  width = NULL,
-  toggleSelected = TRUE
+  width = NULL
 )
 
 timepickerOptions(
@@ -88,6 +89,8 @@ but if it passed here then it will have higher priority.}
 
 \item{disabledDates}{A vector of dates to disable, e.g. won't be able to select one of dates passed.}
 
+\item{disabledDaysOfWeek}{Day(s) of week to disable, numbers from 0 (Sunday) to 6 (Saturday).}
+
 \item{highlightedDates}{A vector of dates to highlight.}
 
 \item{view}{Starting view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.}
@@ -114,6 +117,10 @@ if a \code{Date} is used, it will set view to the given date and select it..}
 \item{update_on}{When to send selected value to server: on \code{'change'}
 or when calendar is \code{'close'}d.}
 
+\item{onlyTimepicker}{Display only the time picker.}
+
+\item{toggleSelected}{When \code{TRUE}, in range mode, it's not possible to select the same date as start and end.}
+
 \item{addon}{Display a calendar icon to \code{'right'} or the \code{'left'}
 of the widget, or \code{'none'}. This icon act likes an \code{actionButton},
 you can retrieve value server-side with \code{input$<inputId>_button}.}
@@ -124,11 +131,7 @@ you can retrieve value server-side with \code{input$<inputId>_button}.}
 
 \item{inline}{If \code{TRUE}, datepicker will always be visible.}
 
-\item{onlyTimepicker}{Display only the time picker.}
-
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.}
-
-\item{toggleSelected}{When \code{TRUE}, in range mode, it's not possible to select the same date as start and end.}
 
 \item{dateTimeSeparator}{Separator between date and time, default to \code{" "}.}
 

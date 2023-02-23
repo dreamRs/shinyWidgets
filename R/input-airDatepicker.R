@@ -23,6 +23,7 @@
 #' @param minDate The minimum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.
 #' @param maxDate The maximum allowed date. Either a Date object, or a string in \code{yyyy-mm-dd} format.
 #' @param disabledDates A vector of dates to disable, e.g. won't be able to select one of dates passed.
+#' @param disabledDaysOfWeek Day(s) of week to disable, numbers from 0 (Sunday) to 6 (Saturday).
 #' @param highlightedDates A vector of dates to highlight.
 #' @param view Starting view, one of \code{'days'} (default), \code{'months'} or \code{'years'}.
 #' @param startView Date shown in calendar when date picker is opened.
@@ -116,6 +117,7 @@ airDatepickerInput <- function(inputId,
                                minDate = NULL,
                                maxDate = NULL,
                                disabledDates = NULL,
+                               disabledDaysOfWeek = NULL,
                                highlightedDates = NULL,
                                view = c("days", "months", "years"),
                                startView = NULL,
@@ -127,12 +129,12 @@ airDatepickerInput <- function(inputId,
                                timepickerOpts = timepickerOptions(),
                                position = NULL,
                                update_on = c("change", "close"),
+                               onlyTimepicker = FALSE,
+                               toggleSelected = TRUE,
                                addon = c("right", "left", "none"),
                                language = "en",
                                inline = FALSE,
-                               onlyTimepicker = FALSE,
-                               width = NULL,
-                               toggleSelected = TRUE) {
+                               width = NULL) {
   value <- shiny::restoreInput(inputId, value)
   addon <- match.arg(addon)
   # dput(tools::file_path_sans_ext(list.files("node_modules/air-datepicker/locale/", pattern = "\\.js")))
@@ -168,6 +170,7 @@ airDatepickerInput <- function(inputId,
   airParams <- dropNulls(list(
     updateOn = match.arg(update_on),
     disabledDates = list1(disabledDates),
+    disabledDaysOfWeek = list1(disabledDaysOfWeek),
     highlightedDates = list1(highlightedDates),
     startView = startView,
     value = list1(value),
