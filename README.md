@@ -14,7 +14,7 @@
 
 ## Overview
 
-This package offers custom widgets and other components to enhance your shiny applications.
+This package provide custom widgets and other components to enhance your shiny applications.
 
 You can replace classical checkboxes with switch button, add colors to radio buttons and checkbox group, use buttons as radio or checkboxes.
 Each widget has an `update` method to change the value of an input from the server.
@@ -48,8 +48,11 @@ shinyWidgets::shinyWidgetsGallery()
 A live version is available here : http://shinyapps.dreamrs.fr/shinyWidgets
 
 
+## Widgets
 
-### Bootstrap switch
+### Single checkbox
+
+* **Bootstrap switch**
 
 Turn checkboxes into toggle switches : 
 
@@ -60,8 +63,7 @@ switchInput(inputId = "id", value = TRUE)
 ```
 
 
-
-### Material switch
+* **Material switch**
 
 Turn checkboxes into toggle switches :
 
@@ -72,114 +74,197 @@ materialSwitch(inputId = "id", label = "Primary switch", status = "danger")
 ```
 
 
-
-### Pretty Checkbox
-
-Checkbox and radio buttons with the beautiful CSS library [pretty-checkbox](https://lokesh-coder.github.io/pretty-checkbox/) :
-![prettycheckbox](man/figures/pretty.png)
-
+* **Pretty checkbox**
 
 ```r
 prettyCheckbox(
-  inputId = "pretty_1", label = "Check me!", icon = icon("check")
-),
-prettyCheckbox(
-  inputId = "pretty_2", label = "Check me!", icon = icon("thumbs-up"), 
-  status = "default", shape = "curve", animation = "pulse"
-),
-prettyCheckbox(
-  inputId = "pretty_3", label = "Check me!", icon = icon("users"), 
-  animation = "pulse", plain = TRUE, outline = TRUE
-),
-prettyCheckbox(
-  inputId = "pretty_4", label = "Check me!",
-  status = "success", outline = TRUE
-),
-prettyCheckbox(
-  inputId = "pretty_5", label = "Check me!",
-  shape = "round", outline = TRUE, status = "info"
-),
-
-# ...
-
-```
-
-
-### Sweet Alert
-
-Show an alert message to the user to provide some feedback, via [sweetalert2](https://sweetalert2.github.io/) library:
-
-![sendSweetAlert](man/figures/show_alert.png)
-
-See examples in `?show_alert`.
-
-
-Request confirmation from the user :
-
-![confirmSweetAlert](man/figures/ask_confirmation.png)
-
-See examples in `?ask_confirmation`.
-
-
-
-### Slider Text
-
-Slider with strings, to pass whatever you want : <br>
-![sliderText](man/figures/sliderText.png)
-
-```r
-sliderTextInput(
-  inputId = "mySliderText", 
-  label = "Your choice:", 
-  grid = TRUE, 
-  force_edges = TRUE,
-  choices = c("Strongly disagree",
-              "Disagree", "Neither agree nor disagree", 
-              "Agree", "Strongly agree")
+  inputId = "id", label = "Check me!", icon = icon("check")
 )
 ```
 
 
-### Select picker
+* **Pretty switch**
 
-Dropdown menu with a lot of options : 
+```r
+prettySwitch(
+  inputId = "id",
+  label = "Switch:",
+  fill = TRUE, 
+  status = "primary"
+)
+```
+
+
+* **Pretty toggle**
+
+```r
+prettyToggle(
+  inputId = "id",
+  label_on = "Checked!",
+  label_off = "Unchecked..."
+)
+```
+
+### Checkboxes and radio buttons
+
+* **Bootstrap buttons**
+
+![checkboxGroupButtons](man/figures/checkboxGroupButtons.png)
+
+```r
+checkboxGroupButtons( # or radioGroupButtons
+  inputId = "id",
+  label = "Choice: ",
+  choices = c("A", "B", "C")
+)
+```
+
+* **Pretty checkbox group and radio buttons**
+
+```r
+prettyCheckboxGroup( # or prettyRadioButtons
+  inputId = "id",
+  label = "Choice",
+  choices = c("A", "B", "c"),
+  outline = TRUE,
+  plain = TRUE,
+  status = "primary",
+  icon = icon("check")
+)
+```
+
+
+### Select menu
+
+* **Bootstrap select picker**
+
+Select menu with lot of configurations options available:
 
 ![pickerInput](man/figures/pickerInput.png)
 
 ```r
 pickerInput(
-  inputId = "myPicker", 
-  label = "Select/deselect all + format selected", 
-  choices = LETTERS, 
-  options = list(
-    `actions-box` = TRUE, 
+  inputId = "id", 
+  label = "Select:", 
+  choices = month.name, 
+  options = pickerOptions(
+    actionsBox = TRUE, 
     size = 10,
-    `selected-text-format` = "count > 3"
+    selectedTextFormat = "count > 3"
   ), 
   multiple = TRUE
 )
 ```
 
+* **Virtual select**
 
+Select menu that can support long list of choices:
 
-### Checkbox and radio buttons
-
-Turn buttons into checkbox or radio : 
-
-![checkboxGroupButtons](man/figures/checkboxGroupButtons.png)
+![virtualSelectInput](man/figures/virtual-select.png)
 
 ```r
-checkboxGroupButtons(
-  inputId = "somevalue", label = "Make a choice :", 
-  choices = c("Choice A", "Choice B", " Choice C", "Choice D"), 
-  justified = TRUE, status = "primary",
-  checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
+virtualSelectInput(
+  inputId = "id",
+  label = "Select:",
+  choices = list(
+    "Spring" = c("March", "April", "May"),
+    "Summer" = c("June", "July", "August"),
+    "Autumn" = c("September", "October", "November"),
+    "Winter" = c("December", "January", "February")
+  ),
+  showValueAsTags = TRUE,
+  search = TRUE,
+  multiple = TRUE
+)
+```
+
+
+### Date picker
+
+* **Air Datepicker**
+
+Date (or month or year) picker with lot of options and a timepicker integrated :
+
+![airDatepickerInput](man/figures/air-datepicker.png)
+
+```r
+airDatepickerInput(
+  inputId = "id",
+  label = "Select:",
+  placeholder = "Placeholder",
+  multiple = 5, 
+  clearButton = TRUE
+)
+```
+
+### Sliders
+
+* **Slider with Text**
+
+Slider with strings, to pass whatever you want:
+
+![sliderText](man/figures/sliderText.png)
+
+```r
+sliderTextInput(
+  inputId = "id", 
+  label = "Choice:", 
+  grid = TRUE, 
+  force_edges = TRUE,
+  choices = c(
+    "Strongly disagree",
+    "Disagree",
+    "Neither agree nor disagree", 
+    "Agree", 
+    "Strongly agree"
+  )
+)
+```
+
+
+* **noUiSlider**
+
+A range slider that can be colored, have more than two handles and positioned vertically (among other things):
+
+![noUiSliderInput](man/figures/nouislider.png)
+
+```r
+noUiSliderInput(
+  inputId = "id",
+  label = "Select:",
+  min = 0, 
+  max = 600,
+  value = c(100, 220, 400),
+  tooltips = TRUE,
+  step = 1
 )
 ```
 
 
 
-### Search input
+### Tree
+
+* **Tree check**
+
+Select value(s) in a hierarchical structure:
+
+![treeInput](man/figures/treeinput.png)
+
+```r
+treeInput(
+  inputId = "ID2",
+  label = "Select cities:",
+  choices = create_tree(cities),
+  returnValue = "text",
+  closeDepth = 1
+)
+```
+
+
+
+### Text
+
+* **Search**
 
 A text input only triggered by hitting 'Enter' or clicking search button : 
 
@@ -195,6 +280,25 @@ searchInput(
   width = "100%"
 )
 ```
+
+
+
+## Other functionnalities
+
+### Sweet Alert
+
+Show an alert message to the user to provide some feedback, via [sweetalert2](https://sweetalert2.github.io/) library:
+
+![sendSweetAlert](man/figures/show_alert.png)
+
+See examples in `?show_alert`.
+
+
+Request confirmation from the user :
+
+![confirmSweetAlert](man/figures/ask_confirmation.png)
+
+See examples in `?ask_confirmation`.
 
 
 
