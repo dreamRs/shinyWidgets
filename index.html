@@ -74,7 +74,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This package offers custom widgets and other components to enhance your shiny applications.</p>
+<p>This package provide custom widgets and other components to enhance your shiny applications.</p>
 <p>You can replace classical checkboxes with switch button, add colors to radio buttons and checkbox group, use buttons as radio or checkboxes. Each widget has an <code>update</code> method to change the value of an input from the server.</p>
 </div>
 <div class="section level2">
@@ -95,52 +95,235 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">shinyWidgets</span><span class="fu">::</span><span class="fu"><a href="reference/shinyWidgetsGallery.html">shinyWidgetsGallery</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>A live version is available here : <a href="http://shinyapps.dreamrs.fr/shinyWidgets" class="external-link uri">http://shinyapps.dreamrs.fr/shinyWidgets</a></p>
+</div>
+<div class="section level2">
+<h2 id="widgets">Widgets<a class="anchor" aria-label="anchor" href="#widgets"></a>
+</h2>
 <div class="section level3">
-<h3 id="bootstrap-switch">Bootstrap switch<a class="anchor" aria-label="anchor" href="#bootstrap-switch"></a>
+<h3 id="single-checkbox">Single checkbox<a class="anchor" aria-label="anchor" href="#single-checkbox"></a>
 </h3>
+<ul>
+<li><strong>Bootstrap switch</strong></li>
+</ul>
 <p>Turn checkboxes into toggle switches :</p>
 <div class="figure">
 <img src="reference/figures/switchInput.png" alt=""><p class="caption">switchInput</p>
 </div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/switchInput.html">switchInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"id"</span>, value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="material-switch">Material switch<a class="anchor" aria-label="anchor" href="#material-switch"></a>
-</h3>
+<ul>
+<li><strong>Material switch</strong></li>
+</ul>
 <p>Turn checkboxes into toggle switches :</p>
 <div class="figure">
 <img src="reference/figures/materialSwitch.png" alt=""><p class="caption">materialSwitch</p>
 </div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/materialSwitch.html">materialSwitch</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"id"</span>, label <span class="op">=</span> <span class="st">"Primary switch"</span>, status <span class="op">=</span> <span class="st">"danger"</span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><strong>Pretty checkbox</strong></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/prettyCheckbox.html">prettyCheckbox</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>, label <span class="op">=</span> <span class="st">"Check me!"</span>, icon <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"check"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><strong>Pretty switch</strong></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/prettySwitch.html">prettySwitch</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Switch:"</span>,</span>
+<span>  fill <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  status <span class="op">=</span> <span class="st">"primary"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><strong>Pretty toggle</strong></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/prettyToggle.html">prettyToggle</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>,</span>
+<span>  label_on <span class="op">=</span> <span class="st">"Checked!"</span>,</span>
+<span>  label_off <span class="op">=</span> <span class="st">"Unchecked..."</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="pretty-checkbox">Pretty Checkbox<a class="anchor" aria-label="anchor" href="#pretty-checkbox"></a>
+<h3 id="checkboxes-and-radio-buttons">Checkboxes and radio buttons<a class="anchor" aria-label="anchor" href="#checkboxes-and-radio-buttons"></a>
 </h3>
-<p>Checkbox and radio buttons with the beautiful CSS library <a href="https://lokesh-coder.github.io/pretty-checkbox/" class="external-link">pretty-checkbox</a> : <img src="reference/figures/pretty.png" alt="prettycheckbox"></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prettyCheckbox</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">inputId =</span> <span class="st">"pretty_1"</span>, <span class="at">label =</span> <span class="st">"Check me!"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"check"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">prettyCheckbox</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">inputId =</span> <span class="st">"pretty_2"</span>, <span class="at">label =</span> <span class="st">"Check me!"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"thumbs-up"</span>), </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"default"</span>, <span class="at">shape =</span> <span class="st">"curve"</span>, <span class="at">animation =</span> <span class="st">"pulse"</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">prettyCheckbox</span>(</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">inputId =</span> <span class="st">"pretty_3"</span>, <span class="at">label =</span> <span class="st">"Check me!"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"users"</span>), </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">animation =</span> <span class="st">"pulse"</span>, <span class="at">plain =</span> <span class="cn">TRUE</span>, <span class="at">outline =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">prettyCheckbox</span>(</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">inputId =</span> <span class="st">"pretty_4"</span>, <span class="at">label =</span> <span class="st">"Check me!"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">"success"</span>, <span class="at">outline =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">prettyCheckbox</span>(</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">inputId =</span> <span class="st">"pretty_5"</span>, <span class="at">label =</span> <span class="st">"Check me!"</span>,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">shape =</span> <span class="st">"round"</span>, <span class="at">outline =</span> <span class="cn">TRUE</span>, <span class="at">status =</span> <span class="st">"info"</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span></code></pre></div>
+<ul>
+<li><strong>Bootstrap buttons</strong></li>
+</ul>
+<div class="figure">
+<img src="reference/figures/checkboxGroupButtons.png" alt=""><p class="caption">checkboxGroupButtons</p>
 </div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/checkboxGroupButtons.html">checkboxGroupButtons</a></span><span class="op">(</span> <span class="co"># or radioGroupButtons</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Choice: "</span>,</span>
+<span>  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><strong>Pretty checkbox group and radio buttons</strong></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/prettyCheckboxGroup.html">prettyCheckboxGroup</a></span><span class="op">(</span> <span class="co"># or prettyRadioButtons</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Choice"</span>,</span>
+<span>  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"c"</span><span class="op">)</span>,</span>
+<span>  outline <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  plain <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  status <span class="op">=</span> <span class="st">"primary"</span>,</span>
+<span>  icon <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"check"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="select-menu">Select menu<a class="anchor" aria-label="anchor" href="#select-menu"></a>
+</h3>
+<ul>
+<li><strong>Bootstrap select picker</strong></li>
+</ul>
+<p>Select menu with lot of configurations options available:</p>
+<div class="figure">
+<img src="reference/figures/pickerInput.png" alt=""><p class="caption">pickerInput</p>
+</div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/pickerInput.html">pickerInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>, </span>
+<span>  label <span class="op">=</span> <span class="st">"Select:"</span>, </span>
+<span>  choices <span class="op">=</span> <span class="va">month.name</span>, </span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="reference/pickerOptions.html">pickerOptions</a></span><span class="op">(</span></span>
+<span>    actionsBox <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    size <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>    selectedTextFormat <span class="op">=</span> <span class="st">"count &gt; 3"</span></span>
+<span>  <span class="op">)</span>, </span>
+<span>  multiple <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><strong>Virtual select</strong></li>
+</ul>
+<p>Select menu that can support long list of choices:</p>
+<div class="figure">
+<img src="reference/figures/virtual-select.png" alt=""><p class="caption">virtualSelectInput</p>
+</div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/virtualSelectInput.html">virtualSelectInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Select:"</span>,</span>
+<span>  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Spring"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="st">"April"</span>, <span class="st">"May"</span><span class="op">)</span>,</span>
+<span>    <span class="st">"Summer"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"June"</span>, <span class="st">"July"</span>, <span class="st">"August"</span><span class="op">)</span>,</span>
+<span>    <span class="st">"Autumn"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"September"</span>, <span class="st">"October"</span>, <span class="st">"November"</span><span class="op">)</span>,</span>
+<span>    <span class="st">"Winter"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"December"</span>, <span class="st">"January"</span>, <span class="st">"February"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  showValueAsTags <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  search <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  multiple <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="date-picker">Date picker<a class="anchor" aria-label="anchor" href="#date-picker"></a>
+</h3>
+<ul>
+<li><strong>Air Datepicker</strong></li>
+</ul>
+<p>Date (or month or year) picker with lot of options and a timepicker integrated :</p>
+<div class="figure">
+<img src="reference/figures/air-datepicker.png" alt=""><p class="caption">airDatepickerInput</p>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/airDatepicker.html">airDatepickerInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Select:"</span>,</span>
+<span>  placeholder <span class="op">=</span> <span class="st">"Placeholder"</span>,</span>
+<span>  multiple <span class="op">=</span> <span class="fl">5</span>, </span>
+<span>  clearButton <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="sliders">Sliders<a class="anchor" aria-label="anchor" href="#sliders"></a>
+</h3>
+<ul>
+<li><strong>Slider with Text</strong></li>
+</ul>
+<p>Slider with strings, to pass whatever you want:</p>
+<div class="figure">
+<img src="reference/figures/sliderText.png" alt=""><p class="caption">sliderText</p>
+</div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/sliderTextInput.html">sliderTextInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>, </span>
+<span>  label <span class="op">=</span> <span class="st">"Choice:"</span>, </span>
+<span>  grid <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  force_edges <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Strongly disagree"</span>,</span>
+<span>    <span class="st">"Disagree"</span>,</span>
+<span>    <span class="st">"Neither agree nor disagree"</span>, </span>
+<span>    <span class="st">"Agree"</span>, </span>
+<span>    <span class="st">"Strongly agree"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<ul>
+<li><strong>noUiSlider</strong></li>
+</ul>
+<p>A range slider that can be colored, have more than two handles and positioned vertically (among other things):</p>
+<div class="figure">
+<img src="reference/figures/nouislider.png" alt=""><p class="caption">noUiSliderInput</p>
+</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/noUiSliderInput.html">noUiSliderInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Select:"</span>,</span>
+<span>  min <span class="op">=</span> <span class="fl">0</span>, </span>
+<span>  max <span class="op">=</span> <span class="fl">600</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">220</span>, <span class="fl">400</span><span class="op">)</span>,</span>
+<span>  tooltips <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  step <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="tree">Tree<a class="anchor" aria-label="anchor" href="#tree"></a>
+</h3>
+<ul>
+<li><strong>Tree check</strong></li>
+</ul>
+<p>Select value(s) in a hierarchical structure:</p>
+<div class="figure">
+<img src="reference/figures/treeinput.png" alt=""><p class="caption">treeInput</p>
+</div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/treeInput.html">treeInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"ID2"</span>,</span>
+<span>  label <span class="op">=</span> <span class="st">"Select cities:"</span>,</span>
+<span>  choices <span class="op">=</span> <span class="fu"><a href="reference/create_tree.html">create_tree</a></span><span class="op">(</span><span class="va">cities</span><span class="op">)</span>,</span>
+<span>  returnValue <span class="op">=</span> <span class="st">"text"</span>,</span>
+<span>  closeDepth <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="text">Text<a class="anchor" aria-label="anchor" href="#text"></a>
+</h3>
+<ul>
+<li><strong>Search</strong></li>
+</ul>
+<p>A text input only triggered by hitting ‘Enter’ or clicking search button :</p>
+<div class="figure">
+<img src="reference/figures/search_input.png" alt=""><p class="caption">search_input</p>
+</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/searchInput.html">searchInput</a></span><span class="op">(</span></span>
+<span>  inputId <span class="op">=</span> <span class="st">"id"</span>, </span>
+<span>  label <span class="op">=</span> <span class="st">"Enter your search :"</span>, </span>
+<span>  placeholder <span class="op">=</span> <span class="st">"This is a placeholder"</span>, </span>
+<span>  btnSearch <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"search"</span><span class="op">)</span>, </span>
+<span>  btnReset <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"remove"</span><span class="op">)</span>, </span>
+<span>  width <span class="op">=</span> <span class="st">"100%"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="other-functionnalities">Other functionnalities<a class="anchor" aria-label="anchor" href="#other-functionnalities"></a>
+</h2>
 <div class="section level3">
 <h3 id="sweet-alert">Sweet Alert<a class="anchor" aria-label="anchor" href="#sweet-alert"></a>
 </h3>
@@ -156,77 +339,10 @@
 <p>See examples in <code><a href="reference/sweetalert-confirmation.html">?ask_confirmation</a></code>.</p>
 </div>
 <div class="section level3">
-<h3 id="slider-text">Slider Text<a class="anchor" aria-label="anchor" href="#slider-text"></a>
-</h3>
-<p>Slider with strings, to pass whatever you want : <br><img src="reference/figures/sliderText.png" alt="sliderText"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/sliderTextInput.html">sliderTextInput</a></span><span class="op">(</span></span>
-<span>  inputId <span class="op">=</span> <span class="st">"mySliderText"</span>, </span>
-<span>  label <span class="op">=</span> <span class="st">"Your choice:"</span>, </span>
-<span>  grid <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>  force_edges <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Strongly disagree"</span>,</span>
-<span>              <span class="st">"Disagree"</span>, <span class="st">"Neither agree nor disagree"</span>, </span>
-<span>              <span class="st">"Agree"</span>, <span class="st">"Strongly agree"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="select-picker">Select picker<a class="anchor" aria-label="anchor" href="#select-picker"></a>
-</h3>
-<p>Dropdown menu with a lot of options :</p>
-<div class="figure">
-<img src="reference/figures/pickerInput.png" alt=""><p class="caption">pickerInput</p>
-</div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/pickerInput.html">pickerInput</a></span><span class="op">(</span></span>
-<span>  inputId <span class="op">=</span> <span class="st">"myPicker"</span>, </span>
-<span>  label <span class="op">=</span> <span class="st">"Select/deselect all + format selected"</span>, </span>
-<span>  choices <span class="op">=</span> <span class="va">LETTERS</span>, </span>
-<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    `actions-box` <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>    size <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>    `selected-text-format` <span class="op">=</span> <span class="st">"count &gt; 3"</span></span>
-<span>  <span class="op">)</span>, </span>
-<span>  multiple <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="checkbox-and-radio-buttons">Checkbox and radio buttons<a class="anchor" aria-label="anchor" href="#checkbox-and-radio-buttons"></a>
-</h3>
-<p>Turn buttons into checkbox or radio :</p>
-<div class="figure">
-<img src="reference/figures/checkboxGroupButtons.png" alt=""><p class="caption">checkboxGroupButtons</p>
-</div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/checkboxGroupButtons.html">checkboxGroupButtons</a></span><span class="op">(</span></span>
-<span>  inputId <span class="op">=</span> <span class="st">"somevalue"</span>, label <span class="op">=</span> <span class="st">"Make a choice :"</span>, </span>
-<span>  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Choice A"</span>, <span class="st">"Choice B"</span>, <span class="st">" Choice C"</span>, <span class="st">"Choice D"</span><span class="op">)</span>, </span>
-<span>  justified <span class="op">=</span> <span class="cn">TRUE</span>, status <span class="op">=</span> <span class="st">"primary"</span>,</span>
-<span>  checkIcon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>yes <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"ok"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>, no <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"remove"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="search-input">Search input<a class="anchor" aria-label="anchor" href="#search-input"></a>
-</h3>
-<p>A text input only triggered by hitting ‘Enter’ or clicking search button :</p>
-<div class="figure">
-<img src="reference/figures/search_input.png" alt=""><p class="caption">search_input</p>
-</div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/searchInput.html">searchInput</a></span><span class="op">(</span></span>
-<span>  inputId <span class="op">=</span> <span class="st">"id"</span>, </span>
-<span>  label <span class="op">=</span> <span class="st">"Enter your search :"</span>, </span>
-<span>  placeholder <span class="op">=</span> <span class="st">"This is a placeholder"</span>, </span>
-<span>  btnSearch <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"search"</span><span class="op">)</span>, </span>
-<span>  btnReset <span class="op">=</span> <span class="fu">icon</span><span class="op">(</span><span class="st">"remove"</span><span class="op">)</span>, </span>
-<span>  width <span class="op">=</span> <span class="st">"100%"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3">
 <h3 id="dropdown-button">Dropdown button<a class="anchor" aria-label="anchor" href="#dropdown-button"></a>
 </h3>
 <p>Hide input in a button : <br><img src="reference/figures/dropdown_btn_off.png" alt="dropdown_off"><img src="reference/figures/dropdown_btn_on.png" alt="dropdown_on"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/dropdownButton.html">dropdownButton</a></span><span class="op">(</span></span>
 <span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"List of Input"</span><span class="op">)</span>,</span>
 <span>  <span class="fu">selectInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">'xcol'</span>, label <span class="op">=</span> <span class="st">'X Variable'</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span>,</span>
