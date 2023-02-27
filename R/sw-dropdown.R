@@ -113,26 +113,36 @@ dropdown <- function(...,
   dropId <- paste0("sw-drop-", inputId)
   contentId <- paste0("sw-content-", inputId)
 
+  # Tooltip
+  if (identical(tooltip, TRUE))
+    tooltip <- tooltipOptions(title = label)
+  has_tooltip <- !is.null(tooltip) && !identical(tooltip, FALSE)
+
   # Dropdown content
   dropcontent <- htmltools::tags$div(
     id = contentId,
     class = "sw-dropdown-content animated",
-    class = if(up) "sw-dropup-content",
-    class = if(right) "sw-dropright-content",
-    style = if(!is.null(width)) paste("width:", htmltools::validateCssUnit(width)),
+    class = if (up) "sw-dropup-content",
+    class = if (right) "sw-dropright-content",
+    style = htmltools::css(width = htmltools::validateCssUnit(width)),
     htmltools::tags$div(class = "sw-dropdown-in", ...)
   )
   # Button
   if (style == "default") {
     btn <- tags$button(
-      class = paste0("btn btn-", status," ",
-                     ifelse(size == "default" | size == "md", "",
-                            paste0("btn-", size))),
+      class = paste0(
+        "btn btn-", status," ",
+        ifelse(size == "default" | size == "md", "", paste0("btn-", size))
+      ),
       class = "action-button",
       type = "button", id = inputId, list(icon, label),
-      htmltools::tags$span(class = ifelse(test = up,
-                               yes = "glyphicon glyphicon-triangle-top",
-                               no = "glyphicon glyphicon-triangle-bottom"))
+      htmltools::tags$span(
+        class = ifelse(
+          test = up,
+          yes = "glyphicon glyphicon-triangle-top",
+          no = "glyphicon glyphicon-triangle-bottom"
+        )
+      )
     )
   } else {
     btn <- actionBttn(
@@ -147,16 +157,20 @@ dropdown <- function(...,
     )
   }
 
+  if (has_tooltip) {
+    btn <- htmltools::tagAppendAttributes(
+      btn,
+      `data-bs-toggle` = "tooltip",
+      `data-bs-title` = tooltip$title,
+      `data-bs-placement` = tooltip$placement,
+      `data-bs-html` = tolower(tooltip$html)
+    )
+  }
 
   # Final tag
-  dropdownTag <- htmltools::tags$div(class = "sw-dropdown", id=dropId, btn, dropcontent)
+  dropdownTag <- htmltools::tags$div(class = "sw-dropdown", id = dropId, btn, dropcontent)
 
-
-  # Tooltip
-  if (identical(tooltip, TRUE))
-    tooltip <- tooltipOptions(title = label)
-
-  if (!is.null(tooltip) && !identical(tooltip, FALSE)) {
+  if (has_tooltip) {
     tooltip <- lapply(tooltip, function(x) {
       if (identical(x, TRUE))
         "true"
@@ -164,12 +178,16 @@ dropdown <- function(...,
         "false"
       else x
     })
-    tooltipJs <- htmltools::tags$script(
-      sprintf(
-        "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
-        inputId, tooltip$placement, tooltip$title, tooltip$html
-      )
-    )
+    tooltipJs <- htmltools::tagFunction(function() {
+      theme <- shiny::getCurrentTheme()
+      if (!bslib::is_bs_theme(theme)) {
+        return(dropdown_tooltip_bs3(inputId, tooltip))
+      }
+      if (bslib::theme_version(theme) %in% c("5")) {
+        return(dropdown_tooltip_bs5(inputId, tooltip))
+      }
+      dropdown_tooltip_bs3(inputId, tooltip)
+    })
     dropdownTag <- htmltools::tagAppendChild(dropdownTag, tooltipJs)
   }
 
@@ -199,11 +217,26 @@ dropdown <- function(...,
     )
   }
 
-  # dependancies
   attachShinyWidgetsDep(dropdownTag, "sw-dropdown")
 }
 
 
+
+dropdown_tooltip_bs3 <- function(inputId, tooltip) {
+  htmltools::tags$script(
+    sprintf(
+      "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
+      inputId, tooltip$placement, tooltip$title, tooltip$html
+    )
+  )
+}
+
+dropdown_tooltip_bs5 <- function(inputId, tooltip) {
+  htmltools::tags$script(
+    sprintf("const el = document.getElementById('%s');", inputId),
+    "new bootstrap.Tooltip(el);"
+  )
+}
 
 
 
