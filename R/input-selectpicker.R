@@ -287,6 +287,7 @@ pickerSelectOptions <- function(choices, selected = NULL, choicesOpt = NULL, max
         value = choice,
         HTML(htmlEscape(label)),
         style = choicesOpt$style[i],
+        class = choicesOpt$class[i],
         `data-icon` = choicesOpt$icon[i],
         `data-subtext` = choicesOpt$subtext[i],
         `data-content` = choicesOpt$content[i],
