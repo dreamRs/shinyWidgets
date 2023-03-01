@@ -3,7 +3,7 @@
 #' @description Customize the appearance of the original shiny's \code{sliderInput}
 #'
 #' @param skin The \code{skin} to apply. Choose among 5 different flavors,
-#'  namely 'Shiny', 'Flat', 'Modern', 'Nice', 'Simple', 'HTML5', 'Round' and 'Square'.
+#'  namely 'Shiny', 'Flat', 'Modern', 'Round' and 'Square'.
 #' @param color A color to apply to all sliders. Works with following skins:
 #'  'Shiny', 'Flat', 'Modern', 'HTML5'. For 'Flat' a CSS filter is applied,
 #'  desired color maybe a little offset.
@@ -75,21 +75,13 @@
 #' shinyApp(ui, server)
 #'
 #' }
-chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Big", "Modern", "Sharp", "Round", "Square",
-                                      "Nice", "Simple", "HTML5"),
+chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Big", "Modern", "Sharp", "Round", "Square"),
                              color = NULL) {
   skin <- match.arg(arg = skin)
-  if (packageVersion("shiny") > "1.5.0.9000" & skin %in% c("Nice", "Simple", "HTML5")) {
-    warning(paste(
-      "Skin '", skin,
-      "' is deprecated, please see http://ionden.com/a/plugins/ion.rangeSlider/skins.html for available ones."
-    ))
-    skin <- "Flat"
-  }
   cssColor <- NULL
   if (!is.null(color)) {
     stopifnot(length(color) == 1)
-    if (skin %in% c("Shiny", "Modern", "HTML5")) {
+    if (skin %in% c("Shiny", "Modern")) {
       cssColor <- singleton(
         tags$head(
           tags$style(
@@ -143,28 +135,6 @@ chooseSliderSkin <- function(skin = c("Shiny", "Flat", "Big", "Modern", "Sharp",
           )
         )
       )
-    # } else if (skin == "Nice") {
-    #   asb_ <- asb("#99a4ac", color)
-    #   angle <- asb_[1]
-    #   saturate <- asb_[2]
-    #   brightness <- asb_[3]
-    #   colImg <- paste0(
-    #     ".irs-bar-edge, .irs-line-mid, .irs-single:after",
-    #     " {",
-    #     "-webkit-filter: hue-rotate(", angle, "deg) saturate(",
-    #     saturate, "%) brightness(", brightness, "%); ",
-    #     "filter: hue-rotate(", angle, "deg) saturate(",
-    #     saturate, "%) brightness(", brightness, "%);",
-    #     "}"
-    #   )
-    #   cssColor <- singleton(
-    #     tags$head(
-    #       tags$style(
-    #         colImg,
-    #         sprintf(".irs-single, .irs-from, .irs-to {background: %s;}", color)
-    #       )
-    #     )
-    #   )
     }
   }
   if (packageVersion("shiny") > "1.5.0.9000") {

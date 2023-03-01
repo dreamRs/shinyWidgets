@@ -5,14 +5,13 @@
 \title{Theme selector for \code{sliderInput}}
 \usage{
 chooseSliderSkin(
-  skin = c("Shiny", "Flat", "Big", "Modern", "Sharp", "Round", "Square", "Nice",
-    "Simple", "HTML5"),
+  skin = c("Shiny", "Flat", "Big", "Modern", "Sharp", "Round", "Square"),
   color = NULL
 )
 }
 \arguments{
 \item{skin}{The \code{skin} to apply. Choose among 5 different flavors,
-namely 'Shiny', 'Flat', 'Modern', 'Nice', 'Simple', 'HTML5', 'Round' and 'Square'.}
+namely 'Shiny', 'Flat', 'Modern', 'Round' and 'Square'.}
 
 \item{color}{A color to apply to all sliders. Works with following skins:
 'Shiny', 'Flat', 'Modern', 'HTML5'. For 'Flat' a CSS filter is applied,
