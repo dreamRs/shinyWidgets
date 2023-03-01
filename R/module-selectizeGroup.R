@@ -24,6 +24,14 @@
 #' @example examples/selectizeGroup-subset.R
 selectizeGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters", inline = TRUE) {
 
+  .Deprecated(
+    msg = paste(
+      "selectizeGroupUI/selectizeGroupServer have been deprecated and will be removed in a future release of shinyWidgets.",
+      "For a replacement see module select_group_ui / select_group_server in package datamods: ",
+      "https://dreamrs.github.io/datamods/reference/select-group.html"
+    )
+  )
+
   # Namespace
   ns <- NS(id)
 

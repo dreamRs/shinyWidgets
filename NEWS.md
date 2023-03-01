@@ -1,4 +1,4 @@
-shinyWidgets 0.7.7
+shinyWidgets 0.8.0
 ======================
 
 * `airDatepickerInput()` : added argument `disabledDaysOfWeek` to disable day(s) of the week.
@@ -7,6 +7,12 @@ shinyWidgets 0.7.7
 ### Bug fixes
 
 * `verticalTabsetPanel()` does not render output content when using Bootstrap 5 [#570](https://github.com/dreamRs/shinyWidgets/issues/570).
+
+
+### Deprecated functions
+
+* `useShinydashboard()`, `useShinydashboardPlus()`, `useTablerDash()`, `useArgonDash()`, `useBs4Dash()`, `setShadow()`, `setSliderColor()` are deprecated and will be removed in a future release.
+* `selectizeGroupUI/selectizeGroupServer` module is deprecated, use equivalent [Select Group Input Module](https://dreamrs.github.io/datamods/reference/select-group.html) in package [datamods](https://github.com/dreamRs/datamods/)
 
 
 
