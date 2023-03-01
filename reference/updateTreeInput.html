@@ -149,17 +149,21 @@
 <span class="r-in"><span>    <span class="fu">updateTreeInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"ID1"</span>, label <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">label</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observe.html" class="external-link">observe</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">input</span><span class="op">$</span><span class="va">val_country</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">updateTreeInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"ID1"</span>, selected <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">val_country</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observe.html" class="external-link">observe</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">input</span><span class="op">$</span><span class="va">val_city</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">updateTreeInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"ID1"</span>, selected <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">val_city</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="va">input</span><span class="op">$</span><span class="va">clear</span>,</span></span>
-<span class="r-in"><span>    <span class="fu">updateTreeInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"ID1"</span>, selected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">clear</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu">updateTreeInput</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"ID1"</span>, selected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/updateCheckboxGroupInput.html" class="external-link">updateCheckboxGroupInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"val_country"</span>, selected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/updateCheckboxGroupInput.html" class="external-link">updateCheckboxGroupInput</a></span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"val_city"</span>, selected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">}</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
