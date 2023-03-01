@@ -64,7 +64,7 @@ ui <- fluidPage(
         inputId = "ID1",
         label = "Select cities:",
         choices = create_tree(cities),
-        # selected = "San Francisco",
+        selected = "San Francisco",
         returnValue = "text",
         closeDepth = 0
       ),
@@ -76,7 +76,7 @@ ui <- fluidPage(
         inputId = "ID2",
         label = "Select cities:",
         choices = create_tree(cities),
-        # selected = "San Francisco",
+        selected = "San Francisco",
         returnValue = "text",
         closeDepth = 1
       ),
@@ -88,7 +88,7 @@ ui <- fluidPage(
         inputId = "ID3",
         label = "Select cities:",
         choices = create_tree(cities),
-        # selected = "San Francisco",
+        selected = c("San Francisco", "Monastir"),
         returnValue = "text",
         closeDepth = 2
       ),

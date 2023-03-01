@@ -61,7 +61,7 @@ treeInput <- function(inputId,
       tags$script(
         type = "application/json",
         `data-for` = inputId,
-        config
+        HTML(config)
       )
     ),
     html_dependency_tree()

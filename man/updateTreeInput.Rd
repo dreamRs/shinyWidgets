@@ -90,17 +90,21 @@ server <- function(input, output, session) {
     updateTreeInput(inputId = "ID1", label = input$label)
   )
 
-  observe(
+  observeEvent(
+    input$val_country,
     updateTreeInput(inputId = "ID1", selected = input$val_country)
   )
 
-  observe(
+  observeEvent(
+    input$val_city,
     updateTreeInput(inputId = "ID1", selected = input$val_city)
   )
 
-  observeEvent(
-    input$clear,
-    updateTreeInput(inputId = "ID1", selected = character(0))
+  observeEvent(input$clear, {
+      updateTreeInput(inputId = "ID1", selected = character(0))
+      updateCheckboxGroupInput(inputId = "val_country", selected = character(0))
+      updateCheckboxGroupInput(inputId = "val_city", selected = character(0))
+    }
   )
 }
 
