@@ -85,6 +85,9 @@
     <loc>https://dreamrs.github.io/shinyWidgets/reference/demoVirtualSelect.html</loc>
   </url>
   <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/deprecated.html</loc>
+  </url>
+  <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/downloadBttn.html</loc>
   </url>
   <url>
@@ -185,12 +188,6 @@
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/setBackgroundImage.html</loc>
-  </url>
-  <url>
-    <loc>https://dreamrs.github.io/shinyWidgets/reference/setShadow.html</loc>
-  </url>
-  <url>
-    <loc>https://dreamrs.github.io/shinyWidgets/reference/setSliderColor.html</loc>
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/shinyWidgets.html</loc>
@@ -316,22 +313,7 @@
     <loc>https://dreamrs.github.io/shinyWidgets/reference/updateVirtualSelect.html</loc>
   </url>
   <url>
-    <loc>https://dreamrs.github.io/shinyWidgets/reference/useArgonDash.html</loc>
-  </url>
-  <url>
-    <loc>https://dreamrs.github.io/shinyWidgets/reference/useBs4Dash.html</loc>
-  </url>
-  <url>
-    <loc>https://dreamrs.github.io/shinyWidgets/reference/useShinydashboard.html</loc>
-  </url>
-  <url>
-    <loc>https://dreamrs.github.io/shinyWidgets/reference/useShinydashboardPlus.html</loc>
-  </url>
-  <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/useSweetAlert.html</loc>
-  </url>
-  <url>
-    <loc>https://dreamrs.github.io/shinyWidgets/reference/useTablerDash.html</loc>
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/vertical-tab.html</loc>

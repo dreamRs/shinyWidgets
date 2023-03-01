@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.6.9300</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.6.9400</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,13 +45,21 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.7.7" id="shinywidgets-077">shinyWidgets 0.7.7<a class="anchor" aria-label="anchor" href="#shinywidgets-077"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.8.0" id="shinywidgets-080">shinyWidgets 0.8.0<a class="anchor" aria-label="anchor" href="#shinywidgets-080"></a></h2>
 <ul><li>
 <code><a href="../reference/airDatepicker.html">airDatepickerInput()</a></code> : added argument <code>disabledDaysOfWeek</code> to disable day(s) of the week.</li>
 </ul><div class="section level4">
-<h4 id="bug-fixes-0-7-7">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-7-7"></a></h4>
+<h4 id="bug-fixes-0-8-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-8-0"></a></h4>
 <ul><li>
 <code><a href="../reference/vertical-tab.html">verticalTabsetPanel()</a></code> does not render output content when using Bootstrap 5 <a href="https://github.com/dreamRs/shinyWidgets/issues/570" class="external-link">#570</a>.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="deprecated-functions-0-8-0">Deprecated functions<a class="anchor" aria-label="anchor" href="#deprecated-functions-0-8-0"></a></h4>
+<ul><li>
+<code><a href="../reference/deprecated.html">useShinydashboard()</a></code>, <code><a href="../reference/deprecated.html">useShinydashboardPlus()</a></code>, <code><a href="../reference/deprecated.html">useTablerDash()</a></code>, <code><a href="../reference/deprecated.html">useArgonDash()</a></code>, <code><a href="../reference/deprecated.html">useBs4Dash()</a></code>, <code><a href="../reference/deprecated.html">setShadow()</a></code>, <code><a href="../reference/deprecated.html">setSliderColor()</a></code> are deprecated and will be removed in a future release.</li>
+<li>
+<code>selectizeGroupUI/selectizeGroupServer</code> module is deprecated, use equivalent <a href="https://dreamrs.github.io/datamods/reference/select-group.html" class="external-link">Select Group Input Module</a> in package <a href="https://github.com/dreamRs/datamods/" class="external-link">datamods</a>
+</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -181,7 +189,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.1" id="shinywidgets-061">shinyWidgets 0.6.1<a class="anchor" aria-label="anchor" href="#shinywidgets-061"></a></h2><p class="text-muted">CRAN release: 2021-09-06</p>
-<ul><li>Add transparent border to <code><a href="../reference/setSliderColor.html">setSliderColor()</a></code>, thanks to <a href="https://github.com/shannonpileggi" class="external-link">@shannonpileggi</a> (<a href="https://github.com/dreamRs/shinyWidgets/pull/396" class="external-link">#396</a>)</li>
+<ul><li>Add transparent border to <code><a href="../reference/deprecated.html">setSliderColor()</a></code>, thanks to <a href="https://github.com/shannonpileggi" class="external-link">@shannonpileggi</a> (<a href="https://github.com/dreamRs/shinyWidgets/pull/396" class="external-link">#396</a>)</li>
 <li>Add commas in value and total of <code><a href="../reference/progress-bar.html">progressBar()</a></code>, thanks to <a href="https://github.com/swsoyee" class="external-link">@swsoyee</a> (<a href="https://github.com/dreamRs/shinyWidgets/pull/388" class="external-link">#388</a>)</li>
 <li>Add position absolute to <code><a href="../reference/awesomeCheckboxGroup.html">awesomeCheckboxGroup()</a></code>, thanks to <a href="https://github.com/MayaGans" class="external-link">@MayaGans</a> (<a href="https://github.com/dreamRs/shinyWidgets/pull/390" class="external-link">#390</a>)</li>
 <li>
@@ -273,7 +281,7 @@
 <li>Internal rewrite of <code>airDatepickerInput</code>, no breaking change intended, if encounter some troubles please open an issue.</li>
 <li>
 <code><a href="../reference/airDatepicker.html">airDatepickerInput()</a></code> has a new argument <code>startView</code> to set the view displayed when date picker is openned.</li>
-<li>New function <code>dropMenu</code>, a more robust and customizable replacement for <code><a href="../reference/dropdown.html">dropdown()</a></code> or <code><a href="https://rdrr.io/pkg/shinydashboard/man/dropdownMenu.html" class="external-link">dropdownMenu()</a></code>.</li>
+<li>New function <code>dropMenu</code>, a more robust and customizable replacement for <code><a href="../reference/dropdown.html">dropdown()</a></code> or <code>dropdownMenu()</code>.</li>
 <li>Fixed encoding bug in <code><a href="../reference/updatePickerInput.html">updatePickerInput()</a></code>.</li>
 </ul></div>
     <div class="section level2">
@@ -294,7 +302,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.9" id="shinywidgets-049">shinyWidgets 0.4.9<a class="anchor" aria-label="anchor" href="#shinywidgets-049"></a></h2><p class="text-muted">CRAN release: 2019-09-10</p>
 <ul><li>Update to SweetAlert2: more options available for <code><a href="../reference/sweetalert.html">sendSweetAlert()</a></code>, <code><a href="../reference/sweetalert-confirmation.html">confirmSweetAlert()</a></code>, <code><a href="../reference/inputSweetAlert.html">inputSweetAlert()</a></code>.</li>
-<li>add <code><a href="../reference/useTablerDash.html">useTablerDash()</a></code> to import functions from <a href="https://github.com/RinteRface/tablerDash" class="external-link">tablerDash</a>.</li>
+<li>add <code><a href="../reference/deprecated.html">useTablerDash()</a></code> to import functions from <a href="https://github.com/RinteRface/tablerDash" class="external-link">tablerDash</a>.</li>
 <li>
 <code><a href="../reference/progress-bar.html">updateProgressBar()</a></code>, <code><a href="../reference/sweetalert-confirmation.html">confirmSweetAlert()</a></code>, <code><a href="../reference/inputSweetAlert.html">inputSweetAlert()</a></code> are now module friendly, thanks to <a href="https://github.com/AshesITR" class="external-link">@AshesITR</a>.</li>
 <li>add <code>inline = TRUE/FALSE</code> argument to <code><a href="../reference/dropdownButton.html">dropdownButton()</a></code>: return either a span or a div element.</li>
