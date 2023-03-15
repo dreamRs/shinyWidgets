@@ -2,6 +2,7 @@ shinyWidgets 0.8.0
 ======================
 
 * `airDatepickerInput()` : added argument `disabledDaysOfWeek` to disable day(s) of the week.
+* `materialSwitch()` : click on the label now toggle the switch [#582](https://github.com/dreamRs/shinyWidgets/issues/582).
 
 
 ### Bug fixes

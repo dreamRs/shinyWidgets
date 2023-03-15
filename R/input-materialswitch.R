@@ -43,7 +43,13 @@
 #' @importFrom htmltools tags validateCssUnit
 #'
 #' @export
-materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "default", right = FALSE, inline = FALSE, width = NULL) {
+materialSwitch <- function(inputId,
+                           label = NULL,
+                           value = FALSE,
+                           status = "default",
+                           right = FALSE,
+                           inline = FALSE,
+                           width = NULL) {
   value <- restoreInput(id = inputId, default = value)
   status <- match.arg(arg = status, choices = c("default", "primary", "success", "info", "warning", "danger"))
   inputTag <- tags$input(id = inputId, type = "checkbox")
@@ -57,14 +63,27 @@ materialSwitch <- function(inputId, label = NULL, value = FALSE, status = "defau
     # class = "material-switch",
     tags$div(
       class = "material-switch",
-      if (!is.null(label) & !right) tags$span(label, style = "padding-right: 10px;"),
+      if (!is.null(label) & !right) {
+        tags$label(
+          `for` = inputId,
+          label,
+          style = "padding-right: 10px;"
+        )
+      },
       inputTag,
       tags$label(
+        class = "switch",
         `for` = inputId,
         class = paste0("label-", status),
         class = paste0("bg-", status)
       ),
-      if (!is.null(label) & right) tags$span(label, style = "padding-left: 5px;")
+      if (!is.null(label) & right) {
+        tags$label(
+          `for` = inputId,
+          label,
+          style = "padding-left: 5px;"
+        )
+      }
     )
   )
   # Dep
