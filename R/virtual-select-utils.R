@@ -13,6 +13,8 @@ is_grouped <- function(x) {
 
 #' @importFrom rlang is_bare_atomic is_named %||%
 process_choices <- function(choices) {
+  if (length(choices) < 1)
+    choices <- NULL
   if (inherits(choices, "vs_choices"))
     return(choices)
   if (is_bare_atomic(choices) && !is_named(choices)) {

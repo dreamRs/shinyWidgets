@@ -8,6 +8,7 @@ shinyWidgets 0.8.0
 ### Bug fixes
 
 * `verticalTabsetPanel()` does not render output content when using Bootstrap 5 [#570](https://github.com/dreamRs/shinyWidgets/issues/570).
+* `virtualSelectInput` : fixed crash with choices=list() [#571](https://github.com/dreamRs/shinyWidgets/issues/571).
 
 
 ### Deprecated functions
