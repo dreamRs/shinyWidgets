@@ -60,7 +60,7 @@ create_tree <- function(data, levels = names(data), levels_id = NULL, ...) {
           c(
             dropNullsOrEmpty(list(
               text = text,
-              id = id,
+              id = as.character(id),
               children = create_tree(
                 data = dat,
                 levels = levels[-1],

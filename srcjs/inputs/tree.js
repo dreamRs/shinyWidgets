@@ -78,7 +78,7 @@ $.extend(treeWidgetBinding, {
     var tree = treeWidgetBinding.store[el.id];
     var nodesId = tree.nodesById;
     var checked = Object.entries(nodesId).map((a) => {
-      if (value.toString() === a[1].id[0].toString()) {
+      if (value.includes(a[1].id[0])) {
         return a[1].id[0];
       } else if (value.includes(a[1].text[0])) {
         return a[1].id[0];
