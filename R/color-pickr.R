@@ -51,7 +51,8 @@ colorPickr <- function(inputId,
                        i18n = NULL,
                        pickr_width = NULL,
                        width = NULL) {
-
+  
+  selected <- restoreInput(id = inputId, default = selected)
   theme <- match.arg(theme)
   update <- match.arg(update)
 
