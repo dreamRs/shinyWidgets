@@ -33,7 +33,7 @@ dropNullsOrNA <- function(x) {
   x[!vapply(x, nullOrNA, FUN.VALUE = logical(1))]
 }
 nullOrNA <- function(x) {
-  is.null(x) || is.na(x)
+  is.null(x) || (length(x) == 1 && is.na(x))
 }
 
 dropNullsOrEmpty <- function(x) {
