@@ -90,8 +90,12 @@ multiInput <- function(inputId,
   selected <- shiny::restoreInput(id = inputId, default = selected)
   selectTag <- tags$select(
     id = inputId, multiple = "multiple", class= "form-control multijs",
-    makeChoices(choices = choices, choiceNames = choiceNames,
-                choiceValues = choiceValues, selected = selected)
+    makeChoices(
+      choices = choices,
+      choiceNames = choiceNames,
+      choiceValues = choiceValues,
+      selected = selected
+    )
   )
   tags$div(
     class = "form-group shiny-input-container",
@@ -109,6 +113,7 @@ multiInput <- function(inputId,
       `data-for` = inputId,
       jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE)
     ),
+    html_dependency_shinyWidgets(),
     html_dependency_multi()
   )
 }

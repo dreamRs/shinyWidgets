@@ -440,11 +440,19 @@ html_dependency_knob <- function() {
 }
 
 html_dependency_multi <- function() {
+  # htmlDependency(
+  #   name = "multi",
+  #   version = "0.5.0",
+  #   src = c(file = system.file("packer", package = "shinyWidgets")),
+  #   script = "multi.js"
+  # )
   htmlDependency(
     name = "multi",
-    version = "0.5.3",
-    src = c(file = system.file("packer", package = "shinyWidgets")),
-    script = "multi.js"
+    version = "0.5.0",
+    package = "shinyWidgets",
+    src = c(href = "shinyWidgets/multi", file = "assets/multi"),
+    script = "multi.min.js",
+    stylesheet = c("multi.min.css")
   )
 }
 
