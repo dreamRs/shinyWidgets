@@ -155,24 +155,35 @@ virtualSelectInput <- function(inputId,
   data <- toJSON(data, auto_unbox = TRUE, json_verbatim = TRUE)
   if (isTRUE(html))
     data <- HTML(data)
+
+  if (!inline) {
+    div_css <- css(
+      width = "100%",
+      maxWidth = "none",
+      display = "block"
+    )
+  } else {
+    div_css <- css(
+      display = "inline-block"
+    )
+  }
   tags$div(
     class = "form-group shiny-input-container",
+    class = if (isTRUE(inline)) "shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
+    style = if (isTRUE(inline)) "display: inline-block;",
     tags$label(
       label,
       class = "control-label",
       class = if (is.null(label)) "shiny-label-null",
       id = paste0(inputId, "-label"),
+      style = if (isTRUE(inline)) "display: inline-block;",
       `for` = inputId
     ),
     tags$div(
       id = inputId,
       class = "virtual-select",
-      style = css(
-        width = "100%",
-        maxWidth = "none",
-        display = if (!inline) "block"
-      ),
+      style = div_css,
       tags$script(
         type = "application/json",
         `data-for` = inputId,
