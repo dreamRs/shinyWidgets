@@ -13,7 +13,7 @@ test_that("default", {
   )
 
   expect_is(tagmu, "shiny.tag")
-  expect_length(htmltools::findDependencies(tagmu), 1)
+  expect_length(htmltools::findDependencies(tagmu), 2)
   expect_true(htmltools::tagHasAttribute(tagmu$children[[2]], "id"))
   expect_identical(htmltools::tagGetAttribute(tagmu$children[[2]], "id"), "MY_ID")
 })
