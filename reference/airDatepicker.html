@@ -50,7 +50,7 @@ And two alias to select months or years."><!-- mathjax --><script src="https://c
     </div>
 
     <div class="ref-description section level2">
-    <p>An alternative to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/dateInput.html" class="external-link">shiny::dateInput()</a></code> to select single, multiple or date range
+    <p>An alternative to <code><a href="https://rdrr.io/pkg/shiny/man/dateInput.html" class="external-link">shiny::dateInput()</a></code> to select single, multiple or date range
 based on <a href="https://air-datepicker.com/" class="external-link">Air Datepicker library</a>.
 And two alias to select months or years.</p>
     </div>
@@ -292,7 +292,7 @@ you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>Since shinyWidgets 0.5.2 there's no more conflicts with <code><a href="https://shiny.rstudio.com/reference/shiny/latest/dateInput.html" class="external-link">shiny::dateInput()</a></code>.</p>
+    <p>Since shinyWidgets 0.5.2 there's no more conflicts with <code><a href="https://rdrr.io/pkg/shiny/man/dateInput.html" class="external-link">shiny::dateInput()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -322,21 +322,21 @@ you can retrieve value server-side with <code>input$&lt;inputId&gt;_button</code
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="fu">airDatepickerInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
 <span class="r-in"><span>    label <span class="op">=</span> <span class="st">"Select multiple dates:"</span>,</span></span>
 <span class="r-in"><span>    placeholder <span class="op">=</span> <span class="st">"You can pick 5 dates"</span>,</span></span>
 <span class="r-in"><span>    multiple <span class="op">=</span> <span class="fl">5</span>, clearButton <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">multiple</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">multiple</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>

@@ -72,7 +72,7 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">updateColorPickr</span><span class="op">(</span></span>
-<span>  session <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">inputId</span>,</span>
 <span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  action <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -183,10 +183,10 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Color pickr"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">h4</span><span class="op">(</span><span class="st">"Appearance"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
@@ -194,28 +194,28 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (classic theme):"</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res1"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res1"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id2"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (monolith theme):"</span>,</span></span>
 <span class="r-in"><span>        theme <span class="op">=</span> <span class="st">"monolith"</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res2"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res2"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id3"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (nano theme):"</span>,</span></span>
 <span class="r-in"><span>        theme <span class="op">=</span> <span class="st">"nano"</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res3"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res3"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id4"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (swatches + opacity):"</span>,</span></span>
 <span class="r-in"><span>        swatches <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/viridis_pal.html" class="external-link">viridis_pal</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        opacity <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res4"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res4"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id5"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (only swatches):"</span>,</span></span>
@@ -238,7 +238,7 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span>        <span class="op">)</span>,</span></span>
 <span class="r-in"><span>        pickr_width <span class="op">=</span> <span class="st">"245px"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res5"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res5"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id6"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (button):"</span>,</span></span>
@@ -246,7 +246,7 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span>        theme <span class="op">=</span> <span class="st">"monolith"</span>,</span></span>
 <span class="r-in"><span>        useAsButton <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res6"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res6"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id7"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (inline):"</span>,</span></span>
@@ -255,9 +255,9 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span>        inline <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res7"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res7"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">h4</span><span class="op">(</span><span class="st">"Trigger server update"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
@@ -265,7 +265,7 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (update on save):"</span>,</span></span>
 <span class="r-in"><span>        position <span class="op">=</span> <span class="st">"right-start"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res11"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res11"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id12"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (update on change):"</span>,</span></span>
@@ -276,7 +276,7 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span>        <span class="op">)</span>,</span></span>
 <span class="r-in"><span>        position <span class="op">=</span> <span class="st">"right-start"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res12"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res12"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id13"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (update on change stop):"</span>,</span></span>
@@ -287,9 +287,9 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span>        <span class="op">)</span>,</span></span>
 <span class="r-in"><span>        position <span class="op">=</span> <span class="st">"right-start"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res13"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res13"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">h4</span><span class="op">(</span><span class="st">"Update server-side"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
@@ -297,59 +297,59 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (update value):"</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res21"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"Update red"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"Update green"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"Update blue"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res21"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"Update red"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"Update green"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"Update blue"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">colorPickr</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"id22"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Pick a color (enable/disable):"</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res22"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"enable"</span>, <span class="st">"Enable"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"disable"</span>, <span class="st">"Disable"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res22"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"enable"</span>, <span class="st">"Enable"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"disable"</span>, <span class="st">"Disable"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id1</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id2</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id3</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id4</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id5</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id6</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id7</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id4</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id6</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id7</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res11</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id11</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id12</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res13</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id13</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res11</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id11</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id12</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res13</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id13</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id21</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">red</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id21</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">red</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"firebrick"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">green</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">green</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"forestgreen"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">blue</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">blue</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"steelblue"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res22</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id22</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">enable</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res22</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id22</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">enable</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id22"</span>, action <span class="op">=</span> <span class="st">"enable"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">disable</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">disable</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id22"</span>, action <span class="op">=</span> <span class="st">"disable"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

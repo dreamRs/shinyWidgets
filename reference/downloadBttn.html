@@ -59,14 +59,14 @@
 <span>  size <span class="op">=</span> <span class="st">"md"</span>,</span>
 <span>  block <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  no_outline <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"download"</span><span class="op">)</span></span>
+<span>  icon <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"download"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>outputId</dt>
-<dd><p>The name of the output slot that the <code><a href="https://shiny.rstudio.com/reference/shiny/latest/downloadHandler.html" class="external-link">shiny::downloadHandler()</a></code> is assigned to.</p></dd>
+<dd><p>The name of the output slot that the <code><a href="https://rdrr.io/pkg/shiny/man/downloadHandler.html" class="external-link">shiny::downloadHandler()</a></code> is assigned to.</p></dd>
 
 
 <dt>label</dt>
@@ -113,7 +113,7 @@ keyboard/interact using mouse or touch.</p></dd>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Download bttn"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu">downloadBttn</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    outputId <span class="op">=</span> <span class="st">"downloadData"</span>,</span></span>
@@ -124,7 +124,7 @@ keyboard/interact using mouse or touch.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">downloadData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/downloadHandler.html" class="external-link">downloadHandler</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">downloadData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/downloadHandler.html" class="external-link">downloadHandler</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    filename <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">'data-'</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'.csv'</span>, sep<span class="op">=</span><span class="st">''</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span>,</span></span>
@@ -135,7 +135,7 @@ keyboard/interact using mouse or touch.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>

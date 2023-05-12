@@ -161,47 +161,47 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Pretty toggles"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">prettyToggle</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"toggle1"</span>,</span></span>
 <span class="r-in"><span>        label_on <span class="op">=</span> <span class="st">"Checked!"</span>,</span></span>
 <span class="r-in"><span>        label_off <span class="op">=</span> <span class="st">"Unchecked..."</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res1"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res1"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">prettyToggle</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"toggle4"</span>,  label_on <span class="op">=</span> <span class="st">"Yes!"</span>,</span></span>
 <span class="r-in"><span>        label_off <span class="op">=</span> <span class="st">"No.."</span>, outline <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>        plain <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>        icon_on <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-up"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        icon_off <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-down"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        icon_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-up"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        icon_off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-down"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res4"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">prettyToggle</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"toggle2"</span>,</span></span>
-<span class="r-in"><span>        label_on <span class="op">=</span> <span class="st">"Yes!"</span>, icon_on <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"check"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        label_on <span class="op">=</span> <span class="st">"Yes!"</span>, icon_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"check"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        status_on <span class="op">=</span> <span class="st">"info"</span>, status_off <span class="op">=</span> <span class="st">"warning"</span>,</span></span>
-<span class="r-in"><span>        label_off <span class="op">=</span> <span class="st">"No.."</span>, icon_off <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"xmark"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        label_off <span class="op">=</span> <span class="st">"No.."</span>, icon_off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"xmark"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res2"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">prettyToggle</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"toggle3"</span>,  label_on <span class="op">=</span> <span class="st">"Yes!"</span>,</span></span>
 <span class="r-in"><span>        label_off <span class="op">=</span> <span class="st">"No.."</span>, shape <span class="op">=</span> <span class="st">"round"</span>,</span></span>
 <span class="r-in"><span>        fill <span class="op">=</span> <span class="cn">TRUE</span>, value <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res3"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res3"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -209,22 +209,22 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle1</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle2</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle3</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle4</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle4</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Inline example ----</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Pretty toggles: inline example"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span></span></span>
@@ -238,10 +238,10 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 <span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"toggle2"</span>,</span></span>
 <span class="r-in"><span>    label_on <span class="op">=</span> <span class="st">"Yep"</span>,</span></span>
 <span class="r-in"><span>    status_on <span class="op">=</span> <span class="st">"default"</span>,</span></span>
-<span class="r-in"><span>    icon_on <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"ok-circle"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    icon_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"ok-circle"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    label_off <span class="op">=</span> <span class="st">"Nope"</span>,</span></span>
 <span class="r-in"><span>    status_off <span class="op">=</span> <span class="st">"default"</span>,</span></span>
-<span class="r-in"><span>    icon_off <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"remove-circle"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    icon_off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"remove-circle"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    plain <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    inline <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
@@ -249,8 +249,8 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 <span class="r-in"><span>    inputId <span class="op">=</span> <span class="st">"toggle3"</span>,</span></span>
 <span class="r-in"><span>    label_on <span class="op">=</span> <span class="st">""</span>,</span></span>
 <span class="r-in"><span>    label_off <span class="op">=</span> <span class="st">""</span>,</span></span>
-<span class="r-in"><span>    icon_on <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"volume-high"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    icon_off <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"volume-off"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    icon_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"volume-high"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    icon_off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"volume-off"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    status_on <span class="op">=</span> <span class="st">"primary"</span>,</span></span>
 <span class="r-in"><span>    status_off <span class="op">=</span> <span class="st">"default"</span>,</span></span>
 <span class="r-in"><span>    plain <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
@@ -264,18 +264,18 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 <span class="r-in"><span>    label_off <span class="op">=</span> <span class="st">"No.."</span>,</span></span>
 <span class="r-in"><span>    outline <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    plain <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>    icon_on <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-up"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    icon_off <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-down"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    icon_on <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-up"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    icon_off <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-down"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    inline <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">toggle1</span>,</span></span>
 <span class="r-in"><span>      <span class="va">input</span><span class="op">$</span><span class="va">toggle2</span>,</span></span>
 <span class="r-in"><span>      <span class="va">input</span><span class="op">$</span><span class="va">toggle3</span>,</span></span>
@@ -285,7 +285,7 @@ you can use Bootstrap status like 'info', 'primary', 'danger', 'warning' or 'suc
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

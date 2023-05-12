@@ -91,7 +91,7 @@ Use this argument in <code>selectizeGroupUI</code> <strong>and</strong> in <code
 
 
 <dt>data</dt>
-<dd><p>Either a <code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame()</a></code> or a <code><a href="https://shiny.rstudio.com/reference/shiny/latest/reactive.html" class="external-link">shiny::reactive()</a></code>
+<dd><p>Either a <code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame()</a></code> or a <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code>
 function returning a <code>data.frame</code> (do not use parentheses).</p></dd>
 
 
@@ -105,7 +105,7 @@ must correspond to variables listed in <code>params</code>. Can be a
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>a <code><a href="https://shiny.rstudio.com/reference/shiny/latest/reactive.html" class="external-link">shiny::reactive()</a></code> function containing data filtered.</p>
+<p>a <code><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">shiny::reactive()</a></code> function containing data filtered.</p>
     </div>
 
     <div class="section level2">
@@ -119,9 +119,9 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mpg"</span>, package <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="fl">10</span>, offset <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>        <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"Filter data with selectize group"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        <span class="fu"><a href="bootstrap-utils.html">panel</a></span><span class="op">(</span></span></span>
@@ -141,7 +141,7 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="va">res_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/callModule.html" class="external-link">callModule</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">res_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/callModule.html" class="external-link">callModule</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      module <span class="op">=</span> <span class="va">selectizeGroupServer</span>,</span></span>
 <span class="r-in"><span>      id <span class="op">=</span> <span class="st">"my-filters"</span>,</span></span>
 <span class="r-in"><span>      data <span class="op">=</span> <span class="va">mpg</span>,</span></span>
@@ -150,7 +150,7 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span>    <span class="va">output</span><span class="op">$</span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/dataTableOutput.html" class="external-link">renderDataTable</a></span><span class="op">(</span><span class="fu">res_mod</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
@@ -163,13 +163,13 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mpg"</span>, package <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="fl">10</span>, offset <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>        <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"Filter data with selectize group"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        <span class="fu"><a href="bootstrap-utils.html">panel</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>          <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/checkboxGroupInput.html" class="external-link">checkboxGroupInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxGroupInput.html" class="external-link">checkboxGroupInput</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>            inputId <span class="op">=</span> <span class="st">"vars"</span>,</span></span>
 <span class="r-in"><span>            label <span class="op">=</span> <span class="st">"Variables to use:"</span>,</span></span>
 <span class="r-in"><span>            choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"manufacturer"</span>, <span class="st">"model"</span>, <span class="st">"trans"</span>, <span class="st">"class"</span><span class="op">)</span>,</span></span>
@@ -194,11 +194,11 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">vars_r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">vars_r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="va">input</span><span class="op">$</span><span class="va">vars</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">res_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/callModule.html" class="external-link">callModule</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">res_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/callModule.html" class="external-link">callModule</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      module <span class="op">=</span> <span class="va">selectizeGroupServer</span>,</span></span>
 <span class="r-in"><span>      id <span class="op">=</span> <span class="st">"my-filters"</span>,</span></span>
 <span class="r-in"><span>      data <span class="op">=</span> <span class="va">mpg</span>,</span></span>
@@ -206,12 +206,12 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="va">output</span><span class="op">$</span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/dataTableOutput.html" class="external-link">renderDataTable</a></span><span class="op">(</span><span class="op">{</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/req.html" class="external-link">req</a></span><span class="op">(</span><span class="fu">res_mod</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="fu">res_mod</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="fu">res_mod</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Subset data -------------------------------------------------------------</span></span></span>
@@ -223,9 +223,9 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mpg"</span>, package <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="fl">10</span>, offset <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>        <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"Filter data with selectize group"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        <span class="fu"><a href="bootstrap-utils.html">panel</a></span><span class="op">(</span></span></span>
@@ -255,11 +255,11 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">mpg_filter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">mpg_filter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reactive.html" class="external-link">reactive</a></span><span class="op">(</span><span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">manufacturer</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">input</span><span class="op">$</span><span class="va">car_select</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="va">res_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/callModule.html" class="external-link">callModule</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">res_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/callModule.html" class="external-link">callModule</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      module <span class="op">=</span> <span class="va">selectizeGroupServer</span>,</span></span>
 <span class="r-in"><span>      id <span class="op">=</span> <span class="st">"my-filters"</span>,</span></span>
 <span class="r-in"><span>      data <span class="op">=</span> <span class="va">mpg_filter</span>,</span></span>
@@ -267,12 +267,12 @@ must correspond to variables listed in <code>params</code>. Can be a
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="va">output</span><span class="op">$</span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/dataTableOutput.html" class="external-link">renderDataTable</a></span><span class="op">(</span><span class="op">{</span></span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/req.html" class="external-link">req</a></span><span class="op">(</span><span class="fu">res_mod</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="fu">res_mod</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="fu">res_mod</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

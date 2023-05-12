@@ -67,7 +67,7 @@
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">value</span>,</span>
 <span>  duration <span class="op">=</span> <span class="fl">2000</span>,</span>
-<span>  session <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -82,7 +82,7 @@
 
 
 <dt>icon</dt>
-<dd><p>An optional icon created with <code><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon()</a></code>.</p></dd>
+<dd><p>An optional icon created with <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon()</a></code>.</p></dd>
 
 
 <dt>left</dt>
@@ -130,42 +130,42 @@
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Stati Card"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="fl">12</span>, <span class="st">"Subtitle"</span>, <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"house"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="fl">12</span>, <span class="st">"Subtitle"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"house"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
-<span class="r-in"><span>        <span class="fl">93</span>, <span class="st">"Animated card"</span>, <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"users"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fl">93</span>, <span class="st">"Animated card"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"users"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        background <span class="op">=</span> <span class="st">"deepskyblue"</span>,</span></span>
 <span class="r-in"><span>        color <span class="op">=</span> <span class="st">"white"</span>,</span></span>
 <span class="r-in"><span>        animate <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>        id <span class="op">=</span> <span class="st">"card1"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"update1"</span>, <span class="st">"Update card above server-side"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"update1"</span>, <span class="st">"Update card above server-side"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
-<span class="r-in"><span>        <span class="fl">93</span>, <span class="st">"No animation"</span>, <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"users"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        <span class="fl">93</span>, <span class="st">"No animation"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"users"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        background <span class="op">=</span> <span class="st">"deepskyblue"</span>,</span></span>
 <span class="r-in"><span>        color <span class="op">=</span> <span class="st">"white"</span>,</span></span>
 <span class="r-in"><span>        id <span class="op">=</span> <span class="st">"card2"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"update2"</span>, <span class="st">"Update card above server-side"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"update2"</span>, <span class="st">"Update card above server-side"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="st">"$123,456"</span>, <span class="st">"Total spend"</span>, <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"rocket"</span><span class="op">)</span>, left <span class="op">=</span> <span class="cn">TRUE</span>, animate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="st">"$123,456"</span>, <span class="st">"Total spend"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"rocket"</span><span class="op">)</span>, left <span class="op">=</span> <span class="cn">TRUE</span>, animate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"show"</span>, <span class="st">"Show card (rendered server-side)"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html" class="external-link">uiOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"card"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"show"</span>, <span class="st">"Show card (rendered server-side)"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html" class="external-link">uiOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"card"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="fl">12</span>, <span class="st">"No animation"</span>, <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"house"</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span><span class="fl">12</span>, <span class="st">"No animation"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"house"</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        <span class="st">"123456 something very very long"</span>,</span></span>
@@ -178,13 +178,13 @@
 <span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        <span class="st">"123456 something very very long"</span>,</span></span>
 <span class="r-in"><span>        <span class="st">"Long value text with icon"</span>,</span></span>
-<span class="r-in"><span>        icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"gauge"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"gauge"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        left <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">statiCard</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        <span class="st">"123456 something very very long"</span>,</span></span>
 <span class="r-in"><span>        <span class="st">"Long value text with icon right"</span>,</span></span>
-<span class="r-in"><span>        icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"list-check"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"list-check"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
@@ -194,26 +194,26 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">update1</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">update1</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">updateStatiCard</span><span class="op">(</span></span></span>
 <span class="r-in"><span>      id <span class="op">=</span> <span class="st">"card1"</span>,</span></span>
 <span class="r-in"><span>      value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">update2</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">update2</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">updateStatiCard</span><span class="op">(</span></span></span>
 <span class="r-in"><span>      id <span class="op">=</span> <span class="st">"card2"</span>,</span></span>
 <span class="r-in"><span>      value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">card</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/req.html" class="external-link">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">show</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">card</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/req.html" class="external-link">req</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">show</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="fu">statiCard</span><span class="op">(</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">1e6</span>, <span class="fl">1</span><span class="op">)</span>, big.mark <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="st">"Total spend"</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"cart-shopping"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"cart-shopping"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      left <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>      animate <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
@@ -222,7 +222,7 @@
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

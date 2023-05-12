@@ -87,31 +87,31 @@ but is still needed for <code>progressSweetAlert</code>.</p>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="fu">useSweetAlert</span><span class="op">(</span><span class="st">"borderless"</span>, ie <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>    <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Sweet Alert examples (with custom theme)"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"success"</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Launch a success sweet alert"</span>,</span></span>
-<span class="r-in"><span>      icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"check"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"check"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"error"</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Launch an error sweet alert"</span>,</span></span>
-<span class="r-in"><span>      icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"xmark"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"xmark"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"sw_html"</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Sweet alert with HTML"</span>,</span></span>
-<span class="r-in"><span>      icon <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-up"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      icon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-up"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">success</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">success</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="sweetalert.html">show_alert</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        title <span class="op">=</span> <span class="st">"Success !!"</span>,</span></span>
 <span class="r-in"><span>        text <span class="op">=</span> <span class="st">"All in order"</span>,</span></span>
@@ -119,7 +119,7 @@ but is still needed for <code>progressSweetAlert</code>.</p>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">error</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">error</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="sweetalert.html">show_alert</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        title <span class="op">=</span> <span class="st">"Error !!"</span>,</span></span>
 <span class="r-in"><span>        text <span class="op">=</span> <span class="st">"It's broken..."</span>,</span></span>
@@ -127,7 +127,7 @@ but is still needed for <code>progressSweetAlert</code>.</p>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sw_html</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">sw_html</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="sweetalert.html">show_alert</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        title <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
 <span class="r-in"><span>        text <span class="op">=</span> <span class="va">tags</span><span class="op">$</span><span class="fu">span</span><span class="op">(</span></span></span>
@@ -141,7 +141,7 @@ but is still needed for <code>progressSweetAlert</code>.</p>
 <span class="r-in"><span>          <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"breaks"</span>,</span></span>
 <span class="r-in"><span>          <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>          <span class="st">"and an icon"</span>, <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-up"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>          <span class="st">"and an icon"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"thumbs-up"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>        <span class="op">)</span>,</span></span>
 <span class="r-in"><span>        html <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
@@ -149,7 +149,7 @@ but is still needed for <code>progressSweetAlert</code>.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

@@ -66,7 +66,7 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">updateProgressBar</span><span class="op">(</span></span>
-<span>  session <span class="op">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">value</span>,</span>
 <span>  total <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -147,12 +147,12 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://shiny.rstudio.com/" class="external-link">"shiny"</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">"shinyWidgets"</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    width <span class="op">=</span> <span class="fl">7</span>,</span></span>
 <span class="r-in"><span>    <span class="va">tags</span><span class="op">$</span><span class="fu">b</span><span class="op">(</span><span class="st">"Default"</span><span class="op">)</span>, <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">progressBar</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"pb1"</span>, value <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html" class="external-link">sliderInput</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"up1"</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Update"</span>,</span></span>
 <span class="r-in"><span>      min <span class="op">=</span> <span class="fl">0</span>,</span></span>
@@ -168,7 +168,7 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 <span class="r-in"><span>      title <span class="op">=</span> <span class="st">""</span>,</span></span>
 <span class="r-in"><span>      display_pct <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      inputId <span class="op">=</span> <span class="st">"go"</span>,</span></span>
 <span class="r-in"><span>      label <span class="op">=</span> <span class="st">"Launch calculation"</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
@@ -176,14 +176,14 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">up1</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">up1</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="fu">updateProgressBar</span><span class="op">(</span></span></span>
 <span class="r-in"><span>      session <span class="op">=</span> <span class="va">session</span>,</span></span>
 <span class="r-in"><span>      id <span class="op">=</span> <span class="st">"pb1"</span>,</span></span>
 <span class="r-in"><span>      value <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">up1</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">go</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">go</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>      <span class="fu">updateProgressBar</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        session <span class="op">=</span> <span class="va">session</span>,</span></span>
@@ -196,7 +196,7 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
