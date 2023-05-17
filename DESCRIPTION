@@ -37,4 +37,5 @@ Suggests:
     ggplot2,
     DT,
     scales,
-    shinydashboard
+    shinydashboard,
+    shinydashboardPlus

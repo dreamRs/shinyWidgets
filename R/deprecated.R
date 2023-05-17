@@ -21,6 +21,14 @@ useShinydashboard <- function() {
       "https://github.com/dreamRs/shinyWidgets/blob/26838f9e9ccdc90a47178b45318d110f5812d6e1/R/useShinydashboard.R"
     )
   )
+  if (!requireNamespace(package = "shinydashboard"))
+    message("Package 'shinydashboard' is required to run this function")
+  deps <- findDependencies(shinydashboard::dashboardPage(
+    header = shinydashboard::dashboardHeader(),
+    sidebar = shinydashboard::dashboardSidebar(),
+    body = shinydashboard::dashboardBody()
+  ))
+  attachDependencies(tags$div(class = "main-sidebar", style = "display: none;"), value = deps)
 }
 
 
@@ -36,6 +44,14 @@ useShinydashboardPlus <- function() {
       "https://github.com/dreamRs/shinyWidgets/blob/26838f9e9ccdc90a47178b45318d110f5812d6e1/R/useShinydashboardPlus.R"
     )
   )
+  if (!requireNamespace(package = "shinydashboardPlus"))
+    message("Package 'shinydashboardPlus' is required to run this function")
+  deps <- findDependencies(shinydashboardPlus::dashboardPage(
+    header = shinydashboardPlus::dashboardHeader(),
+    sidebar = shinydashboard::dashboardSidebar(),
+    body = shinydashboard::dashboardBody()
+  ))
+  attachDependencies(tags$div(class = "main-sidebar", style = "display: none;"), value = deps)
 }
 
 
