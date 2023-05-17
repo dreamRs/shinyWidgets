@@ -56,7 +56,7 @@ choicesWithNames <- function(choices) {
       if (is.list(val))
         listify(val)
       else if (length(val) == 1 && is.null(names(val)))
-        val
+        as.character(val)
       else makeNamed(as.list(val))
     })
     makeNamed(res)
