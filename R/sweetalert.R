@@ -12,7 +12,7 @@
 #' @seealso [sendSweetAlert()], [confirmSweetAlert()],
 #'  [inputSweetAlert()], [closeSweetAlert()].
 #'
-#' @importFrom htmltools attachDependencies singleton tagList tags
+#' @importFrom htmltools attachDependencies singleton tagList tags tagFunction
 #'
 #' @export
 #'
@@ -25,20 +25,29 @@ useSweetAlert <- function(theme = c("sweetalert2",
                                     "bulma",
                                     "borderless"),
                           ie = FALSE) {
-  tag <- tagList(
-    singleton(
-      tags$head(tags$style(".swal2-popup {font-size: 1.6rem !important;}"))
+  tagFunction(function() {
+    shinytheme <- shiny::getCurrentTheme()
+    tag <- tags$div()
+    if (
+      !bslib::is_bs_theme(shinytheme) |
+      (bslib::is_bs_theme(shinytheme) && bslib::theme_version(shinytheme) == "3")
+    ) {
+      tag <- tagList(
+        singleton(
+          tags$head(tags$style(".swal2-popup {font-size: 1.6rem !important;}"))
+        )
+      )
+    }
+    deps <- list(
+      html_dependency_sweetalert2(theme)
     )
-  )
-  deps <- list(
-    html_dependency_sweetalert2(theme)
-  )
-  if (isTRUE(ie)) {
-    deps <- append(
-      deps, list(html_dependency_polyfill_promise()), 0
-    )
-  }
-  attachDependencies(tag, deps)
+    if (isTRUE(ie)) {
+      deps <- append(
+        deps, list(html_dependency_polyfill_promise()), 0
+      )
+    }
+    attachDependencies(tag, deps)
+  })
 }
 
 

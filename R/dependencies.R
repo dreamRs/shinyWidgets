@@ -338,11 +338,9 @@ html_dependency_sweetalert2 <- function(theme = c("sweetalert2",
                                                   "bulma",
                                                   "borderless")) {
   theme <- match.arg(theme)
-  if (identical(theme, "sweetalert2"))
-    theme <- "default"
   htmlDependency(
     name = "sweetalert2",
-    version = "11.1.4",
+    version = "11.7.11",
     src = c(href="shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
     script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
     stylesheet = sprintf("css/%s.min.css", theme)
