@@ -113,7 +113,8 @@ if (interactive()) {
 }
 }
 \references{
-Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package". http://autonumeric.org
+Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
+\url{http://autonumeric.org}.
 }
 \seealso{
 Other autonumeric: 

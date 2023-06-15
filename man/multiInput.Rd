@@ -33,7 +33,7 @@ multiInput(
 \item{choiceValues}{List of values corresponding to \code{choiceNames}.}
 }
 \value{
-A multiselect control
+A multiselect control that can be added to the UI of a shiny app.
 }
 \description{
 A user-friendly replacement for select boxes with the multiple attribute
@@ -97,6 +97,10 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 
 }
+}
+\references{
+Fabian Lindfors, "A user-friendly replacement for select boxes with multiple attribute enabled",
+\url{https://github.com/fabianlindfors/multi.js}.
 }
 \seealso{
 \link{updateMultiInput} to update value server-side.

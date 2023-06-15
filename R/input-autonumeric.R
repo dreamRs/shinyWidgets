@@ -43,7 +43,8 @@
 #' [this section](https://github.com/autoNumeric/autoNumeric/#predefined-common-options)
 #' of the AutoNumeric Github Page.
 #'
-#' @references Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package". http://autonumeric.org
+#' @references Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
+#'  \url{http://autonumeric.org}.
 #'
 #' @return a currency input widget that can be added to the UI of a shiny app.
 #' @export

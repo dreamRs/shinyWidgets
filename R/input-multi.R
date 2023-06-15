@@ -11,7 +11,10 @@
 #' @param choiceValues List of values corresponding to \code{choiceNames}.
 #' @param options List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example).
 #'
-#' @return A multiselect control
+#' @return A multiselect control that can be added to the UI of a shiny app.
+#'
+#' @references Fabian Lindfors, "A user-friendly replacement for select boxes with multiple attribute enabled",
+#'  \url{https://github.com/fabianlindfors/multi.js}.
 #'
 #' @importFrom jsonlite toJSON
 #' @importFrom htmltools validateCssUnit tags
