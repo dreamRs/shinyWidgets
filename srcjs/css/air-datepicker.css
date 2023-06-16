@@ -25,3 +25,8 @@
   background: #fff;
   opacity: 0.5;
 }
+
+/* For addon buttons */
+.btn.action-button.input-group-addon.dp-addon {
+  display: table-cell;
+}
