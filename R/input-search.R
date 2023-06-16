@@ -44,26 +44,33 @@
 #' }
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools tags validateCssUnit singleton
+#' @importFrom htmltools tags css validateCssUnit singleton
 #'
 #' @export
-searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
-                        btnSearch = NULL, btnReset = NULL, resetValue = "", width = NULL) {
+searchInput <- function(inputId,
+                        label = NULL,
+                        value = "",
+                        placeholder = NULL,
+                        btnSearch = NULL,
+                        btnReset = NULL,
+                        resetValue = "",
+                        width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-  if (!is.null(btnSearch)) {
-    btnSearch <- htmltools::tags$button(
-      class="btn btn-default btn-addon action-button",
-      id = paste0(inputId, "_search"),
-      type="button", btnSearch
-    )
-  }
-  if (!is.null(btnReset)) {
-    btnReset <- htmltools::tags$button(
-      class="btn btn-default btn-addon action-button",
-      id = paste0(inputId, "_reset"),
-      type="button", btnReset
-    )
-  }
+
+  tagSearch <- htmltools::tags$button(
+    class = "btn btn-default btn-addon action-button",
+    id = paste0(inputId, "_search"),
+    type = "button",
+    btnSearch,
+    style = if (is.null(btnSearch)) css(display = "none")
+  )
+  tagReset <- htmltools::tags$button(
+    class = "btn btn-default btn-addon action-button",
+    id = paste0(inputId, "_reset"),
+    type = "button",
+    btnReset,
+    style = if (is.null(btnReset)) css(display = "none")
+  )
 
   css_btn_addon <- paste0(
     ".btn-addon{", "font-size:14.5px;",
@@ -72,24 +79,54 @@ searchInput <- function(inputId, label = NULL, value = "", placeholder = NULL,
   )
 
   searchTag <- htmltools::tags$div(
-    class="form-group shiny-input-container",
-    style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
-    if (!is.null(label)) htmltools::tags$label(label, `for` = inputId),
+    class = "form-group shiny-input-container",
+    style = css(width = validateCssUnit(width)),
+    if (!is.null(label)) htmltools::tags$label(label, class = "control-label", `for` = inputId),
     htmltools::tags$div(
-      id = inputId, `data-reset` = !is.null(resetValue),
+      id = inputId,
+      `data-reset` = !is.null(resetValue),
       `data-reset-value` = resetValue,
       class = "input-group search-text",
-      htmltools::tags$input(id = paste0(inputId, "_text"),
-                 style = "border-radius: 0.25em 0 0 0.25em !important;",
-                 type = "text", class = "form-control", value = value,
-                 placeholder = placeholder),
-      htmltools::tags$div(class="input-group-btn", btnReset, btnSearch)
+      htmltools::tags$input(
+        id = paste0(inputId, "_text"),
+        style = "border-radius: 0.25em 0 0 0.25em !important;",
+        type = "text",
+        class = "form-control",
+        value = value,
+        placeholder = placeholder
+      ),
+      markup_input_group_button(
+        tagReset, tagSearch, btnSearch, btnReset,
+        theme_func = shiny::getCurrentTheme
+      )
     ),
     singleton(tags$head(tags$style(css_btn_addon)))
   )
-  # Dep
   attachShinyWidgetsDep(searchTag)
+}
+
+
+#' @importFrom htmltools tagList tagFunction
+#' @importFrom shiny getCurrentTheme
+#' @importFrom bslib is_bs_theme theme_version
+markup_input_group_button <- function(tagReset, tagSearch, btnSearch, btnReset, theme_func = NULL) {
+  tagList(tagFunction(function() {
+    if (is.function(theme_func))
+      theme <- theme_func()
+    default <- htmltools::tags$div(
+      class = "input-group-btn",
+      style = if (is.null(btnSearch) & is.null(btnReset)) css(display = "none"),
+      tagReset,
+      tagSearch
+    )
+    if (!bslib::is_bs_theme(theme)) {
+      return(default)
+    }
+    if (bslib::theme_version(theme) %in% c("5")) {
+      return(tagList(tagReset, tagSearch))
+    }
+    return(default)
+  }))
 }
 
 
@@ -163,6 +200,3 @@ updateSearchInput <- function (session, inputId, label = NULL, value = NULL, pla
   message <- dropNulls(message)
   session$sendInputMessage(inputId, message)
 }
-
-
-
