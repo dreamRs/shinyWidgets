@@ -42,6 +42,7 @@
 #' @param addon Display a calendar icon to \code{'right'} or the \code{'left'}
 #'  of the widget, or \code{'none'}. This icon act likes an \code{actionButton},
 #'  you can retrieve value server-side with \code{input$<inputId>_button}.
+#' @param addonAttributes A `list()` of additional attributes to use for the addon tag, like `class` for example.
 # paste(sprintf("`%s`", tools::file_path_sans_ext(list.files("node_modules/air-datepicker/locale/", pattern = "\\.js"))), collapse = ", ")
 #' @param language Language to use, can be one of
 #'   `ar`, `cs`, `da`, `de`, `en`, `es`, `fi`, `fr`, `hu`, `it`, `ja`, `ko`, `nl`,
@@ -132,6 +133,7 @@ airDatepickerInput <- function(inputId,
                                onlyTimepicker = FALSE,
                                toggleSelected = TRUE,
                                addon = c("right", "left", "none"),
+                               addonAttributes = list(class = "btn-outline-secondary"),
                                language = "en",
                                inline = FALSE,
                                width = NULL) {
@@ -214,18 +216,18 @@ airDatepickerInput <- function(inputId,
       tagAir <- tags$div(
         class = "input-group",
         if (identical(addon, "left")) {
-          tags$div(
-            class = "btn action-button input-group-addon dp-addon",
-            id = paste0(inputId, "_button"),
-            icon("calendar-days")
+          markup_airdatepicker_input_group_button(
+            inputId = inputId,
+            attributes = addonAttributes,
+            theme_func = shiny::getCurrentTheme
           )
         },
         tagAir,
         if (identical(addon, "right")) {
-          tags$div(
-            class = "btn action-button input-group-addon dp-addon",
-            id = paste0(inputId, "_button"),
-            icon("calendar-days")
+          markup_airdatepicker_input_group_button(
+            inputId = inputId,
+            attributes = addonAttributes,
+            theme_func = shiny::getCurrentTheme
           )
         }
       )
@@ -274,6 +276,39 @@ airDatepickerInput <- function(inputId,
     )
   }
 }
+
+
+
+#' @importFrom htmltools tagList tagFunction
+#' @importFrom shiny getCurrentTheme
+#' @importFrom bslib is_bs_theme theme_version
+markup_airdatepicker_input_group_button <- function(inputId, attributes = list(), theme_func = NULL) {
+  tagList(tagFunction(function() {
+    if (is.function(theme_func))
+      theme <- theme_func()
+    default <- tags$div(
+      class = "btn action-button input-group-addon dp-addon",
+      id = paste0(inputId, "_button"),
+      icon("calendar-days"),
+      !!!attributes
+    )
+    if (!bslib::is_bs_theme(theme)) {
+      return(default)
+    }
+    if (bslib::theme_version(theme) %in% c("5")) {
+      bs5 <- tags$button(
+        class = "btn action-button input-group-addon dp-addon",
+        id = paste0(inputId, "_button"),
+        icon("calendar-days"),
+        !!!attributes
+      )
+      return(bs5)
+    }
+    return(default)
+  }))
+}
+
+
 
 
 #' @param dateTimeSeparator Separator between date and time, default to \code{" "}.

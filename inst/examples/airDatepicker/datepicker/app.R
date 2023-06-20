@@ -11,6 +11,9 @@ library(shinyWidgets)
 # ui ----
 
 ui <- fluidPage(
+
+  # theme = bslib::bs_theme(version = 5L),
+
   tags$h2("Air datepicker examples"),
   tags$br(),
 

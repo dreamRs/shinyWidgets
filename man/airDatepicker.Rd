@@ -37,6 +37,7 @@ airDatepickerInput(
   onlyTimepicker = FALSE,
   toggleSelected = TRUE,
   addon = c("right", "left", "none"),
+  addonAttributes = list(class = "btn-outline-secondary"),
   language = "en",
   inline = FALSE,
   width = NULL
@@ -124,6 +125,8 @@ or when calendar is \code{'close'}d.}
 \item{addon}{Display a calendar icon to \code{'right'} or the \code{'left'}
 of the widget, or \code{'none'}. This icon act likes an \code{actionButton},
 you can retrieve value server-side with \code{input$<inputId>_button}.}
+
+\item{addonAttributes}{A \code{list()} of additional attributes to use for the addon tag, like \code{class} for example.}
 
 \item{language}{Language to use, can be one of
 \code{ar}, \code{cs}, \code{da}, \code{de}, \code{en}, \code{es}, \code{fi}, \code{fr}, \code{hu}, \code{it}, \code{ja}, \code{ko}, \code{nl},
