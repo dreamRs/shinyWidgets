@@ -3,8 +3,9 @@ shinyWidgets 0.8.0
 
 * `airDatepickerInput()` : added argument `disabledDaysOfWeek` to disable day(s) of the week.
 * `materialSwitch()` : click on the label now toggle the switch [#582](https://github.com/dreamRs/shinyWidgets/issues/582).
-* Updated virtual-select-plugin to 1.0.38 (fix [#601](https://github.com/dreamRs/shinyWidgets/issues/601)).
+* Updated virtual-select-plugin to 1.0.39 (fix [#601](https://github.com/dreamRs/shinyWidgets/issues/601)).
 * Updated sweetalert2 to v11.7.11.
+* Updated air-datepicker to 3.3.5.
 
 
 ### Bug fixes

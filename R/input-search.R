@@ -95,7 +95,7 @@ searchInput <- function(inputId,
         value = value,
         placeholder = placeholder
       ),
-      markup_input_group_button(
+      markup_search_input_group_button(
         tagReset, tagSearch, btnSearch, btnReset,
         theme_func = shiny::getCurrentTheme
       )
@@ -109,7 +109,7 @@ searchInput <- function(inputId,
 #' @importFrom htmltools tagList tagFunction
 #' @importFrom shiny getCurrentTheme
 #' @importFrom bslib is_bs_theme theme_version
-markup_input_group_button <- function(tagReset, tagSearch, btnSearch, btnReset, theme_func = NULL) {
+markup_search_input_group_button <- function(tagReset, tagSearch, btnSearch, btnReset, theme_func = NULL) {
   tagList(tagFunction(function() {
     if (is.function(theme_func))
       theme <- theme_func()
