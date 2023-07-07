@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/dreamRs/shinyWidgets#readme",
   "devDependencies": {
+    "@easepick/bundle": "^1.2.1",
     "@widgetjs/tree": "^1.8.3",
     "air-datepicker": "^3.3.5",
     "autonumeric": "^4.6.0",

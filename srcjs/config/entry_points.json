@@ -4,5 +4,6 @@
   "multi": "./srcjs/inputs/multi.js",
   "autonumeric": "./srcjs/inputs/autonumeric.js",
   "nouislider": "./srcjs/inputs/nouislider.js",
-  "tree": "./srcjs/inputs/tree.js"
+  "tree": "./srcjs/inputs/tree.js",
+  "easepick": "./srcjs/inputs/easepick.js"
 }
