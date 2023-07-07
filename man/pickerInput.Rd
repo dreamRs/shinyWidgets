@@ -13,7 +13,8 @@ pickerInput(
   options = list(),
   choicesOpt = NULL,
   width = NULL,
-  inline = FALSE
+  inline = FALSE,
+  stateInput = TRUE
 )
 }
 \arguments{
@@ -38,6 +39,8 @@ To limit the number of selection possible, see example below.}
 \item{width}{The width of the input : 'auto', 'fit', '100px', '75\%'.}
 
 \item{inline}{Display picker inline, to have label and menu on same line use \code{width = "fit"}.}
+
+\item{stateInput}{Activate or deactivate the special input value \verb{input$<inputId>_open} to know if the menu is opened or not, see details.}
 }
 \value{
 A select control that can be added to a UI definition.

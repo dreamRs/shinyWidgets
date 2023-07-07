@@ -94,12 +94,14 @@ $.extend(pickerInputBinding, {
   },
   initialize: function initialize(el) {
     $(el).selectpicker();
-    $(el).on("shown.bs.select", function(e) {
-      Shiny.setInputValue(el.id + "_open", true);
-    });
-    $(el).on("hidden.bs.select", function(e) {
-      Shiny.setInputValue(el.id + "_open", false);
-    });
+    if ($(el).attr("data-state-input") === "true") {
+      $(el).on("shown.bs.select", function(e) {
+        Shiny.setInputValue(el.id + "_open", true);
+      });
+      $(el).on("hidden.bs.select", function(e) {
+        Shiny.setInputValue(el.id + "_open", false);
+      });
+    }
     // TEMPORARY FIX FOR SHINY V1.6.0
     $(document).off("focusout.dropdown.data-api");
   }

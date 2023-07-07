@@ -135,6 +135,7 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
               choices = input$choices,
               multiple = TRUE,
               width = "100%",
+              stateInput = FALSE,
               options = modifyList(
                 x = options,
                 val = list(
@@ -160,6 +161,7 @@ pickerGroupUI <- function(id, params, label = NULL, btn_label = "Reset filters",
           choices = x$choices,
           multiple = TRUE,
           width = "100%",
+          stateInput = FALSE,
           options = modifyList(
             x = options,
             val = list(

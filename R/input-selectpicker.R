@@ -16,6 +16,7 @@
 #' @param choicesOpt Options for choices in the dropdown menu.
 #' @param width The width of the input : 'auto', 'fit', '100px', '75%'.
 #' @param inline Display picker inline, to have label and menu on same line use \code{width = "fit"}.
+#' @param stateInput Activate or deactivate the special input value `input$<inputId>_open` to know if the menu is opened or not, see details.
 #'
 #' @seealso \link{updatePickerInput} to update value server-side.
 #'
@@ -75,7 +76,8 @@ pickerInput <- function(inputId,
                         options = list(),
                         choicesOpt = NULL,
                         width = NULL,
-                        inline = FALSE) {
+                        inline = FALSE,
+                        stateInput = TRUE) {
   choices <- choicesWithNames(choices)
   selected <- restoreInput(id = inputId, default = selected)
   if (!is.null(options) && length(options) > 0)
@@ -92,6 +94,8 @@ pickerInput <- function(inputId,
     else x
   })
   maxOptGroup <- options[["data-max-options-group"]]
+
+  options[["data-state-input"]] <- ifelse(isTRUE(stateInput), "true", "false")
 
   selectTag <- tag("select", dropNulls(options))
   selectTag <- tagAppendAttributes(
