@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.6.9830</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.6.9840</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,8 @@
 <span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  choicesOpt <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  inline <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  inline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  stateInput <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -104,6 +105,10 @@ To limit the number of selection possible, see example below.</p></dd>
 
 <dt>inline</dt>
 <dd><p>Display picker inline, to have label and menu on same line use <code>width = "fit"</code>.</p></dd>
+
+
+<dt>stateInput</dt>
+<dd><p>Activate or deactivate the special input value <code>input$&lt;inputId&gt;_open</code> to know if the menu is opened or not, see details.</p></dd>
 
 </dl></div>
     <div class="section level2">
