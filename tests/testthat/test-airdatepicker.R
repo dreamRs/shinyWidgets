@@ -32,7 +32,7 @@ test_that("Default", {
 
   expect_identical(object = air$attribs$class, expected = "form-group shiny-input-container")
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$id, expected = "default")
-  expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker")
+  expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker form-control")
 
   expect_identical(object = options$value, expected = as.character(Sys.Date()))
 
@@ -54,7 +54,7 @@ test_that("Months", {
 
   expect_identical(object = air$attribs$class, expected = "form-group shiny-input-container")
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$id, expected = "month")
-  expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker")
+  expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker form-control")
 
   expect_identical(object = options$options$view, expected = "months")
 
@@ -76,7 +76,7 @@ test_that("Years", {
 
   expect_identical(object = air$attribs$class, expected = "form-group shiny-input-container")
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$id, expected = "year")
-  expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker")
+  expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker form-control")
 
   expect_identical(object = options$options$view, expected = "years")
 

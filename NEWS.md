@@ -1,7 +1,10 @@
 shinyWidgets 0.8.0
 ======================
 
-* `airDatepickerInput()` : added argument `disabledDaysOfWeek` to disable day(s) of the week.
+* `airDatepickerInput()` : added arguments :
+    - `disabledDaysOfWeek` to disable day(s) of the week.
+    - `readonly` to prevent edit in the input field.
+    - `onkeydown` to add onkeydown attribute on the input field.
 * `materialSwitch()` : click on the label now toggle the switch [#582](https://github.com/dreamRs/shinyWidgets/issues/582).
 * `pickerInput()` : added argument `stateInput` to activate or deactivate the special input value `input$<inputId>_open` allowing to know if the menu is opened or not.
 * Updated virtual-select-plugin to 1.0.39 (fix [#601](https://github.com/dreamRs/shinyWidgets/issues/601)).

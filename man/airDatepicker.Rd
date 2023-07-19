@@ -40,6 +40,8 @@ airDatepickerInput(
   addonAttributes = list(class = "btn-outline-secondary"),
   language = "en",
   inline = FALSE,
+  readonly = FALSE,
+  onkeydown = NULL,
   width = NULL
 )
 
@@ -77,7 +79,7 @@ If \code{numeric} is passed, then amount of selected dates will be limited by it
 
 \item{placeholder}{A character string giving the user a hint as to what can be entered into the control.}
 
-\item{dateFormat}{Format to use to display date(s), default to \code{"yyyy-MM-dd"},
+\item{dateFormat}{Format to use to display date(s), default to \code{yyyy-MM-dd},
 see \href{https://air-datepicker.com/docs?scrollTo=dateFormat}{online documentation} for possible values.}
 
 \item{firstDay}{Day index from which week will be started. Possible values are from 0 to 6, where
@@ -110,7 +112,7 @@ if a \code{Date} is used, it will set view to the given date and select it..}
 
 \item{autoClose}{If \code{TRUE}, then after date selection, datepicker will be closed.}
 
-\item{timepickerOpts}{Options for timepicker, see \link{timepickerOptions}.}
+\item{timepickerOpts}{Options for timepicker, see \code{\link[=timepickerOptions]{timepickerOptions()}}.}
 
 \item{position}{Where calendar should appear, a two word string like
 \code{'bottom left'} (default), or \code{'top right'}, \code{'left top'}.}
@@ -123,8 +125,8 @@ or when calendar is \code{'close'}d.}
 \item{toggleSelected}{When \code{TRUE}, in range mode, it's not possible to select the same date as start and end.}
 
 \item{addon}{Display a calendar icon to \code{'right'} or the \code{'left'}
-of the widget, or \code{'none'}. This icon act likes an \code{actionButton},
-you can retrieve value server-side with \code{input$<inputId>_button}.}
+of the widget, or \code{'none'}. This icon act like an \code{\link[shiny:actionButton]{shiny::actionButton()}},
+you can retrieve value server-side with \verb{input$<inputId>_button}.}
 
 \item{addonAttributes}{A \code{list()} of additional attributes to use for the addon tag, like \code{class} for example.}
 
@@ -134,7 +136,11 @@ you can retrieve value server-side with \code{input$<inputId>_button}.}
 
 \item{inline}{If \code{TRUE}, datepicker will always be visible.}
 
-\item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.}
+\item{readonly}{If \code{TRUE}, datepicker will be readonly and the input field won't be editable.}
+
+\item{onkeydown}{Attribute passed to the input field.}
+
+\item{width}{The width of the input, e.g. \code{'400px'}, or \verb{100\%}.}
 
 \item{dateTimeSeparator}{Separator between date and time, default to \code{" "}.}
 

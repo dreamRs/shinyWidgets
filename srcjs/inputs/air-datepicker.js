@@ -244,12 +244,12 @@ $.extend(AirDatepickerBindings, {
     dp.selectDate(newdate);
   },
   subscribe: (el, callback) => {
-    $(el).on("change", function(event) {
+    $(el).on("change.AirDatepickerBinding", function(event) {
       callback();
     });
   },
   unsubscribe: el => {
-    $(el).off(".AirDatepickerBindings");
+    $(el).off(".AirDatepickerBinding");
   },
   receiveMessage: (el, data) => {
     var dp = AirDatepickerBindings.store[el.id];
