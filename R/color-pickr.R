@@ -51,7 +51,7 @@ colorPickr <- function(inputId,
                        i18n = NULL,
                        pickr_width = NULL,
                        width = NULL) {
-  
+
   selected <- restoreInput(id = inputId, default = selected)
   theme <- match.arg(theme)
   update <- match.arg(update)
@@ -115,10 +115,8 @@ colorPickr <- function(inputId,
   tags$div(
     class = "form-group shiny-input-container",
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
-    tags$label(
-      class = "control-label",
-      `for` = inputId, label,
-      class = if (is.null(label)) "shiny-label-null",
+    tagAppendAttributes(
+      label_input(inputId, label),
       style = if (isTRUE(useAsButton)) "vertical-align: bottom;"
     ),
     tags$div(

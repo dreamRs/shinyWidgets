@@ -86,13 +86,7 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
     class = if (inline) "shiny-input-container-inline",
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
     style = if (inline) "display: inline-block;",
-    tags$label(
-      `for` = inputId,
-      class = "control-label",
-      class = if (is.null(label)) "shiny-label-null",
-      id = paste0(inputId, "-label"),
-      label
-    ),
+    label_input(inputId, label),
     tags$div(
       style = if (!is.null(pips)) "margin-bottom: 40px;",
       style = if (tooltips) "padding-left: 10px;",

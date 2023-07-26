@@ -251,7 +251,7 @@ airDatepickerInput <- function(inputId,
     class = "form-group shiny-input-container",
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
-    if (!is.null(label)) tags$label(label, class = "control-label", `for` = inputId),
+    label_input(inputId, label),
     tagAir,
     tags$script(
       type = "application/json",

@@ -50,13 +50,7 @@ treeInput <- function(inputId,
   tags$div(
     class = "form-group shiny-input-container",
     style = css(width = validateCssUnit(width)),
-    tags$label(
-      label,
-      class = "control-label",
-      class = if (is.null(label)) "shiny-label-null",
-      id = paste0(inputId, "-label"),
-      `for` = inputId
-    ),
+    label_input(inputId, label),
     tags$div(
       id = inputId,
       class = "tree-widget",

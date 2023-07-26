@@ -103,13 +103,7 @@ multiInput <- function(inputId,
   tags$div(
     class = "form-group shiny-input-container",
     style = if (!is.null(width)) paste("width:", validateCssUnit(width)),
-    tags$label(
-      id = paste0(inputId, "-label"),
-      class = "control-label",
-      class = if (is.null(label)) "shiny-label-null",
-      `for` = inputId,
-      label
-    ),
+    label_input(inputId, label),
     selectTag,
     tags$script(
       type = "application/json",

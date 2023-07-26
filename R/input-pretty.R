@@ -406,12 +406,7 @@ prettyCheckboxGroup <- function(inputId,
     id = inputId,
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
     class = divClass,
-    tags$label(
-      class = "control-label",
-      `for` = inputId,
-      class = if (is.null(label)) "shiny-label-null",
-      label
-    ),
+    label_input(inputId, label),
     options
   )
   attachShinyWidgetsDep(checkgroupTag, "pretty")
@@ -667,12 +662,7 @@ prettyRadioButtons <- function(inputId,
     id = inputId,
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
     class = divClass,
-    tags$label(
-      class = "control-label",
-      `for` = inputId,
-      class = if (is.null(label)) "shiny-label-null",
-      label
-    ),
+    label_input(inputId, label),
     options
   )
   attachShinyWidgetsDep(radioTag, "pretty")

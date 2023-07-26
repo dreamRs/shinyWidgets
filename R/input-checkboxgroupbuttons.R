@@ -52,13 +52,7 @@ checkboxGroupButtons <- function(inputId,
   checkboxGroupButtonsTag <- tags$div(
     class = "form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
-    tags$label(
-      id = paste0(inputId, "-label"),
-      class = "control-label",
-      `for` = inputId,
-      label,
-      class = if (is.null(label)) "shiny-label-null",
-    ),
+    label_input(inputId, label),
     if (!is.null(label)) tags$br(),
     tags$div(
       id = inputId,

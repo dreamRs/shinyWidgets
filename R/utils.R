@@ -183,3 +183,12 @@ sanitize <- function(x) {
   paste0("id", x)
 }
 
+label_input <- function(inputId, label) {
+  tags$label(
+    label,
+    class = "control-label",
+    class = if (is.null(label)) "shiny-label-null",
+    id = paste0(inputId, "-label"),
+    `for` = inputId
+  )
+}

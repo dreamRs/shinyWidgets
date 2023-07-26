@@ -98,12 +98,7 @@ numericRangeInput <- function(inputId,
       id = inputId,
       class = "shiny-numeric-range-input form-group shiny-input-container",
       style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
-      tags$label(
-        class = "control-label",
-        `for` = inputId,
-        label,
-        class = if (is.null(label)) "shiny-label-null"
-      ),
+      label_input(inputId, label),
       tags$div(
         class = "input-numeric-range input-group",
         fromTag,

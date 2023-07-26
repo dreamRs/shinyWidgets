@@ -498,7 +498,7 @@ autonumericInput <- function(inputId, label, value,
   tags$div(
     class = "form-group shiny-input-container",
     style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
-    if (!is.null(label)) tags$label(`for` = inputId, label),
+    label_input(inputId, label),
     tags$input(
       type = "text",
       style = paste0("text-align: ", align, ";", style),

@@ -103,7 +103,7 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
     class = if (flat) "shiny-input-container-inline",
     style = if (!is.null(width))
       paste0("width: ", htmltools::validateCssUnit(width), ";"),
-    htmltools::tags$label(label, `for` = inputId),
+    label_input(inputId, label),
     if (flat) htmltools::tags$br(),
     do.call(htmltools::tags$input, spectrumProps)
   )

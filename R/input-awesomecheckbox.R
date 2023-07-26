@@ -181,12 +181,9 @@ awesomeCheckboxGroup <- function(inputId,
     style = if (!is.null(width))
       paste0("width: ", validateCssUnit(width), ";"),
     class = divClass,
-    tags$label(
-      class = "control-label",
-      label,
-      `for` = inputId,
-      style = "margin-bottom: 10px;",
-      class = if (is.null(label)) "shiny-label-null"
+    tagAppendAttributes(
+      label_input(inputId, label),
+      style = "margin-bottom: 10px;"
     ),
     options
   )
