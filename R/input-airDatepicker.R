@@ -317,10 +317,16 @@ markup_airdatepicker_input_group_button <- function(inputId, attributes = list()
 
 
 
-#' @param dateTimeSeparator Separator between date and time, default to \code{" "}.
-#' @param timeFormat Desirable time format. You can use \code{h} (hours), \code{hh}
-#'  (hours with leading zero), \code{i} (minutes), \code{ii} (minutes with leading zero),
-#'  \code{aa} (day period - 'am' or 'pm'), \code{AA} (day period capitalized)
+#' @param dateTimeSeparator Separator between date and time, default to `" "`.
+#' @param timeFormat Desirable time format. You can use:
+#'    * `h` — hours in 12-hour mode
+#'    * `hh` — hours in 12-hour mode with leading zero
+#'    * `H` — hours in 24-hour mode
+#'    * `HH` — hours in 24-hour mode with leading zero
+#'    * `m` — minutes
+#'    * `mm` — minutes with leading zero
+#'    * `aa` — day period lower case
+#'    * `AA` — day period upper case
 #' @param minHours Minimal hours value, must be between 0 and 23. You will not be able to choose value lower than this.
 #' @param maxHours Maximum hours value, must be between 0 and 23. You will not be able to choose value higher than this.
 #' @param minMinutes Minimal minutes value, must be between 0 and 59. You will not be able to choose value lower than this.
@@ -331,10 +337,14 @@ markup_airdatepicker_input_group_button <- function(inputId, attributes = list()
 #' @rdname airDatepicker
 #' @export
 #'
-timepickerOptions <- function(dateTimeSeparator = NULL, timeFormat = NULL,
-                              minHours = NULL, maxHours = NULL,
-                              minMinutes = NULL, maxMinutes = NULL,
-                              hoursStep = NULL, minutesStep = NULL) {
+timepickerOptions <- function(dateTimeSeparator = NULL,
+                              timeFormat = NULL,
+                              minHours = NULL,
+                              maxHours = NULL,
+                              minMinutes = NULL,
+                              maxMinutes = NULL,
+                              hoursStep = NULL,
+                              minutesStep = NULL) {
   dropNulls(list(
     dateTimeSeparator = dateTimeSeparator,
     timeFormat = timeFormat,

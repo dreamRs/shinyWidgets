@@ -144,9 +144,17 @@ you can retrieve value server-side with \verb{input$<inputId>_button}.}
 
 \item{dateTimeSeparator}{Separator between date and time, default to \code{" "}.}
 
-\item{timeFormat}{Desirable time format. You can use \code{h} (hours), \code{hh}
-(hours with leading zero), \code{i} (minutes), \code{ii} (minutes with leading zero),
-\code{aa} (day period - 'am' or 'pm'), \code{AA} (day period capitalized)}
+\item{timeFormat}{Desirable time format. You can use:
+\itemize{
+\item \code{h} — hours in 12-hour mode
+\item \code{hh} — hours in 12-hour mode with leading zero
+\item \code{H} — hours in 24-hour mode
+\item \code{HH} — hours in 24-hour mode with leading zero
+\item \code{m} — minutes
+\item \code{mm} — minutes with leading zero
+\item \code{aa} — day period lower case
+\item \code{AA} — day period upper case
+}}
 
 \item{minHours}{Minimal hours value, must be between 0 and 23. You will not be able to choose value lower than this.}
 
