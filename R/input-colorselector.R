@@ -164,8 +164,7 @@ colorSelectorDrop <- function(inputId,
   )
   dropTag <- htmltools::tags$ul(
     class = "dropdown-menu",
-    style = if (!is.null(width))
-      paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     colorSelectorInput(
       inputId = inputId,
       label = label,

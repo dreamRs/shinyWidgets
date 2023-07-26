@@ -104,8 +104,7 @@ dropdownButton <- function(...,
     class = paste("dropdown-menu", ifelse(right, "dropdown-menu-right", "")),
     class = "dropdown-shinyWidgets",
     id = paste("dropdown-menu", inputId, sep = "-"),
-    style = if (!is.null(width))
-      paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     `aria-labelledby` = inputId,
     lapply(
       X = list(...),

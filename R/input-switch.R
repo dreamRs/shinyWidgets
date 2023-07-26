@@ -95,7 +95,7 @@ switchInput <- function(inputId,
     class = "form-group shiny-input-container",
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block;",
-    style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     inputTag
   )
   # Dependencies

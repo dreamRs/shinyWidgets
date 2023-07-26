@@ -113,7 +113,7 @@ pickerInput <- function(inputId,
   pickerTag <- tags$div(
     class = "form-group shiny-input-container",
     class = if (isTRUE(inline)) "shiny-input-container-inline",
-    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     style = if (isTRUE(inline)) "display: inline-block;",
     tagAppendAttributes(
       label_input(inputId, label),

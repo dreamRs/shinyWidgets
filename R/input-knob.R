@@ -114,7 +114,7 @@ knobInput <- function(inputId, label, value,
   inputTag <- do.call(tags$input, knobParams)
   knobInputTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     if (!is.null(fontSize)) {
       tags$style(sprintf(
         "#%s {font-size: %s !important;}",

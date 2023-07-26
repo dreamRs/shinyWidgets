@@ -137,8 +137,7 @@ awesomeRadio <- function(inputId,
     id = inputId,
     class = "form-group shiny-input-radiogroup awesome-bootstrap-radio shiny-input-container",
     class = if (inline) "shiny-input-container-inline",
-    style = if (!is.null(width))
-      paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     tagAppendAttributes(
       label_input(inputId, label),
       style = "margin-bottom: 5px;"

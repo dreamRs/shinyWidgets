@@ -31,7 +31,7 @@ textInputIcon <- function(inputId,
     if (!is.null(label)) {
       tags$label(label, class = "control-label", `for` = inputId)
     },
-    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     tags$div(
       class = "input-group",
       class = validate_size(size),

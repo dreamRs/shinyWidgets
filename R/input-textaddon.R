@@ -38,7 +38,7 @@ textInputAddon <- function (inputId, label, value = "", placeholder = NULL, addo
   htmltools::tags$div(
     class = "form-group shiny-input-container",
     htmltools::tags$label(label, `for` = inputId),
-    style = if (!is.null(width)) paste0("width: ", htmltools::validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     htmltools::tags$div(
       style = "margin-bottom: 5px;", class="input-group",
       htmltools::tags$span(class="input-group-addon", addon),

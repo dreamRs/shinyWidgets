@@ -43,7 +43,7 @@ prettySwitch <- function(inputId,
     message("slim = TRUE & fill = TRUE don't work well together.")
   switchTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))  paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
@@ -150,7 +150,7 @@ prettyToggle <- function(inputId,
     inputTag$attribs$checked <- "checked"
   toggleTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))  paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
@@ -267,7 +267,7 @@ prettyCheckbox <- function(inputId,
     inputTag$attribs$checked <- "checked"
   checkTag <- tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width))  paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
@@ -404,7 +404,7 @@ prettyCheckboxGroup <- function(inputId,
     divClass <- paste(divClass, "shiny-input-container-inline")
   checkgroupTag <- tags$div(
     id = inputId,
-    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     class = divClass,
     label_input(inputId, label),
     options
@@ -660,7 +660,7 @@ prettyRadioButtons <- function(inputId,
     divClass <- paste(divClass, "shiny-input-container-inline")
   radioTag <- htmltools::tags$div(
     id = inputId,
-    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     class = divClass,
     label_input(inputId, label),
     options

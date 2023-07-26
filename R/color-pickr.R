@@ -114,7 +114,7 @@ colorPickr <- function(inputId,
 
   tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width)) paste0("width: ", validateCssUnit(width), ";"),
+    style = css(width = validateCssUnit(width)),
     tagAppendAttributes(
       label_input(inputId, label),
       style = if (isTRUE(useAsButton)) "vertical-align: bottom;"

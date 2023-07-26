@@ -102,7 +102,7 @@ multiInput <- function(inputId,
   )
   tags$div(
     class = "form-group shiny-input-container",
-    style = if (!is.null(width)) paste("width:", validateCssUnit(width)),
+    style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
     selectTag,
     tags$script(
