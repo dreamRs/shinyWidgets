@@ -163,18 +163,12 @@ normalizeChoicesArgs <- function(choices, choiceNames, choiceValues, mustExist =
   return(list(choiceNames = as.list(choiceNames), choiceValues = as.list(as.character(choiceValues))))
 }
 
-validateIcon <- function(icon) {
-  if (is.null(icon) || identical(icon, character(0))) {
-    return(icon)
-  }
-  else if (inherits(icon, "shiny.tag") && icon$name == "i") {
-    return(icon)
-  }
-  else {
-    stop("Invalid icon. Use Shiny's 'icon()' function to generate a valid icon")
-  }
-}
 
+tag_add_class_icon <- function(x) {
+  if (!inherits(x, "shiny.tag"))
+    return(x)
+  htmltools::tagAppendAttributes(x, class ="icon")
+}
 
 
 formatNoSci <- function(x) {

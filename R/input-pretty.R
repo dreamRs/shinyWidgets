@@ -140,14 +140,8 @@ prettyToggle <- function(inputId,
   status_off <- match.arg(status_off, c("default", "primary",
                                         "success", "info", "danger", "warning"))
   shape <- match.arg(shape)
-  if(!is.null(icon_on)) {
-    icon_on <- validateIcon(icon_on)
-    icon_on$attribs$class <- paste("icon", icon_on$attribs$class)
-  }
-  if(!is.null(icon_off)) {
-    icon_off <- validateIcon(icon_off)
-    icon_off$attribs$class <- paste("icon", icon_off$attribs$class)
-  }
+  icon_on <- tag_add_class_icon(icon_on)
+  icon_off <- tag_add_class_icon(icon_off)
   if (!is.null(animation))
     animation <- match.arg(animation, c("smooth", "jelly", "tada",
                                         "rotate", "pulse"))
@@ -263,10 +257,8 @@ prettyCheckbox <- function(inputId,
   status <- match.arg(status, c("default", "primary", "success",
                                 "info", "danger", "warning"))
   shape <- match.arg(shape)
-  if(!is.null(icon)) {
-    icon <- validateIcon(icon)
-    icon$attribs$class <- paste("icon", icon$attribs$class)
-  }
+  icon <- tag_add_class_icon(icon)
+
   if (!is.null(animation))
     animation <- match.arg(animation, c("smooth", "jelly", "tada",
                                         "rotate", "pulse"))
@@ -440,10 +432,7 @@ generatePretty <- function(inputId,
                            icon = NULL,
                            plain = FALSE,
                            bigger = FALSE) {
-  if(!is.null(icon)) {
-    icon <- validateIcon(icon)
-    icon$attribs$class <- paste("icon", icon$attribs$class)
-  }
+  icon <- tag_add_class_icon(icon)
   options <- mapply(choiceValues, choiceNames, FUN = function(value,
                                                               name) {
     inputTag <- tags$input(type = type, name = inputId, value = value)
