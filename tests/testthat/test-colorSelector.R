@@ -23,9 +23,9 @@ test_that("Default drp", {
                "firebrick", "palegoldenrod",
                "forestgreen")
   tagcs <- colorSelectorDrop(
-    inputId = "mycolor1", label = NULL,
+    inputId = "mycolor1",
+    label = NULL,
     choices = choices
   )
   expect_identical(tagcs$attribs$class, "dropdown")
-  expect_false(grepl(pattern = "label", x = as.character(tagcs)))
 })

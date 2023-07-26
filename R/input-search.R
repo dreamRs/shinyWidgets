@@ -81,7 +81,7 @@ searchInput <- function(inputId,
   searchTag <- htmltools::tags$div(
     class = "form-group shiny-input-container",
     style = css(width = validateCssUnit(width)),
-    if (!is.null(label)) htmltools::tags$label(label, class = "control-label", `for` = inputId),
+    label_input(inputId, label),
     htmltools::tags$div(
       id = inputId,
       `data-reset` = !is.null(resetValue),

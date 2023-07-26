@@ -28,9 +28,7 @@ textInputIcon <- function(inputId,
   value <- shiny::restoreInput(id = inputId, default = value)
   tag <- tags$div(
     class = "form-group shiny-input-container",
-    if (!is.null(label)) {
-      tags$label(label, class = "control-label", `for` = inputId)
-    },
+    label_input(inputId, label),
     style = css(width = validateCssUnit(width)),
     tags$div(
       class = "input-group",
@@ -159,9 +157,7 @@ numericInputIcon <- function(inputId,
   value <- shiny::restoreInput(id = inputId, default = value)
   tag <- tags$div(
     class = "form-group shiny-input-container",
-    if (!is.null(label)) {
-      tags$label(label, class = "control-label", `for` = inputId)
-    },
+    label_input(inputId, label),
     style = css(width = validateCssUnit(width)),
     tags$div(
       class = "input-group",

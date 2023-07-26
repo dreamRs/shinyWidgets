@@ -63,7 +63,7 @@ colorSelectorInput <- function(inputId,
     `data-toggle`="buttons",
     id = inputId,
     style = "margin-top: 3px; margin-bottom: 10px; ",
-    if (!is.null(label)) htmltools::tagList(htmltools::tags$label(class="control-label", label), htmltools::tags$br()),
+    label_input(inputId, label),
     colorOptions(
       inputId = inputId,
       choices = choices,
@@ -85,7 +85,8 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
     if (is.list(choice)) {
       htmltools::tagList(
         htmltools::tags$div(
-          class="btn-group",
+          class = "btn-group",
+          style = "display: block;",
           colorOptions(inputId, choice, selected, mode, display_label)
         ), if (display_label) htmltools::tags$em(htmltools::HTML(names(choices)[i])),
         htmltools::tags$br()
@@ -159,8 +160,12 @@ colorSelectorDrop <- function(inputId,
   btnId <- paste("btn", inputId, sep = "-")
   funButton <- if (circle) circleButton else squareButton
   btn <- funButton(
-    inputId = btnId, icon = NULL, status = "default", size = size,
-    class = "dropdown-toggle", `data-toggle` = "dropdown"
+    inputId = btnId,
+    icon = NULL,
+    status = "default",
+    size = size,
+    class = "dropdown-toggle",
+    `data-toggle` = "dropdown"
   )
   dropTag <- htmltools::tags$ul(
     class = "dropdown-menu",
