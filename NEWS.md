@@ -1,6 +1,7 @@
 shinyWidgets 0.8.0
 ======================
 
+* `shinyWidgetsGallery()` new look for the gallery and two new tabs (for `airDatepickerInput()` and `virtualSelectInput()`).
 * `airDatepickerInput()` : added arguments :
     - `disabledDaysOfWeek` to disable day(s) of the week.
     - `readonly` to prevent edit in the input field.

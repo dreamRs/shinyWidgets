@@ -14,7 +14,7 @@ function(input, output, session) {
   # cleanup app
   session$onSessionEnded(function() {
     suppressWarnings(
-      rm(.shinyWidgetGalleryFuns, .shinyWidgetGalleryId, envir = globalenv())
+      rm(.shinyWidgetGalleryFuns, .shinyWidgetGalleryId, ID, envir = globalenv())
     )
     shiny::stopApp()
   })
