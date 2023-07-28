@@ -8,9 +8,8 @@
 #  ------------------------------------------------------------------------
 
 
-# shinyWidgets examples ---------------------------------------------------
-
-library(shinydashboard) # shinydashboard bs4Dash
+library(htmltools)
+library(bslib)
 library(shinyWidgets)
 
 if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
@@ -48,7 +47,12 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
     do.call(fun, args), htmltools::hr(),
     htmltools::tags$b("Value :"),
     shiny::verbatimTextOutput(outputId = paste0("res", args$inputId)),
-    htmltools::tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href=paste0("#showcode", args$inputId))),
+    tags$a(
+      icon("code"),
+      "Show code",
+      `data-bs-toggle` = "collapse",
+      href = paste0("#showcode", args$inputId)
+    ),
     htmltools::tags$div(
       class="collapse", id=paste0("showcode", args$inputId),
       .shinyWidgetGalleryFuns$rCodeContainer(
@@ -60,17 +64,24 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
 }
 
 .shinyWidgetGalleryFuns$box_wrapper <- function(title, ..., footer = NULL) {
-  box(
-    title = title, status = "danger", width = NULL, footer = footer,
-    ...
+  bslib::card(
+    if (!is.null(title)) bslib::card_header(title, class = "bg-primary text-light"),
+    bslib::card_body(...),
+    if (!is.null(footer)) bslib::card_footer(footer)
   )
 }
 
 .shinyWidgetGalleryFuns$pb_code <- function(id, ui, server) {
   htmltools::tagList(
-    htmltools::tags$b(tags$a(icon("code"), "Show code", `data-toggle`="collapse", href=paste0("#showcode", id))),
+    tags$a(
+      icon("code"),
+      "Show code",
+      `data-bs-toggle` = "collapse",
+      href = paste0("#showcode", id)
+    ),
     htmltools::tags$div(
-      class="collapse", id=paste0("showcode", id),
+      class = "collapse",
+      id = paste0("showcode", id),
       .shinyWidgetGalleryFuns$rCodeContainer(
         id=paste0("code", id),
         paste(
@@ -127,6 +138,21 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
     paste(func(), collapse = "\n")
   })
 }
+
+ID <- function(.shinyWidgetGalleryId) {
+  tmp <- paste0("Id", sprintf("%03d", .shinyWidgetGalleryId))
+  .shinyWidgetGalleryId <<- .shinyWidgetGalleryId + 1
+  return(tmp)
+}
+
+
+
+# load tabs UI
+for (tab in list.files("tabs/")) {
+  source(file = file.path("tabs", tab))
+}
+rm(tab)
+
 
 
 # Message for tests

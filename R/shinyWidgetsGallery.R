@@ -15,8 +15,6 @@
 #'
 #' }
 shinyWidgetsGallery <- function() { # nocov start
-  if (!requireNamespace(package = "shinydashboard"))
-    message("Package 'shinydashboard' is required to run this function")
   shiny::shinyAppDir(system.file("examples/shinyWidgets", package = "shinyWidgets", mustWork = TRUE))
 }
 # nocov end
