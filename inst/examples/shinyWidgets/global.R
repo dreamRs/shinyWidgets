@@ -65,9 +65,9 @@ if (any(ls(".GlobalEnv") %in% ls("package:shinyWidgets")))
 
 .shinyWidgetGalleryFuns$box_wrapper <- function(title, ..., footer = NULL) {
   bslib::card(
-    bslib::card_header(title, class = "bg-primary text-light"),
+    if (!is.null(title)) bslib::card_header(title, class = "bg-primary text-light"),
     bslib::card_body(...),
-    bslib::card_footer(footer)
+    if (!is.null(footer)) bslib::card_footer(footer)
   )
 }
 

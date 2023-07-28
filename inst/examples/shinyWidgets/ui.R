@@ -31,6 +31,7 @@ ui <- page_navbar(
     class = "text-light", paste0("v", packageVersion("shinyWidgets"))
   ),
   header = tags$div(
+    class = "my-2",
     navlistPanel(
       id = "tabs",
       well = TRUE,
