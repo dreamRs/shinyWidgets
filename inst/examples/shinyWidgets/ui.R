@@ -41,85 +41,85 @@ ui <- page_navbar(
         title = "Overview",
         value = "tabOverview",
         icon = icon("table-cells"),
-        .shinyWidgetGalleryFuns$tabOverview
+        .shinyWidgetGalleryFuns$tabOverview()
       ),
       tabPanel(
         title = "switchInput",
         value = "tabswitchInput",
         icon = icon("toggle-on"),
-        .shinyWidgetGalleryFuns$tabswitchInput
+        .shinyWidgetGalleryFuns$tabswitchInput()
       ),
       tabPanel(
         title = "Pretty Checkboxes & Radios",
         value = "tabPretty",
         icon = icon("circle-check"),
-        .shinyWidgetGalleryFuns$tabPretty
+        .shinyWidgetGalleryFuns$tabPretty()
       ),
       tabPanel(
         title = "Awesome Checkboxes & Radios",
         value = "tabAwesome",
         icon = icon("square-check"),
-        .shinyWidgetGalleryFuns$tabAwesome
+        .shinyWidgetGalleryFuns$tabAwesome()
       ),
       tabPanel(
         title = "checkboxGroup Buttons",
         value = "tabcheckButtons",
         icon = icon("square"),
-        .shinyWidgetGalleryFuns$tabcheckButtons
+        .shinyWidgetGalleryFuns$tabcheckButtons()
       ),
       tabPanel(
         title = "radio Buttons",
         value = "tabradioButtons",
         icon = icon("circle"),
-        .shinyWidgetGalleryFuns$tabradioButtons
+        .shinyWidgetGalleryFuns$tabradioButtons()
       ),
       tabPanel(
         title = "materialSwitch",
         value = "tabMaterialSwitch",
         icon = icon("toggle-off"),
-        .shinyWidgetGalleryFuns$tabMaterialSwitch
+        .shinyWidgetGalleryFuns$tabMaterialSwitch()
       ),
       tabPanel(
         title = "pickerInput",
         value = "tabPickerInput",
         icon = icon("caret-down"),
-        .shinyWidgetGalleryFuns$tabPickerInput
+        .shinyWidgetGalleryFuns$tabPickerInput()
       ),
       tabPanel(
         title = "virtualSelect",
         value = "tabVirtualSelect",
         icon = icon("square-caret-down"),
-        .shinyWidgetGalleryFuns$tabVirtualSelect
+        .shinyWidgetGalleryFuns$tabVirtualSelect()
       ),
       tabPanel(
         title = "airDatepicker",
         value = "tabAirDate",
         icon = icon("calendar"),
-        .shinyWidgetGalleryFuns$tabAirDate
+        .shinyWidgetGalleryFuns$tabAirDate()
       ),
       tabPanel(
         title = "sliderText",
         value = "tabSliderText",
         icon = icon("sliders"),
-        .shinyWidgetGalleryFuns$tabSliderText
+        .shinyWidgetGalleryFuns$tabSliderText()
       ),
       tabPanel(
         title = "progressBar",
         value = "tabProgressBars",
         icon = icon("list-check"),
-        .shinyWidgetGalleryFuns$tabProgressBars
+        .shinyWidgetGalleryFuns$tabProgressBars()
       ),
       tabPanel(
         title = "bttn",
         value = "tabBttn",
         icon = icon("square"),
-        .shinyWidgetGalleryFuns$tabBttn
+        .shinyWidgetGalleryFuns$tabBttn()
       ),
       tabPanel(
         title = "dropdowns & sweetalert",
         value = "tabOtherStuff",
         icon = icon("circle-plus"),
-        .shinyWidgetGalleryFuns$tabOtherStuff
+        .shinyWidgetGalleryFuns$tabOtherStuff()
       )
     )
   )

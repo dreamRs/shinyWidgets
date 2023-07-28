@@ -146,32 +146,12 @@ ID <- function(.shinyWidgetGalleryId) {
 }
 
 
-# dropdown code ----
-code_dropdownButton <- readLines(con = "code_dropdownButton.R")
-code_dropdownButton <- paste(code_dropdownButton, collapse = "\n")
-code_dropdown <- readLines(con = "code_dropdown.R")
-code_dropdown <- paste(code_dropdown, collapse = "\n")
-code_sa <- readLines(con = "code_sa.R")
-code_sa <- paste(code_sa, collapse = "\n")
-
-
-# Flags ----
-countries <- list(
-  "France", "United Kingdom", "Germany", "United States of America", "Belgium", "China", "Spain", "Netherlands", "Mexico",
-  "Italy", "Canada", "Brazil", "Denmark", "Norway", "Switzerland", "Luxembourg", "Israel", "Russian Federation",
-  "Turkey", "Saudi Arabia", "United Arab Emirates"
-)
-flags <- c("fr", "gb", "de", "us", "be", "cn", "es", "nl", "mx", "it", "ca", "br", "dk", "no", "ch", "lu", "il", "ru", "tr", "sa", "ae")
-flags <- sprintf("https://cdn.rawgit.com/lipis/flag-icon-css/master/flags/4x3/%s.svg", flags)
-
-
-
 
 # load tabs UI
 for (tab in list.files("tabs/")) {
   source(file = file.path("tabs", tab))
 }
-
+rm(tab)
 
 
 
