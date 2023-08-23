@@ -338,13 +338,23 @@ html_dependency_sweetalert2 <- function(theme = c("sweetalert2",
                                                   "bulma",
                                                   "borderless")) {
   theme <- match.arg(theme)
-  htmlDependency(
-    name = "sweetalert2",
-    version = "11.7.11",
-    src = c(href="shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
-    script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
-    stylesheet = sprintf("css/%s.min.css", theme)
-  )
+  if (getOption("shinyWidgets.sweetalert2-11.4.8", default = FALSE) == TRUE) {
+    htmlDependency(
+      name = "sweetalert2",
+      version = "11.4.8",
+      src = c(href="shinyWidgets/sweetalert2-11.4.8", file = "assets/sweetalert2-11.4.8"),
+      script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
+      stylesheet = sprintf("css/%s.min.css", theme)
+    )
+  } else {
+    htmlDependency(
+      name = "sweetalert2",
+      version = "11.7.27",
+      src = c(href="shinyWidgets/sweetalert2", file = "assets/sweetalert2"),
+      script = c("js/sweetalert2.min.js", "sweetalert-bindings.js"),
+      stylesheet = sprintf("css/%s.min.css", theme)
+    )
+  }
 }
 
 
