@@ -7,6 +7,5 @@
 #'   shinyWidgets::shinyWidgetsGallery()
 #' }
 #'
-#' @docType package
 #' @name shinyWidgets
-NULL
+"_PACKAGE"
