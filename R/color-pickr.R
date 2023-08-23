@@ -133,8 +133,7 @@ colorPickr <- function(inputId,
         toJSON(config, auto_unbox = TRUE, json_verbatim = TRUE)
       )
     ),
-    html_dependency_pickr(),
-    html_dependency_shinyWidgets()
+    html_dependency_pickr()
   )
 }
 

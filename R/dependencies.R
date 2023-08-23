@@ -377,24 +377,12 @@ html_dependency_picker <- function() {
 }
 
 html_dependency_airdatepicker <- function() {
-  version <- getOption("air-datepicker", default = 3)
-  if (version < 3) {
-    htmlDependency(
-      name = "air-datepicker",
-      version = "2.2.3",
-      package = "shinyWidgets",
-      src = c(href = "shinyWidgets/air-datepicker2", file = "assets/air-datepicker2"),
-      script = c("datepicker.min.js", "datepicker-bindings.js"),
-      stylesheet = c("datepicker.min.css", "airdatepicker-custom.css")
-    )
-  } else {
-    htmlDependency(
-      name = "air-datepicker",
-      version = "3.2.0",
-      src = c(file = system.file("packer", package = "shinyWidgets")),
-      script = "air-datepicker.js"
-    )
-  }
+  htmlDependency(
+    name = "air-datepicker",
+    version = "3.2.0",
+    src = c(file = system.file("packer", package = "shinyWidgets")),
+    script = "air-datepicker.js"
+  )
 }
 
 html_dependency_nouislider <- function() {
@@ -486,18 +474,24 @@ html_dependency_stati <- function() {
 
 
 html_dependency_pickr <- function() {
+  # htmlDependency(
+  #   name = "pickr",
+  #   version = "1.6.0",
+  #   src = list(href = "shinyWidgets/pickr-1.6.0", file = "assets/pickr-1.6.0"),
+  #   package = "shinyWidgets",
+  #   script = "js/pickr.min.js",
+  #   stylesheet = c(
+  #     "css/classic.min.css",
+  #     "css/monolith.min.css",
+  #     "css/nano.min.css"
+  #   ),
+  #   head = "<style>.pickr-color.disabled{cursor:not-allowed;}</style>",
+  #   all_files = FALSE
+  # )
   htmlDependency(
-    name = "pickr",
+    name = "colorpickr",
     version = "1.6.0",
-    src = list(href = "shinyWidgets/pickr-1.6.0", file = "assets/pickr-1.6.0"),
-    package = "shinyWidgets",
-    script = "js/pickr.min.js",
-    stylesheet = c(
-      "css/classic.min.css",
-      "css/monolith.min.css",
-      "css/nano.min.css"
-    ),
-    head = "<style>.pickr-color.disabled{cursor:not-allowed;}</style>",
-    all_files = FALSE
+    src = c(file = system.file("packer", package = "shinyWidgets")),
+    script = "colorpickr.js"
   )
 }

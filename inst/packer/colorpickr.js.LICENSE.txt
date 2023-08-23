@@ -1,0 +1,1 @@
+/*! Pickr 1.8.2 MIT | https://github.com/Simonwep/pickr */
