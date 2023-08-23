@@ -3,6 +3,7 @@
 \docType{package}
 \name{shinyWidgets}
 \alias{shinyWidgets}
+\alias{shinyWidgets-package}
 \title{shinyWidgets: Custom inputs widgets for Shiny.}
 \description{
 The shinyWidgets package provides several custom widgets to extend those available in package shiny
@@ -10,6 +11,33 @@ The shinyWidgets package provides several custom widgets to extend those availab
 \examples{
 if (interactive()) {
   shinyWidgets::shinyWidgetsGallery()
+}
+
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/dreamRs/shinyWidgets}
+  \item \url{https://dreamrs.github.io/shinyWidgets/}
+  \item Report bugs at \url{https://github.com/dreamRs/shinyWidgets/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Victor Perrier \email{victor.perrier@dreamrs.fr} [copyright holder]
+
+Authors:
+\itemize{
+  \item Fanny Meyer
+  \item David Granjon
+}
+
+Other contributors:
+\itemize{
+  \item Ian Fellows (Methods for mutating vertical tabs & updateMultiInput) [contributor]
+  \item Wil Davis (numericRangeInput function) [contributor]
+  \item Spencer Matthews (autoNumeric methods) [contributor]
+  \item  JavaScript and CSS libraries authors (All authors are listed in LICENSE.md) [contributor, copyright holder]
 }
 
 }
