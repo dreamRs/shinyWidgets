@@ -146,17 +146,26 @@ colorPickr <- function(inputId,
 #' @param session The session object passed to function given to shinyServer.
 #' @param inputId	The id of the input object.
 #' @param value The value to set for the input object.
-#' @param action Action to performon color-picker: enable, disable, show or hide.
+#' @param action Action to perform on color-picker: enable, disable, show or hide.
+#' @param swatches Optional color swatches.
 #'
 #' @return No return value.
 #' @export
 #'
 #' @rdname colorPickr
-updateColorPickr <- function(session = getDefaultReactiveDomain(), inputId, value = NULL, action = NULL) {
+updateColorPickr <- function(session = getDefaultReactiveDomain(),
+                             inputId,
+                             value = NULL,
+                             action = NULL,
+                             swatches = NULL) {
   if (!is.null(action)) {
     action <- match.arg(action, c("disable", "enable", "hide", "show"))
   }
-  message <- dropNulls(list(value = value, action = action))
+  message <- dropNulls(list(
+    value = value,
+    action = action,
+    swatches = list1(swatches)
+  ))
   session$sendInputMessage(inputId, message)
 }
 

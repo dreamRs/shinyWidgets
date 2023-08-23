@@ -29,7 +29,8 @@ updateColorPickr(
   session = getDefaultReactiveDomain(),
   inputId,
   value = NULL,
-  action = NULL
+  action = NULL,
+  swatches = NULL
 )
 }
 \arguments{
@@ -39,7 +40,7 @@ updateColorPickr(
 
 \item{selected}{Default selected value.}
 
-\item{swatches}{Optional color swatches. When \code{NULL}, swatches are disabled.}
+\item{swatches}{Optional color swatches.}
 
 \item{preview}{Display comparison between previous state and new color.}
 
@@ -72,7 +73,7 @@ bottom interaction bar. See link below for documentation.}
 
 \item{value}{The value to set for the input object.}
 
-\item{action}{Action to performon color-picker: enable, disable, show or hide.}
+\item{action}{Action to perform on color-picker: enable, disable, show or hide.}
 }
 \value{
 a color picker input widget that can be added to the UI of a shiny app.

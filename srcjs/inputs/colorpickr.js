@@ -56,6 +56,12 @@ $.extend(pickrColorBinding, {
   },
   receiveMessage: function(el, data) {
     var pickr = this.getPickr(el);
+    if (data.hasOwnProperty("swatches")) {
+      for (let i = pickr._swatchColors.length - 1; i > -1; i--) {
+    		pickr.removeSwatch(i);
+    	}
+    	data.swatches.forEach(swatch => pickr.addSwatch(swatch));
+    }
     if (data.hasOwnProperty("value")) {
       pickr.setColor(data.value);
     }

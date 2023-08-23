@@ -8,6 +8,7 @@ shinyWidgets 0.8.0
     - `onkeydown` to add onkeydown attribute on the input field.
 * `materialSwitch()` : click on the label now toggle the switch [#582](https://github.com/dreamRs/shinyWidgets/issues/582).
 * `pickerInput()` : added argument `stateInput` to activate or deactivate the special input value `input$<inputId>_open` allowing to know if the menu is opened or not.
+* `updateColorPickr()` : added argument `swatches` to update swatches from server.
 * Updated virtual-select-plugin to 1.0.39 (fix [#601](https://github.com/dreamRs/shinyWidgets/issues/601)).
 * Updated sweetalert2 to v11.7.11.
 * Updated air-datepicker to 3.3.5.
