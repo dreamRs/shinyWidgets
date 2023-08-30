@@ -1,9 +1,10 @@
 import $ from "jquery";
 import "shiny";
+import { updateLabel } from "../modules/utils";
 import noUiSlider from "nouislider";
 import "nouislider/dist/nouislider.css";
 import wNumb from "wnumb";
-import { updateLabel } from "../modules/utils";
+
 
 var noUiSliderBinding = new Shiny.InputBinding();
 $.extend(noUiSliderBinding, {
@@ -73,10 +74,12 @@ $.extend(noUiSliderBinding, {
     $(el).off(".noUiSliderBinding");
   },
   receiveMessage: function receiveMessage(el, data) {
+
     if (data.hasOwnProperty("label")) {
       var label = $("#" + el.id + "-label");
       updateLabel(data.label, label);
     }
+
     var slider = document.getElementById(el.id);
     if (data.disable) {
       slider.setAttribute("disabled", true);

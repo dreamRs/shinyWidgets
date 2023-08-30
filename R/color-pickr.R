@@ -26,6 +26,9 @@
 #'  See online documentation for more information: \url{https://github.com/Simonwep/pickr}.
 #'
 #' @return a color picker input widget that can be added to the UI of a shiny app.
+#'
+#' @seealso [updateColorPickr()] for updating from server.
+#'
 #' @export
 #'
 #'
@@ -145,16 +148,21 @@ colorPickr <- function(inputId,
 #'
 #' @param session The session object passed to function given to shinyServer.
 #' @param inputId	The id of the input object.
+#' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
 #' @param action Action to perform on color-picker: enable, disable, show or hide.
 #' @param swatches Optional color swatches.
 #'
 #' @return No return value.
+#'
+#' @seealso [colorPickr()] for creating a widget in the UI.
+#'
 #' @export
 #'
-#' @rdname colorPickr
+#' @example examples/updateColorPickr.R
 updateColorPickr <- function(session = getDefaultReactiveDomain(),
                              inputId,
+                             label = NULL,
                              value = NULL,
                              action = NULL,
                              swatches = NULL) {
@@ -163,6 +171,7 @@ updateColorPickr <- function(session = getDefaultReactiveDomain(),
   }
   message <- dropNulls(list(
     value = value,
+    label = label,
     action = action,
     swatches = list1(swatches)
   ))

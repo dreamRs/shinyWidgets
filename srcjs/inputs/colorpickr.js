@@ -1,3 +1,6 @@
+import $ from "jquery";
+import "shiny";
+import { updateLabel } from "../modules/utils";
 import '@simonwep/pickr/dist/themes/classic.min.css';
 import '@simonwep/pickr/dist/themes/monolith.min.css';
 import '@simonwep/pickr/dist/themes/nano.min.css';
@@ -55,6 +58,12 @@ $.extend(pickrColorBinding, {
     //$(el).off(".pickrColorBinding");
   },
   receiveMessage: function(el, data) {
+
+    if (data.hasOwnProperty("label")) {
+      var label = $("#" + el.id + "-label");
+      updateLabel(data.label, label);
+    }
+
     var pickr = this.getPickr(el);
     if (data.hasOwnProperty("swatches")) {
       for (let i = pickr._swatchColors.length - 1; i > -1; i--) {

@@ -1,7 +1,7 @@
 import $ from "jquery";
 import "shiny";
-import Tree from "@widgetjs/tree";
 import { updateLabel } from "../modules/utils";
+import Tree from "@widgetjs/tree";
 
 
 function collapseFromLeaf(tree, leafNode) {

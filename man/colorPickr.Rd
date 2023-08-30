@@ -2,7 +2,6 @@
 % Please edit documentation in R/color-pickr.R
 \name{colorPickr}
 \alias{colorPickr}
-\alias{updateColorPickr}
 \title{Color Pickr}
 \usage{
 colorPickr(
@@ -24,23 +23,15 @@ colorPickr(
   pickr_width = NULL,
   width = NULL
 )
-
-updateColorPickr(
-  session = getDefaultReactiveDomain(),
-  inputId,
-  value = NULL,
-  action = NULL,
-  swatches = NULL
-)
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{The \code{input} slot that will be used to access the value.}
 
 \item{label}{Display label for the color pickr, or \code{NULL} for no label.}
 
 \item{selected}{Default selected value.}
 
-\item{swatches}{Optional color swatches.}
+\item{swatches}{Optional color swatches. When \code{NULL}, swatches are disabled.}
 
 \item{preview}{Display comparison between previous state and new color.}
 
@@ -68,17 +59,9 @@ bottom interaction bar. See link below for documentation.}
 \item{pickr_width}{Color-picker width (correspond to popup window).}
 
 \item{width}{Color-picker width (correspond to input).}
-
-\item{session}{The session object passed to function given to shinyServer.}
-
-\item{value}{The value to set for the input object.}
-
-\item{action}{Action to perform on color-picker: enable, disable, show or hide.}
 }
 \value{
 a color picker input widget that can be added to the UI of a shiny app.
-
-No return value.
 }
 \description{
 A widget to pick color with different themes and options.
@@ -259,4 +242,7 @@ server <- function(input, output, session) {
 
 if (interactive())
   shinyApp(ui, server)
+}
+\seealso{
+\code{\link[=updateColorPickr]{updateColorPickr()}} for updating from server.
 }

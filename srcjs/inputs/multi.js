@@ -1,5 +1,6 @@
 import $ from "jquery";
 import "shiny";
+import { updateLabel } from "../modules/utils";
 import multi from "multi.js/dist/multi-es6.min.js";
 import "multi.js/dist/multi.min.css";
 import "../css/multi.css";
@@ -58,12 +59,10 @@ $.extend(multiInputBinding, {
       this.setValue(el, data.value);
     }
 
-    if (data.hasOwnProperty("label"))
-      $(el)
-        .parent()
-        .parent()
-        .find('label[for="' + Shiny.$escape(el.id) + '"]')
-        .text(data.label);
+    if (data.hasOwnProperty("label")) {
+      var label = $("#" + el.id + "-label");
+      updateLabel(data.label, label);
+    }
 
     var event = new Event("change");
 

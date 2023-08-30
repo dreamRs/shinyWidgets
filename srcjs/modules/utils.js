@@ -7,7 +7,7 @@ export function updateLabel(labelTxt, labelNode) {
   if (emptyLabel) {
     labelNode.addClass("shiny-label-null");
   } else {
-    labelNode.text(labelTxt);
+    labelNode.html(labelTxt);
     labelNode.removeClass("shiny-label-null");
   }
 }

@@ -1,5 +1,6 @@
 import $ from "jquery";
 import "shiny";
+import { updateLabel } from "../modules/utils";
 import "virtual-select-plugin/dist/virtual-select.min.css";
 import "virtual-select-plugin/dist/virtual-select.min.js";
 
@@ -57,8 +58,8 @@ $.extend(virtualSelectBinding, {
   },
   receiveMessage: (el, data) => {
     if (data.hasOwnProperty("label")) {
-      var label = document.getElementById(el.id + "-label");
-      label.innerHTML = data.label;
+      var label = $("#" + el.id + "-label");
+      updateLabel(data.label, label);
     }
 
     if (data.hasOwnProperty("options")) {

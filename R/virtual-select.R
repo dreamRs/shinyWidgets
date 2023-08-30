@@ -188,7 +188,11 @@ virtualSelectInput <- function(inputId,
 
 
 
-#' Update virtual select from server
+#' @title Update virtual select from server
+#'
+#' @description
+#' Update a [virtualSelectInput()] from the server.
+#'
 #'
 #' @inheritParams virtualSelectInput
 #' @inheritParams shiny::updateSelectInput
@@ -196,6 +200,9 @@ virtualSelectInput <- function(inputId,
 #' @param disabledChoices List of disabled option's values.
 #'
 #' @return No value.
+#'
+#' @seealso [virtualSelectInput()] for creating a widget in the UI.
+#'
 #' @export
 #'
 #' @importFrom shiny getDefaultReactiveDomain

@@ -1,5 +1,6 @@
 import $ from "jquery";
 import "shiny";
+import { updateLabel } from "../modules/utils";
 import dayjs from "dayjs";
 import dayjsPluginUTC from "dayjs-plugin-utc";
 dayjs.extend(dayjsPluginUTC);
@@ -265,12 +266,8 @@ $.extend(AirDatepickerBindings, {
     if (data.hasOwnProperty("value")) AirDatepickerBindings.setValue(el, data.value);
 
     if (data.hasOwnProperty("label")) {
-      // console.log(el);
-      $(el)
-        .parent()
-        .parent()
-        .find('label[for="' + data.id + '"]')
-        .text(data.label);
+      var label = $("#" + el.id + "-label");
+      updateLabel(data.label, label);
     }
 
     if (data.hasOwnProperty("options")) {

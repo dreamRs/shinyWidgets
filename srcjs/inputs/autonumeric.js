@@ -1,5 +1,6 @@
 import $ from "jquery";
 import "shiny";
+import { updateLabel } from "../modules/utils";
 import AutoNumeric from "autonumeric";
 
 Shiny.InputBinding.prototype.store = [];
@@ -61,12 +62,10 @@ $.extend(autonumericInputBinding, {
       autonum.update(data.options);
     }
 
-    if (data.hasOwnProperty("label"))
-      $(el)
-        .parent()
-        .parent()
-        .find('label[for="' + Shiny.$escape(el.id) + '"]')
-        .text(data.label);
+    if (data.hasOwnProperty("label")) {
+      var label = $("#" + el.id + "-label");
+      updateLabel(data.label, label);
+    }
 
     $(el).trigger("change");
   },

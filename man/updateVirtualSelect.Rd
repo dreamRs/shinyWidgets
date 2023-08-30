@@ -42,7 +42,7 @@ single-select lists and no values for multiple select lists.}
 No value.
 }
 \description{
-Update virtual select from server
+Update a \code{\link[=virtualSelectInput]{virtualSelectInput()}} from the server.
 }
 \examples{
 library(shiny)
@@ -153,4 +153,7 @@ server <- function(input, output, session) {
 
 if (interactive())
   shinyApp(ui, server)
+}
+\seealso{
+\code{\link[=virtualSelectInput]{virtualSelectInput()}} for creating a widget in the UI.
 }
