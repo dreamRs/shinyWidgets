@@ -78,7 +78,7 @@ searchInput <- function(inputId,
     "display: inline-block !important;", "}"
   )
 
-  searchTag <- htmltools::tags$div(
+  htmltools::tags$div(
     class = "form-group shiny-input-container",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
@@ -100,9 +100,9 @@ searchInput <- function(inputId,
         theme_func = shiny::getCurrentTheme
       )
     ),
-    singleton(tags$head(tags$style(css_btn_addon)))
+    singleton(tags$head(tags$style(css_btn_addon))),
+    html_dependency_input_icons()
   )
-  attachShinyWidgetsDep(searchTag)
 }
 
 

@@ -516,3 +516,15 @@ html_dependency_buttons_group <- function() {
     script = "buttons-group.js"
   )
 }
+
+
+
+html_dependency_input_icons <- function() {
+  htmlDependency(
+    name = "sw-input-icons",
+    version = packageVersion("shinyWidgets"),
+    src = c(file = system.file("packer", package = "shinyWidgets")),
+    script = "input-icons.js"
+  )
+}
+

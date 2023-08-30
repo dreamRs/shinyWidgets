@@ -26,7 +26,7 @@ textInputIcon <- function(inputId,
                           size = NULL,
                           width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-  tag <- tags$div(
+  tags$div(
     class = "form-group shiny-input-container",
     label_input(inputId, label),
     style = css(width = validateCssUnit(width)),
@@ -42,9 +42,9 @@ textInputIcon <- function(inputId,
         placeholder = placeholder
       ),
       markup_input_group(icon, "right", theme_func = shiny::getCurrentTheme),
-    )
+    ),
+    html_dependency_input_icons()
   )
-  attachShinyWidgetsDep(tag)
 }
 
 #' @title Change the value of a text input icon on the client
@@ -155,7 +155,7 @@ numericInputIcon <- function(inputId,
                              help_text = NULL,
                              width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-  tag <- tags$div(
+  tags$div(
     class = "form-group shiny-input-container",
     label_input(inputId, label),
     style = css(width = validateCssUnit(width)),
@@ -174,9 +174,9 @@ numericInputIcon <- function(inputId,
       ),
       markup_input_group(icon, "right", theme_func = shiny::getCurrentTheme)
     ),
-    tags$span(class = "help-block invalid-feedback hidden d-none", help_text)
+    tags$span(class = "help-block invalid-feedback hidden d-none", help_text),
+    html_dependency_input_icons()
   )
-  attachShinyWidgetsDep(tag)
 }
 
 
