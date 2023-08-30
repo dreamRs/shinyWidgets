@@ -1,7 +1,7 @@
 ## Test environments
 
-* local Pop!_OS 22.04 LTS install, R 4.2.2
-* ubuntu 20.04, Windows 10, macOS (on GitHub Actions), R 4.2.2
+* local Pop!_OS 22.04 LTS install, R 4.3.1
+* ubuntu 20.04, Windows 10, macOS (on GitHub Actions), R 4.3.1
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -11,7 +11,7 @@
 
 -------
 
-Bug fixes and small changes mainly.
+New features, bug fixes and function deprecation.
 Thanks!
 
 Victor
