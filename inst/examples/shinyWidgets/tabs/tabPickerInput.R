@@ -204,26 +204,26 @@
             fun = pickerInput,
             args = list(
               inputId = ID(.shinyWidgetGalleryId),
-              label = "Glyphicon",
+              label = "FontAwesome icons",
               choices = c(
-                "glyphicon-cog",
-                "glyphicon-play",
-                "glyphicon-ok-sign",
-                "glyphicon-arrow-right",
-                "glyphicon-euro",
-                "glyphicon-music"
+                "fa-gear",
+                "fa-play",
+                "fa-check",
+                "fa-arrow-right",
+                "fa-euro-sign",
+                "fa-music"
               ),
               choicesOpt = list(
                 icon = c(
-                  "glyphicon-cog",
-                  "glyphicon-play",
-                  "glyphicon-ok-sign",
-                  "glyphicon-arrow-right",
-                  "glyphicon-euro",
-                  "glyphicon-music"
+                  "fa-gear",
+                  "fa-play",
+                  "fa-check",
+                  "fa-arrow-right",
+                  "fa-euro-sign",
+                  "fa-music"
                 )
               ),
-              options = pickerOptions(container = "body"),
+              options = pickerOptions(container = "body", iconBase = "fas"),
               width = "100%"
             )
           )
