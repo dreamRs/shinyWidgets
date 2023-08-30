@@ -69,21 +69,13 @@
 <span>  i18n <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pickr_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">updateColorPickr</span><span class="op">(</span></span>
-<span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  <span class="va">inputId</span>,</span>
-<span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  action <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  swatches <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>inputId</dt>
-<dd><p>The id of the input object.</p></dd>
+<dd><p>The <code>input</code> slot that will be used to access the value.</p></dd>
 
 
 <dt>label</dt>
@@ -95,7 +87,7 @@
 
 
 <dt>swatches</dt>
-<dd><p>Optional color swatches.</p></dd>
+<dd><p>Optional color swatches. When <code>NULL</code>, swatches are disabled.</p></dd>
 
 
 <dt>preview</dt>
@@ -150,32 +142,21 @@ bottom interaction bar. See link below for documentation.</p></dd>
 <dt>width</dt>
 <dd><p>Color-picker width (correspond to input).</p></dd>
 
-
-<dt>session</dt>
-<dd><p>The session object passed to function given to shinyServer.</p></dd>
-
-
-<dt>value</dt>
-<dd><p>The value to set for the input object.</p></dd>
-
-
-<dt>action</dt>
-<dd><p>Action to perform on color-picker: enable, disable, show or hide.</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
 <p>a color picker input widget that can be added to the UI of a shiny app.</p>
-
-
-<p>No return value.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>Widget based on JS library pickr by <a href="https://github.com/Simonwep" class="external-link">Simonwep</a>.
 See online documentation for more information: <a href="https://github.com/Simonwep/pickr" class="external-link">https://github.com/Simonwep/pickr</a>.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="updateColorPickr.html">updateColorPickr()</a></code> for updating from server.</p></div>
     </div>
 
     <div class="section level2">
@@ -330,21 +311,21 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id21</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">red</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"firebrick"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"firebrick"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">green</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"forestgreen"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"forestgreen"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">blue</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"steelblue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"steelblue"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res22</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id22</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">enable</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id22"</span>, action <span class="op">=</span> <span class="st">"enable"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"id22"</span>, action <span class="op">=</span> <span class="st">"enable"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">disable</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">updateColorPickr</span><span class="op">(</span><span class="va">session</span>, <span class="st">"id22"</span>, action <span class="op">=</span> <span class="st">"disable"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"id22"</span>, action <span class="op">=</span> <span class="st">"disable"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
