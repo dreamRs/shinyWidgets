@@ -128,3 +128,17 @@ setSliderColor <- function(color, sliderId) {
     )
   )
 }
+
+#' @param ... Deprecated arguments
+#'
+#' @export
+#' @rdname deprecated
+#'
+colorSelectorDrop <- function(...) {
+  .Deprecated(
+    msg = paste(
+      "colorSelectorDrop has been deprecated and will be removed in a future release of shinyWidgets.",
+      "See colorPickr() and dropMenu() for alternative"
+    )
+  )
+}

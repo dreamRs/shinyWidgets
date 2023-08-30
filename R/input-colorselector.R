@@ -77,7 +77,6 @@ colorSelectorInput <- function(inputId,
 
 
 
-
 colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", display_label = FALSE) {
   html <- lapply(seq_along(choices), FUN = function(i) {
     label <- names(choices)[i]
@@ -111,7 +110,6 @@ colorOptions <- function(inputId, choices, selected = NULL, mode = "radio", disp
 
 
 
-
 #' @title Color Selector Example
 #'
 #' @export
@@ -128,72 +126,3 @@ colorSelectorExample <- function() {
     options = list("display.mode" = "showcase")
   )
 }
-
-
-
-
-
-
-
-
-#' @title Color Selector In A Dropdown
-#'
-#' @param circle Logical, use a circle or a square button
-#' @param size Size of the button : default, lg, sm, xs.
-#' @param up Logical. Display the dropdown menu above.
-#' @param width Width of the dropdown menu content.
-#'
-#' @export
-#' @describeIn colorSelectorInput Display a colorSelector in a dropdown button
-#' @importFrom htmltools tags validateCssUnit
-colorSelectorDrop <- function(inputId,
-                              label,
-                              choices,
-                              selected = NULL,
-                              display_label = FALSE,
-                              ncol = 10,
-                              circle = TRUE,
-                              size = "sm",
-                              up = FALSE,
-                              width = NULL) {
-  size <- match.arg(arg = size, choices = c("default", "lg", "sm", "xs"))
-  btnId <- paste("btn", inputId, sep = "-")
-  funButton <- if (circle) circleButton else squareButton
-  btn <- funButton(
-    inputId = btnId,
-    icon = NULL,
-    status = "default",
-    size = size,
-    class = "dropdown-toggle",
-    `data-toggle` = "dropdown"
-  )
-  dropTag <- htmltools::tags$ul(
-    class = "dropdown-menu",
-    style = css(width = validateCssUnit(width)),
-    colorSelectorInput(
-      inputId = inputId,
-      label = label,
-      choices = choices,
-      selected = selected,
-      mode = "radio",
-      display_label = display_label,
-      ncol = ncol
-    )
-  )
-  js <- paste0(
-    '$(document).on("change","input[name=\'', inputId, '\']",function(){
-      var v = $("input[name=\'', inputId, '\']:checked").val();
-      $("#', btnId, '").css("background-color", v);
-    });'
-  )
-  htmltools::tags$div(
-    class = ifelse(up, "dropup", "dropdown"),
-    btn, dropTag, htmltools::tags$script(HTML(js))
-  )
-}
-
-
-
-
-
-

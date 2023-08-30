@@ -16,16 +16,3 @@ test_that("Default", {
   expect_true(grepl(pattern = "label", x = as.character(tagcs)))
 })
 
-
-test_that("Default drp", {
-
-  choices <- c("steelblue", "cornflowerblue",
-               "firebrick", "palegoldenrod",
-               "forestgreen")
-  tagcs <- colorSelectorDrop(
-    inputId = "mycolor1",
-    label = NULL,
-    choices = choices
-  )
-  expect_identical(tagcs$attribs$class, "dropdown")
-})

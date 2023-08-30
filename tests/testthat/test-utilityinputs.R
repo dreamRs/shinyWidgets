@@ -2,21 +2,6 @@
 context("utility inputs")
 
 
-test_that("circleButton & squareButton", {
-
-  tagsqbtn <- shinyWidgets:::squareButton(
-    inputId = "id01",
-    icon = shiny::icon("sliders")
-  )
-  expect_true(grepl(pattern = "btn-square", x = tagsqbtn$attribs$class))
-
-  tagclbtn <- circleButton(
-    inputId = "id01", icon = shiny::icon("sliders")
-  )
-  expect_true(grepl(pattern = "btn-circle", x = tagclbtn$attribs$class))
-})
-
-
 test_that("actionGroupButtons", {
 
   tagbtn1 <- actionGroupButtons(

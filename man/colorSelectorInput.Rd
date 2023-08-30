@@ -3,7 +3,6 @@
 \name{colorSelectorInput}
 \alias{colorSelectorInput}
 \alias{colorSelectorExample}
-\alias{colorSelectorDrop}
 \title{Color Selector Input}
 \usage{
 colorSelectorInput(
@@ -17,19 +16,6 @@ colorSelectorInput(
 )
 
 colorSelectorExample()
-
-colorSelectorDrop(
-  inputId,
-  label,
-  choices,
-  selected = NULL,
-  display_label = FALSE,
-  ncol = 10,
-  circle = TRUE,
-  size = "sm",
-  up = FALSE,
-  width = NULL
-)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -47,14 +33,6 @@ selecting multiple values.}
 \item{display_label}{Display list's names after palette of color.}
 
 \item{ncol}{If choices is not a list but a vector, go to line after n elements.}
-
-\item{circle}{Logical, use a circle or a square button}
-
-\item{size}{Size of the button : default, lg, sm, xs.}
-
-\item{up}{Logical. Display the dropdown menu above.}
-
-\item{width}{Width of the dropdown menu content.}
 }
 \description{
 Choose between a restrictive set of colors.
@@ -62,8 +40,6 @@ Choose between a restrictive set of colors.
 \section{Functions}{
 \itemize{
 \item \code{colorSelectorExample()}: Examples of use for colorSelectorInput
-
-\item \code{colorSelectorDrop()}: Display a colorSelector in a dropdown button
 
 }}
 \examples{

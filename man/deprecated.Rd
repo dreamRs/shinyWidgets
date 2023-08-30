@@ -9,6 +9,7 @@
 \alias{useBs4Dash}
 \alias{setShadow}
 \alias{setSliderColor}
+\alias{colorSelectorDrop}
 \title{Deprecated function}
 \usage{
 useShinydashboard()
@@ -24,6 +25,8 @@ useBs4Dash(...)
 setShadow(id = NULL, class = NULL)
 
 setSliderColor(color, sliderId)
+
+colorSelectorDrop(...)
 }
 \arguments{
 \item{...}{Deprecated arguments}
