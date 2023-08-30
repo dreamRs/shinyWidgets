@@ -94,7 +94,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$updatechoices, {
-    newchoices <- sample(letters, sample(2:6))
+    newchoices <- sample(letters, sample(2:10, 1))
     updateCheckboxGroupButtons(
       session = session,
       inputId = "somevalue",

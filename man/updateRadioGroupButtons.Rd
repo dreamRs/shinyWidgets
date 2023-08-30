@@ -93,7 +93,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$updatechoices, {
-    newchoices <- sample(letters, sample(3:7))
+    newchoices <- sample(letters, sample(3:9, 1))
     updateRadioGroupButtons(
       session = session,
       inputId = "somevalue",
