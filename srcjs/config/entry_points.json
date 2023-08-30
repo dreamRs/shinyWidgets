@@ -5,5 +5,6 @@
   "autonumeric": "./srcjs/inputs/autonumeric.js",
   "nouislider": "./srcjs/inputs/nouislider.js",
   "tree": "./srcjs/inputs/tree.js",
-  "colorpickr": "./srcjs/inputs/colorpickr.js"
+  "colorpickr": "./srcjs/inputs/colorpickr.js",
+  "buttons-group": "./srcjs/inputs/buttons-group.js"
 }

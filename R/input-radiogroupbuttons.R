@@ -64,7 +64,7 @@ radioGroupButtons <- function(inputId,
     divClass <- paste0(divClass, " btn-group-", size)
   }
 
-  TAG <- tags$div(
+  tags$div(
     class = "form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
@@ -96,9 +96,9 @@ radioGroupButtons <- function(inputId,
           )
         })
       )
-    )
+    ),
+    html_dependency_buttons_group()
   )
-  attachShinyWidgetsDep(TAG)
 }
 
 #' @importFrom bslib is_bs_theme theme_version
@@ -133,8 +133,8 @@ markup_buttons_radio_bs3 <- function(inputId, choices, selected, status, size, c
         tags$button(
           class = paste0("btn radiobtn btn-", statusElement),
           class = if (value %in% selected) "active",
-          if (displayIcon) tags$span(class="radio-btn-icon-yes", checkIcon$yes),
-          if (displayIcon) tags$span(class="radio-btn-icon-no", checkIcon$no),
+          if (displayIcon) tags$span(class = "radio-btn-icon-yes", checkIcon$yes),
+          if (displayIcon) tags$span(class = "radio-btn-icon-no", checkIcon$no),
           disabled = if (isTRUE(disabled)) "disabled",
           class = if (isTRUE(disabled)) "disabled",
           tags$input(

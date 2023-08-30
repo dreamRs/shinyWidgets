@@ -505,3 +505,14 @@ html_dependency_pickr <- function() {
     script = "colorpickr.js"
   )
 }
+
+
+
+html_dependency_buttons_group <- function() {
+  htmlDependency(
+    name = "sw-buttons-group",
+    version = packageVersion("shinyWidgets"),
+    src = c(file = system.file("packer", package = "shinyWidgets")),
+    script = "buttons-group.js"
+  )
+}

@@ -49,7 +49,7 @@ checkboxGroupButtons <- function(inputId,
   if (size != "normal") {
     divClass <- paste0(divClass, " btn-group-", size)
   }
-  checkboxGroupButtonsTag <- tags$div(
+  tags$div(
     class = "form-group shiny-input-container shiny-input-checkboxgroup shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
@@ -81,9 +81,9 @@ checkboxGroupButtons <- function(inputId,
           )
         })
       )
-    )
+    ),
+    html_dependency_buttons_group()
   )
-  attachShinyWidgetsDep(checkboxGroupButtonsTag)
 }
 
 
