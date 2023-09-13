@@ -227,7 +227,7 @@ pickerInput <- function(inputId,
 #' shinyApp(ui = ui, server = server)
 #'
 #' }
-updatePickerInput <- function (session,
+updatePickerInput <- function (session = getDefaultReactiveDomain(),
                                inputId,
                                label = NULL,
                                selected = NULL,
