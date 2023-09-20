@@ -390,7 +390,8 @@ html_dependency_airdatepicker <- function() {
   htmlDependency(
     name = "air-datepicker",
     version = "3.2.0",
-    src = c(file = system.file("packer", package = "shinyWidgets")),
+    src = c(file = "packer"),
+    package = "shinyWidgets",
     script = "air-datepicker.js"
   )
 }
@@ -399,7 +400,8 @@ html_dependency_nouislider <- function() {
   htmlDependency(
     name = "nouislider",
     version = "15.6.1",
-    src = c(file = system.file("packer", package = "shinyWidgets")),
+    src = c(file = "packer"),
+    package = "shinyWidgets",
     script = "nouislider.js"
   )
 }
@@ -439,7 +441,8 @@ html_dependency_multi <- function() {
   # htmlDependency(
   #   name = "multi",
   #   version = "0.5.0",
-  #   src = c(file = system.file("packer", package = "shinyWidgets")),
+  #   src = c(file = "packer"),
+  #   package = "shinyWidgets",
   #   script = "multi.js"
   # )
   htmlDependency(
@@ -456,7 +459,8 @@ html_dependency_autonumeric <- function() {
   htmlDependency(
     name = "autonumeric",
     version = "4.6.0",
-    src = c(file = system.file("packer", package = "shinyWidgets")),
+    src = c(file = "packer"),
+    package = "shinyWidgets",
     script = "autonumeric.js"
   )
 }
@@ -501,7 +505,8 @@ html_dependency_pickr <- function() {
   htmlDependency(
     name = "colorpickr",
     version = "1.6.0",
-    src = c(file = system.file("packer", package = "shinyWidgets")),
+    src = c(file = "packer"),
+    package = "shinyWidgets",
     script = "colorpickr.js"
   )
 }
@@ -512,7 +517,8 @@ html_dependency_buttons_group <- function() {
   htmlDependency(
     name = "sw-buttons-group",
     version = packageVersion("shinyWidgets"),
-    src = c(file = system.file("packer", package = "shinyWidgets")),
+    src = c(file = "packer"),
+    package = "shinyWidgets",
     script = "buttons-group.js"
   )
 }
@@ -523,7 +529,8 @@ html_dependency_input_icons <- function() {
   htmlDependency(
     name = "sw-input-icons",
     version = packageVersion("shinyWidgets"),
-    src = c(file = system.file("packer", package = "shinyWidgets")),
+    src = c(file = "packer"),
+    package = "shinyWidgets",
     script = "input-icons.js"
   )
 }
