@@ -112,7 +112,8 @@ pickerInput <- function(inputId,
     class = "selectpicker form-control"
   )
   selectTag <- tagAppendChildren(
-    tag = selectTag, pickerSelectOptions(choices, selected, choicesOpt, maxOptGroup)
+    tag = selectTag,
+    pickerSelectOptions(choices, selected, choicesOpt, maxOptGroup)
   )
 
   if (multiple)
@@ -274,38 +275,42 @@ pickerSelectOptions <- function(choices, selected = NULL, choicesOpt = NULL, max
   if (!is.null(maxOptGroup))
     maxOptGroup <- rep_len(x = maxOptGroup, length.out = sum(l))
   m <- matrix(data = c(c(1, cumsum(l)[-length(l)] + 1), cumsum(l)), ncol = 2)
-  html <- lapply(seq_along(choices), FUN = function(i) {
-    label <- names(choices)[i]
-    choice <- choices[[i]]
-    if (is.list(choice)) {
-      tags$optgroup(
-        label = htmlEscape(label, TRUE),
-        `data-max-options` = if (!is.null(maxOptGroup)) maxOptGroup[i],
-        pickerSelectOptions(
-          choice, selected,
-          choicesOpt = lapply(
-            X = choicesOpt,
-            FUN = function(j) {
-              j[m[i, 1]:m[i, 2]]
-            }
+  html <- lapply(
+    X = seq_along(choices),
+    FUN = function(i) {
+      label <- names(choices)[i]
+      choice <- choices[[i]]
+      if (is.list(choice)) {
+        tags$optgroup(
+          label = htmlEscape(label, TRUE),
+          `data-max-options` = if (!is.null(maxOptGroup)) maxOptGroup[i],
+          pickerSelectOptions(
+            choice, selected,
+            choicesOpt = lapply(
+              X = choicesOpt,
+              FUN = function(j) {
+                j[m[i, 1]:m[i, 2]]
+              }
+            )
           )
         )
-      )
-    } else {
-      tags$option(
-        value = choice,
-        HTML(htmlEscape(label)),
-        style = choicesOpt$style[i],
-        class = choicesOpt$class[i],
-        `data-icon` = choicesOpt$icon[i],
-        `data-subtext` = choicesOpt$subtext[i],
-        `data-content` = choicesOpt$content[i],
-        `data-tokens` = choicesOpt$tokens[i],
-        disabled = if (!is.null(choicesOpt$disabled[i]) && choicesOpt$disabled[i]) "disabled",
-        selected = if (choice %in% selected) "selected" else NULL
-      )
+      } else {
+        ii <- m[i, 1]
+        tags$option(
+          value = choice,
+          HTML(htmlEscape(label)),
+          style = choicesOpt$style[ii],
+          class = choicesOpt$class[ii],
+          `data-icon` = choicesOpt$icon[ii],
+          `data-subtext` = choicesOpt$subtext[ii],
+          `data-content` = choicesOpt$content[ii],
+          `data-tokens` = choicesOpt$tokens[ii],
+          disabled = if (!is.null(choicesOpt$disabled[ii]) && choicesOpt$disabled[ii]) "disabled",
+          selected = if (choice %in% selected) "selected" else NULL
+        )
+      }
     }
-  })
+  )
   return(tagList(html))
 }
 

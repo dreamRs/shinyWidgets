@@ -1,8 +1,5 @@
 
-
 context("checkboxGroupButtons")
-
-library("shiny")
 
 
 test_that("Default", {
