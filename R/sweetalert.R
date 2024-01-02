@@ -480,7 +480,7 @@ inputSweetAlert <- function(session = getDefaultReactiveDomain(),
 #'       updateProgressBar(
 #'         session = session,
 #'         id = "myprogress",
-#'          value = i*2
+#'         value = i*2
 #'       )
 #'     }
 #'     closeSweetAlert(session = session)

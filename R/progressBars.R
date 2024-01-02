@@ -188,10 +188,11 @@ updateProgressBar <- function(session = getDefaultReactiveDomain(),
   session$sendCustomMessage(
     type = message,
     message = list(
-      id = id, value = value,
+      id = id,
+      value = value,
       percent = percent,
       total = if (is.null(total)) -1 else total,
-      title = title,
+      title = as.character(title),
       status = status,
       commas = commas,
       unit_mark = unit_mark
