@@ -11,6 +11,7 @@ searchInput(
   placeholder = NULL,
   btnSearch = NULL,
   btnReset = NULL,
+  btnClass = "btn-default btn-outline-secondary",
   resetValue = "",
   width = NULL
 )
@@ -28,7 +29,9 @@ searchInput(
 
 \item{btnReset}{An icon for the button which reset the search.}
 
-\item{resetValue}{Value used when reset button is clicked, default to \code{""},
+\item{btnClass}{Class to add to buttons, if a vector of length 2 the first value is used for search button and second one for reset button.}
+
+\item{resetValue}{Value used when reset button is clicked, default to \code{""} (empty string),
 if \code{NULL} value is not reset.}
 
 \item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
@@ -37,35 +40,35 @@ if \code{NULL} value is not reset.}
 A text input only triggered when Enter key is pressed or search button clicked
 }
 \note{
-The two buttons ('search' and 'reset') act like \code{actionButton}, you can
-retrieve their value server-side with \code{input$<INPUTID>_search} and \code{input$<INPUTID>_reset}.
+The two buttons ('search' and 'reset') act like \code{\link[shiny:actionButton]{shiny::actionButton()}}, you can
+retrieve their value server-side with \verb{input$<INPUTID>_search} and \verb{input$<INPUTID>_reset}.
 }
 \examples{
-if (interactive()) {
-  ui <- fluidPage(
-    tags$h1("Search Input"),
-    br(),
-    searchInput(
-      inputId = "search", label = "Enter your text",
-      placeholder = "A placeholder",
-      btnSearch = icon("magnifying-glass"),
-      btnReset = icon("xmark"),
-      width = "450px"
-    ),
-    br(),
-    verbatimTextOutput(outputId = "res")
-  )
+library(shiny)
+library(shinyWidgets)
 
-  server <- function(input, output, session) {
-    output$res <- renderPrint({
-      input$search
-    })
-  }
+ui <- fluidPage(
+  # theme = bslib::bs_theme(version = 5L, preset = "bootstrap"),
+  tags$h1("Search Input"),
+  br(),
+  searchInput(
+    inputId = "search", label = "Enter your text",
+    placeholder = "A placeholder",
+    btnSearch = icon("magnifying-glass"),
+    btnReset = icon("xmark"),
+    width = "450px"
+  ),
+  br(),
+  verbatimTextOutput(outputId = "res")
+)
 
+server <- function(input, output, session) {
+  output$res <- renderPrint(input$search)
+}
+
+if (interactive())
   shinyApp(ui = ui, server = server)
 }
-
-}
 \seealso{
-\link{updateSearchInput} to update value server-side.
+\code{\link[=updateSearchInput]{updateSearchInput()}} to update value server-side.
 }

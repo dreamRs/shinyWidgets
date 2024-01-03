@@ -9,73 +9,49 @@
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
 #' @param btnSearch An icon for the button which validate the search.
 #' @param btnReset An icon for the button which reset the search.
-#' @param resetValue Value used when reset button is clicked, default to \code{""},
-#'  if \code{NULL} value is not reset.
+#' @param btnClass Class to add to buttons, if a vector of length 2 the first value is used for search button and second one for reset button.
+#' @param resetValue Value used when reset button is clicked, default to `""` (empty string),
+#'  if `NULL` value is not reset.
 #' @param width The width of the input, e.g. `400px`, or `100%`.
 #'
-#' @note The two buttons ('search' and 'reset') act like \code{actionButton}, you can
-#' retrieve their value server-side with \code{input$<INPUTID>_search} and \code{input$<INPUTID>_reset}.
+#' @note The two buttons ('search' and 'reset') act like [shiny::actionButton()], you can
+#' retrieve their value server-side with `input$<INPUTID>_search` and `input$<INPUTID>_reset`.
 #'
-#' @seealso \link{updateSearchInput} to update value server-side.
+#' @seealso [updateSearchInput()] to update value server-side.
 #'
-#' @examples
-#' if (interactive()) {
-#'   ui <- fluidPage(
-#'     tags$h1("Search Input"),
-#'     br(),
-#'     searchInput(
-#'       inputId = "search", label = "Enter your text",
-#'       placeholder = "A placeholder",
-#'       btnSearch = icon("magnifying-glass"),
-#'       btnReset = icon("xmark"),
-#'       width = "450px"
-#'     ),
-#'     br(),
-#'     verbatimTextOutput(outputId = "res")
-#'   )
-#'
-#'   server <- function(input, output, session) {
-#'     output$res <- renderPrint({
-#'       input$search
-#'     })
-#'   }
-#'
-#'   shinyApp(ui = ui, server = server)
-#' }
 #'
 #' @importFrom shiny restoreInput
 #' @importFrom htmltools tags css validateCssUnit singleton
 #'
 #' @export
+#'
+#' @example examples/searchInput.R
 searchInput <- function(inputId,
                         label = NULL,
                         value = "",
                         placeholder = NULL,
                         btnSearch = NULL,
                         btnReset = NULL,
+                        btnClass = "btn-default btn-outline-secondary",
                         resetValue = "",
                         width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-
+  btnClass <- rep_len(btnClass, length.out = 2)
   tagSearch <- htmltools::tags$button(
-    class = "btn btn-default btn-addon action-button",
+    class = "btn btn-addon action-button",
+    class = btnClass[1],
     id = paste0(inputId, "_search"),
     type = "button",
     btnSearch,
     style = if (is.null(btnSearch)) css(display = "none")
   )
   tagReset <- htmltools::tags$button(
-    class = "btn btn-default btn-addon action-button",
+    class = "btn btn-addon action-button",
+    class = btnClass[2],
     id = paste0(inputId, "_reset"),
     type = "button",
     btnReset,
     style = if (is.null(btnReset)) css(display = "none")
-  )
-
-  css_btn_addon <- paste0(
-    ".btn-addon{", "font-size:14.5px;",
-    "margin:0 0 0 0 !important;",
-    "display: inline-block !important;", "}"
   )
 
   htmltools::tags$div(
@@ -100,7 +76,6 @@ searchInput <- function(inputId,
         theme_func = shiny::getCurrentTheme
       )
     ),
-    singleton(tags$head(tags$style(css_btn_addon))),
     html_dependency_input_icons()
   )
 }
