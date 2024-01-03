@@ -78,7 +78,7 @@ pickerOptions(
 
 \item{noneSelectedText}{The text that is displayed when a multiple select has no selected options. Type: string; Default: 'Nothing selected'.}
 
-\item{noneResultsText}{The text displayed when a search doesn't return any results. Type: string; Default: 'No results matched {0}'.}
+\item{noneResultsText}{The text displayed when a search doesn't return any results. Type: string; Default: \code{'No results matched {0}'}.}
 
 \item{selectAllText}{The text on the button that selects all options when actionsBox is enabled. Type: string; Default: 'Select All'.}
 

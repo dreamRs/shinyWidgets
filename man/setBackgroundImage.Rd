@@ -10,7 +10,7 @@ setBackgroundImage(src = NULL, shinydashboard = FALSE)
 \item{src}{Url or path to the image, if using local image,
 the file must be in \code{www/} directory and the path not contain \code{www/}.}
 
-\item{shinydashboard}{Set to \code{TRUE} if in a {shinydasboard} application.}
+\item{shinydashboard}{Set to \code{TRUE} if in a shinydasboard application.}
 }
 \description{
 Allow to change the background image of your shinyapp.

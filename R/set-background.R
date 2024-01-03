@@ -10,7 +10,7 @@
 #' @param direction Direction for gradient, by default to \code{bottom}.
 #'  Possibles choices are \code{bottom}, \code{top}, \code{right} or
 #'  \code{left}, two values can be used, e.g. \code{c("bottom", "right")}.
-#' @param shinydashboard Set to \code{TRUE} if in a {shinydasboard} application.
+#' @param shinydashboard Set to \code{TRUE} if in a shinydasboard application.
 #'
 #'
 #' @export
@@ -166,7 +166,7 @@ setBackgroundColor <- function(color = "ghostwhite",
 #'
 #' @param src Url or path to the image, if using local image,
 #'  the file must be in \code{www/} directory and the path not contain \code{www/}.
-#' @param shinydashboard Set to \code{TRUE} if in a {shinydasboard} application.
+#' @param shinydashboard Set to \code{TRUE} if in a shinydasboard application.
 #'
 #'
 #' @export

@@ -21,7 +21,7 @@
 #' @param mobile When set to true, enables the device's native menu for select menus. Type: boolean; Default: false.
 #' @param multipleSeparator Set the character displayed in the button that separates selected options. Type: string; Default: ', '.
 #' @param noneSelectedText The text that is displayed when a multiple select has no selected options. Type: string; Default: 'Nothing selected'.
-#' @param noneResultsText The text displayed when a search doesn't return any results. Type: string; Default: 'No results matched {0}'.
+#' @param noneResultsText The text displayed when a search doesn't return any results. Type: string; Default: `'No results matched {0}'`.
 #' @param selectAllText The text on the button that selects all options when actionsBox is enabled. Type: string; Default: 'Select All'.
 #' @param selectedTextFormat Specifies how the selection is displayed with a multiple select. 'values' displays a list of the selected options (separated by multipleSeparator. 'static' simply displays the select element's title. 'count' displays the total number of selected options. 'count > x' behaves like 'values' until the number of selected options is greater than x; after that, it behaves like 'count'. Type: 'values' | 'static' | 'count' | 'count > x' (where x is an integer); Default: 'values'.
 #' @param selectOnTab When set to true, treats the tab character like the enter or space characters within the selectpicker dropdown. Type: boolean; Default: false.
