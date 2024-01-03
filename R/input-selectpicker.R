@@ -145,13 +145,13 @@ pickerInput <- function(inputId,
 #' @param label Display a text in the center of the switch.
 #' @param choices List of values to select from. If elements of the list are named
 #' then that name rather than the value is displayed to the user.
-#' @param selected The new selected value (or multiple values if \code{multiple = TRUE}).
-#'  To reset selected value, in case of multiple picker, use \code{character(0)}.
+#' @param selected The new selected value (or multiple values if `multiple = TRUE`).
+#'  To reset selected value, in case of multiple picker, use `character(0)`.
 #' @param choicesOpt Options for choices in the dropdown menu.
-#' @param options Options for the picker via \code{\link{pickerOptions}}.
+#' @param options Options for the picker via [pickerOptions()].
 #' @param clearOptions Clear previous options, otherwise the ones set previously are still active.
 #'
-#' @seealso \link{pickerInput}.
+#' @seealso [pickerInput()].
 #'
 #' @export
 #'

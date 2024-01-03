@@ -5,7 +5,7 @@
 \title{Change the value of a select picker input on the client}
 \usage{
 updatePickerInput(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   selected = NULL,
@@ -30,7 +30,7 @@ then that name rather than the value is displayed to the user.}
 
 \item{choicesOpt}{Options for choices in the dropdown menu.}
 
-\item{options}{Options for the picker via \code{\link{pickerOptions}}.}
+\item{options}{Options for the picker via \code{\link[=pickerOptions]{pickerOptions()}}.}
 
 \item{clearOptions}{Clear previous options, otherwise the ones set previously are still active.}
 }
@@ -112,5 +112,5 @@ shinyApp(ui = ui, server = server)
 }
 }
 \seealso{
-\link{pickerInput}.
+\code{\link[=pickerInput]{pickerInput()}}.
 }
