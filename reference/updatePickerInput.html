@@ -52,7 +52,7 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">updatePickerInput</span><span class="op">(</span></span>
-<span>  <span class="va">session</span>,</span>
+<span>  session <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">inputId</span>,</span>
 <span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  selected <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -92,7 +92,7 @@ then that name rather than the value is displayed to the user.</p></dd>
 
 
 <dt>options</dt>
-<dd><p>Options for the picker via <code><a href="pickerOptions.html">pickerOptions</a></code>.</p></dd>
+<dd><p>Options for the picker via <code><a href="pickerOptions.html">pickerOptions()</a></code>.</p></dd>
 
 
 <dt>clearOptions</dt>
@@ -101,7 +101,7 @@ then that name rather than the value is displayed to the user.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="pickerInput.html">pickerInput</a>.</p></div>
+    <div class="dont-index"><p><code><a href="pickerInput.html">pickerInput()</a></code>.</p></div>
     </div>
 
     <div class="section level2">
