@@ -12,7 +12,8 @@ multiInput(
   options = NULL,
   width = NULL,
   choiceNames = NULL,
-  choiceValues = NULL
+  choiceValues = NULL,
+  autocomplete = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ multiInput(
 \item{choiceNames}{List of names to display to the user.}
 
 \item{choiceValues}{List of values corresponding to \code{choiceNames}.}
+
+\item{autocomplete}{Sets the initial state of the autocomplete property.}
 }
 \value{
 A multiselect control that can be added to the UI of a shiny app.

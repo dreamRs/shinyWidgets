@@ -14,7 +14,8 @@ pickerInput(
   choicesOpt = NULL,
   width = NULL,
   inline = FALSE,
-  stateInput = TRUE
+  stateInput = TRUE,
+  autocomplete = FALSE
 )
 }
 \arguments{
@@ -51,6 +52,8 @@ each element of the \code{list} should the same length as \code{choices}. You ca
 \item{inline}{Display picker inline, to have label and menu on same line use \code{width = "fit"}.}
 
 \item{stateInput}{Activate or deactivate the special input value \verb{input$<inputId>_open} to know if the menu is opened or not, see details.}
+
+\item{autocomplete}{Sets the initial state of the autocomplete property.}
 }
 \value{
 A select control that can be added to a UI definition.
