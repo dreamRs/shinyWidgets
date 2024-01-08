@@ -2,6 +2,7 @@ shinyWidgets 0.8.1
 ======================
 
 * `searchInput()` : added `btnClass` argument to set class of search and reset buttons.
+* Addition of autocomplete parameter for `pickerInput()` and `multiInput()`, [#652](https://github.com/dreamRs/shinyWidgets/pull/652) by [@MichalLauer](https://github.com/MichalLauer).
 
 ### Bug fixes
 
