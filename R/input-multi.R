@@ -10,6 +10,7 @@
 #' @param choiceNames List of names to display to the user.
 #' @param choiceValues List of values corresponding to \code{choiceNames}.
 #' @param options List of options passed to multi (\code{enable_search = FALSE} for disabling the search bar for example).
+#' @param autocomplete Sets the initial state of the autocomplete property.
 #'
 #' @return A multiselect control that can be added to the UI of a shiny app.
 #'
@@ -89,16 +90,18 @@ multiInput <- function(inputId,
                        options = NULL,
                        width = NULL,
                        choiceNames = NULL,
-                       choiceValues = NULL) {
+                       choiceValues = NULL,
+                       autocomplete = FALSE) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   selectTag <- tags$select(
-    id = inputId, multiple = "multiple", class= "form-control multijs",
+    id = inputId, multiple = "multiple", class = "form-control multijs",
     makeChoices(
       choices = choices,
       choiceNames = choiceNames,
       choiceValues = choiceValues,
       selected = selected
-    )
+    ),
+    autocomplete = if (autocomplete) "on" else "off"
   )
   tags$div(
     class = "form-group shiny-input-container",

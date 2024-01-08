@@ -25,6 +25,7 @@
 #' @param width The width of the input : 'auto', 'fit', '100px', '75%'.
 #' @param inline Display picker inline, to have label and menu on same line use `width = "fit"`.
 #' @param stateInput Activate or deactivate the special input value `input$<inputId>_open` to know if the menu is opened or not, see details.
+#' @param autocomplete Sets the initial state of the autocomplete property.
 #'
 #' @seealso [updatePickerInput] to update value server-side. [virtualSelectInput()] for an alternative.
 #'
@@ -85,7 +86,8 @@ pickerInput <- function(inputId,
                         choicesOpt = NULL,
                         width = NULL,
                         inline = FALSE,
-                        stateInput = TRUE) {
+                        stateInput = TRUE,
+                        autocomplete = FALSE) {
   choices <- choicesWithNames(choices)
   selected <- restoreInput(id = inputId, default = selected)
   if (!is.null(options) && length(options) > 0)
@@ -109,7 +111,8 @@ pickerInput <- function(inputId,
   selectTag <- tagAppendAttributes(
     tag = selectTag,
     id = inputId,
-    class = "selectpicker form-control"
+    class = "selectpicker form-control",
+    autocomplete = if (autocomplete) "on" else "off"
   )
   selectTag <- tagAppendChildren(
     tag = selectTag,
