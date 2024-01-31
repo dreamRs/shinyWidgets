@@ -65,7 +65,6 @@ searchInput <- function(inputId,
       class = "input-group search-text",
       htmltools::tags$input(
         id = paste0(inputId, "_text"),
-        style = "border-radius: 0.25em 0 0 0.25em !important;",
         type = "text",
         class = "form-control",
         value = value,
