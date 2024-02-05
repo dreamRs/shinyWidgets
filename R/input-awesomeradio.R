@@ -163,8 +163,8 @@ awesomeRadio <- function(inputId,
 #' @param inputId	The id of the input object.
 #' @param label Input label.
 #' @param choices List of values to select from (if elements of the list are named then that name rather than the value is displayed to the user)
-#' @param selected	The initially selected value
-#' @param status Color of the buttons
+#' @param selected	The initially selected value.
+#' @param status Color of the buttons, to update status you need to provide `choices`.
 #' @param inline If TRUE, render the choices inline (i.e. horizontally)
 #' @param checkbox Checkbox style
 #'
@@ -172,53 +172,9 @@ awesomeRadio <- function(inputId,
 #'
 #' @importFrom htmltools tagList
 #'
-#' @seealso \code{\link{awesomeRadio}}
+#' @seealso [awesomeRadio()]
 #'
-#' @examples
-#' if (interactive()) {
-#'
-#' library("shiny")
-#' library("shinyWidgets")
-#'
-#'
-#' ui <- fluidPage(
-#'   awesomeRadio(
-#'     inputId = "somevalue",
-#'     choices = c("A", "B", "C"),
-#'     label = "My label"
-#'   ),
-#'
-#'   verbatimTextOutput(outputId = "res"),
-#'
-#'   actionButton(inputId = "updatechoices", label = "Random choices"),
-#'   textInput(inputId = "updatelabel", label = "Update label")
-#' )
-#'
-#' server <- function(input, output, session) {
-#'
-#'   output$res <- renderPrint({
-#'     input$somevalue
-#'   })
-#'
-#'   observeEvent(input$updatechoices, {
-#'     updateAwesomeRadio(
-#'       session = session, inputId = "somevalue",
-#'       choices = sample(letters, sample(2:6))
-#'     )
-#'   })
-#'
-#'   observeEvent(input$updatelabel, {
-#'     updateAwesomeRadio(
-#'       session = session, inputId = "somevalue",
-#'       label = input$updatelabel
-#'     )
-#'   }, ignoreInit = TRUE)
-#'
-#' }
-#'
-#' shinyApp(ui = ui, server = server)
-#'
-#' }
+#' @example examples/updateAwesomeRadio.R
 updateAwesomeRadio <- function(session = getDefaultReactiveDomain(),
                                inputId,
                                label = NULL,
@@ -239,7 +195,8 @@ updateAwesomeRadio <- function(session = getDefaultReactiveDomain(),
     as.character(generateAwesomeRadio(session$ns(inputId), choices, selected, inline, status, checkbox))
   }
   message <- dropNulls(list(
-    label = label, options = options,
+    label = label,
+    options = options,
     value = selected
   ))
   session$sendInputMessage(inputId, message)
