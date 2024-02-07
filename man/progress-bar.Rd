@@ -17,6 +17,10 @@ progressBar(
   title = NULL,
   range_value = NULL,
   commas = TRUE,
+  format_display = function(value) {
+     prettyNum(value, big.mark = ",", scientific =
+    FALSE)
+ },
   unit_mark = "\%"
 )
 
@@ -50,11 +54,13 @@ If in a Shiny module, it use same logic than inputs : use namespace in UI, not i
 
 \item{title}{character, optional title.}
 
-\item{range_value}{Default is to display percentage (\code{[0, 100]}), but you can specify a custom range, e.g. \code{-50, 50}.}
+\item{range_value}{Default is to display percentage (\verb{[0, 100]}), but you can specify a custom range, e.g. \verb{[-50, 50]}.}
 
-\item{commas}{logical, add commas on total and value.}
+\item{commas}{Deprecated, use \code{format_display}.}
 
-\item{unit_mark}{Unit for value displayed on the progress bar, default to \code{"\%"}.}
+\item{format_display}{Function to format the value displayed.}
+
+\item{unit_mark}{Unit for value displayed on the progress bar, default to \verb{\%}.}
 
 \item{session}{The 'session' object passed to function given to shinyServer.}
 }

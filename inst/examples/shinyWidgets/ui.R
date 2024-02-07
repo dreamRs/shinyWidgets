@@ -14,6 +14,7 @@ library(bslib)
 ui <- page_navbar(
   theme = bs_add_rules(bs_theme(
     version = 5,
+    preset = "bootstrap",
     # bg = "#FFFFFF",
     # fg = "#5E81AC",
     primary = "#4C566A",
@@ -21,7 +22,8 @@ ui <- page_navbar(
     "well-bg" = "#FFF",
     base_font = font_google("Poppins")
   ), rules = c(
-    ".nav-link.active {@extend .text-light }"
+    ".nav-link.active {@extend .text-light }",
+    ".progress-number { font-size: 0.7rem; }"
   )),
   title = tags$b("shinyWidgets gallery", class = "text-light"),
   window_title = "shinyWidgets gallery",

@@ -11,15 +11,16 @@
 #' @param status Color, must be a valid Bootstrap status : primary, info, success, warning, danger.
 #' @param striped logical, add a striped effect.
 #' @param title character, optional title.
-#' @param range_value Default is to display percentage (\code{[0, 100]}), but you can specify a custom range, e.g. \code{-50, 50}.
-#' @param commas logical, add commas on total and value.
-#' @param unit_mark Unit for value displayed on the progress bar, default to \code{"\%"}.
+#' @param range_value Default is to display percentage (`[0, 100]`), but you can specify a custom range, e.g. `[-50, 50]`.
+#' @param commas Deprecated, use `format_display`.
+#' @param format_display Function to format the value displayed.
+#' @param unit_mark Unit for value displayed on the progress bar, default to `%`.
 #'
 #' @return A progress bar that can be added to a UI definition.
 #'
 #' @name progress-bar
 #'
-#' @seealso \link{progressSweetAlert} for progress bar in a sweet alert
+#' @seealso [progressSweetAlert] for progress bar in a sweet alert
 #'
 #' @importFrom htmltools tags tagList singleton HTML
 #' @export
@@ -92,6 +93,9 @@ progressBar <- function(id,
                         title = NULL,
                         range_value = NULL,
                         commas = TRUE,
+                        format_display = function(value) {
+                          prettyNum(value, big.mark = ",", scientific = FALSE)
+                        },
                         unit_mark = "%") {
   if (!is.null(total)) {
     percent <- round(value / total * 100)
@@ -104,28 +108,29 @@ progressBar <- function(id,
     }
   }
 
-  if (!is.null(title) | !is.null(total)) {
-    title <- tags$span(
-      class = "progress-text",
-      id = paste0(id, "-title"),
-      title, HTML("&nbsp;")
-    )
-  }
+  title <- tags$span(
+    class = "progress-text",
+    id = paste0(id, "-title"),
+    title, HTML("&nbsp;")
+  )
 
-  if(commas) {
-    value_for_display <- prettyNum(value, big.mark = ",", scientific = FALSE)
-    total_for_display <- prettyNum(total, big.mark = ",", scientific = FALSE)
+  if (commas) {
+    value_for_display <- format_display(value)
+    total_for_display <- format_display(total)
   } else {
     value_for_display <- value
     total_for_display <- total
   }
 
   if (!is.null(total)) {
-    total <- tags$span(
-      class = "progress-number",
-      tags$b(value_for_display, id = paste0(id, "-value")),
-      "/",
-      tags$span(id = paste0(id, "-total"), total_for_display)
+    total <- tagList(
+      tags$span(
+        class = "progress-number float-right float-end",
+        tags$b(value_for_display, id = paste0(id, "-value")),
+        "/",
+        tags$span(id = paste0(id, "-total"), total_for_display)
+      ),
+      tags$div(class = "clearfix")
     )
   }
 
@@ -147,11 +152,6 @@ progressBar <- function(id,
         if (display_pct) paste0(percent, unit_mark)
       )
     )
-  )
-  tagPB <- tagList(
-    singleton(
-      tags$head(tags$style(".progress-number {position: absolute; right: 20px;}"))
-    ), tagPB
   )
   attachShinyWidgetsDep(tagPB)
 }

@@ -31,7 +31,7 @@ Shiny.addCustomMessageHandler("update-progressBar-shinyWidgets", function(
     el.classList.add("progress-bar");
     el.classList.add("progress-bar-" + data.status);
   }
-  if (data.title !== null) {
+  if (data.hasOwnProperty("title") && data.title !== null) {
     elTitle.innerHTML = data.title;
   }
 });
