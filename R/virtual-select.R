@@ -18,6 +18,7 @@ html_dependency_virtualselect <- function() {
 #' @param group_by Variable identifying groups to use option group feature.
 #' @param description Optional variable allowing to show a text under the labels.
 #' @param alias Optional variable containing text to use with search feature.
+#' @param classNames Optional variable containing class names to customize specific options.
 #'
 #' @return A `list` to use as `choices` argument of [virtualSelectInput()].
 #' @export
@@ -30,14 +31,16 @@ prepare_choices <- function(.data,
                             value,
                             group_by = NULL,
                             description = NULL,
-                            alias = NULL) {
+                            alias = NULL,
+                            classNames = NULL) {
   args <- lapply(
     X = enexprs(
       label = label,
       value = value,
       group_by = group_by,
       description = description,
-      alias = alias
+      alias = alias,
+      classNames = classNames
     ),
     FUN = eval_tidy,
     data = as.data.frame(.data)

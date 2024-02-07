@@ -10,7 +10,8 @@ prepare_choices(
   value,
   group_by = NULL,
   description = NULL,
-  alias = NULL
+  alias = NULL,
+  classNames = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ prepare_choices(
 \item{description}{Optional variable allowing to show a text under the labels.}
 
 \item{alias}{Optional variable containing text to use with search feature.}
+
+\item{classNames}{Optional variable containing class names to customize specific options.}
 }
 \value{
 A \code{list} to use as \code{choices} argument of \code{\link[=virtualSelectInput]{virtualSelectInput()}}.
