@@ -116,8 +116,10 @@ virtualSelectInput <- function(inputId,
                                label,
                                choices,
                                selected = NULL,
+                               description = NULL,
                                multiple = FALSE,
                                search = FALSE,
+                               hasOptionDescription = FALSE,
                                hideClearButton = !multiple,
                                autoSelectFirstOption = !multiple,
                                showSelectedOptionsFirst = FALSE,
@@ -135,6 +137,11 @@ virtualSelectInput <- function(inputId,
                                width = NULL) {
   selected <- restoreInput(id = inputId, default = selected)
   choices <- process_choices(choices)
+  # add description subtext
+  if (!is.null(description)){
+    choices$choices$description = description
+    hasOptionDescription = TRUE
+    }
   data <- list(
     stateInput = stateInput,
     options = toJSON(choices, auto_unbox = FALSE, json_verbatim = TRUE),
@@ -149,6 +156,7 @@ virtualSelectInput <- function(inputId,
       optionsCount = optionsCount,
       noOfDisplayValues = noOfDisplayValues,
       allowNewOption = allowNewOption,
+      hasOptionDescription = hasOptionDescription,
       disableSelectAll = disableSelectAll,
       disableOptionGroupCheckbox = disableOptionGroupCheckbox,
       disabled = disabled,
