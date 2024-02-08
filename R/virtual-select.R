@@ -228,7 +228,7 @@ updateVirtualSelect <- function(inputId,
   message <- dropNulls(list(
     label = label,
     options = choices,
-    value = selected,
+    selectedValue = selected,
     disable = disable,
     disabledChoices = list1(disabledChoices)
   ))
