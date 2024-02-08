@@ -141,7 +141,7 @@ virtualSelectInput <- function(inputId,
     config = dropNulls(list(
       multiple = multiple,
       search = search,
-      selectedValue = selected,
+      selectedValue = unname(selected),
       hideClearButton = hideClearButton,
       autoSelectFirstOption = autoSelectFirstOption,
       showSelectedOptionsFirst = showSelectedOptionsFirst,
@@ -228,7 +228,7 @@ updateVirtualSelect <- function(inputId,
   message <- dropNulls(list(
     label = label,
     options = choices,
-    selectedValue = selected,
+    value = unname(selected),
     disable = disable,
     disabledChoices = list1(disabledChoices)
   ))
