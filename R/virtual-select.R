@@ -224,6 +224,8 @@ updateVirtualSelect <- function(inputId,
                                 label = NULL,
                                 choices = NULL,
                                 selected = NULL,
+                                description = NULL,
+                                hasOptionDescription = F,
                                 disable = NULL,
                                 disabledChoices = NULL,
                                 session = shiny::getDefaultReactiveDomain()) {
@@ -231,6 +233,10 @@ updateVirtualSelect <- function(inputId,
     label <- doRenderTags(label)
   if (!is.null(choices)) {
     choices <- process_choices(choices)
+    if (!is.null(description)){
+      choices$choices$description = description
+      hasOptionDescription = TRUE
+    }
     choices <- toJSON(choices, auto_unbox = FALSE, json_verbatim = TRUE)
   }
   message <- dropNulls(list(
@@ -238,6 +244,7 @@ updateVirtualSelect <- function(inputId,
     options = choices,
     value = unname(selected),
     disable = disable,
+    hasOptionDescription = hasOptionDescription,
     disabledChoices = list1(disabledChoices)
   ))
   session$sendInputMessage(inputId, message)
