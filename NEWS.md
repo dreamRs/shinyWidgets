@@ -1,3 +1,8 @@
+shinyWidgets 0.8.2
+======================
+
+* Fixed a bug where `virtualSelectInput()` did not register the `onServerSearch` parameter.
+
 shinyWidgets 0.8.1
 ======================
 

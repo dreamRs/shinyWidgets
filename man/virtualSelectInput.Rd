@@ -21,6 +21,7 @@ virtualSelectInput(
   disableSelectAll = !multiple,
   disableOptionGroupCheckbox = !multiple,
   disabled = FALSE,
+  onServerSearch = NULL,
   ...,
   stateInput = TRUE,
   html = FALSE,
@@ -68,6 +69,10 @@ single-select lists and no values for multiple select lists.}
 \item{disableOptionGroupCheckbox}{Disable option group title checkbox.}
 
 \item{disabled}{Disable entire dropdown.}
+
+\item{onServerSearch}{The character name of a function that should be called when searching. Note that the
+function must be created outside of a $(document).ready() statement. For more information, see
+\href{https://sa-si-dev.github.io/virtual-select/#/examples?id=server-search}{examples}.}
 
 \item{...}{Other arguments passed to JavaScript method, see
 \href{https://sa-si-dev.github.io/virtual-select/#/properties}{virtual-select documentation} for a full list of options.}

@@ -90,6 +90,9 @@ prepare_choices <- function(.data,
 #' @param disableSelectAll Disable select all feature of multiple select.
 #' @param disableOptionGroupCheckbox Disable option group title checkbox.
 #' @param disabled Disable entire dropdown.
+#' @param onServerSearch The character name of a function that should be called when searching. Note that the
+#' function must be created outside of a $(document).ready() statement. For more information, see
+#' [examples](https://sa-si-dev.github.io/virtual-select/#/examples?id=server-search).
 #' @param ... Other arguments passed to JavaScript method, see
 #'  [virtual-select documentation](https://sa-si-dev.github.io/virtual-select/#/properties) for a full list of options.
 #' @param stateInput Activate or deactivate the special input value `input$<inputId>_open` to know if the menu is opened or not, see details.
@@ -128,6 +131,7 @@ virtualSelectInput <- function(inputId,
                                disableSelectAll = !multiple,
                                disableOptionGroupCheckbox = !multiple,
                                disabled = FALSE,
+                               onServerSearch = NULL,
                                ...,
                                stateInput = TRUE,
                                html = FALSE,
@@ -152,6 +156,7 @@ virtualSelectInput <- function(inputId,
       disableSelectAll = disableSelectAll,
       disableOptionGroupCheckbox = disableOptionGroupCheckbox,
       disabled = disabled,
+      onServerSearch = onServerSearch,
       ...
     ))
   )
