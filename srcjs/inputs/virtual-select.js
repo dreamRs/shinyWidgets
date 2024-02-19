@@ -88,7 +88,6 @@ $.extend(virtualSelectBinding, {
     data = JSON.parse(data.text);
     var config = data.config;
     config.options = makeOptions(data.options);
-    console.log(config.options);
     if (config.onServerSearch) {
       config.onServerSearch = window[config.onServerSearch];
     }
