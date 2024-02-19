@@ -91,6 +91,9 @@ $.extend(virtualSelectBinding, {
     if (config.onServerSearch) {
       config.onServerSearch = window[config.onServerSearch];
     }
+    if (config.labelRenderer) {
+      config.labelRenderer = window[config.labelRenderer];
+    }
     config.ele = el;
     VirtualSelect.init(config);
     if (data.stateInput) {

@@ -21,7 +21,6 @@ virtualSelectInput(
   disableSelectAll = !multiple,
   disableOptionGroupCheckbox = !multiple,
   disabled = FALSE,
-  onServerSearch = NULL,
   ...,
   stateInput = TRUE,
   html = FALSE,
@@ -70,10 +69,6 @@ single-select lists and no values for multiple select lists.}
 
 \item{disabled}{Disable entire dropdown.}
 
-\item{onServerSearch}{The character name of a function that should be called when searching. Note that the
-function must be created outside of a $(document).ready() statement. For more information, see
-\href{https://sa-si-dev.github.io/virtual-select/#/examples?id=server-search}{examples}.}
-
 \item{...}{Other arguments passed to JavaScript method, see
 \href{https://sa-si-dev.github.io/virtual-select/#/properties}{virtual-select documentation} for a full list of options.}
 
@@ -96,6 +91,11 @@ based on \href{https://github.com/sa-si-dev/virtual-select}{virtual-select} Java
 \note{
 State of the menu (open or close) is accessible server-side through the input value:
 \verb{input$<inputId>_open}, which can be \code{TRUE} (opened) or \code{FALSE} (closed) or \code{NULL} (when initialized).
+
+For arguments that accept a function (\code{onServerSearch}, \code{labelRenderer}), only a string with a function name
+is accepted. The function must be defined outside of any \verb{$(document).ready(\{...\})} block. For examples, see the
+documentation for \href{https://sa-si-dev.github.io/virtual-select/#/examples?id=server-search}{onServerSearch}
+and \href{https://sa-si-dev.github.io/virtual-select/#/examples?id=add-imageicon}{labelRenderer}.
 }
 \examples{
 library(shiny)
