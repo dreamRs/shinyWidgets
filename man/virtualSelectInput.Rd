@@ -93,7 +93,7 @@ State of the menu (open or close) is accessible server-side through the input va
 \verb{input$<inputId>_open}, which can be \code{TRUE} (opened) or \code{FALSE} (closed) or \code{NULL} (when initialized).
 
 For arguments that accept a function (\code{onServerSearch}, \code{labelRenderer}), only a string with a function name
-is accepted. The function must be defined outside of any \verb{$(document).ready(\{...\})} block. For examples, see the
+is accepted. The function must be defined outside of any \verb{$(document).ready(\{...\})} javascript block. For examples, see the
 documentation for \href{https://sa-si-dev.github.io/virtual-select/#/examples?id=server-search}{onServerSearch}
 and \href{https://sa-si-dev.github.io/virtual-select/#/examples?id=add-imageicon}{labelRenderer}.
 }
