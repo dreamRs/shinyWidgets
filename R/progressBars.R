@@ -114,25 +114,22 @@ progressBar <- function(id,
     title, HTML("&nbsp;")
   )
 
-  if (commas) {
-    value_for_display <- format_display(value)
-    total_for_display <- format_display(total)
-  } else {
-    value_for_display <- value
-    total_for_display <- total
-  }
+  value_for_display <- format_display(value)
+  total_for_display <- format_display(total)
 
   if (!is.null(total)) {
-    total <- tagList(
-      tags$span(
-        class = "progress-number float-right float-end",
-        tags$b(value_for_display, id = paste0(id, "-value")),
-        "/",
-        tags$span(id = paste0(id, "-total"), total_for_display)
-      ),
-      tags$div(class = "clearfix")
-    )
+
   }
+  total <- tagList(
+    tags$span(
+      class = "progress-number pull-right float-end",
+      style = css(display = if (is.null(total)) "none"),
+      tags$b(value_for_display, id = paste0(id, "-value")),
+      "/",
+      tags$span(id = paste0(id, "-total"), total_for_display)
+    ),
+    tags$div(class = "clearfix")
+  )
 
   tagPB <- tags$div(
     class = "progress-group",
@@ -172,8 +169,10 @@ updateProgressBar <- function(session = getDefaultReactiveDomain(),
                               status = NULL,
                               range_value = NULL,
                               commas = TRUE,
+                              format_display = function(value) {
+                                prettyNum(value, big.mark = ",", scientific = FALSE)
+                              },
                               unit_mark = "%") {
-  message <- "update-progressBar-shinyWidgets"
   if (!is.null(range_value)) {
     percent <- rescale(x = value, from = range_value, to = c(0, 100))
   } else {
@@ -186,12 +185,14 @@ updateProgressBar <- function(session = getDefaultReactiveDomain(),
       id <- session$ns(id)
   }
   session$sendCustomMessage(
-    type = message,
+    type = "update-progressBar-shinyWidgets",
     message = list(
       id = id,
       value = value,
       percent = percent,
       total = if (is.null(total)) -1 else total,
+      value_display = format_display(value),
+      total_display = format_display(total),
       title = as.character(title),
       status = status,
       commas = commas,

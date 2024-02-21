@@ -33,6 +33,10 @@ updateProgressBar(
   status = NULL,
   range_value = NULL,
   commas = TRUE,
+  format_display = function(value) {
+     prettyNum(value, big.mark = ",", scientific =
+    FALSE)
+ },
   unit_mark = "\%"
 )
 }
