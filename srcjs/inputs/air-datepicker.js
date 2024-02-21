@@ -8,6 +8,7 @@ import AirDatepicker from "air-datepicker";
 import "air-datepicker/air-datepicker.css";
 import "../css/air-datepicker.css";
 import localeAR from "air-datepicker/locale/ar";
+import localeBG from "air-datepicker/locale/bg";
 import localeCS from "air-datepicker/locale/cs";
 import localeDA from "air-datepicker/locale/da";
 import localeDE from "air-datepicker/locale/de";
@@ -15,6 +16,7 @@ import localeEN from "air-datepicker/locale/en";
 import localeES from "air-datepicker/locale/es";
 import localeFI from "air-datepicker/locale/fi";
 import localeFR from "air-datepicker/locale/fr";
+import localeHR from "air-datepicker/locale/hr";
 import localeHU from "air-datepicker/locale/hu";
 import localeIT from "air-datepicker/locale/it";
 import localeJA from "air-datepicker/locale/ja";
@@ -34,6 +36,7 @@ import localeZH from "air-datepicker/locale/zh";
 
 let locales = {
   AR: localeAR,
+  BG: localeBG,
   CS: localeCS,
   DA: localeDA,
   DE: localeDE,
@@ -41,6 +44,7 @@ let locales = {
   ES: localeES,
   FI: localeFI,
   FR: localeFR,
+  HR: localeHR,
   HU: localeHU,
   IT: localeIT,
   JA: localeJA,
