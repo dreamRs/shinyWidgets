@@ -117,6 +117,7 @@ prepare_choices <- function(.data,
 #' @importFrom jsonlite toJSON
 #'
 #' @example inst/examples/virtual-select/default/app.R
+#' @example examples/virtual-select-funcs.R
 virtualSelectInput <- function(inputId,
                                label,
                                choices,
