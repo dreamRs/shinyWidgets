@@ -78,6 +78,10 @@
 <span>  status <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  range_value <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  commas <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  format_display <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">value</span><span class="op">)</span> <span class="op">{</span></span>
+<span>     <span class="fu"><a href="https://rdrr.io/r/base/formatc.html" class="external-link">prettyNum</a></span><span class="op">(</span><span class="va">value</span>, big.mark <span class="op">=</span> <span class="st">","</span>, scientific <span class="op">=</span></span>
+<span>    <span class="cn">FALSE</span><span class="op">)</span></span>
+<span> <span class="op">}</span>,</span>
 <span>  unit_mark <span class="op">=</span> <span class="st">"%"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
