@@ -175,9 +175,9 @@ ui <- fluidPage(
         label = "Color picker",
         choices = c("red", "blue", "green", "#cbf752"),
         width = "100\%",
-        keepAlwaysOpen = T,
+        keepAlwaysOpen = TRUE,
         labelRenderer = "colorText",
-        allowNewOption = T
+        allowNewOption = TRUE
       )
     )
   )
@@ -227,9 +227,9 @@ ui <- fluidPage(
                     "I love writing!"
         ),
         width = "100\%",
-        keepAlwaysOpen = T,
-        search = T,
-        autoSelectFirstOption = F,
+        keepAlwaysOpen = TRUE,
+        search = TRUE,
+        autoSelectFirstOption = FALSE,
         onServerSearch = "searchLabel"
       )
     )
@@ -241,10 +241,6 @@ server <- function(input, output, session) {}
 
 if (interactive())
   shinyApp(ui, server)
-
-
-
-
 }
 \seealso{
 \itemize{
