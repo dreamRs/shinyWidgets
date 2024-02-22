@@ -183,6 +183,10 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
     <p>State of the menu (open or close) is accessible server-side through the input value:
 <code>input$&lt;inputId&gt;_open</code>, which can be <code>TRUE</code> (opened) or <code>FALSE</code> (closed) or <code>NULL</code> (when initialized).</p>
+<p>For arguments that accept a function (<code>onServerSearch</code>, <code>labelRenderer</code>), only a string with a function name
+is accepted. The function must be defined outside of any <code>$(document).ready({...})</code> javascript block. For examples, see the
+documentation for <a href="https://sa-si-dev.github.io/virtual-select/#/examples?id=server-search" class="external-link">onServerSearch</a>
+and <a href="https://sa-si-dev.github.io/virtual-select/#/examples?id=add-imageicon" class="external-link">labelRenderer</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -244,6 +248,96 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res_multiple_open</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">multiple_open</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># labelRenderer example ----</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">head</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">tags</span><span class="op">$</span><span class="fu">script</span><span class="op">(</span><span class="fu"><a href="https://rstudio.github.io/htmltools/reference/HTML.html" class="external-link">HTML</a></span><span class="op">(</span><span class="st">"</span></span></span>
+<span class="r-in"><span><span class="st">      function colorText(data) {</span></span></span>
+<span class="r-in"><span><span class="st">        let text = `&lt;span style='color: ${data.label};'&gt;${data.label}&lt;/span&gt;`;</span></span></span>
+<span class="r-in"><span><span class="st">        return text;</span></span></span>
+<span class="r-in"><span><span class="st">      }"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Custom LabelRenderer"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">6</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">virtualSelectInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"search"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Color picker"</span>,</span></span>
+<span class="r-in"><span>        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"#cbf752"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span>,</span></span>
+<span class="r-in"><span>        keepAlwaysOpen <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        labelRenderer <span class="op">=</span> <span class="st">"colorText"</span>,</span></span>
+<span class="r-in"><span>        allowNewOption <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># onServerSearch example ----</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">head</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">tags</span><span class="op">$</span><span class="fu">script</span><span class="op">(</span><span class="fu"><a href="https://rstudio.github.io/htmltools/reference/HTML.html" class="external-link">HTML</a></span><span class="op">(</span><span class="st">r"(</span></span></span>
+<span class="r-in"><span><span class="st">      // Main function that is called</span></span></span>
+<span class="r-in"><span><span class="st">      function searchLabel(searchValue, virtualSelect) {</span></span></span>
+<span class="r-in"><span><span class="st">        // Words to search for - split by a space</span></span></span>
+<span class="r-in"><span><span class="st">        const searchWords = searchValue.split(/[\s]/);</span></span></span>
+<span class="r-in"><span><span class="st"></span></span></span>
+<span class="r-in"><span><span class="st">        // Update visibility</span></span></span>
+<span class="r-in"><span><span class="st">        const found = virtualSelect.options.map(opt =&gt; {</span></span></span>
+<span class="r-in"><span><span class="st">          opt.isVisible = searchWords.every(word =&gt; opt.label.includes(word));</span></span></span>
+<span class="r-in"><span><span class="st">          return opt;</span></span></span>
+<span class="r-in"><span><span class="st">        });</span></span></span>
+<span class="r-in"><span><span class="st"></span></span></span>
+<span class="r-in"><span><span class="st">        virtualSelect.setServerOptions(found);</span></span></span>
+<span class="r-in"><span><span class="st">        }</span></span></span>
+<span class="r-in"><span><span class="st">      )"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Custom onServerSearch"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">br</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">6</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">virtualSelectInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"search"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Better search"</span>,</span></span>
+<span class="r-in"><span>        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is some random long text"</span>,</span></span>
+<span class="r-in"><span>                    <span class="st">"This text is long and looks differently"</span>,</span></span>
+<span class="r-in"><span>                    <span class="st">"Writing this text is a pure love"</span>,</span></span>
+<span class="r-in"><span>                    <span class="st">"I love writing!"</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span>,</span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span>,</span></span>
+<span class="r-in"><span>        keepAlwaysOpen <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        search <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        autoSelectFirstOption <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>        onServerSearch <span class="op">=</span> <span class="st">"searchLabel"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
