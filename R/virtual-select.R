@@ -101,6 +101,11 @@ prepare_choices <- function(.data,
 #' @note State of the menu (open or close) is accessible server-side through the input value:
 #'  `input$<inputId>_open`, which can be `TRUE` (opened) or `FALSE` (closed) or `NULL` (when initialized).
 #'
+#' @note For arguments that accept a function (`onServerSearch`, `labelRenderer`), only a string with a function name
+#' is accepted. The function must be defined outside of any `$(document).ready({...})` javascript block. For examples, see the
+#' documentation for [onServerSearch](https://sa-si-dev.github.io/virtual-select/#/examples?id=server-search)
+#' and [labelRenderer](https://sa-si-dev.github.io/virtual-select/#/examples?id=add-imageicon).
+#'
 #' @seealso
 #'  * [demoVirtualSelect()] for demo apps
 #'  * [updateVirtualSelect()] for updating from server
@@ -112,6 +117,7 @@ prepare_choices <- function(.data,
 #' @importFrom jsonlite toJSON
 #'
 #' @example inst/examples/virtual-select/default/app.R
+#' @example examples/virtual-select-funcs.R
 virtualSelectInput <- function(inputId,
                                label,
                                choices,

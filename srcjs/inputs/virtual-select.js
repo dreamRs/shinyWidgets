@@ -88,6 +88,12 @@ $.extend(virtualSelectBinding, {
     data = JSON.parse(data.text);
     var config = data.config;
     config.options = makeOptions(data.options);
+    if (config.onServerSearch) {
+      config.onServerSearch = window[config.onServerSearch];
+    }
+    if (config.labelRenderer) {
+      config.labelRenderer = window[config.labelRenderer];
+    }
     config.ele = el;
     VirtualSelect.init(config);
     if (data.stateInput) {
