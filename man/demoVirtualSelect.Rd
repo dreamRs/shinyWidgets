@@ -5,7 +5,7 @@
 \title{Demo for \code{\link[=virtualSelectInput]{virtualSelectInput()}}}
 \usage{
 demoVirtualSelect(
-  name = c("default", "update", "choices-format", "prepare-choices")
+  name = c("default", "update", "choices-format", "prepare-choices", "bslib-theming")
 )
 }
 \arguments{
@@ -31,6 +31,9 @@ demoVirtualSelect("choices-format")
 
 # Prepare choices from a data.frame
 demoVirtualSelect("prepare-choices")
+
+# Theming with bslib
+demoVirtualSelect("bslib-theming")
 
 }
 }

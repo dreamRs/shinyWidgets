@@ -268,8 +268,11 @@ updateVirtualSelect <- function(inputId,
 #' # Prepare choices from a data.frame
 #' demoVirtualSelect("prepare-choices")
 #'
+#' # Theming with bslib
+#' demoVirtualSelect("bslib-theming")
+#'
 #' }
-demoVirtualSelect <- function(name = c("default", "update", "choices-format", "prepare-choices")) {
+demoVirtualSelect <- function(name = c("default", "update", "choices-format", "prepare-choices", "bslib-theming")) {
   name <- match.arg(name )
   runApp(
     shinyAppFile(
