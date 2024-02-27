@@ -243,8 +243,9 @@ updatePickerInput <- function (session = getDefaultReactiveDomain(),
     choicesWithNames(choices)
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
+  maxOptGroup <- options[["max-options-group"]]
   choices <- if (!is.null(choices))
-    as.character(pickerSelectOptions(choices, selected, choicesOpt))
+    as.character(pickerSelectOptions(choices, selected, choicesOpt, maxOptGroup = maxOptGroup))
   message <- dropNulls(list(
     label = label,
     choices = choices,
