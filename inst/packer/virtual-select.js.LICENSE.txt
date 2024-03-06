@@ -1,5 +1,5 @@
 /*!
- * Virtual Select v1.0.39
+ * Virtual Select v1.0.41
  * https://sa-si-dev.github.io/virtual-select
  * Licensed under MIT (https://github.com/sa-si-dev/virtual-select/blob/master/LICENSE)
  */
