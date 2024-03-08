@@ -3,6 +3,8 @@ import "shiny";
 import { updateLabel } from "../modules/utils";
 import "virtual-select-plugin/dist/virtual-select.min.css";
 import "virtual-select-plugin/dist/virtual-select.min.js";
+import "tooltip-plugin/dist/tooltip.min.css";
+import "tooltip-plugin/dist/tooltip.min.js";
 
 function transpose(data) {
   var res = [];

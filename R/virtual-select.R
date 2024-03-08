@@ -5,8 +5,7 @@ html_dependency_virtualselect <- function() {
     name = "virtual-select",
     version = "1.0.41",
     src = c(file = system.file("packer", package = "shinyWidgets")),
-    script = c("virtual-select.js", "tooltip.min.js"),
-    stylesheet = "tooltip.min.css",
+    script = "virtual-select.js",
     all_files = FALSE
   )
 }
