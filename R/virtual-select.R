@@ -123,8 +123,10 @@ virtualSelectInput <- function(inputId,
                                label,
                                choices,
                                selected = NULL,
+                               description = NULL,
                                multiple = FALSE,
                                search = FALSE,
+                               hasOptionDescription = FALSE,
                                hideClearButton = !multiple,
                                autoSelectFirstOption = !multiple,
                                showSelectedOptionsFirst = FALSE,
@@ -142,13 +144,18 @@ virtualSelectInput <- function(inputId,
                                width = NULL) {
   selected <- restoreInput(id = inputId, default = selected)
   choices <- process_choices(choices)
+  # add description subtext
+  if (!is.null(description)){
+    choices$choices$description = description
+    hasOptionDescription = TRUE
+    }
   data <- list(
     stateInput = stateInput,
     options = toJSON(choices, auto_unbox = FALSE, json_verbatim = TRUE),
     config = dropNulls(list(
       multiple = multiple,
       search = search,
-      selectedValue = selected,
+      selectedValue = unname(selected),
       hideClearButton = hideClearButton,
       autoSelectFirstOption = autoSelectFirstOption,
       showSelectedOptionsFirst = showSelectedOptionsFirst,
@@ -156,6 +163,7 @@ virtualSelectInput <- function(inputId,
       optionsCount = optionsCount,
       noOfDisplayValues = noOfDisplayValues,
       allowNewOption = allowNewOption,
+      hasOptionDescription = hasOptionDescription,
       disableSelectAll = disableSelectAll,
       disableOptionGroupCheckbox = disableOptionGroupCheckbox,
       disabled = disabled,
@@ -223,6 +231,8 @@ updateVirtualSelect <- function(inputId,
                                 label = NULL,
                                 choices = NULL,
                                 selected = NULL,
+                                description = NULL,
+                                hasOptionDescription = F,
                                 disable = NULL,
                                 disabledChoices = NULL,
                                 session = shiny::getDefaultReactiveDomain()) {
@@ -230,13 +240,18 @@ updateVirtualSelect <- function(inputId,
     label <- doRenderTags(label)
   if (!is.null(choices)) {
     choices <- process_choices(choices)
+    if (!is.null(description)){
+      choices$choices$description = description
+      hasOptionDescription = TRUE
+    }
     choices <- toJSON(choices, auto_unbox = FALSE, json_verbatim = TRUE)
   }
   message <- dropNulls(list(
     label = label,
     options = choices,
-    value = selected,
+    value = unname(selected),
     disable = disable,
+    hasOptionDescription = hasOptionDescription,
     disabledChoices = list1(disabledChoices)
   ))
   session$sendInputMessage(inputId, message)
