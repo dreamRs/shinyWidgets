@@ -1,7 +1,7 @@
 shinyWidgets 0.8.3
 ======================
 
-* Updated virtual-select-plugin to 1.0.41.
+* Updated virtual-select-plugin to 1.0.42 and inclued tooltip plugin.
 
 
 shinyWidgets 0.8.2
