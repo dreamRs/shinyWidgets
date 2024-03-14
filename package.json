@@ -30,7 +30,7 @@
     "dayjs": "^1.11.4",
     "dayjs-plugin-utc": "^0.1.2",
     "multi.js": "0.5.0",
-    "nouislider": "^15.6.1",
+    "nouislider": "^15.7.1",
     "style-loader": "^3.3.1",
     "virtual-select-plugin": "^1.0.42",
     "webpack": "^5.76.0",

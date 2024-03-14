@@ -28,7 +28,7 @@ ui <- fluidPage(
           label = "Slider update:",
           min = 0, max = 1000,
           value = 50, step = 50,
-          colo = "#F2DEDE"
+          color = "#F2DEDE"
         ),
         verbatimTextOutput(outputId = "res_updated"),
         sliderInput(
@@ -46,7 +46,7 @@ ui <- fluidPage(
           label = "Slider update:",
           min = 0, max = 1000,
           value = c(50, 200), step = 50,
-          colo = "#F2DEDE"
+          color = "#F2DEDE"
         ),
         verbatimTextOutput(outputId = "res_updated_range"),
         sliderInput(
@@ -68,7 +68,7 @@ ui <- fluidPage(
           inputId = "to_update_minmax",
           label = "Slider disable:",
           min = 0, max = 100, value = 50,
-          colo = "#F2DEDE"
+          color = "#F2DEDE"
         ),
         verbatimTextOutput(outputId = "res_update_minmax"),
         actionButton(inputId = "minmax_0_100", label = "Set min=0 & max=100"),
@@ -81,12 +81,36 @@ ui <- fluidPage(
           inputId = "to_disable",
           label = "Slider disable:",
           min = 0, max = 1000, value = 500,
-          colo = "#F2DEDE"
+          color = "#F2DEDE"
         ),
         verbatimTextOutput(outputId = "res_disabled"),
         checkboxInput(
           inputId = "disable",
           label = "Disable slider",
+          value = FALSE
+        )
+      ),
+
+      panel(
+        status = "danger", heading = "Disable specific handler",
+        noUiSliderInput(
+          inputId = "disable_handler",
+          label = "Disable specific handler:",
+          min = 0,
+          max = 1000,
+          value = c(50, 200),
+          color = "#F2DEDE",
+          behaviour = "drag"
+        ),
+        verbatimTextOutput(outputId = "res_disable_handler"),
+        checkboxInput(
+          inputId = "disable_1",
+          label = "Disable handler 1",
+          value = FALSE
+        ),
+        checkboxInput(
+          inputId = "disable_2",
+          label = "Disable handler 2",
           value = FALSE
         )
       )
@@ -125,6 +149,7 @@ server <- function(input, output, session) {
     )
   })
 
+  # Disable
   output$res_disabled <- renderPrint(input$to_disable)
   observeEvent(input$disable, {
     updateNoUiSliderInput(
@@ -132,6 +157,39 @@ server <- function(input, output, session) {
       inputId = "to_disable",
       disable = input$disable
     )
+  })
+
+  # Disable specific handlers
+  output$res_disable_handler <- renderPrint(input$disable_handler)
+  observeEvent(input$disable_1, {
+    if (input$disable_1) {
+      updateNoUiSliderInput(
+        session = session,
+        inputId = "disable_handler",
+        disableHandlers = 1
+      )
+    } else {
+      updateNoUiSliderInput(
+        session = session,
+        inputId = "disable_handler",
+        enableHandlers = 1
+      )
+    }
+  })
+  observeEvent(input$disable_2, {
+    if (input$disable_2) {
+      updateNoUiSliderInput(
+        session = session,
+        inputId = "disable_handler",
+        disableHandlers = 2
+      )
+    } else {
+      updateNoUiSliderInput(
+        session = session,
+        inputId = "disable_handler",
+        enableHandlers = 2
+      )
+    }
   })
 
 }

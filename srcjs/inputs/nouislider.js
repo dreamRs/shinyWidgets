@@ -81,11 +81,6 @@ $.extend(noUiSliderBinding, {
     }
 
     var slider = document.getElementById(el.id);
-    if (data.disable) {
-      slider.setAttribute("disabled", true);
-    } else {
-      slider.removeAttribute("disabled");
-    }
     if (data.hasOwnProperty("range")) {
       slider.noUiSlider.updateOptions({
         range: {
@@ -95,6 +90,23 @@ $.extend(noUiSliderBinding, {
       });
     }
     slider.noUiSlider.set(data.value);
+    if (data.hasOwnProperty("disable")) {
+      if (data.disable) {
+        slider.noUiSlider.disable();
+      } else {
+        slider.noUiSlider.enable();
+      }
+    }
+    if (data.hasOwnProperty("disableHandlers")) {
+      for (let i = 0; i < data.disableHandlers.length; i++) {
+        slider.noUiSlider.disable(data.disableHandlers[i] - 1);
+      }
+    }
+    if (data.hasOwnProperty("enableHandlers")) {
+      for (let i = 0; i < data.enableHandlers.length; i++) {
+        slider.noUiSlider.enable(data.enableHandlers[i] - 1);
+      }
+    }
     $(el).trigger("change");
   },
   getRatePolicy: function getRatePolicy() {

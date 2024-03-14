@@ -205,6 +205,7 @@ wNumbFormat <- function(decimals = NULL,
 #' @param range The new range, must be of length 2 with `c(min, max)`.
 #' @param disable logical, disable or not the slider,
 #'  if disabled the user can no longer modify the slider value.
+#' @param disableHandlers,enableHandlers Enable or disable specific handlers, use a numeric indicating the position of the handler.
 #'
 #' @seealso [noUiSliderInput()]
 #'
@@ -221,7 +222,9 @@ updateNoUiSliderInput <- function(session = getDefaultReactiveDomain(),
                                   label = NULL,
                                   value = NULL,
                                   range = NULL,
-                                  disable = FALSE) {
+                                  disable = NULL,
+                                  disableHandlers = NULL,
+                                  enableHandlers = NULL) {
   if (!is.null(range) && length(range) != 2) {
     range <- NULL
     warning("'range' must be of length 2, value will be ignored.")
@@ -230,7 +233,9 @@ updateNoUiSliderInput <- function(session = getDefaultReactiveDomain(),
     label = label,
     value = value,
     range = range,
-    disable = disable
+    disable = disable,
+    disableHandlers = list1(disableHandlers),
+    enableHandlers = list1(enableHandlers)
   ))
   session$sendInputMessage(inputId, message)
 }

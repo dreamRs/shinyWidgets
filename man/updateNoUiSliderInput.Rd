@@ -10,7 +10,9 @@ updateNoUiSliderInput(
   label = NULL,
   value = NULL,
   range = NULL,
-  disable = FALSE
+  disable = NULL,
+  disableHandlers = NULL,
+  enableHandlers = NULL
 )
 }
 \arguments{
@@ -26,6 +28,8 @@ updateNoUiSliderInput(
 
 \item{disable}{logical, disable or not the slider,
 if disabled the user can no longer modify the slider value.}
+
+\item{disableHandlers, enableHandlers}{Enable or disable specific handlers, use a numeric indicating the position of the handler.}
 }
 \description{
 Change the value of a no ui slider input on the client

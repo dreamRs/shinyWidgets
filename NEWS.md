@@ -3,6 +3,8 @@ shinyWidgets 0.8.3
 
 * Updated virtual-select-plugin to 1.0.42 and inclued tooltip plugin.
 * Updated air-datepicker to 3.5.0.
+* Updated noUiSlider to 15.7.1.
+* `updateNoUiSliderInput()`: added `disableHandlers` and `enableHandlers` to disable/enable specific handlers.
 
 
 shinyWidgets 0.8.2
