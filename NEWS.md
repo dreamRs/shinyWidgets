@@ -2,6 +2,7 @@ shinyWidgets 0.8.3
 ======================
 
 * Updated virtual-select-plugin to 1.0.42 and inclued tooltip plugin.
+* Updated air-datepicker to 3.5.0.
 
 
 shinyWidgets 0.8.2
