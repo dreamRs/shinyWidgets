@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.2.9100</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,9 @@
 <span>  label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  range <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  disable <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  disable <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  disableHandlers <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  enableHandlers <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -86,6 +88,10 @@
 <dt>disable</dt>
 <dd><p>logical, disable or not the slider,
 if disabled the user can no longer modify the slider value.</p></dd>
+
+
+<dt>disableHandlers, enableHandlers</dt>
+<dd><p>Enable or disable specific handlers, use a numeric indicating the position of the handler.</p></dd>
 
 </dl></div>
     <div class="section level2">
