@@ -5,6 +5,7 @@ shinyWidgets 0.8.3
 * Updated air-datepicker to 3.5.0.
 * Updated noUiSlider to 15.7.1.
 * `updateNoUiSliderInput()`: added `disableHandlers` and `enableHandlers` to disable/enable specific handlers.
+* `updateVirtualSelect()` : added `open` argument to open/close the dropdown.
 
 
 shinyWidgets 0.8.2

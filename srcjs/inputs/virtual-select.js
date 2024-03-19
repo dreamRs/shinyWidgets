@@ -84,6 +84,14 @@ $.extend(virtualSelectBinding, {
     if (data.hasOwnProperty("disabledChoices")) {
       el.setDisabledOptions(data.disabledChoices, true);
     }
+
+    if (data.hasOwnProperty("open")) {
+      if (data.open) {
+        el.open();
+      } else {
+        el.close();
+      }
+    }
   },
   initialize: el => {
     var data = el.querySelector('script[data-for="' + el.id + '"]');

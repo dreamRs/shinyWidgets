@@ -44,7 +44,15 @@ ui <- fluidPage(
   ),
   verbatimTextOutput("res5"),
   checkboxInput("disable", "Disable", value = FALSE),
-  checkboxInput("disableChoices", "Disable march and june", value = FALSE)
+  checkboxInput("disableChoices", "Disable march and june", value = FALSE),
+
+  virtualSelectInput(
+    inputId = "sel6",
+    label = "Open / close:",
+    choices = tolower(month.name)
+  ),
+  verbatimTextOutput("res6"),
+  checkboxInput("open", "Open?", value = FALSE)
 
 )
 
@@ -102,6 +110,11 @@ server <- function(input, output, session) {
       updateVirtualSelect(inputId = "sel5", disabledChoices = character(0))
     }
   })
+
+  observeEvent(input$open, {
+    updateVirtualSelect(inputId = "sel6", open = input$open)
+  }, ignoreInit = TRUE)
+
 }
 
 if (interactive())

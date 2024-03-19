@@ -11,6 +11,7 @@ updateVirtualSelect(
   selected = NULL,
   disable = NULL,
   disabledChoices = NULL,
+  open = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -34,6 +35,8 @@ single-select lists and no values for multiple select lists.}
 \item{disable}{Disable (\code{TRUE}) or enable (\code{FALSE}) the select menu.}
 
 \item{disabledChoices}{List of disabled option's values.}
+
+\item{open}{Open (\code{TRUE}) or close (\code{FALSE}) the dropdown.}
 
 \item{session}{The \code{session} object passed to function given to
 \code{shinyServer}. Default is \code{getDefaultReactiveDomain()}.}
@@ -91,7 +94,15 @@ ui <- fluidPage(
   ),
   verbatimTextOutput("res5"),
   checkboxInput("disable", "Disable", value = FALSE),
-  checkboxInput("disableChoices", "Disable march and june", value = FALSE)
+  checkboxInput("disableChoices", "Disable march and june", value = FALSE),
+
+  virtualSelectInput(
+    inputId = "sel6",
+    label = "Open / close:",
+    choices = tolower(month.name)
+  ),
+  verbatimTextOutput("res6"),
+  checkboxInput("open", "Open?", value = FALSE)
 
 )
 
@@ -149,6 +160,11 @@ server <- function(input, output, session) {
       updateVirtualSelect(inputId = "sel5", disabledChoices = character(0))
     }
   })
+
+  observeEvent(input$open, {
+    updateVirtualSelect(inputId = "sel6", open = input$open)
+  }, ignoreInit = TRUE)
+
 }
 
 if (interactive())
