@@ -6,6 +6,7 @@ shinyWidgets 0.8.3
 * Updated noUiSlider to 15.7.1.
 * `updateNoUiSliderInput()`: added `disableHandlers` and `enableHandlers` to disable/enable specific handlers.
 * `updateVirtualSelect()` : added `open` argument to open/close the dropdown.
+* `virtualSelectInput()` added `updateOn` argument to to set when input is updated: on change or on close.
 
 
 shinyWidgets 0.8.2

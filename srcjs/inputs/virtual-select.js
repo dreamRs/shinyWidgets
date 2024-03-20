@@ -51,9 +51,16 @@ $.extend(virtualSelectBinding, {
     el.setValue(value);
   },
   subscribe: (el, callback) => {
-    $(el).on("change.virtualSelectBinding", function(e) {
-      callback();
-    });
+    var updateOn = $(el).attr("data-update");
+    if (updateOn == "change") {
+      $(el).on("change.virtualSelectBinding", function(e) {
+        callback();
+      });
+    } else {
+      $(el).on("afterClose.virtualSelectBinding reset.virtualSelectBinding", function(e) {
+        callback();
+      });
+    }
   },
   unsubscribe: el => {
     $(el).off(".virtualSelectBinding");

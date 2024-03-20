@@ -94,6 +94,7 @@ prepare_choices <- function(.data,
 #' @param ... Other arguments passed to JavaScript method, see
 #'  [virtual-select documentation](https://sa-si-dev.github.io/virtual-select/#/properties) for a full list of options.
 #' @param stateInput Activate or deactivate the special input value `input$<inputId>_open` to know if the menu is opened or not, see details.
+#' @param updateOn When to update the input value server-side : on each changes or when the menu is closed.
 #' @param html Allow usage of HTML in choices.
 #' @param inline Display inline with label or not.
 #'
@@ -137,10 +138,12 @@ virtualSelectInput <- function(inputId,
                                disabled = FALSE,
                                ...,
                                stateInput = TRUE,
+                               updateOn = c("change", "close"),
                                html = FALSE,
                                inline = FALSE,
                                width = NULL) {
   selected <- restoreInput(id = inputId, default = selected)
+  updateOn <- match.arg(updateOn)
   choices <- process_choices(choices)
   data <- list(
     stateInput = stateInput,
@@ -186,6 +189,7 @@ virtualSelectInput <- function(inputId,
       id = inputId,
       class = "virtual-select",
       style = div_css,
+      `data-update` = updateOn,
       tags$script(
         type = "application/json",
         `data-for` = inputId,
