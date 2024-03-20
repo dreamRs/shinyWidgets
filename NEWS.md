@@ -1,12 +1,13 @@
 shinyWidgets 0.8.3
 ======================
 
-* Updated virtual-select-plugin to 1.0.42 and inclued tooltip plugin.
+* Updated virtual-select-plugin to 1.0.42 and inclued tooltip plugin, [#674](https://github.com/dreamRs/shinyWidgets/pull/674) by [@stla](https://github.com/stla).
 * Updated air-datepicker to 3.5.0.
 * Updated noUiSlider to 15.7.1.
 * `updateNoUiSliderInput()`: added `disableHandlers` and `enableHandlers` to disable/enable specific handlers.
 * `updateVirtualSelect()` : added `open` argument to open/close the dropdown.
 * `virtualSelectInput()` added `updateOn` argument to to set when input is updated: on change or on close.
+* New widget `timeInput()` to select time using browser input.
 
 
 shinyWidgets 0.8.2

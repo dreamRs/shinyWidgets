@@ -535,3 +535,14 @@ html_dependency_input_icons <- function() {
   )
 }
 
+
+
+html_dependency_input_time <- function() {
+  htmlDependency(
+    name = "sw-input-time",
+    version = packageVersion("shinyWidgets"),
+    src = c(file = "packer"),
+    package = "shinyWidgets",
+    script = "input-time.js"
+  )
+}
