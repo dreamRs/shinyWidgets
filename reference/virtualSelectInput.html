@@ -73,6 +73,7 @@ based on <a href="https://github.com/sa-si-dev/virtual-select" class="external-l
 <span>  disabled <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  stateInput <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  updateOn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"change"</span>, <span class="st">"close"</span><span class="op">)</span>,</span>
 <span>  html <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  inline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -160,6 +161,10 @@ single-select lists and no values for multiple select lists.</p></dd>
 <dd><p>Activate or deactivate the special input value <code>input$&lt;inputId&gt;_open</code> to know if the menu is opened or not, see details.</p></dd>
 
 
+<dt>updateOn</dt>
+<dd><p>When to update the input value server-side : on each changes or when the menu is closed.</p></dd>
+
+
 <dt>html</dt>
 <dd><p>Allow usage of HTML in choices.</p></dd>
 
@@ -218,6 +223,13 @@ and <a href="https://sa-si-dev.github.io/virtual-select/#/examples?id=add-imagei
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Multiple select:"</span>,</span></span>
 <span class="r-in"><span>        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">month.abb</span>, <span class="va">month.name</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        multiple <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">virtualSelectInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"onclose"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Update value on close:"</span>,</span></span>
+<span class="r-in"><span>        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="va">month.abb</span>, <span class="va">month.name</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        multiple <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        updateOn <span class="op">=</span> <span class="st">"close"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
@@ -232,7 +244,14 @@ and <a href="https://sa-si-dev.github.io/virtual-select/#/examples?id=add-imagei
 <span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">b</span><span class="op">(</span><span class="st">"Multiple select :"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res_multiple"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">b</span><span class="op">(</span><span class="st">"Is virtual select open ?"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res_multiple_open"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res_multiple_open"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">br</span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">b</span><span class="op">(</span><span class="st">"Update on close :"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res_onclose"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">b</span><span class="op">(</span><span class="st">"Is virtual select open ?"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span>outputId <span class="op">=</span> <span class="st">"res_onclose_open"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -246,6 +265,9 @@ and <a href="https://sa-si-dev.github.io/virtual-select/#/examples?id=add-imagei
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res_multiple</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">multiple</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res_multiple_open</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">multiple_open</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res_onclose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">onclose</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res_onclose_open</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">onclose_open</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
