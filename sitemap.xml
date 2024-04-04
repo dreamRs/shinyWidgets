@@ -16,6 +16,9 @@
     <loc>https://dreamrs.github.io/shinyWidgets/news/index.html</loc>
   </url>
   <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/WinBox.html</loc>
+  </url>
+  <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/actionBttn.html</loc>
   </url>
   <url>
@@ -116,6 +119,9 @@
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/html-dependencies.html</loc>
+  </url>
+  <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/html_dependency_winbox.html</loc>
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/index.html</loc>
@@ -329,5 +335,11 @@
   </url>
   <url>
     <loc>https://dreamrs.github.io/shinyWidgets/reference/wNumbFormat.html</loc>
+  </url>
+  <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/wbControls.html</loc>
+  </url>
+  <url>
+    <loc>https://dreamrs.github.io/shinyWidgets/reference/wbOptions.html</loc>
   </url>
 </urlset>
