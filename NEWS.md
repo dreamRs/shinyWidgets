@@ -1,3 +1,10 @@
+shinyWidgets 0.8.4
+======================
+
+* Fixed a bug in `updateAirDateInput()` when updating selected value and options at the same time [#684](https://github.com/dreamRs/shinyWidgets/issues/684).
+* New widget `WinBox()` to manage multiple windows in an app, https://nextapps-de.github.io/winbox/.
+
+
 shinyWidgets 0.8.3
 ======================
 

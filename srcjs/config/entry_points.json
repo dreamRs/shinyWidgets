@@ -8,5 +8,6 @@
   "colorpickr": "./srcjs/inputs/colorpickr.js",
   "buttons-group": "./srcjs/inputs/buttons-group.js",
   "input-icons": "./srcjs/inputs/input-icons.js",
-  "input-time": "./srcjs/inputs/input-time.js"
+  "input-time": "./srcjs/inputs/input-time.js",
+  "WinBox": "./srcjs/exts/WinBox.js"
 }
