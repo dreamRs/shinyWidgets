@@ -29,7 +29,7 @@
 #' @param range list, can be used to define non-linear sliders.
 #' @param pips list, used to generate points along the slider.
 #' @param format numbers format, see \code{\link{wNumbFormat}}.
-#' @param update_on When to send value to server: \code{"end"} (when slider is released) or \code{"update"} (each time value changes).
+#' @param update_on When to send value to server: \code{"end"} (when slider is released) or \code{"change"} (each time value changes).
 #' @param color color in Hex format for the slider.
 #' @param inline If \code{TRUE}, it's possible to position sliders side-by-side.
 #' @param width The width of the input, e.g. `400px`, or `100%`.
