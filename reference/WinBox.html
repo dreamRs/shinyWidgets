@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyWidgets</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.8.4.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,10 +59,13 @@
 <span>  id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  padding <span class="op">=</span> <span class="st">"5px 10px"</span>,</span>
 <span>  auto_height <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  auto_index <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">closeWinBox</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">closeWinBox</span><span class="op">(</span><span class="va">id</span>, session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">applyWinBox</span><span class="op">(</span><span class="va">id</span>, <span class="va">method</span>, <span class="va">...</span>, session <span class="op">=</span> <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/domains.html" class="external-link">getDefaultReactiveDomain</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -97,8 +100,20 @@ it will be closed before opening the new one. When closing windows, use <code>id
 Note that if content does not have a fix height it may not work properly.</p></dd>
 
 
+<dt>auto_index</dt>
+<dd><p>Automatically set z-index property to show the winbox above all content, including modal windows.</p></dd>
+
+
 <dt>session</dt>
 <dd><p>Shiny session.</p></dd>
+
+
+<dt>method</dt>
+<dd><p>Method to apply on WinBox, see avaialable ones here : https://github.com/nextapps-de/winbox?tab=readme-ov-file#overview</p></dd>
+
+
+<dt>...</dt>
+<dd><p>Parameters for the method.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -143,6 +158,61 @@ Note that if content does not have a fix height it may not work properly.</p></d
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/shinyWidgets" class="external-link">shinyWidgets</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="html_dependency_winbox.html">html_dependency_winbox</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"minimize"</span>, <span class="st">"Minimize WinBox"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"maximize"</span>, <span class="st">"Maximize WinBox"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"setBackground"</span>, <span class="st">"Set background"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"setTitle"</span>, <span class="st">"Set title"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"resize"</span>, <span class="st">"Resize"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span><span class="st">"move"</span>, <span class="st">"Move"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">WinBox</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    id <span class="op">=</span> <span class="st">"myWb"</span>,</span></span>
+<span class="r-in"><span>    title <span class="op">=</span> <span class="st">"WinBox"</span>,</span></span>
+<span class="r-in"><span>    ui <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">h3</span><span class="op">(</span><span class="st">"Hello from WinBox!"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="va">tags</span><span class="op">$</span><span class="fu">p</span><span class="op">(</span><span class="st">"Some content for the WinBox"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">minimize</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">applyWinBox</span><span class="op">(</span><span class="st">"myWb"</span>, <span class="st">"minimize"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">maximize</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">applyWinBox</span><span class="op">(</span><span class="st">"myWb"</span>, <span class="st">"maximize"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">setBackground</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">applyWinBox</span><span class="op">(</span><span class="st">"myWb"</span>, <span class="st">"setBackground"</span>, <span class="st">"#ff005d"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">setTitle</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">applyWinBox</span><span class="op">(</span><span class="st">"myWb"</span>, <span class="st">"setTitle"</span>, <span class="st">"This is a new title"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">resize</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">applyWinBox</span><span class="op">(</span><span class="st">"myWb"</span>, <span class="st">"resize"</span>, <span class="st">"50%"</span>, <span class="st">"50%"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">move</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">applyWinBox</span><span class="op">(</span><span class="st">"myWb"</span>, <span class="st">"move"</span>, <span class="st">"center"</span>, <span class="st">"center"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
