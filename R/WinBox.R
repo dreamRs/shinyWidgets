@@ -44,6 +44,7 @@ html_dependency_winbox <- function(css_rules = "body{min-height:100vh}.winbox.mo
 #' @param padding Padding for the window content.
 #' @param auto_height Automatically set height of the window according to content.
 #'  Note that if content does not have a fix height it may not work properly.
+#' @param auto_index Automatically set z-index property to show the winbox above all content, including modal windows.
 #' @param session Shiny session.
 #'
 #' @return No value, a window is openned in the UI.
@@ -64,6 +65,7 @@ WinBox <- function(title,
                    id = NULL,
                    padding = "5px 10px",
                    auto_height = FALSE,
+                   auto_index = TRUE,
                    session = shiny::getDefaultReactiveDomain()) {
   if (!is.null(padding))
     ui <- tags$div(ui, style = css(padding = padding))
@@ -77,7 +79,8 @@ WinBox <- function(title,
     html = res$html,
     deps = res$deps,
     options = options,
-    auto_height = isTRUE(auto_height)
+    auto_height = isTRUE(auto_height),
+    auto_index = isTRUE(auto_index)
   ))
 }
 
@@ -87,6 +90,19 @@ closeWinBox <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendCustomMessage("WinBox-close", dropNulls(list(id = id)))
 }
 
+#' @param method Method to apply on WinBox, see avaialable ones here : https://github.com/nextapps-de/winbox?tab=readme-ov-file#overview
+#' @param ... Parameters for the method.
+#'
+#' @rdname WinBox
+#' @export
+#'
+#' @example inst/examples/WinBox/apply-method.R
+applyWinBox <- function(id, method, ..., session = shiny::getDefaultReactiveDomain()) {
+  session$sendCustomMessage(
+    "WinBox-method",
+    dropNullsOrEmpty(list(id = id, method = method, args = list(...)))
+  )
+}
 
 
 #' WinBox Options
@@ -123,7 +139,7 @@ wbOptions <- function(width = NULL,
                       background = NULL,
                       border = NULL,
                       modal = NULL,
-                      index = 1045,
+                      index = NULL,
                       ...) {
   dropNulls(list(
     width = width,

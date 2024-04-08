@@ -4,6 +4,7 @@ import WinBox from "winbox/src/js/winbox";
 import "winbox/dist/css/winbox.min.css";
 
 let winboxes = {};
+let wb_index = 1055;
 
 Shiny.addCustomMessageHandler("WinBox-show", msg => {
   var options = msg.options;
@@ -20,6 +21,18 @@ Shiny.addCustomMessageHandler("WinBox-show", msg => {
   if (winboxes.hasOwnProperty(options.id)) {
     winboxes[options.id].close();
   }
+  if (!options.hasOwnProperty("index") && msg.auto_index) {
+    var maxZ = Math.max.apply(null,
+      $.map($(".winbox"), function(e,n) {
+        if ($(e).css('position') != 'static')
+          return parseInt($(e).css("z-index")) || 1;
+    }));
+    if (maxZ > 0) {
+      options.index = maxZ;
+    } else {
+      options.index = wb_index;
+    }
+  }
   var winbox = new WinBox(options);
   var $content = $("#shiny-winbox-" + options.id);
   Shiny.renderContent($content, { html: msg.html, deps: msg.deps });
@@ -29,8 +42,27 @@ Shiny.addCustomMessageHandler("WinBox-show", msg => {
       winbox.resize();
     }, 100);
   }
+  //winbox.focus();
   //winbox.body.innerHTML = msg.html;
   winboxes[winbox.id] = winbox;
+});
+
+Shiny.addCustomMessageHandler("WinBox-method", msg => {
+  var wb = winboxes[msg.id];
+  if (wb !== undefined) {
+    //console.log(wb);
+    if (msg.method == "resize") {
+      wb.resize(msg.args[0], msg.args[1])
+    } else if (msg.method == "move") {
+      wb.move(msg.args[0], msg.args[1])
+    } else {
+      if (msg.hasOwnProperty("args")) {
+        wb[msg.method](msg.args);
+      } else {
+        wb[msg.method]();
+      }
+    }
+  }
 });
 
 Shiny.addCustomMessageHandler("WinBox-close", msg => {

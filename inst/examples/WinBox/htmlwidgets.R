@@ -12,8 +12,11 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
+  # rval <- reactiveVal(1045)
+
   observeEvent(input$show, {
     inputId <- paste0("var", input$show)
+    # index <- rval()
     WinBox(
       title = "With an htmlwidget",
       ui = tagList(
@@ -28,8 +31,9 @@ server <- function(input, output, session) {
             ax_stroke(width = 1)
         })
       ),
-      options = wbOptions(height = 630)
+      options = wbOptions(height = 630, index = NULL)
     )
+    # rval(index + 1)
   })
 
 }

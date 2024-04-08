@@ -20,7 +20,7 @@ wbOptions(
   background = NULL,
   border = NULL,
   modal = NULL,
-  index = 1045,
+  index = NULL,
   ...
 )
 }
