@@ -1,3 +1,10 @@
+shinyWidgets 0.8.5
+======================
+
+* `WinBox()`: added `auto_index` argument to automatically open window above all others.
+* Added `applyWinBox()` to apply arbitrary method on an existing window.
+
+
 shinyWidgets 0.8.4
 ======================
 
