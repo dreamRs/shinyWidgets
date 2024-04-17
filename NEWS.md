@@ -1,3 +1,9 @@
+shinyWidgets 0.8.6
+======================
+
+* Fixed a bug in `updateAirDateInput()` when updating selected value with no options.
+
+
 shinyWidgets 0.8.5
 ======================
 
