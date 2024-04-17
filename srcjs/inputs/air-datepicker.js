@@ -305,8 +305,6 @@ $.extend(AirDatepickerBindings, {
 
       dp.update(options);
 
-      if (data.hasOwnProperty("value")) AirDatepickerBindings.setValue(el, data.value);
-
       if (options.hasOwnProperty("startView")) {
         dp.date = as_date(options.startView);
       }
@@ -315,6 +313,8 @@ $.extend(AirDatepickerBindings, {
     if (data.hasOwnProperty("placeholder")) {
       $("#" + data.id)[0].placeholder = data.placeholder;
     }
+
+    if (data.hasOwnProperty("value")) AirDatepickerBindings.setValue(el, data.value);
 
     $(el).trigger("change");
   }
