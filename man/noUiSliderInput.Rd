@@ -73,7 +73,7 @@ See \url{https://refreshless.com/nouislider/behaviour-option/} for more examples
 
 \item{format}{numbers format, see \code{\link{wNumbFormat}}.}
 
-\item{update_on}{When to send value to server: \code{"end"} (when slider is released) or \code{"update"} (each time value changes).}
+\item{update_on}{When to send value to server: \code{"end"} (when slider is released) or \code{"change"} (each time value changes).}
 
 \item{color}{color in Hex format for the slider.}
 
