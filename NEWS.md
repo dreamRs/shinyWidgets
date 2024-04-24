@@ -1,3 +1,8 @@
+shinyWidgets 0.8.7
+======================
+
+* Updated virtual-select to 1.0.43.
+
 shinyWidgets 0.8.6
 ======================
 
