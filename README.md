@@ -323,3 +323,25 @@ dropdownButton(
 
 See also `?dropMenu()`
 
+
+
+## Development
+
+This package use [{packer}](https://github.com/JohnCoene/packer) to manage JavaScript assets, see packer's [documentation](https://packer.john-coene.com/#/) for more.
+
+Install nodes modules with:
+
+```r
+packer::npm_install()
+```
+
+Modify inputs bindings in `srcjs/inputs/`, then run:
+
+```r
+packer::bundle()
+```
+
+Re-install R package and try functions.
+
+
+

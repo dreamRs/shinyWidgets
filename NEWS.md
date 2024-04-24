@@ -1,12 +1,8 @@
-shinyWidgets 0.8.7
-======================
-
-* Updated virtual-select to 1.0.43.
-
 shinyWidgets 0.8.6
 ======================
 
 * Fixed a bug in `updateAirDateInput()` when updating selected value with no options.
+* Updated virtual-select to 1.0.43, see https://github.com/sa-si-dev/virtual-select/releases.
 
 
 shinyWidgets 0.8.5
