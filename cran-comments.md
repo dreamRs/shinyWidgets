@@ -11,7 +11,7 @@
 
 -------
 
-Fixed a bug and added new functions.
+Fixed a bug in last release.
 Thanks!
 
 Victor
