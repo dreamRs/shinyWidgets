@@ -45,7 +45,7 @@ switchInput(
 
 \item{inline}{Logical, display the toggle switch inline?}
 
-\item{width}{The width of the input : 'auto', 'fit', '100px', '75\%'.}
+\item{width}{The width of the input : 'auto', '100px', '75\%'.}
 }
 \value{
 A switch control that can be added to a UI definition.
@@ -76,5 +76,5 @@ shinyApp(ui, server)
 }
 }
 \seealso{
-\code{\link{updateSwitchInput}}, \code{\link{materialSwitch}}
+\code{\link[=updateSwitchInput]{updateSwitchInput()}}, \code{\link[=materialSwitch]{materialSwitch()}}, \code{\link[=prettySwitch]{prettySwitch()}}
 }

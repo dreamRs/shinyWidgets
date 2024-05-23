@@ -3,7 +3,7 @@
 #' @description
 #' Create a toggle switch.
 #'
-#' @param inputId The \code{input} slot that will be used to access the value.
+#' @param inputId The `input` slot that will be used to access the value.
 #' @param label Display a text in the center of the switch.
 #' @param value Initial value (TRUE or FALSE).
 #' @param onLabel Text on the left side of the switch (TRUE).
@@ -15,7 +15,7 @@
 #' @param handleWidth Width of the left and right sides in pixels.
 #' @param disabled Logical, display the toggle switch in disabled state?.
 #' @param inline Logical, display the toggle switch inline?
-#' @param width The width of the input : 'auto', 'fit', '100px', '75%'.
+#' @param width The width of the input : 'auto', '100px', '75%'.
 #'
 #' @return A switch control that can be added to a UI definition.
 #'
@@ -29,7 +29,7 @@
 #' @note For more information, see the project on Github
 #'  \url{https://github.com/Bttstrp/bootstrap-switch}.
 #'
-#' @seealso \code{\link{updateSwitchInput}}, \code{\link{materialSwitch}}
+#' @seealso [updateSwitchInput()], [materialSwitch()], [prettySwitch()]
 #'
 #' @examples
 #' ## Only run examples in interactive R sessions
@@ -62,7 +62,7 @@ switchInput <- function(inputId,
                         inline = FALSE,
                         width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-  size <- match.arg(arg = size, choices = c('default', 'mini', 'small', 'normal', 'large'))
+  size <- match.arg(arg = size, choices = c("default", "mini", "small", "normal", "large"))
   switchProps <- dropNulls(
     list(
       id = inputId,
