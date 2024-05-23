@@ -5,7 +5,7 @@
 \title{Change the value of a slider text input on the client}
 \usage{
 updateSliderTextInput(
-  session,
+  session = getDefaultReactiveDomain(),
   inputId,
   label = NULL,
   selected = NULL,

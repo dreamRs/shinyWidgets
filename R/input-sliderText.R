@@ -237,7 +237,13 @@ sliderTextInput <- function (inputId,
 #'
 #' shinyApp(ui = ui, server = server)
 #' }
-updateSliderTextInput <- function (session, inputId, label = NULL, selected = NULL, choices = NULL, from_fixed = NULL, to_fixed = NULL) {
+updateSliderTextInput <- function (session = getDefaultReactiveDomain(),
+                                   inputId,
+                                   label = NULL,
+                                   selected = NULL,
+                                   choices = NULL,
+                                   from_fixed = NULL,
+                                   to_fixed = NULL) {
   message <- dropNulls(list(
     label = label, selected = selected, choices = choices,
     from_fixed = from_fixed, to_fixed = to_fixed
