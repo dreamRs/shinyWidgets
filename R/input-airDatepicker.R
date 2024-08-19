@@ -49,6 +49,7 @@
 #' @param language Language to use, can be one of
 #'   `ar`, `cs`, `da`, `de`, `en`, `es`, `fi`, `fr`, `hu`, `it`, `ja`, `ko`, `nl`,
 #'   `pl`, `pt-BR`, `pt`, `ro`, `ru`, `si`, `sk`, `sv`, `th`, `tr`, `uk`, `zh`.
+#' @param tz The timezone.
 #' @param inline If `TRUE`, datepicker will always be visible.
 #' @param readonly If `TRUE`, datepicker will be readonly and the input field won't be editable.
 #' @param onkeydown Attribute passed to the input field.
@@ -138,6 +139,7 @@ airDatepickerInput <- function(inputId,
                                addon = c("right", "left", "none"),
                                addonAttributes = list(class = "btn-outline-secondary"),
                                language = "en",
+                               tz = NULL,
                                inline = FALSE,
                                readonly = FALSE,
                                onkeydown = NULL,
@@ -147,23 +149,15 @@ airDatepickerInput <- function(inputId,
   # dput(tools::file_path_sans_ext(list.files("node_modules/air-datepicker/locale/", pattern = "\\.js")))
   language <- match.arg(
     arg = language,
-    choices = c("ar", "bg", "cs", "da", "de", "en", "es", "fi", "fr", "hr", "hu", "it",
-                "nl", "pl", "pt-BR", "pt", "ro", "ru", "si", "sk", "sv", "th",
-                "tr", "uk", "zh", "ja", "ko"),
+    choices = c(
+      "ar", "bg", "cs", "da", "de", "en", "es", "fi", "fr", "hr", "hu", "it",
+      "nl", "pl", "pt-BR", "pt", "ro", "ru", "si", "sk", "sv", "th",
+      "tr", "uk", "zh", "ja", "ko"
+    ),
     several.ok = FALSE
   )
 
   version <- getOption("air-datepicker", default = 3)
-
-  list1 <- function(x) {
-    if (is.null(x))
-      return(x)
-    if (length(x) == 1 & !is.list(x)) {
-      list(x)
-    } else {
-      x
-    }
-  }
 
   buttons <- character(0)
   if (clearButton)
@@ -173,7 +167,6 @@ airDatepickerInput <- function(inputId,
   if (length(buttons) < 1)
     buttons <- FALSE
 
-
   airParams <- dropNulls(list(
     updateOn = match.arg(update_on),
     disabledDates = list1(disabledDates),
@@ -181,6 +174,7 @@ airDatepickerInput <- function(inputId,
     highlightedDates = list1(highlightedDates),
     startView = startView,
     value = list1(value),
+    tz = tz,
     todayButtonAsDate = inherits(todayButton, c("Date", "POSIXt")),
     language = toupper(language),
     options = c(dropNulls(list(
@@ -215,8 +209,7 @@ airDatepickerInput <- function(inputId,
       placeholder = placeholder,
       autocomplete = "off",
       readonly = if (isTRUE(readonly)) "",
-      onkeydown = onkeydown,
-      `data-timepicker` = tolower(timepicker)
+      onkeydown = onkeydown
     )
     if (!identical(addon, "none")) {
       tagAir <- tags$div(
@@ -419,6 +412,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
+#' @param tz The timezone.
 #' @param clear Logical, clear all previous selected dates.
 #' @param options Options to update, see available ones in [JavaScript documentation](https://air-datepicker.com/docs)
 #' @param show,hide Show / hide datepicker.
@@ -437,23 +431,12 @@ updateAirDateInput <- function(session = getDefaultReactiveDomain(),
                                inputId,
                                label = NULL,
                                value = NULL,
+                               tz = NULL,
                                clear = FALSE,
                                options = NULL,
                                show = FALSE,
                                hide = FALSE) {
   stopifnot(is.logical(clear))
-  to_ms <- function(x) {
-    if (is.null(x))
-      return(NULL)
-    1000 * as.numeric(as.POSIXct(as.character(x), tz = Sys.timezone()))
-  }
-  if (!is.null(value)) {
-    value <- as.character(toJSON(x = to_ms(value), auto_unbox = FALSE))
-  }
-  if (!is.null(options)) {
-    options$minDate <- to_ms(options$minDate)
-    options$maxDate <- to_ms(options$maxDate)
-  }
   if (!is.null(options$disabledDates)) {
     options$disabledDates <- list1(options$disabledDates)
   }
@@ -463,11 +446,18 @@ updateAirDateInput <- function(session = getDefaultReactiveDomain(),
   message <- dropNulls(list(
     id = session$ns(inputId),
     label = label,
-    value = value,
     clear = isTRUE(clear),
-    options = dropNulls(options),
     show = isTRUE(show),
-    hide = isTRUE(hide)
+    hide = isTRUE(hide),
+    config = jsonlite::toJSON(
+      x = dropNullsOrEmpty(list(
+        options = dropNulls(options),
+        value = dropNulls(list(value = list1(value), tz = tz))
+      )),
+      auto_unbox = TRUE,
+      json_verbatim = TRUE,
+      POSIXt = "epoch"
+    )
   ))
   session$sendInputMessage(inputId, message)
 }

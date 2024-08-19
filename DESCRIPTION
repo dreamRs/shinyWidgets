@@ -1,6 +1,6 @@
 Package: shinyWidgets
 Title: Custom Inputs Widgets for Shiny
-Version: 0.8.6
+Version: 0.8.6.9000
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre", "cph")),
   person("Fanny", "Meyer", role = "aut"),
@@ -18,12 +18,11 @@ BugReports: https://github.com/dreamRs/shinyWidgets/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Depends:
     R (>= 3.1.0)
 Imports:
-    anytime,
     bslib,
     sass,
     shiny (>= 1.6.0),

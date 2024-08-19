@@ -80,8 +80,8 @@ ui <- fluidPage(
 
       airDatepickerInput(
         inputId = "defaultValue",
-        label = "With a default date:",
-        value = Sys.Date()-7
+        label = paste("With a default date:", Sys.Date() - 7),
+        value = Sys.Date() - 7
       ),
       verbatimTextOutput(outputId = "res_defaultValue"),
 

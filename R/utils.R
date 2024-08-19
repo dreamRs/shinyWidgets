@@ -9,6 +9,8 @@ starts_with <- function(x, prefix) {
 }
 
 list1 <- function(x) {
+  if (is.null(x))
+    return(x)
   if (length(x) == 1) {
     list(x)
   } else {

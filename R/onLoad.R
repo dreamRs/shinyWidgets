@@ -20,31 +20,36 @@
     }
   }, force = TRUE)
   shiny::registerInputHandler("air.date", function(data, ...) {
-    if (is.null(data)) {
-      NULL
+    if (is.null(data))
+      return(NULL)
+    if (!is.list(data))
+      return(NULL)
+    if (is.null(data$date))
+      return(NULL)
+    res <- try(as.Date(unlist(data$date)), silent = TRUE)
+    if (inherits(res, "try-error")) {
+      warning("Failed to parse dates!")
+      # as.Date(NA)
+      data
     } else {
-      res <- try(anytime::anydate(unlist(data)), silent = TRUE)
-      if ("try-error" %in% class(res)) {
-        warning("Failed to parse dates!")
-        # as.Date(NA)
-        data
-      } else {
-        res
-      }
+      res
     }
   }, force = TRUE)
   shiny::registerInputHandler("air.datetime", function(data, ...) {
-    if (is.null(data)) {
-      NULL
+    if (is.null(data))
+      return(NULL)
+    if (!is.list(data))
+      return(NULL)
+    if (is.null(data$date))
+      return(NULL)
+    tz <- data$tz %||% ""
+    res <- try(as.POSIXct(unlist(data$date), tz = tz), silent = TRUE)
+    if (inherits(res, "try-error")) {
+      warning("Failed to parse dates!")
+      # as.Date(NA)
+      data
     } else {
-      res <- try(anytime::anytime(unlist(data)), silent = TRUE)
-      if ("try-error" %in% class(res)) {
-        warning("Failed to parse dates!")
-        # as.Date(NA)
-        data
-      } else {
-        res
-      }
+      res
     }
   }, force = TRUE)
   shiny::registerInputHandler("sw.tree", function(data, ...) {

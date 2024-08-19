@@ -9,6 +9,7 @@ updateAirDateInput(
   inputId,
   label = NULL,
   value = NULL,
+  tz = NULL,
   clear = FALSE,
   options = NULL,
   show = FALSE,
@@ -23,6 +24,8 @@ updateAirDateInput(
 \item{label}{The label to set for the input object.}
 
 \item{value}{The value to set for the input object.}
+
+\item{tz}{The timezone.}
 
 \item{clear}{Logical, clear all previous selected dates.}
 

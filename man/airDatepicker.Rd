@@ -39,6 +39,7 @@ airDatepickerInput(
   addon = c("right", "left", "none"),
   addonAttributes = list(class = "btn-outline-secondary"),
   language = "en",
+  tz = NULL,
   inline = FALSE,
   readonly = FALSE,
   onkeydown = NULL,
@@ -133,6 +134,8 @@ you can retrieve value server-side with \verb{input$<inputId>_button}.}
 \item{language}{Language to use, can be one of
 \code{ar}, \code{cs}, \code{da}, \code{de}, \code{en}, \code{es}, \code{fi}, \code{fr}, \code{hu}, \code{it}, \code{ja}, \code{ko}, \code{nl},
 \code{pl}, \code{pt-BR}, \code{pt}, \code{ro}, \code{ru}, \code{si}, \code{sk}, \code{sv}, \code{th}, \code{tr}, \code{uk}, \code{zh}.}
+
+\item{tz}{The timezone.}
 
 \item{inline}{If \code{TRUE}, datepicker will always be visible.}
 
