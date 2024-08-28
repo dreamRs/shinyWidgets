@@ -115,7 +115,7 @@ function onRenderCell(disabledDates, disabledDaysOfWeek, highlightedDates) {
       return {
         html: html,
         classes: classes,
-        disabled: disabled
+        disabled: disabled > 0
       };
     }
   };
@@ -157,9 +157,7 @@ $.extend(AirDatepickerBindings, {
 
     // disable dates
     var disabledDates = [];
-    if (config.hasOwnProperty("disabledDates")) {
-      disabledDates = config.disabledDates;
-    }
+
     var disabledDaysOfWeek = [];
     if (config.hasOwnProperty("disabledDaysOfWeek")) {
       disabledDaysOfWeek = config.disabledDaysOfWeek;
@@ -185,6 +183,9 @@ $.extend(AirDatepickerBindings, {
     var dp = new AirDatepicker(el, options);
     if (config.hasOwnProperty("startView")) {
       dp.date = as_date({date: config.startView, tz: options.tz});
+    }
+    if (config.hasOwnProperty("disabledDates")) {
+      dp.disableDate(config.disabledDates);
     }
     AirDatepickerBindings.updateStore(el, dp);
   },
@@ -263,14 +264,14 @@ $.extend(AirDatepickerBindings, {
       }
 
       if (
-        options.hasOwnProperty("disabledDates") |
         options.hasOwnProperty("disabledDaysOfWeek") |
         options.hasOwnProperty("highlightedDates")
       ) {
+        //dp.enableDate(dp.disabledDates);
         var disabledDates = [];
-        if (options.hasOwnProperty("disabledDates")) {
-          disabledDates = options.disabledDates;
-        }
+        //if (options.hasOwnProperty("disabledDates")) {
+        //  disabledDates = options.disabledDates;
+        //}
         var disabledDaysOfWeek = [];
         if (options.hasOwnProperty("disabledDaysOfWeek")) {
           disabledDaysOfWeek = options.disabledDaysOfWeek;
@@ -279,10 +280,20 @@ $.extend(AirDatepickerBindings, {
         if (options.hasOwnProperty("highlightedDates")) {
           highlightedDates = options.highlightedDates;
         }
+
         options.onRenderCell = onRenderCell(disabledDates, disabledDaysOfWeek, highlightedDates);
       }
 
       dp.update(options);
+
+      if (options.hasOwnProperty("disabledDates")) {
+        if (dp.disabledDates.size > 0) {
+          dp.disabledDates.forEach(function (value) {
+            dp.enableDate(value);
+          });
+        }
+        dp.disableDate(options.disabledDates);
+      }
 
       if (options.hasOwnProperty("startView")) {
         dp.date = as_date({date: options.startView, tz: options.tz});
