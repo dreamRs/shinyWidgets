@@ -1,3 +1,10 @@
+shinyWidgets 0.8.7
+======================
+
+* Updated virtual-select to 1.0.45, see https://github.com/sa-si-dev/virtual-select/releases.
+* [airDatepickerInput()] & [updateAirDateInput()]: added a `tz` argument to specify timezone.
+
+
 shinyWidgets 0.8.6
 ======================
 
