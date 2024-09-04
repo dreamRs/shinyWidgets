@@ -4,7 +4,7 @@
 
 <!-- badges: start -->
 [![version](http://www.r-pkg.org/badges/version/shinyWidgets)](https://CRAN.R-project.org/package=shinyWidgets)
-[![cranlogs](https://cranlogs.r-pkg.org/badges/grand-total/shinyWidgets?color=brightgreen)](https://CRAN.R-project.org/package=shinyWidgets)
+[![cranlogs](https://cranlogs.r-pkg.org/badges/shinyWidgets?color=brightgreen)](https://CRAN.R-project.org/package=shinyWidgets)
 [![cran checks](https://badges.cranchecks.info/worst/shinyWidgets.svg)](https://cran.r-project.org/web/checks/check_results_shinyWidgets.html)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dreamRs/shinyWidgets/master.svg)](https://app.codecov.io/github/dreamRs/shinyWidgets?branch=master)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/dreamRs/shinyWidgets?branch=master&svg=true)](https://ci.appveyor.com/project/dreamRs/shinyWidgets)
