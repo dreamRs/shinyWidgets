@@ -16,8 +16,13 @@ ui <- fluidPage(
       width = 3,
       slimSelectInput(
         inputId = "slim1",
-        label = "Single slim select:",
-        choices = month.name,
+        label = "Disable some choices:",
+        choices = prepare_slim_choices(
+          state_data,
+          label = name,
+          value = abb,
+          disabled = division == "Mountain"
+        ),
         width = "100%"
       ),
       verbatimTextOutput("res1")
@@ -26,10 +31,19 @@ ui <- fluidPage(
       width = 3,
       slimSelectInput(
         inputId = "slim2",
-        label = "Multiple slim select:",
-        choices = month.name,
+        label = "Custom styles:",
+        choices = prepare_slim_choices(
+          state_data,
+          label = name,
+          value = abb,
+          style = ifelse(
+            division == "Mountain",
+            "color: blue;",
+            "color: red;"
+          )
+        ),
         multiple = TRUE,
-        placeholder = "Select a month",
+        placeholder = "Select a state",
         width = "100%"
       ),
       verbatimTextOutput("res2")
@@ -38,7 +52,7 @@ ui <- fluidPage(
       width = 3,
       slimSelectInput(
         inputId = "slim3",
-        label = "Use prepare_slim_choices:",
+        label = "Options groups with options:",
         choices = prepare_slim_choices(
           state_data,
           label = name,
@@ -56,13 +70,11 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-
   output$res1 <- renderPrint(input$slim1)
 
   output$res2 <- renderPrint(input$slim2)
 
   output$res3 <- renderPrint(input$slim3)
-
 }
 
 if (interactive())
