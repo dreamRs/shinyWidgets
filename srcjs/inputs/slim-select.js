@@ -39,10 +39,16 @@ $.extend(slimSelectBinding, {
     var config = el.querySelector('script[data-for="' + el.id + '"]');
     config = JSON.parse(config.text);
     config.select = el;
+    if (config.settings.hasOwnProperty("contentLocation")) {
+      config.settings.contentLocation = document.getElementById(config.settings.contentLocation);
+    }
     var select = new SlimSelect(config);
     slimSelectBinding.updateStore(el, select);
     if (config.hasOwnProperty("selected")) {
       select.setSelected(config.selected);
+    }
+    if (config.settings.hasOwnProperty("contentLocation")) {
+      select.open();
     }
   }
 });

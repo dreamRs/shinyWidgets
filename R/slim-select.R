@@ -119,6 +119,11 @@ prepare_slim_choices <- function(.data,
 #' @inheritParams shiny::selectInput
 #' @param search Enable search feature.
 #' @param placeholder Placeholder text.
+#' @param allowDeselect This will allow you to deselect a value on a single/multiple select dropdown.
+#' @param closeOnSelect A boolean value in which determines whether or not to close the content area upon selecting a value.
+#' @param keepOrder If `TRUE` will maintain the order in which options are selected.
+#' @param alwaysOpen If `TRUE` keep the select open at all times.
+#' @param contentPosition Will set the css position to either relative or absolute.
 #' @param ... Other settings passed to Slim Select JAvaScript method.
 #' @param inline Display the widget inline.
 #'
@@ -133,20 +138,38 @@ slimSelectInput <- function(inputId,
                             multiple = FALSE,
                             search = TRUE,
                             placeholder = NULL,
+                            allowDeselect = NULL,
+                            closeOnSelect = !multiple,
+                            keepOrder = NULL,
+                            alwaysOpen = NULL,
+                            contentPosition = NULL,
                             ...,
                             inline = FALSE,
                             width = NULL) {
   selected <- restoreInput(id = inputId, default = selected)
   data <- dropNulls(list(
     data = if (inherits(choices, "AsIs")) {
-      as.list(choices)
+      if (!isTRUE(multiple) & isTRUE(allowDeselect)) {
+        c(list(list(placeholder = TRUE, text = placeholder, value = NULL)), list(as.list(choices)))
+      } else {
+        as.list(choices)
+      }
     } else {
-      make_slim_data(choicesWithNames(choices))
+      if (!isTRUE(multiple) & isTRUE(allowDeselect)) {
+        c(list(list(placeholder = TRUE, text = placeholder, value = NULL)), make_slim_data(choicesWithNames(choices)))
+      } else {
+        make_slim_data(choicesWithNames(choices))
+      }
     },
     selected = selected,
     settings = dropNulls(list(
       showSearch = search,
       placeholderText = placeholder,
+      allowDeselect = allowDeselect,
+      closeOnSelect = closeOnSelect,
+      keepOrder = keepOrder,
+      alwaysOpen = alwaysOpen,
+      contentPosition = contentPosition,
       ...
     ))
   ))
@@ -164,9 +187,10 @@ slimSelectInput <- function(inputId,
   tags$div(
     class = "form-group shiny-input-container",
     class = if (isTRUE(inline)) "shiny-input-container-inline",
-    style = css(width = validateCssUnit(width)),
+    style = css(width = validateCssUnit(width), height = "auto"),
     label_input(inputId, label),
     tag_select,
+    tags$div(id = paste0(inputId, "-placeholder"), style = css(height = "auto")),
     html_dependency_slimselect()
   )
 }
