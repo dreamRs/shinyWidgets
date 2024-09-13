@@ -225,6 +225,7 @@ $.extend(AirDatepickerBindings, {
       newdate[i] = as_date({date: value[i], tz: options.tz});
     }
     var dp = AirDatepickerBindings.store[el.id];
+    dp.clear();
     dp.selectDate(newdate);
   },
   subscribe: (el, callback) => {
