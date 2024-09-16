@@ -9,5 +9,6 @@
   "buttons-group": "./srcjs/inputs/buttons-group.js",
   "input-icons": "./srcjs/inputs/input-icons.js",
   "input-time": "./srcjs/inputs/input-time.js",
-  "WinBox": "./srcjs/exts/WinBox.js"
+  "WinBox": "./srcjs/exts/WinBox.js",
+  "slim-select": "./srcjs/inputs/slim-select.js"
 }
