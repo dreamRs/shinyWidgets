@@ -1,6 +1,7 @@
 
 library(shiny)
 library(shinyWidgets)
+library(htmltools)
 
 state_data <- data.frame(
   name = state.name,

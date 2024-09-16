@@ -154,10 +154,10 @@ ui <- fluidPage(
         choices = month.name,
         multiple = TRUE,
         alwaysOpen = TRUE,
-        contentPosition = "relative",
-        contentLocation = "slim6-placeholder",
+        # contentPosition = "relative",
+        # contentLocation = "slim6-placeholder",
         width = "100\%"
-      ),
+      ) |> htmltools::tagAppendAttributes(style = css(height = "350px")),
       verbatimTextOutput("res6")
 
     )
