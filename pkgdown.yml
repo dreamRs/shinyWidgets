@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-09-13T08:15Z
+last_built: 2024-09-16T15:17Z
 urls:
   reference: https://dreamrs.github.io/shinyWidgets/reference
   article: https://dreamrs.github.io/shinyWidgets/articles

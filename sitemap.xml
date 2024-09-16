@@ -52,6 +52,7 @@
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/pickerInput.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/pickerOptions.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/prepare_choices.html</loc></url>
+<url><loc>https://dreamrs.github.io/shinyWidgets/reference/prepare_slim_choices.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/prettyCheckbox.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/prettyCheckboxGroup.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/prettyRadioButtons.html</loc></url>
@@ -68,6 +69,7 @@
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/shinyWidgetsGallery.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/show_toast.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/sliderTextInput.html</loc></url>
+<url><loc>https://dreamrs.github.io/shinyWidgets/reference/slimSelectInput.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/spectrumInput.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/stati-card.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/sweetalert-confirmation.html</loc></url>
@@ -101,6 +103,7 @@
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/updateRadioGroupButtons.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/updateSearchInput.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/updateSliderTextInput.html</loc></url>
+<url><loc>https://dreamrs.github.io/shinyWidgets/reference/updateSlimSelect.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/updateSpectrumInput.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/updateSwitchInput.html</loc></url>
 <url><loc>https://dreamrs.github.io/shinyWidgets/reference/updateTextInputIcon.html</loc></url>
