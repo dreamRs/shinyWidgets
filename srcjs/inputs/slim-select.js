@@ -18,7 +18,8 @@ $.extend(slimSelectBinding, {
     return select.getSelected();
   },
   setValue: (el, value) => {
-    el.setValue(value);
+    var select = slimSelectBinding.store[el.id];
+    select.setSelected(value);
   },
   subscribe: (el, callback) => {
     $(el).on("change.slimSelectBinding", function(e) {
@@ -33,7 +34,27 @@ $.extend(slimSelectBinding, {
       var label = $("#" + el.id + "-label");
       updateLabel(data.label, label);
     }
-
+    var select = slimSelectBinding.store[el.id];
+    if (data.hasOwnProperty("data")) {
+      select.setData(data.data);
+    }
+    if (data.hasOwnProperty("selected")) {
+      select.setSelected(data.selected);
+    }
+    if (data.hasOwnProperty("disable")) {
+      if (data.disable) {
+        select.disable();
+      } else {
+        select.enable();
+      }
+    }
+    if (data.hasOwnProperty("open")) {
+      if (data.open) {
+        select.open();
+      } else {
+        select.close();
+      }
+    }
   },
   initialize: el => {
     var config = el.querySelector('script[data-for="' + el.id + '"]');

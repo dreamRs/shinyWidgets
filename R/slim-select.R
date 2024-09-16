@@ -213,3 +213,52 @@ make_slim_data <- function(choices) {
     }
   )
 }
+
+
+
+#' @title Update slim select from server
+#'
+#' @description
+#' Update a [slimSelectInput()] from the server.
+#'
+#'
+#' @inheritParams slimSelectInput
+#' @inheritParams shiny::updateSelectInput
+#' @param disable Disable (`TRUE`) or enable (`FALSE`) the select menu.
+#' @param open Open (`TRUE`) or close (`FALSE`) the dropdown.
+#'
+#' @return No value.
+#'
+#' @seealso [slimSelectInput()] for creating a widget in the UI.
+#'
+#' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#' @importFrom htmltools doRenderTags
+#'
+#' @example inst/examples/slim-select/update/app.R
+updateSlimSelect <- function(inputId,
+                             label = NULL,
+                             choices = NULL,
+                             selected = NULL,
+                             disable = NULL,
+                             open = NULL,
+                             session = shiny::getDefaultReactiveDomain()) {
+  if (!is.null(label))
+    label <- doRenderTags(label)
+  data <- if (!is.null(choices)) {
+    if (inherits(choices, "AsIs")) {
+      as.list(choices)
+    } else {
+      make_slim_data(choicesWithNames(choices))
+    }
+  }
+  message <- dropNulls(list(
+    label = label,
+    data = data,
+    selected = selected,
+    disable = disable,
+    open = open
+  ))
+  session$sendInputMessage(inputId, message)
+}

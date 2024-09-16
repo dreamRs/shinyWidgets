@@ -72,6 +72,7 @@ based on \href{https://github.com/brianvoe/slim-select}{slim-select} JavaScript 
 
 library(shiny)
 library(shinyWidgets)
+library(htmltools)
 
 state_data <- data.frame(
   name = state.name,
