@@ -1,8 +1,10 @@
 shinyWidgets 0.8.7
 ======================
 
+* New widget : `slimSelectInput()`, an alternative select menu.
 * Updated virtual-select to 1.0.45, see https://github.com/sa-si-dev/virtual-select/releases.
-* [airDatepickerInput()] & [updateAirDateInput()]: added a `tz` argument to specify timezone.
+* `airDatepickerInput()` & `updateAirDateInput()`: added a `tz` argument to specify timezone.
+* `checkboxGroupButtons()` & `radioGroupButtons()`: fixed justified layout when using individual buttons.
 
 
 shinyWidgets 0.8.6

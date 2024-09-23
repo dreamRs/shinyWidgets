@@ -112,7 +112,14 @@ markup_buttons_radio <- function(theme, args) {
   do.call(markup_buttons_radio_bs3, args)
 }
 
-markup_buttons_radio_bs3 <- function(inputId, choices, selected, status, size, checkIcon, disabled = FALSE, justified = FALSE) {
+markup_buttons_radio_bs3 <- function(inputId,
+                                     choices,
+                                     selected,
+                                     status,
+                                     size,
+                                     checkIcon,
+                                     disabled = FALSE,
+                                     justified = FALSE) {
   btn_wrapper <- function(...) {
     htmltools::tags$div(
       class = "btn-group btn-group-toggle",
@@ -157,7 +164,14 @@ markup_buttons_radio_bs3 <- function(inputId, choices, selected, status, size, c
 }
 
 
-markup_buttons_radio_bs5 <- function(inputId, choices, selected, status, size, checkIcon, disabled = FALSE, justified = FALSE) {
+markup_buttons_radio_bs5 <- function(inputId,
+                                     choices,
+                                     selected,
+                                     status,
+                                     size,
+                                     checkIcon,
+                                     disabled = FALSE,
+                                     justified = FALSE) {
   if (!is.null(checkIcon) && !is.null(checkIcon$yes)) {
     displayIcon <- TRUE
   } else {
@@ -181,6 +195,7 @@ markup_buttons_radio_bs5 <- function(inputId, choices, selected, status, size, c
           class = paste0("btn radiobtn btn-", statusElement),
           disabled = if (isTRUE(disabled)) "disabled",
           class = if (isTRUE(disabled)) "disabled",
+          class = if (isTRUE(justified)) "flex-fill",
           `for` = paste0(inputId, which(choices$choiceValues == value)),
           if (displayIcon) tags$span(class = "radio-btn-icon-yes", checkIcon$yes),
           if (displayIcon) tags$span(class = "radio-btn-icon-no", checkIcon$no),
