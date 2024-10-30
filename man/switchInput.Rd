@@ -51,7 +51,8 @@ switchInput(
 A switch control that can be added to a UI definition.
 }
 \description{
-Create a toggle switch.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+The JavaScript library used by this widget is no longer actively maintained.
 }
 \note{
 For more information, see the project on Github

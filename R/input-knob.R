@@ -2,6 +2,11 @@
 
 #' Knob Input
 #'
+#' @description
+#' \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+#' The JavaScript library used by this widget is no longer actively maintained.
+#'
+#'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or NULL for no label.
 #' @param value Initial value.

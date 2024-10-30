@@ -1,7 +1,8 @@
 #' @title Bootstrap Switch Input Control
 #'
 #' @description
-#' Create a toggle switch.
+#' \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+#' The JavaScript library used by this widget is no longer actively maintained.
 #'
 #' @param inputId The `input` slot that will be used to access the value.
 #' @param label Display a text in the center of the switch.

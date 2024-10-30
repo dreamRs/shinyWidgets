@@ -135,16 +135,22 @@ prettyToggle <- function(inputId,
                          inline = FALSE,
                          width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
-  status_on <- match.arg(status_on, c("default", "primary", "success",
-                                      "info", "danger", "warning"))
-  status_off <- match.arg(status_off, c("default", "primary",
-                                        "success", "info", "danger", "warning"))
+  status_on <- match.arg(
+    status_on,
+    c("default", "primary", "success", "info", "danger", "warning")
+  )
+  status_off <- match.arg(
+    status_off,
+    c("default", "primary", "success", "info", "danger", "warning")
+  )
   shape <- match.arg(shape)
   icon_on <- tag_add_class_icon(icon_on)
   icon_off <- tag_add_class_icon(icon_off)
-  if (!is.null(animation))
-    animation <- match.arg(animation, c("smooth", "jelly", "tada",
-                                        "rotate", "pulse"))
+  if (!is.null(animation)) {
+    animation <- match.arg(
+      animation, c("smooth", "jelly", "tada", "rotate", "pulse")
+    )
+  }
   inputTag <- tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
@@ -155,23 +161,23 @@ prettyToggle <- function(inputId,
     style = if (inline) "display: inline-block; margin-right: 10px;",
     tags$div(
       class = "pretty p-toggle", inputTag,
-      class = if(is.null(icon_on) & is.null(icon_off)) "p-default",
-      class = if(plain) "p-plain",
-      class = if(bigger) "p-bigger",
-      class = if(shape!="square") paste0("p-", shape),
-      class = if(fill) "p-fill", class=if(thick) "p-thick",
-      class = if(!is.null(icon_on) | !is.null(icon_off)) "p-icon",
-      class = if(!is.null(animation)) paste0("p-", animation),
+      class = if (is.null(icon_on) & is.null(icon_off)) "p-default",
+      class = if (plain) "p-plain",
+      class = if (bigger) "p-bigger",
+      class = if (shape != "square") paste0("p-", shape),
+      class = if (fill) "p-fill", class = if (thick) "p-thick",
+      class = if (!is.null(icon_on) | !is.null(icon_off)) "p-icon",
+      class = if (!is.null(animation)) paste0("p-", animation),
       tags$div(
         class = "state p-on",
-        class = if(status_on != "default") paste0("p-", status_on, if(outline)"-o"),
-        if(!is.null(icon_on)) icon_on,
+        class = if (status_on != "default") paste0("p-", status_on, if (outline) "-o"),
+        if (!is.null(icon_on)) icon_on,
         tags$label(tags$span(label_on))
       ),
       tags$div(
         class = "state p-off",
-        class = if(status_off != "default") paste0("p-", status_off, if(outline)"-o"),
-        if(!is.null(icon_off)) icon_off,
+        class = if (status_off != "default") paste0("p-", status_off, if (outline) "-o"),
+        if (!is.null(icon_off)) icon_off,
         tags$label(tags$span(label_off))
       )
     )
