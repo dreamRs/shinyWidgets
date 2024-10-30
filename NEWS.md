@@ -1,3 +1,9 @@
+shinyWidgets 0.8.8
+======================
+
+* `knobInput()` and `switchInput()` are softly deprecated, since the JavaScript libraries used by those widgets are no longer actively maintained.
+
+
 shinyWidgets 0.8.7
 ======================
 
