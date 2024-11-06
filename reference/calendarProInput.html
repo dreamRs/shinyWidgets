@@ -54,7 +54,11 @@ based on <a href="https://github.com/uvarov-frontend/vanilla-calendar-pro" class
 <span>  jumpMonths <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  jumpToSelectedDate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  toggleSelected <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  weekNumbers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  weekNumbersSelect <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  weekend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span>,</span>
+<span>  positionToInput <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  theme <span class="op">=</span> <span class="st">"light"</span>,</span>
 <span>  placeholder <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  input <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -113,8 +117,25 @@ the calendar will always open to the current month and year.</p></dd>
 <dd><p>If toggleSelected parameter is true then clicking on the active cell will remove the selection from it.</p></dd>
 
 
+<dt id="arg-weeknumbers">weekNumbers<a class="anchor" aria-label="anchor" href="#arg-weeknumbers"></a></dt>
+<dd><p>With this parameter, you can decide whether to display week numbers in the calendar.</p></dd>
+
+
+<dt id="arg-weeknumbersselect">weekNumbersSelect<a class="anchor" aria-label="anchor" href="#arg-weeknumbersselect"></a></dt>
+<dd><p>If <code>TRUE</code> select the week when week number is clicked.</p></dd>
+
+
+<dt id="arg-weekend">weekend<a class="anchor" aria-label="anchor" href="#arg-weekend"></a></dt>
+<dd><p>This parameter allows you to highlight weekends in the calendar.</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Other settings passed to Slim Select JAvaScript method.</p></dd>
+
+
+<dt id="arg-positiontoinput">positionToInput<a class="anchor" aria-label="anchor" href="#arg-positiontoinput"></a></dt>
+<dd><p>This parameter specifies the position of the calendar relative to input,
+if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')</p></dd>
 
 
 <dt id="arg-theme">theme<a class="anchor" aria-label="anchor" href="#arg-theme"></a></dt>
@@ -177,7 +198,15 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>        input <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res5"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res5"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal7"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar with week numbers:"</span>,</span></span>
+<span class="r-in"><span>        placeholder <span class="op">=</span> <span class="st">"Select a date"</span>,</span></span>
+<span class="r-in"><span>        weekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res7"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">6</span>,</span></span>
@@ -206,7 +235,17 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>        input <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res6"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res6"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal8"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar select week:"</span>,</span></span>
+<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
+<span class="r-in"><span>        range <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        weekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        weekNumbersSelect <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res8"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
@@ -219,6 +258,8 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal4</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal5</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal6</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal7</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal8</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
