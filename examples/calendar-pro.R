@@ -28,7 +28,15 @@ ui <- fluidPage(
         input = FALSE,
         width = "100%"
       ),
-      verbatimTextOutput("res5")
+      verbatimTextOutput("res5"),
+      calendarProInput(
+        inputId = "cal7",
+        label = "Calendar with week numbers:",
+        placeholder = "Select a date",
+        weekNumbers = TRUE,
+        width = "100%"
+      ),
+      verbatimTextOutput("res7")
     ),
     column(
       width = 6,
@@ -57,7 +65,17 @@ ui <- fluidPage(
         input = FALSE,
         width = "100%"
       ),
-      verbatimTextOutput("res6")
+      verbatimTextOutput("res6"),
+      calendarProInput(
+        inputId = "cal8",
+        label = "Calendar select week:",
+        type = "multiple",
+        range = TRUE,
+        weekNumbers = TRUE,
+        weekNumbersSelect = TRUE,
+        width = "100%"
+      ),
+      verbatimTextOutput("res8")
     )
   )
 )
@@ -70,6 +88,8 @@ server <- function(input, output, session) {
   output$res4 <- renderPrint(input$cal4)
   output$res5 <- renderPrint(input$cal5)
   output$res6 <- renderPrint(input$cal6)
+  output$res7 <- renderPrint(input$cal7)
+  output$res8 <- renderPrint(input$cal8)
 
 }
 

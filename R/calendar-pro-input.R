@@ -28,7 +28,12 @@ html_dependency_calendar_pro <- function() {
 #'  selected.month and selected.year, it will make the calendar jump to the first selected date. If set to false,
 #'  the calendar will always open to the current month and year.
 #' @param toggleSelected If toggleSelected parameter is true then clicking on the active cell will remove the selection from it.
+#' @param weekNumbers With this parameter, you can decide whether to display week numbers in the calendar.
+#' @param weekNumbersSelect If `TRUE` select the week when week number is clicked.
+#' @param weekend This parameter allows you to highlight weekends in the calendar.
 #' @param ... Other settings passed to Slim Select JAvaScript method.
+#' @param positionToInput This parameter specifies the position of the calendar relative to input,
+#'  if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')
 #' @param theme This parameter determines the theme of the calendar : 'light' or 'dark'.
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
 #' @param input If `TRUE` (default), use an input and render calendar in a dropdown, otherwise calendar is rendered in the page.
@@ -51,7 +56,11 @@ calendarProInput <- function(inputId,
                              jumpMonths = 1,
                              jumpToSelectedDate = FALSE,
                              toggleSelected = TRUE,
+                             weekNumbers = FALSE,
+                             weekNumbersSelect = FALSE,
+                             weekend = TRUE,
                              ...,
+                             positionToInput = "auto",
                              theme = "light",
                              placeholder = NULL,
                              input = TRUE,
@@ -64,6 +73,7 @@ calendarProInput <- function(inputId,
     jumpMonths = jumpMonths,
     jumpToSelectedDate = jumpToSelectedDate,
     toggleSelected = toggleSelected,
+    weekNumbersSelect = weekNumbersSelect,
     ...
   )
   config$input <- input
@@ -75,6 +85,9 @@ calendarProInput <- function(inputId,
   config$date$min <- min
   config$date$max <- max
   config$settings$visibility$theme <- theme
+  config$settings$visibility$weekNumbers <- weekNumbers
+  config$settings$visibility$weekend <- weekend
+  config$settings$visibility$positionToInput <- positionToInput
   tag_el <- if (isTRUE(input)) {
     tags$input(
       type = "text",

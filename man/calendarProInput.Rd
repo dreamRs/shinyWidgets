@@ -16,7 +16,11 @@ calendarProInput(
   jumpMonths = 1,
   jumpToSelectedDate = FALSE,
   toggleSelected = TRUE,
+  weekNumbers = FALSE,
+  weekNumbersSelect = FALSE,
+  weekend = TRUE,
   ...,
+  positionToInput = "auto",
   theme = "light",
   placeholder = NULL,
   input = TRUE,
@@ -49,7 +53,16 @@ the calendar will always open to the current month and year.}
 
 \item{toggleSelected}{If toggleSelected parameter is true then clicking on the active cell will remove the selection from it.}
 
+\item{weekNumbers}{With this parameter, you can decide whether to display week numbers in the calendar.}
+
+\item{weekNumbersSelect}{If \code{TRUE} select the week when week number is clicked.}
+
+\item{weekend}{This parameter allows you to highlight weekends in the calendar.}
+
 \item{...}{Other settings passed to Slim Select JAvaScript method.}
+
+\item{positionToInput}{This parameter specifies the position of the calendar relative to input,
+if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')}
 
 \item{theme}{This parameter determines the theme of the calendar : 'light' or 'dark'.}
 
@@ -103,7 +116,15 @@ ui <- fluidPage(
         input = FALSE,
         width = "100\%"
       ),
-      verbatimTextOutput("res5")
+      verbatimTextOutput("res5"),
+      calendarProInput(
+        inputId = "cal7",
+        label = "Calendar with week numbers:",
+        placeholder = "Select a date",
+        weekNumbers = TRUE,
+        width = "100\%"
+      ),
+      verbatimTextOutput("res7")
     ),
     column(
       width = 6,
@@ -132,7 +153,17 @@ ui <- fluidPage(
         input = FALSE,
         width = "100\%"
       ),
-      verbatimTextOutput("res6")
+      verbatimTextOutput("res6"),
+      calendarProInput(
+        inputId = "cal8",
+        label = "Calendar select week:",
+        type = "multiple",
+        range = TRUE,
+        weekNumbers = TRUE,
+        weekNumbersSelect = TRUE,
+        width = "100\%"
+      ),
+      verbatimTextOutput("res8")
     )
   )
 )
@@ -145,6 +176,8 @@ server <- function(input, output, session) {
   output$res4 <- renderPrint(input$cal4)
   output$res5 <- renderPrint(input$cal5)
   output$res6 <- renderPrint(input$cal6)
+  output$res7 <- renderPrint(input$cal7)
+  output$res8 <- renderPrint(input$cal8)
 
 }
 

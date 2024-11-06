@@ -71,13 +71,14 @@ $.extend(calendarProBinding, {
       calendarProBinding.updateValue(el, self.selectedDates);
       $(el).trigger("change");
     };
-    config.actions.initCalendar = function(event, self) {
-      $(el).trigger("change");
-    };
-    config.actions.updateCalendar = function(event, self) {
-      calendarProBinding.updateValue(el, self.selectedDates);
-      $(el).trigger("change");
-    };
+    if (config.weekNumbersSelect) {
+      config.actions.clickWeekNumber = function(event, number, days, year, self) {
+        self.settings.selected.dates = days.map((day) => day.dataset.calendarDay);
+        self.update({ dates: true });
+        calendarProBinding.updateValue(el, self.selectedDates);
+        $(el).trigger("change");
+      };
+    }
     if (config.type == "multiple") {
       config.actions.changeToInput = changeToInputMultiple;
     } else {
