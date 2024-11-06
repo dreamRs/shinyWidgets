@@ -10,5 +10,6 @@
   "input-icons": "./srcjs/inputs/input-icons.js",
   "input-time": "./srcjs/inputs/input-time.js",
   "WinBox": "./srcjs/exts/WinBox.js",
-  "slim-select": "./srcjs/inputs/slim-select.js"
+  "slim-select": "./srcjs/inputs/slim-select.js",
+  "calendar-pro": "./srcjs/inputs/vanilla-calendar-pro.js"
 }
