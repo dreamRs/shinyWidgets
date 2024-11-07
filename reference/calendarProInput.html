@@ -46,10 +46,15 @@ based on <a href="https://github.com/uvarov-frontend/vanilla-calendar-pro" class
 <span>  <span class="va">inputId</span>,</span>
 <span>  <span class="va">label</span>,</span>
 <span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"multiple"</span>, <span class="st">"range"</span>, <span class="st">"month"</span>, <span class="st">"year"</span><span class="op">)</span>,</span>
 <span>  min <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  max <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"multiple"</span>, <span class="st">"month"</span>, <span class="st">"year"</span><span class="op">)</span>,</span>
-<span>  range <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  disablePast <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  disableAllDays <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  disableWeekday <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  disableGaps <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  disabled <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  enabled <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  months <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  jumpMonths <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  jumpToSelectedDate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -83,20 +88,40 @@ based on <a href="https://github.com/uvarov-frontend/vanilla-calendar-pro" class
 <dd><p>Initial value.</p></dd>
 
 
+<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
+<dd><p>Determines the type of calendar displayed and the selection process: 'default' | 'multiple' | 'range' | 'month' | 'year'.</p></dd>
+
+
 <dt id="arg-min">min<a class="anchor" aria-label="anchor" href="#arg-min"></a></dt>
-<dd><p>The date.min parameter sets the minimum allowable date that the calendar will consider, which cannot be earlier than this date.</p></dd>
+<dd><p>This parameter sets the minimum date that the user can choose. Dates earlier than the specified date will be disabled and not available for selection.</p></dd>
 
 
 <dt id="arg-max">max<a class="anchor" aria-label="anchor" href="#arg-max"></a></dt>
-<dd><p>The date.max parameter sets the maximum allowable date that the calendar will consider, which cannot be later than this date.</p></dd>
+<dd><p>This parameter sets the maximum date that the user can choose. Dates later than the specified date will be disabled and not available for selection.</p></dd>
 
 
-<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Determines the type of calendar displayed: 'default' | 'multiple' | 'month' | 'year'.</p></dd>
+<dt id="arg-disablepast">disablePast<a class="anchor" aria-label="anchor" href="#arg-disablepast"></a></dt>
+<dd><p>This parameter disables all past days.</p></dd>
 
 
-<dt id="arg-range">range<a class="anchor" aria-label="anchor" href="#arg-range"></a></dt>
-<dd><p>TRUE or FALSE, in case of multiple type, allow to select a range of dates.</p></dd>
+<dt id="arg-disablealldays">disableAllDays<a class="anchor" aria-label="anchor" href="#arg-disablealldays"></a></dt>
+<dd><p>This parameter disables all days and can be useful when using <code>enable</code> is set.</p></dd>
+
+
+<dt id="arg-disableweekday">disableWeekday<a class="anchor" aria-label="anchor" href="#arg-disableweekday"></a></dt>
+<dd><p>This parameter allows you to disable specified weekdays. Specify an array with numbers, where each number represents a day of the week. For example, <code>0</code> is Sunday.</p></dd>
+
+
+<dt id="arg-disablegaps">disableGaps<a class="anchor" aria-label="anchor" href="#arg-disablegaps"></a></dt>
+<dd><p>This parameter disables the selection of days within a range with disabled dates. It only works when <code>type = "range"</code>.</p></dd>
+
+
+<dt id="arg-disabled">disabled<a class="anchor" aria-label="anchor" href="#arg-disabled"></a></dt>
+<dd><p>This parameter allows you to disable specific dates regardless of the specified range.</p></dd>
+
+
+<dt id="arg-enabled">enabled<a class="anchor" aria-label="anchor" href="#arg-enabled"></a></dt>
+<dd><p>This parameter allows you to enable specific dates regardless of the range and disabled dates.</p></dd>
 
 
 <dt id="arg-months">months<a class="anchor" aria-label="anchor" href="#arg-months"></a></dt>
@@ -221,16 +246,14 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal4"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar with range selection:"</span>,</span></span>
-<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
-<span class="r-in"><span>        range <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"range"</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res4"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal6"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar  without input field:"</span>,</span></span>
-<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
-<span class="r-in"><span>        range <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"range"</span>,</span></span>
 <span class="r-in"><span>        months <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>        input <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
@@ -239,8 +262,7 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal8"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar select week:"</span>,</span></span>
-<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
-<span class="r-in"><span>        range <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"range"</span>,</span></span>
 <span class="r-in"><span>        weekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>        weekNumbersSelect <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
