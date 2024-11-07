@@ -18,10 +18,15 @@ html_dependency_calendar_pro <- function() {
 #'
 #' @inheritParams shiny::selectInput
 #' @param value Initial value.
-#' @param min The date.min parameter sets the minimum allowable date that the calendar will consider, which cannot be earlier than this date.
-#' @param max The date.max parameter sets the maximum allowable date that the calendar will consider, which cannot be later than this date.
-#' @param type Determines the type of calendar displayed: 'default' | 'multiple' | 'month' | 'year'.
-#' @param range TRUE or FALSE, in case of multiple type, allow to select a range of dates.
+#' @param type Determines the type of calendar displayed and the selection process: 'default' | 'multiple' | 'range' | 'month' | 'year'.
+#' @param min This parameter sets the minimum date that the user can choose. Dates earlier than the specified date will be disabled and not available for selection.
+#' @param max This parameter sets the maximum date that the user can choose. Dates later than the specified date will be disabled and not available for selection.
+#' @param disablePast This parameter disables all past days.
+#' @param disableAllDays This parameter disables all days and can be useful when using `enable` is set.
+#' @param disableWeekday This parameter allows you to disable specified weekdays. Specify an array with numbers, where each number represents a day of the week. For example, `0` is Sunday.
+#' @param disableGaps This parameter disables the selection of days within a range with disabled dates. It only works when `type = "range"`.
+#' @param disabled This parameter allows you to disable specific dates regardless of the specified range.
+#' @param enabled This parameter allows you to enable specific dates regardless of the range and disabled dates.
 #' @param months The months parameter specifies the number of displayed months when the calendar type is set to 'multiple'.
 #' @param jumpMonths The jumpMonths parameter controls the number of months to jump.
 #' @param jumpToSelectedDate When the option is enabled and 1 or more selected date(s) are provided but without providing
@@ -48,10 +53,15 @@ html_dependency_calendar_pro <- function() {
 calendarProInput <- function(inputId,
                              label,
                              value = NULL,
+                             type = c("default", "multiple", "range", "month", "year"),
                              min = NULL,
                              max = NULL,
-                             type = c("default", "multiple", "month", "year"),
-                             range = FALSE,
+                             disablePast = FALSE,
+                             disableAllDays = FALSE,
+                             disableWeekday = NULL,
+                             disableGaps = FALSE,
+                             disabled = NULL,
+                             enabled = NULL,
                              months = 2,
                              jumpMonths = 1,
                              jumpToSelectedDate = FALSE,
@@ -67,8 +77,9 @@ calendarProInput <- function(inputId,
                              inline = FALSE,
                              width = NULL) {
   # selected <- restoreInput(id = inputId, default = selected)
+  type <- match.arg(type)
   config <- list(
-    type = match.arg(type),
+    type = if (type == "range") "multiple" else type,
     months = months,
     jumpMonths = jumpMonths,
     jumpToSelectedDate = jumpToSelectedDate,
@@ -78,12 +89,18 @@ calendarProInput <- function(inputId,
   )
   config$input <- input
   config$settings$selected$dates <- list1(value)
-  if (config$type == "multiple")
+  if (type == "multiple")
     config$settings$selection$day <- "multiple"
-  if (isTRUE(range))
+  if (type == "range")
     config$settings$selection$day <- "multiple-ranged"
-  config$date$min <- min
-  config$date$max <- max
+  config$settings$range$min <- min
+  config$settings$range$max <- max
+  config$settings$range$disablePast <- disablePast
+  config$settings$range$disableAllDays <- disableAllDays
+  config$settings$range$disableWeekday <- list1(disableWeekday)
+  config$settings$range$disableGaps <- disableGaps
+  config$settings$range$disabled <- list1(disabled)
+  config$settings$range$enabled <- list1(enabled)
   config$settings$visibility$theme <- theme
   config$settings$visibility$weekNumbers <- weekNumbers
   config$settings$visibility$weekend <- weekend

@@ -8,10 +8,15 @@ calendarProInput(
   inputId,
   label,
   value = NULL,
+  type = c("default", "multiple", "range", "month", "year"),
   min = NULL,
   max = NULL,
-  type = c("default", "multiple", "month", "year"),
-  range = FALSE,
+  disablePast = FALSE,
+  disableAllDays = FALSE,
+  disableWeekday = NULL,
+  disableGaps = FALSE,
+  disabled = NULL,
+  enabled = NULL,
   months = 2,
   jumpMonths = 1,
   jumpToSelectedDate = FALSE,
@@ -35,13 +40,23 @@ calendarProInput(
 
 \item{value}{Initial value.}
 
-\item{min}{The date.min parameter sets the minimum allowable date that the calendar will consider, which cannot be earlier than this date.}
+\item{type}{Determines the type of calendar displayed and the selection process: 'default' | 'multiple' | 'range' | 'month' | 'year'.}
 
-\item{max}{The date.max parameter sets the maximum allowable date that the calendar will consider, which cannot be later than this date.}
+\item{min}{This parameter sets the minimum date that the user can choose. Dates earlier than the specified date will be disabled and not available for selection.}
 
-\item{type}{Determines the type of calendar displayed: 'default' | 'multiple' | 'month' | 'year'.}
+\item{max}{This parameter sets the maximum date that the user can choose. Dates later than the specified date will be disabled and not available for selection.}
 
-\item{range}{TRUE or FALSE, in case of multiple type, allow to select a range of dates.}
+\item{disablePast}{This parameter disables all past days.}
+
+\item{disableAllDays}{This parameter disables all days and can be useful when using \code{enable} is set.}
+
+\item{disableWeekday}{This parameter allows you to disable specified weekdays. Specify an array with numbers, where each number represents a day of the week. For example, \code{0} is Sunday.}
+
+\item{disableGaps}{This parameter disables the selection of days within a range with disabled dates. It only works when \code{type = "range"}.}
+
+\item{disabled}{This parameter allows you to disable specific dates regardless of the specified range.}
+
+\item{enabled}{This parameter allows you to enable specific dates regardless of the range and disabled dates.}
 
 \item{months}{The months parameter specifies the number of displayed months when the calendar type is set to 'multiple'.}
 
@@ -139,16 +154,14 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal4",
         label = "Calendar with range selection:",
-        type = "multiple",
-        range = TRUE,
+        type = "range",
         width = "100\%"
       ),
       verbatimTextOutput("res4"),
       calendarProInput(
         inputId = "cal6",
         label = "Calendar  without input field:",
-        type = "multiple",
-        range = TRUE,
+        type = "range",
         months = 3,
         input = FALSE,
         width = "100\%"
@@ -157,8 +170,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal8",
         label = "Calendar select week:",
-        type = "multiple",
-        range = TRUE,
+        type = "range",
         weekNumbers = TRUE,
         weekNumbersSelect = TRUE,
         width = "100\%"

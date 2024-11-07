@@ -4,36 +4,38 @@ library(shinyWidgets)
 
 ui <- fluidPage(
   theme = bslib::bs_theme(5),
-  tags$h2("Calendar Pro Input"),
+  tags$h2("Calendar Pro Input: disable/enable days"),
   fluidRow(
     column(
       width = 6,
       calendarProInput(
         inputId = "cal1",
-        label = "Calendar default:",
+        label = "Disable past:",
         placeholder = "Select a date",
+        disablePast = TRUE,
         width = "100%"
       ),
       verbatimTextOutput("res1"),
       calendarProInput(
         inputId = "cal3",
-        label = "Calendar with initial value:",
-        value = Sys.Date() + 1,
+        label = "Disable week-ends:",
+        disableWeekday = c(0, 6),
         width = "100%"
       ),
       verbatimTextOutput("res3"),
       calendarProInput(
         inputId = "cal5",
-        label = "Calendar without input field:",
-        input = FALSE,
+        label = "Disable wednesdays:",
+        disableWeekday = 3,
         width = "100%"
       ),
       verbatimTextOutput("res5"),
       calendarProInput(
         inputId = "cal7",
-        label = "Calendar with week numbers:",
+        label = "Set range:",
         placeholder = "Select a date",
-        weekNumbers = TRUE,
+        min = Sys.Date() - 14,
+        max = Sys.Date() + 7,
         width = "100%"
       ),
       verbatimTextOutput("res7")
@@ -42,34 +44,36 @@ ui <- fluidPage(
       width = 6,
       calendarProInput(
         inputId = "cal2",
-        label = "Calendar with multiple selection:",
-        type = "multiple",
-        placeholder = "Select multiple dates",
+        label = "Disable select range with gaps (cannot select range with today included):",
+        type = "range",
+        disableGaps = TRUE,
+        disabled = Sys.Date(),
+        positionToInput = c("bottom", "left"),
         width = "100%"
       ),
       verbatimTextOutput("res2"),
       calendarProInput(
         inputId = "cal4",
-        label = "Calendar with range selection:",
-        type = "range",
+        label = "Disable days:",
+        disabled = c(Sys.Date() + c(-5, -2, 3, 6, 7, 9, 14)),
+        positionToInput = c("bottom", "left"),
         width = "100%"
       ),
       verbatimTextOutput("res4"),
       calendarProInput(
         inputId = "cal6",
-        label = "Calendar  without input field:",
-        type = "range",
-        months = 3,
-        input = FALSE,
+        label = "Disable range of days (today -/+ 3):",
+        disabled = paste(Sys.Date() - 3, Sys.Date() + 3, sep = ":"),
+        positionToInput = c("bottom", "left"),
         width = "100%"
       ),
       verbatimTextOutput("res6"),
       calendarProInput(
         inputId = "cal8",
-        label = "Calendar select week:",
-        type = "range",
-        weekNumbers = TRUE,
-        weekNumbersSelect = TRUE,
+        label = "Enable specifics days:",
+        disableAllDays = TRUE,
+        enabled = c(Sys.Date() + c(-5, -2, 3, 6, 7, 9, 14)),
+        positionToInput = c("bottom", "left"),
         width = "100%"
       ),
       verbatimTextOutput("res8")
