@@ -5,7 +5,7 @@
 #' @noRd
 #'
 .onLoad <- function(...) {
-  shiny::addResourcePath('shinyWidgets', system.file("assets", package = "shinyWidgets"))
+  shiny::addResourcePath("shinyWidgets", system.file("assets", package = "shinyWidgets"))
   shiny::registerInputHandler("sw.numericRange", function(data, ...) {
     if (is.null(data)) {
       NULL
@@ -65,5 +65,51 @@
     } else {
       data
     }
+  }, force = TRUE)
+  shiny::registerInputHandler("calendarPro.date", function(data, ...) {
+    if (length(data) < 1 || length(data$selectedDates) < 1)
+      return(NULL)
+    if (!is.null(data$selectedTime)) {
+      fmt <- if (grepl(pattern = "(A|P)M", x = data$selectedTime)) {
+        "%Y-%m-%d %I:%M %p"
+      } else {
+        "%Y-%m-%d %H:%M"
+      }
+      res <- try(as.POSIXct(
+        paste(unlist(data$selectedDates), data$selectedTime),
+        format = fmt
+      ), silent = TRUE)
+    } else {
+      res <- try(as.Date(unlist(data$selectedDates)), silent = TRUE)
+    }
+    if (inherits(res, "try-error")) {
+      warning("calendarProInput: Failed to parse dates, try using parseValue = FALSE", call. = FALSE)
+      data
+    } else {
+      res
+    }
+  }, force = TRUE)
+  shiny::registerInputHandler("calendarPro.monthyear", function(data, ...) {
+    if (length(data) < 1)
+      return(NULL)
+    res <- try(as.Date(
+      paste(
+        data$selectedYear,
+        data$selectedMonth + 1,
+        "01",
+        sep = "-"
+      )
+    ), silent = TRUE)
+    if (inherits(res, "try-error")) {
+      warning("calendarProInput: Failed to parse dates, try using parseValue = FALSE", call. = FALSE)
+      data
+    } else {
+      res
+    }
+  }, force = TRUE)
+  shiny::registerInputHandler("calendarPro.raw", function(data, ...) {
+    if (length(data) < 1)
+      return(NULL)
+    return(data)
   }, force = TRUE)
 }

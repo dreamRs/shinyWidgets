@@ -28,6 +28,13 @@ function changeToInputMultiple(e, self) {
   }
 }
 
+
+const pick = (obj, ...keys) => Object.fromEntries(
+  keys
+  .filter(key => key in obj)
+  .map(key => [key, obj[key]])
+);
+
 var calendarProBinding = new Shiny.InputBinding();
 $.extend(calendarProBinding, {
   store: [],
@@ -35,8 +42,12 @@ $.extend(calendarProBinding, {
     calendarProBinding.store[el.id] = instance;
   },
   value: [],
-  updateValue: (el, instance) => {
-    calendarProBinding.value[el.id] = instance;
+  updateValue: (el, value) => {
+    calendarProBinding.value[el.id] = value;
+  },
+  type: [],
+  updateType: (el, type) => {
+    calendarProBinding.type[el.id] = type;
   },
   find: scope => {
     return $(scope).find(".vanilla-calendar-pro");
@@ -46,6 +57,9 @@ $.extend(calendarProBinding, {
   },
   setValue: (el, value) => {
 
+  },
+  getType: el => {
+    return calendarProBinding.type[el.id];
   },
   subscribe: (el, callback) => {
     $(el).on("change.calendarProBinding", function(e) {
@@ -67,15 +81,40 @@ $.extend(calendarProBinding, {
     config = JSON.parse(config.text);
     if (!config.hasOwnProperty("actions"))
       config.actions = {};
-    config.actions.clickDay = function(event, self) {
-      calendarProBinding.updateValue(el, self.selectedDates);
+    function updateValueOnChange(event, self) {
+      calendarProBinding.updateValue(
+        el,
+        pick(
+          self,
+          "selectedDates",
+          "selectedHolidays",
+          "selectedMonth",
+          "selectedYear",
+          "selectedHours",
+          "selectedMinutes",
+          "selectedTime",
+          "selectedKeeping",
+        ),
+      );
       $(el).trigger("change");
-    };
+    }
+    config.actions.clickDay = updateValueOnChange;
+    config.actions.clickMonth = updateValueOnChange;
+    config.actions.clickYear = updateValueOnChange;
+    config.actions.changeTime = updateValueOnChange;
     if (config.weekNumbersSelect) {
       config.actions.clickWeekNumber = function(event, number, days, year, self) {
         self.settings.selected.dates = days.map((day) => day.dataset.calendarDay);
         self.update({ dates: true });
-        calendarProBinding.updateValue(el, self.selectedDates);
+        calendarProBinding.updateValue(
+          el,
+          pick(
+            self,
+            "selectedDates", "selectedHolidays", "selectedMonth",
+            "selectedYear", "selectedHours", "selectedMinutes",
+            "selectedTime", "selectedKeeping"
+          )
+        );
         $(el).trigger("change");
       };
     }
@@ -87,7 +126,13 @@ $.extend(calendarProBinding, {
     const calendar = new VanillaCalendar(input, config);
     calendar.init();
     calendarProBinding.updateStore(el, calendar);
-    calendarProBinding.updateValue(el, config?.settings?.selected?.dates);
+    calendarProBinding.updateValue(el, {
+      selectedDates: config?.settings?.selected?.dates,
+      selectedMonth: config?.settings?.selected?.month,
+      selectedYear: config?.settings?.selected?.year,
+      selectedTime: config?.settings?.selected?.time
+    });
+    calendarProBinding.updateType(el, config.parseValue);
     $(el).trigger("change");
   }
 });

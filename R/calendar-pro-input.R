@@ -36,6 +36,8 @@ html_dependency_calendar_pro <- function() {
 #' @param weekNumbers With this parameter, you can decide whether to display week numbers in the calendar.
 #' @param weekNumbersSelect If `TRUE` select the week when week number is clicked.
 #' @param weekend This parameter allows you to highlight weekends in the calendar.
+#' @param time This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.
+#' @param timeValue Initial time value.
 #' @param ... Other settings passed to Slim Select JAvaScript method.
 #' @param positionToInput This parameter specifies the position of the calendar relative to input,
 #'  if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')
@@ -43,11 +45,15 @@ html_dependency_calendar_pro <- function() {
 #' @param placeholder A character string giving the user a hint as to what can be entered into the control.
 #' @param input If `TRUE` (default), use an input and render calendar in a dropdown, otherwise calendar is rendered in the page.
 #' @param inline Display calendar container inline.
+#' @param parseValue Convert input value to date/datetime in server or not.
 #'
 #' @return
 #'  * UI: A `shiny.tag` object that can be used in a UI definition.
 #'  * server: a **character** vector of dates selected
 #' @export
+#'
+#' @importFrom utils modifyList
+#' @importFrom htmltools tags
 #'
 #' @example examples/calendar-pro.R
 calendarProInput <- function(inputId,
@@ -69,15 +75,27 @@ calendarProInput <- function(inputId,
                              weekNumbers = FALSE,
                              weekNumbersSelect = FALSE,
                              weekend = TRUE,
+                             time = NULL,
+                             timeValue = NULL,
                              ...,
                              positionToInput = "auto",
                              theme = "light",
                              placeholder = NULL,
                              input = TRUE,
                              inline = FALSE,
+                             parseValue = TRUE,
                              width = NULL) {
   # selected <- restoreInput(id = inputId, default = selected)
   type <- match.arg(type)
+  parseValue <- if (isTRUE(parseValue)) {
+    if (type %in% c("month", "year")) {
+      "calendarPro.monthyear"
+    } else {
+      "calendarPro.date"
+    }
+  } else {
+    "calendarPro.raw"
+  }
   config <- list(
     type = if (type == "range") "multiple" else type,
     months = months,
@@ -85,9 +103,13 @@ calendarProInput <- function(inputId,
     jumpToSelectedDate = jumpToSelectedDate,
     toggleSelected = toggleSelected,
     weekNumbersSelect = weekNumbersSelect,
-    ...
+    parseValue = parseValue
   )
   config$input <- input
+  config$settings$selection$time <- time
+  config$settings$selected$time <- timeValue
+  if (!is.null(value))
+    value <- format(value, format = "%Y-%m-%d")
   config$settings$selected$dates <- list1(value)
   if (type == "multiple")
     config$settings$selection$day <- "multiple"
@@ -105,6 +127,7 @@ calendarProInput <- function(inputId,
   config$settings$visibility$weekNumbers <- weekNumbers
   config$settings$visibility$weekend <- weekend
   config$settings$visibility$positionToInput <- positionToInput
+  config <- modifyList(config, list(...))
   tag_el <- if (isTRUE(input)) {
     tags$input(
       type = "text",

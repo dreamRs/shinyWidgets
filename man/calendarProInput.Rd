@@ -24,12 +24,15 @@ calendarProInput(
   weekNumbers = FALSE,
   weekNumbersSelect = FALSE,
   weekend = TRUE,
+  time = NULL,
+  timeValue = NULL,
   ...,
   positionToInput = "auto",
   theme = "light",
   placeholder = NULL,
   input = TRUE,
   inline = FALSE,
+  parseValue = TRUE,
   width = NULL
 )
 }
@@ -74,6 +77,10 @@ the calendar will always open to the current month and year.}
 
 \item{weekend}{This parameter allows you to highlight weekends in the calendar.}
 
+\item{time}{This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.}
+
+\item{timeValue}{Initial time value.}
+
 \item{...}{Other settings passed to Slim Select JAvaScript method.}
 
 \item{positionToInput}{This parameter specifies the position of the calendar relative to input,
@@ -86,6 +93,8 @@ if the calendar is initialized with the input parameter. Possible values: 'auto'
 \item{input}{If \code{TRUE} (default), use an input and render calendar in a dropdown, otherwise calendar is rendered in the page.}
 
 \item{inline}{Display calendar container inline.}
+
+\item{parseValue}{Convert input value to date/datetime in server or not.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
 see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
