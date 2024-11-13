@@ -299,13 +299,25 @@ See online documentation for more information: <a href="https://github.com/Simon
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id21</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">red</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"firebrick"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">session</span>, <span class="st">"id21"</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="st">"firebrick"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="st">"firebrick"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">green</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"forestgreen"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">session</span>, <span class="st">"id21"</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="st">"forestgreen"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="st">"forestgreen"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">blue</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span><span class="va">session</span>, <span class="st">"id21"</span>, <span class="st">"steelblue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="updateColorPickr.html">updateColorPickr</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">session</span>, <span class="st">"id21"</span>,</span></span>
+<span class="r-in"><span>      label <span class="op">=</span> <span class="st">"steelblue"</span>,</span></span>
+<span class="r-in"><span>      value <span class="op">=</span> <span class="st">"steelblue"</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res22</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id22</span><span class="op">)</span></span></span>
