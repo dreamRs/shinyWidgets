@@ -1,4 +1,14 @@
 
+html_dependency_pickr <- function() {
+  htmlDependency(
+    name = "colorpickr",
+    version = "1.9.1",
+    src = c(file = "packer"),
+    package = "shinyWidgets",
+    script = "colorpickr.js"
+  )
+}
+
 #' @title Color Pickr
 #'
 #' @description A widget to pick color with different themes and options.

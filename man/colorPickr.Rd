@@ -221,13 +221,25 @@ server <- function(input, output, session) {
 
   output$res21 <- renderPrint(input$id21)
   observeEvent(input$red, {
-    updateColorPickr(session, "id21", "firebrick")
+    updateColorPickr(
+      session, "id21",
+      label = "firebrick",
+      value = "firebrick"
+    )
   })
   observeEvent(input$green, {
-    updateColorPickr(session, "id21", "forestgreen")
+    updateColorPickr(
+      session, "id21",
+      label = "forestgreen",
+      value = "forestgreen"
+    )
   })
   observeEvent(input$blue, {
-    updateColorPickr(session, "id21", "steelblue")
+    updateColorPickr(
+      session, "id21",
+      label = "steelblue",
+      value = "steelblue"
+    )
   })
 
   output$res22 <- renderPrint(input$id22)
