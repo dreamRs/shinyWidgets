@@ -18,6 +18,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal3",
         label = "Calendar with initial value:",
+        format = "%d/%m/%Y",
         value = Sys.Date() + 1,
         width = "100%"
       ),
@@ -57,7 +58,7 @@ ui <- fluidPage(
       verbatimTextOutput("res4"),
       calendarProInput(
         inputId = "cal6",
-        label = "Calendar  without input field:",
+        label = "Calendar (range) without input field:",
         type = "range",
         months = 3,
         input = FALSE,

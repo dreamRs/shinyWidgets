@@ -39,6 +39,7 @@ html_dependency_calendar_pro <- function() {
 #' @param time This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.
 #' @param timeValue Initial time value.
 #' @param ... Other settings passed to Slim Select JAvaScript method.
+#' @param format Format to use when displaying date in input field, if an initial value is provided it must be a date so that the format apply.
 #' @param positionToInput This parameter specifies the position of the calendar relative to input,
 #'  if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')
 #' @param theme This parameter determines the theme of the calendar : 'light' or 'dark'.
@@ -78,6 +79,7 @@ calendarProInput <- function(inputId,
                              time = NULL,
                              timeValue = NULL,
                              ...,
+                             format = "%Y-%m-%d",
                              positionToInput = "auto",
                              theme = "light",
                              placeholder = NULL,
@@ -103,14 +105,14 @@ calendarProInput <- function(inputId,
     jumpToSelectedDate = jumpToSelectedDate,
     toggleSelected = toggleSelected,
     weekNumbersSelect = weekNumbersSelect,
-    parseValue = parseValue
+    parseValue = parseValue,
+    format = to_dayjs_fmt(format)
   )
   config$input <- input
   config$settings$selection$time <- time
   config$settings$selected$time <- timeValue
   if (!is.null(value))
-    value <- format(value, format = "%Y-%m-%d")
-  config$settings$selected$dates <- list1(value)
+    config$settings$selected$dates <- list1(format(value, format = "%Y-%m-%d"))
   if (type == "multiple")
     config$settings$selection$day <- "multiple"
   if (type == "range")
@@ -134,7 +136,15 @@ calendarProInput <- function(inputId,
       class = "form-control calendar-pro-element",
       readonly = NA,
       placeholder = placeholder,
-      value = value
+      value = if (!is.null(value)) {
+        if (type == "multiple") {
+          paste(format(value, format = format), collapse = " \u2014 ")
+        } else if (type == "range") {
+          paste(format(value[1], format = format), format(value[length(value)], format = format), sep = " \u2014 ")
+        } else {
+          format(value, format = format)
+        }
+      }
     )
   } else {
     tags$div(

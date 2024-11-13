@@ -27,6 +27,7 @@ calendarProInput(
   time = NULL,
   timeValue = NULL,
   ...,
+  format = "\%Y-\%m-\%d",
   positionToInput = "auto",
   theme = "light",
   placeholder = NULL,
@@ -83,6 +84,8 @@ the calendar will always open to the current month and year.}
 
 \item{...}{Other settings passed to Slim Select JAvaScript method.}
 
+\item{format}{Format to use when displaying date in input field, if an initial value is provided it must be a date so that the format apply.}
+
 \item{positionToInput}{This parameter specifies the position of the calendar relative to input,
 if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')}
 
@@ -130,6 +133,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal3",
         label = "Calendar with initial value:",
+        format = "\%d/\%m/\%Y",
         value = Sys.Date() + 1,
         width = "100\%"
       ),
@@ -169,7 +173,7 @@ ui <- fluidPage(
       verbatimTextOutput("res4"),
       calendarProInput(
         inputId = "cal6",
-        label = "Calendar  without input field:",
+        label = "Calendar (range) without input field:",
         type = "range",
         months = 3,
         input = FALSE,

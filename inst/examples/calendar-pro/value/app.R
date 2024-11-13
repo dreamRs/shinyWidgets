@@ -80,7 +80,8 @@ ui <- fluidPage(
         timeValue = "10:00",
         placeholder = "Select date and time",
         width = "100%",
-        parseValue = parseValue
+        parseValue = parseValue,
+        format = "YYYY-MM-DD HH:mm"
       ),
       verbatimTextOutput("res6")
     )

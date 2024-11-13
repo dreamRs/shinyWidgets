@@ -201,3 +201,29 @@ genId <- function(bytes = 12) {
 }
 
 
+
+
+to_dayjs_fmt <- function(fmt) {
+  ref <- list(
+    "%Y" = "YYYY",
+    "%y" = "YY",
+    "%m" = "MM",
+    "%b" = "MMM",
+    "%B" = "MMMM",
+    "%e" = "D",
+    "%d" = "DD",
+    "%w" = "d",
+    "%a" = "ddd",
+    "%A" = "dddd",
+    "%H" = "HH",
+    "%I" = "hh",
+    "%M" = "mm",
+    "%S" = "ss",
+    "%R" = "Z"
+  )
+  for (i in seq_along(ref)) {
+    fmt <- gsub(pattern = names(ref)[i], replacement = ref[[i]], x = fmt, fixed = TRUE)
+  }
+  return(fmt)
+}
+

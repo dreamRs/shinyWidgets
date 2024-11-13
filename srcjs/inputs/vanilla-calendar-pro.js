@@ -3,29 +3,47 @@ import "shiny";
 import { updateLabel } from "../modules/utils";
 import VanillaCalendar from "vanilla-calendar-pro";
 import "vanilla-calendar-pro/build/vanilla-calendar.min.css";
+import dayjs from "dayjs";
 
 
-function changeToInputSingle(e, self) {
-  if (!self.HTMLInputElement) return;
-  if (self.selectedDates[0]) {
-    self.HTMLInputElement.value = self.selectedDates[0];
-    // if you want to hide the calendar after picking a date
-    //self.hide();
-  } else {
-    self.HTMLInputElement.value = "";
-  }
+function changeToInputSingle(fmt) {
+  return function(e, self) {
+    if (!self.HTMLInputElement) return;
+    if (self.selectedDates[0]) {
+      self.HTMLInputElement.value = dayjs(self.selectedDates[0]).format(fmt);
+      //self.hide();
+    } else {
+      self.HTMLInputElement.value = "";
+    }
+  };
 }
 
-function changeToInputMultiple(e, self) {
-  if (!self.HTMLInputElement) return;
-  if (self.selectedDates[1]) {
-    self.selectedDates.sort((a, b) => +new Date(a) - +new Date(b));
-    self.HTMLInputElement.value = `${self.selectedDates[0]} — ${self.selectedDates[self.selectedDates.length - 1]}`;
-  } else if (self.selectedDates[0]) {
-    self.HTMLInputElement.value = self.selectedDates[0];
-  } else {
-    self.HTMLInputElement.value = "";
-  }
+function changeToInputRange(fmt) {
+  return function(e, self) {
+    if (!self.HTMLInputElement) return;
+    if (self.selectedDates[1]) {
+      self.selectedDates.sort((a, b) => +new Date(a) - +new Date(b));
+      var fmtdates = self.selectedDates.map(x => dayjs(x).format(fmt));
+      self.HTMLInputElement.value = `${fmtdates[0]} \u2014 ${fmtdates[fmtdates.length - 1]}`;
+    } else if (self.selectedDates[0]) {
+      self.HTMLInputElement.value = dayjs(self.selectedDates[0]).format(fmt);
+    } else {
+      self.HTMLInputElement.value = "";
+    }
+  };
+}
+
+function changeToInputMultiple(fmt) {
+  return function(e, self) {
+    if (!self.HTMLInputElement) return;
+    if (self.selectedDates[0]) {
+      var fmtdates = self.selectedDates.map(x => dayjs(x).format(fmt));
+      self.HTMLInputElement.value = fmtdates.join(" \u2014 ");
+      //self.hide();
+    } else {
+      self.HTMLInputElement.value = "";
+    }
+  };
 }
 
 
@@ -116,12 +134,17 @@ $.extend(calendarProBinding, {
           )
         );
         $(el).trigger("change");
+        changeToInputRange(config.format)(event, self);
       };
     }
     if (config.type == "multiple") {
-      config.actions.changeToInput = changeToInputMultiple;
+      if (config.settings.selection.day == "multiple-ranged") {
+        config.actions.changeToInput = changeToInputRange(config.format);
+      } else {
+        config.actions.changeToInput = changeToInputMultiple(config.format);
+      }
     } else {
-      config.actions.changeToInput = changeToInputSingle;
+      config.actions.changeToInput = changeToInputSingle(config.format);
     }
     const calendar = new VanillaCalendar(input, config);
     calendar.init();
