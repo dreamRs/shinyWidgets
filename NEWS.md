@@ -2,6 +2,7 @@ shinyWidgets 0.8.8
 ======================
 
 * `knobInput()` and `switchInput()` are softly deprecated, since the JavaScript libraries used by those widgets are no longer actively maintained.
+* Updated virtual-select to 1.0.46 (fix focus issue), see https://github.com/sa-si-dev/virtual-select/releases.
 
 
 shinyWidgets 0.8.7
