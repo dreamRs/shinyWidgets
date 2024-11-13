@@ -62,12 +62,15 @@ based on <a href="https://github.com/uvarov-frontend/vanilla-calendar-pro" class
 <span>  weekNumbers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  weekNumbersSelect <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  weekend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  timeValue <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  positionToInput <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  theme <span class="op">=</span> <span class="st">"light"</span>,</span>
 <span>  placeholder <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  input <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  inline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  parseValue <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -154,6 +157,14 @@ the calendar will always open to the current month and year.</p></dd>
 <dd><p>This parameter allows you to highlight weekends in the calendar.</p></dd>
 
 
+<dt id="arg-time">time<a class="anchor" aria-label="anchor" href="#arg-time"></a></dt>
+<dd><p>This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.</p></dd>
+
+
+<dt id="arg-timevalue">timeValue<a class="anchor" aria-label="anchor" href="#arg-timevalue"></a></dt>
+<dd><p>Initial time value.</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Other settings passed to Slim Select JAvaScript method.</p></dd>
 
@@ -177,6 +188,10 @@ if the calendar is initialized with the input parameter. Possible values: 'auto'
 
 <dt id="arg-inline">inline<a class="anchor" aria-label="anchor" href="#arg-inline"></a></dt>
 <dd><p>Display calendar container inline.</p></dd>
+
+
+<dt id="arg-parsevalue">parseValue<a class="anchor" aria-label="anchor" href="#arg-parsevalue"></a></dt>
+<dd><p>Convert input value to date/datetime in server or not.</p></dd>
 
 
 <dt id="arg-width">width<a class="anchor" aria-label="anchor" href="#arg-width"></a></dt>
