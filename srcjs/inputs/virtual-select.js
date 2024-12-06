@@ -111,6 +111,9 @@ $.extend(virtualSelectBinding, {
     if (config.labelRenderer) {
       config.labelRenderer = window[config.labelRenderer];
     }
+    if (config.selectedLabelRenderer) {
+      config.selectedLabelRenderer = window[config.selectedLabelRenderer];
+    }
     config.ele = el;
     VirtualSelect.init(config);
     if (data.stateInput) {
