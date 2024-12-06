@@ -12,6 +12,8 @@
 #' @param btnClass Class to add to buttons, if a vector of length 2 the first value is used for search button and second one for reset button.
 #' @param resetValue Value used when reset button is clicked, default to `""` (empty string),
 #'  if `NULL` value is not reset.
+#' @param inputType The type of input to use, default is `"text"` but you can also use `"password"` for example,
+#'  see [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text) for other possible types.
 #' @param width The width of the input, e.g. `400px`, or `100%`.
 #'
 #' @note The two buttons ('search' and 'reset') act like [shiny::actionButton()], you can
@@ -34,6 +36,7 @@ searchInput <- function(inputId,
                         btnReset = NULL,
                         btnClass = "btn-default btn-outline-secondary",
                         resetValue = "",
+                        inputType = "text",
                         width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   btnClass <- rep_len(btnClass, length.out = 2)
@@ -65,7 +68,7 @@ searchInput <- function(inputId,
       class = "input-group search-text",
       htmltools::tags$input(
         id = paste0(inputId, "_text"),
-        type = "text",
+        type = inputType,
         class = "form-control",
         value = value,
         placeholder = placeholder

@@ -13,6 +13,7 @@ searchInput(
   btnReset = NULL,
   btnClass = "btn-default btn-outline-secondary",
   resetValue = "",
+  inputType = "text",
   width = NULL
 )
 }
@@ -33,6 +34,9 @@ searchInput(
 
 \item{resetValue}{Value used when reset button is clicked, default to \code{""} (empty string),
 if \code{NULL} value is not reset.}
+
+\item{inputType}{The type of input to use, default is \code{"text"} but you can also use \code{"password"} for example,
+see \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text}{developer.mozilla.org} for other possible types.}
 
 \item{width}{The width of the input, e.g. \verb{400px}, or \verb{100\%}.}
 }

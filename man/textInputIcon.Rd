@@ -11,6 +11,7 @@ textInputIcon(
   placeholder = NULL,
   icon = NULL,
   size = NULL,
+  inputType = "text",
   width = NULL
 )
 }
@@ -30,6 +31,9 @@ or text, to be displayed on the right or left of the text input.}
 
 \item{size}{Size of the input, default to \code{NULL}, can
 be \code{"sm"} (small) or \code{"lg"} (large).}
+
+\item{inputType}{The type of input to use, default is \code{"text"} but you can also use \code{"password"} for example,
+see \href{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text}{developer.mozilla.org} for other possible types.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
 see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}

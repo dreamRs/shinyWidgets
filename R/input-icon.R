@@ -9,6 +9,8 @@
 #'  or text, to be displayed on the right or left of the text input.
 #' @param size Size of the input, default to `NULL`, can
 #'  be `"sm"` (small) or `"lg"` (large).
+#' @param inputType The type of input to use, default is `"text"` but you can also use `"password"` for example,
+#'  see [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text) for other possible types.
 #'
 #' @return A text input control that can be added to a UI definition.
 #' @seealso See [updateTextInputIcon()] to update server-side, and [numericInputIcon()] for using numeric value.
@@ -24,6 +26,7 @@ textInputIcon <- function(inputId,
                           placeholder = NULL,
                           icon = NULL,
                           size = NULL,
+                          inputType = "text",
                           width = NULL) {
   value <- shiny::restoreInput(id = inputId, default = value)
   tags$div(
@@ -36,7 +39,7 @@ textInputIcon <- function(inputId,
       markup_input_group(icon, "left", theme_func = shiny::getCurrentTheme),
       tags$input(
         id = inputId,
-        type = "text",
+        type = inputType,
         class = "form-control text-input-icon",
         value = value,
         placeholder = placeholder
