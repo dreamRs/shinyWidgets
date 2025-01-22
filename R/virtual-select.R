@@ -3,7 +3,7 @@
 html_dependency_virtualselect <- function() {
   htmlDependency(
     name = "virtual-select",
-    version = "1.0.46",
+    version = "1.0.47",
     src = c(file = system.file("packer", package = "shinyWidgets")),
     script = "virtual-select.js",
     all_files = FALSE
