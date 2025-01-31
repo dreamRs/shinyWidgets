@@ -15,14 +15,14 @@ attachShinyWidgetsDep <- function(tag, widget = NULL, extra_deps = NULL) {
     if (widget == "picker") {
       dependencies <- list(
         dependencies,
-        # htmltools::htmlDependencies(shiny::fluidPage())[[1]],
+        # htmlDependencies(shiny::fluidPage())[[1]],
         html_dependency_picker()
       )
     } else if (widget == "awesome") {
       dependencies <- list(
         dependencies,
         html_dependency_awesome(),
-        htmltools::findDependencies(shiny::icon("rebel"))[[1]]
+        findDependencies(shiny::icon("rebel"))[[1]]
       )
     } else if (widget == "bsswitch") {
       dependencies <- c(
@@ -42,7 +42,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL, extra_deps = NULL) {
     } else if (widget == "dropdown") {
       dependencies <- list(
         dependencies,
-        htmltools::htmlDependency(
+        htmlDependency(
           name = "dropdown-patch",
           version = packageVersion("shinyWidgets"),
           src = c(href = "shinyWidgets/dropdown"),
@@ -52,7 +52,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL, extra_deps = NULL) {
     } else if (widget == "sw-dropdown") {
       dependencies <- list(
         dependencies,
-        htmltools::htmlDependency(
+        htmlDependency(
           name = "sw-dropdown",
           version = packageVersion("shinyWidgets"),
           src = c(href = "shinyWidgets/sw-dropdown"),
@@ -95,7 +95,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL, extra_deps = NULL) {
   } else {
     dependencies <- c(list(dependencies), extra_deps)
   }
-  htmltools::attachDependencies(
+  attachDependencies(
     x = tag,
     value = dependencies,
     append = TRUE
@@ -104,7 +104,7 @@ attachShinyWidgetsDep <- function(tag, widget = NULL, extra_deps = NULL) {
 
 
 html_dependency_shinyWidgets <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "shinyWidgets",
     version = packageVersion("shinyWidgets"),
     src = c(href = "shinyWidgets", file = "assets"),

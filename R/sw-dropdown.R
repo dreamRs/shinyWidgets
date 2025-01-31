@@ -20,7 +20,7 @@
 #'
 #' @seealso [dropMenu()] for a more robust alternative.
 #'
-#' @importFrom htmltools validateCssUnit tagList singleton tags tagAppendChild
+#' @importFrom htmltools validateCssUnit tagList singleton tags tagAppendChild css tagFunction
 #'
 #' @export
 #' @examples
@@ -119,13 +119,13 @@ dropdown <- function(...,
   has_tooltip <- !is.null(tooltip) && !identical(tooltip, FALSE)
 
   # Dropdown content
-  dropcontent <- htmltools::tags$div(
+  dropcontent <- tags$div(
     id = contentId,
     class = "sw-dropdown-content animated",
     class = if (up) "sw-dropup-content",
     class = if (right) "sw-dropright-content",
-    style = htmltools::css(width = htmltools::validateCssUnit(width)),
-    htmltools::tags$div(class = "sw-dropdown-in", ...)
+    style = css(width = validateCssUnit(width)),
+    tags$div(class = "sw-dropdown-in", ...)
   )
   # Button
   if (style == "default") {
@@ -136,7 +136,7 @@ dropdown <- function(...,
       ),
       class = "action-button",
       type = "button", id = inputId, list(icon, label),
-      htmltools::tags$span(
+      tags$span(
         class = ifelse(
           test = up,
           yes = "glyphicon glyphicon-triangle-top",
@@ -158,7 +158,7 @@ dropdown <- function(...,
   }
 
   if (has_tooltip) {
-    btn <- htmltools::tagAppendAttributes(
+    btn <- tagAppendAttributes(
       btn,
       `data-bs-toggle` = "tooltip",
       `data-bs-title` = tooltip$title,
@@ -168,7 +168,7 @@ dropdown <- function(...,
   }
 
   # Final tag
-  dropdownTag <- htmltools::tags$div(class = "sw-dropdown", id = dropId, btn, dropcontent)
+  dropdownTag <- tags$div(class = "sw-dropdown", id = dropId, btn, dropcontent)
 
   if (has_tooltip) {
     tooltip <- lapply(tooltip, function(x) {
@@ -178,7 +178,7 @@ dropdown <- function(...,
         "false"
       else x
     })
-    tooltipJs <- htmltools::tagFunction(function() {
+    tooltipJs <- tagFunction(function() {
       theme <- shiny::getCurrentTheme()
       if (!bslib::is_bs_theme(theme)) {
         return(dropdown_tooltip_bs3(inputId, tooltip))
@@ -188,7 +188,7 @@ dropdown <- function(...,
       }
       dropdown_tooltip_bs3(inputId, tooltip)
     })
-    dropdownTag <- htmltools::tagAppendChild(dropdownTag, tooltipJs)
+    dropdownTag <- tagAppendChild(dropdownTag, tooltipJs)
   }
 
   # Animate
@@ -196,8 +196,9 @@ dropdown <- function(...,
     animate <- animateOptions()
 
   if (!is.null(animate) && !identical(animate, FALSE)) {
-    dropdownTag <- htmltools::tagAppendChild(
-      dropdownTag, htmltools::tags$script(
+    dropdownTag <- tagAppendChild(
+      dropdownTag,
+      tags$script(
         sprintf(
           "$(function() {swDrop('%s', '%s', '%s', '%s', '%s', '%s');});",
           inputId, contentId, dropId,
@@ -207,8 +208,9 @@ dropdown <- function(...,
     )
     dropdownTag <- attachShinyWidgetsDep(dropdownTag, "animate")
   } else {
-    dropdownTag <- htmltools::tagAppendChild(
-      dropdownTag, htmltools::tags$script(
+    dropdownTag <- tagAppendChild(
+      dropdownTag,
+      tags$script(
         sprintf(
           "$(function() {swDrop('%s', '%s', '%s', '%s', '%s', '%s');});",
           inputId, contentId, dropId, "sw-none", "sw-none", "1"
@@ -223,7 +225,7 @@ dropdown <- function(...,
 
 
 dropdown_tooltip_bs3 <- function(inputId, tooltip) {
-  htmltools::tags$script(
+  tags$script(
     sprintf(
       "$('#%s').tooltip({ placement: '%s', title: '%s', html: %s });",
       inputId, tooltip$placement, tooltip$title, tooltip$html
@@ -232,7 +234,7 @@ dropdown_tooltip_bs3 <- function(inputId, tooltip) {
 }
 
 dropdown_tooltip_bs5 <- function(inputId, tooltip) {
-  htmltools::tags$script(
+  tags$script(
     sprintf("const el = document.getElementById('%s');", inputId),
     "new bootstrap.Tooltip(el);"
   )

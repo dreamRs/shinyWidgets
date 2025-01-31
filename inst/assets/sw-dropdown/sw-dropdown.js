@@ -85,6 +85,9 @@ function swDrop(
         $(e.target).parents('.bootstrap-select').length
       ) && // hack for pickr color
       !(
+        $(e.target).parents('.vscomp-value-tag-clear-button').length
+      ) && // hack for pickr color
+      !(
         $(e.target).parents('.pcr-app').length
       ) && // hack for shinytree
       !(
