@@ -31,9 +31,9 @@ ui <- fluidPage(
 
       calendarProInput(
         inputId = "cal5",
-        label = "Month selection:",
-        placeholder = "Select a month",
-        type = "month",
+        label = "Multiple date selection:",
+        type = "multiple",
+        placeholder = "Select multiple date ",
         width = "100%",
         parseValue = parseValue
       ),
@@ -41,6 +41,27 @@ ui <- fluidPage(
 
       calendarProInput(
         inputId = "cal7",
+        label = "Range date selection:",
+        type = "range",
+        placeholder = "Select range of dates ",
+        width = "100%",
+        parseValue = parseValue
+      ),
+      verbatimTextOutput("res7"),
+
+      calendarProInput(
+        inputId = "cal9",
+        label = "Month selection:",
+        placeholder = "Select a month",
+        type = "month",
+        width = "100%",
+        parseValue = parseValue,
+        format = "%Y-%m"
+      ),
+      verbatimTextOutput("res9"),
+
+      calendarProInput(
+        inputId = "cal11",
         label = "Year selection:",
         placeholder = "Select a year",
         # settings = list(selection = list(month = FALSE)),
@@ -48,42 +69,72 @@ ui <- fluidPage(
         width = "100%",
         parseValue = parseValue
       ),
-      verbatimTextOutput("res7")
+      verbatimTextOutput("res11")
     ),
     column(
       width = 6,
+
       calendarProInput(
         inputId = "cal2",
-        label = "Multiple date selection:",
-        type = "multiple",
-        placeholder = "Select multiple date ",
+        label = "Datetime selection:",
+        placeholder = "Select date and time",
+        time = 12,
         width = "100%",
-        parseValue = parseValue
+        parseValue = parseValue,
+        format = "%Y-%m-%d %H:%M"
       ),
       verbatimTextOutput("res2"),
 
       calendarProInput(
         inputId = "cal4",
-        label = "Datetime selection:",
+        label = "Datetime selection (with default as POSIXct):",
+        value = as.POSIXct(paste(Sys.Date(), "9:00")),
+        time = 24,
         placeholder = "Select date and time",
-        time = 12,
         width = "100%",
-        parseValue = parseValue
+        parseValue = parseValue,
+        format = "%Y-%m-%d %H:%M"
       ),
       verbatimTextOutput("res4"),
 
       calendarProInput(
         inputId = "cal6",
-        label = "Datetime selection (with default):",
+        label = "Datetime selection (with timeValue default):",
         value = Sys.Date(),
         time = 24,
         timeValue = "10:00",
         placeholder = "Select date and time",
         width = "100%",
         parseValue = parseValue,
-        format = "YYYY-MM-DD HH:mm"
+        format = "%Y-%m-%d %H:%M"
       ),
-      verbatimTextOutput("res6")
+      verbatimTextOutput("res6"),
+
+      calendarProInput(
+        inputId = "cal8",
+        label = "Datetime multiple selection (with default):",
+        value = as.POSIXct(paste(Sys.Date(), "9:00")),
+        time = 24,
+        type = "multiple",
+        placeholder = "Select date and time",
+        width = "100%",
+        parseValue = parseValue,
+        format = "%Y-%m-%d %H:%M"
+      ),
+      verbatimTextOutput("res8"),
+
+      calendarProInput(
+        inputId = "cal10",
+        label = "Datetime range selection (with default):",
+        value = as.POSIXct(paste(Sys.Date(), "9:00")),
+        time = 24,
+        type = "range",
+        placeholder = "Select date and time",
+        width = "100%",
+        parseValue = parseValue,
+        format = "%Y-%m-%d %H:%M"
+      ),
+      verbatimTextOutput("res10")
     )
   )
 )
@@ -97,6 +148,10 @@ server <- function(input, output, session) {
   output$res5 <- renderPrint(str(input$cal5))
   output$res6 <- renderPrint(str(input$cal6))
   output$res7 <- renderPrint(str(input$cal7))
+  output$res8 <- renderPrint(str(input$cal8))
+  output$res9 <- renderPrint(str(input$cal9))
+  output$res10 <- renderPrint(str(input$cal10))
+  output$res11 <- renderPrint(str(input$cal11))
 
 }
 

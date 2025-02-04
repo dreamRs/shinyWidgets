@@ -110,6 +110,13 @@ calendarProInput <- function(inputId,
   )
   config$input <- input
   config$settings$selection$time <- time
+  if (!is.null(time)) {
+    if (is.null(timeValue)) {
+      timeValue <- format(value, format = "%H:%M")
+    } else {
+      value <- as.POSIXct(paste(format(value, format = "%Y-%m-%d"), timeValue))
+    }
+  }
   config$settings$selected$time <- timeValue
   if (!is.null(value))
     config$settings$selected$dates <- list1(format(value, format = "%Y-%m-%d"))

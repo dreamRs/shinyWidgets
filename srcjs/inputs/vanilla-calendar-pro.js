@@ -6,11 +6,29 @@ import "vanilla-calendar-pro/build/vanilla-calendar.min.css";
 import dayjs from "dayjs";
 
 
+function changeToInputMonth(fmt) {
+  return function(self, event) {
+    if (!self.HTMLInputElement) return;
+    console.log(self);
+    if (self.selectedMonth[0]) {
+      var date = self.selectedYear[0] + "-" + self.selectedMonth[0] + "-01";
+      self.HTMLInputElement.value = dayjs(date).format(fmt);
+      //self.hide();
+    } else {
+      self.HTMLInputElement.value = "";
+    }
+  };
+}
+
 function changeToInputSingle(fmt) {
   return function(e, self) {
     if (!self.HTMLInputElement) return;
     if (self.selectedDates[0]) {
-      self.HTMLInputElement.value = dayjs(self.selectedDates[0]).format(fmt);
+      var date = self.selectedDates[0];
+      if (self?.selectedTime) {
+        date = date + " " + self.selectedTime;
+      }
+      self.HTMLInputElement.value = dayjs(date).format(fmt);
       //self.hide();
     } else {
       self.HTMLInputElement.value = "";
@@ -23,10 +41,19 @@ function changeToInputRange(fmt) {
     if (!self.HTMLInputElement) return;
     if (self.selectedDates[1]) {
       self.selectedDates.sort((a, b) => +new Date(a) - +new Date(b));
-      var fmtdates = self.selectedDates.map(x => dayjs(x).format(fmt));
+      var fmtdates = self.selectedDates.map(x => {
+        if (self?.selectedTime) {
+          x = x + " " + self.selectedTime;
+        }
+        return dayjs(x).format(fmt);
+      });
       self.HTMLInputElement.value = `${fmtdates[0]} \u2014 ${fmtdates[fmtdates.length - 1]}`;
     } else if (self.selectedDates[0]) {
-      self.HTMLInputElement.value = dayjs(self.selectedDates[0]).format(fmt);
+      var date = self.selectedDates[0];
+      if (self?.selectedTime) {
+        date = date + " " + self.selectedTime;
+      }
+      self.HTMLInputElement.value = dayjs(date).format(fmt);
     } else {
       self.HTMLInputElement.value = "";
     }
@@ -37,7 +64,12 @@ function changeToInputMultiple(fmt) {
   return function(e, self) {
     if (!self.HTMLInputElement) return;
     if (self.selectedDates[0]) {
-      var fmtdates = self.selectedDates.map(x => dayjs(x).format(fmt));
+      var fmtdates = self.selectedDates.map(x => {
+        if (self?.selectedTime) {
+          x = x + " " + self.selectedTime;
+        }
+        return dayjs(x).format(fmt);
+      });
       self.HTMLInputElement.value = fmtdates.join(" \u2014 ");
       //self.hide();
     } else {
@@ -128,9 +160,14 @@ $.extend(calendarProBinding, {
           el,
           pick(
             self,
-            "selectedDates", "selectedHolidays", "selectedMonth",
-            "selectedYear", "selectedHours", "selectedMinutes",
-            "selectedTime", "selectedKeeping"
+            "selectedDates",
+            "selectedHolidays",
+            "selectedMonth",
+            "selectedYear",
+            "selectedHours",
+            "selectedMinutes",
+            "selectedTime",
+            "selectedKeeping"
           )
         );
         $(el).trigger("change");
@@ -143,6 +180,8 @@ $.extend(calendarProBinding, {
       } else {
         config.actions.changeToInput = changeToInputMultiple(config.format);
       }
+    } else if (config.type == "month") {
+      config.actions.onClickMonth = changeToInputMonth(config.format);
     } else {
       config.actions.changeToInput = changeToInputSingle(config.format);
     }
