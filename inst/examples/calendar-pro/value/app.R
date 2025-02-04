@@ -67,8 +67,10 @@ ui <- fluidPage(
         placeholder = "Select a year",
         type = "year",
         selectionMonthsMode = FALSE,
+        selectedMonth = 0,
         width = "100%",
-        parseValue = parseValue
+        parseValue = parseValue,
+        format = "%Y"
       ),
       verbatimTextOutput("res11")
     ),

@@ -9,9 +9,21 @@ import dayjs from "dayjs";
 function changeToInputMonth(fmt) {
   return function(self) {
     if (!self.context.inputElement) return;
-    console.log(self);
-    if (self.context.selectedMonth[0]) {
-      var date = self.context.selectedYear[0] + "-" + self.context.selectedMonth[0] + "-01";
+    if (self.context.selectedMonth) {
+      var date = self.context.selectedYear + "-" + self.context.selectedMonth + "-01";
+      self.context.inputElement.value = dayjs(date).format(fmt);
+      //self.hide();
+    } else {
+      self.context.inputElement.value = "";
+    }
+  };
+}
+
+function changeToInputYear(fmt) {
+  return function(self) {
+    if (!self.context.inputElement) return;
+    if (self.context.selectedYear) {
+      var date = self.context.selectedYear + "01-01";
       self.context.inputElement.value = dayjs(date).format(fmt);
       //self.hide();
     } else {
@@ -23,7 +35,6 @@ function changeToInputMonth(fmt) {
 function changeToInputSingle(fmt) {
   return function(self) {
     if (!self.context.inputElement) return;
-
     if (self.context.selectedDates[0]) {
       var date = self.context.selectedDates[0];
       if (self.context?.selectedTime) {
@@ -151,9 +162,15 @@ $.extend(calendarProBinding, {
       $(el).trigger("change");
     }
     if (options.type == "month") {
-      options.onClickMonth = updateValueOnChange;
+      options.onClickMonth = function(self) {
+        updateValueOnChange(self);
+        changeToInputMonth(config.format)(self);
+      };
     } else if (options.type == "year") {
-      options.onClickYear = updateValueOnChange;
+      options.onClickYear = function(self) {
+        updateValueOnChange(self);
+        changeToInputYear(config.format)(self);
+      };
     } else {
       options.onClickDate = updateValueOnChange;
       options.onChangeTime = updateValueOnChange;

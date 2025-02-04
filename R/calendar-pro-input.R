@@ -41,6 +41,8 @@ html_dependency_calendar_pro <- function() {
 #' @param selectionTimeMode This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.
 #' @param selectedTime Initial time value.
 #' @param ... Other settings passed to Slim Select JAvaScript method.
+#' @param locale This parameter sets the language localization of the calendar. You can specify a language label according to BCP 47 or provide arrays of month and weekday names.
+#'  See https://vanilla-calendar.pro/docs/reference/settings#locale.
 #' @param format Format to use when displaying date in input field, if an initial value is provided it must be a date so that the format apply.
 #' @param positionToInput This parameter specifies the position of the calendar relative to input,
 #'  if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')
@@ -81,6 +83,7 @@ calendarProInput <- function(inputId,
                              selectionTimeMode = NULL,
                              selectedTime = NULL,
                              ...,
+                             locale = NULL,
                              format = "%Y-%m-%d",
                              positionToInput = "auto",
                              selectedTheme = "light",
@@ -136,7 +139,8 @@ calendarProInput <- function(inputId,
     disableDates = list1(disableDates),
     selectionTimeMode = selectionTimeMode,
     selectedTime = selectedTime,
-    firstWeekday = firstWeekday
+    firstWeekday = firstWeekday,
+    locale = locale
   ))
   options <- modifyList(options, list(...))
   config <- list(

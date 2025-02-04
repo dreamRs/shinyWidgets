@@ -18,7 +18,6 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal3",
         label = "Calendar with initial value:",
-        format = "%d/%m/%Y",
         value = Sys.Date() + 1,
         width = "100%"
       ),
@@ -37,7 +36,16 @@ ui <- fluidPage(
         enableWeekNumbers = TRUE,
         width = "100%"
       ),
-      verbatimTextOutput("res7")
+      verbatimTextOutput("res7"),
+      calendarProInput(
+        inputId = "cal9",
+        label = "Calendar with format and locale:",
+        format = "%d/%m/%Y",
+        locale = "fr",
+        value = Sys.Date() + 1,
+        width = "100%"
+      ),
+      verbatimTextOutput("res9"),
     ),
     column(
       width = 6,
@@ -89,6 +97,7 @@ server <- function(input, output, session) {
   output$res6 <- renderPrint(input$cal6)
   output$res7 <- renderPrint(input$cal7)
   output$res8 <- renderPrint(input$cal8)
+  output$res9 <- renderPrint(input$cal9)
 
 }
 
