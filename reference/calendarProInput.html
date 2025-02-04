@@ -46,30 +46,30 @@ based on <a href="https://github.com/uvarov-frontend/vanilla-calendar-pro" class
 <span>  <span class="va">inputId</span>,</span>
 <span>  <span class="va">label</span>,</span>
 <span>  value <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"multiple"</span>, <span class="st">"range"</span>, <span class="st">"month"</span>, <span class="st">"year"</span><span class="op">)</span>,</span>
-<span>  min <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  max <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  disablePast <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  disableAllDays <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  disableWeekday <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  disableGaps <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  disabled <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  enabled <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  months <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  jumpMonths <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  jumpToSelectedDate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  toggleSelected <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  weekNumbers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  weekNumbersSelect <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  weekend <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  time <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  timeValue <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"single"</span>, <span class="st">"multiple"</span>, <span class="st">"multiple-ranged"</span>, <span class="st">"false"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"default"</span>, <span class="st">"multiple"</span>, <span class="st">"month"</span>, <span class="st">"year"</span><span class="op">)</span>,</span>
+<span>  displayDateMin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  displayDateMax <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  firstWeekday <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  disableDatesPast <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  disableAllDates <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  disableWeekdays <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  disableDatesGaps <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  disableDates <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  enableDates <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  displayMonthsCount <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  enableJumpToSelectedDate <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  enableDateToggle <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  enableWeekNumbers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  selectWeekNumbers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  selectionTimeMode <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  selectedTime <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span>,</span>
 <span>  positionToInput <span class="op">=</span> <span class="st">"auto"</span>,</span>
-<span>  theme <span class="op">=</span> <span class="st">"light"</span>,</span>
+<span>  selectedTheme <span class="op">=</span> <span class="st">"light"</span>,</span>
 <span>  placeholder <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  input <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  inputMode <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  inline <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  parseValue <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -92,77 +92,79 @@ based on <a href="https://github.com/uvarov-frontend/vanilla-calendar-pro" class
 <dd><p>Initial value.</p></dd>
 
 
+<dt id="arg-mode">mode<a class="anchor" aria-label="anchor" href="#arg-mode"></a></dt>
+<dd><p>This parameter determines whether selecting one or multiple days is allowed, or if date selection is completely disabled.
+Possible values are: 'single' | 'multiple' | 'multiple-ranged' | false.</p></dd>
+
+
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Determines the type of calendar displayed and the selection process: 'default' | 'multiple' | 'range' | 'month' | 'year'.</p></dd>
+<dd><p>Determines the type of calendar displayed and the selection process: 'default' | 'multiple' | 'month' | 'year'.</p></dd>
 
 
-<dt id="arg-min">min<a class="anchor" aria-label="anchor" href="#arg-min"></a></dt>
+<dt id="arg-displaydatemin">displayDateMin<a class="anchor" aria-label="anchor" href="#arg-displaydatemin"></a></dt>
 <dd><p>This parameter sets the minimum date that the user can choose. Dates earlier than the specified date will be disabled and not available for selection.</p></dd>
 
 
-<dt id="arg-max">max<a class="anchor" aria-label="anchor" href="#arg-max"></a></dt>
+<dt id="arg-displaydatemax">displayDateMax<a class="anchor" aria-label="anchor" href="#arg-displaydatemax"></a></dt>
 <dd><p>This parameter sets the maximum date that the user can choose. Dates later than the specified date will be disabled and not available for selection.</p></dd>
 
 
-<dt id="arg-disablepast">disablePast<a class="anchor" aria-label="anchor" href="#arg-disablepast"></a></dt>
+<dt id="arg-firstweekday">firstWeekday<a class="anchor" aria-label="anchor" href="#arg-firstweekday"></a></dt>
+<dd><p>This parameter sets the first day of the week. Specify a number from 0 to 6, where the number represents the day of the week identifier.
+According to JS standards, the days of the week start with 0, and 0 is Sunday.</p></dd>
+
+
+<dt id="arg-disabledatespast">disableDatesPast<a class="anchor" aria-label="anchor" href="#arg-disabledatespast"></a></dt>
 <dd><p>This parameter disables all past days.</p></dd>
 
 
-<dt id="arg-disablealldays">disableAllDays<a class="anchor" aria-label="anchor" href="#arg-disablealldays"></a></dt>
-<dd><p>This parameter disables all days and can be useful when using <code>enable</code> is set.</p></dd>
+<dt id="arg-disablealldates">disableAllDates<a class="anchor" aria-label="anchor" href="#arg-disablealldates"></a></dt>
+<dd><p>This parameter disables all days and can be useful when using <code>enableDates</code> is set.</p></dd>
 
 
-<dt id="arg-disableweekday">disableWeekday<a class="anchor" aria-label="anchor" href="#arg-disableweekday"></a></dt>
+<dt id="arg-disableweekdays">disableWeekdays<a class="anchor" aria-label="anchor" href="#arg-disableweekdays"></a></dt>
 <dd><p>This parameter allows you to disable specified weekdays. Specify an array with numbers, where each number represents a day of the week. For example, <code>0</code> is Sunday.</p></dd>
 
 
-<dt id="arg-disablegaps">disableGaps<a class="anchor" aria-label="anchor" href="#arg-disablegaps"></a></dt>
-<dd><p>This parameter disables the selection of days within a range with disabled dates. It only works when <code>type = "range"</code>.</p></dd>
+<dt id="arg-disabledatesgaps">disableDatesGaps<a class="anchor" aria-label="anchor" href="#arg-disabledatesgaps"></a></dt>
+<dd><p>This parameter disables the selection of days within a range with disabled dates. It only works when <code>mode = "multiple-ranged"</code>.</p></dd>
 
 
-<dt id="arg-disabled">disabled<a class="anchor" aria-label="anchor" href="#arg-disabled"></a></dt>
+<dt id="arg-disabledates">disableDates<a class="anchor" aria-label="anchor" href="#arg-disabledates"></a></dt>
 <dd><p>This parameter allows you to disable specific dates regardless of the specified range.</p></dd>
 
 
-<dt id="arg-enabled">enabled<a class="anchor" aria-label="anchor" href="#arg-enabled"></a></dt>
+<dt id="arg-enabledates">enableDates<a class="anchor" aria-label="anchor" href="#arg-enabledates"></a></dt>
 <dd><p>This parameter allows you to enable specific dates regardless of the range and disabled dates.</p></dd>
 
 
-<dt id="arg-months">months<a class="anchor" aria-label="anchor" href="#arg-months"></a></dt>
+<dt id="arg-displaymonthscount">displayMonthsCount<a class="anchor" aria-label="anchor" href="#arg-displaymonthscount"></a></dt>
 <dd><p>The months parameter specifies the number of displayed months when the calendar type is set to 'multiple'.</p></dd>
 
 
-<dt id="arg-jumpmonths">jumpMonths<a class="anchor" aria-label="anchor" href="#arg-jumpmonths"></a></dt>
-<dd><p>The jumpMonths parameter controls the number of months to jump.</p></dd>
-
-
-<dt id="arg-jumptoselecteddate">jumpToSelectedDate<a class="anchor" aria-label="anchor" href="#arg-jumptoselecteddate"></a></dt>
+<dt id="arg-enablejumptoselecteddate">enableJumpToSelectedDate<a class="anchor" aria-label="anchor" href="#arg-enablejumptoselecteddate"></a></dt>
 <dd><p>When the option is enabled and 1 or more selected date(s) are provided but without providing
 selected.month and selected.year, it will make the calendar jump to the first selected date. If set to false,
 the calendar will always open to the current month and year.</p></dd>
 
 
-<dt id="arg-toggleselected">toggleSelected<a class="anchor" aria-label="anchor" href="#arg-toggleselected"></a></dt>
-<dd><p>If toggleSelected parameter is true then clicking on the active cell will remove the selection from it.</p></dd>
+<dt id="arg-enabledatetoggle">enableDateToggle<a class="anchor" aria-label="anchor" href="#arg-enabledatetoggle"></a></dt>
+<dd><p>If true then clicking on a selected date again will deselect it.</p></dd>
 
 
-<dt id="arg-weeknumbers">weekNumbers<a class="anchor" aria-label="anchor" href="#arg-weeknumbers"></a></dt>
+<dt id="arg-enableweeknumbers">enableWeekNumbers<a class="anchor" aria-label="anchor" href="#arg-enableweeknumbers"></a></dt>
 <dd><p>With this parameter, you can decide whether to display week numbers in the calendar.</p></dd>
 
 
-<dt id="arg-weeknumbersselect">weekNumbersSelect<a class="anchor" aria-label="anchor" href="#arg-weeknumbersselect"></a></dt>
+<dt id="arg-selectweeknumbers">selectWeekNumbers<a class="anchor" aria-label="anchor" href="#arg-selectweeknumbers"></a></dt>
 <dd><p>If <code>TRUE</code> select the week when week number is clicked.</p></dd>
 
 
-<dt id="arg-weekend">weekend<a class="anchor" aria-label="anchor" href="#arg-weekend"></a></dt>
-<dd><p>This parameter allows you to highlight weekends in the calendar.</p></dd>
-
-
-<dt id="arg-time">time<a class="anchor" aria-label="anchor" href="#arg-time"></a></dt>
+<dt id="arg-selectiontimemode">selectionTimeMode<a class="anchor" aria-label="anchor" href="#arg-selectiontimemode"></a></dt>
 <dd><p>This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.</p></dd>
 
 
-<dt id="arg-timevalue">timeValue<a class="anchor" aria-label="anchor" href="#arg-timevalue"></a></dt>
+<dt id="arg-selectedtime">selectedTime<a class="anchor" aria-label="anchor" href="#arg-selectedtime"></a></dt>
 <dd><p>Initial time value.</p></dd>
 
 
@@ -179,7 +181,7 @@ the calendar will always open to the current month and year.</p></dd>
 if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')</p></dd>
 
 
-<dt id="arg-theme">theme<a class="anchor" aria-label="anchor" href="#arg-theme"></a></dt>
+<dt id="arg-selectedtheme">selectedTheme<a class="anchor" aria-label="anchor" href="#arg-selectedtheme"></a></dt>
 <dd><p>This parameter determines the theme of the calendar : 'light' or 'dark'.</p></dd>
 
 
@@ -187,7 +189,7 @@ if the calendar is initialized with the input parameter. Possible values: 'auto'
 <dd><p>A character string giving the user a hint as to what can be entered into the control.</p></dd>
 
 
-<dt id="arg-input">input<a class="anchor" aria-label="anchor" href="#arg-input"></a></dt>
+<dt id="arg-inputmode">inputMode<a class="anchor" aria-label="anchor" href="#arg-inputmode"></a></dt>
 <dd><p>If <code>TRUE</code> (default), use an input and render calendar in a dropdown, otherwise calendar is rendered in the page.</p></dd>
 
 
@@ -241,15 +243,15 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal5"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar without input field:"</span>,</span></span>
-<span class="r-in"><span>        input <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
-<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
+<span class="r-in"><span>        inputMode <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"300px"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res5"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal7"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar with week numbers:"</span>,</span></span>
 <span class="r-in"><span>        placeholder <span class="op">=</span> <span class="st">"Select a date"</span>,</span></span>
-<span class="r-in"><span>        weekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        enableWeekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res7"</span><span class="op">)</span></span></span>
@@ -259,7 +261,7 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal2"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar with multiple selection:"</span>,</span></span>
-<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
+<span class="r-in"><span>        mode <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
 <span class="r-in"><span>        placeholder <span class="op">=</span> <span class="st">"Select multiple dates"</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
@@ -267,25 +269,26 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal4"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar with range selection:"</span>,</span></span>
-<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"range"</span>,</span></span>
+<span class="r-in"><span>        mode <span class="op">=</span> <span class="st">"multiple-ranged"</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res4"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal6"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar (range) without input field:"</span>,</span></span>
-<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"range"</span>,</span></span>
-<span class="r-in"><span>        months <span class="op">=</span> <span class="fl">3</span>,</span></span>
-<span class="r-in"><span>        input <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>        mode <span class="op">=</span> <span class="st">"multiple-ranged"</span>,</span></span>
+<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"multiple"</span>,</span></span>
+<span class="r-in"><span>        displayMonthsCount <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>        inputMode <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res6"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal8"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar select week:"</span>,</span></span>
-<span class="r-in"><span>        type <span class="op">=</span> <span class="st">"range"</span>,</span></span>
-<span class="r-in"><span>        weekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>        weekNumbersSelect <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        mode <span class="op">=</span> <span class="st">"multiple-ranged"</span>,</span></span>
+<span class="r-in"><span>        enableWeekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        selectWeekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res8"</span><span class="op">)</span></span></span>
