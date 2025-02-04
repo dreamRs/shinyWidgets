@@ -26,15 +26,15 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal5",
         label = "Calendar without input field:",
-        input = FALSE,
-        width = "100%"
+        inputMode = FALSE,
+        width = "300px"
       ),
       verbatimTextOutput("res5"),
       calendarProInput(
         inputId = "cal7",
         label = "Calendar with week numbers:",
         placeholder = "Select a date",
-        weekNumbers = TRUE,
+        enableWeekNumbers = TRUE,
         width = "100%"
       ),
       verbatimTextOutput("res7")
@@ -44,7 +44,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal2",
         label = "Calendar with multiple selection:",
-        type = "multiple",
+        mode = "multiple",
         placeholder = "Select multiple dates",
         width = "100%"
       ),
@@ -52,25 +52,26 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal4",
         label = "Calendar with range selection:",
-        type = "range",
+        mode = "multiple-ranged",
         width = "100%"
       ),
       verbatimTextOutput("res4"),
       calendarProInput(
         inputId = "cal6",
         label = "Calendar (range) without input field:",
-        type = "range",
-        months = 3,
-        input = FALSE,
+        mode = "multiple-ranged",
+        type = "multiple",
+        displayMonthsCount = 2,
+        inputMode = FALSE,
         width = "100%"
       ),
       verbatimTextOutput("res6"),
       calendarProInput(
         inputId = "cal8",
         label = "Calendar select week:",
-        type = "range",
-        weekNumbers = TRUE,
-        weekNumbersSelect = TRUE,
+        mode = "multiple-ranged",
+        enableWeekNumbers = TRUE,
+        selectWeekNumbers = TRUE,
         width = "100%"
       ),
       verbatimTextOutput("res8")

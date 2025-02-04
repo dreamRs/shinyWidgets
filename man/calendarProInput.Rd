@@ -8,30 +8,30 @@ calendarProInput(
   inputId,
   label,
   value = NULL,
-  type = c("default", "multiple", "range", "month", "year"),
-  min = NULL,
-  max = NULL,
-  disablePast = FALSE,
-  disableAllDays = FALSE,
-  disableWeekday = NULL,
-  disableGaps = FALSE,
-  disabled = NULL,
-  enabled = NULL,
-  months = 2,
-  jumpMonths = 1,
-  jumpToSelectedDate = FALSE,
-  toggleSelected = TRUE,
-  weekNumbers = FALSE,
-  weekNumbersSelect = FALSE,
-  weekend = TRUE,
-  time = NULL,
-  timeValue = NULL,
+  mode = c("single", "multiple", "multiple-ranged", "false"),
+  type = c("default", "multiple", "month", "year"),
+  displayDateMin = NULL,
+  displayDateMax = NULL,
+  firstWeekday = NULL,
+  disableDatesPast = FALSE,
+  disableAllDates = FALSE,
+  disableWeekdays = NULL,
+  disableDatesGaps = FALSE,
+  disableDates = NULL,
+  enableDates = NULL,
+  displayMonthsCount = 1,
+  enableJumpToSelectedDate = FALSE,
+  enableDateToggle = TRUE,
+  enableWeekNumbers = FALSE,
+  selectWeekNumbers = FALSE,
+  selectionTimeMode = NULL,
+  selectedTime = NULL,
   ...,
   format = "\%Y-\%m-\%d",
   positionToInput = "auto",
-  theme = "light",
+  selectedTheme = "light",
   placeholder = NULL,
-  input = TRUE,
+  inputMode = TRUE,
   inline = FALSE,
   parseValue = TRUE,
   width = NULL
@@ -44,43 +44,45 @@ calendarProInput(
 
 \item{value}{Initial value.}
 
-\item{type}{Determines the type of calendar displayed and the selection process: 'default' | 'multiple' | 'range' | 'month' | 'year'.}
+\item{mode}{This parameter determines whether selecting one or multiple days is allowed, or if date selection is completely disabled.
+Possible values are: 'single' | 'multiple' | 'multiple-ranged' | false.}
 
-\item{min}{This parameter sets the minimum date that the user can choose. Dates earlier than the specified date will be disabled and not available for selection.}
+\item{type}{Determines the type of calendar displayed and the selection process: 'default' | 'multiple' | 'month' | 'year'.}
 
-\item{max}{This parameter sets the maximum date that the user can choose. Dates later than the specified date will be disabled and not available for selection.}
+\item{displayDateMin}{This parameter sets the minimum date that the user can choose. Dates earlier than the specified date will be disabled and not available for selection.}
 
-\item{disablePast}{This parameter disables all past days.}
+\item{displayDateMax}{This parameter sets the maximum date that the user can choose. Dates later than the specified date will be disabled and not available for selection.}
 
-\item{disableAllDays}{This parameter disables all days and can be useful when using \code{enable} is set.}
+\item{firstWeekday}{This parameter sets the first day of the week. Specify a number from 0 to 6, where the number represents the day of the week identifier.
+According to JS standards, the days of the week start with 0, and 0 is Sunday.}
 
-\item{disableWeekday}{This parameter allows you to disable specified weekdays. Specify an array with numbers, where each number represents a day of the week. For example, \code{0} is Sunday.}
+\item{disableDatesPast}{This parameter disables all past days.}
 
-\item{disableGaps}{This parameter disables the selection of days within a range with disabled dates. It only works when \code{type = "range"}.}
+\item{disableAllDates}{This parameter disables all days and can be useful when using \code{enableDates} is set.}
 
-\item{disabled}{This parameter allows you to disable specific dates regardless of the specified range.}
+\item{disableWeekdays}{This parameter allows you to disable specified weekdays. Specify an array with numbers, where each number represents a day of the week. For example, \code{0} is Sunday.}
 
-\item{enabled}{This parameter allows you to enable specific dates regardless of the range and disabled dates.}
+\item{disableDatesGaps}{This parameter disables the selection of days within a range with disabled dates. It only works when \code{mode = "multiple-ranged"}.}
 
-\item{months}{The months parameter specifies the number of displayed months when the calendar type is set to 'multiple'.}
+\item{disableDates}{This parameter allows you to disable specific dates regardless of the specified range.}
 
-\item{jumpMonths}{The jumpMonths parameter controls the number of months to jump.}
+\item{enableDates}{This parameter allows you to enable specific dates regardless of the range and disabled dates.}
 
-\item{jumpToSelectedDate}{When the option is enabled and 1 or more selected date(s) are provided but without providing
+\item{displayMonthsCount}{The months parameter specifies the number of displayed months when the calendar type is set to 'multiple'.}
+
+\item{enableJumpToSelectedDate}{When the option is enabled and 1 or more selected date(s) are provided but without providing
 selected.month and selected.year, it will make the calendar jump to the first selected date. If set to false,
 the calendar will always open to the current month and year.}
 
-\item{toggleSelected}{If toggleSelected parameter is true then clicking on the active cell will remove the selection from it.}
+\item{enableDateToggle}{If true then clicking on a selected date again will deselect it.}
 
-\item{weekNumbers}{With this parameter, you can decide whether to display week numbers in the calendar.}
+\item{enableWeekNumbers}{With this parameter, you can decide whether to display week numbers in the calendar.}
 
-\item{weekNumbersSelect}{If \code{TRUE} select the week when week number is clicked.}
+\item{selectWeekNumbers}{If \code{TRUE} select the week when week number is clicked.}
 
-\item{weekend}{This parameter allows you to highlight weekends in the calendar.}
+\item{selectionTimeMode}{This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.}
 
-\item{time}{This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.}
-
-\item{timeValue}{Initial time value.}
+\item{selectedTime}{Initial time value.}
 
 \item{...}{Other settings passed to Slim Select JAvaScript method.}
 
@@ -89,11 +91,11 @@ the calendar will always open to the current month and year.}
 \item{positionToInput}{This parameter specifies the position of the calendar relative to input,
 if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')}
 
-\item{theme}{This parameter determines the theme of the calendar : 'light' or 'dark'.}
+\item{selectedTheme}{This parameter determines the theme of the calendar : 'light' or 'dark'.}
 
 \item{placeholder}{A character string giving the user a hint as to what can be entered into the control.}
 
-\item{input}{If \code{TRUE} (default), use an input and render calendar in a dropdown, otherwise calendar is rendered in the page.}
+\item{inputMode}{If \code{TRUE} (default), use an input and render calendar in a dropdown, otherwise calendar is rendered in the page.}
 
 \item{inline}{Display calendar container inline.}
 
@@ -141,15 +143,15 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal5",
         label = "Calendar without input field:",
-        input = FALSE,
-        width = "100\%"
+        inputMode = FALSE,
+        width = "300px"
       ),
       verbatimTextOutput("res5"),
       calendarProInput(
         inputId = "cal7",
         label = "Calendar with week numbers:",
         placeholder = "Select a date",
-        weekNumbers = TRUE,
+        enableWeekNumbers = TRUE,
         width = "100\%"
       ),
       verbatimTextOutput("res7")
@@ -159,7 +161,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal2",
         label = "Calendar with multiple selection:",
-        type = "multiple",
+        mode = "multiple",
         placeholder = "Select multiple dates",
         width = "100\%"
       ),
@@ -167,25 +169,26 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal4",
         label = "Calendar with range selection:",
-        type = "range",
+        mode = "multiple-ranged",
         width = "100\%"
       ),
       verbatimTextOutput("res4"),
       calendarProInput(
         inputId = "cal6",
         label = "Calendar (range) without input field:",
-        type = "range",
-        months = 3,
-        input = FALSE,
+        mode = "multiple-ranged",
+        type = "multiple",
+        displayMonthsCount = 2,
+        inputMode = FALSE,
         width = "100\%"
       ),
       verbatimTextOutput("res6"),
       calendarProInput(
         inputId = "cal8",
         label = "Calendar select week:",
-        type = "range",
-        weekNumbers = TRUE,
-        weekNumbersSelect = TRUE,
+        mode = "multiple-ranged",
+        enableWeekNumbers = TRUE,
+        selectWeekNumbers = TRUE,
         width = "100\%"
       ),
       verbatimTextOutput("res8")

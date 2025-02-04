@@ -32,7 +32,7 @@
     "nouislider": "^15.7.1",
     "slim-select": "^2.9.2",
     "style-loader": "^3.3.1",
-    "vanilla-calendar-pro": "^2.9.10",
+    "vanilla-calendar-pro": "^3.0.3",
     "virtual-select-plugin": "^1.0.47",
     "webpack": "^5.95.0",
     "webpack-cli": "^4.9.1",

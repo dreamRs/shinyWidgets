@@ -1,79 +1,82 @@
 import $ from "jquery";
 import "shiny";
 import { updateLabel } from "../modules/utils";
-import VanillaCalendar from "vanilla-calendar-pro";
-import "vanilla-calendar-pro/build/vanilla-calendar.min.css";
+import { Calendar } from 'vanilla-calendar-pro';
+import "vanilla-calendar-pro/styles/index.css";
 import dayjs from "dayjs";
 
 
 function changeToInputMonth(fmt) {
-  return function(self, event) {
-    if (!self.HTMLInputElement) return;
+  return function(self) {
+    if (!self.context.inputElement) return;
     console.log(self);
-    if (self.selectedMonth[0]) {
-      var date = self.selectedYear[0] + "-" + self.selectedMonth[0] + "-01";
-      self.HTMLInputElement.value = dayjs(date).format(fmt);
+    if (self.context.selectedMonth[0]) {
+      var date = self.context.selectedYear[0] + "-" + self.context.selectedMonth[0] + "-01";
+      self.context.inputElement.value = dayjs(date).format(fmt);
       //self.hide();
     } else {
-      self.HTMLInputElement.value = "";
+      self.context.inputElement.value = "";
     }
   };
 }
 
 function changeToInputSingle(fmt) {
-  return function(e, self) {
-    if (!self.HTMLInputElement) return;
-    if (self.selectedDates[0]) {
-      var date = self.selectedDates[0];
-      if (self?.selectedTime) {
-        date = date + " " + self.selectedTime;
+  return function(self) {
+    if (!self.context.inputElement) return;
+
+    if (self.context.selectedDates[0]) {
+      var date = self.context.selectedDates[0];
+      if (self.context?.selectedTime) {
+        date = date + " " + self.context.selectedTime;
       }
-      self.HTMLInputElement.value = dayjs(date).format(fmt);
+      console.log(date);
+      self.context.inputElement.value = dayjs(date).format(fmt);
       //self.hide();
     } else {
-      self.HTMLInputElement.value = "";
+      self.context.inputElement.value = "";
     }
   };
 }
 
 function changeToInputRange(fmt) {
-  return function(e, self) {
-    if (!self.HTMLInputElement) return;
-    if (self.selectedDates[1]) {
-      self.selectedDates.sort((a, b) => +new Date(a) - +new Date(b));
-      var fmtdates = self.selectedDates.map(x => {
-        if (self?.selectedTime) {
-          x = x + " " + self.selectedTime;
+  return function(self) {
+    if (!self.context.inputElement) return;
+    if (self.context.selectedDates[1]) {
+      self.context.selectedDates.sort((a, b) => +new Date(a) - +new Date(b));
+      var fmtdates = self.context.selectedDates.map(x => {
+        if (self.context?.selectedTime) {
+          x = x + " " + self.context.selectedTime;
         }
         return dayjs(x).format(fmt);
       });
-      self.HTMLInputElement.value = `${fmtdates[0]} \u2014 ${fmtdates[fmtdates.length - 1]}`;
-    } else if (self.selectedDates[0]) {
-      var date = self.selectedDates[0];
-      if (self?.selectedTime) {
-        date = date + " " + self.selectedTime;
+      self.context.inputElement.value = `${fmtdates[0]} \u2014 ${fmtdates[fmtdates.length - 1]}`;
+    } else if (self.context.selectedDates[0]) {
+      var date = self.context.selectedDates[0];
+      if (self.context?.selectedTime) {
+        date = date + " " + self.context.selectedTime;
       }
-      self.HTMLInputElement.value = dayjs(date).format(fmt);
+      self.context.inputElement.value = dayjs(date).format(fmt);
     } else {
-      self.HTMLInputElement.value = "";
+      self.context.inputElement.value = "";
     }
   };
 }
 
 function changeToInputMultiple(fmt) {
-  return function(e, self) {
-    if (!self.HTMLInputElement) return;
-    if (self.selectedDates[0]) {
-      var fmtdates = self.selectedDates.map(x => {
-        if (self?.selectedTime) {
-          x = x + " " + self.selectedTime;
+  return function(self) {
+    if (!self.context.inputElement) return;
+    console.log(self);
+    if (self.context.selectedDates[0]) {
+      var fmtdates = self.context.selectedDates.map(x => {
+        if (self.context?.selectedTime) {
+          x = x + " " + self.context.selectedTime;
         }
         return dayjs(x).format(fmt);
       });
-      self.HTMLInputElement.value = fmtdates.join(" \u2014 ");
+      self.context.inputElement.value = fmtdates.join(" \u2014 ");
       //self.hide();
     } else {
-      self.HTMLInputElement.value = "";
+      self.context.inputElement.value = "";
     }
   };
 }
@@ -129,13 +132,12 @@ $.extend(calendarProBinding, {
     var input = el.querySelector(".calendar-pro-element");
     var config = el.querySelector('script[data-for="' + el.id + '"]');
     config = JSON.parse(config.text);
-    if (!config.hasOwnProperty("actions"))
-      config.actions = {};
-    function updateValueOnChange(event, self) {
+    var options = config.options;
+    function updateValueOnChange(self) {
       calendarProBinding.updateValue(
         el,
         pick(
-          self,
+          self.context,
           "selectedDates",
           "selectedHolidays",
           "selectedMonth",
@@ -148,18 +150,22 @@ $.extend(calendarProBinding, {
       );
       $(el).trigger("change");
     }
-    config.actions.clickDay = updateValueOnChange;
-    config.actions.clickMonth = updateValueOnChange;
-    config.actions.clickYear = updateValueOnChange;
-    config.actions.changeTime = updateValueOnChange;
-    if (config.weekNumbersSelect) {
-      config.actions.clickWeekNumber = function(event, number, days, year, self) {
-        self.settings.selected.dates = days.map((day) => day.dataset.calendarDay);
-        self.update({ dates: true });
+    if (options.type == "month") {
+      options.onClickMonth = updateValueOnChange;
+    } else if (options.type == "year") {
+      options.onClickYear = updateValueOnChange;
+    } else {
+      options.onClickDate = updateValueOnChange;
+      options.onChangeTime = updateValueOnChange;
+    }
+    if (config.selectWeekNumbers) {
+      options.onClickWeekNumber = function(self, number, year, dateEls) {
+        var selectedDates = dateEls.map((dateEl) => dateEl.dataset.vcDate);
+        self.set({ selectedDates }, { dates: true });
         calendarProBinding.updateValue(
           el,
           pick(
-            self,
+            self.context,
             "selectedDates",
             "selectedHolidays",
             "selectedMonth",
@@ -171,28 +177,24 @@ $.extend(calendarProBinding, {
           )
         );
         $(el).trigger("change");
-        changeToInputRange(config.format)(event, self);
+        changeToInputRange(config.format)(self);
       };
     }
-    if (config.type == "multiple") {
-      if (config.settings.selection.day == "multiple-ranged") {
-        config.actions.changeToInput = changeToInputRange(config.format);
-      } else {
-        config.actions.changeToInput = changeToInputMultiple(config.format);
-      }
-    } else if (config.type == "month") {
-      config.actions.onClickMonth = changeToInputMonth(config.format);
+    if (options.selectionDatesMode == "multiple-ranged") {
+      options.onChangeToInput = changeToInputRange(config.format);
+    } else if (options.selectionDatesMode == "multiple") {
+      options.onChangeToInput = changeToInputMultiple(config.format);
     } else {
-      config.actions.changeToInput = changeToInputSingle(config.format);
+      options.onChangeToInput = changeToInputSingle(config.format);
     }
-    const calendar = new VanillaCalendar(input, config);
+    const calendar = new Calendar(input, options);
     calendar.init();
     calendarProBinding.updateStore(el, calendar);
     calendarProBinding.updateValue(el, {
-      selectedDates: config?.settings?.selected?.dates,
-      selectedMonth: config?.settings?.selected?.month,
-      selectedYear: config?.settings?.selected?.year,
-      selectedTime: config?.settings?.selected?.time
+      selectedDates: options?.selectedDates,
+      selectedMonth: options?.selectedMonth,
+      selectedYear: options?.selectedYear,
+      selectedTime: options?.selectedTime
     });
     calendarProBinding.updateType(el, config.parseValue);
     $(el).trigger("change");

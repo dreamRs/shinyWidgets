@@ -32,7 +32,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal5",
         label = "Multiple date selection:",
-        type = "multiple",
+        mode = "multiple",
         placeholder = "Select multiple date ",
         width = "100%",
         parseValue = parseValue
@@ -42,7 +42,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal7",
         label = "Range date selection:",
-        type = "range",
+        mode = "multiple-ranged",
         placeholder = "Select range of dates ",
         width = "100%",
         parseValue = parseValue
@@ -54,6 +54,7 @@ ui <- fluidPage(
         label = "Month selection:",
         placeholder = "Select a month",
         type = "month",
+        # selectedYear = 2022, # to change default year
         width = "100%",
         parseValue = parseValue,
         format = "%Y-%m"
@@ -64,8 +65,8 @@ ui <- fluidPage(
         inputId = "cal11",
         label = "Year selection:",
         placeholder = "Select a year",
-        # settings = list(selection = list(month = FALSE)),
         type = "year",
+        selectionMonthsMode = FALSE,
         width = "100%",
         parseValue = parseValue
       ),
@@ -78,7 +79,7 @@ ui <- fluidPage(
         inputId = "cal2",
         label = "Datetime selection:",
         placeholder = "Select date and time",
-        time = 12,
+        selectionTimeMode = 12,
         width = "100%",
         parseValue = parseValue,
         format = "%Y-%m-%d %H:%M"
@@ -89,7 +90,7 @@ ui <- fluidPage(
         inputId = "cal4",
         label = "Datetime selection (with default as POSIXct):",
         value = as.POSIXct(paste(Sys.Date(), "9:00")),
-        time = 24,
+        selectionTimeMode = 24,
         placeholder = "Select date and time",
         width = "100%",
         parseValue = parseValue,
@@ -99,10 +100,10 @@ ui <- fluidPage(
 
       calendarProInput(
         inputId = "cal6",
-        label = "Datetime selection (with timeValue default):",
+        label = "Datetime selection (with selectedTime default):",
         value = Sys.Date(),
-        time = 24,
-        timeValue = "10:00",
+        selectionTimeMode = 24,
+        selectedTime = "10:00",
         placeholder = "Select date and time",
         width = "100%",
         parseValue = parseValue,
@@ -114,8 +115,8 @@ ui <- fluidPage(
         inputId = "cal8",
         label = "Datetime multiple selection (with default):",
         value = as.POSIXct(paste(Sys.Date(), "9:00")),
-        time = 24,
-        type = "multiple",
+        selectionTimeMode = 24,
+        mode = "multiple",
         placeholder = "Select date and time",
         width = "100%",
         parseValue = parseValue,
@@ -127,8 +128,8 @@ ui <- fluidPage(
         inputId = "cal10",
         label = "Datetime range selection (with default):",
         value = as.POSIXct(paste(Sys.Date(), "9:00")),
-        time = 24,
-        type = "range",
+        selectionTimeMode = 24,
+        mode = "multiple-ranged",
         placeholder = "Select date and time",
         width = "100%",
         parseValue = parseValue,

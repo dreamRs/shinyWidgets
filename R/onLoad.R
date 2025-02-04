@@ -69,7 +69,9 @@
   shiny::registerInputHandler("calendarPro.date", function(data, ...) {
     if (length(data) < 1 || length(data$selectedDates) < 1)
       return(NULL)
-    if (!is.null(data$selectedTime)) {
+    if (identical(data$selectedDates[[1]], "NULL"))
+      return(NULL)
+    if (!is.null(data$selectedTime) & !identical(data$selectedDates[[1]], "NULL")) {
       fmt <- if (grepl(pattern = "(A|P)M", x = data$selectedTime)) {
         "%Y-%m-%d %I:%M %p"
       } else {
@@ -89,13 +91,35 @@
       res
     }
   }, force = TRUE)
-  shiny::registerInputHandler("calendarPro.monthyear", function(data, ...) {
-    if (length(data) < 1)
+  shiny::registerInputHandler("calendarPro.month", function(data, ...) {
+    if (!is.list(data))
+      return(NULL)
+    if (length(data$selectedMonth) < 1)
       return(NULL)
     res <- try(as.Date(
       paste(
         data$selectedYear,
         data$selectedMonth + 1,
+        "01",
+        sep = "-"
+      )
+    ), silent = TRUE)
+    if (inherits(res, "try-error")) {
+      warning("calendarProInput: Failed to parse dates, try using parseValue = FALSE", call. = FALSE)
+      data
+    } else {
+      res
+    }
+  }, force = TRUE)
+  shiny::registerInputHandler("calendarPro.year", function(data, ...) {
+    if (!is.list(data))
+      return(NULL)
+    if (length(data$selectedYear) < 1)
+      return(NULL)
+    res <- try(as.Date(
+      paste(
+        data$selectedYear,
+        "01",
         "01",
         sep = "-"
       )

@@ -12,30 +12,30 @@ ui <- fluidPage(
         inputId = "cal1",
         label = "Disable past:",
         placeholder = "Select a date",
-        disablePast = TRUE,
+        disableDatesPast = TRUE,
         width = "100%"
       ),
       verbatimTextOutput("res1"),
       calendarProInput(
         inputId = "cal3",
         label = "Disable week-ends:",
-        disableWeekday = c(0, 6),
+        disableWeekdays = c(0, 6),
         width = "100%"
       ),
       verbatimTextOutput("res3"),
       calendarProInput(
         inputId = "cal5",
         label = "Disable wednesdays:",
-        disableWeekday = 3,
+        disableWeekdays = 3,
         width = "100%"
       ),
       verbatimTextOutput("res5"),
       calendarProInput(
         inputId = "cal7",
-        label = "Set range:",
+        label = "Set range of selectable dates:",
         placeholder = "Select a date",
-        min = Sys.Date() - 14,
-        max = Sys.Date() + 7,
+        displayDateMin = Sys.Date() - 14,
+        displayDateMax = Sys.Date() + 7,
         width = "100%"
       ),
       verbatimTextOutput("res7")
@@ -45,9 +45,9 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal2",
         label = "Disable select range with gaps (cannot select range with today included):",
-        type = "range",
-        disableGaps = TRUE,
-        disabled = Sys.Date(),
+        mode = "multiple-ranged",
+        disableDatesGaps = TRUE,
+        disableDates = Sys.Date(),
         positionToInput = c("bottom", "left"),
         width = "100%"
       ),
@@ -55,7 +55,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal4",
         label = "Disable days:",
-        disabled = c(Sys.Date() + c(-5, -2, 3, 6, 7, 9, 14)),
+        disableDates = c(Sys.Date() + c(-5, -2, 3, 6, 7, 9, 14)),
         positionToInput = c("bottom", "left"),
         width = "100%"
       ),
@@ -63,7 +63,7 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal6",
         label = "Disable range of days (today -/+ 3):",
-        disabled = paste(Sys.Date() - 3, Sys.Date() + 3, sep = ":"),
+        disableDates = paste(Sys.Date() - 3, Sys.Date() + 3, sep = ":"),
         positionToInput = c("bottom", "left"),
         width = "100%"
       ),
@@ -71,8 +71,8 @@ ui <- fluidPage(
       calendarProInput(
         inputId = "cal8",
         label = "Enable specifics days:",
-        disableAllDays = TRUE,
-        enabled = c(Sys.Date() + c(-5, -2, 3, 6, 7, 9, 14)),
+        disableAllDates = TRUE,
+        enableDates = c(Sys.Date() + c(-5, -2, 3, 6, 7, 9, 14)),
         positionToInput = c("bottom", "left"),
         width = "100%"
       ),
