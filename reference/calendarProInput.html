@@ -65,6 +65,7 @@ based on <a href="https://github.com/uvarov-frontend/vanilla-calendar-pro" class
 <span>  selectionTimeMode <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  selectedTime <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span>,</span>
+<span>  locale <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span>,</span>
 <span>  positionToInput <span class="op">=</span> <span class="st">"auto"</span>,</span>
 <span>  selectedTheme <span class="op">=</span> <span class="st">"light"</span>,</span>
@@ -172,6 +173,11 @@ the calendar will always open to the current month and year.</p></dd>
 <dd><p>Other settings passed to Slim Select JAvaScript method.</p></dd>
 
 
+<dt id="arg-locale">locale<a class="anchor" aria-label="anchor" href="#arg-locale"></a></dt>
+<dd><p>This parameter sets the language localization of the calendar. You can specify a language label according to BCP 47 or provide arrays of month and weekday names.
+See https://vanilla-calendar.pro/docs/reference/settings#locale.</p></dd>
+
+
 <dt id="arg-format">format<a class="anchor" aria-label="anchor" href="#arg-format"></a></dt>
 <dd><p>Format to use when displaying date in input field, if an initial value is provided it must be a date so that the format apply.</p></dd>
 
@@ -235,7 +241,6 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal3"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar with initial value:"</span>,</span></span>
-<span class="r-in"><span>        format <span class="op">=</span> <span class="st">"%d/%m/%Y"</span>,</span></span>
 <span class="r-in"><span>        value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
@@ -254,7 +259,16 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>        enableWeekNumbers <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
 <span class="r-in"><span>      <span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res7"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res7"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu">calendarProInput</span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"cal9"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Calendar with format and locale:"</span>,</span></span>
+<span class="r-in"><span>        format <span class="op">=</span> <span class="st">"%d/%m/%Y"</span>,</span></span>
+<span class="r-in"><span>        locale <span class="op">=</span> <span class="st">"fr"</span>,</span></span>
+<span class="r-in"><span>        value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res9"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      width <span class="op">=</span> <span class="fl">6</span>,</span></span>
@@ -306,6 +320,7 @@ see <code><a href="https://rstudio.github.io/htmltools/reference/validateCssUnit
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal6</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal7</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal8</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res9</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">cal9</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
