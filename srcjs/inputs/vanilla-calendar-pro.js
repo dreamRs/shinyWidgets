@@ -40,7 +40,6 @@ function changeToInputSingle(fmt) {
       if (self.context?.selectedTime) {
         date = date + " " + self.context.selectedTime;
       }
-      console.log(date);
       self.context.inputElement.value = dayjs(date).format(fmt);
       //self.hide();
     } else {
@@ -137,6 +136,36 @@ $.extend(calendarProBinding, {
     if (data.hasOwnProperty("label")) {
       var label = $("#" + el.id + "-label");
       updateLabel(data.label, label);
+    }
+    if (data.hasOwnProperty("options")) {
+      var config = el.querySelector('script[data-for="' + el.id + '"]');
+      config = JSON.parse(config.text);
+      var options = data.options;
+      var calendar = calendarProBinding.store[el.id];
+      if (options.hasOwnProperty("selectionDatesMode")) {
+        if (options.selectionDatesMode == "multiple-ranged") {
+          options.onChangeToInput = changeToInputRange(config.format);
+        } else if (options.selectionDatesMode == "multiple") {
+          options.onChangeToInput = changeToInputMultiple(config.format);
+        } else {
+          options.onChangeToInput = changeToInputSingle(config.format);
+        }
+      }
+      calendar.set(options, {dates: true});
+      calendarProBinding.updateValue(el, {
+        selectedDates: calendar?.selectedDates,
+        selectedMonth: calendar?.selectedMonth,
+        selectedYear: calendar?.selectedYear,
+        selectedTime: calendar?.selectedTime
+      });
+      $(el).trigger("change");
+      if (calendar.selectionDatesMode == "multiple-ranged") {
+        changeToInputRange(config.format)(calendar);
+      } else if (calendar.selectionDatesMode == "multiple") {
+        changeToInputMultiple(config.format)(calendar);
+      } else {
+        changeToInputSingle(config.format)(calendar);
+      }
     }
   },
   initialize: el => {

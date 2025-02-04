@@ -40,9 +40,9 @@ html_dependency_calendar_pro <- function() {
 #' @param selectWeekNumbers If `TRUE` select the week when week number is clicked.
 #' @param selectionTimeMode This parameter enables time selection. You can also specify the time format using a boolean value or a number: 24-hour or 12-hour format.
 #' @param selectedTime Initial time value.
-#' @param ... Other settings passed to Slim Select JAvaScript method.
+#' @param ... Other settings passed to Calendar Pro JavaScript method, see [online documentation](https://vanilla-calendar.pro/docs/reference/settings) for reference.
 #' @param locale This parameter sets the language localization of the calendar. You can specify a language label according to BCP 47 or provide arrays of month and weekday names.
-#'  See https://vanilla-calendar.pro/docs/reference/settings#locale.
+#'  See [online documentation](https://vanilla-calendar.pro/docs/reference/settings#locale).
 #' @param format Format to use when displaying date in input field, if an initial value is provided it must be a date so that the format apply.
 #' @param positionToInput This parameter specifies the position of the calendar relative to input,
 #'  if the calendar is initialized with the input parameter. Possible values: 'auto' | 'center' | 'left' | 'right' | c('bottom' | 'top', 'center' | 'left' | 'right')
@@ -54,7 +54,10 @@ html_dependency_calendar_pro <- function() {
 #'
 #' @return
 #'  * UI: A `shiny.tag` object that can be used in a UI definition.
-#'  * server: a **character** vector of dates selected
+#'  * server: if `parseValue=FALSE` a **character** vector of dates selected, otherwise a Date/POSIXct objet.
+#'
+#' @seealso [updateCalendarPro()] to update the widget from the server.
+#'
 #' @export
 #'
 #' @importFrom utils modifyList
@@ -186,4 +189,44 @@ calendarProInput <- function(inputId,
     html_dependency_calendar_pro()
   )
 }
+
+
+
+
+
+
+#' @title Update calendar pro from server
+#'
+#' @description
+#' Update a [calendarProInput()] from the server.
+#'
+#' @inheritParams calendarProInput
+#' @inheritParams shiny::updateSelectInput
+#'
+#' @return No value.
+#'
+#' @seealso [calendarProInput()] for creating a widget in the UI.
+#'
+#' @export
+#'
+#' @example examples/calendar-pro-update.R
+updateCalendarPro <- function(inputId,
+                              label = NULL,
+                              value = NULL,
+                              mode = NULL,
+                              ...,
+                              session = shiny::getDefaultReactiveDomain()) {
+  if (!is.null(label))
+    label <- doRenderTags(label)
+  message <- dropNulls(list(
+    label = label,
+    options = dropNulls(list(
+      selectedDates = list1(format(value, format = "%Y-%m-%d")),
+      selectionDatesMode = mode,
+      ...
+    ))
+  ))
+  session$sendInputMessage(inputId, message)
+}
+
 

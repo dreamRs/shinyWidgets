@@ -85,10 +85,10 @@ the calendar will always open to the current month and year.}
 
 \item{selectedTime}{Initial time value.}
 
-\item{...}{Other settings passed to Slim Select JAvaScript method.}
+\item{...}{Other settings passed to Calendar Pro JavaScript method, see \href{https://vanilla-calendar.pro/docs/reference/settings}{online documentation} for reference.}
 
 \item{locale}{This parameter sets the language localization of the calendar. You can specify a language label according to BCP 47 or provide arrays of month and weekday names.
-See https://vanilla-calendar.pro/docs/reference/settings#locale.}
+See \href{https://vanilla-calendar.pro/docs/reference/settings#locale}{online documentation}.}
 
 \item{format}{Format to use when displaying date in input field, if an initial value is provided it must be a date so that the format apply.}
 
@@ -111,7 +111,7 @@ see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 \value{
 \itemize{
 \item UI: A \code{shiny.tag} object that can be used in a UI definition.
-\item server: a \strong{character} vector of dates selected
+\item server: if \code{parseValue=FALSE} a \strong{character} vector of dates selected, otherwise a Date/POSIXct objet.
 }
 }
 \description{
@@ -224,4 +224,7 @@ server <- function(input, output, session) {
 
 if (interactive())
   shinyApp(ui, server)
+}
+\seealso{
+\code{\link[=updateCalendarPro]{updateCalendarPro()}} to update the widget from the server.
 }
