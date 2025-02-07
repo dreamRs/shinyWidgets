@@ -218,13 +218,22 @@ updateCalendarPro <- function(inputId,
                               session = shiny::getDefaultReactiveDomain()) {
   if (!is.null(label))
     label <- doRenderTags(label)
+  options <- list(
+    selectedDates = list1(format(value, format = "%Y-%m-%d")),
+    selectionDatesMode = mode,
+    ...
+  )
+  if (inherits(value, "POSIXt") & is.null(options$selectedTime))
+    options$selectedTime <- format(value, format = "%H:%M")
+  if (!is.null(options$disableWeekdays))
+    options$disableWeekdays <- list1(options$disableWeekdays)
+  if (!is.null(options$enableDates))
+    options$enableDates <- list1(options$enableDates)
+  if (!is.null(options$disableDates))
+    options$disableDates <- list1(options$disableDates)
   message <- dropNulls(list(
     label = label,
-    options = dropNulls(list(
-      selectedDates = list1(format(value, format = "%Y-%m-%d")),
-      selectionDatesMode = mode,
-      ...
-    ))
+    options = dropNulls(options)
   ))
   session$sendInputMessage(inputId, message)
 }

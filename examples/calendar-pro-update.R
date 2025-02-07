@@ -7,7 +7,7 @@ ui <- fluidPage(
   tags$h2("Calendar Pro Input: update from server"),
   fluidRow(
     column(
-      width = 6,
+      width = 4,
       calendarProInput(
         inputId = "calendar",
         label = "Select a date:",
@@ -35,7 +35,48 @@ ui <- fluidPage(
       )
     ),
     column(
-      width = 6
+      width = 4,
+      calendarProInput(
+        inputId = "time",
+        label = "Select date and time:",
+        placeholder = "Select date and time:",
+        selectionTimeMode = 24,
+        format = "%Y/%m/%d %H:%M",
+        width = "100%"
+      ),
+      verbatimTextOutput("res2"),
+      actionButton(
+        inputId = "set_time_1",
+        label = "Set yesterday 11am"
+      ),
+      actionButton(
+        inputId = "set_time_2",
+        label = "Set now"
+      )
+    ),
+    column(
+      width = 4,
+      calendarProInput(
+        inputId = "disable",
+        label = "Select a date:",
+        placeholder = "Select a date",
+        width = "100%"
+      ),
+      verbatimTextOutput("res3"),
+      radioButtons(
+        inputId = "disable_fridays",
+        label = "Disable fridays:",
+        choices = c("yes", "no"),
+        selected = "no",
+        inline = TRUE
+      ),
+      radioButtons(
+        inputId = "disable_tomorrow",
+        label = "Disable tomorrow:",
+        choices = c("yes", "no"),
+        selected = "no",
+        inline = TRUE
+      ),
     )
   )
 )
@@ -46,20 +87,52 @@ server <- function(input, output, session) {
 
   observeEvent(input$label, {
     if (isTruthy(input$label)) {
-      updateCalendarPro(inputId = "calendar", label = input$label)
+      updateCalendarPro("calendar", label = input$label)
     }
   })
 
   observeEvent(input$today, {
-    updateCalendarPro(inputId = "calendar", value = Sys.Date())
+    updateCalendarPro("calendar", value = Sys.Date())
   })
 
   observeEvent(input$today3, {
-    updateCalendarPro(inputId = "calendar", value = Sys.Date() + 3)
+    updateCalendarPro("calendar", value = Sys.Date() + 3)
   })
 
   observeEvent(input$mode, {
-    updateCalendarPro(inputId = "calendar", selectionDatesMode = input$mode)
+    updateCalendarPro("calendar", selectionDatesMode = input$mode)
+  }, ignoreInit = TRUE)
+
+
+
+  output$res2 <- renderPrint(input$time)
+
+  observeEvent(input$set_time_1, {
+    updateCalendarPro("time", value = Sys.Date() - 1, selectedTime = "11:00")
+  })
+
+  observeEvent(input$set_time_2, {
+    updateCalendarPro("time", value = Sys.time())
+  })
+
+
+
+  output$res3 <- renderPrint(input$disable)
+
+  observeEvent(input$disable_fridays, {
+    if (input$disable_fridays == "yes") {
+      updateCalendarPro("disable", disableWeekdays = 5)
+    } else {
+      updateCalendarPro("disable", disableWeekdays = numeric(0))
+    }
+  }, ignoreInit = TRUE)
+
+  observeEvent(input$disable_tomorrow, {
+    if (input$disable_tomorrow == "yes") {
+      updateCalendarPro("disable", disableDates = Sys.Date() + 1)
+    } else {
+      updateCalendarPro("disable", disableDates = numeric(0))
+    }
   }, ignoreInit = TRUE)
 
 }
