@@ -99,7 +99,7 @@ Possible values are: 'single' | 'multiple' | 'multiple-ranged' | false.</p></dd>
 <span class="r-in"><span>  <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Calendar Pro Input: update from server"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">6</span>,</span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="calendarProInput.html">calendarProInput</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"calendar"</span>,</span></span>
 <span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Select a date:"</span>,</span></span>
@@ -127,7 +127,48 @@ Possible values are: 'single' | 'multiple' | 'multiple-ranged' | false.</p></dd>
 <span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">6</span></span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="calendarProInput.html">calendarProInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"time"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Select date and time:"</span>,</span></span>
+<span class="r-in"><span>        placeholder <span class="op">=</span> <span class="st">"Select date and time:"</span>,</span></span>
+<span class="r-in"><span>        selectionTimeMode <span class="op">=</span> <span class="fl">24</span>,</span></span>
+<span class="r-in"><span>        format <span class="op">=</span> <span class="st">"%Y/%m/%d %H:%M"</span>,</span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res2"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"set_time_1"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Set yesterday 11am"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/actionButton.html" class="external-link">actionButton</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"set_time_2"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Set now"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/column.html" class="external-link">column</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      width <span class="op">=</span> <span class="fl">4</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="calendarProInput.html">calendarProInput</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"disable"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Select a date:"</span>,</span></span>
+<span class="r-in"><span>        placeholder <span class="op">=</span> <span class="st">"Select a date"</span>,</span></span>
+<span class="r-in"><span>        width <span class="op">=</span> <span class="st">"100%"</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"res3"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html" class="external-link">radioButtons</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"disable_fridays"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Disable fridays:"</span>,</span></span>
+<span class="r-in"><span>        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        selected <span class="op">=</span> <span class="st">"no"</span>,</span></span>
+<span class="r-in"><span>        inline <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/radioButtons.html" class="external-link">radioButtons</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>        inputId <span class="op">=</span> <span class="st">"disable_tomorrow"</span>,</span></span>
+<span class="r-in"><span>        label <span class="op">=</span> <span class="st">"Disable tomorrow:"</span>,</span></span>
+<span class="r-in"><span>        choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yes"</span>, <span class="st">"no"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        selected <span class="op">=</span> <span class="st">"no"</span>,</span></span>
+<span class="r-in"><span>        inline <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
@@ -138,20 +179,52 @@ Possible values are: 'single' | 'multiple' | 'multiple-ranged' | false.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">label</span>, <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/isTruthy.html" class="external-link">isTruthy</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">label</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>      <span class="fu">updateCalendarPro</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"calendar"</span>, label <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">label</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"calendar"</span>, label <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">label</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">}</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">today</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">updateCalendarPro</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"calendar"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"calendar"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">today3</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">updateCalendarPro</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"calendar"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"calendar"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">mode</span>, <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">updateCalendarPro</span><span class="op">(</span>inputId <span class="op">=</span> <span class="st">"calendar"</span>, selectionDatesMode <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">mode</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"calendar"</span>, selectionDatesMode <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">mode</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span>, ignoreInit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">time</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">set_time_1</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"time"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>, selectedTime <span class="op">=</span> <span class="st">"11:00"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">set_time_2</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"time"</span>, value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">output</span><span class="op">$</span><span class="va">res3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderPrint</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">disable</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">disable_fridays</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">disable_fridays</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"disable"</span>, disableWeekdays <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"disable"</span>, disableWeekdays <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">}</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span>, ignoreInit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">disable_tomorrow</span>, <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">disable_tomorrow</span> <span class="op">==</span> <span class="st">"yes"</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"disable"</span>, disableDates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>      <span class="fu">updateCalendarPro</span><span class="op">(</span><span class="st">"disable"</span>, disableDates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">}</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span>, ignoreInit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
