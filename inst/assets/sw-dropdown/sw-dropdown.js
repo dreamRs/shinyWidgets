@@ -83,7 +83,10 @@ function swDrop(
       ) && // hack for bootstrap select
       !(
         $(e.target).parents('.bootstrap-select').length
-      ) && // hack for pickr color
+      ) && // hack for virtual select
+      !(
+        $(e.target).parents('.vscomp-value-tag').length
+      ) && // hack for virtual select
       !(
         $(e.target).parents('.vscomp-value-tag-clear-button').length
       ) && // hack for pickr color
