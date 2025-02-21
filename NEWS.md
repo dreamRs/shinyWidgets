@@ -1,6 +1,7 @@
-shinyWidgets 0.8.8
+shinyWidgets 0.9.0
 ======================
 
+* New widget `calendarProInput()`, a date and time picker component based on JavaScript library [vanilla-calendar-pro](https://github.com/uvarov-frontend/vanilla-calendar-pro).
 * `virtualSelectInput()`: ability to set a JavaScript function as callback for `selectedLabelRenderer`.
 * New argument `inputType` in `searchInput()` and `textInputIcon()` to specify the input's type, for example `"password"`.
 * `knobInput()` and `switchInput()` are softly deprecated, since the JavaScript libraries used by those widgets are no longer actively maintained.
