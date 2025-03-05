@@ -64,6 +64,7 @@ prepare_slim_choices <- function(.data,
     data = as.data.frame(.data)
   )
   args <- dropNulls(args)
+  is_html <- !is.null(args$html)
   if (!is.null(args$selectAll))
     args$selectAll <- rep_len(args$selectAll, length.out = nrow(.data))
   if (!is.null(args$closable))
@@ -102,7 +103,9 @@ prepare_slim_choices <- function(.data,
       }
     )
   }
-  I(args)
+  args <- I(args)
+  attr(args, "html") <- is_html
+  return(args)
 }
 
 
@@ -147,6 +150,7 @@ slimSelectInput <- function(inputId,
                             inline = FALSE,
                             width = NULL) {
   selected <- restoreInput(id = inputId, default = selected)
+  is_html <- isTRUE(attr(choices, "html"))
   data <- dropNulls(list(
     data = if (inherits(choices, "AsIs")) {
       if (!isTRUE(multiple) & isTRUE(allowDeselect)) {
@@ -173,13 +177,16 @@ slimSelectInput <- function(inputId,
       ...
     ))
   ))
+  json <- toJSON(data, auto_unbox = TRUE, json_verbatim = TRUE)
+  if (is_html)
+    json <- HTML(json)
   tag_select <- tags$select(
     id = inputId,
     class = "slim-select",
     tags$script(
       type = "application/json",
       `data-for` = inputId,
-      toJSON(data, auto_unbox = TRUE, json_verbatim = TRUE)
+      json
     )
   )
   if (multiple)
