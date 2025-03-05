@@ -62,6 +62,16 @@ ui <- fluidPage(
     column(
       width = 4,
 
+      htmltools::tagAppendAttributes(slimSelectInput(
+        inputId = "slim6",
+        label = "Always open:",
+        choices = month.name,
+        multiple = TRUE,
+        alwaysOpen = TRUE,
+        width = "100%"
+      ), style = css(height = "350px")),
+      verbatimTextOutput("res6"),
+
       slimSelectInput(
         inputId = "slim3",
         label = "Use prepare_slim_choices:",
@@ -76,19 +86,7 @@ ui <- fluidPage(
         multiple = TRUE,
         width = "100%"
       ),
-      verbatimTextOutput("res3"),
-
-      slimSelectInput(
-        inputId = "slim6",
-        label = "Always open:",
-        choices = month.name,
-        multiple = TRUE,
-        alwaysOpen = TRUE,
-        # contentPosition = "relative",
-        # contentLocation = "slim6-placeholder",
-        width = "100%"
-      ) |> htmltools::tagAppendAttributes(style = css(height = "350px")),
-      verbatimTextOutput("res6")
+      verbatimTextOutput("res3")
 
     )
   )
