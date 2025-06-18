@@ -2,6 +2,7 @@ shinyWidgets 0.9.1
 ======================
 
 * Updated virtual-select to 1.0.49, see https://github.com/sa-si-dev/virtual-select/releases.
+* Updated air-datepicker to 3.6.0, see https://github.com/t1m0n/air-datepicker?tab=readme-ov-file#v360
 
 
 shinyWidgets 0.9.0

@@ -24,7 +24,7 @@
   "devDependencies": {
     "@simonwep/pickr": "^1.9.1",
     "@widgetjs/tree": "^1.8.3",
-    "air-datepicker": "^3.5.3",
+    "air-datepicker": "^3.6.0",
     "autonumeric": "^4.6.0",
     "css-loader": "^6.5.1",
     "dayjs": "^1.11.12",
