@@ -1,0 +1,11 @@
+{
+  "input": {
+    "multiple": [
+      "Jan",
+      "Feb"
+    ]
+  },
+  "output": {
+    "res_multiple": "[1] \"Jan\" \"Feb\""
+  }
+}
