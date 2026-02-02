@@ -25,6 +25,9 @@ quercusInput(
 
 \item{selected}{Inital selected values, note that you have to use node ID.}
 
+\item{...}{Arguments passed to Quercus.js's Treeview JavaScript method,
+see \href{https://github.com/stefaneichert/quercus.js?tab=readme-ov-file#treeview-options}{online documentation} for available methods or examples.}
+
 \item{nodeNameKey}{The key to retrieve label to use in \code{choices}. If \code{\link[=create_tree]{create_tree()}} is used in \code{choices}, \code{nodeNameKey} must be set to \code{"text"}.}
 
 \item{returnValue}{Value returned server-side, default to \code{"text"} the node text,
@@ -109,7 +112,17 @@ ui <- fluidPage(
         returnValue = "text",
         width = "100\%"
       ),
-      verbatimTextOutput("res5")
+      verbatimTextOutput("res5"),
+
+      quercusInput(
+        inputId = "ID7",
+        label = "Select cities: (cascadeSelectChildren = TRUE)",
+        choices = create_tree(cities),
+        cascadeSelectChildren = TRUE,
+        returnValue = "text",
+        width = "100\%"
+      ),
+      verbatimTextOutput("res7")
 
     ),
     column(
@@ -159,6 +172,7 @@ server <- function(input, output, session) {
   output$res5 <- renderPrint(input$ID5)
   output$res6a <- renderPrint(input$ID6a)
   output$res6b <- renderPrint(input$ID6b)
+  output$res7 <- renderPrint(input$ID7)
 
 }
 

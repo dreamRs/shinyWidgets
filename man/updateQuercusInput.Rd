@@ -7,16 +7,19 @@
 updateQuercusInput(
   inputId,
   label = NULL,
+  choices = NULL,
   selected = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{The \code{input} slot that will be used to access the value.}
 
-\item{label}{The label to set for the input object.}
+\item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{selected}{The values that should be initially selected, if any.}
+\item{choices}{A \code{list} of \code{list} in a tree structure, see \code{\link[=create_tree]{create_tree()}} for examples creating the right structure.}
+
+\item{selected}{Inital selected values, note that you have to use node ID.}
 
 \item{session}{The \code{session} object passed to function given to
 \code{shinyServer}. Default is \code{getDefaultReactiveDomain()}.}
@@ -80,7 +83,9 @@ ui <- fluidPage(
         choices = unique(cities$city),
         inline = TRUE
       ),
-      actionButton("clear", "Clear selected")
+      actionButton("clear", "Clear selected"),
+      actionButton("update", "Update choices"),
+      actionButton("back", "Back to first choices")
     )
   )
 )
@@ -93,13 +98,11 @@ server <- function(input, output, session) {
     updateTreeInput(inputId = "ID1", label = input$label)
   )
 
-  observeEvent(
-    input$val_country,
+  observe(
     updateQuercusInput(inputId = "ID1", selected = input$val_country)
   )
 
-  observeEvent(
-    input$val_city,
+  observe(
     updateQuercusInput(inputId = "ID1", selected = input$val_city)
   )
 
@@ -107,8 +110,27 @@ server <- function(input, output, session) {
     updateQuercusInput(inputId = "ID1", selected = character(0))
     updateCheckboxGroupInput(inputId = "val_country", selected = character(0))
     updateCheckboxGroupInput(inputId = "val_city", selected = character(0))
-  }
-  )
+  })
+
+  observeEvent(input$update, {
+    cities <- data.frame(
+      continent = c("Asia", "Asia", "Asia", "Australia",
+                    "Australia", "Australia", "Australia", "Australia",
+                    "South America", "South America", "South America", "Arctic"),
+      country = c("Japan", "Japan", "China", "Australia", "Australia",
+                  "Australia", "New Zealand", "New Zealand",
+                  "Brazil", "Argentina", "Chile", NA),
+      city = c("Tokyo", "Kyoto", "Beijing", "Sydney",
+               "Melbourne", "Perth", "Auckland", "Wellington",
+               "São Paulo", "Buenos Aires", "Santiago", NA),
+      stringsAsFactors = FALSE
+    )
+    updateQuercusInput(inputId = "ID1", choices = create_tree(cities))
+  })
+
+  observeEvent(input$back, {
+    updateQuercusInput(inputId = "ID1", choices = create_tree(cities))
+  })
 }
 
 if (interactive())

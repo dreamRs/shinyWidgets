@@ -50,7 +50,9 @@ ui <- fluidPage(
         choices = unique(cities$city),
         inline = TRUE
       ),
-      actionButton("clear", "Clear selected")
+      actionButton("clear", "Clear selected"),
+      actionButton("update", "Update choices"),
+      actionButton("back", "Back to first choices")
     )
   )
 )
@@ -63,13 +65,11 @@ server <- function(input, output, session) {
     updateTreeInput(inputId = "ID1", label = input$label)
   )
 
-  observeEvent(
-    input$val_country,
+  observe(
     updateQuercusInput(inputId = "ID1", selected = input$val_country)
   )
 
-  observeEvent(
-    input$val_city,
+  observe(
     updateQuercusInput(inputId = "ID1", selected = input$val_city)
   )
 
@@ -77,8 +77,27 @@ server <- function(input, output, session) {
     updateQuercusInput(inputId = "ID1", selected = character(0))
     updateCheckboxGroupInput(inputId = "val_country", selected = character(0))
     updateCheckboxGroupInput(inputId = "val_city", selected = character(0))
-  }
-  )
+  })
+
+  observeEvent(input$update, {
+    cities <- data.frame(
+      continent = c("Asia", "Asia", "Asia", "Australia",
+                    "Australia", "Australia", "Australia", "Australia",
+                    "South America", "South America", "South America", "Arctic"),
+      country = c("Japan", "Japan", "China", "Australia", "Australia",
+                  "Australia", "New Zealand", "New Zealand",
+                  "Brazil", "Argentina", "Chile", NA),
+      city = c("Tokyo", "Kyoto", "Beijing", "Sydney",
+               "Melbourne", "Perth", "Auckland", "Wellington",
+               "São Paulo", "Buenos Aires", "Santiago", NA),
+      stringsAsFactors = FALSE
+    )
+    updateQuercusInput(inputId = "ID1", choices = create_tree(cities))
+  })
+
+  observeEvent(input$back, {
+    updateQuercusInput(inputId = "ID1", choices = create_tree(cities))
+  })
 }
 
 if (interactive())

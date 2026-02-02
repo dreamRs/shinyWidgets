@@ -64,7 +64,17 @@ ui <- fluidPage(
         returnValue = "text",
         width = "100%"
       ),
-      verbatimTextOutput("res5")
+      verbatimTextOutput("res5"),
+
+      quercusInput(
+        inputId = "ID7",
+        label = "Select cities: (cascadeSelectChildren = TRUE)",
+        choices = create_tree(cities),
+        cascadeSelectChildren = TRUE,
+        returnValue = "text",
+        width = "100%"
+      ),
+      verbatimTextOutput("res7")
 
     ),
     column(
@@ -114,6 +124,7 @@ server <- function(input, output, session) {
   output$res5 <- renderPrint(input$ID5)
   output$res6a <- renderPrint(input$ID6a)
   output$res6b <- renderPrint(input$ID6b)
+  output$res7 <- renderPrint(input$ID7)
 
 }
 

@@ -53,6 +53,12 @@ $.extend(quercusWidgetBinding, {
   },
   setValue: (el, values) => {
     var tree = quercusWidgetBinding.store[el.id];
+    // clear values
+    const selectedValues = tree.getSelectedNodes();
+    selectedValues.forEach(value => {
+      tree.selectNodeById(value.id, false);
+    });
+    // select the one provided
     for(let i in values) {
       var result = findTextInTree(tree.options.data, values[i]);
       console.log(result);
@@ -74,9 +80,14 @@ $.extend(quercusWidgetBinding, {
       var label = $("#" + el.id + "-label");
       updateLabel(data.label, label);
     }
+    if (data.hasOwnProperty("data")) {
+      var tree = quercusWidgetBinding.store[el.id];
+      tree.setData(data.data);
+    }
     if (data.hasOwnProperty("selected")) {
       quercusWidgetBinding.setValue(el, data.selected);
     }
+    $(el).trigger("change");
   },
   initialize: el => {
     var data = el.querySelector('script[data-for="' + el.id + '"]');
