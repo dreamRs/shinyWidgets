@@ -1,0 +1,172 @@
+# Progress Bars
+
+Create a progress bar to provide feedback on calculation.
+
+## Usage
+
+``` r
+progressBar(
+  id,
+  value,
+  total = NULL,
+  display_pct = FALSE,
+  size = NULL,
+  status = NULL,
+  striped = FALSE,
+  title = NULL,
+  range_value = NULL,
+  commas = TRUE,
+  format_display = function(value) {
+     prettyNum(value, big.mark = ",", scientific =
+    FALSE)
+ },
+  unit_mark = "%"
+)
+
+updateProgressBar(
+  session = getDefaultReactiveDomain(),
+  id,
+  value,
+  total = NULL,
+  title = NULL,
+  status = NULL,
+  range_value = NULL,
+  commas = TRUE,
+  format_display = function(value) {
+     prettyNum(value, big.mark = ",", scientific =
+    FALSE)
+ },
+  unit_mark = "%"
+)
+```
+
+## Arguments
+
+- id:
+
+  An id used to update the progress bar. If in a Shiny module, it use
+  same logic than inputs : use namespace in UI, not in server.
+
+- value:
+
+  Value of the progress bar between 0 and 100, if \>100 you must provide
+  total.
+
+- total:
+
+  Used to calculate percentage if value \> 100, force an indicator to
+  appear on top right of the progress bar.
+
+- display_pct:
+
+  logical, display percentage on the progress bar.
+
+- size:
+
+  Size, `NULL` by default or a value in 'xxs', 'xs', 'sm', only work
+  with package `shinydashboard`.
+
+- status:
+
+  Color, must be a valid Bootstrap status : primary, info, success,
+  warning, danger.
+
+- striped:
+
+  logical, add a striped effect.
+
+- title:
+
+  character, optional title.
+
+- range_value:
+
+  Default is to display percentage (`[0, 100]`), but you can specify a
+  custom range, e.g. `[-50, 50]`.
+
+- commas:
+
+  Deprecated, use `format_display`.
+
+- format_display:
+
+  Function to format the value displayed.
+
+- unit_mark:
+
+  Unit for value displayed on the progress bar, default to `%`.
+
+- session:
+
+  The 'session' object passed to function given to shinyServer.
+
+## Value
+
+A progress bar that can be added to a UI definition.
+
+## See also
+
+[progressSweetAlert](https://dreamrs.github.io/shinyWidgets/reference/progressSweetAlert.md)
+for progress bar in a sweet alert
+
+## Examples
+
+``` r
+if (interactive()) {
+
+library("shiny")
+library("shinyWidgets")
+
+ui <- fluidPage(
+  column(
+    width = 7,
+    tags$b("Default"), br(),
+    progressBar(id = "pb1", value = 50),
+    sliderInput(
+      inputId = "up1",
+      label = "Update",
+      min = 0,
+      max = 100,
+      value = 50
+    ),
+    br(),
+    tags$b("Other options"), br(),
+    progressBar(
+      id = "pb2",
+      value = 0,
+      total = 100,
+      title = "",
+      display_pct = TRUE
+    ),
+    actionButton(
+      inputId = "go",
+      label = "Launch calculation"
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  observeEvent(input$up1, {
+    updateProgressBar(
+      session = session,
+      id = "pb1",
+      value = input$up1
+    )
+  })
+  observeEvent(input$go, {
+    for (i in 1:100) {
+      updateProgressBar(
+        session = session,
+        id = "pb2",
+        value = i, total = 100,
+        title = paste("Process", trunc(i/10))
+      )
+      Sys.sleep(0.1)
+    }
+  })
+}
+
+shinyApp(ui = ui, server = server)
+
+}
+```

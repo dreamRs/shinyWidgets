@@ -1,0 +1,204 @@
+# Update calendar pro from server
+
+Update a
+[`calendarProInput()`](https://dreamrs.github.io/shinyWidgets/reference/calendarProInput.md)
+from the server.
+
+## Usage
+
+``` r
+updateCalendarPro(
+  inputId,
+  label = NULL,
+  value = NULL,
+  mode = NULL,
+  ...,
+  session = shiny::getDefaultReactiveDomain()
+)
+```
+
+## Arguments
+
+- inputId:
+
+  The `input` slot that will be used to access the value.
+
+- label:
+
+  Display label for the control, or `NULL` for no label.
+
+- value:
+
+  Initial value.
+
+- mode:
+
+  This parameter determines whether selecting one or multiple days is
+  allowed, or if date selection is completely disabled. Possible values
+  are: 'single' \| 'multiple' \| 'multiple-ranged' \| false.
+
+- ...:
+
+  Other settings passed to Calendar Pro JavaScript method, see [online
+  documentation](https://vanilla-calendar.pro/docs/reference/settings)
+  for reference.
+
+- session:
+
+  The `session` object passed to function given to `shinyServer`.
+  Default is
+  [`getDefaultReactiveDomain()`](https://rdrr.io/pkg/shiny/man/domains.html).
+
+## Value
+
+No value.
+
+## See also
+
+[`calendarProInput()`](https://dreamrs.github.io/shinyWidgets/reference/calendarProInput.md)
+for creating a widget in the UI.
+
+## Examples
+
+``` r
+library(shiny)
+library(shinyWidgets)
+
+ui <- fluidPage(
+  theme = bslib::bs_theme(5),
+  tags$h2("Calendar Pro Input: update from server"),
+  fluidRow(
+    column(
+      width = 4,
+      calendarProInput(
+        inputId = "calendar",
+        label = "Select a date:",
+        placeholder = "Select a date",
+        width = "100%"
+      ),
+      verbatimTextOutput("res1"),
+      textInput(
+        inputId = "label",
+        label = "Update label:"
+      ),
+      actionButton(
+        inputId = "today",
+        label = "Set value as today"
+      ),
+      actionButton(
+        inputId = "today3",
+        label = "Set value as today + 3"
+      ),
+      radioButtons(
+        inputId = "mode",
+        label = "Update mode:",
+        choices = c("single", "multiple", "multiple-ranged"),
+        inline = TRUE
+      )
+    ),
+    column(
+      width = 4,
+      calendarProInput(
+        inputId = "time",
+        label = "Select date and time:",
+        placeholder = "Select date and time:",
+        selectionTimeMode = 24,
+        format = "%Y/%m/%d %H:%M",
+        width = "100%"
+      ),
+      verbatimTextOutput("res2"),
+      actionButton(
+        inputId = "set_time_1",
+        label = "Set yesterday 11am"
+      ),
+      actionButton(
+        inputId = "set_time_2",
+        label = "Set now"
+      )
+    ),
+    column(
+      width = 4,
+      calendarProInput(
+        inputId = "disable",
+        label = "Select a date:",
+        placeholder = "Select a date",
+        width = "100%"
+      ),
+      verbatimTextOutput("res3"),
+      radioButtons(
+        inputId = "disable_fridays",
+        label = "Disable fridays:",
+        choices = c("yes", "no"),
+        selected = "no",
+        inline = TRUE
+      ),
+      radioButtons(
+        inputId = "disable_tomorrow",
+        label = "Disable tomorrow:",
+        choices = c("yes", "no"),
+        selected = "no",
+        inline = TRUE
+      ),
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+  output$res1 <- renderPrint(input$calendar)
+
+  observeEvent(input$label, {
+    if (isTruthy(input$label)) {
+      updateCalendarPro("calendar", label = input$label)
+    }
+  })
+
+  observeEvent(input$today, {
+    updateCalendarPro("calendar", value = Sys.Date())
+  })
+
+  observeEvent(input$today3, {
+    updateCalendarPro("calendar", value = Sys.Date() + 3)
+  })
+
+  observeEvent(input$mode, {
+    updateCalendarPro("calendar", selectionDatesMode = input$mode)
+  }, ignoreInit = TRUE)
+
+
+
+  output$res2 <- renderPrint(input$time)
+
+  observeEvent(input$set_time_1, {
+    updateCalendarPro("time", value = Sys.Date() - 1, selectedTime = "11:00")
+  })
+
+  observeEvent(input$set_time_2, {
+    updateCalendarPro("time", value = Sys.time())
+  })
+
+
+
+  output$res3 <- renderPrint(input$disable)
+
+  observeEvent(input$disable_fridays, {
+    if (input$disable_fridays == "yes") {
+      updateCalendarPro("disable", disableWeekdays = 5)
+    } else {
+      updateCalendarPro("disable", disableWeekdays = numeric(0))
+    }
+  }, ignoreInit = TRUE)
+
+  observeEvent(input$disable_tomorrow, {
+    if (input$disable_tomorrow == "yes") {
+      updateCalendarPro("disable", disableDates = Sys.Date() + 1)
+    } else {
+      updateCalendarPro("disable", disableDates = numeric(0))
+    }
+  }, ignoreInit = TRUE)
+
+}
+
+if (interactive())
+  shinyApp(ui, server)
+```

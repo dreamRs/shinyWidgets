@@ -1,0 +1,375 @@
+# Autonumeric Input Widget
+
+An R wrapper over the javascript AutoNumeric library, for formatting
+numeric inputs in shiny applications.
+
+## Usage
+
+``` r
+autonumericInput(
+  inputId,
+  label,
+  value,
+  width = NULL,
+  align = "right",
+  currencySymbol = NULL,
+  currencySymbolPlacement = NULL,
+  decimalCharacter = NULL,
+  digitGroupSeparator = NULL,
+  allowDecimalPadding = NULL,
+  decimalPlaces = NULL,
+  divisorWhenUnfocused = NULL,
+  rawValueDivisor = NULL,
+  formatOnPageLoad = NULL,
+  maximumValue = NULL,
+  minimumValue = NULL,
+  modifyValueOnWheel = NULL,
+  emptyInputBehavior = "null",
+  style = NULL,
+  ...
+)
+```
+
+## Arguments
+
+- inputId:
+
+  The `input` slot that will be used to access the value.
+
+- label:
+
+  Display label for the control, or NULL for no label.
+
+- value:
+
+  Initial value (unformatted).
+
+- width:
+
+  The width of the input box, eg. `"200px"` or `"100%"`.
+
+- align:
+
+  The alignment of the text inside the input box, one of "center"
+  (default), "left", "right".
+
+- currencySymbol:
+
+  Defines the currency symbol string. It can be a string of more than
+  one character (allowing for instance to use a space on either side of
+  it, example: '\$ ' or ' \$'). Defaults to "".
+
+- currencySymbolPlacement:
+
+  Defines where the currency symbol should be placed, "p" for prefix or
+  "s" for suffix (default).
+
+- decimalCharacter:
+
+  Defines what decimal separator character is used. Defaults to ",".
+
+- digitGroupSeparator:
+
+  Defines what decimal separator character is used. Defaults to ".".
+
+- allowDecimalPadding:
+
+  Defines if decimal places should be padded with zeros. Defaults to
+  TRUE.
+
+- decimalPlaces:
+
+  Defines the default number of decimal places to show on the formatted
+  value, and keep for the precision. Must be 0 or a positive integer.
+  Defaults to 2.
+
+- divisorWhenUnfocused:
+
+  The number that divides the element value on blur. On focus, the
+  number is multiplied back in. Defaults to NULL.
+
+- rawValueDivisor:
+
+  Divides the formatted value shown in the AutoNumeric element and store
+  the divided result in `rawValue`. Defaults to 1.
+
+- formatOnPageLoad:
+
+  Determine if the default value will be formatted on initialization.
+  Defaults to TRUE.
+
+- maximumValue:
+
+  Defines the maximum possible value a user can enter.
+
+- minimumValue:
+
+  Defines the minimum possible value a user can enter.
+
+- modifyValueOnWheel:
+
+  Allows the user to increment or decrement the element value with the
+  mouse wheel. The wheel behavior can be modified by the `wheelStep`
+  option. Defaults to TRUE.
+
+- emptyInputBehavior:
+
+  Defines what should be displayed in the element if the raw value is an
+  empty string ”.
+
+- style:
+
+  CSS styles (as a character string) to add to the `<input>` tag.
+
+- ...:
+
+  Additional parameters that can be passed to AutoNumeric. See details
+  for more information.
+
+## Value
+
+An autonumericInput object to be used in the UI function of a Shiny App.
+
+## Details
+
+This function wraps the AutoNumeric.js library. The parameter
+documentation provided here should be sufficient for most users, but for
+those wishing to use advanced configurations it is advised to look at
+the documentation on the [AutoNumeric GitHub
+repository](https://github.com/autoNumeric/autoNumeric). Alexandre
+Bonneau has done a wonderful job of documenting all parameters and full
+explanations of all parameters and their associated values can be found
+there.
+
+The `...` parameter can take any of the arguments listed on the
+[AutoNumeric GitHub
+repository](https://github.com/autoNumeric/autoNumeric). A quick
+reference follows:
+
+- decimalPlacesRawValue - Defines How many decimal places should be kept
+  for the raw value. If set to NULL (default) then `decimalPlaces` is
+  used.
+
+- decimalPlacesShownOnBlur - Defines how many decimal places should be
+  visible when the element is unfocused. If NULL (default) then
+  `decimalPlaces` is used.
+
+- decimalPlacesShownOnFocus - Defines how many decimal places should be
+  visible when the element has the focus. If NULL (default) then
+  `decimalPlaces` is used.
+
+- digitalGroupSpacing - Defines how many numbers should be grouped
+  together for the thousands separator groupings. Must be one of c("2",
+  "2s", "3", "4"). Defaults to 3.
+
+- alwaysAllowDecimalCharacter - Defines if the decimal character or
+  decimal character alternative should be accepted when there is already
+  a decimal character shown in the element. If set to TRUE, any decimal
+  character input will be accepted and will subsequently modify the
+  decimal character position, as well as the rawValue. If set to FALSE,
+  the decimal character and its alternative key will be dropped. This is
+  the default setting.
+
+- createLocalList - Defines if a local list of AutoNumeric objects
+  should be kept when initializing this object. Defaults to TRUE.
+
+- decimalCharacterAlternative - Allow to declare an alternative decimal
+  separator which is automatically replaced by `decimalCharacter` when
+  typed. This is useful for countries that use a comma ',' as the
+  decimal character and have keyboards with numeric pads providing a
+  period '.' as the decimal character (in France or Spain for instance).
+  Must be NULL (default), ",", or ".".
+
+- emptyInputBehavior - Defines what should be displayed in the element
+  if the raw value is missing. One of c(NULL, "focus", "press",
+  "always", "min", "max", "zero") or a custom value. Defaults to NULL.
+  See [AutoNumeric GitHub
+  repository](https://github.com/autoNumeric/autoNumeric) for full
+  details.
+
+- selectNumberOnly - Determine if the select all keyboard command will
+  select the complete input text, or only the input numeric value.
+  Defaults to `TRUE`.
+
+- selectOnFocus - Defines if the element value should be selected on
+  focus. Note: The selection is done using the `selectNumberOnly`
+  option. Defaults to `TRUE`.
+
+- eventBubbles - Defines if the custom and native events triggered by
+  AutoNumeric should bubble up or not. Defaults to TRUE.
+
+- eventIsCancelable - Defines if the custom and native events triggered
+  by AutoNumeric should be cancelable. Defaults to TRUE.
+
+- formulaMode - Defines if the formula mode can be activated by the
+  user. If set to true, then the user can enter the formula mode by
+  entering the '=' character. The user will then be allowed to enter any
+  simple math formula using numeric characters as well as the following
+  operators: +, -, \*, /, ( and ). The formula mode is exited when the
+  user either validate their math expression using the Enter key, or
+  when the element is blurred. Defaults to `FALSE`.
+
+- historySize - Set the undo/redo history table size. Defaults to 20.
+
+- isCancellable - Allow the user to cancel and undo the changes he made
+  to the given autonumeric-managed element, by pressing the `Escape`
+  key. Defaults to `TRUE`.
+
+- leadingZero - This options describes if entering 0 on the far left of
+  the numbers is allowed, and if the superfluous zeroes should be kept
+  when the input is blurred. One of c("allow", "deny", and "keep").
+  Defaults to "deny". See [AutoNumeric GitHub
+  repository](https://github.com/autoNumeric/autoNumeric) for full
+  details.
+
+- wheelOn - Defines when the wheel event will increment or decrement the
+  element value. One of c("focus", "hover"). Defaults to "focus".
+
+- wheelStep - Defines by how much the element value should be
+  incremented/decremented on the wheel event. Can be a set value or the
+  string "progressive" which determines the step from the size of the
+  input. Defaults to "progressive".
+
+- negativeBracketsTypeOnBlur - Adds brackets-like characters on negative
+  values when unfocused. Those brackets are visible only when the field
+  does not have the focus. The left and right symbols should be enclosed
+  in quotes and separated by a comma. Defaults to NULL.
+
+- negativePositiveSignPlacement - Placement of the negative/positive
+  sign relative to the `currencySymbol` option. One of c("p", "s", "l",
+  "r", NULL), defaults to NULL. See [AutoNumeric GitHub
+  repository](https://github.com/autoNumeric/autoNumeric) for further
+  documentation.
+
+- negativeSignCharacter - Defines the negative sign symbol to use. Must
+  be a single character and be non-numeric. Defaults to "-".
+
+- positiveSignCharacter - Defines the positive sign symbol to use. Must
+  be a single character and be non-numeric. Defaults to "+".
+
+- showPositiveSign - Allow the positive sign symbol
+  `positiveSignCharacter` to be displayed for positive numbers. Defaults
+  to `FALSE`.
+
+- onInvalidPaste - Manage how autoNumeric react when the user tries to
+  paste an invalid number. One of c("error", "ignore", "clamp",
+  "truncate", "replace"). Defaults to "error".
+
+- overrideMinMaxLimits - Override the minimum and maximum limits. Must
+  be one of c("ceiling", "floor", "ignore", NULL). Defaults to
+  "ceiling".
+
+- readOnly - Defines if the element (`<input>` or another allowed html
+  tag) should be set as read only on initialization. Defaults to
+  `FALSE`.
+
+- roundingMethod - Defines the rounding method to use. One of c("S",
+  "A", "s", "a", "B", "U", "D", "C", "F", "N05", "CHF", "U05", "D05").
+  Defaults to "S". See [AutoNumeric GitHub
+  repository](https://github.com/autoNumeric/autoNumeric) for further
+  documentation.
+
+- saveValueToSessionStorage - Set to TRUE to allow the
+  `decimalPlacesShownOnFocus` value to be saved with sessionStorage.
+  Defaults to `FALSE`.
+
+- serializeSpaces - Defines how the serialize functions should treat the
+  spaces. Either "+" (default) or "\\
+
+- showOnlyNumbersOnFocus - Defines if the element value should be
+  converted to the raw value on focus or mouseenter, (and back to the
+  formatted on blur or mouseleave). Defaults to `FALSE`.
+
+- showWarnings - Defines if warnings should be shown in the console.
+  Defaults to `TRUE`.
+
+- styleRules - Defines the rules that calculate the CSS class(es) to
+  apply on the element, based on the raw unformatted value. Defaults to
+  NULL.
+
+- suffixText - Add a text on the right hand side of the element value.
+  This suffix text can have any characters in its string, except numeric
+  characters and the negative or positive sign. Defaults to `NULL`.
+
+- symbolWhenUnfocused - Defines the symbol placed as a suffix when not
+  in focus or hovered. Defaults to `NULL`.
+
+- unformatOnHover - Defines if the element value should be unformatted
+  when the user hover his mouse over it while holding the Alt key.
+  Defaults to `TRUE`.
+
+- valuesToStrings - Provides a way for automatically replacing the
+  formatted value with a pre-defined string, when the raw value is equal
+  to a specific value. Defaults to NULL.
+
+- watchExternalChanges - Defines if the AutoNumeric element should watch
+  external changes made without using `.set()`. Defaults to `FALSE`.
+
+## References
+
+Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
+http://autonumeric.org
+
+## See also
+
+Other autonumeric:
+[`currencyInput()`](https://dreamrs.github.io/shinyWidgets/reference/formatNumericInput.md),
+[`updateAutonumericInput()`](https://dreamrs.github.io/shinyWidgets/reference/updateAutonumericInput.md),
+[`updateCurrencyInput()`](https://dreamrs.github.io/shinyWidgets/reference/formaNumericInputUpdate.md)
+
+## Examples
+
+``` r
+if (interactive()) {
+  library(shiny)
+  library(shinyWidgets)
+
+  ui <- fluidPage(
+    h1("Autonumeric Inputs"),
+    br(),
+    autonumericInput(
+      inputId = "id1",
+      label = "Default Input",
+      value = 1234.56
+    ),
+    verbatimTextOutput("res1"),
+
+    autonumericInput(
+      inputId = "id2",
+      label = "Custom Thousands of Dollars Input",
+      value = 1234.56,
+      align = "right",
+      currencySymbol = "$",
+      currencySymbolPlacement = "p",
+      decimalCharacter = ".",
+      digitGroupSeparator = ",",
+      divisorWhenUnfocused = 1000,
+      symbolWhenUnfocused = "K"
+    ),
+    verbatimTextOutput("res2"),
+
+    autonumericInput(
+      inputId = "id3",
+      label = "Custom Millions of Euros Input with Positive Sign",
+      value = 12345678910,
+      align = "right",
+      currencySymbol = "\u20ac",
+      currencySymbolPlacement = "s",
+      decimalCharacter = ",",
+      digitGroupSeparator = ".",
+      divisorWhenUnfocused = 1000000,
+      symbolWhenUnfocused = " (millions)",
+      showPositiveSign = TRUE
+    ),
+    verbatimTextOutput("res3")
+  )
+
+  server <- function(input, output, session) {
+    output$res1 <- renderPrint(input$id1)
+    output$res2 <- renderPrint(input$id2)
+    output$res3 <- renderPrint(input$id3)
+  }
+
+  shinyApp(ui, server)
+}
+```

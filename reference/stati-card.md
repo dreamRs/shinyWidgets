@@ -1,0 +1,179 @@
+# Minimal statistic cards
+
+Minimal statistic cards
+
+## Usage
+
+``` r
+statiCard(
+  value,
+  subtitle,
+  icon = NULL,
+  left = FALSE,
+  color = "steelblue",
+  background = "white",
+  animate = FALSE,
+  duration = 2000,
+  id = NULL
+)
+
+updateStatiCard(
+  id,
+  value,
+  duration = 2000,
+  session = getDefaultReactiveDomain()
+)
+```
+
+## Arguments
+
+- value:
+
+  Value to display.
+
+- subtitle:
+
+  A subtitle to describe the value.
+
+- icon:
+
+  An optional icon created with
+  [`icon()`](https://rdrr.io/pkg/shiny/man/icon.html).
+
+- left:
+
+  Display value and subtitle to the right.
+
+- color:
+
+  Text color.
+
+- background:
+
+  Background color.
+
+- animate:
+
+  Add an animation when value is displayed.
+
+- duration:
+
+  Duration of animation.
+
+- id:
+
+  An id that can be used to update the card server-side.
+
+- session:
+
+  Shiny session.
+
+## Value
+
+A UI definition.
+
+## Note
+
+Based on work by Dastanbek and ArielDavid on codepen.io
+
+## Examples
+
+``` r
+library(shiny)
+library(shinyWidgets)
+
+
+ui <- fluidPage(
+
+  tags$h2("Stati Card"),
+
+  fluidRow(
+    column(
+      width = 3,
+      statiCard(12, "Subtitle", icon("house")),
+      statiCard(
+        93, "Animated card", icon("users"),
+        background = "deepskyblue",
+        color = "white",
+        animate = TRUE,
+        id = "card1"
+      ),
+      actionButton("update1", "Update card above server-side"),
+      statiCard(
+        93, "No animation", icon("users"),
+        background = "deepskyblue",
+        color = "white",
+        id = "card2"
+      ),
+      actionButton("update2", "Update card above server-side")
+    ),
+    column(
+      width = 3,
+      statiCard("$123,456", "Total spend", icon("rocket"), left = TRUE, animate = TRUE),
+      tags$br(),
+      actionButton("show", "Show card (rendered server-side)"),
+      uiOutput(outputId = "card")
+    ),
+    column(
+      width = 3,
+      statiCard(12, "No animation", icon("house"), color = "firebrick")
+    ),
+    column(
+      width = 3,
+      statiCard(
+        "123456 something very very long",
+        "Long value text",
+        icon = NULL,
+        left = TRUE,
+        background = "steelblue",
+        color = "white"
+      ),
+      statiCard(
+        "123456 something very very long",
+        "Long value text with icon",
+        icon = icon("gauge"),
+        left = TRUE
+      ),
+      statiCard(
+        "123456 something very very long",
+        "Long value text with icon right",
+        icon = icon("list-check")
+      )
+    )
+  )
+
+)
+
+
+server <- function(input, output, session) {
+
+  observeEvent(input$update1, {
+    updateStatiCard(
+      id = "card1",
+      value = sample.int(200, 1)
+    )
+  })
+
+  observeEvent(input$update2, {
+    updateStatiCard(
+      id = "card2",
+      value = sample.int(200, 1)
+    )
+  })
+
+  output$card <- renderUI({
+    req(input$show)
+    statiCard(
+      format(sample.int(1e6, 1), big.mark = " "),
+      "Total spend",
+      icon("cart-shopping"),
+      left = TRUE,
+      animate = TRUE
+    )
+  })
+
+}
+
+if (interactive())
+  shinyApp(ui, server)
+```

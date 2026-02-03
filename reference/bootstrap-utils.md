@@ -1,0 +1,207 @@
+# Bootstrap panel / alert
+
+Create a panel (box) with basic border and padding, you can use
+Bootstrap status to style the panel, see
+<https://getbootstrap.com/docs/3.4/components/#panels>.
+
+## Usage
+
+``` r
+panel(
+  ...,
+  heading = NULL,
+  footer = NULL,
+  extra = NULL,
+  status = c("default", "primary", "success", "info", "warning", "danger")
+)
+
+alert(
+  ...,
+  status = c("info", "success", "danger", "warning"),
+  dismissible = FALSE
+)
+
+list_group(...)
+```
+
+## Arguments
+
+- ...:
+
+  UI elements to include inside the panel or alert.
+
+- heading:
+
+  Title for the panel in a plain header.
+
+- footer:
+
+  Footer for the panel.
+
+- extra:
+
+  Additional elements to include like a table or a `list_group`, see
+  examples.
+
+- status:
+
+  Bootstrap status for contextual alternative.
+
+- dismissible:
+
+  Adds the possibility to close the alert.
+
+## Value
+
+A UI definition.
+
+## Examples
+
+``` r
+# Panels ---------------------------------
+
+library(shiny)
+library(shinyWidgets)
+
+ui <- fluidPage(
+  # Try with different Bootstrap version
+  # theme = bslib::bs_theme(version = 5),
+
+  tags$h2("Bootstrap panel"),
+
+  # Default
+  panel(
+    "Content goes here",
+  ),
+  panel(
+    "With status",
+    status = "primary"
+  ),
+
+  # With header and footer
+  panel(
+    "Content goes here",
+    heading = "My title",
+    footer = "Something"
+  ),
+
+  # With status
+  panel(
+    "Content goes here",
+    heading = "My title",
+    status = "primary"
+  ),
+
+  # With table
+  panel(
+    heading = "A famous table",
+    extra = tableOutput(outputId = "table")
+  ),
+
+  # With list group
+  panel(
+    heading = "A list of things",
+    extra = list_group(
+      "First item",
+      "Second item",
+      "And third item"
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+  output$table <- renderTable({
+    head(mtcars)
+  }, width = "100%")
+
+}
+
+if (interactive())
+  shinyApp(ui = ui, server = server)
+
+
+
+
+
+# Alerts ---------------------------------
+
+library(shiny)
+library(shinyWidgets)
+
+ui <- fluidPage(
+
+  # Try with different Bootstrap version
+  # theme = bslib::bs_theme(version = 5),
+
+  tags$h2("Alerts"),
+  fluidRow(
+    column(
+      width = 6,
+      alert(
+        status = "success",
+        tags$b("Well done!"), "You successfully read this important alert message."
+      ),
+      alert(
+        status = "info",
+        tags$b("Heads up!"), "This alert needs your attention, but it's not super important."
+      ),
+      alert(
+        status = "info",
+        dismissible = TRUE,
+        tags$b("Dismissable"), "You can close this one."
+      )
+    ),
+    column(
+      width = 6,
+      alert(
+        status = "warning",
+        tags$b("Warning!"), "Better check yourself, you're not looking too good."
+      ),
+      alert(
+        status = "danger",
+        tags$b("Oh snap!"), "Change a few things up and try submitting again."
+      )
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+}
+
+if (interactive())
+  shinyApp(ui, server)
+
+
+
+# List group -----------------------------
+
+library(shiny)
+library(shinyWidgets)
+
+ui <- fluidPage(
+  tags$h2("List group"),
+
+  tags$b("List of item:"),
+  list_group(
+    "First item",
+    "Second item",
+    "And third item"
+  ),
+
+  tags$b("Set active item:"),
+  list_group(
+    list(class = "active", "First item"),
+    "Second item",
+    "And third item"
+  )
+)
+
+server <- function(input, output, session) {
+
+}
+
+if (interactive())
+  shinyApp(ui, server)
+```

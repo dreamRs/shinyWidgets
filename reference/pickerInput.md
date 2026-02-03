@@ -1,0 +1,319 @@
+# Select Picker Input Control
+
+An alternative to
+[`shiny::selectInput()`](https://rdrr.io/pkg/shiny/man/selectInput.html)
+with plenty of options to customize it.
+
+## Usage
+
+``` r
+pickerInput(
+  inputId,
+  label = NULL,
+  choices,
+  selected = NULL,
+  multiple = FALSE,
+  options = list(),
+  choicesOpt = NULL,
+  width = NULL,
+  inline = FALSE,
+  stateInput = TRUE,
+  autocomplete = FALSE
+)
+```
+
+## Arguments
+
+- inputId:
+
+  The `input` slot that will be used to access the value.
+
+- label:
+
+  Display label for the control, or `NULL` for no label.
+
+- choices:
+
+  List of values to select from. If elements of the list are named then
+  that name rather than the value is displayed to the user.
+
+- selected:
+
+  The initially selected value (or multiple values if
+  `multiple = TRUE`). If not specified then defaults to the first value
+  for single-select lists and no values for multiple select lists.
+
+- multiple:
+
+  Is selection of multiple items allowed?
+
+- options:
+
+  List of options, see
+  [pickerOptions](https://dreamrs.github.io/shinyWidgets/reference/pickerOptions.md)
+  for all available options. To limit the number of selection possible,
+  see example below.
+
+- choicesOpt:
+
+  A [`list()`](https://rdrr.io/r/base/list.html) of options for
+  individual choices in the dropdown menu, each element of the `list`
+  should the same length as `choices`. You can use the following options
+  :
+
+  - `disabled`: logical vector indicating if the choice can be selected
+    or not.
+
+  - `style`: CSS styles applied to the choice tag
+
+  - `class`: CSS class added to the choice tag
+
+  - `icon`: vector of icon names to display before choices (to use
+    `icon("arrow-right")`, you have to use `fa-arrow-right` and
+    `pickerOptions(iconBase = "fas")`)
+
+  - `subtext` add a text after the choice
+
+  - `content`: replace entire choice with custom content (like raw HTML)
+
+  - `tokens`: add tokens associated with choices used in search results.
+
+- width:
+
+  The width of the input : 'auto', 'fit', '100px', '75%'.
+
+- inline:
+
+  Display picker inline, to have label and menu on same line use
+  `width = "fit"`.
+
+- stateInput:
+
+  Activate or deactivate the special input value `input$<inputId>_open`
+  to know if the menu is opened or not, see details.
+
+- autocomplete:
+
+  Sets the initial state of the autocomplete property.
+
+## Value
+
+A select control that can be added to a UI definition.
+
+## Note
+
+State of the picker (open or close) is accessible server-side through
+the input value: `input$<inputId>_open`, which can be `TRUE` (opened) or
+`FALSE` (closed).
+
+## References
+
+SnapAppointments and contributors. "The jQuery plugin that brings select
+elements into the 21st century with intuitive multiselection, searching,
+and much more. Now with Bootstrap 4 support".
+<https://github.com/snapappointments/bootstrap-select/>
+
+## See also
+
+[updatePickerInput](https://dreamrs.github.io/shinyWidgets/reference/updatePickerInput.md)
+to update value server-side.
+[`virtualSelectInput()`](https://dreamrs.github.io/shinyWidgets/reference/virtualSelectInput.md)
+for an alternative.
+
+## Examples
+
+``` r
+## Only run examples in interactive R sessions
+if (interactive()) {
+
+# You can run the gallery to see other examples
+shinyWidgetsGallery()
+
+
+# Basic usage
+library("shiny")
+library(shinyWidgets)
+
+ui <- fluidPage(
+  pickerInput(
+    inputId = "somevalue",
+    label = "A label",
+    choices = c("a", "b")
+  ),
+  verbatimTextOutput("value")
+)
+
+server <- function(input, output) {
+  output$value <- renderPrint(input$somevalue)
+}
+
+shinyApp(ui, server)
+
+}
+
+### Add actions box for selecting ----
+### deselecting all options
+
+if (interactive()) {
+
+  library(shiny)
+  library(shinyWidgets)
+
+  ui <- fluidPage(
+    tags$h2("Select / Deselect all"),
+    pickerInput(
+      inputId = "p1",
+      label = "Select all option",
+      choices = rownames(mtcars),
+      multiple = TRUE,
+      options = list(`actions-box` = TRUE)
+    ),
+    verbatimTextOutput("r1"),
+    br(),
+    pickerInput(
+      inputId = "p2",
+      label = "Select all option / custom text",
+      choices = rownames(mtcars),
+      multiple = TRUE,
+      options = list(
+        `actions-box` = TRUE,
+        `deselect-all-text` = "None...",
+        `select-all-text` = "Yeah, all !",
+        `none-selected-text` = "zero"
+      )
+    ),
+    verbatimTextOutput("r2")
+  )
+
+  server <- function(input, output, session) {
+
+    output$r1 <- renderPrint(input$p1)
+    output$r2 <- renderPrint(input$p2)
+
+  }
+
+  shinyApp(ui = ui, server = server)
+
+}
+
+### Customize the values displayed in the box ----
+
+if (interactive()) {
+
+  library(shiny)
+  library(shinyWidgets)
+
+  ui <- fluidPage(
+    br(),
+    pickerInput(
+      inputId = "p1",
+      label = "Default",
+      multiple = TRUE,
+      choices = rownames(mtcars),
+      selected = rownames(mtcars)[1:5]
+    ),
+    br(),
+    pickerInput(
+      inputId = "p1b",
+      label = "Default with | separator",
+      multiple = TRUE,
+      choices = rownames(mtcars),
+      selected = rownames(mtcars)[1:5],
+      options = list(`multiple-separator` = " | ")
+    ),
+    br(),
+    pickerInput(
+      inputId = "p2",
+      label = "Static",
+      multiple = TRUE,
+      choices = rownames(mtcars),
+      selected = rownames(mtcars)[1:5],
+      options = list(`selected-text-format`= "static",
+                     title = "Won't change")
+    ),
+    br(),
+    pickerInput(
+      inputId = "p3",
+      label = "Count",
+      multiple = TRUE,
+      choices = rownames(mtcars),
+      selected = rownames(mtcars)[1:5],
+      options = list(`selected-text-format`= "count")
+    ),
+    br(),
+    pickerInput(
+      inputId = "p3",
+      label = "Customize count",
+      multiple = TRUE,
+      choices = rownames(mtcars),
+      selected = rownames(mtcars)[1:5],
+      options = list(
+        `selected-text-format`= "count",
+        `count-selected-text` = "{0} models choosed (on a total of {1})"
+      )
+    )
+  )
+
+  server <- function(input, output, session) {
+
+  }
+
+  shinyApp(ui = ui, server = server)
+
+}
+
+### Limit the number of selections ----
+
+if (interactive()) {
+
+  library(shiny)
+  library(shinyWidgets)
+
+  ui <- fluidPage(
+    pickerInput(
+      inputId = "groups",
+      label = "Select one from each group below:",
+      choices = list(
+        Group1 = c("1", "2", "3", "4"),
+        Group2 = c("A", "B", "C", "D")
+      ),
+      multiple = TRUE,
+      options =  list("max-options-group" = 1)
+    ),
+    verbatimTextOutput(outputId = "res_grp"),
+    pickerInput(
+      inputId = "groups_2",
+      label = "Select two from each group below:",
+      choices = list(
+        Group1 = c("1", "2", "3", "4"),
+        Group2 = c("A", "B", "C", "D")
+      ),
+      multiple = TRUE,
+      options =  list("max-options-group" = 2)
+    ),
+    verbatimTextOutput(outputId = "res_grp_2"),
+    pickerInput(
+      inputId = "classic",
+      label = "Select max two option below:",
+      choices = c("A", "B", "C", "D"),
+      multiple = TRUE,
+      options =  list(
+        "max-options" = 2,
+        "max-options-text" = "No more!"
+      )
+    ),
+    verbatimTextOutput(outputId = "res_classic")
+  )
+
+  server <- function(input, output) {
+
+    output$res_grp <- renderPrint(input$groups)
+    output$res_grp_2 <- renderPrint(input$groups_2)
+    output$res_classic <- renderPrint(input$classic)
+
+  }
+
+  shinyApp(ui, server)
+
+}
+```
