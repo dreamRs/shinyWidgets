@@ -11,5 +11,6 @@
   "input-time": "./srcjs/inputs/input-time.js",
   "WinBox": "./srcjs/exts/WinBox.js",
   "slim-select": "./srcjs/inputs/slim-select.js",
-  "calendar-pro": "./srcjs/inputs/vanilla-calendar-pro.js"
+  "calendar-pro": "./srcjs/inputs/vanilla-calendar-pro.js",
+  "quercus": "./srcjs/inputs/quercus.js"
 }
