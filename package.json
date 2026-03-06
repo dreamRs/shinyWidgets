@@ -33,7 +33,7 @@
     "quercus.js": "^0.4.4",
     "slim-select": "^2.9.2",
     "style-loader": "^3.3.1",
-    "vanilla-calendar-pro": "^3.0.3",
+    "vanilla-calendar-pro": "^3.1.0",
     "virtual-select-plugin": "^1.1.0",
     "webpack": "^5.105.4",
     "webpack-cli": "^4.9.1",
