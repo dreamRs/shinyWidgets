@@ -31,13 +31,13 @@ Source:
 [`DESCRIPTION`](https://github.com/dreamRs/shinyWidgets/blob/master/DESCRIPTION)
 
 Perrier V, Meyer F, Granjon D (2026). *shinyWidgets: Custom Inputs
-Widgets for Shiny*. R package version 0.9.0.9200,
+Widgets for Shiny*. R package version 0.9.1,
 <https://github.com/dreamRs/shinyWidgets>.
 
     @Manual{,
       title = {shinyWidgets: Custom Inputs Widgets for Shiny},
       author = {Victor Perrier and Fanny Meyer and David Granjon},
       year = {2026},
-      note = {R package version 0.9.0.9200},
+      note = {R package version 0.9.1},
       url = {https://github.com/dreamRs/shinyWidgets},
     }
