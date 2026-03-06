@@ -1,8 +1,10 @@
 shinyWidgets 0.9.1
 ======================
 
-* Updated virtual-select to 1.0.49, see https://github.com/sa-si-dev/virtual-select/releases.
+* New widget `quercusInput()`, hierarchical treeview component based on JavaScript library [quercus.js](https://github.com/stefaneichert/quercus.js).
+* Updated virtual-select to 1.1.0, see https://github.com/sa-si-dev/virtual-select/releases.
 * Updated air-datepicker to 3.6.0, see https://github.com/t1m0n/air-datepicker?tab=readme-ov-file#v360
+* Updated vanilla-calendar-pro to 3.1.0, see https://github.com/uvarov-frontend/vanilla-calendar-pro/releases
 
 
 shinyWidgets 0.9.0

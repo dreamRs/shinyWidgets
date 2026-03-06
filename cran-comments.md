@@ -1,7 +1,7 @@
 ## Test environments
 
-* local Pop!_OS 22.04 LTS install, R 4.4.1
-* ubuntu 20.04, Windows 10, macOS (on GitHub Actions), R 4.4.1
+* local Pop!_OS 24.04 LTS install, R 4.5.2
+* ubuntu 24.04.3, Windows 11, macOS (on GitHub Actions), R 4.5.2
 * win-builder (devel and release)
 
 ## R CMD check results
