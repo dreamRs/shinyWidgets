@@ -1,0 +1,8 @@
+{
+  "input": {
+    "single": "March"
+  },
+  "output": {
+    "res_single": "[1] \"March\""
+  }
+}

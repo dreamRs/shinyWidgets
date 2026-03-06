@@ -37,4 +37,7 @@ Suggests:
     DT,
     scales,
     shinydashboard,
-    shinydashboardPlus
+    shinydashboardPlus,
+    shinytest2 (>= 0.4.1)
+Remotes:
+    shiny=rstudio/shiny@v1.10.0
