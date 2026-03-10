@@ -2,6 +2,8 @@
 
 ## shinyWidgets 0.9.1
 
+CRAN release: 2026-03-09
+
 - New widget
   [`quercusInput()`](https://dreamrs.github.io/shinyWidgets/reference/quercusInput.md),
   hierarchical treeview component based on JavaScript library

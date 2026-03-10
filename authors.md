@@ -28,7 +28,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/dreamRs/shinyWidgets/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/dreamRs/shinyWidgets/blob/v0.9.1/DESCRIPTION)
 
 Perrier V, Meyer F, Granjon D (2026). *shinyWidgets: Custom Inputs
 Widgets for Shiny*. R package version 0.9.1,
