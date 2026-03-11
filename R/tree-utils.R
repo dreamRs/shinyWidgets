@@ -11,20 +11,21 @@
 #' @export
 create_tree <- function(data, levels = names(data), levels_id = NULL, ...) {
   args <- list(...)
+  args_level <- args[[levels[1]]]
   data <- as.data.frame(data)
   if (!all(levels %in% names(data)))
     stop("All levels must be valid variables in data", call. = FALSE)
   data[levels] <- lapply(data[levels], as.character)
   data <- unique(x = data)
+  has_one_level <- length(levels) == 1
   if (is.null(levels_id)) {
     lapply(
       X = unique(data[[levels[1]]][!is.na(data[[levels[1]]])]),
       FUN = function(var) {
-        dat <- data[data[[levels[1]]] == var, , drop = FALSE]
-        args_level <- args[[levels[1]]]
-        if (length(levels) == 1) {
+        if (has_one_level) {
           dropNullsOrEmpty(c(list(text = var, id = paste0("tree", sample.int(1e7, 1))), args_level))
         } else {
+          dat <- data[data[[levels[1]]] == var, , drop = FALSE]
           c(
             dropNullsOrEmpty(list(
               text = var,
@@ -52,11 +53,10 @@ create_tree <- function(data, levels = names(data), levels_id = NULL, ...) {
       text = unique(data[[levels[1]]][!is.na(data[[levels[1]]])]),
       id = unique(data[[levels_id[1]]][!is.na(data[[levels_id[1]]])]),
       FUN = function(text, id) {
-        dat <- data[data[[levels[1]]] == text, , drop = FALSE]
-        args_level <- args[[levels[1]]]
-        if (length(levels) == 1) {
+        if (has_one_level) {
           dropNullsOrEmpty(c(list(text = text, id = id), args_level))
         } else {
+          dat <- data[data[[levels[1]]] == text, , drop = FALSE]
           c(
             dropNullsOrEmpty(list(
               text = text,
