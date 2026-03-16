@@ -319,25 +319,40 @@ pickerSelectOptions <- function(choices, selected = NULL, choicesOpt = NULL, max
 }
 
 # From shiny/input-select.R, faster alternative if no choice options specific to picker
-selectOptions <- function(choices, selected = NULL) {
-  html <- mapply(choices, names(choices), FUN = function(choice, label) {
-    if (is.list(choice)) {
-      sprintf(
-        '<optgroup label="%s">\n%s\n</optgroup>',
-        htmlEscape(label, TRUE),
-        selectOptions(choice, selected)
-      )
+selectOptions <- function(choices,
+                          selected = NULL){
 
-    } else {
-      sprintf(
-        '<option value="%s"%s>%s</option>',
-        htmlEscape(choice, TRUE),
-        if (choice %in% selected) ' selected' else '',
-        htmlEscape(label)
-      )
-    }
-  })
-  HTML(paste(html, collapse = '\n'))
+  # initial vector to store output character strings
+  html           <- vector("character", length(choices))
+
+  # indicating where to update list elements
+  is_list_choice <- vapply(choices, is.list, logical(1L))
+
+  # apply function ON list choices and add back to html
+  if(any(is_list_choice)){
+    list_choices   <- choices[is_list_choice]
+    list_html      <- sprintf(
+      fmt = '<optgroup label="%s">\n%s\n</optgroup>',
+      htmltools::htmlEscape(text      = names(list_choices),
+                            attribute = TRUE),
+      vapply(list_choices, selectOptions, character(1L), selected = selected)
+    )
+    html[is_list_choice] <- list_html
+  }
+
+  # run on just vector choices and put back into html
+  if(any(!is_list_choice)){
+    vec_choices <- choices[!is_list_choice]
+    vec_html    <- sprintf(
+      fmt = '<option value="%s"%s>%s</option>',
+      htmltools::htmlEscape(text      = vec_choices,
+                            attribute = TRUE),
+      c("", " selected")[(vec_choices %in% selected) + 1],
+      htmltools::htmlEscape(names(vec_choices))
+    )
+    html[!is_list_choice] <- vec_html
+  }
+
+  # paste everything together
+  htmltools::HTML(paste(html, collapse = "\n"))
 }
-
-
