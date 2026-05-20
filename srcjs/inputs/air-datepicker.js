@@ -171,12 +171,12 @@ $.extend(AirDatepickerBindings, {
     if (config.updateOn == "close") {
       options.onHide = function(isFinished) {
         if (isFinished) {
-          $(el).trigger("change");
+          $(el).trigger("changeInput");
         }
       };
     } else {
       options.onSelect = function(date, formattedDate, datepicker) {
-        $(el).trigger("change");
+        $(el).trigger("changeInput");
       };
     }
 
@@ -229,7 +229,7 @@ $.extend(AirDatepickerBindings, {
     dp.selectDate(newdate);
   },
   subscribe: (el, callback) => {
-    $(el).on("change.AirDatepickerBinding", function(event) {
+    $(el).on("changeInput.AirDatepickerBinding", function(event) {
       callback();
     });
   },
@@ -309,7 +309,7 @@ $.extend(AirDatepickerBindings, {
       AirDatepickerBindings.setValue(el, data.config.value);
     }
 
-    $(el).trigger("change");
+    $(el).trigger("changeInput");
   }
 });
 Shiny.inputBindings.register(

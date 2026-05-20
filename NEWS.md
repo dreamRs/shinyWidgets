@@ -1,3 +1,9 @@
+shinyWidgets 0.9.2
+======================
+
+* Fixed an issue in airDatepickerInput() where update_on = "close" did not work as expected [#766](https://github.com/dreamRs/shinyWidgets/issues/766).
+
+
 shinyWidgets 0.9.1
 ======================
 
