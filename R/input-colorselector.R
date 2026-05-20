@@ -58,7 +58,7 @@ colorSelectorInput <- function(inputId,
   if (is.null(selected) & mode == "radio")
     selected <- firstChoice(choices)
   tagCS <- htmltools::tags$div(
-    class = "shiny-input-container-inline form-group",
+    class = "shiny-input-container shiny-input-container-inline form-group sw-color-selector-input",
     class = paste0(mode, "-group-buttons"),
     `data-toggle`="buttons",
     id = inputId,

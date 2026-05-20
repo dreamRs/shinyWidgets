@@ -176,7 +176,7 @@ calendarProInput <- function(inputId,
   }
   tags$div(
     id = inputId,
-    class = "form-group vanilla-calendar-pro shiny-input-container",
+    class = "form-group vanilla-calendar-pro sw-calendar-pro-input shiny-input-container",
     class = if (isTRUE(inline)) "shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),

@@ -126,7 +126,7 @@ colorPickr <- function(inputId,
   ))
 
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-pickr-color-input",
     style = css(width = validateCssUnit(width)),
     tagAppendAttributes(
       label_input(inputId, label),

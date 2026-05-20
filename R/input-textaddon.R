@@ -36,7 +36,7 @@ textInputAddon <- function (inputId, label, value = "", placeholder = NULL, addo
   .Deprecated("textInputIcon", package = "shinyWidgets", old = "textInputAddon")
   value <- shiny::restoreInput(id = inputId, default = value)
   htmltools::tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-text-addon-input",
     htmltools::tags$label(label, `for` = inputId),
     style = css(width = validateCssUnit(width)),
     htmltools::tags$div(

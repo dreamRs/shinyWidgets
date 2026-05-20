@@ -123,7 +123,7 @@ pickerInput <- function(inputId,
     selectTag$attribs$multiple <- "multiple"
 
   pickerTag <- tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-picker-input",
     class = if (isTRUE(inline)) "shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
     style = if (isTRUE(inline)) "display: inline-block;",

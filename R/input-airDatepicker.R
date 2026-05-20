@@ -241,7 +241,7 @@ airDatepickerInput <- function(inputId,
   }
 
   tagAir <- tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-air-datepicker-input",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
     tagAir,
@@ -353,6 +353,7 @@ timepickerOptions <- function(dateTimeSeparator = NULL,
 #' @rdname airDatepicker
 #' @export
 #' @importFrom utils modifyList
+#' @importFrom htmltools tagAppendAttributes
 airMonthpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
   if (!is.null(value)) {
     if (inherits(value, "Date")) {
@@ -372,13 +373,14 @@ airMonthpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
       monthsField = "months"
     )
   )
-  do.call(airDatepickerInput, args)
+  tagAppendAttributes(do.call(airDatepickerInput, args), class = "sw-air-monthpicker-input")
 }
 
 
 #' @rdname airDatepicker
 #' @export
 #' @importFrom utils modifyList
+#' @importFrom htmltools tagAppendAttributes
 airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
   if (!is.null(value)) {
     if (inherits(value, "Date")) {
@@ -397,7 +399,7 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
       minView = "years"
     )
   )
-  do.call(airDatepickerInput, args)
+  tagAppendAttributes(do.call(airDatepickerInput, args), class = "sw-air-yearpicker-input")
 }
 
 

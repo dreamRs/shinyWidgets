@@ -42,7 +42,7 @@ prettySwitch <- function(inputId,
   if (fill & slim)
     message("slim = TRUE & fill = TRUE don't work well together.")
   switchTag <- tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-pretty-switch-input",
     style = css(width = validateCssUnit(width)),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
@@ -155,7 +155,7 @@ prettyToggle <- function(inputId,
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   toggleTag <- tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-pretty-toggle-input",
     style = css(width = validateCssUnit(width)),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
@@ -272,7 +272,7 @@ prettyCheckbox <- function(inputId,
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   checkTag <- tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-pretty-checkbox-input",
     style = css(width = validateCssUnit(width)),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",
@@ -405,7 +405,7 @@ prettyCheckboxGroup <- function(inputId,
     plain = plain,
     bigger = bigger
   )
-  divClass <- "form-group shiny-input-checkboxgroup shiny-input-container"
+  divClass <- "form-group shiny-input-checkboxgroup shiny-input-container sw-pretty-checkbox-group-input"
   if (inline)
     divClass <- paste(divClass, "shiny-input-container-inline")
   checkgroupTag <- tags$div(
@@ -661,7 +661,7 @@ prettyRadioButtons <- function(inputId,
     plain = plain,
     bigger = bigger
   )
-  divClass <- "form-group shiny-input-radiogroup shiny-input-container"
+  divClass <- "form-group shiny-input-radiogroup shiny-input-container sw-pretty-radio-buttons-input"
   if (inline)
     divClass <- paste(divClass, "shiny-input-container-inline")
   radioTag <- htmltools::tags$div(

@@ -181,7 +181,7 @@ virtualSelectInput <- function(inputId,
     )
   }
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-virtual-select-input",
     class = if (isTRUE(inline)) "shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),

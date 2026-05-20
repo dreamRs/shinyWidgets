@@ -8,9 +8,10 @@ test_that("Material Switch", {
 
   expect_true(inherits(tag_materialSwitch, "shiny.tag"))
   expect_true(isTRUE(tag_materialSwitch$name == "div"))
-  expect_true(
-    identical(htmltools::tagGetAttribute(tag_materialSwitch, "class"), "form-group shiny-input-container")
-  )
+
+  classes <- unlist(strsplit(tag_materialSwitch$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
 
 })
 
@@ -20,9 +21,9 @@ test_that("Picker Input", {
 
   expect_true(inherits(tag_pickerInput, "shiny.tag"))
   expect_true(isTRUE(tag_pickerInput$name == "div"))
-  expect_true(
-    identical(htmltools::tagGetAttribute(tag_pickerInput, "class"), "form-group shiny-input-container")
-  )
+  classes <- unlist(strsplit(tag_pickerInput$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
 
 })
 
@@ -38,9 +39,9 @@ test_that("Search Input", {
 
   expect_true(inherits(tag_searchInput, "shiny.tag"))
   expect_true(isTRUE(tag_searchInput$name == "div"))
-  expect_true(
-    identical(htmltools::tagGetAttribute(tag_searchInput, "class"), "form-group shiny-input-container")
-  )
+  classes <- unlist(strsplit(tag_searchInput$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
 
 })
 
@@ -53,9 +54,9 @@ test_that("Awesome Checkbox", {
 
   expect_true(inherits(tag_awesomeCheckbox, "shiny.tag"))
   expect_true(isTRUE(tag_awesomeCheckbox$name == "div"))
-  expect_true(
-    identical(htmltools::tagGetAttribute(tag_awesomeCheckbox, "class"), "form-group shiny-input-container")
-  )
+  classes <- unlist(strsplit(tag_awesomeCheckbox$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
 
 })
 
@@ -65,8 +66,8 @@ test_that("Bootstrap Switch", {
 
   expect_true(inherits(tag_switchInput, "shiny.tag"))
   expect_true(isTRUE(tag_switchInput$name == "div"))
-  expect_true(
-    identical(htmltools::tagGetAttribute(tag_switchInput, "class"), "form-group shiny-input-container")
-  )
+  classes <- unlist(strsplit(tag_switchInput$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
 
 })

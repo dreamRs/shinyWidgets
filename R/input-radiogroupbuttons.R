@@ -65,7 +65,7 @@ radioGroupButtons <- function(inputId,
   }
 
   tags$div(
-    class = "form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline",
+    class = "form-group shiny-input-container shiny-input-radiogroup shiny-input-container-inline sw-radio-group-buttons-input",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
     if (!is.null(label)) tags$br(),

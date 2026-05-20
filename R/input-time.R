@@ -30,7 +30,7 @@ timeInput <- function(inputId,
                       step = NULL,
                       width = NULL) {
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-time-input",
     label_input(inputId, label),
     style = css(width = validateCssUnit(width)),
     tags$input(

@@ -135,7 +135,7 @@ awesomeRadio <- function(inputId,
   }
   awesomeRadioTag <- tags$div(
     id = inputId,
-    class = "form-group shiny-input-radiogroup awesome-bootstrap-radio shiny-input-container",
+    class = "form-group shiny-input-radiogroup awesome-bootstrap-radio shiny-input-container sw-awesome-radio-input",
     class = if (inline) "shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
     tagAppendAttributes(

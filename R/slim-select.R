@@ -192,7 +192,7 @@ slimSelectInput <- function(inputId,
   if (multiple)
     tag_select$attribs$multiple <- "multiple"
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-slim-select-input",
     class = if (isTRUE(inline)) "shiny-input-container-inline",
     style = css(width = validateCssUnit(width), height = "auto"),
     label_input(inputId, label),

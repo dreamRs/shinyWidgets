@@ -104,7 +104,7 @@ multiInput <- function(inputId,
     autocomplete = if (autocomplete) "on" else "off"
   )
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-multi-input",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
     selectTag,

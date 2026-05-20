@@ -92,7 +92,7 @@ currencyInput <- function(inputId, label, value, format = "euro",
                           width = NULL, align = "center") {
   value <- shiny::restoreInput(inputId, value)
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-currency-input",
     style = css(width = validateCssUnit(width)),
     if (!is.null(label)) tags$label(`for` = inputId, label),
     tags$input(
@@ -496,7 +496,7 @@ autonumericInput <- function(inputId, label, value,
     json_verbatim = TRUE
   )
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-autonumeric-input",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
     tags$input(

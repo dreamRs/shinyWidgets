@@ -139,7 +139,7 @@ sliderTextInput <- function (inputId,
     else x
   })
   sliderTag <- tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-slider-text-input",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
     do.call(htmltools::tags$input, sliderProps)

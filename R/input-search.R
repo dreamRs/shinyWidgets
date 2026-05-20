@@ -58,7 +58,7 @@ searchInput <- function(inputId,
   )
 
   htmltools::tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-search-input",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
     htmltools::tags$div(

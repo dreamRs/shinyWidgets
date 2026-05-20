@@ -23,7 +23,10 @@ test_that("Default", {
     value = c(2,7)
   )
 
-  expect_identical(object = nr$attribs$class, expected = "shiny-numeric-range-input form-group shiny-input-container")
+  classes <- unlist(strsplit(nr$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
+
   expect_identical(object = nr$attribs$id, expected = "default")
 
   expect_identical(object = nr$children[[1]]$attribs$class, expected = "control-label")
@@ -51,7 +54,10 @@ test_that("Single Value", {
     value = 3
   )
 
-  expect_identical(object = nr$attribs$class, expected = "shiny-numeric-range-input form-group shiny-input-container")
+  classes <- unlist(strsplit(nr$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
+
   expect_identical(object = nr$attribs$id, expected = "default")
 
   expect_identical(object = nr$children[[1]]$attribs$class, expected = "control-label")

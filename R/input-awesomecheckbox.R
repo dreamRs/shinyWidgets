@@ -47,7 +47,7 @@ awesomeCheckbox <- function(inputId,
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   awesomeTag <- tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-awesome-checkbox-input",
     style = css(width = validateCssUnit(width)),
     tags$div(
       class = paste0("awesome-checkbox checkbox-", status),
@@ -172,7 +172,7 @@ awesomeCheckboxGroup <- function(inputId,
   if (!is.null(selected))
     selected <- validateSelected(selected, choices, inputId)
   options <- generateAwesomeOptions(inputId, choices, selected, inline, status = status)
-  divClass <- "form-group shiny-input-container shiny-input-checkboxgroup awesome-bootstrap-checkbox"
+  divClass <- "form-group shiny-input-container shiny-input-checkboxgroup awesome-bootstrap-checkbox sw-awesome-checkbox-group-input"
   if (inline)
     divClass <- paste(divClass, "shiny-input-container-inline")
   awesomeTag <- tags$div(

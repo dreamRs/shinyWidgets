@@ -48,7 +48,7 @@ treeInput <- function(inputId,
   ))
   config <- toJSON(config, auto_unbox = TRUE, json_verbatim = TRUE)
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-tree-input",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
     tags$div(

@@ -56,7 +56,7 @@ materialSwitch <- function(inputId,
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   msTag <- tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-material-switch-input",
     style = css(width = validateCssUnit(width)),
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block; margin-right: 10px;",

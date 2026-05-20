@@ -29,8 +29,9 @@ test_that("Default", {
   options <- jsonlite::fromJSON(json)
 
   expect_is(air, "shiny.tag")
-
-  expect_identical(object = air$attribs$class, expected = "form-group shiny-input-container")
+  classes <- unlist(strsplit(air$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$id, expected = "default")
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker form-control")
 
@@ -52,7 +53,9 @@ test_that("Months", {
 
   expect_is(air, "shiny.tag")
 
-  expect_identical(object = air$attribs$class, expected = "form-group shiny-input-container")
+  classes <- unlist(strsplit(air$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$id, expected = "month")
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker form-control")
 
@@ -74,7 +77,9 @@ test_that("Years", {
 
   expect_is(air, "shiny.tag")
 
-  expect_identical(object = air$attribs$class, expected = "form-group shiny-input-container")
+  classes <- unlist(strsplit(air$attribs$class, split = " "))
+  expect_true("form-group" %in% classes)
+  expect_true("shiny-input-container" %in% classes)
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$id, expected = "year")
   expect_identical(object = air$children[[2]]$children[[2]]$attribs$class, expected = "sw-air-picker form-control")
 

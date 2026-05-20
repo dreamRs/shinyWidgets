@@ -82,7 +82,7 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
     format = format
   ))
   tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-no-ui-slider-input",
     class = if (inline) "shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
     style = if (inline) "display: inline-block;",

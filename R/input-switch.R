@@ -93,7 +93,7 @@ switchInput <- function(inputId,
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
   switchInputTag <- htmltools::tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-switch-input",
     class = if (inline) "shiny-input-container-inline",
     style = if (inline) "display: inline-block;",
     style = css(width = validateCssUnit(width)),

@@ -99,7 +99,7 @@ spectrumInput <- function(inputId, label, choices = NULL, selected = NULL,
     else x
   })
   spectrumTag <- htmltools::tags$div(
-    class = "form-group shiny-input-container",
+    class = "form-group shiny-input-container sw-spectrum-input",
     class = if (flat) "shiny-input-container-inline",
     style = css(width = validateCssUnit(width)),
     label_input(inputId, label),
