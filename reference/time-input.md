@@ -71,6 +71,7 @@ A time input control that can be added to a UI definition.
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 

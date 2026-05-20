@@ -97,6 +97,7 @@ documentation for more https://sweetalert2.github.io/.
 ## Examples
 
 ``` r
+
 # Input in alert ----
 
 library(shiny)

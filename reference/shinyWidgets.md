@@ -20,6 +20,8 @@ holder\]
 
 Authors:
 
+- Victor Perrier <victor.perrier@dreamrs.fr> \[copyright holder\]
+
 - Fanny Meyer
 
 - David Granjon

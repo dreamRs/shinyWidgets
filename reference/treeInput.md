@@ -64,6 +64,7 @@ for updating from server.
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 

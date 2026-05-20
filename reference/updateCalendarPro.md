@@ -61,6 +61,7 @@ for creating a widget in the UI.
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 

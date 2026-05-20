@@ -29,6 +29,7 @@ updateVerticalTabsetPanel(session, inputId, selected = NULL)
 ## Examples
 
 ``` r
+
 if (interactive()) {
 
 library(shiny)

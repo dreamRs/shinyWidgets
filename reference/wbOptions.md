@@ -86,6 +86,7 @@ A `list` of options to use in
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 

@@ -90,6 +90,7 @@ A `list` to use as `choices` argument of
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 

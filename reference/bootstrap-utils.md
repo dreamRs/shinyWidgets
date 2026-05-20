@@ -58,6 +58,7 @@ A UI definition.
 ## Examples
 
 ``` r
+
 # Panels ---------------------------------
 
 library(shiny)

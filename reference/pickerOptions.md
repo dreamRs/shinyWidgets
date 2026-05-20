@@ -266,6 +266,7 @@ page](https://developer.snapappointments.com/bootstrap-select/options/).
 ## Examples
 
 ``` r
+
 if (interactive()) {
   library(shiny)
   library(shinyWidgets)

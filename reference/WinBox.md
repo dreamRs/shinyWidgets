@@ -89,6 +89,7 @@ in your UI definition for this function to work.
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 

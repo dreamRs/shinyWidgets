@@ -108,6 +108,7 @@ A `shiny.tag` object that can be used in a UI definition.
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 library(htmltools)

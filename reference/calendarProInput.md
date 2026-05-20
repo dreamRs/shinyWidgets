@@ -218,6 +218,7 @@ to update the widget from the server.
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 

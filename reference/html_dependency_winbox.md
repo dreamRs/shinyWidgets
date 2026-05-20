@@ -20,6 +20,7 @@ html_dependency_winbox(
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 

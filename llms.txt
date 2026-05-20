@@ -18,6 +18,7 @@ Install from [CRAN](https://CRAN.R-project.org/package=shinyWidgets)
 with:
 
 ``` r
+
 install.packages("shinyWidgets")
 ```
 
@@ -25,6 +26,7 @@ Or install the development version from
 [GitHub](https://github.com/dreamRs/shinyWidgets) with:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("dreamRs/shinyWidgets")
 ```
@@ -35,6 +37,7 @@ A gallery application is included in the package. Once installed, use
 the following command to launch it:
 
 ``` r
+
 shinyWidgets::shinyWidgetsGallery()
 ```
 
@@ -54,6 +57,7 @@ Turn checkboxes into toggle switches :
 switchInput
 
 ``` r
+
 switchInput(inputId = "id", value = TRUE)
 ```
 
@@ -66,12 +70,14 @@ Turn checkboxes into toggle switches :
 materialSwitch
 
 ``` r
+
 materialSwitch(inputId = "id", label = "Primary switch", status = "danger")
 ```
 
 - **Pretty checkbox**
 
 ``` r
+
 prettyCheckbox(
   inputId = "id", label = "Check me!", icon = icon("check")
 )
@@ -80,6 +86,7 @@ prettyCheckbox(
 - **Pretty switch**
 
 ``` r
+
 prettySwitch(
   inputId = "id",
   label = "Switch:",
@@ -91,6 +98,7 @@ prettySwitch(
 - **Pretty toggle**
 
 ``` r
+
 prettyToggle(
   inputId = "id",
   label_on = "Checked!",
@@ -107,6 +115,7 @@ prettyToggle(
 checkboxGroupButtons
 
 ``` r
+
 checkboxGroupButtons( # or radioGroupButtons
   inputId = "id",
   label = "Choice: ",
@@ -117,6 +126,7 @@ checkboxGroupButtons( # or radioGroupButtons
 - **Pretty checkbox group and radio buttons**
 
 ``` r
+
 prettyCheckboxGroup( # or prettyRadioButtons
   inputId = "id",
   label = "Choice",
@@ -139,6 +149,7 @@ Select menu with lot of configurations options available:
 pickerInput
 
 ``` r
+
 pickerInput(
   inputId = "id", 
   label = "Select:", 
@@ -161,6 +172,7 @@ Select menu that can support long list of choices:
 virtualSelectInput
 
 ``` r
+
 virtualSelectInput(
   inputId = "id",
   label = "Select:",
@@ -188,6 +200,7 @@ integrated :
 airDatepickerInput
 
 ``` r
+
 airDatepickerInput(
   inputId = "id",
   label = "Select:",
@@ -208,6 +221,7 @@ Slider with strings, to pass whatever you want:
 sliderText
 
 ``` r
+
 sliderTextInput(
   inputId = "id", 
   label = "Choice:", 
@@ -233,6 +247,7 @@ positioned vertically (among other things):
 noUiSliderInput
 
 ``` r
+
 noUiSliderInput(
   inputId = "id",
   label = "Select:",
@@ -255,6 +270,7 @@ Select value(s) in a hierarchical structure:
 treeInput
 
 ``` r
+
 treeInput(
   inputId = "ID2",
   label = "Select cities:",
@@ -276,6 +292,7 @@ A text input only triggered by hitting ‘Enter’ or clicking search button
 search_input
 
 ``` r
+
 searchInput(
   inputId = "id", 
   label = "Enter your search :", 
@@ -315,6 +332,7 @@ Hide input in a button :
 ![dropdown_off](reference/figures/dropdown_btn_off.png)![dropdown_on](reference/figures/dropdown_btn_on.png)
 
 ``` r
+
 dropdownButton(
   tags$h3("List of Input"),
   selectInput(inputId = 'xcol', label = 'X Variable', choices = names(iris)),
@@ -338,12 +356,14 @@ manage JavaScript assets, see packer’s
 Install nodes modules with:
 
 ``` r
+
 packer::npm_install()
 ```
 
 Modify inputs bindings in `srcjs/inputs/`, then run:
 
 ``` r
+
 packer::bundle()
 ```
 

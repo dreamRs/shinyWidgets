@@ -41,6 +41,7 @@ reorderVerticalTabs(
 ## Examples
 
 ``` r
+
 if (interactive()) {
 
 library(shiny)

@@ -64,6 +64,7 @@ A `list` of controls to use in
 ## Examples
 
 ``` r
+
 library(shiny)
 library(shinyWidgets)
 
