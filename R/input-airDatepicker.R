@@ -373,7 +373,9 @@ airMonthpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
       monthsField = "months"
     )
   )
-  tagAppendAttributes(do.call(airDatepickerInput, args), class = "sw-air-monthpicker-input")
+  tag_air <- do.call(airDatepickerInput, args)
+  tag_air$attribs$class <- "form-group shiny-input-container sw-air-monthpicker-input"
+  return(tag_air)
 }
 
 
@@ -399,7 +401,9 @@ airYearpickerInput <- function(inputId, label = NULL, value = NULL, ...) {
       minView = "years"
     )
   )
-  tagAppendAttributes(do.call(airDatepickerInput, args), class = "sw-air-yearpicker-input")
+  tag_air <- do.call(airDatepickerInput, args)
+  tag_air$attribs$class <- "form-group shiny-input-container sw-air-yearpicker-input"
+  return(tag_air)
 }
 
 

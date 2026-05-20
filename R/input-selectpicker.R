@@ -32,8 +32,7 @@
 #' @return A select control that can be added to a UI definition.
 #'
 #' @importFrom shiny restoreInput
-#' @importFrom htmltools tags htmlEscape validateCssUnit
-#'  tagAppendAttributes tagAppendChildren tag
+#' @importFrom htmltools tags htmlEscape validateCssUnit tagAppendAttributes tagAppendChildren tag
 #'
 #' @export
 #'
