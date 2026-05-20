@@ -101,9 +101,9 @@ if (interactive()) {
 }
 }
 \seealso{
-Other autonumeric: 
-\code{\link{autonumericInput}()},
-\code{\link{currencyInput}()},
-\code{\link{updateCurrencyInput}()}
+Other autonumeric:
+\code{\link[=autonumericInput]{autonumericInput()}},
+\code{\link[=currencyInput]{currencyInput()}},
+\code{\link[=updateCurrencyInput]{updateCurrencyInput()}}
 }
 \concept{autonumeric}

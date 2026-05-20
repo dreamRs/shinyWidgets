@@ -283,9 +283,9 @@ if (interactive()) {
 Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package". http://autonumeric.org
 }
 \seealso{
-Other autonumeric: 
-\code{\link{currencyInput}()},
-\code{\link{updateAutonumericInput}()},
-\code{\link{updateCurrencyInput}()}
+Other autonumeric:
+\code{\link[=currencyInput]{currencyInput()}},
+\code{\link[=updateAutonumericInput]{updateAutonumericInput()}},
+\code{\link[=updateCurrencyInput]{updateCurrencyInput()}}
 }
 \concept{autonumeric}

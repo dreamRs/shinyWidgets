@@ -117,9 +117,9 @@ Bonneau, Alexandre. 2018. "AutoNumeric.js javascript Package".
 \url{https://autonumeric.org/}.
 }
 \seealso{
-Other autonumeric: 
-\code{\link{autonumericInput}()},
-\code{\link{updateAutonumericInput}()},
-\code{\link{updateCurrencyInput}()}
+Other autonumeric:
+\code{\link[=autonumericInput]{autonumericInput()}},
+\code{\link[=updateAutonumericInput]{updateAutonumericInput()}},
+\code{\link[=updateCurrencyInput]{updateCurrencyInput()}}
 }
 \concept{autonumeric}

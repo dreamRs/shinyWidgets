@@ -28,6 +28,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Victor Perrier \email{victor.perrier@dreamrs.fr} [copyright holder]
   \item Fanny Meyer
   \item David Granjon
 }
