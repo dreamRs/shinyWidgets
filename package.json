@@ -23,6 +23,7 @@
   "homepage": "https://github.com/dreamRs/shinyWidgets#readme",
   "devDependencies": {
     "@simonwep/pickr": "^1.9.1",
+    "@tarekraafat/autocomplete.js": "^10.2.10",
     "@widgetjs/tree": "^1.8.3",
     "air-datepicker": "^3.6.0",
     "autonumeric": "^4.6.0",

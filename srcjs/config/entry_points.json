@@ -12,5 +12,6 @@
   "WinBox": "./srcjs/exts/WinBox.js",
   "slim-select": "./srcjs/inputs/slim-select.js",
   "calendar-pro": "./srcjs/inputs/vanilla-calendar-pro.js",
-  "quercus": "./srcjs/inputs/quercus.js"
+  "quercus": "./srcjs/inputs/quercus.js",
+  "autocomplete": "./srcjs/inputs/autocomplete.js"
 }
