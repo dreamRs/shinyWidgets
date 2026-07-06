@@ -17,7 +17,8 @@
   margin: 0.5rem 0 0 0;
   border-radius: 4px;
   background-color: #fff;
-  border: 1px solid rgba(33, 33, 33, 0.1);
+  /*border: 1px solid rgba(33, 33, 33, 0.1);*/
+  border: 1px solid #ccc;
   z-index: 1000;
   outline: 0;
 }
@@ -46,6 +47,7 @@
   background-color: transparent;
   color: #ff7a7a;
   font-weight: 700;
+  padding: 0;
 }
 .autoComplete_wrapper > ul > li mark::selection {
   color: rgba(#fff, 0);

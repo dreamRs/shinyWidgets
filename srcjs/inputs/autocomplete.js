@@ -37,6 +37,7 @@ function initAutocomplete(el) {
     data: { src: cfg.choices || [] },
     resultItem: { highlight: true },
     resultsList: cfg.resultsList,
+    searchEngine: cfg.searchEngine,
     events: {
       input: {
         selection: function (event) {
@@ -49,6 +50,15 @@ function initAutocomplete(el) {
         },
       },
     },
+  });
+
+  // Ré-ouvrir les suggestions au focus si une saisie existe déjà
+  $(input).off("focus.autocompletejs-reopen").on("focus.autocompletejs-reopen", function() {
+    const q = input.value || "";
+    if (!q.trim()) return;
+
+    // autoComplete.js écoute l'événement "input" pour lancer la recherche
+    input.dispatchEvent(new Event("input", { bubbles: true }));
   });
 
   state.ac = ac;
@@ -89,7 +99,9 @@ $.extend(AutocompleteBinding, {
     });
   },
 
-  unsubscribe: function (el) {
+  unsubscribe: function(el) {
+    const input = el.querySelector("input");
+    if (input) $(input).off(".autocompletejs-reopen");
     $(el).off(".autocompletejs");
   },
 

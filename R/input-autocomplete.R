@@ -3,11 +3,14 @@ autocompleteInput <- function(inputId,
                               label = NULL,
                               choices = character(),
                               placeholder = "Rechercher...",
+                              searchEngine = c("strict", "loose"),
                               maxResults = 5,
                               width = NULL) {
+  searchEngine <- match.arg(searchEngine)
   cfg <- list(
     choices = unname(as.character(choices)),
     placeholder = placeholder,
+    searchEngine = searchEngine,
     resultsList = list(maxResults = maxResults)
   )
 
