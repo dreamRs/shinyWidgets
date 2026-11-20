@@ -3,6 +3,7 @@ shinyWidgets 0.9.2
 
 * Fixed an issue in airDatepickerInput() where update_on = "close" did not work as expected [#766](https://github.com/dreamRs/shinyWidgets/issues/766).
 
+* Added `handleAttributes` to `noUiSliderInput()` to pass HTML attributes to individual slider handles, including `aria-label` and `aria-labelledby` for accessible names (@shelbylevel, #769).
 
 shinyWidgets 0.9.1
 ======================
