@@ -23,6 +23,7 @@ noUiSliderInput(
   pips = NULL,
   format = wNumbFormat(),
   update_on = c("end", "change"),
+  handleAttributes = NULL,
   color = NULL,
   inline = FALSE,
   width = NULL,
@@ -74,6 +75,8 @@ See \url{https://refreshless.com/nouislider/behaviour-option/} for more examples
 \item{format}{numbers format, see \code{\link{wNumbFormat}}.}
 
 \item{update_on}{When to send value to server: \code{"end"} (when slider is released) or \code{"change"} (each time value changes).}
+
+\item{handleAttributes}{A list containing one named list of HTML attributes for each slider handle. This can be used to provide accessible names with \code{aria-label} or \code{aria-labelledby}.}
 
 \item{color}{color in Hex format for the slider.}
 
