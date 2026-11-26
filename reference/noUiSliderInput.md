@@ -24,6 +24,7 @@ noUiSliderInput(
   pips = NULL,
   format = wNumbFormat(),
   update_on = c("end", "change"),
+  handleAttributes = NULL,
   color = NULL,
   inline = FALSE,
   width = NULL,
@@ -116,6 +117,12 @@ noUiSliderInput(
 
   When to send value to server: `"end"` (when slider is released) or
   `"change"` (each time value changes).
+
+- handleAttributes:
+
+  A list containing one named list of HTML attributes for each slider
+  handle. This can be used to provide accessible names with `aria-label`
+  or `aria-labelledby`.
 
 - color:
 

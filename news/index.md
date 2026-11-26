@@ -6,6 +6,13 @@
   not work as expected
   [\#766](https://github.com/dreamRs/shinyWidgets/issues/766).
 
+- Added `handleAttributes` to
+  [`noUiSliderInput()`](https://dreamrs.github.io/shinyWidgets/reference/noUiSliderInput.md)
+  to pass HTML attributes to individual slider handles, including
+  `aria-label` and `aria-labelledby` for accessible names
+  ([@shelbylevel](https://github.com/shelbylevel),
+  [\#769](https://github.com/dreamRs/shinyWidgets/issues/769)).
+
 ## shinyWidgets 0.9.1
 
 CRAN release: 2026-03-09
