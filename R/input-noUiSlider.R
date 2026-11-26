@@ -30,6 +30,7 @@
 #' @param pips list, used to generate points along the slider.
 #' @param format numbers format, see \code{\link{wNumbFormat}}.
 #' @param update_on When to send value to server: \code{"end"} (when slider is released) or \code{"change"} (each time value changes).
+#' @param handleAttributes A list containing one named list of HTML attributes for each slider handle. This can be used to provide accessible names with `aria-label` or `aria-labelledby`.
 #' @param color color in Hex format for the slider.
 #' @param inline If \code{TRUE}, it's possible to position sliders side-by-side.
 #' @param width The width of the input, e.g. `400px`, or `100%`.
@@ -54,6 +55,7 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
                             behaviour = "tap", range = NULL, pips = NULL,
                             format = wNumbFormat(),
                             update_on = c("end", "change"),
+                            handleAttributes = NULL,
                             color = NULL, inline = FALSE,
                             width = NULL, height = NULL) {
   orientation <- match.arg(orientation)
@@ -79,7 +81,8 @@ noUiSliderInput <- function(inputId, label = NULL, min, max, value,
     orientation = orientation,
     direction = match.arg(direction),
     behaviour = behaviour,
-    format = format
+    format = format,
+    handleAttributes = handleAttributes
   ))
   tags$div(
     class = "form-group shiny-input-container sw-no-ui-slider-input",
